@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-jspdf",
+    "private": true,
+    "description": "The declaration package Glutinum.Jspdf is generated from",
+    "devDependencies": {
+        "jspdf": "4.2.1"
+    }
+}

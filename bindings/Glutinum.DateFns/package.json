@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-datefns",
+    "private": true,
+    "description": "The declaration package Glutinum.DateFns is generated from",
+    "devDependencies": {
+        "date-fns": "4.4.0"
+    }
+}

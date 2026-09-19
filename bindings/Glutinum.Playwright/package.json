@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-playwright",
+    "private": true,
+    "description": "The declaration package Glutinum.Playwright is generated from",
+    "devDependencies": {
+        "playwright": "1.63.0"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-chartjs",
+    "private": true,
+    "description": "The declaration package Glutinum.ChartJs is generated from",
+    "devDependencies": {
+        "chart.js": "4.5.1"
+    }
+}

@@ -1,0 +1,10 @@
+bin/
+obj/
+node_modules/
+fable_modules/
+nupkgs/
+*.fs.js
+*.fs.js.map
+.ionide/
+bindings/*/tests/page/build/
+bindings/*/tests/page/dist/

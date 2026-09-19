@@ -1,0 +1,66 @@
+# Build and test the bindings on every pull request, and on every push to the main branch.
+#
+# The "easybuild-shipit.yml" workflow waits for this one to succeed before preparing a release,
+# so if you rename this workflow, remember to update the "workflows" filter over there as well.
+name: test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # `--changed` compares with the base branch
+          fetch-depth: 0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+      - uses: pnpm/action-setup@v6
+      # The browser tests drive Chromium
+      - run: pnpm install && npx playwright install --with-deps chromium
+      - name: Test the bindings touched by the change, all of them on main
+        run: ./build.sh test ${{ github.event_name == 'pull_request' && '--changed' || '' }}
+
+  generated:
+    name: Bindings are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+      - uses: pnpm/action-setup@v6
+      # A change to binding.json or to the pinned package must come with the file it produces
+      - run: ./build.sh generate --check ${{ github.event_name == 'pull_request' && '--changed' || '' }}
+
+  lint:
+    name: Check formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - run: ./build.sh lint

@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-dayjs",
+    "private": true,
+    "description": "The declaration package Glutinum.Dayjs is generated from",
+    "devDependencies": {
+        "dayjs": "1.11.23"
+    }
+}

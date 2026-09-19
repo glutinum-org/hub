@@ -1,0 +1,9 @@
+{
+    "name": "glutinum-hub-yargs",
+    "private": true,
+    "description": "The declaration package Glutinum.Yargs is generated from",
+    "devDependencies": {
+        "@types/yargs": "17.0.35",
+        "yargs": "18.1.0"
+    }
+}

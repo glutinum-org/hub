@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-signaturepad",
+    "private": true,
+    "description": "The declaration package Glutinum.SignaturePad is generated from",
+    "devDependencies": {
+        "signature_pad": "5.1.4"
+    }
+}

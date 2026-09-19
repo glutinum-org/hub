@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-webmidi",
+    "private": true,
+    "description": "The declaration package Glutinum.Webmidi is generated from",
+    "devDependencies": {
+        "webmidi": "3.3.1"
+    }
+}

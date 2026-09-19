@@ -1,0 +1,9 @@
+{
+    "name": "glutinum-hub-leaflet",
+    "private": true,
+    "description": "The declaration package Glutinum.Leaflet is generated from",
+    "devDependencies": {
+        "@types/leaflet": "1.9.22",
+        "leaflet": "1.9.4"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "tasks": [
+        {
+            "name": "fantomas-format-staged-files",
+            "group": "pre-commit",
+            "command": "dotnet",
+            "args": [
+                "fantomas",
+                "${staged}"
+            ],
+            "include": [
+                "**/*.fs",
+                "**/*.fsx",
+                "**/*.fsi",
+            ]
+        },
+        {
+            "name": "lint-markdown-staged-files",
+            "group": "pre-commit-operations",
+            "command": "npx",
+            "args": [
+                "rumdl",
+                "check",
+                "${staged}"
+            ],
+            "include": [
+              "**/*.md"
+            ],
+            "exclude": [
+                "**/CHANGELOG.md"
+            ]
+        }
+    ]
+}

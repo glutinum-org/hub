@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <PackageId>Glutinum.Hub.Build</PackageId>
+    <ManagePackageVersionsCentrally>False</ManagePackageVersionsCentrally>
+    <ContinuousIntegrationBuild>false</ContinuousIntegrationBuild>
+    <IsPackable>false</IsPackable>
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Workspace.fs" />
+    <Compile Include="Utils/Shell.fs" />
+    <Compile Include="Binding.fs" />
+    <Compile Include="Templates.fs" />
+    <Compile Include="Glutinum.fs" />
+    <Compile Include="Commands/List.fs" />
+    <Compile Include="Commands/Generate.fs" />
+    <Compile Include="Commands/AddTests.fs" />
+    <Compile Include="Commands/New.fs" />
+    <Compile Include="Commands/Test.fs" />
+    <Compile Include="Commands/Upgrade.fs" />
+    <Compile Include="Commands/Release.fs" />
+    <Compile Include="Commands/Lint.fs" />
+    <Compile Include="Commands/Format.fs" />
+    <Compile Include="Main.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BlackFox.CommandLine" Version="1.0.0" />
+    <PackageReference Include="FSharp.Core" Version="10.1.301" />
+    <PackageReference Include="SimpleExec" Version="13.0.0" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
+  </ItemGroup>
+</Project>
