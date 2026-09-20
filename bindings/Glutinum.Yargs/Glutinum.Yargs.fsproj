@@ -11,7 +11,7 @@
         <ChangelogFile>CHANGELOG.md</ChangelogFile>
         <NoWarn>$(NoWarn);FS0044</NoWarn>
         <NpmDependencies>
-            <NpmPackage Name="yargs" Version="&gt;= 17.0.35 &lt; 18.0.0" />
+            <NpmPackage Name="yargs" Version="&gt;= 18.1.0 &lt; 19.0.0" />
         </NpmDependencies>
     </PropertyGroup>
     <ItemGroup>

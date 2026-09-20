@@ -32,6 +32,16 @@ let pinnedVersion (binding: Binding) =
         .GetProperty(binding.Config.Package)
         .GetString()
 
+/// The npm package a consumer installs and the version the tests run against, a types-only
+/// package has none
+let npmDependency (binding: Binding) =
+    let runtime = runtimeName binding.Config.Package
+    use document = JsonDocument.Parse(File.ReadAllText binding.PackageJson)
+
+    match document.RootElement.GetProperty("devDependencies").TryGetProperty runtime with
+    | true, version -> Some(runtime, version.GetString())
+    | _ -> None
+
 /// The bindings of the hub a binding references
 let externalsOf (bindings: Binding list) (binding: Binding) =
     binding.Config.Externals
@@ -67,7 +77,7 @@ let writeProject (bindings: Binding list) (binding: Binding) =
     let project =
         Templates.project
             binding
-            (pinnedVersion binding)
+            (npmDependency binding)
             packages
             (externalsOf bindings binding)
             (File.Exists binding.ExtensionsFile)

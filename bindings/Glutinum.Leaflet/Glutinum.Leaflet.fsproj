@@ -11,7 +11,7 @@
         <ChangelogFile>CHANGELOG.md</ChangelogFile>
         <NoWarn>$(NoWarn);FS0044</NoWarn>
         <NpmDependencies>
-            <NpmPackage Name="leaflet" Version="&gt;= 1.9.22 &lt; 2.0.0" />
+            <NpmPackage Name="leaflet" Version="&gt;= 1.9.4 &lt; 2.0.0" />
         </NpmDependencies>
     </PropertyGroup>
     <ItemGroup>

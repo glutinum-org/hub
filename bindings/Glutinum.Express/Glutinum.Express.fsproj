@@ -11,7 +11,7 @@
         <ChangelogFile>CHANGELOG.md</ChangelogFile>
         <NoWarn>$(NoWarn);FS0044</NoWarn>
         <NpmDependencies>
-            <NpmPackage Name="express" Version="&gt;= 5.0.6 &lt; 6.0.0" />
+            <NpmPackage Name="express" Version="&gt;= 5.2.1 &lt; 6.0.0" />
         </NpmDependencies>
     </PropertyGroup>
     <ItemGroup>

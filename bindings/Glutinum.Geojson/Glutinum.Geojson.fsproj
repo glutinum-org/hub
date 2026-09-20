@@ -10,9 +10,6 @@
         <PackageTags>fable-javascript;fable-binding</PackageTags>
         <ChangelogFile>CHANGELOG.md</ChangelogFile>
         <NoWarn>$(NoWarn);FS0044</NoWarn>
-        <NpmDependencies>
-            <NpmPackage Name="geojson" Version="&gt;= 7946.0.16 &lt; 7947.0.0" />
-        </NpmDependencies>
     </PropertyGroup>
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath="\" />

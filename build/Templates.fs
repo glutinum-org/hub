@@ -10,7 +10,7 @@ let private npmRange (version: string) =
 
 let project
     (binding: Binding)
-    (version: string)
+    (npm: (string * string) option)
     (packages: string list)
     (externals: Binding list)
     (hasExtensions: bool)
@@ -22,6 +22,12 @@ let project
             $"\n        {compile}"
         else
             $"\n        <!-- {compile} -->"
+
+    let npmDependencies =
+        match npm with
+        | None -> ""
+        | Some(name, version) ->
+            $"\n        <NpmDependencies>\n            <NpmPackage Name=\"{name}\" Version=\"{npmRange version}\" />\n        </NpmDependencies>"
 
     let references =
         packages
@@ -52,10 +58,7 @@ let project
         <FablePackageType>binding</FablePackageType>
         <PackageTags>fable-javascript;fable-binding</PackageTags>
         <ChangelogFile>CHANGELOG.md</ChangelogFile>
-        <NoWarn>$(NoWarn);FS0044</NoWarn>
-        <NpmDependencies>
-            <NpmPackage Name="{runtimeName binding.Config.Package}" Version="{npmRange version}" />
-        </NpmDependencies>
+        <NoWarn>$(NoWarn);FS0044</NoWarn>{npmDependencies}
     </PropertyGroup>
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath="\" />
