@@ -3,5 +3,6 @@ packages:
 allowBuilds:
   esbuild: true
   core-js: false
+# Our own packages, published by us, are not what the install cooldown protects against
 minimumReleaseAgeExclude:
-  - '@glutinum/cli@0.14.1'
+  - '@glutinum/*'
