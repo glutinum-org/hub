@@ -1,5 +1,7 @@
 ---
 name: Glutinum.Express
+# The standalone repository published up to 0.2.0, this continues that line
+force_version: 0.3.0
 # Learn more about configuration at
 # https://github.com/easybuild-org/EasyBuild.ShipIt#configuration
 exclude:
