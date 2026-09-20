@@ -3,3 +3,5 @@ packages:
 allowBuilds:
   esbuild: true
   core-js: false
+minimumReleaseAgeExclude:
+  - '@glutinum/cli@0.14.1'

@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@glutinum/cli':
-        specifier: 0.13.0
-        version: 0.13.0
+        specifier: 0.14.1
+        version: 0.14.1
       playwright:
         specifier: ^1.63.0
         version: 1.63.0
@@ -276,9 +276,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@glutinum/cli@0.13.0':
-    resolution: {integrity: sha512-7cAn+FBxFVmCtMPetyf1figKm7bafAodJLP/q0ja7X5h2Ngu4C4wDbWo1hpqHkr18MEFZ7wWXHlmG3plUBZ9lw==}
-    engines: {node: '>=16', pnpm: '10'}
+  '@glutinum/cli@0.14.1':
+    resolution: {integrity: sha512-p9GxVz29cJujDlwpYvGZqPZBAqV3/JxT//k6zYwV2TbSlGLqI5Xgc+BjYOJtEunr6Ta6JQIaivAPByCisfE0vA==}
+    engines: {node: '>=16', pnpm: '11'}
     hasBin: true
 
   '@kurkle/color@0.3.4':
@@ -1018,11 +1018,6 @@ packages:
     resolution: {integrity: sha512-faYHw0anBbc/kWF3zFTEnxSFOAGUX9GFbOBthvDdLsIlEoWOFOtS0zgCiQYwIskL9iGXZL3kAXD8OoZ4GmMATA==}
     engines: {node: '>= 18'}
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
@@ -1217,11 +1212,10 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@glutinum/cli@0.13.0':
+  '@glutinum/cli@0.14.1':
     dependencies:
       '@ts-morph/bootstrap': 0.22.0
       chalk: 5.6.2
-      typescript: 5.9.3
 
   '@kurkle/color@0.3.4': {}
 
@@ -1994,8 +1988,6 @@ snapshots:
       content-type: 2.1.0
       media-typer: 1.1.1
       mime-types: 3.0.2
-
-  typescript@5.9.3: {}
 
   undici-types@8.9.0: {}
 
