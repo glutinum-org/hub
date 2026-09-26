@@ -17,35 +17,35 @@ module ChartJs =
         [<Import("_detectPlatform", "chart.js")>]
         static member _detectPlatform (canvas: obj) : U2<ChartJs.dist_platform_platform_basic.BasicPlatform, ChartJs.dist_platform_platform_dom.DomPlatform> = nativeOnly
         [<Import("BarController", "chart.js")>]
-        static member inline BarController: Exports.BarController.Type_2 = nativeOnly
+        static member inline BarController: Exports.BarController__.Type_2 = nativeOnly
         [<Import("BubbleController", "chart.js")>]
-        static member inline BubbleController: Exports.BubbleController.Type_2 = nativeOnly
+        static member inline BubbleController: Exports.BubbleController__.Type_2 = nativeOnly
         [<Import("DoughnutController", "chart.js")>]
-        static member inline DoughnutController: Exports.DoughnutController.Type_2 = nativeOnly
+        static member inline DoughnutController: Exports.DoughnutController__.Type_2 = nativeOnly
         [<Import("LineController", "chart.js")>]
-        static member inline LineController: Exports.LineController.Type_2 = nativeOnly
+        static member inline LineController: Exports.LineController__.Type_2 = nativeOnly
         [<Import("PieController", "chart.js")>]
-        static member inline PieController: Exports.PieController.Type_2 = nativeOnly
+        static member inline PieController: Exports.PieController__.Type_2 = nativeOnly
         [<Import("PolarAreaController", "chart.js")>]
-        static member inline PolarAreaController: Exports.PolarAreaController.Type_2 = nativeOnly
+        static member inline PolarAreaController: Exports.PolarAreaController__.Type_2 = nativeOnly
         [<Import("RadarController", "chart.js")>]
-        static member inline RadarController: Exports.RadarController.Type_2 = nativeOnly
+        static member inline RadarController: Exports.RadarController__.Type_2 = nativeOnly
         [<Import("ScatterController", "chart.js")>]
-        static member inline ScatterController: Exports.ScatterController.Type_2 = nativeOnly
+        static member inline ScatterController: Exports.ScatterController__.Type_2 = nativeOnly
         [<Import("Interaction", "chart.js")>]
-        static member inline Interaction: Exports.Interaction.Type_2 = nativeOnly
+        static member inline Interaction: Exports.Interaction__.Type_2 = nativeOnly
         [<Import("Ticks", "chart.js")>]
-        static member inline Ticks: Exports.Ticks.Type_2 = nativeOnly
+        static member inline Ticks: Exports.Ticks__.Type_2 = nativeOnly
         [<Import("defaults", "chart.js")>]
         static member inline defaults: ChartJs.dist_types.Defaults = nativeOnly
         [<Import("layouts", "chart.js")>]
-        static member inline layouts: Exports.layouts.Type_2 = nativeOnly
+        static member inline layouts: Exports.layouts__.Type_2 = nativeOnly
         [<Import("registry", "chart.js")>]
         static member inline registry: ChartJs.dist_types.Registry = nativeOnly
         [<Import("BarElement", "chart.js")>]
-        static member inline BarElement: Exports.BarElement.Type_2 = nativeOnly
+        static member inline BarElement: Exports.BarElement__.Type_2 = nativeOnly
         [<Import("LineElement", "chart.js")>]
-        static member inline LineElement: Exports.LineElement.Type_2 = nativeOnly
+        static member inline LineElement: Exports.LineElement__.Type_2 = nativeOnly
         [<Import("Decimation", "chart.js")>]
         static member inline Decimation: ChartJs.dist_types.Plugin = nativeOnly
         [<Import("Filler", "chart.js")>]
@@ -59,15 +59,15 @@ module ChartJs =
         [<Import("Tooltip", "chart.js")>]
         static member inline Tooltip: ChartJs.dist_types.Tooltip = nativeOnly
         [<Import("CategoryScale", "chart.js")>]
-        static member inline CategoryScale: Exports.CategoryScale.Type_2 = nativeOnly
+        static member inline CategoryScale: Exports.CategoryScale__.Type_2 = nativeOnly
         [<Import("LinearScale", "chart.js")>]
-        static member inline LinearScale: Exports.LinearScale.Type_2 = nativeOnly
+        static member inline LinearScale: Exports.LinearScale__.Type_2 = nativeOnly
         [<Import("LogarithmicScale", "chart.js")>]
-        static member inline LogarithmicScale: Exports.LogarithmicScale.Type_2 = nativeOnly
+        static member inline LogarithmicScale: Exports.LogarithmicScale__.Type_2 = nativeOnly
         [<Import("RadialLinearScale", "chart.js")>]
-        static member inline RadialLinearScale: Exports.RadialLinearScale.Type_2 = nativeOnly
+        static member inline RadialLinearScale: Exports.RadialLinearScale__.Type_2 = nativeOnly
         [<Import("TimeScale", "chart.js")>]
-        static member inline TimeScale: Exports.TimeScale.Type_2 = nativeOnly
+        static member inline TimeScale: Exports.TimeScale__.Type_2 = nativeOnly
         [<Import("registerables", "chart.js")>]
         static member inline registerables: ReadonlyArray<ChartJs.dist_types.ChartComponentLike> = nativeOnly
         [<Import("TimeSeriesScale", "chart.js"); EmitConstructor>]
@@ -91,9 +91,9 @@ module ChartJs =
         [<Import("Chart", "chart.js"); EmitConstructor>]
         static member Chart<'TType, 'TData, 'TLabel> (item: Glutinum.Web.HTMLCanvasElement, config: ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
         [<Import("Chart", "chart.js"); EmitConstructor>]
-        static member Chart<'TType, 'TData, 'TLabel> (item: Exports.Chart.item_2, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
+        static member Chart<'TType, 'TData, 'TLabel> (item: Exports.Chart.item_1, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
         [<Import("Chart", "chart.js"); EmitConstructor>]
-        static member Chart<'TType, 'TData, 'TLabel> (item: Exports.Chart.item_2, config: ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
+        static member Chart<'TType, 'TData, 'TLabel> (item: Exports.Chart.item_1, config: ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
         [<Import("Chart", "chart.js"); EmitConstructor>]
         static member Chart<'TType, 'TData, 'TLabel> (item: obj, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
         [<Import("Chart", "chart.js"); EmitConstructor>]
@@ -308,10 +308,10 @@ module ChartJs =
         Chart<'TType, 'TData, obj>
 
     type Chart<'TType> =
-        Chart<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+        Chart<'TType, obj, obj>
 
     type Chart =
-        Chart<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+        Chart<ChartJs.dist_types.ChartType, obj, obj>
 
     type ChartItem =
         ChartJs.dist_types.ChartItem
@@ -809,19 +809,19 @@ module ChartJs =
         ChartJs.dist_types.ChartDataset<'TType, 'TData>
 
     type ChartDataset<'TType> =
-        ChartDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>>
+        ChartDataset<'TType, obj>
 
     type ChartDataset =
-        ChartDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>>
+        ChartDataset<ChartJs.dist_types.ChartType, obj>
 
     type ChartDatasetCustomTypesPerDataset<'TType, 'TData> =
         ChartJs.dist_types.ChartDatasetCustomTypesPerDataset<'TType, 'TData>
 
     type ChartDatasetCustomTypesPerDataset<'TType> =
-        ChartDatasetCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>>
+        ChartDatasetCustomTypesPerDataset<'TType, obj>
 
     type ChartDatasetCustomTypesPerDataset =
-        ChartDatasetCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>>
+        ChartDatasetCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj>
 
     type ChartData<'TType, 'TData, 'TLabel> =
         ChartJs.dist_types.ChartData<'TType, 'TData, 'TLabel>
@@ -830,10 +830,10 @@ module ChartJs =
         ChartData<'TType, 'TData, obj>
 
     type ChartData<'TType> =
-        ChartData<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+        ChartData<'TType, obj, obj>
 
     type ChartData =
-        ChartData<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+        ChartData<ChartJs.dist_types.ChartType, obj, obj>
 
     type ChartDataCustomTypesPerDataset<'TType, 'TData, 'TLabel> =
         ChartJs.dist_types.ChartDataCustomTypesPerDataset<'TType, 'TData, 'TLabel>
@@ -842,10 +842,10 @@ module ChartJs =
         ChartDataCustomTypesPerDataset<'TType, 'TData, obj>
 
     type ChartDataCustomTypesPerDataset<'TType> =
-        ChartDataCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+        ChartDataCustomTypesPerDataset<'TType, obj, obj>
 
     type ChartDataCustomTypesPerDataset =
-        ChartDataCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+        ChartDataCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj, obj>
 
     type ChartConfiguration<'TType, 'TData, 'TLabel> =
         ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>
@@ -854,10 +854,10 @@ module ChartJs =
         ChartConfiguration<'TType, 'TData, obj>
 
     type ChartConfiguration<'TType> =
-        ChartConfiguration<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+        ChartConfiguration<'TType, obj, obj>
 
     type ChartConfiguration =
-        ChartConfiguration<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+        ChartConfiguration<ChartJs.dist_types.ChartType, obj, obj>
 
     type ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel> =
         ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>
@@ -866,10 +866,10 @@ module ChartJs =
         ChartConfigurationCustomTypesPerDataset<'TType, 'TData, obj>
 
     type ChartConfigurationCustomTypesPerDataset<'TType> =
-        ChartConfigurationCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+        ChartConfigurationCustomTypesPerDataset<'TType, obj, obj>
 
     type ChartConfigurationCustomTypesPerDataset =
-        ChartConfigurationCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+        ChartConfigurationCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj, obj>
 
     module auto =
 
@@ -877,35 +877,35 @@ module ChartJs =
         [<Erase>]
         type Exports =
             [<Import("BarController", "chart.js/auto")>]
-            static member inline BarController: Exports.BarController.Type = nativeOnly
+            static member inline BarController: Exports.BarController__.Type = nativeOnly
             [<Import("BubbleController", "chart.js/auto")>]
-            static member inline BubbleController: Exports.BubbleController.Type = nativeOnly
+            static member inline BubbleController: Exports.BubbleController__.Type = nativeOnly
             [<Import("DoughnutController", "chart.js/auto")>]
-            static member inline DoughnutController: Exports.DoughnutController.Type = nativeOnly
+            static member inline DoughnutController: Exports.DoughnutController__.Type = nativeOnly
             [<Import("LineController", "chart.js/auto")>]
-            static member inline LineController: Exports.LineController.Type = nativeOnly
+            static member inline LineController: Exports.LineController__.Type = nativeOnly
             [<Import("PieController", "chart.js/auto")>]
-            static member inline PieController: Exports.PieController.Type = nativeOnly
+            static member inline PieController: Exports.PieController__.Type = nativeOnly
             [<Import("PolarAreaController", "chart.js/auto")>]
-            static member inline PolarAreaController: Exports.PolarAreaController.Type = nativeOnly
+            static member inline PolarAreaController: Exports.PolarAreaController__.Type = nativeOnly
             [<Import("RadarController", "chart.js/auto")>]
-            static member inline RadarController: Exports.RadarController.Type = nativeOnly
+            static member inline RadarController: Exports.RadarController__.Type = nativeOnly
             [<Import("ScatterController", "chart.js/auto")>]
-            static member inline ScatterController: Exports.ScatterController.Type = nativeOnly
+            static member inline ScatterController: Exports.ScatterController__.Type = nativeOnly
             [<Import("Interaction", "chart.js/auto")>]
-            static member inline Interaction: Exports.Interaction.Type = nativeOnly
+            static member inline Interaction: Exports.Interaction__.Type = nativeOnly
             [<Import("Ticks", "chart.js/auto")>]
-            static member inline Ticks: Exports.Ticks.Type = nativeOnly
+            static member inline Ticks: Exports.Ticks__.Type = nativeOnly
             [<Import("defaults", "chart.js/auto")>]
             static member inline defaults: ChartJs.dist_types.Defaults = nativeOnly
             [<Import("layouts", "chart.js/auto")>]
-            static member inline layouts: Exports.layouts.Type = nativeOnly
+            static member inline layouts: Exports.layouts__.Type = nativeOnly
             [<Import("registry", "chart.js/auto")>]
             static member inline registry: ChartJs.dist_types.Registry = nativeOnly
             [<Import("BarElement", "chart.js/auto")>]
-            static member inline BarElement: Exports.BarElement.Type = nativeOnly
+            static member inline BarElement: Exports.BarElement__.Type = nativeOnly
             [<Import("LineElement", "chart.js/auto")>]
-            static member inline LineElement: Exports.LineElement.Type = nativeOnly
+            static member inline LineElement: Exports.LineElement__.Type = nativeOnly
             [<Import("Decimation", "chart.js/auto")>]
             static member inline Decimation: ChartJs.dist_types.Plugin = nativeOnly
             [<Import("Filler", "chart.js/auto")>]
@@ -919,17 +919,17 @@ module ChartJs =
             [<Import("Tooltip", "chart.js/auto")>]
             static member inline Tooltip: ChartJs.dist_types.Tooltip = nativeOnly
             [<Import("CategoryScale", "chart.js/auto")>]
-            static member inline CategoryScale: Exports.CategoryScale.Type = nativeOnly
+            static member inline CategoryScale: Exports.CategoryScale__.Type = nativeOnly
             [<Import("LinearScale", "chart.js/auto")>]
-            static member inline LinearScale: Exports.LinearScale.Type = nativeOnly
+            static member inline LinearScale: Exports.LinearScale__.Type = nativeOnly
             [<Import("LogarithmicScale", "chart.js/auto")>]
-            static member inline LogarithmicScale: Exports.LogarithmicScale.Type = nativeOnly
+            static member inline LogarithmicScale: Exports.LogarithmicScale__.Type = nativeOnly
             [<Import("RadialLinearScale", "chart.js/auto")>]
-            static member inline RadialLinearScale: Exports.RadialLinearScale.Type = nativeOnly
+            static member inline RadialLinearScale: Exports.RadialLinearScale__.Type = nativeOnly
             [<Import("TimeScale", "chart.js/auto")>]
-            static member inline TimeScale: Exports.TimeScale.Type = nativeOnly
+            static member inline TimeScale: Exports.TimeScale__.Type = nativeOnly
             [<Import("TimeSeriesScale", "chart.js/auto")>]
-            static member inline TimeSeriesScale: Exports.TimeSeriesScale.Type = nativeOnly
+            static member inline TimeSeriesScale: Exports.TimeSeriesScale__.Type = nativeOnly
             [<Import("registerables", "chart.js/auto")>]
             static member inline registerables: ReadonlyArray<ChartJs.dist_types.ChartComponentLike> = nativeOnly
             [<Import("_detectPlatform", "chart.js/auto")>]
@@ -1008,10 +1008,10 @@ module ChartJs =
             Chart<'TType, 'TData, obj>
 
         type Chart<'TType> =
-            Chart<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            Chart<'TType, obj, obj>
 
         type Chart =
-            Chart<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            Chart<ChartJs.dist_types.ChartType, obj, obj>
 
         type DatasetController<'TType, 'TElement, 'TDatasetElement, 'TParsedData> =
             ChartJs.dist_types.DatasetController<'TType, 'TElement, 'TDatasetElement, 'TParsedData>
@@ -1671,19 +1671,19 @@ module ChartJs =
             ChartJs.dist_types.ChartDataset<'TType, 'TData>
 
         type ChartDataset<'TType> =
-            ChartDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>>
+            ChartDataset<'TType, obj>
 
         type ChartDataset =
-            ChartDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>>
+            ChartDataset<ChartJs.dist_types.ChartType, obj>
 
         type ChartDatasetCustomTypesPerDataset<'TType, 'TData> =
             ChartJs.dist_types.ChartDatasetCustomTypesPerDataset<'TType, 'TData>
 
         type ChartDatasetCustomTypesPerDataset<'TType> =
-            ChartDatasetCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>>
+            ChartDatasetCustomTypesPerDataset<'TType, obj>
 
         type ChartDatasetCustomTypesPerDataset =
-            ChartDatasetCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>>
+            ChartDatasetCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj>
 
         type ChartData<'TType, 'TData, 'TLabel> =
             ChartJs.dist_types.ChartData<'TType, 'TData, 'TLabel>
@@ -1692,10 +1692,10 @@ module ChartJs =
             ChartData<'TType, 'TData, obj>
 
         type ChartData<'TType> =
-            ChartData<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartData<'TType, obj, obj>
 
         type ChartData =
-            ChartData<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartData<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartDataCustomTypesPerDataset<'TType, 'TData, 'TLabel> =
             ChartJs.dist_types.ChartDataCustomTypesPerDataset<'TType, 'TData, 'TLabel>
@@ -1704,10 +1704,10 @@ module ChartJs =
             ChartDataCustomTypesPerDataset<'TType, 'TData, obj>
 
         type ChartDataCustomTypesPerDataset<'TType> =
-            ChartDataCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartDataCustomTypesPerDataset<'TType, obj, obj>
 
         type ChartDataCustomTypesPerDataset =
-            ChartDataCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartDataCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartConfiguration<'TType, 'TData, 'TLabel> =
             ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>
@@ -1716,10 +1716,10 @@ module ChartJs =
             ChartConfiguration<'TType, 'TData, obj>
 
         type ChartConfiguration<'TType> =
-            ChartConfiguration<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartConfiguration<'TType, obj, obj>
 
         type ChartConfiguration =
-            ChartConfiguration<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartConfiguration<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel> =
             ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>
@@ -1728,21 +1728,21 @@ module ChartJs =
             ChartConfigurationCustomTypesPerDataset<'TType, 'TData, obj>
 
         type ChartConfigurationCustomTypesPerDataset<'TType> =
-            ChartConfigurationCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartConfigurationCustomTypesPerDataset<'TType, obj, obj>
 
         type ChartConfigurationCustomTypesPerDataset =
-            ChartConfigurationCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartConfigurationCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj, obj>
 
         module Exports =
 
-            module BarController =
+            module BarController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.BarController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
@@ -1757,204 +1757,145 @@ module ChartJs =
                         [<EmitIndexer>]
                         abstract member Item: property: string -> string with get, set
 
-            module BubbleController =
+            module BubbleController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.BubbleController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.BubbleController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module DoughnutController =
+            module DoughnutController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.DoughnutController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.DoughnutController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LineController =
+            module LineController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LineController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LineController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module PieController =
+            module PieController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.PieController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.PieController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module PolarAreaController =
+            module PolarAreaController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.PolarAreaController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.PolarAreaController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module RadarController =
+            module RadarController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.RadarController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.RadarController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module ScatterController =
+            module ScatterController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.ScatterController.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.ScatterController with get, set
 
+            module Interaction__ =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Type =
+                    abstract member modes: ChartJs.dist_types.InteractionModeMap with get, set
+                    /// <summary>
+                    /// Helper function to select candidate elements for interaction
+                    /// </summary>
+                    abstract member evaluateInteractionItems: chart: ChartJs.dist_types.Chart * axis: ChartJs.dist_types.InteractionAxis * position: ChartJs.dist_types_geometric.Point * handler: Exports.Interaction__.Type.evaluateInteractionItems.handler * ?intersect: bool -> ResizeArray<ChartJs.dist_types.InteractionItem>
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (modes: ChartJs.dist_types.InteractionModeMap, evaluateInteractionItems: ResizeArray<ChartJs.dist_types.InteractionItem>) : Type = nativeOnly
+
+                module Type =
+
+                    module evaluateInteractionItems =
+
+                        type handler =
+                            delegate of element: Exports.Interaction__.Type.evaluateInteractionItems.handler.element * datasetIndex: float * index: float -> unit
+
+                        module handler =
+
+                            [<AllowNullLiteral>]
+                            [<Interface>]
+                            type element =
+                                inherit ChartJs.dist_types.VisualElement
+
+            module Ticks__ =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Type =
+                    abstract member formatters: Exports.Ticks__.Type.formatters with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (formatters: Exports.Ticks__.Type.formatters) : Type = nativeOnly
+
                 module Type =
 
                     [<AllowNullLiteral>]
                     [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module Interaction =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type Type
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        modes: ChartJs.dist_types.InteractionModeMap,
-                        evaluateInteractionItems: ResizeArray<ChartJs.dist_types.InteractionItem>
-                    ) =
-
-                    member val modes : ChartJs.dist_types.InteractionModeMap = nativeOnly with get, set
-                    /// <summary>
-                    /// Helper function to select candidate elements for interaction
-                    /// </summary>
-                    member val evaluateInteractionItems : ResizeArray<ChartJs.dist_types.InteractionItem> = nativeOnly
-
-            module Ticks =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type Type
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        formatters: Exports.Ticks.Type.formatters
-                    ) =
-
-                    member val formatters : Exports.Ticks.Type.formatters = nativeOnly with get, set
-
-                module Type =
-
-                    [<Global>]
-                    [<AllowNullLiteral>]
-                    type formatters
-                        private () =
-
-                        [<ParamObject; Emit("$0")>]
-                        new (values: string, numeric: string, logarithmic: string) =
-                            formatters()
-
-                        [<ParamObject; Emit("$0")>]
-                        new (values: ResizeArray<string>, numeric: string, logarithmic: string) =
-                            formatters()
-
+                    type formatters =
                         /// <summary>
                         /// Formatter for value labels
                         /// </summary>
@@ -1964,7 +1905,7 @@ module ChartJs =
                         /// <returns>
                         /// the label to display
                         /// </returns>
-                        member val values : U2<string, ResizeArray<string>> = nativeOnly
+                        abstract member values: value: obj -> U2<string, ResizeArray<string>>
                         /// <summary>
                         /// Formatter for numeric ticks
                         /// </summary>
@@ -1980,7 +1921,7 @@ module ChartJs =
                         /// <returns>
                         /// string representation of the tickValue parameter
                         /// </returns>
-                        member val numeric : string = nativeOnly
+                        abstract member numeric: tickValue: float * index: float * ticks: ResizeArray<Exports.Ticks__.Type.formatters.numeric.ticks> -> string
                         /// <summary>
                         /// Formatter for logarithmic ticks
                         /// </summary>
@@ -1996,21 +1937,37 @@ module ChartJs =
                         /// <returns>
                         /// string representation of the tickValue parameter
                         /// </returns>
-                        member val logarithmic : string = nativeOnly
+                        abstract member logarithmic: tickValue: float * index: float * ticks: ResizeArray<Exports.Ticks__.Type.formatters.logarithmic.ticks> -> string
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (values: string, numeric: string, logarithmic: string) : formatters = nativeOnly
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (values: ResizeArray<string>, numeric: string, logarithmic: string) : formatters = nativeOnly
 
-            module layouts =
+                    module formatters =
 
-                [<Global>]
+                        module numeric =
+
+                            [<AllowNullLiteral>]
+                            [<Interface>]
+                            type ticks =
+                                abstract member value: float with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (value: float) : ticks = nativeOnly
+
+                        module logarithmic =
+
+                            [<AllowNullLiteral>]
+                            [<Interface>]
+                            type ticks =
+                                abstract member value: float with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (value: float) : ticks = nativeOnly
+
+            module layouts__ =
+
                 [<AllowNullLiteral>]
-                type Type
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        addBox: unit,
-                        removeBox: unit,
-                        configure: unit,
-                        update: unit
-                    ) =
-
+                [<Interface>]
+                type Type =
                     /// <summary>
                     /// Register a box to a chart.
                     /// A box is simply a reference to an object that requires layout. eg. Scales, Legend, Title.
@@ -2021,7 +1978,7 @@ module ChartJs =
                     /// <param name="item">
                     /// the item to add to be laid out
                     /// </param>
-                    member val addBox : unit = nativeOnly
+                    abstract member addBox: chart: ChartJs.dist_types.Chart * item: ChartJs.dist_types_layout.LayoutItem -> unit
                     /// <summary>
                     /// Remove a layoutItem from a chart
                     /// </summary>
@@ -2031,7 +1988,7 @@ module ChartJs =
                     /// <param name="layoutItem">
                     /// the item to remove from the layout
                     /// </param>
-                    member val removeBox : unit = nativeOnly
+                    abstract member removeBox: chart: ChartJs.dist_types.Chart * layoutItem: ChartJs.dist_types_layout.LayoutItem -> unit
                     /// <summary>
                     /// Sets (or updates) options on the given <c>item</c>.
                     /// </summary>
@@ -2044,7 +2001,7 @@ module ChartJs =
                     /// <param name="options">
                     /// the new item options.
                     /// </param>
-                    member val configure : unit = nativeOnly
+                    abstract member configure: chart: ChartJs.dist_types.Chart * item: ChartJs.dist_types_layout.LayoutItem * options: Exports.layouts__.Type.configure.options -> unit
                     /// <summary>
                     /// Fits boxes of the given chart into the given size by having each box measure itself
                     /// then running a fitting algorithm
@@ -2058,213 +2015,155 @@ module ChartJs =
                     /// <param name="height">
                     /// the height to fit into
                     /// </param>
-                    member val update : unit = nativeOnly
+                    abstract member update: chart: ChartJs.dist_types.Chart * width: float * height: float -> unit
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (addBox: unit, removeBox: unit, configure: unit, update: unit) : Type = nativeOnly
 
-            module BarElement =
+                module Type =
+
+                    module configure =
+
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type options =
+                            abstract member fullSize: float option with get, set
+                            abstract member position: ChartJs.dist_types_layout.LayoutPosition option with get, set
+                            abstract member weight: float option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (?fullSize: float, ?position: ChartJs.dist_types_layout.LayoutPosition, ?weight: float) : options = nativeOnly
+
+            module BarElement__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.BarElement.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.BarElement with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LineElement =
+            module LineElement__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LineElement.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LineElement with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module CategoryScale =
+            module CategoryScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.CategoryScale.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.CategoryScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LinearScale =
+            module LinearScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LinearScale.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LinearScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LogarithmicScale =
+            module LogarithmicScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LogarithmicScale.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LogarithmicScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module RadialLinearScale =
+            module RadialLinearScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.RadialLinearScale.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.RadialLinearScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module TimeScale =
+            module TimeScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.TimeScale.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.TimeScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module TimeSeriesScale =
+            module TimeSeriesScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.TimeSeriesScale.Type.defaultRoutes option with get, set
+                    abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.TimeSeriesScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
             module Chart =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type item
+                [<Interface>]
+                type item =
+                    abstract member canvas: Glutinum.Web.HTMLCanvasElement with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        canvas: Glutinum.Web.HTMLCanvasElement
-                    ) =
-
-                    member val canvas : Glutinum.Web.HTMLCanvasElement = nativeOnly with get, set
+                    static member Create (canvas: Glutinum.Web.HTMLCanvasElement) : item = nativeOnly
 
             module Scale =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type cfg
+                [<Interface>]
+                type cfg =
+                    abstract member id: string with get, set
+                    abstract member ``type``: string with get, set
+                    abstract member ctx: Glutinum.Web.CanvasRenderingContext2D with get, set
+                    abstract member chart: ChartJs.dist_types.Chart with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        id: string,
-                        ``type``: string,
-                        ctx: Glutinum.Web.CanvasRenderingContext2D,
-                        chart: ChartJs.dist_types.Chart
-                    ) =
-
-                    member val id : string = nativeOnly with get, set
-                    member val ``type`` : string = nativeOnly with get, set
-                    member val ctx : Glutinum.Web.CanvasRenderingContext2D = nativeOnly with get, set
-                    member val chart : ChartJs.dist_types.Chart = nativeOnly with get, set
+                    static member Create (id: string, ``type``: string, ctx: Glutinum.Web.CanvasRenderingContext2D, chart: ChartJs.dist_types.Chart) : cfg = nativeOnly
 
     module dist_controllers_controller_bar =
 
@@ -2364,17 +2263,13 @@ BubbleController.overrides = $0"""
 
         module BubbleController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue
+            [<Interface>]
+            type getLabelAndValue =
+                abstract member label: obj with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: obj,
-                    value: string
-                ) =
-
-                member val label : obj = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
+                static member Create (label: obj, value: string) : getLabelAndValue = nativeOnly
 
     module dist_controllers_controller_doughnut =
 
@@ -2398,11 +2293,11 @@ DoughnutController.id"""
 import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
 DoughnutController.id = $0"""
             static member inline descriptors
-                with get () : DoughnutController.descriptors =
+                with get () : DoughnutController.descriptors__ =
                     emitJsExpr () $$"""
 import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
 DoughnutController.descriptors"""
-                and set (value: DoughnutController.descriptors) =
+                and set (value: DoughnutController.descriptors__) =
                     emitJsExpr (value) $$"""
 import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
 DoughnutController.descriptors = $0"""
@@ -2439,41 +2334,29 @@ DoughnutController.overrides = $0"""
 
         module DoughnutController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type descriptors
+            [<Interface>]
+            type descriptors__ =
+                abstract member _scriptable: (obj -> bool) with get, set
+                abstract member _indexable: (obj -> bool) with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    _scriptable: (obj -> bool),
-                    _indexable: (obj -> bool)
-                ) =
+                static member Create (_scriptable: (obj -> bool), _indexable: (obj -> bool)) : descriptors__ = nativeOnly
 
-                member val _scriptable : (obj -> bool) = nativeOnly with get, set
-                member val _indexable : (obj -> bool) = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _getRotationExtents
+            [<Interface>]
+            type _getRotationExtents =
+                abstract member rotation: float with get, set
+                abstract member circumference: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    rotation: float,
-                    circumference: float
-                ) =
+                static member Create (rotation: float, circumference: float) : _getRotationExtents = nativeOnly
 
-                member val rotation : float = nativeOnly with get, set
-                member val circumference : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue
+            [<Interface>]
+            type getLabelAndValue =
+                abstract member label: obj with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: obj,
-                    value: string
-                ) =
-
-                member val label : obj = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
+                static member Create (label: obj, value: string) : getLabelAndValue = nativeOnly
 
     module dist_controllers_controller_line =
 
@@ -2564,39 +2447,28 @@ PolarAreaController.overrides = $0"""
 
         module PolarAreaController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue
+            [<Interface>]
+            type getLabelAndValue =
+                abstract member label: obj with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: obj,
-                    value: string
-                ) =
+                static member Create (label: obj, value: string) : getLabelAndValue = nativeOnly
 
-                member val label : obj = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type parseObjectData
+            [<Interface>]
+            type parseObjectData =
+                abstract member r: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    r: obj
-                ) =
+                static member Create (r: obj) : parseObjectData = nativeOnly
 
-                member val r : obj = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMinMax
+            [<Interface>]
+            type getMinMax =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
-
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
+                static member Create (min: float, max: float) : getMinMax = nativeOnly
 
     module dist_controllers_controller_radar =
 
@@ -2637,27 +2509,20 @@ RadarController.overrides = $0"""
 
         module RadarController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue
+            [<Interface>]
+            type getLabelAndValue =
+                abstract member label: obj with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: obj,
-                    value: string
-                ) =
+                static member Create (label: obj, value: string) : getLabelAndValue = nativeOnly
 
-                member val label : obj = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type parseObjectData
+            [<Interface>]
+            type parseObjectData =
+                abstract member r: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    r: obj
-                ) =
-
-                member val r : obj = nativeOnly with get, set
+                static member Create (r: obj) : parseObjectData = nativeOnly
 
     module dist_controllers_controller_scatter =
 
@@ -2695,17 +2560,13 @@ ScatterController.overrides = $0"""
 
         module ScatterController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue
+            [<Interface>]
+            type getLabelAndValue =
+                abstract member label: obj with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: obj,
-                    value: string
-                ) =
-
-                member val label : obj = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
+                static member Create (label: obj, value: string) : getLabelAndValue = nativeOnly
 
     module dist_core_core_adapters =
 
@@ -2713,7 +2574,7 @@ ScatterController.overrides = $0"""
         [<Erase>]
         type Exports =
             [<ImportDefault("chart.js/dist/core/core.adapters.js")>]
-            static member inline _default: Exports._default.Type = nativeOnly
+            static member inline _default: Exports._default__.Type = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -2887,17 +2748,14 @@ ScatterController.overrides = $0"""
 
         module Exports =
 
-            module _default =
+            module _default__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type
+                [<Interface>]
+                type Type =
+                    abstract member _date: Exports._default__.Type._date with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        _date: Exports._default.Type._date
-                    ) =
-
-                    member val _date : Exports._default.Type._date = nativeOnly with get, set
+                    static member Create (_date: Exports._default__.Type._date) : Type = nativeOnly
 
                 module Type =
 
@@ -2906,7 +2764,7 @@ ScatterController.overrides = $0"""
                     type _date =
                         [<EmitConstructor>]
                         abstract member Create: ?options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_core_core_adapters.DateAdapter
-                        abstract member ``override``: members: Exports._default.Type._date.``override``.members -> unit
+                        abstract member ``override``: members: Exports._default__.Type._date.``override``.members -> unit
 
                     module _date =
 
@@ -2923,7 +2781,7 @@ ScatterController.overrides = $0"""
                                 /// Returns a map of time formats for the supported formatting units defined
                                 /// in Unit as well as 'datetime' representing a detailed date/time string.
                                 /// </summary>
-                                abstract member formats: unit -> Exports._default.Type._date.``override``.members.Partial.formats
+                                abstract member formats: unit -> Exports._default__.Type._date.``override``.members.Partial.formats
                                 /// <summary>
                                 /// Parses the given <c>value</c> and return the associated timestamp.
                                 /// </summary>
@@ -2983,7 +2841,7 @@ ScatterController.overrides = $0"""
                                 /// the ISO day of the week with 1 being Monday
                                 /// and 7 being Sunday (only needed if param *unit* is <c>isoWeek</c>).
                                 /// </param>
-                                abstract member startOf: timestamp: float * unit: Exports._default.Type._date.``override``.members.Partial.startOf.unit -> float
+                                abstract member startOf: timestamp: float * unit: Exports._default__.Type._date.``override``.members.Partial.startOf.unit -> float
                                 /// <summary>
                                 /// Returns start of <c>unit</c> for the given <c>timestamp</c>.
                                 /// </summary>
@@ -2997,7 +2855,7 @@ ScatterController.overrides = $0"""
                                 /// the ISO day of the week with 1 being Monday
                                 /// and 7 being Sunday (only needed if param *unit* is <c>isoWeek</c>).
                                 /// </param>
-                                abstract member startOf: timestamp: float * unit: Exports._default.Type._date.``override``.members.Partial.startOf.unit * weekday: float -> float
+                                abstract member startOf: timestamp: float * unit: Exports._default__.Type._date.``override``.members.Partial.startOf.unit * weekday: float -> float
                                 /// <summary>
                                 /// Returns start of <c>unit</c> for the given <c>timestamp</c>.
                                 /// </summary>
@@ -3011,7 +2869,7 @@ ScatterController.overrides = $0"""
                                 /// the ISO day of the week with 1 being Monday
                                 /// and 7 being Sunday (only needed if param *unit* is <c>isoWeek</c>).
                                 /// </param>
-                                abstract member startOf: timestamp: float * unit: Exports._default.Type._date.``override``.members.Partial.startOf.unit * weekday: bool -> float
+                                abstract member startOf: timestamp: float * unit: Exports._default__.Type._date.``override``.members.Partial.startOf.unit * weekday: bool -> float
                                 /// <summary>
                                 /// Returns end of <c>unit</c> for the given <c>timestamp</c>.
                                 /// </summary>
@@ -3031,7 +2889,7 @@ ScatterController.overrides = $0"""
                                     [<Interface>]
                                     type formats =
                                         [<EmitIndexer>]
-                                        abstract member Item: key: Exports._default.Type._date.``override``.members.Partial.formats.formats.key -> string with get, set
+                                        abstract member Item: key: Exports._default__.Type._date.``override``.members.Partial.formats.formats.key -> string with get, set
 
                                     module formats =
 
@@ -3326,33 +3184,24 @@ ScatterController.overrides = $0"""
 
             module pluginScopeKeys =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type plugin
+                [<Interface>]
+                type plugin =
+                    abstract member id: string with get, set
+                    abstract member additionalOptionScopes: ResizeArray<string> option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        id: string,
-                        ?additionalOptionScopes: ResizeArray<string>
-                    ) =
-
-                    member val id : string = nativeOnly with get, set
-                    member val additionalOptionScopes : ResizeArray<string> option = nativeOnly with get, set
+                    static member Create (id: string, ?additionalOptionScopes: ResizeArray<string>) : plugin = nativeOnly
 
             module createResolver =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type descriptorDefaults
+                [<Interface>]
+                type descriptorDefaults =
+                    abstract member scriptable: bool with get, set
+                    abstract member indexable: bool with get, set
+                    abstract member allKeys: bool option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        scriptable: bool,
-                        indexable: bool,
-                        ?allKeys: bool
-                    ) =
-
-                    member val scriptable : bool = nativeOnly with get, set
-                    member val indexable : bool = nativeOnly with get, set
-                    member val allKeys : bool option = nativeOnly with get, set
+                    static member Create (scriptable: bool, indexable: bool, ?allKeys: bool) : descriptorDefaults = nativeOnly
 
     module dist_core_core_controller =
 
@@ -3576,55 +3425,38 @@ Chart.unregister($0)"""
 
         module Chart =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _responsiveListeners
+            [<Interface>]
+            type _responsiveListeners =
+                abstract member attach: Action option with get, set
+                abstract member detach: Action option with get, set
+                abstract member resize: Action option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?attach: Action,
-                    ?detach: Action,
-                    ?resize: Action
-                ) =
+                static member Create (?attach: Action, ?detach: Action, ?resize: Action) : _responsiveListeners = nativeOnly
 
-                member val attach : Action option = nativeOnly with get, set
-                member val detach : Action option = nativeOnly with get, set
-                member val resize : Action option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _DOLLAR_context
+            [<Interface>]
+            type _DOLLAR_context =
+                abstract member chart: ChartJs.dist_core_core_controller.Chart with get, set
+                abstract member ``type``: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chart: ChartJs.dist_core_core_controller.Chart,
-                    ``type``: string
-                ) =
+                static member Create (chart: ChartJs.dist_core_core_controller.Chart, ``type``: string) : _DOLLAR_context = nativeOnly
 
-                member val chart : ChartJs.dist_core_core_controller.Chart = nativeOnly with get, set
-                member val ``type`` : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _resizeBeforeDraw
+            [<Interface>]
+            type _resizeBeforeDraw =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
+                static member Create (width: float, height: float) : _resizeBeforeDraw = nativeOnly
 
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getContext
+            [<Interface>]
+            type getContext =
+                abstract member chart: ChartJs.dist_core_core_controller.Chart with get, set
+                abstract member ``type``: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chart: ChartJs.dist_core_core_controller.Chart,
-                    ``type``: string
-                ) =
-
-                member val chart : ChartJs.dist_core_core_controller.Chart = nativeOnly with get, set
-                member val ``type`` : string = nativeOnly with get, set
+                static member Create (chart: ChartJs.dist_core_core_controller.Chart, ``type``: string) : getContext = nativeOnly
 
     module dist_core_core_datasetController =
 
@@ -3848,41 +3680,29 @@ DatasetController.dataElementType = $0"""
 
         module DatasetController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMinMax
+            [<Interface>]
+            type getMinMax =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
+                static member Create (min: float, max: float) : getMinMax = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue
+            [<Interface>]
+            type getLabelAndValue =
+                abstract member label: string with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: string,
-                    value: string
-                ) =
+                static member Create (label: string, value: string) : getLabelAndValue = nativeOnly
 
-                member val label : string = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _getSharedOptions
+            [<Interface>]
+            type _getSharedOptions =
+                abstract member sharedOptions: obj with get, set
+                abstract member includeOptions: bool with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    sharedOptions: obj,
-                    includeOptions: bool
-                ) =
-
-                member val sharedOptions : obj = nativeOnly with get, set
-                member val includeOptions : bool = nativeOnly with get, set
+                static member Create (sharedOptions: obj, includeOptions: bool) : _getSharedOptions = nativeOnly
 
     module dist_core_core_defaults =
 
@@ -3992,23 +3812,16 @@ DatasetController.dataElementType = $0"""
 
         module Defaults =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type font
+            [<Interface>]
+            type font =
+                abstract member family: string with get, set
+                abstract member size: float with get, set
+                abstract member style: string with get, set
+                abstract member lineHeight: float with get, set
+                abstract member weight: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    family: string,
-                    size: float,
-                    style: string,
-                    lineHeight: float,
-                    weight: obj
-                ) =
-
-                member val family : string = nativeOnly with get, set
-                member val size : float = nativeOnly with get, set
-                member val style : string = nativeOnly with get, set
-                member val lineHeight : float = nativeOnly with get, set
-                member val weight : obj = nativeOnly with get, set
+                static member Create (family: string, size: float, style: string, lineHeight: float, weight: obj) : font = nativeOnly
 
             type hoverBackgroundColor =
                 delegate of ctx: obj * options: obj -> Glutinum.Web.CanvasGradient
@@ -4019,19 +3832,14 @@ DatasetController.dataElementType = $0"""
             type hoverColor =
                 delegate of ctx: obj * options: obj -> Glutinum.Web.CanvasGradient
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type interaction
+            [<Interface>]
+            type interaction =
+                abstract member mode: string with get, set
+                abstract member intersect: bool with get, set
+                abstract member includeInvisible: bool with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    mode: string,
-                    intersect: bool,
-                    includeInvisible: bool
-                ) =
-
-                member val mode : string = nativeOnly with get, set
-                member val intersect : bool = nativeOnly with get, set
-                member val includeInvisible : bool = nativeOnly with get, set
+                static member Create (mode: string, intersect: bool, includeInvisible: bool) : interaction = nativeOnly
 
     module dist_core_core_element =
 
@@ -4480,67 +4288,47 @@ Element.defaultRoutes = $0"""
 
         module PluginService =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _init
+            [<Interface>]
+            type _init =
+                abstract member plugin: obj with get, set
+                abstract member options: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    plugin: obj,
-                    options: obj
-                ) =
+                static member Create (plugin: obj, options: obj) : _init = nativeOnly
 
-                member val plugin : obj = nativeOnly with get, set
-                member val options : obj = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _oldCache
+            [<Interface>]
+            type _oldCache =
+                abstract member plugin: obj with get, set
+                abstract member options: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    plugin: obj,
-                    options: obj
-                ) =
+                static member Create (plugin: obj, options: obj) : _oldCache = nativeOnly
 
-                member val plugin : obj = nativeOnly with get, set
-                member val options : obj = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _cache
+            [<Interface>]
+            type _cache =
+                abstract member plugin: obj with get, set
+                abstract member options: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    plugin: obj,
-                    options: obj
-                ) =
+                static member Create (plugin: obj, options: obj) : _cache = nativeOnly
 
-                member val plugin : obj = nativeOnly with get, set
-                member val options : obj = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _createDescriptors
+            [<Interface>]
+            type _createDescriptors =
+                abstract member plugin: obj with get, set
+                abstract member options: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    plugin: obj,
-                    options: obj
-                ) =
-
-                member val plugin : obj = nativeOnly with get, set
-                member val options : obj = nativeOnly with get, set
+                static member Create (plugin: obj, options: obj) : _createDescriptors = nativeOnly
 
         module filterCallback =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type value
+            [<Interface>]
+            type value =
+                abstract member plugin: obj with get, set
+                abstract member options: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    plugin: obj,
-                    options: obj
-                ) =
-
-                member val plugin : obj = nativeOnly with get, set
-                member val options : obj = nativeOnly with get, set
+                static member Create (plugin: obj, options: obj) : value = nativeOnly
 
     module dist_core_core_registry =
 
@@ -4835,91 +4623,61 @@ Element.defaultRoutes = $0"""
 
         module Scale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _margins
+            [<Interface>]
+            type _margins =
+                abstract member left: float with get, set
+                abstract member right: float with get, set
+                abstract member top: float with get, set
+                abstract member bottom: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    left: float,
-                    right: float,
-                    top: float,
-                    bottom: float
-                ) =
+                static member Create (left: float, right: float, top: float, bottom: float) : _margins = nativeOnly
 
-                member val left : float = nativeOnly with get, set
-                member val right : float = nativeOnly with get, set
-                member val top : float = nativeOnly with get, set
-                member val bottom : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _range
+            [<Interface>]
+            type _range =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
+                static member Create (min: float, max: float) : _range = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getUserBounds
+            [<Interface>]
+            type getUserBounds =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
+                abstract member minDefined: bool with get, set
+                abstract member maxDefined: bool with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float,
-                    minDefined: bool,
-                    maxDefined: bool
-                ) =
+                static member Create (min: float, max: float, minDefined: bool, maxDefined: bool) : getUserBounds = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-                member val minDefined : bool = nativeOnly with get, set
-                member val maxDefined : bool = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMinMax
+            [<Interface>]
+            type getMinMax =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
+                static member Create (min: float, max: float) : getMinMax = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _getYAxisLabelAlignment
+            [<Interface>]
+            type _getYAxisLabelAlignment =
+                abstract member textAlign: string with get, set
+                abstract member x: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    textAlign: string,
-                    x: obj
-                ) =
-
-                member val textAlign : string = nativeOnly with get, set
-                member val x : obj = nativeOnly with get, set
+                static member Create (textAlign: string, x: obj) : _getYAxisLabelAlignment = nativeOnly
 
             module update =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type margins
+                [<Interface>]
+                type margins =
+                    abstract member top: float with get, set
+                    abstract member left: float with get, set
+                    abstract member bottom: float with get, set
+                    abstract member right: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        top: float,
-                        left: float,
-                        bottom: float,
-                        right: float
-                    ) =
-
-                    member val top : float = nativeOnly with get, set
-                    member val left : float = nativeOnly with get, set
-                    member val bottom : float = nativeOnly with get, set
-                    member val right : float = nativeOnly with get, set
+                    static member Create (top: float, left: float, bottom: float, right: float) : margins = nativeOnly
 
     module dist_core_core_ticks =
 
@@ -5076,29 +4834,29 @@ ArcElement.id"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.id = $0"""
             static member inline defaults
-                with get () : ArcElement.defaults =
+                with get () : ArcElement.defaults__ =
                     emitJsExpr () $$"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.defaults"""
-                and set (value: ArcElement.defaults) =
+                and set (value: ArcElement.defaults__) =
                     emitJsExpr (value) $$"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.defaults = $0"""
             static member inline defaultRoutes
-                with get () : ArcElement.defaultRoutes =
+                with get () : ArcElement.defaultRoutes__ =
                     emitJsExpr () $$"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.defaultRoutes"""
-                and set (value: ArcElement.defaultRoutes) =
+                and set (value: ArcElement.defaultRoutes__) =
                     emitJsExpr (value) $$"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.defaultRoutes = $0"""
             static member inline descriptors
-                with get () : ArcElement.descriptors =
+                with get () : ArcElement.descriptors__ =
                     emitJsExpr () $$"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.descriptors"""
-                and set (value: ArcElement.descriptors) =
+                and set (value: ArcElement.descriptors__) =
                     emitJsExpr (value) $$"""
 import { ArcElement } from "chart.js/dist/elements/element.arc.js";
 ArcElement.descriptors = $0"""
@@ -5116,83 +4874,54 @@ ArcElement.descriptors = $0"""
 
         module ArcElement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type defaults
+            [<Interface>]
+            type defaults__ =
+                abstract member borderAlign: string with get, set
+                abstract member borderColor: string with get, set
+                abstract member borderDash: ResizeArray<obj> with get, set
+                abstract member borderDashOffset: float with get, set
+                abstract member borderJoinStyle: obj with get, set
+                abstract member borderRadius: float with get, set
+                abstract member borderWidth: float with get, set
+                abstract member offset: float with get, set
+                abstract member spacing: float with get, set
+                abstract member angle: obj with get, set
+                abstract member circular: bool with get, set
+                abstract member selfJoin: bool with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    borderAlign: string,
-                    borderColor: string,
-                    borderDash: ResizeArray<obj>,
-                    borderDashOffset: float,
-                    borderJoinStyle: obj,
-                    borderRadius: float,
-                    borderWidth: float,
-                    offset: float,
-                    spacing: float,
-                    angle: obj,
-                    circular: bool,
-                    selfJoin: bool
-                ) =
+                static member Create (borderAlign: string, borderColor: string, borderDash: ResizeArray<obj>, borderDashOffset: float, borderJoinStyle: obj, borderRadius: float, borderWidth: float, offset: float, spacing: float, angle: obj, circular: bool, selfJoin: bool) : defaults__ = nativeOnly
 
-                member val borderAlign : string = nativeOnly with get, set
-                member val borderColor : string = nativeOnly with get, set
-                member val borderDash : ResizeArray<obj> = nativeOnly with get, set
-                member val borderDashOffset : float = nativeOnly with get, set
-                member val borderJoinStyle : obj = nativeOnly with get, set
-                member val borderRadius : float = nativeOnly with get, set
-                member val borderWidth : float = nativeOnly with get, set
-                member val offset : float = nativeOnly with get, set
-                member val spacing : float = nativeOnly with get, set
-                member val angle : obj = nativeOnly with get, set
-                member val circular : bool = nativeOnly with get, set
-                member val selfJoin : bool = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type defaultRoutes
+            [<Interface>]
+            type defaultRoutes__ =
+                abstract member backgroundColor: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    backgroundColor: string
-                ) =
+                static member Create (backgroundColor: string) : defaultRoutes__ = nativeOnly
 
-                member val backgroundColor : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type descriptors
+            [<Interface>]
+            type descriptors__ =
+                abstract member _scriptable: bool with get, set
+                abstract member _indexable: (obj -> bool) with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    _scriptable: bool,
-                    _indexable: (obj -> bool)
-                ) =
+                static member Create (_scriptable: bool, _indexable: (obj -> bool)) : descriptors__ = nativeOnly
 
-                member val _scriptable : bool = nativeOnly with get, set
-                member val _indexable : (obj -> bool) = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getCenterPoint
+            [<Interface>]
+            type getCenterPoint =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : getCenterPoint = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type tooltipPosition
+            [<Interface>]
+            type tooltipPosition =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+                static member Create (x: float, y: float) : tooltipPosition = nativeOnly
 
     module dist_elements_element_bar =
 
@@ -5249,17 +4978,13 @@ BarElement.defaults = $0"""
 
         module BarElement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getCenterPoint
+            [<Interface>]
+            type getCenterPoint =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+                static member Create (x: float, y: float) : getCenterPoint = nativeOnly
 
     module dist_elements_element_line =
 
@@ -5292,11 +5017,11 @@ LineElement.defaults"""
 import { LineElement } from "chart.js/dist/elements/element.line.js";
 LineElement.defaults = $0"""
             static member inline descriptors
-                with get () : LineElement.descriptors =
+                with get () : LineElement.descriptors__ =
                     emitJsExpr () $$"""
 import { LineElement } from "chart.js/dist/elements/element.line.js";
 LineElement.descriptors"""
-                and set (value: LineElement.descriptors) =
+                and set (value: LineElement.descriptors__) =
                     emitJsExpr (value) $$"""
 import { LineElement } from "chart.js/dist/elements/element.line.js";
 LineElement.descriptors = $0"""
@@ -5403,49 +5128,34 @@ LineElement.descriptors = $0"""
 
         module LineElement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type descriptors
+            [<Interface>]
+            type descriptors__ =
+                abstract member _scriptable: bool with get, set
+                abstract member _indexable: (obj -> bool) with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    _scriptable: bool,
-                    _indexable: (obj -> bool)
-                ) =
-
-                member val _scriptable : bool = nativeOnly with get, set
-                member val _indexable : (obj -> bool) = nativeOnly with get, set
+                static member Create (_scriptable: bool, _indexable: (obj -> bool)) : descriptors__ = nativeOnly
 
             module pathSegment =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type segment
+                [<Interface>]
+                type segment =
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
+                    abstract member loop: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        start: float,
-                        ``end``: float,
-                        loop: bool
-                    ) =
+                    static member Create (start: float, ``end``: float, loop: bool) : segment = nativeOnly
 
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
-                    member val loop : bool = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type ``params``
+                [<Interface>]
+                type ``params`` =
+                    abstract member move: bool with get, set
+                    abstract member reverse: bool with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        move: bool,
-                        reverse: bool,
-                        start: float,
-                        ``end``: float
-                    ) =
-
-                    member val move : bool = nativeOnly with get, set
-                    member val reverse : bool = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+                    static member Create (move: bool, reverse: bool, start: float, ``end``: float) : ``params`` = nativeOnly
 
     module dist_elements_element_point =
 
@@ -5475,20 +5185,20 @@ PointElement.id = $0"""
             abstract member skip: bool option with get, set
             abstract member stop: bool option with get, set
             static member inline defaults
-                with get () : PointElement.defaults =
+                with get () : PointElement.defaults__ =
                     emitJsExpr () $$"""
 import { PointElement } from "chart.js/dist/elements/element.point.js";
 PointElement.defaults"""
-                and set (value: PointElement.defaults) =
+                and set (value: PointElement.defaults__) =
                     emitJsExpr (value) $$"""
 import { PointElement } from "chart.js/dist/elements/element.point.js";
 PointElement.defaults = $0"""
             static member inline defaultRoutes
-                with get () : PointElement.defaultRoutes =
+                with get () : PointElement.defaultRoutes__ =
                     emitJsExpr () $$"""
 import { PointElement } from "chart.js/dist/elements/element.point.js";
 PointElement.defaultRoutes"""
-                and set (value: PointElement.defaultRoutes) =
+                and set (value: PointElement.defaultRoutes__) =
                     emitJsExpr (value) $$"""
 import { PointElement } from "chart.js/dist/elements/element.point.js";
 PointElement.defaultRoutes = $0"""
@@ -5536,51 +5246,34 @@ PointElement.defaultRoutes = $0"""
                 abstract member hoverBorderColor: ChartJs.dist_types_color.Color with get, set
                 abstract member hoverBackgroundColor: ChartJs.dist_types_color.Color with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type defaults
+            [<Interface>]
+            type defaults__ =
+                abstract member borderWidth: float with get, set
+                abstract member hitRadius: float with get, set
+                abstract member hoverBorderWidth: float with get, set
+                abstract member hoverRadius: float with get, set
+                abstract member pointStyle: string with get, set
+                abstract member radius: float with get, set
+                abstract member rotation: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    borderWidth: float,
-                    hitRadius: float,
-                    hoverBorderWidth: float,
-                    hoverRadius: float,
-                    pointStyle: string,
-                    radius: float,
-                    rotation: float
-                ) =
+                static member Create (borderWidth: float, hitRadius: float, hoverBorderWidth: float, hoverRadius: float, pointStyle: string, radius: float, rotation: float) : defaults__ = nativeOnly
 
-                member val borderWidth : float = nativeOnly with get, set
-                member val hitRadius : float = nativeOnly with get, set
-                member val hoverBorderWidth : float = nativeOnly with get, set
-                member val hoverRadius : float = nativeOnly with get, set
-                member val pointStyle : string = nativeOnly with get, set
-                member val radius : float = nativeOnly with get, set
-                member val rotation : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type defaultRoutes
+            [<Interface>]
+            type defaultRoutes__ =
+                abstract member backgroundColor: string with get, set
+                abstract member borderColor: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    backgroundColor: string,
-                    borderColor: string
-                ) =
+                static member Create (backgroundColor: string, borderColor: string) : defaultRoutes__ = nativeOnly
 
-                member val backgroundColor : string = nativeOnly with get, set
-                member val borderColor : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getCenterPoint
+            [<Interface>]
+            type getCenterPoint =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+                static member Create (x: float, y: float) : getCenterPoint = nativeOnly
 
             module size =
 
@@ -5635,9 +5328,9 @@ PointElement.defaultRoutes = $0"""
             [<Import("toFontString", "chart.js/dist/helpers/helpers.canvas.js")>]
             static member toFontString (font: ChartJs.dist_types.FontSpec) : string = nativeOnly
             [<Import("_measureText", "chart.js/dist/helpers/helpers.canvas.js")>]
-            static member _measureText (ctx: Glutinum.Web.CanvasRenderingContext2D, data: Exports._measureText.data, gc: ResizeArray<string>, longest: float, string: string) : float = nativeOnly
+            static member _measureText (ctx: Glutinum.Web.CanvasRenderingContext2D, data: Exports._measureText__.data, gc: ResizeArray<string>, longest: float, string: string) : float = nativeOnly
             [<Import("_longestText", "chart.js/dist/helpers/helpers.canvas.js")>]
-            static member _longestText (ctx: Glutinum.Web.CanvasRenderingContext2D, font: string, arrayOfThings: ChartJs.dist_helpers_helpers_canvas.Things, ?cache: Exports._longestText.cache) : float = nativeOnly
+            static member _longestText (ctx: Glutinum.Web.CanvasRenderingContext2D, font: string, arrayOfThings: ChartJs.dist_helpers_helpers_canvas.Things, ?cache: Exports._longestText__.cache) : float = nativeOnly
             /// <summary>
             /// Returns the aligned pixel value to avoid anti-aliasing blur
             /// </summary>
@@ -5706,7 +5399,7 @@ PointElement.defaultRoutes = $0"""
             /// Bounding rect
             /// </param>
             [<Import("addRoundedRectPath", "chart.js/dist/helpers/helpers.canvas.js")>]
-            static member addRoundedRectPath (ctx: Glutinum.Web.CanvasRenderingContext2D, rect: Exports.addRoundedRectPath.rect) : unit = nativeOnly
+            static member addRoundedRectPath (ctx: Glutinum.Web.CanvasRenderingContext2D, rect: Exports.addRoundedRectPath__.rect) : unit = nativeOnly
 
         type Thing =
             string option
@@ -5714,25 +5407,19 @@ PointElement.defaultRoutes = $0"""
         type Things =
             ResizeArray<U2<ChartJs.dist_helpers_helpers_canvas.Thing, ResizeArray<ChartJs.dist_helpers_helpers_canvas.Thing>>>
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type DrawPointOptions
+        [<Interface>]
+        type DrawPointOptions =
+            abstract member pointStyle: ChartJs.dist_types.PointStyle with get, set
+            abstract member rotation: float option with get, set
+            abstract member radius: float with get, set
+            abstract member borderWidth: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                pointStyle: ChartJs.dist_types.PointStyle,
-                radius: float,
-                borderWidth: float,
-                ?rotation: float
-            ) =
-
-            member val pointStyle : ChartJs.dist_types.PointStyle = nativeOnly with get, set
-            member val radius : float = nativeOnly with get, set
-            member val borderWidth : float = nativeOnly with get, set
-            member val rotation : float option = nativeOnly with get, set
+            static member Create (pointStyle: ChartJs.dist_types.PointStyle, radius: float, borderWidth: float, ?rotation: float) : DrawPointOptions = nativeOnly
 
         module Exports =
 
-            module _measureText =
+            module _measureText__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -5740,21 +5427,16 @@ PointElement.defaultRoutes = $0"""
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
 
-            module _longestText =
+            module _longestText__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type cache
+                [<Interface>]
+                type cache =
+                    abstract member data: Exports._longestText__.cache.data option with get, set
+                    abstract member garbageCollect: ResizeArray<string> option with get, set
+                    abstract member font: string option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        ?data: Exports._longestText.cache.data,
-                        ?garbageCollect: ResizeArray<string>,
-                        ?font: string
-                    ) =
-
-                    member val data : Exports._longestText.cache.data option = nativeOnly with get, set
-                    member val garbageCollect : ResizeArray<string> option = nativeOnly with get, set
-                    member val font : string option = nativeOnly with get, set
+                    static member Create (?data: Exports._longestText__.cache.data, ?garbageCollect: ResizeArray<string>, ?font: string) : cache = nativeOnly
 
                 module cache =
 
@@ -5764,7 +5446,7 @@ PointElement.defaultRoutes = $0"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-            module addRoundedRectPath =
+            module addRoundedRectPath__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -5793,9 +5475,9 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_lookup", "chart.js/dist/helpers/helpers.collection.js")>]
-            static member _lookup (table: ResizeArray<float>, value: float, ?cmp: (float -> bool)) : Exports._lookup = nativeOnly
+            static member _lookup (table: ResizeArray<float>, value: float, ?cmp: (float -> bool)) : Exports._lookup__ = nativeOnly
             [<Import("_lookup", "chart.js/dist/helpers/helpers.collection.js")>]
-            static member _lookup<'T> (table: ResizeArray<'T>, value: float, cmp: (float -> bool)) : Exports._lookup = nativeOnly
+            static member _lookup<'T> (table: ResizeArray<'T>, value: float, cmp: (float -> bool)) : Exports._lookup___1 = nativeOnly
             /// <summary>
             /// Binary search
             /// </summary>
@@ -5812,7 +5494,7 @@ PointElement.defaultRoutes = $0"""
             /// lookup last index
             /// </param>
             [<Import("_lookupByKey", "chart.js/dist/helpers/helpers.collection.js")>]
-            static member inline _lookupByKey: Exports._lookupByKey.Type = nativeOnly
+            static member inline _lookupByKey: Exports._lookupByKey__.Type = nativeOnly
             /// <summary>
             /// Reverse binary search
             /// </summary>
@@ -5826,7 +5508,7 @@ PointElement.defaultRoutes = $0"""
             /// value to find
             /// </param>
             [<Import("_rlookupByKey", "chart.js/dist/helpers/helpers.collection.js")>]
-            static member inline _rlookupByKey: Exports._rlookupByKey.Type = nativeOnly
+            static member inline _rlookupByKey: Exports._rlookupByKey__.Type = nativeOnly
             /// <summary>
             /// Return subset of <c>values</c> between <c>min</c> and <c>max</c> inclusive.
             /// Values are assumed to be in sorted order.
@@ -5872,22 +5554,26 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _lookup
+            [<Interface>]
+            type _lookup__ =
+                abstract member lo: float with get, set
+                abstract member hi: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    lo: float,
-                    hi: float
-                ) =
+                static member Create (lo: float, hi: float) : _lookup__ = nativeOnly
 
-                member val lo : float = nativeOnly with get, set
-                member val hi : float = nativeOnly with get, set
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _lookup___1 =
+                abstract member lo: float with get, set
+                abstract member hi: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (lo: float, hi: float) : _lookup___1 = nativeOnly
 
-            module _lookupByKey =
+            module _lookupByKey__ =
 
                 type Type =
-                    delegate of table: ResizeArray<Exports._lookupByKey.Type.table> * key: string * value: float * ?last: bool -> Exports._lookupByKey.Type.ReturnType
+                    delegate of table: ResizeArray<Exports._lookupByKey__.Type.table> * key: string * value: float * ?last: bool -> Exports._lookupByKey__.Type.ReturnType
 
                 module Type =
 
@@ -5897,22 +5583,18 @@ PointElement.defaultRoutes = $0"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ReturnType
+                    [<Interface>]
+                    type ReturnType =
+                        abstract member lo: float with get, set
+                        abstract member hi: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            lo: float,
-                            hi: float
-                        ) =
+                        static member Create (lo: float, hi: float) : ReturnType = nativeOnly
 
-                        member val lo : float = nativeOnly with get, set
-                        member val hi : float = nativeOnly with get, set
-
-            module _rlookupByKey =
+            module _rlookupByKey__ =
 
                 type Type =
-                    delegate of table: ResizeArray<Exports._rlookupByKey.Type.table> * key: string * value: float -> Exports._rlookupByKey.Type.ReturnType
+                    delegate of table: ResizeArray<Exports._rlookupByKey__.Type.table> * key: string * value: float -> Exports._rlookupByKey__.Type.ReturnType
 
                 module Type =
 
@@ -5922,17 +5604,13 @@ PointElement.defaultRoutes = $0"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ReturnType
+                    [<Interface>]
+                    type ReturnType =
+                        abstract member lo: float with get, set
+                        abstract member hi: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            lo: float,
-                            hi: float
-                        ) =
-
-                        member val lo : float = nativeOnly with get, set
-                        member val hi : float = nativeOnly with get, set
+                        static member Create (lo: float, hi: float) : ReturnType = nativeOnly
 
     module dist_helpers_helpers_color =
 
@@ -5948,7 +5626,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
             static member color (value: string) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
-            static member color (value: Exports.color.value) : KurkleColor.Color = nativeOnly
+            static member color (value: Exports.color__.value) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
             static member color (value: float * float * float) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
@@ -5962,23 +5640,17 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            module color =
+            module color__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type value
+                [<Interface>]
+                type value =
+                    abstract member r: float with get, set
+                    abstract member g: float with get, set
+                    abstract member b: float with get, set
+                    abstract member a: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        r: float,
-                        g: float,
-                        b: float,
-                        a: float
-                    ) =
-
-                    member val r : float = nativeOnly with get, set
-                    member val g : float = nativeOnly with get, set
-                    member val b : float = nativeOnly with get, set
-                    member val a : float = nativeOnly with get, set
+                    static member Create (r: float, g: float, b: float, a: float) : value = nativeOnly
 
     module dist_helpers_helpers_config =
 
@@ -6068,7 +5740,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("_descriptors", "chart.js/dist/helpers/helpers.config.js")>]
             static member _descriptors (proxy: ChartJs.dist_helpers_helpers_config_types.ResolverCache, ?defaults: ChartJs.dist_helpers_helpers_config_types.DescriptorDefaults) : ChartJs.dist_helpers_helpers_config_types.Descriptor = nativeOnly
             [<Import("_parseObjectDataRadialScale", "chart.js/dist/helpers/helpers.config.js")>]
-            static member _parseObjectDataRadialScale (meta: ChartJs.dist_types.ChartMeta<Exports._parseObjectDataRadialScale.meta>, data: ResizeArray<ChartJs.dist_types_basic.AnyObject>, start: float, count: float) : ResizeArray<Exports._parseObjectDataRadialScale> = nativeOnly
+            static member _parseObjectDataRadialScale (meta: ChartJs.dist_types.ChartMeta<Exports._parseObjectDataRadialScale__.meta>, data: ResizeArray<ChartJs.dist_types_basic.AnyObject>, start: float, count: float) : ResizeArray<Exports._parseObjectDataRadialScale__> = nativeOnly
 
         type ResolverObjectKey =
             ChartJs.dist_helpers_helpers_config_types.ResolverObjectKey
@@ -6081,17 +5753,14 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _parseObjectDataRadialScale
+            [<Interface>]
+            type _parseObjectDataRadialScale__ =
+                abstract member r: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    r: obj
-                ) =
+                static member Create (r: obj) : _parseObjectDataRadialScale__ = nativeOnly
 
-                member val r : obj = nativeOnly with get, set
-
-            module _parseObjectDataRadialScale =
+            module _parseObjectDataRadialScale__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -6140,6 +5809,8 @@ PointElement.defaultRoutes = $0"""
             abstract member scriptable: bool with get, set
             abstract member indexable: bool with get, set
             abstract member allKeys: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (scriptable: bool, indexable: bool, ?allKeys: bool) : DescriptorDefaults = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -6268,9 +5939,9 @@ PointElement.defaultRoutes = $0"""
             [<Import("valueOrDefault", "chart.js/dist/helpers/helpers.core.js")>]
             static member valueOrDefault<'T> (value: 'T option, defaultValue: 'T) : 'T = nativeOnly
             [<Import("toPercentage", "chart.js/dist/helpers/helpers.core.js")>]
-            static member inline toPercentage: Exports.toPercentage.Type = nativeOnly
+            static member inline toPercentage: Exports.toPercentage__.Type = nativeOnly
             [<Import("toDimension", "chart.js/dist/helpers/helpers.core.js")>]
-            static member inline toDimension: Exports.toDimension.Type = nativeOnly
+            static member inline toDimension: Exports.toDimension__.Type = nativeOnly
             /// <summary>
             /// Calls <c>fn</c> with the given <c>args</c> in the scope defined by <c>thisArg</c> and returns the
             /// value returned by <c>fn</c>. If <c>fn</c> is not a function, this method returns undefined.
@@ -6304,9 +5975,9 @@ PointElement.defaultRoutes = $0"""
             /// If true, iterates backward on the loopable.
             /// </param>
             [<Import("each", "chart.js/dist/helpers/helpers.core.js")>]
-            static member each<'T, 'TA> (loopable: Exports.each.loopable<'T>, fn: Exports.each.fn<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
+            static member each<'T, 'TA> (loopable: Exports.each__.loopable<'T>, fn: Exports.each__.fn<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
             [<Import("each", "chart.js/dist/helpers/helpers.core.js")>]
-            static member each<'T, 'TA> (loopable: ResizeArray<'T>, fn: Exports.each.fn_1<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
+            static member each<'T, 'TA> (loopable: ResizeArray<'T>, fn: Exports.each__.fn_1<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
             /// <summary>
             /// Returns true if the <c>a0</c> and <c>a1</c> arrays have the same content, else returns false.
             /// </summary>
@@ -6410,22 +6081,19 @@ PointElement.defaultRoutes = $0"""
             [<Import("isFunction", "chart.js/dist/helpers/helpers.core.js")>]
             static member inline isFunction: (obj -> bool) = nativeOnly
             [<Import("setsEqual", "chart.js/dist/helpers/helpers.core.js")>]
-            static member inline setsEqual: Exports.setsEqual.Type = nativeOnly
+            static member inline setsEqual: Exports.setsEqual__.Type = nativeOnly
             /// <param name="e">
             /// The event
             /// </param>
             [<Import("_isClickEvent", "chart.js/dist/helpers/helpers.core.js")>]
             static member _isClickEvent (e: ChartJs.dist_types.ChartEvent) : bool = nativeOnly
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type MergeOptions
+        [<Interface>]
+        type MergeOptions =
+            abstract member merger: MergeOptions.merger option with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                ?merger: MergeOptions.merger
-            ) =
-
-            member val merger : MergeOptions.merger option = nativeOnly with get, set
+            static member Create (?merger: MergeOptions.merger) : MergeOptions = nativeOnly
 
         module MergeOptions =
 
@@ -6434,17 +6102,17 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            module toPercentage =
+            module toPercentage__ =
 
                 type Type =
                     delegate of value: U2<float, string> * dimension: float -> float
 
-            module toDimension =
+            module toDimension__ =
 
                 type Type =
                     delegate of value: U2<float, string> * dimension: float -> float
 
-            module each =
+            module each__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -6458,7 +6126,7 @@ PointElement.defaultRoutes = $0"""
                 type fn_1<'T> =
                     delegate of v: 'T * i: float -> unit
 
-            module setsEqual =
+            module setsEqual__ =
 
                 type Type =
                     delegate of a: obj * b: obj -> bool
@@ -6469,7 +6137,7 @@ PointElement.defaultRoutes = $0"""
         [<Erase>]
         type Exports =
             [<Import("splineCurve", "chart.js/dist/helpers/helpers.curve.js")>]
-            static member splineCurve (firstPoint: ChartJs.dist_types_geometric.SplinePoint, middlePoint: ChartJs.dist_types_geometric.SplinePoint, afterPoint: ChartJs.dist_types_geometric.SplinePoint, t: float) : Exports.splineCurve = nativeOnly
+            static member splineCurve (firstPoint: ChartJs.dist_types_geometric.SplinePoint, middlePoint: ChartJs.dist_types_geometric.SplinePoint, afterPoint: ChartJs.dist_types_geometric.SplinePoint, t: float) : Exports.splineCurve__ = nativeOnly
             /// <summary>
             /// This function calculates Bézier control points in a similar way than |splineCurve|,
             /// but preserves monotonicity of the provided data and ensures no local extremums are added
@@ -6477,25 +6145,21 @@ PointElement.defaultRoutes = $0"""
             /// See : https://en.wikipedia.org/wiki/Monotone_cubic_interpolation
             /// </summary>
             [<Import("splineCurveMonotone", "chart.js/dist/helpers/helpers.curve.js")>]
-            static member splineCurveMonotone (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, ?indexAxis: Exports.splineCurveMonotone.indexAxis) : unit = nativeOnly
+            static member splineCurveMonotone (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, ?indexAxis: Exports.splineCurveMonotone__.indexAxis) : unit = nativeOnly
             [<Import("_updateBezierControlPoints", "chart.js/dist/helpers/helpers.curve.js")>]
-            static member _updateBezierControlPoints (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, options: obj, area: ChartJs.dist_types_geometric.ChartArea, loop: bool, indexAxis: Exports._updateBezierControlPoints.indexAxis) : unit = nativeOnly
+            static member _updateBezierControlPoints (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, options: obj, area: ChartJs.dist_types_geometric.ChartArea, loop: bool, indexAxis: Exports._updateBezierControlPoints__.indexAxis) : unit = nativeOnly
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type splineCurve
+            [<Interface>]
+            type splineCurve__ =
+                abstract member previous: ChartJs.dist_types_geometric.SplinePoint with get, set
+                abstract member next: ChartJs.dist_types_geometric.SplinePoint with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    previous: ChartJs.dist_types_geometric.SplinePoint,
-                    next: ChartJs.dist_types_geometric.SplinePoint
-                ) =
+                static member Create (previous: ChartJs.dist_types_geometric.SplinePoint, next: ChartJs.dist_types_geometric.SplinePoint) : splineCurve__ = nativeOnly
 
-                member val previous : ChartJs.dist_types_geometric.SplinePoint = nativeOnly with get, set
-                member val next : ChartJs.dist_types_geometric.SplinePoint = nativeOnly with get, set
-
-            module splineCurveMonotone =
+            module splineCurveMonotone__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -6503,7 +6167,7 @@ PointElement.defaultRoutes = $0"""
                     | x
                     | y
 
-            module _updateBezierControlPoints =
+            module _updateBezierControlPoints__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -6543,7 +6207,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6557,7 +6221,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6571,7 +6235,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6585,7 +6249,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6599,7 +6263,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6613,7 +6277,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6627,7 +6291,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition__ = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -6641,9 +6305,9 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition__ = nativeOnly
             [<Import("getMaximumSize", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member getMaximumSize (canvas: Glutinum.Web.HTMLCanvasElement, ?bbWidth: float, ?bbHeight: float, ?aspectRatio: float) : Exports.getMaximumSize = nativeOnly
+            static member getMaximumSize (canvas: Glutinum.Web.HTMLCanvasElement, ?bbWidth: float, ?bbHeight: float, ?aspectRatio: float) : Exports.getMaximumSize__ = nativeOnly
             /// <param name="chart">
             ///
             /// </param>
@@ -6689,35 +6353,27 @@ PointElement.defaultRoutes = $0"""
             /// Size in pixels or undefined if unknown.
             /// </returns>
             [<Import("readUsedSize", "chart.js/dist/helpers/helpers.dom.js")>]
-            static member readUsedSize (element: Glutinum.Web.HTMLElement, property: Exports.readUsedSize.property) : float option = nativeOnly
+            static member readUsedSize (element: Glutinum.Web.HTMLElement, property: Exports.readUsedSize__.property) : float option = nativeOnly
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getRelativePosition
+            [<Interface>]
+            type getRelativePosition__ =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : getRelativePosition__ = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMaximumSize
+            [<Interface>]
+            type getMaximumSize__ =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
+                static member Create (width: float, height: float) : getMaximumSize__ = nativeOnly
 
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
-
-            module readUsedSize =
+            module readUsedSize__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -6731,7 +6387,7 @@ PointElement.defaultRoutes = $0"""
         [<Erase>]
         type Exports =
             [<ImportDefault("chart.js/dist/helpers/helpers.easing.js")>]
-            static member inline effects: Exports.effects.Type = nativeOnly
+            static member inline effects: Exports.effects__.Type = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -6770,77 +6426,44 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            module effects =
+            module effects__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type
+                [<Interface>]
+                type Type =
+                    abstract member linear: (float -> float) with get
+                    abstract member easeInQuad: (float -> float) with get
+                    abstract member easeOutQuad: (float -> float) with get
+                    abstract member easeInOutQuad: (float -> float) with get
+                    abstract member easeInCubic: (float -> float) with get
+                    abstract member easeOutCubic: (float -> float) with get
+                    abstract member easeInOutCubic: (float -> float) with get
+                    abstract member easeInQuart: (float -> float) with get
+                    abstract member easeOutQuart: (float -> float) with get
+                    abstract member easeInOutQuart: (float -> float) with get
+                    abstract member easeInQuint: (float -> float) with get
+                    abstract member easeOutQuint: (float -> float) with get
+                    abstract member easeInOutQuint: (float -> float) with get
+                    abstract member easeInSine: (float -> float) with get
+                    abstract member easeOutSine: (float -> float) with get
+                    abstract member easeInOutSine: (float -> float) with get
+                    abstract member easeInExpo: (float -> float) with get
+                    abstract member easeOutExpo: (float -> float) with get
+                    abstract member easeInOutExpo: (float -> float) with get
+                    abstract member easeInCirc: (float -> float) with get
+                    abstract member easeOutCirc: (float -> float) with get
+                    abstract member easeInOutCirc: (float -> float) with get
+                    abstract member easeInElastic: (float -> float) with get
+                    abstract member easeOutElastic: (float -> float) with get
+                    abstract member easeInOutElastic: (float -> float) with get
+                    abstract member easeInBack: (float -> float) with get
+                    abstract member easeOutBack: (float -> float) with get
+                    abstract member easeInOutBack: (float -> float) with get
+                    abstract member easeInBounce: (float -> float) with get
+                    abstract member easeOutBounce: (float -> float) with get
+                    abstract member easeInOutBounce: (float -> float) with get
                     [<ParamObject; Emit("$0")>]
-                    (
-                        linear: (float -> float),
-                        easeInQuad: (float -> float),
-                        easeOutQuad: (float -> float),
-                        easeInOutQuad: (float -> float),
-                        easeInCubic: (float -> float),
-                        easeOutCubic: (float -> float),
-                        easeInOutCubic: (float -> float),
-                        easeInQuart: (float -> float),
-                        easeOutQuart: (float -> float),
-                        easeInOutQuart: (float -> float),
-                        easeInQuint: (float -> float),
-                        easeOutQuint: (float -> float),
-                        easeInOutQuint: (float -> float),
-                        easeInSine: (float -> float),
-                        easeOutSine: (float -> float),
-                        easeInOutSine: (float -> float),
-                        easeInExpo: (float -> float),
-                        easeOutExpo: (float -> float),
-                        easeInOutExpo: (float -> float),
-                        easeInCirc: (float -> float),
-                        easeOutCirc: (float -> float),
-                        easeInOutCirc: (float -> float),
-                        easeInElastic: (float -> float),
-                        easeOutElastic: (float -> float),
-                        easeInOutElastic: (float -> float),
-                        easeInBack: (float -> float),
-                        easeOutBack: (float -> float),
-                        easeInOutBack: (float -> float),
-                        easeInBounce: (float -> float),
-                        easeOutBounce: (float -> float),
-                        easeInOutBounce: (float -> float)
-                    ) =
-
-                    member val linear : (float -> float) = nativeOnly with get
-                    member val easeInQuad : (float -> float) = nativeOnly with get
-                    member val easeOutQuad : (float -> float) = nativeOnly with get
-                    member val easeInOutQuad : (float -> float) = nativeOnly with get
-                    member val easeInCubic : (float -> float) = nativeOnly with get
-                    member val easeOutCubic : (float -> float) = nativeOnly with get
-                    member val easeInOutCubic : (float -> float) = nativeOnly with get
-                    member val easeInQuart : (float -> float) = nativeOnly with get
-                    member val easeOutQuart : (float -> float) = nativeOnly with get
-                    member val easeInOutQuart : (float -> float) = nativeOnly with get
-                    member val easeInQuint : (float -> float) = nativeOnly with get
-                    member val easeOutQuint : (float -> float) = nativeOnly with get
-                    member val easeInOutQuint : (float -> float) = nativeOnly with get
-                    member val easeInSine : (float -> float) = nativeOnly with get
-                    member val easeOutSine : (float -> float) = nativeOnly with get
-                    member val easeInOutSine : (float -> float) = nativeOnly with get
-                    member val easeInExpo : (float -> float) = nativeOnly with get
-                    member val easeOutExpo : (float -> float) = nativeOnly with get
-                    member val easeInOutExpo : (float -> float) = nativeOnly with get
-                    member val easeInCirc : (float -> float) = nativeOnly with get
-                    member val easeOutCirc : (float -> float) = nativeOnly with get
-                    member val easeInOutCirc : (float -> float) = nativeOnly with get
-                    member val easeInElastic : (float -> float) = nativeOnly with get
-                    member val easeOutElastic : (float -> float) = nativeOnly with get
-                    member val easeInOutElastic : (float -> float) = nativeOnly with get
-                    member val easeInBack : (float -> float) = nativeOnly with get
-                    member val easeOutBack : (float -> float) = nativeOnly with get
-                    member val easeInOutBack : (float -> float) = nativeOnly with get
-                    member val easeInBounce : (float -> float) = nativeOnly with get
-                    member val easeOutBounce : (float -> float) = nativeOnly with get
-                    member val easeInOutBounce : (float -> float) = nativeOnly with get
+                    static member Create (linear: (float -> float), easeInQuad: (float -> float), easeOutQuad: (float -> float), easeInOutQuad: (float -> float), easeInCubic: (float -> float), easeOutCubic: (float -> float), easeInOutCubic: (float -> float), easeInQuart: (float -> float), easeOutQuart: (float -> float), easeInOutQuart: (float -> float), easeInQuint: (float -> float), easeOutQuint: (float -> float), easeInOutQuint: (float -> float), easeInSine: (float -> float), easeOutSine: (float -> float), easeInOutSine: (float -> float), easeInExpo: (float -> float), easeOutExpo: (float -> float), easeInOutExpo: (float -> float), easeInCirc: (float -> float), easeOutCirc: (float -> float), easeInOutCirc: (float -> float), easeInElastic: (float -> float), easeOutElastic: (float -> float), easeInOutElastic: (float -> float), easeInBack: (float -> float), easeOutBack: (float -> float), easeInOutBack: (float -> float), easeInBounce: (float -> float), easeOutBounce: (float -> float), easeInOutBounce: (float -> float)) : Type = nativeOnly
 
     module dist_helpers_helpers_extras =
 
@@ -6853,7 +6476,7 @@ PointElement.defaultRoutes = $0"""
             /// Request animation polyfill
             /// </summary>
             [<Import("requestAnimFrame", "chart.js/dist/helpers/helpers.extras.js")>]
-            static member inline requestAnimFrame: U2<Exports.requestAnimFrame.Type.U2.Case1, (obj -> unit)> = nativeOnly
+            static member inline requestAnimFrame: U2<Exports.requestAnimFrame__.Type.U2.Case1, (obj -> unit)> = nativeOnly
             /// <summary>
             /// Throttles calling <c>fn</c> once per animation frame
             /// Latest arguments are used on the actual call
@@ -6869,22 +6492,22 @@ PointElement.defaultRoutes = $0"""
             /// Converts 'start' to 'left', 'end' to 'right' and others to 'center'
             /// </summary>
             [<Import("_toLeftRightCenter", "chart.js/dist/helpers/helpers.extras.js")>]
-            static member inline _toLeftRightCenter: (Exports._toLeftRightCenter.Type.align -> Exports._toLeftRightCenter.Type) = nativeOnly
+            static member inline _toLeftRightCenter: (Exports._toLeftRightCenter__.Type.align -> Exports._toLeftRightCenter__.Type) = nativeOnly
             /// <summary>
             /// Returns <c>start</c>, <c>end</c> or <c>(start + end) / 2</c> depending on <c>align</c>. Defaults to <c>center</c>
             /// </summary>
             [<Import("_alignStartEnd", "chart.js/dist/helpers/helpers.extras.js")>]
-            static member inline _alignStartEnd: Exports._alignStartEnd.Type = nativeOnly
+            static member inline _alignStartEnd: Exports._alignStartEnd__.Type = nativeOnly
             /// <summary>
             /// Returns <c>left</c>, <c>right</c> or <c>(left + right) / 2</c> depending on <c>align</c>. Defaults to <c>left</c>
             /// </summary>
             [<Import("_textX", "chart.js/dist/helpers/helpers.extras.js")>]
-            static member inline _textX: Exports._textX.Type = nativeOnly
+            static member inline _textX: Exports._textX__.Type = nativeOnly
             /// <summary>
             /// Return start and count of visible points.
             /// </summary>
             [<Import("_getStartAndCountOfVisiblePoints", "chart.js/dist/helpers/helpers.extras.js")>]
-            static member _getStartAndCountOfVisiblePoints (meta: ChartJs.dist_types.ChartMeta<Exports._getStartAndCountOfVisiblePoints.meta>, points: ResizeArray<ChartJs.dist_elements_element_point.PointElement>, animationsDisabled: bool) : Exports._getStartAndCountOfVisiblePoints = nativeOnly
+            static member _getStartAndCountOfVisiblePoints (meta: ChartJs.dist_types.ChartMeta<Exports._getStartAndCountOfVisiblePoints__.meta>, points: ResizeArray<ChartJs.dist_elements_element_point.PointElement>, animationsDisabled: bool) : Exports._getStartAndCountOfVisiblePoints__ = nativeOnly
             /// <summary>
             /// Checks if the scale ranges have changed.
             /// </summary>
@@ -6896,19 +6519,15 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _getStartAndCountOfVisiblePoints
+            [<Interface>]
+            type _getStartAndCountOfVisiblePoints__ =
+                abstract member start: float with get, set
+                abstract member count: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    count: float
-                ) =
+                static member Create (start: float, count: float) : _getStartAndCountOfVisiblePoints__ = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val count : float = nativeOnly with get, set
-
-            module requestAnimFrame =
+            module requestAnimFrame__ =
 
                 module Type =
 
@@ -6920,7 +6539,7 @@ PointElement.defaultRoutes = $0"""
                             [<Emit("$0($1...)")>]
                             abstract member Invoke: callback: Glutinum.Web.FrameRequestCallback -> float
 
-            module _toLeftRightCenter =
+            module _toLeftRightCenter__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -6938,10 +6557,10 @@ PointElement.defaultRoutes = $0"""
                         | ``end``
                         | center
 
-            module _alignStartEnd =
+            module _alignStartEnd__ =
 
                 type Type =
-                    delegate of align: Exports._alignStartEnd.Type.align * start: float * ``end``: float -> float
+                    delegate of align: Exports._alignStartEnd__.Type.align * start: float * ``end``: float -> float
 
                 module Type =
 
@@ -6952,10 +6571,10 @@ PointElement.defaultRoutes = $0"""
                         | ``end``
                         | center
 
-            module _textX =
+            module _textX__ =
 
                 type Type =
-                    delegate of align: Exports._textX.Type.align * left: float * right: float * rtl: bool -> float
+                    delegate of align: Exports._textX__.Type.align * left: float * right: float * rtl: bool -> float
 
                 module Type =
 
@@ -6966,7 +6585,7 @@ PointElement.defaultRoutes = $0"""
                         | right
                         | center
 
-            module _getStartAndCountOfVisiblePoints =
+            module _getStartAndCountOfVisiblePoints__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -6980,51 +6599,39 @@ PointElement.defaultRoutes = $0"""
         [<Erase>]
         type Exports =
             [<Import("_pointInLine", "chart.js/dist/helpers/helpers.interpolation.js")>]
-            static member _pointInLine (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, ?mode: obj) : Exports._pointInLine = nativeOnly
+            static member _pointInLine (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, ?mode: obj) : Exports._pointInLine__ = nativeOnly
             [<Import("_steppedInterpolation", "chart.js/dist/helpers/helpers.interpolation.js")>]
-            static member _steppedInterpolation (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, mode: Exports._steppedInterpolation.mode) : Exports._steppedInterpolation = nativeOnly
+            static member _steppedInterpolation (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, mode: Exports._steppedInterpolation__.mode) : Exports._steppedInterpolation__ = nativeOnly
             [<Import("_bezierInterpolation", "chart.js/dist/helpers/helpers.interpolation.js")>]
-            static member _bezierInterpolation (p1: ChartJs.dist_types_geometric.SplinePoint, p2: ChartJs.dist_types_geometric.SplinePoint, t: float, ?mode: obj) : Exports._bezierInterpolation = nativeOnly
+            static member _bezierInterpolation (p1: ChartJs.dist_types_geometric.SplinePoint, p2: ChartJs.dist_types_geometric.SplinePoint, t: float, ?mode: obj) : Exports._bezierInterpolation__ = nativeOnly
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _pointInLine
+            [<Interface>]
+            type _pointInLine__ =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : _pointInLine__ = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _steppedInterpolation
+            [<Interface>]
+            type _steppedInterpolation__ =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : _steppedInterpolation__ = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _bezierInterpolation
+            [<Interface>]
+            type _bezierInterpolation__ =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : _bezierInterpolation__ = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            module _steppedInterpolation =
+            module _steppedInterpolation__ =
 
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
@@ -7083,7 +6690,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("almostWhole", "chart.js/dist/helpers/helpers.math.js")>]
             static member almostWhole (x: float, epsilon: float) : bool = nativeOnly
             [<Import("_setMinAndMaxByKey", "chart.js/dist/helpers/helpers.math.js")>]
-            static member _setMinAndMaxByKey (array: ResizeArray<Exports._setMinAndMaxByKey.array>, target: Exports._setMinAndMaxByKey.target, property: string) : unit = nativeOnly
+            static member _setMinAndMaxByKey (array: ResizeArray<Exports._setMinAndMaxByKey__.array>, target: Exports._setMinAndMaxByKey__.target, property: string) : unit = nativeOnly
             [<Import("toRadians", "chart.js/dist/helpers/helpers.math.js")>]
             static member toRadians (degrees: float) : float = nativeOnly
             [<Import("toDegrees", "chart.js/dist/helpers/helpers.math.js")>]
@@ -7101,7 +6708,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("_decimalPlaces", "chart.js/dist/helpers/helpers.math.js")>]
             static member _decimalPlaces (x: float) : float = nativeOnly
             [<Import("getAngleFromPoint", "chart.js/dist/helpers/helpers.math.js")>]
-            static member getAngleFromPoint (centrePoint: ChartJs.dist_types_geometric.Point, anglePoint: ChartJs.dist_types_geometric.Point) : Exports.getAngleFromPoint = nativeOnly
+            static member getAngleFromPoint (centrePoint: ChartJs.dist_types_geometric.Point, anglePoint: ChartJs.dist_types_geometric.Point) : Exports.getAngleFromPoint__ = nativeOnly
             [<Import("distanceBetweenPoints", "chart.js/dist/helpers/helpers.math.js")>]
             static member distanceBetweenPoints (pt1: ChartJs.dist_types_geometric.Point, pt2: ChartJs.dist_types_geometric.Point) : float = nativeOnly
             /// <summary>
@@ -7152,19 +6759,15 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getAngleFromPoint
+            [<Interface>]
+            type getAngleFromPoint__ =
+                abstract member angle: float with get, set
+                abstract member distance: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    angle: float,
-                    distance: float
-                ) =
+                static member Create (angle: float, distance: float) : getAngleFromPoint__ = nativeOnly
 
-                member val angle : float = nativeOnly with get, set
-                member val distance : float = nativeOnly with get, set
-
-            module _setMinAndMaxByKey =
+            module _setMinAndMaxByKey__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -7172,17 +6775,13 @@ PointElement.defaultRoutes = $0"""
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type target
+                [<Interface>]
+                type target =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
-
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
+                    static member Create (min: float, max: float) : target = nativeOnly
 
     module dist_helpers_helpers_options =
 
@@ -7224,7 +6823,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_readValueToProps", "chart.js/dist/helpers/helpers.options.js")>]
-            static member _readValueToProps (value: float, props: ResizeArray<string>) : Exports._readValueToProps<string> = nativeOnly
+            static member _readValueToProps (value: float, props: ResizeArray<string>) : Exports._readValueToProps__<string> = nativeOnly
             /// <param name="value">
             ///
             /// </param>
@@ -7232,11 +6831,11 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_readValueToProps", "chart.js/dist/helpers/helpers.options.js")>]
-            static member _readValueToProps (value: Exports._readValueToProps.value<string>, props: ResizeArray<string>) : Exports._readValueToProps<string> = nativeOnly
+            static member _readValueToProps (value: Exports._readValueToProps__.value<string>, props: ResizeArray<string>) : Exports._readValueToProps__<string> = nativeOnly
             [<Import("_readValueToProps", "chart.js/dist/helpers/helpers.options.js")>]
-            static member _readValueToProps (value: float, props: Exports._readValueToProps.props<string, string>) : Exports._readValueToProps_1<string> = nativeOnly
+            static member _readValueToProps (value: float, props: Exports._readValueToProps__.props<string, string>) : Exports._readValueToProps___1<string> = nativeOnly
             [<Import("_readValueToProps", "chart.js/dist/helpers/helpers.options.js")>]
-            static member _readValueToProps (value: Exports._readValueToProps.value_1, props: Exports._readValueToProps.props<string, string>) : Exports._readValueToProps_1<string> = nativeOnly
+            static member _readValueToProps (value: Exports._readValueToProps__.value_1, props: Exports._readValueToProps__.props<string, string>) : Exports._readValueToProps___1<string> = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -7249,7 +6848,7 @@ PointElement.defaultRoutes = $0"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/dist/helpers/helpers.options.js")>]
-            static member toTRBL (value: float) : Exports.toTRBL = nativeOnly
+            static member toTRBL (value: float) : Exports.toTRBL__ = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -7262,7 +6861,7 @@ PointElement.defaultRoutes = $0"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/dist/helpers/helpers.options.js")>]
-            static member toTRBL (value: ChartJs.dist_types_geometric.TRBL) : Exports.toTRBL_1 = nativeOnly
+            static member toTRBL (value: ChartJs.dist_types_geometric.TRBL) : Exports.toTRBL___1 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -7275,7 +6874,7 @@ PointElement.defaultRoutes = $0"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/dist/helpers/helpers.options.js")>]
-            static member toTRBL (value: ChartJs.dist_types_geometric.Point) : Exports.toTRBL_2 = nativeOnly
+            static member toTRBL (value: ChartJs.dist_types_geometric.Point) : Exports.toTRBL___2 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL corners object (similar with css border-radius).
             /// </summary>
@@ -7287,7 +6886,7 @@ PointElement.defaultRoutes = $0"""
             /// The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
             /// </returns>
             [<Import("toTRBLCorners", "chart.js/dist/helpers/helpers.options.js")>]
-            static member toTRBLCorners (value: float) : Exports.toTRBLCorners = nativeOnly
+            static member toTRBLCorners (value: float) : Exports.toTRBLCorners__ = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL corners object (similar with css border-radius).
             /// </summary>
@@ -7299,7 +6898,7 @@ PointElement.defaultRoutes = $0"""
             /// The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
             /// </returns>
             [<Import("toTRBLCorners", "chart.js/dist/helpers/helpers.options.js")>]
-            static member toTRBLCorners (value: ChartJs.dist_types_geometric.TRBLCorners) : Exports.toTRBLCorners_1 = nativeOnly
+            static member toTRBLCorners (value: ChartJs.dist_types_geometric.TRBLCorners) : Exports.toTRBLCorners___1 = nativeOnly
             /// <summary>
             /// Converts the given value into a padding object with pre-computed width/height.
             /// </summary>
@@ -7352,7 +6951,7 @@ PointElement.defaultRoutes = $0"""
             /// The font object.
             /// </returns>
             [<Import("toFont", "chart.js/dist/helpers/helpers.options.js")>]
-            static member toFont (options: Exports.toFont.options, ?fallback: Exports.toFont.fallback) : Exports.toFont = nativeOnly
+            static member toFont (options: Exports.toFont__.options, ?fallback: Exports.toFont__.fallback) : Exports.toFont__ = nativeOnly
             /// <summary>
             /// Evaluates the given <c>inputs</c> sequentially and returns the first defined value.
             /// </summary>
@@ -7374,7 +6973,7 @@ PointElement.defaultRoutes = $0"""
             /// Will be set to <c>false</c> if option is not cacheable.
             /// </param>
             [<Import("resolve", "chart.js/dist/helpers/helpers.options.js")>]
-            static member resolve (inputs: ResizeArray<obj>, ?context: obj, ?index: float, ?info: Exports.resolve.info) : obj = nativeOnly
+            static member resolve (inputs: ResizeArray<obj>, ?context: obj, ?index: float, ?info: Exports.resolve__.info) : obj = nativeOnly
             /// <param name="minmax">
             ///
             /// </param>
@@ -7385,7 +6984,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_addGrace", "chart.js/dist/helpers/helpers.options.js")>]
-            static member _addGrace (minmax: Exports._addGrace.minmax, grace: float, beginAtZero: bool) : Exports._addGrace = nativeOnly
+            static member _addGrace (minmax: Exports._addGrace__.minmax, grace: float, beginAtZero: bool) : Exports._addGrace__ = nativeOnly
             /// <param name="minmax">
             ///
             /// </param>
@@ -7396,7 +6995,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_addGrace", "chart.js/dist/helpers/helpers.options.js")>]
-            static member _addGrace (minmax: Exports._addGrace.minmax, grace: string, beginAtZero: bool) : Exports._addGrace = nativeOnly
+            static member _addGrace (minmax: Exports._addGrace__.minmax, grace: string, beginAtZero: bool) : Exports._addGrace__ = nativeOnly
             /// <summary>
             /// Create a context inheriting parentContext
             /// </summary>
@@ -7415,79 +7014,67 @@ PointElement.defaultRoutes = $0"""
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type _readValueToProps<'K> =
+            type _readValueToProps__<'K> =
                 [<EmitIndexer>]
                 abstract member Item: key: 'K -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type _readValueToProps_1<'T> =
+            type _readValueToProps___1<'T> =
                 [<EmitIndexer>]
                 abstract member Item: key: 'T -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL =
+            type toTRBL__ =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL__.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_1 =
+            type toTRBL___1 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_1.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___1.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_2 =
+            type toTRBL___2 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_2.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___2.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBLCorners =
+            type toTRBLCorners__ =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBLCorners.toTRBLCorners.key -> float with get, set
+                abstract member Item: key: Exports.toTRBLCorners__.toTRBLCorners__.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBLCorners_1 =
+            type toTRBLCorners___1 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBLCorners.toTRBLCorners_1.key -> float with get, set
+                abstract member Item: key: Exports.toTRBLCorners__.toTRBLCorners___1.key -> float with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type toFont
+            [<Interface>]
+            type toFont__ =
+                abstract member family: string with get, set
+                abstract member lineHeight: float with get, set
+                abstract member size: float with get, set
+                abstract member style: Exports.toFont__.style with get, set
+                abstract member weight: Exports.toFont__.weight with get, set
+                abstract member string: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    family: string,
-                    lineHeight: float,
-                    size: float,
-                    style: Exports.toFont.style,
-                    weight: Exports.toFont.weight,
-                    string: string
-                ) =
+                static member Create (family: string, lineHeight: float, size: float, style: Exports.toFont__.style, weight: Exports.toFont__.weight, string: string) : toFont__ = nativeOnly
 
-                member val family : string = nativeOnly with get, set
-                member val lineHeight : float = nativeOnly with get, set
-                member val size : float = nativeOnly with get, set
-                member val style : Exports.toFont.style = nativeOnly with get, set
-                member val weight : Exports.toFont.weight = nativeOnly with get, set
-                member val string : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _addGrace
+            [<Interface>]
+            type _addGrace__ =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
+                static member Create (min: float, max: float) : _addGrace__ = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-
-            module _readValueToProps =
+            module _readValueToProps__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -7507,19 +7094,9 @@ PointElement.defaultRoutes = $0"""
                     [<EmitIndexer>]
                     abstract member Item: key: obj -> float with get, set
 
-            module toTRBL =
+            module toTRBL__ =
 
-                module toTRBL =
-
-                    [<RequireQualifiedAccess>]
-                    [<StringEnum(CaseRules.None)>]
-                    type key =
-                        | left
-                        | top
-                        | bottom
-                        | right
-
-                module toTRBL_1 =
+                module toTRBL__ =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -7529,7 +7106,7 @@ PointElement.defaultRoutes = $0"""
                         | bottom
                         | right
 
-                module toTRBL_2 =
+                module toTRBL___1 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -7539,9 +7116,19 @@ PointElement.defaultRoutes = $0"""
                         | bottom
                         | right
 
-            module toTRBLCorners =
+                module toTRBL___2 =
 
-                module toTRBLCorners =
+                    [<RequireQualifiedAccess>]
+                    [<StringEnum(CaseRules.None)>]
+                    type key =
+                        | left
+                        | top
+                        | bottom
+                        | right
+
+            module toTRBLCorners__ =
+
+                module toTRBLCorners__ =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -7551,7 +7138,7 @@ PointElement.defaultRoutes = $0"""
                         | bottomLeft
                         | bottomRight
 
-                module toTRBLCorners_1 =
+                module toTRBLCorners___1 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -7561,7 +7148,7 @@ PointElement.defaultRoutes = $0"""
                         | bottomLeft
                         | bottomRight
 
-            module toFont =
+            module toFont__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -7577,11 +7164,11 @@ PointElement.defaultRoutes = $0"""
                     /// <summary>
                     /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
                     /// </summary>
-                    abstract member style: Exports.toFont.options.Partial.style option with get, set
+                    abstract member style: Exports.toFont__.options.Partial.style option with get, set
                     /// <summary>
                     /// Default font weight (boldness). (see MDN).
                     /// </summary>
-                    abstract member weight: Exports.toFont.options.Partial.weight option with get, set
+                    abstract member weight: Exports.toFont__.options.Partial.weight option with get, set
                     /// <summary>
                     /// Height of an individual line of text (see MDN).
                     /// </summary>
@@ -7601,11 +7188,11 @@ PointElement.defaultRoutes = $0"""
                     /// <summary>
                     /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
                     /// </summary>
-                    abstract member style: Exports.toFont.fallback.Partial.style option with get, set
+                    abstract member style: Exports.toFont__.fallback.Partial.style option with get, set
                     /// <summary>
                     /// Default font weight (boldness). (see MDN).
                     /// </summary>
-                    abstract member weight: Exports.toFont.fallback.Partial.weight option with get, set
+                    abstract member weight: Exports.toFont__.fallback.Partial.weight option with get, set
                     /// <summary>
                     /// Height of an individual line of text (see MDN).
                     /// </summary>
@@ -7673,31 +7260,24 @@ PointElement.defaultRoutes = $0"""
                             | bolder
                             | Case1 of float
 
-            module resolve =
+            module resolve__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type info
+                [<Interface>]
+                type info =
+                    abstract member cacheable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cacheable: bool
-                    ) =
+                    static member Create (cacheable: bool) : info = nativeOnly
 
-                    member val cacheable : bool = nativeOnly with get, set
+            module _addGrace__ =
 
-            module _addGrace =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type minmax
+                [<Interface>]
+                type minmax =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
-
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
+                    static member Create (min: float, max: float) : minmax = nativeOnly
 
     module dist_helpers_helpers_rtl =
 
@@ -7707,7 +7287,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("getRtlAdapter", "chart.js/dist/helpers/helpers.rtl.js")>]
             static member getRtlAdapter (rtl: bool, rectX: float, width: float) : ChartJs.dist_helpers_helpers_rtl.RTLAdapter = nativeOnly
             [<Import("overrideTextDirection", "chart.js/dist/helpers/helpers.rtl.js")>]
-            static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection.direction) : unit = nativeOnly
+            static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection__.direction) : unit = nativeOnly
             [<Import("restoreTextDirection", "chart.js/dist/helpers/helpers.rtl.js")>]
             static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: string * string) : unit = nativeOnly
 
@@ -7740,7 +7320,7 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            module overrideTextDirection =
+            module overrideTextDirection__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -7766,7 +7346,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_boundSegment", "chart.js/dist/helpers/helpers.segment.js")>]
-            static member _boundSegment (segment: Exports._boundSegment.segment, points: ResizeArray<ChartJs.dist_helpers_helpers_segment.PointElement>, ?bounds: Exports._boundSegment.bounds) : ResizeArray<Exports._boundSegment> = nativeOnly
+            static member _boundSegment (segment: Exports._boundSegment__.segment, points: ResizeArray<ChartJs.dist_helpers_helpers_segment.PointElement>, ?bounds: Exports._boundSegment__.bounds) : ResizeArray<Exports._boundSegment__> = nativeOnly
             /// <summary>
             /// Returns the segments of the line that are inside given bounds
             /// </summary>
@@ -7777,7 +7357,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_boundSegments", "chart.js/dist/helpers/helpers.segment.js")>]
-            static member _boundSegments (line: ChartJs.dist_helpers_helpers_segment.LineElement, ?bounds: Exports._boundSegments.bounds) : ResizeArray<Exports._boundSegments> = nativeOnly
+            static member _boundSegments (line: ChartJs.dist_helpers_helpers_segment.LineElement, ?bounds: Exports._boundSegments__.bounds) : ResizeArray<Exports._boundSegments__> = nativeOnly
             /// <summary>
             /// Compute the continuous segments that define the whole line
             /// There can be skipped points within a segment, if spanGaps is true.
@@ -7807,85 +7387,57 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _boundSegment
+            [<Interface>]
+            type _boundSegment__ =
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member loop: bool with get, set
+                abstract member style: obj option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    ``end``: float,
-                    loop: bool,
-                    ?style: obj
-                ) =
+                static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : _boundSegment__ = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val loop : bool = nativeOnly with get, set
-                member val style : obj option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _boundSegments
+            [<Interface>]
+            type _boundSegments__ =
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member loop: bool with get, set
+                abstract member style: obj option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    ``end``: float,
-                    loop: bool,
-                    ?style: obj
-                ) =
+                static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : _boundSegments__ = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val loop : bool = nativeOnly with get, set
-                member val style : obj option = nativeOnly with get, set
+            module _boundSegment__ =
 
-            module _boundSegment =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type segment
+                [<Interface>]
+                type segment =
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
+                    abstract member loop: bool with get, set
+                    abstract member style: obj option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        start: float,
-                        ``end``: float,
-                        loop: bool,
-                        ?style: obj
-                    ) =
+                    static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : segment = nativeOnly
 
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
-                    member val loop : bool = nativeOnly with get, set
-                    member val style : obj option = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bounds
+                [<Interface>]
+                type bounds =
+                    abstract member property: string with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        property: string,
-                        start: float,
-                        ``end``: float
-                    ) =
+                    static member Create (property: string, start: float, ``end``: float) : bounds = nativeOnly
 
-                    member val property : string = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+            module _boundSegments__ =
 
-            module _boundSegments =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bounds
+                [<Interface>]
+                type bounds =
+                    abstract member property: string with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        property: string,
-                        start: float,
-                        ``end``: float
-                    ) =
-
-                    member val property : string = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+                    static member Create (property: string, start: float, ``end``: float) : bounds = nativeOnly
 
     module dist_helpers =
 
@@ -7901,7 +7453,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("color", "chart.js/dist/helpers/index.js")>]
             static member color (value: string) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/index.js")>]
-            static member color (value: Exports.color.value_1) : KurkleColor.Color = nativeOnly
+            static member color (value: Exports.color__.value_1) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/index.js")>]
             static member color (value: float * float * float) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/index.js")>]
@@ -7996,9 +7548,9 @@ PointElement.defaultRoutes = $0"""
             /// If true, iterates backward on the loopable.
             /// </param>
             [<Import("each", "chart.js/dist/helpers/index.js")>]
-            static member each<'T, 'TA> (loopable: Exports.each.loopable_1<'T>, fn: Exports.each.fn_2<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
+            static member each<'T, 'TA> (loopable: Exports.each__.loopable_1<'T>, fn: Exports.each__.fn_2<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
             [<Import("each", "chart.js/dist/helpers/index.js")>]
-            static member each<'T, 'TA> (loopable: ResizeArray<'T>, fn: Exports.each.fn_3<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
+            static member each<'T, 'TA> (loopable: ResizeArray<'T>, fn: Exports.each__.fn_3<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
             /// <summary>
             /// Returns true if the <c>a0</c> and <c>a1</c> arrays have the same content, else returns false.
             /// </summary>
@@ -8116,15 +7668,15 @@ PointElement.defaultRoutes = $0"""
             [<Import("isFinite", "chart.js/dist/helpers/index.js")>]
             static member isFinite (value: obj) : bool = nativeOnly
             [<Import("toPercentage", "chart.js/dist/helpers/index.js")>]
-            static member inline toPercentage: Exports.toPercentage.Type_1 = nativeOnly
+            static member inline toPercentage: Exports.toPercentage__.Type_1 = nativeOnly
             [<Import("toDimension", "chart.js/dist/helpers/index.js")>]
-            static member inline toDimension: Exports.toDimension.Type_1 = nativeOnly
+            static member inline toDimension: Exports.toDimension__.Type_1 = nativeOnly
             [<Import("defined", "chart.js/dist/helpers/index.js")>]
             static member inline defined: (obj -> bool) = nativeOnly
             [<Import("isFunction", "chart.js/dist/helpers/index.js")>]
             static member inline isFunction: (obj -> bool) = nativeOnly
             [<Import("setsEqual", "chart.js/dist/helpers/index.js")>]
-            static member inline setsEqual: Exports.setsEqual.Type_1 = nativeOnly
+            static member inline setsEqual: Exports.setsEqual__.Type_1 = nativeOnly
             /// <summary>
             /// Converts the given font object into a CSS font string.
             /// </summary>
@@ -8137,9 +7689,9 @@ PointElement.defaultRoutes = $0"""
             [<Import("toFontString", "chart.js/dist/helpers/index.js")>]
             static member toFontString (font: ChartJs.dist_types.FontSpec) : string = nativeOnly
             [<Import("_measureText", "chart.js/dist/helpers/index.js")>]
-            static member _measureText (ctx: Glutinum.Web.CanvasRenderingContext2D, data: Exports._measureText.data_1, gc: ResizeArray<string>, longest: float, string: string) : float = nativeOnly
+            static member _measureText (ctx: Glutinum.Web.CanvasRenderingContext2D, data: Exports._measureText__.data_1, gc: ResizeArray<string>, longest: float, string: string) : float = nativeOnly
             [<Import("_longestText", "chart.js/dist/helpers/index.js")>]
-            static member _longestText (ctx: Glutinum.Web.CanvasRenderingContext2D, font: string, arrayOfThings: ChartJs.dist_helpers_helpers_canvas.Things, ?cache: Exports._longestText.cache_1) : float = nativeOnly
+            static member _longestText (ctx: Glutinum.Web.CanvasRenderingContext2D, font: string, arrayOfThings: ChartJs.dist_helpers_helpers_canvas.Things, ?cache: Exports._longestText__.cache_1) : float = nativeOnly
             /// <summary>
             /// Returns the aligned pixel value to avoid anti-aliasing blur
             /// </summary>
@@ -8208,7 +7760,7 @@ PointElement.defaultRoutes = $0"""
             /// Bounding rect
             /// </param>
             [<Import("addRoundedRectPath", "chart.js/dist/helpers/index.js")>]
-            static member addRoundedRectPath (ctx: Glutinum.Web.CanvasRenderingContext2D, rect: Exports.addRoundedRectPath.rect_1) : unit = nativeOnly
+            static member addRoundedRectPath (ctx: Glutinum.Web.CanvasRenderingContext2D, rect: Exports.addRoundedRectPath__.rect_1) : unit = nativeOnly
             /// <summary>
             /// Binary search
             /// </summary>
@@ -8222,9 +7774,9 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_lookup", "chart.js/dist/helpers/index.js")>]
-            static member _lookup (table: ResizeArray<float>, value: float, ?cmp: (float -> bool)) : Exports._lookup_1 = nativeOnly
+            static member _lookup (table: ResizeArray<float>, value: float, ?cmp: (float -> bool)) : Exports._lookup___2 = nativeOnly
             [<Import("_lookup", "chart.js/dist/helpers/index.js")>]
-            static member _lookup<'T> (table: ResizeArray<'T>, value: float, cmp: (float -> bool)) : Exports._lookup_1 = nativeOnly
+            static member _lookup<'T> (table: ResizeArray<'T>, value: float, cmp: (float -> bool)) : Exports._lookup___3 = nativeOnly
             /// <summary>
             /// Return subset of <c>values</c> between <c>min</c> and <c>max</c> inclusive.
             /// Values are assumed to be in sorted order.
@@ -8274,7 +7826,7 @@ PointElement.defaultRoutes = $0"""
             /// lookup last index
             /// </param>
             [<Import("_lookupByKey", "chart.js/dist/helpers/index.js")>]
-            static member inline _lookupByKey: Exports._lookupByKey.Type_1 = nativeOnly
+            static member inline _lookupByKey: Exports._lookupByKey__.Type_1 = nativeOnly
             /// <summary>
             /// Reverse binary search
             /// </summary>
@@ -8288,7 +7840,7 @@ PointElement.defaultRoutes = $0"""
             /// value to find
             /// </param>
             [<Import("_rlookupByKey", "chart.js/dist/helpers/index.js")>]
-            static member inline _rlookupByKey: Exports._rlookupByKey.Type_1 = nativeOnly
+            static member inline _rlookupByKey: Exports._rlookupByKey__.Type_1 = nativeOnly
             /// <summary>
             /// Creates a Proxy for resolving raw values for options.
             /// </summary>
@@ -8372,9 +7924,9 @@ PointElement.defaultRoutes = $0"""
             [<Import("_descriptors", "chart.js/dist/helpers/index.js")>]
             static member _descriptors (proxy: ChartJs.dist_helpers_helpers_config_types.ResolverCache, ?defaults: ChartJs.dist_helpers_helpers_config_types.DescriptorDefaults) : ChartJs.dist_helpers_helpers_config_types.Descriptor = nativeOnly
             [<Import("_parseObjectDataRadialScale", "chart.js/dist/helpers/index.js")>]
-            static member _parseObjectDataRadialScale (meta: ChartJs.dist_types.ChartMeta<Exports._parseObjectDataRadialScale.meta_1>, data: ResizeArray<ChartJs.dist_types_basic.AnyObject>, start: float, count: float) : ResizeArray<Exports._parseObjectDataRadialScale_1> = nativeOnly
+            static member _parseObjectDataRadialScale (meta: ChartJs.dist_types.ChartMeta<Exports._parseObjectDataRadialScale__.meta_1>, data: ResizeArray<ChartJs.dist_types_basic.AnyObject>, start: float, count: float) : ResizeArray<Exports._parseObjectDataRadialScale___1> = nativeOnly
             [<Import("splineCurve", "chart.js/dist/helpers/index.js")>]
-            static member splineCurve (firstPoint: ChartJs.dist_types_geometric.SplinePoint, middlePoint: ChartJs.dist_types_geometric.SplinePoint, afterPoint: ChartJs.dist_types_geometric.SplinePoint, t: float) : Exports.splineCurve_1 = nativeOnly
+            static member splineCurve (firstPoint: ChartJs.dist_types_geometric.SplinePoint, middlePoint: ChartJs.dist_types_geometric.SplinePoint, afterPoint: ChartJs.dist_types_geometric.SplinePoint, t: float) : Exports.splineCurve___1 = nativeOnly
             /// <summary>
             /// This function calculates Bézier control points in a similar way than |splineCurve|,
             /// but preserves monotonicity of the provided data and ensures no local extremums are added
@@ -8382,9 +7934,9 @@ PointElement.defaultRoutes = $0"""
             /// See : https://en.wikipedia.org/wiki/Monotone_cubic_interpolation
             /// </summary>
             [<Import("splineCurveMonotone", "chart.js/dist/helpers/index.js")>]
-            static member splineCurveMonotone (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, ?indexAxis: Exports.splineCurveMonotone.indexAxis_1) : unit = nativeOnly
+            static member splineCurveMonotone (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, ?indexAxis: Exports.splineCurveMonotone__.indexAxis_1) : unit = nativeOnly
             [<Import("_updateBezierControlPoints", "chart.js/dist/helpers/index.js")>]
-            static member _updateBezierControlPoints (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, options: obj, area: ChartJs.dist_types_geometric.ChartArea, loop: bool, indexAxis: Exports._updateBezierControlPoints.indexAxis_1) : unit = nativeOnly
+            static member _updateBezierControlPoints (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, options: obj, area: ChartJs.dist_types_geometric.ChartArea, loop: bool, indexAxis: Exports._updateBezierControlPoints__.indexAxis_1) : unit = nativeOnly
             [<Import("_isDomSupported", "chart.js/dist/helpers/index.js")>]
             static member _isDomSupported () : bool = nativeOnly
             [<Import("_getParentNode", "chart.js/dist/helpers/index.js")>]
@@ -8404,7 +7956,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8418,7 +7970,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8432,7 +7984,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8446,7 +7998,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8460,7 +8012,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8474,7 +8026,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8488,7 +8040,7 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___1 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -8502,9 +8054,9 @@ PointElement.defaultRoutes = $0"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/dist/helpers/index.js")>]
-            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_1 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___1 = nativeOnly
             [<Import("getMaximumSize", "chart.js/dist/helpers/index.js")>]
-            static member getMaximumSize (canvas: Glutinum.Web.HTMLCanvasElement, ?bbWidth: float, ?bbHeight: float, ?aspectRatio: float) : Exports.getMaximumSize_1 = nativeOnly
+            static member getMaximumSize (canvas: Glutinum.Web.HTMLCanvasElement, ?bbWidth: float, ?bbHeight: float, ?aspectRatio: float) : Exports.getMaximumSize___1 = nativeOnly
             /// <param name="chart">
             ///
             /// </param>
@@ -8544,7 +8096,7 @@ PointElement.defaultRoutes = $0"""
             /// Size in pixels or undefined if unknown.
             /// </returns>
             [<Import("readUsedSize", "chart.js/dist/helpers/index.js")>]
-            static member readUsedSize (element: Glutinum.Web.HTMLElement, property: Exports.readUsedSize.property_1) : float option = nativeOnly
+            static member readUsedSize (element: Glutinum.Web.HTMLElement, property: Exports.readUsedSize__.property_1) : float option = nativeOnly
             /// <summary>
             /// Detects support for options object argument in addEventListener.
             /// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
@@ -8568,7 +8120,7 @@ PointElement.defaultRoutes = $0"""
             /// Return start and count of visible points.
             /// </summary>
             [<Import("_getStartAndCountOfVisiblePoints", "chart.js/dist/helpers/index.js")>]
-            static member _getStartAndCountOfVisiblePoints (meta: ChartJs.dist_types.ChartMeta<Exports._getStartAndCountOfVisiblePoints.meta_1>, points: ResizeArray<ChartJs.dist_elements_element_point.PointElement>, animationsDisabled: bool) : Exports._getStartAndCountOfVisiblePoints_1 = nativeOnly
+            static member _getStartAndCountOfVisiblePoints (meta: ChartJs.dist_types.ChartMeta<Exports._getStartAndCountOfVisiblePoints__.meta_1>, points: ResizeArray<ChartJs.dist_elements_element_point.PointElement>, animationsDisabled: bool) : Exports._getStartAndCountOfVisiblePoints___1 = nativeOnly
             /// <summary>
             /// Checks if the scale ranges have changed.
             /// </summary>
@@ -8581,28 +8133,28 @@ PointElement.defaultRoutes = $0"""
             /// Request animation polyfill
             /// </summary>
             [<Import("requestAnimFrame", "chart.js/dist/helpers/index.js")>]
-            static member inline requestAnimFrame: U2<Exports.requestAnimFrame.Type.U2.Case1_1, (obj -> unit)> = nativeOnly
+            static member inline requestAnimFrame: U2<Exports.requestAnimFrame__.Type.U2.Case1_1, (obj -> unit)> = nativeOnly
             /// <summary>
             /// Converts 'start' to 'left', 'end' to 'right' and others to 'center'
             /// </summary>
             [<Import("_toLeftRightCenter", "chart.js/dist/helpers/index.js")>]
-            static member inline _toLeftRightCenter: (Exports._toLeftRightCenter.Type.align_1 -> Exports._toLeftRightCenter.Type_1) = nativeOnly
+            static member inline _toLeftRightCenter: (Exports._toLeftRightCenter__.Type.align_1 -> Exports._toLeftRightCenter__.Type_1) = nativeOnly
             /// <summary>
             /// Returns <c>start</c>, <c>end</c> or <c>(start + end) / 2</c> depending on <c>align</c>. Defaults to <c>center</c>
             /// </summary>
             [<Import("_alignStartEnd", "chart.js/dist/helpers/index.js")>]
-            static member inline _alignStartEnd: Exports._alignStartEnd.Type_1 = nativeOnly
+            static member inline _alignStartEnd: Exports._alignStartEnd__.Type_1 = nativeOnly
             /// <summary>
             /// Returns <c>left</c>, <c>right</c> or <c>(left + right) / 2</c> depending on <c>align</c>. Defaults to <c>left</c>
             /// </summary>
             [<Import("_textX", "chart.js/dist/helpers/index.js")>]
-            static member inline _textX: Exports._textX.Type_1 = nativeOnly
+            static member inline _textX: Exports._textX__.Type_1 = nativeOnly
             [<Import("_pointInLine", "chart.js/dist/helpers/index.js")>]
-            static member _pointInLine (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, ?mode: obj) : Exports._pointInLine_1 = nativeOnly
+            static member _pointInLine (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, ?mode: obj) : Exports._pointInLine___1 = nativeOnly
             [<Import("_steppedInterpolation", "chart.js/dist/helpers/index.js")>]
-            static member _steppedInterpolation (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, mode: Exports._steppedInterpolation.mode_1) : Exports._steppedInterpolation_1 = nativeOnly
+            static member _steppedInterpolation (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, mode: Exports._steppedInterpolation__.mode_1) : Exports._steppedInterpolation___1 = nativeOnly
             [<Import("_bezierInterpolation", "chart.js/dist/helpers/index.js")>]
-            static member _bezierInterpolation (p1: ChartJs.dist_types_geometric.SplinePoint, p2: ChartJs.dist_types_geometric.SplinePoint, t: float, ?mode: obj) : Exports._bezierInterpolation_1 = nativeOnly
+            static member _bezierInterpolation (p1: ChartJs.dist_types_geometric.SplinePoint, p2: ChartJs.dist_types_geometric.SplinePoint, t: float, ?mode: obj) : Exports._bezierInterpolation___1 = nativeOnly
             [<Import("formatNumber", "chart.js/dist/helpers/index.js")>]
             static member formatNumber (num: float, locale: string, ?options: obj) : string = nativeOnly
             /// <summary>
@@ -8640,7 +8192,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_readValueToProps", "chart.js/dist/helpers/index.js")>]
-            static member _readValueToProps (value: float, props: ResizeArray<string>) : Exports._readValueToProps_2<string> = nativeOnly
+            static member _readValueToProps (value: float, props: ResizeArray<string>) : Exports._readValueToProps___2<string> = nativeOnly
             /// <param name="value">
             ///
             /// </param>
@@ -8648,11 +8200,11 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_readValueToProps", "chart.js/dist/helpers/index.js")>]
-            static member _readValueToProps (value: Exports._readValueToProps.value_2<string>, props: ResizeArray<string>) : Exports._readValueToProps_2<string> = nativeOnly
+            static member _readValueToProps (value: Exports._readValueToProps__.value_2<string>, props: ResizeArray<string>) : Exports._readValueToProps___2<string> = nativeOnly
             [<Import("_readValueToProps", "chart.js/dist/helpers/index.js")>]
-            static member _readValueToProps (value: float, props: Exports._readValueToProps.props_1<string, string>) : Exports._readValueToProps_3<string> = nativeOnly
+            static member _readValueToProps (value: float, props: Exports._readValueToProps__.props_1<string, string>) : Exports._readValueToProps___3<string> = nativeOnly
             [<Import("_readValueToProps", "chart.js/dist/helpers/index.js")>]
-            static member _readValueToProps (value: Exports._readValueToProps.value_3, props: Exports._readValueToProps.props_1<string, string>) : Exports._readValueToProps_3<string> = nativeOnly
+            static member _readValueToProps (value: Exports._readValueToProps__.value_3, props: Exports._readValueToProps__.props_1<string, string>) : Exports._readValueToProps___3<string> = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -8665,7 +8217,7 @@ PointElement.defaultRoutes = $0"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/dist/helpers/index.js")>]
-            static member toTRBL (value: float) : Exports.toTRBL_3 = nativeOnly
+            static member toTRBL (value: float) : Exports.toTRBL___3 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -8678,7 +8230,7 @@ PointElement.defaultRoutes = $0"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/dist/helpers/index.js")>]
-            static member toTRBL (value: ChartJs.dist_types_geometric.TRBL) : Exports.toTRBL_4 = nativeOnly
+            static member toTRBL (value: ChartJs.dist_types_geometric.TRBL) : Exports.toTRBL___4 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -8691,7 +8243,7 @@ PointElement.defaultRoutes = $0"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/dist/helpers/index.js")>]
-            static member toTRBL (value: ChartJs.dist_types_geometric.Point) : Exports.toTRBL_5 = nativeOnly
+            static member toTRBL (value: ChartJs.dist_types_geometric.Point) : Exports.toTRBL___5 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL corners object (similar with css border-radius).
             /// </summary>
@@ -8703,7 +8255,7 @@ PointElement.defaultRoutes = $0"""
             /// The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
             /// </returns>
             [<Import("toTRBLCorners", "chart.js/dist/helpers/index.js")>]
-            static member toTRBLCorners (value: float) : Exports.toTRBLCorners_2 = nativeOnly
+            static member toTRBLCorners (value: float) : Exports.toTRBLCorners___2 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL corners object (similar with css border-radius).
             /// </summary>
@@ -8715,7 +8267,7 @@ PointElement.defaultRoutes = $0"""
             /// The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
             /// </returns>
             [<Import("toTRBLCorners", "chart.js/dist/helpers/index.js")>]
-            static member toTRBLCorners (value: ChartJs.dist_types_geometric.TRBLCorners) : Exports.toTRBLCorners_3 = nativeOnly
+            static member toTRBLCorners (value: ChartJs.dist_types_geometric.TRBLCorners) : Exports.toTRBLCorners___3 = nativeOnly
             /// <summary>
             /// Converts the given value into a padding object with pre-computed width/height.
             /// </summary>
@@ -8768,7 +8320,7 @@ PointElement.defaultRoutes = $0"""
             /// The font object.
             /// </returns>
             [<Import("toFont", "chart.js/dist/helpers/index.js")>]
-            static member toFont (options: Exports.toFont.options_1, ?fallback: Exports.toFont.fallback_1) : Exports.toFont_1 = nativeOnly
+            static member toFont (options: Exports.toFont__.options_1, ?fallback: Exports.toFont__.fallback_1) : Exports.toFont___1 = nativeOnly
             /// <summary>
             /// Evaluates the given <c>inputs</c> sequentially and returns the first defined value.
             /// </summary>
@@ -8790,7 +8342,7 @@ PointElement.defaultRoutes = $0"""
             /// Will be set to <c>false</c> if option is not cacheable.
             /// </param>
             [<Import("resolve", "chart.js/dist/helpers/index.js")>]
-            static member resolve (inputs: ResizeArray<obj>, ?context: obj, ?index: float, ?info: Exports.resolve.info_1) : obj = nativeOnly
+            static member resolve (inputs: ResizeArray<obj>, ?context: obj, ?index: float, ?info: Exports.resolve__.info_1) : obj = nativeOnly
             /// <param name="minmax">
             ///
             /// </param>
@@ -8801,7 +8353,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_addGrace", "chart.js/dist/helpers/index.js")>]
-            static member _addGrace (minmax: Exports._addGrace.minmax_1, grace: float, beginAtZero: bool) : Exports._addGrace_1 = nativeOnly
+            static member _addGrace (minmax: Exports._addGrace__.minmax_1, grace: float, beginAtZero: bool) : Exports._addGrace___1 = nativeOnly
             /// <param name="minmax">
             ///
             /// </param>
@@ -8812,7 +8364,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_addGrace", "chart.js/dist/helpers/index.js")>]
-            static member _addGrace (minmax: Exports._addGrace.minmax_1, grace: string, beginAtZero: bool) : Exports._addGrace_1 = nativeOnly
+            static member _addGrace (minmax: Exports._addGrace__.minmax_1, grace: string, beginAtZero: bool) : Exports._addGrace___1 = nativeOnly
             /// <summary>
             /// Create a context inheriting parentContext
             /// </summary>
@@ -8843,7 +8395,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("almostWhole", "chart.js/dist/helpers/index.js")>]
             static member almostWhole (x: float, epsilon: float) : bool = nativeOnly
             [<Import("_setMinAndMaxByKey", "chart.js/dist/helpers/index.js")>]
-            static member _setMinAndMaxByKey (array: ResizeArray<Exports._setMinAndMaxByKey.array_1>, target: Exports._setMinAndMaxByKey.target_1, property: string) : unit = nativeOnly
+            static member _setMinAndMaxByKey (array: ResizeArray<Exports._setMinAndMaxByKey__.array_1>, target: Exports._setMinAndMaxByKey__.target_1, property: string) : unit = nativeOnly
             [<Import("toRadians", "chart.js/dist/helpers/index.js")>]
             static member toRadians (degrees: float) : float = nativeOnly
             [<Import("toDegrees", "chart.js/dist/helpers/index.js")>]
@@ -8861,7 +8413,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("_decimalPlaces", "chart.js/dist/helpers/index.js")>]
             static member _decimalPlaces (x: float) : float = nativeOnly
             [<Import("getAngleFromPoint", "chart.js/dist/helpers/index.js")>]
-            static member getAngleFromPoint (centrePoint: ChartJs.dist_types_geometric.Point, anglePoint: ChartJs.dist_types_geometric.Point) : Exports.getAngleFromPoint_1 = nativeOnly
+            static member getAngleFromPoint (centrePoint: ChartJs.dist_types_geometric.Point, anglePoint: ChartJs.dist_types_geometric.Point) : Exports.getAngleFromPoint___1 = nativeOnly
             [<Import("distanceBetweenPoints", "chart.js/dist/helpers/index.js")>]
             static member distanceBetweenPoints (pt1: ChartJs.dist_types_geometric.Point, pt2: ChartJs.dist_types_geometric.Point) : float = nativeOnly
             /// <summary>
@@ -8932,7 +8484,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("getRtlAdapter", "chart.js/dist/helpers/index.js")>]
             static member getRtlAdapter (rtl: bool, rectX: float, width: float) : ChartJs.dist_helpers_helpers_rtl.RTLAdapter = nativeOnly
             [<Import("overrideTextDirection", "chart.js/dist/helpers/index.js")>]
-            static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection.direction_1) : unit = nativeOnly
+            static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection__.direction_1) : unit = nativeOnly
             [<Import("restoreTextDirection", "chart.js/dist/helpers/index.js")>]
             static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: string * string) : unit = nativeOnly
             /// <summary>
@@ -8948,7 +8500,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_boundSegment", "chart.js/dist/helpers/index.js")>]
-            static member _boundSegment (segment: Exports._boundSegment.segment_1, points: ResizeArray<ChartJs.dist_helpers_helpers_segment.PointElement>, ?bounds: Exports._boundSegment.bounds_1) : ResizeArray<Exports._boundSegment_1> = nativeOnly
+            static member _boundSegment (segment: Exports._boundSegment__.segment_1, points: ResizeArray<ChartJs.dist_helpers_helpers_segment.PointElement>, ?bounds: Exports._boundSegment__.bounds_1) : ResizeArray<Exports._boundSegment___1> = nativeOnly
             /// <summary>
             /// Returns the segments of the line that are inside given bounds
             /// </summary>
@@ -8959,7 +8511,7 @@ PointElement.defaultRoutes = $0"""
             ///
             /// </param>
             [<Import("_boundSegments", "chart.js/dist/helpers/index.js")>]
-            static member _boundSegments (line: ChartJs.dist_helpers_helpers_segment.LineElement, ?bounds: Exports._boundSegments.bounds_1) : ResizeArray<Exports._boundSegments_1> = nativeOnly
+            static member _boundSegments (line: ChartJs.dist_helpers_helpers_segment.LineElement, ?bounds: Exports._boundSegments__.bounds_1) : ResizeArray<Exports._boundSegments___1> = nativeOnly
             /// <summary>
             /// Compute the continuous segments that define the whole line
             /// There can be skipped points within a segment, if spanGaps is true.
@@ -9007,249 +8559,188 @@ PointElement.defaultRoutes = $0"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _lookup_1
+            [<Interface>]
+            type _lookup___2 =
+                abstract member lo: float with get, set
+                abstract member hi: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    lo: float,
-                    hi: float
-                ) =
-
-                member val lo : float = nativeOnly with get, set
-                member val hi : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _parseObjectDataRadialScale_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    r: obj
-                ) =
-
-                member val r : obj = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type splineCurve_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    previous: ChartJs.dist_types_geometric.SplinePoint,
-                    next: ChartJs.dist_types_geometric.SplinePoint
-                ) =
-
-                member val previous : ChartJs.dist_types_geometric.SplinePoint = nativeOnly with get, set
-                member val next : ChartJs.dist_types_geometric.SplinePoint = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type getRelativePosition_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type getMaximumSize_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
-
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _getStartAndCountOfVisiblePoints_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    count: float
-                ) =
-
-                member val start : float = nativeOnly with get, set
-                member val count : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _pointInLine_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _steppedInterpolation_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _bezierInterpolation_1
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+                static member Create (lo: float, hi: float) : _lookup___2 = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type _readValueToProps_2<'K> =
+            type _lookup___3 =
+                abstract member lo: float with get, set
+                abstract member hi: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (lo: float, hi: float) : _lookup___3 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _parseObjectDataRadialScale___1 =
+                abstract member r: obj with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (r: obj) : _parseObjectDataRadialScale___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type splineCurve___1 =
+                abstract member previous: ChartJs.dist_types_geometric.SplinePoint with get, set
+                abstract member next: ChartJs.dist_types_geometric.SplinePoint with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (previous: ChartJs.dist_types_geometric.SplinePoint, next: ChartJs.dist_types_geometric.SplinePoint) : splineCurve___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type getRelativePosition___1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : getRelativePosition___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type getMaximumSize___1 =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (width: float, height: float) : getMaximumSize___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _getStartAndCountOfVisiblePoints___1 =
+                abstract member start: float with get, set
+                abstract member count: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (start: float, count: float) : _getStartAndCountOfVisiblePoints___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _pointInLine___1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : _pointInLine___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _steppedInterpolation___1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : _steppedInterpolation___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _bezierInterpolation___1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : _bezierInterpolation___1 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _readValueToProps___2<'K> =
                 [<EmitIndexer>]
                 abstract member Item: key: 'K -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type _readValueToProps_3<'T> =
+            type _readValueToProps___3<'T> =
                 [<EmitIndexer>]
                 abstract member Item: key: 'T -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_3 =
+            type toTRBL___3 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_3.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___3.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_4 =
+            type toTRBL___4 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_4.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___4.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_5 =
+            type toTRBL___5 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_5.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___5.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBLCorners_2 =
+            type toTRBLCorners___2 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBLCorners.toTRBLCorners_2.key -> float with get, set
+                abstract member Item: key: Exports.toTRBLCorners__.toTRBLCorners___2.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBLCorners_3 =
+            type toTRBLCorners___3 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBLCorners.toTRBLCorners_3.key -> float with get, set
+                abstract member Item: key: Exports.toTRBLCorners__.toTRBLCorners___3.key -> float with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type toFont_1
+            [<Interface>]
+            type toFont___1 =
+                abstract member family: string with get, set
+                abstract member lineHeight: float with get, set
+                abstract member size: float with get, set
+                abstract member style: Exports.toFont__.style_1 with get, set
+                abstract member weight: Exports.toFont__.weight_1 with get, set
+                abstract member string: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    family: string,
-                    lineHeight: float,
-                    size: float,
-                    style: Exports.toFont.style_1,
-                    weight: Exports.toFont.weight_1,
-                    string: string
-                ) =
+                static member Create (family: string, lineHeight: float, size: float, style: Exports.toFont__.style_1, weight: Exports.toFont__.weight_1, string: string) : toFont___1 = nativeOnly
 
-                member val family : string = nativeOnly with get, set
-                member val lineHeight : float = nativeOnly with get, set
-                member val size : float = nativeOnly with get, set
-                member val style : Exports.toFont.style_1 = nativeOnly with get, set
-                member val weight : Exports.toFont.weight_1 = nativeOnly with get, set
-                member val string : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _addGrace_1
+            [<Interface>]
+            type _addGrace___1 =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
+                static member Create (min: float, max: float) : _addGrace___1 = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getAngleFromPoint_1
+            [<Interface>]
+            type getAngleFromPoint___1 =
+                abstract member angle: float with get, set
+                abstract member distance: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    angle: float,
-                    distance: float
-                ) =
+                static member Create (angle: float, distance: float) : getAngleFromPoint___1 = nativeOnly
 
-                member val angle : float = nativeOnly with get, set
-                member val distance : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _boundSegment_1
+            [<Interface>]
+            type _boundSegment___1 =
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member loop: bool with get, set
+                abstract member style: obj option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    ``end``: float,
-                    loop: bool,
-                    ?style: obj
-                ) =
+                static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : _boundSegment___1 = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val loop : bool = nativeOnly with get, set
-                member val style : obj option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _boundSegments_1
+            [<Interface>]
+            type _boundSegments___1 =
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member loop: bool with get, set
+                abstract member style: obj option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    ``end``: float,
-                    loop: bool,
-                    ?style: obj
-                ) =
+                static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : _boundSegments___1 = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val loop : bool = nativeOnly with get, set
-                member val style : obj option = nativeOnly with get, set
+            module color__ =
 
-            module color =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type value_1
+                [<Interface>]
+                type value_1 =
+                    abstract member r: float with get, set
+                    abstract member g: float with get, set
+                    abstract member b: float with get, set
+                    abstract member a: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        r: float,
-                        g: float,
-                        b: float,
-                        a: float
-                    ) =
+                    static member Create (r: float, g: float, b: float, a: float) : value_1 = nativeOnly
 
-                    member val r : float = nativeOnly with get, set
-                    member val g : float = nativeOnly with get, set
-                    member val b : float = nativeOnly with get, set
-                    member val a : float = nativeOnly with get, set
-
-            module each =
+            module each__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -9263,22 +8754,22 @@ PointElement.defaultRoutes = $0"""
                 type fn_3<'T> =
                     delegate of v: 'T * i: float -> unit
 
-            module toPercentage =
+            module toPercentage__ =
 
                 type Type_1 =
                     delegate of value: U2<float, string> * dimension: float -> float
 
-            module toDimension =
+            module toDimension__ =
 
                 type Type_1 =
                     delegate of value: U2<float, string> * dimension: float -> float
 
-            module setsEqual =
+            module setsEqual__ =
 
                 type Type_1 =
                     delegate of a: obj * b: obj -> bool
 
-            module _measureText =
+            module _measureText__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -9286,21 +8777,16 @@ PointElement.defaultRoutes = $0"""
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
 
-            module _longestText =
+            module _longestText__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type cache_1
+                [<Interface>]
+                type cache_1 =
+                    abstract member data: Exports._longestText__.cache.data_1 option with get, set
+                    abstract member garbageCollect: ResizeArray<string> option with get, set
+                    abstract member font: string option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        ?data: Exports._longestText.cache.data_1,
-                        ?garbageCollect: ResizeArray<string>,
-                        ?font: string
-                    ) =
-
-                    member val data : Exports._longestText.cache.data_1 option = nativeOnly with get, set
-                    member val garbageCollect : ResizeArray<string> option = nativeOnly with get, set
-                    member val font : string option = nativeOnly with get, set
+                    static member Create (?data: Exports._longestText__.cache.data_1, ?garbageCollect: ResizeArray<string>, ?font: string) : cache_1 = nativeOnly
 
                 module cache =
 
@@ -9310,7 +8796,7 @@ PointElement.defaultRoutes = $0"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-            module addRoundedRectPath =
+            module addRoundedRectPath__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -9321,10 +8807,10 @@ PointElement.defaultRoutes = $0"""
                     abstract member h: float with get, set
                     abstract member radius: obj with get, set
 
-            module _lookupByKey =
+            module _lookupByKey__ =
 
                 type Type_1 =
-                    delegate of table: ResizeArray<Exports._lookupByKey.Type.table_1> * key: string * value: float * ?last: bool -> Exports._lookupByKey.Type.ReturnType_1
+                    delegate of table: ResizeArray<Exports._lookupByKey__.Type.table_1> * key: string * value: float * ?last: bool -> Exports._lookupByKey__.Type.ReturnType_1
 
                 module Type =
 
@@ -9334,22 +8820,18 @@ PointElement.defaultRoutes = $0"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ReturnType_1
+                    [<Interface>]
+                    type ReturnType_1 =
+                        abstract member lo: float with get, set
+                        abstract member hi: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            lo: float,
-                            hi: float
-                        ) =
+                        static member Create (lo: float, hi: float) : ReturnType_1 = nativeOnly
 
-                        member val lo : float = nativeOnly with get, set
-                        member val hi : float = nativeOnly with get, set
-
-            module _rlookupByKey =
+            module _rlookupByKey__ =
 
                 type Type_1 =
-                    delegate of table: ResizeArray<Exports._rlookupByKey.Type.table_1> * key: string * value: float -> Exports._rlookupByKey.Type.ReturnType_1
+                    delegate of table: ResizeArray<Exports._rlookupByKey__.Type.table_1> * key: string * value: float -> Exports._rlookupByKey__.Type.ReturnType_1
 
                 module Type =
 
@@ -9359,19 +8841,15 @@ PointElement.defaultRoutes = $0"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ReturnType_1
+                    [<Interface>]
+                    type ReturnType_1 =
+                        abstract member lo: float with get, set
+                        abstract member hi: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            lo: float,
-                            hi: float
-                        ) =
+                        static member Create (lo: float, hi: float) : ReturnType_1 = nativeOnly
 
-                        member val lo : float = nativeOnly with get, set
-                        member val hi : float = nativeOnly with get, set
-
-            module _parseObjectDataRadialScale =
+            module _parseObjectDataRadialScale__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9379,7 +8857,7 @@ PointElement.defaultRoutes = $0"""
                     | line
                     | scatter
 
-            module splineCurveMonotone =
+            module splineCurveMonotone__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9387,7 +8865,7 @@ PointElement.defaultRoutes = $0"""
                     | x
                     | y
 
-            module _updateBezierControlPoints =
+            module _updateBezierControlPoints__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9395,7 +8873,7 @@ PointElement.defaultRoutes = $0"""
                     | x
                     | y
 
-            module readUsedSize =
+            module readUsedSize__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9403,7 +8881,7 @@ PointElement.defaultRoutes = $0"""
                     | width
                     | height
 
-            module _getStartAndCountOfVisiblePoints =
+            module _getStartAndCountOfVisiblePoints__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9411,7 +8889,7 @@ PointElement.defaultRoutes = $0"""
                     | line
                     | scatter
 
-            module requestAnimFrame =
+            module requestAnimFrame__ =
 
                 module Type =
 
@@ -9423,7 +8901,7 @@ PointElement.defaultRoutes = $0"""
                             [<Emit("$0($1...)")>]
                             abstract member Invoke: callback: Glutinum.Web.FrameRequestCallback -> float
 
-            module _toLeftRightCenter =
+            module _toLeftRightCenter__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9441,10 +8919,10 @@ PointElement.defaultRoutes = $0"""
                         | ``end``
                         | center
 
-            module _alignStartEnd =
+            module _alignStartEnd__ =
 
                 type Type_1 =
-                    delegate of align: Exports._alignStartEnd.Type.align_1 * start: float * ``end``: float -> float
+                    delegate of align: Exports._alignStartEnd__.Type.align_1 * start: float * ``end``: float -> float
 
                 module Type =
 
@@ -9455,10 +8933,10 @@ PointElement.defaultRoutes = $0"""
                         | ``end``
                         | center
 
-            module _textX =
+            module _textX__ =
 
                 type Type_1 =
-                    delegate of align: Exports._textX.Type.align_1 * left: float * right: float * rtl: bool -> float
+                    delegate of align: Exports._textX__.Type.align_1 * left: float * right: float * rtl: bool -> float
 
                 module Type =
 
@@ -9469,7 +8947,7 @@ PointElement.defaultRoutes = $0"""
                         | right
                         | center
 
-            module _steppedInterpolation =
+            module _steppedInterpolation__ =
 
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
@@ -9478,7 +8956,7 @@ PointElement.defaultRoutes = $0"""
                     | after
                     | Case1 of obj
 
-            module _readValueToProps =
+            module _readValueToProps__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -9498,19 +8976,9 @@ PointElement.defaultRoutes = $0"""
                     [<EmitIndexer>]
                     abstract member Item: key: obj -> float with get, set
 
-            module toTRBL =
+            module toTRBL__ =
 
-                module toTRBL_3 =
-
-                    [<RequireQualifiedAccess>]
-                    [<StringEnum(CaseRules.None)>]
-                    type key =
-                        | left
-                        | top
-                        | bottom
-                        | right
-
-                module toTRBL_4 =
+                module toTRBL___3 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -9520,7 +8988,7 @@ PointElement.defaultRoutes = $0"""
                         | bottom
                         | right
 
-                module toTRBL_5 =
+                module toTRBL___4 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -9530,9 +8998,19 @@ PointElement.defaultRoutes = $0"""
                         | bottom
                         | right
 
-            module toTRBLCorners =
+                module toTRBL___5 =
 
-                module toTRBLCorners_2 =
+                    [<RequireQualifiedAccess>]
+                    [<StringEnum(CaseRules.None)>]
+                    type key =
+                        | left
+                        | top
+                        | bottom
+                        | right
+
+            module toTRBLCorners__ =
+
+                module toTRBLCorners___2 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -9542,7 +9020,7 @@ PointElement.defaultRoutes = $0"""
                         | bottomLeft
                         | bottomRight
 
-                module toTRBLCorners_3 =
+                module toTRBLCorners___3 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -9552,7 +9030,7 @@ PointElement.defaultRoutes = $0"""
                         | bottomLeft
                         | bottomRight
 
-            module toFont =
+            module toFont__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -9568,11 +9046,11 @@ PointElement.defaultRoutes = $0"""
                     /// <summary>
                     /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
                     /// </summary>
-                    abstract member style: Exports.toFont.options.Partial.style_1 option with get, set
+                    abstract member style: Exports.toFont__.options.Partial.style_1 option with get, set
                     /// <summary>
                     /// Default font weight (boldness). (see MDN).
                     /// </summary>
-                    abstract member weight: Exports.toFont.options.Partial.weight_1 option with get, set
+                    abstract member weight: Exports.toFont__.options.Partial.weight_1 option with get, set
                     /// <summary>
                     /// Height of an individual line of text (see MDN).
                     /// </summary>
@@ -9592,11 +9070,11 @@ PointElement.defaultRoutes = $0"""
                     /// <summary>
                     /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
                     /// </summary>
-                    abstract member style: Exports.toFont.fallback.Partial.style_1 option with get, set
+                    abstract member style: Exports.toFont__.fallback.Partial.style_1 option with get, set
                     /// <summary>
                     /// Default font weight (boldness). (see MDN).
                     /// </summary>
-                    abstract member weight: Exports.toFont.fallback.Partial.weight_1 option with get, set
+                    abstract member weight: Exports.toFont__.fallback.Partial.weight_1 option with get, set
                     /// <summary>
                     /// Height of an individual line of text (see MDN).
                     /// </summary>
@@ -9664,33 +9142,26 @@ PointElement.defaultRoutes = $0"""
                             | bolder
                             | Case1 of float
 
-            module resolve =
+            module resolve__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type info_1
+                [<Interface>]
+                type info_1 =
+                    abstract member cacheable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cacheable: bool
-                    ) =
+                    static member Create (cacheable: bool) : info_1 = nativeOnly
 
-                    member val cacheable : bool = nativeOnly with get, set
+            module _addGrace__ =
 
-            module _addGrace =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type minmax_1
+                [<Interface>]
+                type minmax_1 =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
+                    static member Create (min: float, max: float) : minmax_1 = nativeOnly
 
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
-
-            module _setMinAndMaxByKey =
+            module _setMinAndMaxByKey__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -9698,19 +9169,15 @@ PointElement.defaultRoutes = $0"""
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type target_1
+                [<Interface>]
+                type target_1 =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
+                    static member Create (min: float, max: float) : target_1 = nativeOnly
 
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
-
-            module overrideTextDirection =
+            module overrideTextDirection__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -9718,53 +9185,37 @@ PointElement.defaultRoutes = $0"""
                     | ltr
                     | rtl
 
-            module _boundSegment =
+            module _boundSegment__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type segment_1
+                [<Interface>]
+                type segment_1 =
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
+                    abstract member loop: bool with get, set
+                    abstract member style: obj option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        start: float,
-                        ``end``: float,
-                        loop: bool,
-                        ?style: obj
-                    ) =
+                    static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : segment_1 = nativeOnly
 
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
-                    member val loop : bool = nativeOnly with get, set
-                    member val style : obj option = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bounds_1
+                [<Interface>]
+                type bounds_1 =
+                    abstract member property: string with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        property: string,
-                        start: float,
-                        ``end``: float
-                    ) =
+                    static member Create (property: string, start: float, ``end``: float) : bounds_1 = nativeOnly
 
-                    member val property : string = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+            module _boundSegments__ =
 
-            module _boundSegments =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bounds_1
+                [<Interface>]
+                type bounds_1 =
+                    abstract member property: string with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        property: string,
-                        start: float,
-                        ``end``: float
-                    ) =
-
-                    member val property : string = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+                    static member Create (property: string, start: float, ``end``: float) : bounds_1 = nativeOnly
 
     module dist =
 
@@ -9906,17 +9357,13 @@ PointElement.defaultRoutes = $0"""
 
         module BasePlatform =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMaximumSize
+            [<Interface>]
+            type getMaximumSize =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
-
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
+                static member Create (width: float, height: float) : getMaximumSize = nativeOnly
 
     module dist_platform_platform_basic =
 
@@ -9990,37 +9437,28 @@ PointElement.defaultRoutes = $0"""
         [<Erase>]
         type Exports =
             [<ImportDefault("chart.js/dist/plugins/plugin.colors.js")>]
-            static member inline _default: Exports._default.Type_1 = nativeOnly
+            static member inline _default: Exports._default__.Type_1 = nativeOnly
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type ColorsPluginOptions
+        [<Interface>]
+        type ColorsPluginOptions =
+            abstract member enabled: bool option with get, set
+            abstract member forceOverride: bool option with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                ?enabled: bool,
-                ?forceOverride: bool
-            ) =
-
-            member val enabled : bool option = nativeOnly with get, set
-            member val forceOverride : bool option = nativeOnly with get, set
+            static member Create (?enabled: bool, ?forceOverride: bool) : ColorsPluginOptions = nativeOnly
 
         module Exports =
 
-            module _default =
+            module _default__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type_1
+                [<Interface>]
+                type Type_1 =
+                    abstract member id: string with get, set
+                    abstract member defaults: ChartJs.dist_plugins_plugin_colors.ColorsPluginOptions with get, set
+                    abstract member beforeLayout: chart: ChartJs.dist_types.Chart * _args: obj * options: ChartJs.dist_plugins_plugin_colors.ColorsPluginOptions -> unit
                     [<ParamObject; Emit("$0")>]
-                    (
-                        id: string,
-                        defaults: ChartJs.dist_plugins_plugin_colors.ColorsPluginOptions,
-                        beforeLayout: unit
-                    ) =
-
-                    member val id : string = nativeOnly with get, set
-                    member val defaults : ChartJs.dist_plugins_plugin_colors.ColorsPluginOptions = nativeOnly with get, set
-                    member val beforeLayout : unit = nativeOnly
+                    static member Create (id: string, defaults: ChartJs.dist_plugins_plugin_colors.ColorsPluginOptions, beforeLayout: unit) : Type_1 = nativeOnly
 
     module dist_plugins_plugin_decimation =
 
@@ -10260,19 +9698,14 @@ PointElement.defaultRoutes = $0"""
 
             module Legend =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type config
+                [<Interface>]
+                type config =
+                    abstract member ctx: obj with get, set
+                    abstract member options: obj with get, set
+                    abstract member chart: obj with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        ctx: obj,
-                        options: obj,
-                        chart: obj
-                    ) =
-
-                    member val ctx : obj = nativeOnly with get, set
-                    member val options : obj = nativeOnly with get, set
-                    member val chart : obj = nativeOnly with get, set
+                    static member Create (ctx: obj, options: obj, chart: obj) : config = nativeOnly
 
     module dist_plugins_plugin_subtitle =
 
@@ -10463,39 +9896,28 @@ PointElement.defaultRoutes = $0"""
 
         module Title =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _drawArgs
+            [<Interface>]
+            type _drawArgs =
+                abstract member titleX: obj with get, set
+                abstract member titleY: obj with get, set
+                abstract member maxWidth: float with get, set
+                abstract member rotation: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    titleX: obj,
-                    titleY: obj,
-                    maxWidth: float,
-                    rotation: float
-                ) =
-
-                member val titleX : obj = nativeOnly with get, set
-                member val titleY : obj = nativeOnly with get, set
-                member val maxWidth : float = nativeOnly with get, set
-                member val rotation : float = nativeOnly with get, set
+                static member Create (titleX: obj, titleY: obj, maxWidth: float, rotation: float) : _drawArgs = nativeOnly
 
         module Exports =
 
             module Title =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type config
+                [<Interface>]
+                type config =
+                    abstract member ctx: obj with get, set
+                    abstract member options: obj with get, set
+                    abstract member chart: obj with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        ctx: obj,
-                        options: obj,
-                        chart: obj
-                    ) =
-
-                    member val ctx : obj = nativeOnly with get, set
-                    member val options : obj = nativeOnly with get, set
-                    member val chart : obj = nativeOnly with get, set
+                    static member Create (ctx: obj, options: obj, chart: obj) : config = nativeOnly
 
     module dist_plugins_plugin_tooltip =
 
@@ -10524,11 +9946,11 @@ PointElement.defaultRoutes = $0"""
         type Tooltip =
             inherit ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject>
             static member inline positioners
-                with get () : Tooltip.positioners =
+                with get () : Tooltip.positioners__ =
                     emitJsExpr () $$"""
 import { Tooltip } from "chart.js/dist/plugins/plugin.tooltip.js";
 Tooltip.positioners"""
-                and set (value: Tooltip.positioners) =
+                and set (value: Tooltip.positioners__) =
                     emitJsExpr (value) $$"""
 import { Tooltip } from "chart.js/dist/plugins/plugin.tooltip.js";
 Tooltip.positioners = $0"""
@@ -10868,33 +10290,25 @@ Tooltip.positioners = $0"""
 
                     module U2 =
 
-                        [<Global>]
                         [<AllowNullLiteral>]
-                        type Case2
+                        [<Interface>]
+                        type Case2 =
+                            abstract member x: float with get, set
+                            abstract member y: float with get, set
                             [<ParamObject; Emit("$0")>]
-                            (
-                                x: float,
-                                y: float
-                            ) =
-
-                            member val x : float = nativeOnly with get, set
-                            member val y : float = nativeOnly with get, set
+                            static member Create (x: float, y: float) : Case2 = nativeOnly
 
                 module nearest =
 
                     module U2 =
 
-                        [<Global>]
                         [<AllowNullLiteral>]
-                        type Case2
+                        [<Interface>]
+                        type Case2 =
+                            abstract member x: obj with get, set
+                            abstract member y: obj with get, set
                             [<ParamObject; Emit("$0")>]
-                            (
-                                x: obj,
-                                y: obj
-                            ) =
-
-                            member val x : obj = nativeOnly with get, set
-                            member val y : obj = nativeOnly with get, set
+                            static member Create (x: obj, y: obj) : Case2 = nativeOnly
 
         module defaultCallbacks_ =
 
@@ -10914,81 +10328,55 @@ Tooltip.positioners = $0"""
 
             module Exports =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type labelColor
+                [<Interface>]
+                type labelColor =
+                    abstract member borderColor: obj with get, set
+                    abstract member backgroundColor: obj with get, set
+                    abstract member borderWidth: obj with get, set
+                    abstract member borderDash: obj with get, set
+                    abstract member borderDashOffset: obj with get, set
+                    abstract member borderRadius: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        borderColor: obj,
-                        backgroundColor: obj,
-                        borderWidth: obj,
-                        borderDash: obj,
-                        borderDashOffset: obj,
-                        borderRadius: float
-                    ) =
+                    static member Create (borderColor: obj, backgroundColor: obj, borderWidth: obj, borderDash: obj, borderDashOffset: obj, borderRadius: float) : labelColor = nativeOnly
 
-                    member val borderColor : obj = nativeOnly with get, set
-                    member val backgroundColor : obj = nativeOnly with get, set
-                    member val borderWidth : obj = nativeOnly with get, set
-                    member val borderDash : obj = nativeOnly with get, set
-                    member val borderDashOffset : obj = nativeOnly with get, set
-                    member val borderRadius : float = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type labelPointStyle
+                [<Interface>]
+                type labelPointStyle =
+                    abstract member pointStyle: obj with get, set
+                    abstract member rotation: obj with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        pointStyle: obj,
-                        rotation: obj
-                    ) =
-
-                    member val pointStyle : obj = nativeOnly with get, set
-                    member val rotation : obj = nativeOnly with get, set
+                    static member Create (pointStyle: obj, rotation: obj) : labelPointStyle = nativeOnly
 
         module Tooltip =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type positioners
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (average: bool, nearest: bool) =
-                    positioners()
-
-                [<ParamObject; Emit("$0")>]
-                new (average: bool, nearest: Tooltip.positioners.nearest.U2.Case2) =
-                    positioners()
-
-                [<ParamObject; Emit("$0")>]
-                new (average: Tooltip.positioners.average.U2.Case2, nearest: bool) =
-                    positioners()
-
-                [<ParamObject; Emit("$0")>]
-                new (average: Tooltip.positioners.average.U2.Case2, nearest: Tooltip.positioners.nearest.U2.Case2) =
-                    positioners()
-
+            [<Interface>]
+            type positioners__ =
                 /// <summary>
                 /// Average mode places the tooltip at the average position of the elements shown
                 /// </summary>
-                member val average : U2<bool, Tooltip.positioners.average.U2.Case2> = nativeOnly
+                abstract member average: items: obj -> U2<bool, Tooltip.positioners__.average.U2.Case2>
                 /// <summary>
                 /// Gets the tooltip position nearest of the item nearest to the event position
                 /// </summary>
-                member val nearest : U2<bool, Tooltip.positioners.nearest.U2.Case2> = nativeOnly
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _size
+                abstract member nearest: items: obj * eventPosition: obj -> U2<bool, Tooltip.positioners__.nearest.U2.Case2>
                 [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
+                static member Create (average: bool, nearest: bool) : positioners__ = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (average: bool, nearest: Tooltip.positioners__.nearest.U2.Case2) : positioners__ = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (average: Tooltip.positioners__.average.U2.Case2, nearest: bool) : positioners__ = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (average: Tooltip.positioners__.average.U2.Case2, nearest: Tooltip.positioners__.nearest.U2.Case2) : positioners__ = nativeOnly
 
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _size =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (width: float, height: float) : _size = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -11010,85 +10398,58 @@ Tooltip.positioners = $0"""
                 /// </returns>
                 abstract member update: target: obj * values: obj -> bool option
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type dataPoints
+            [<Interface>]
+            type dataPoints =
+                abstract member chart: ChartJs.dist_core_core_controller.Chart with get, set
+                abstract member label: obj with get, set
+                abstract member parsed: obj with get, set
+                abstract member raw: obj with get, set
+                abstract member formattedValue: obj with get, set
+                abstract member dataset: obj with get, set
+                abstract member dataIndex: float with get, set
+                abstract member datasetIndex: float with get, set
+                abstract member element: ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chart: ChartJs.dist_core_core_controller.Chart,
-                    label: obj,
-                    parsed: obj,
-                    raw: obj,
-                    formattedValue: obj,
-                    dataset: obj,
-                    dataIndex: float,
-                    datasetIndex: float,
-                    element: ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject>
-                ) =
+                static member Create (chart: ChartJs.dist_core_core_controller.Chart, label: obj, parsed: obj, raw: obj, formattedValue: obj, dataset: obj, dataIndex: float, datasetIndex: float, element: ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject>) : dataPoints = nativeOnly
 
-                member val chart : ChartJs.dist_core_core_controller.Chart = nativeOnly with get, set
-                member val label : obj = nativeOnly with get, set
-                member val parsed : obj = nativeOnly with get, set
-                member val raw : obj = nativeOnly with get, set
-                member val formattedValue : obj = nativeOnly with get, set
-                member val dataset : obj = nativeOnly with get, set
-                member val dataIndex : float = nativeOnly with get, set
-                member val datasetIndex : float = nativeOnly with get, set
-                member val element : ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject> = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getCaretPosition
+            [<Interface>]
+            type getCaretPosition =
+                abstract member x1: obj with get, set
+                abstract member x2: obj with get, set
+                abstract member x3: obj with get, set
+                abstract member y1: obj with get, set
+                abstract member y2: obj with get, set
+                abstract member y3: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x1: obj,
-                    x2: obj,
-                    x3: obj,
-                    y1: obj,
-                    y2: obj,
-                    y3: obj
-                ) =
+                static member Create (x1: obj, x2: obj, x3: obj, y1: obj, y2: obj, y3: obj) : getCaretPosition = nativeOnly
 
-                member val x1 : obj = nativeOnly with get, set
-                member val x2 : obj = nativeOnly with get, set
-                member val x3 : obj = nativeOnly with get, set
-                member val y1 : obj = nativeOnly with get, set
-                member val y2 : obj = nativeOnly with get, set
-                member val y3 : obj = nativeOnly with get, set
-
-            module positioners =
+            module positioners__ =
 
                 module average =
 
                     module U2 =
 
-                        [<Global>]
                         [<AllowNullLiteral>]
-                        type Case2
+                        [<Interface>]
+                        type Case2 =
+                            abstract member x: float with get, set
+                            abstract member y: float with get, set
                             [<ParamObject; Emit("$0")>]
-                            (
-                                x: float,
-                                y: float
-                            ) =
-
-                            member val x : float = nativeOnly with get, set
-                            member val y : float = nativeOnly with get, set
+                            static member Create (x: float, y: float) : Case2 = nativeOnly
 
                 module nearest =
 
                     module U2 =
 
-                        [<Global>]
                         [<AllowNullLiteral>]
-                        type Case2
+                        [<Interface>]
+                        type Case2 =
+                            abstract member x: obj with get, set
+                            abstract member y: obj with get, set
                             [<ParamObject; Emit("$0")>]
-                            (
-                                x: obj,
-                                y: obj
-                            ) =
-
-                            member val x : obj = nativeOnly with get, set
-                            member val y : obj = nativeOnly with get, set
+                            static member Create (x: obj, y: obj) : Case2 = nativeOnly
 
     module dist_scales =
 
@@ -11162,15 +10523,12 @@ CategoryScale.defaults = $0"""
 
         module CategoryScale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type buildTicks
+            [<Interface>]
+            type buildTicks =
+                abstract member value: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    value: obj
-                ) =
-
-                member val value : obj = nativeOnly with get, set
+                static member Create (value: obj) : buildTicks = nativeOnly
 
     module dist_scales_scale_linear =
 
@@ -11331,20 +10689,20 @@ RadialLinearScale.defaults"""
 import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
 RadialLinearScale.defaults = $0"""
             static member inline defaultRoutes
-                with get () : RadialLinearScale.defaultRoutes =
+                with get () : RadialLinearScale.defaultRoutes__ =
                     emitJsExpr () $$"""
 import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
 RadialLinearScale.defaultRoutes"""
-                and set (value: RadialLinearScale.defaultRoutes) =
+                and set (value: RadialLinearScale.defaultRoutes__) =
                     emitJsExpr (value) $$"""
 import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
 RadialLinearScale.defaultRoutes = $0"""
             static member inline descriptors
-                with get () : RadialLinearScale.descriptors =
+                with get () : RadialLinearScale.descriptors__ =
                     emitJsExpr () $$"""
 import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
 RadialLinearScale.descriptors"""
-                and set (value: RadialLinearScale.descriptors) =
+                and set (value: RadialLinearScale.descriptors__) =
                     emitJsExpr (value) $$"""
 import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
 RadialLinearScale.descriptors = $0"""
@@ -11372,99 +10730,67 @@ RadialLinearScale.descriptors = $0"""
 
         module RadialLinearScale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type defaultRoutes
+            [<Interface>]
+            type defaultRoutes__ =
+                abstract member angleLines_color: string with get, set
+                abstract member pointLabels_color: string with get, set
+                abstract member ticks_color: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    angleLines_color: string,
-                    pointLabels_color: string,
-                    ticks_color: string
-                ) =
+                static member Create (angleLines_color: string, pointLabels_color: string, ticks_color: string) : defaultRoutes__ = nativeOnly
 
-                member val angleLines_color : string = nativeOnly with get, set
-                member val pointLabels_color : string = nativeOnly with get, set
-                member val ticks_color : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type descriptors
+            [<Interface>]
+            type descriptors__ =
+                abstract member angleLines: RadialLinearScale.descriptors__.angleLines with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    angleLines: RadialLinearScale.descriptors.angleLines
-                ) =
+                static member Create (angleLines: RadialLinearScale.descriptors__.angleLines) : descriptors__ = nativeOnly
 
-                member val angleLines : RadialLinearScale.descriptors.angleLines = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getPointPosition
+            [<Interface>]
+            type getPointPosition =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member angle: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    angle: float
-                ) =
+                static member Create (x: float, y: float, angle: float) : getPointPosition = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val angle : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getPointPositionForValue
+            [<Interface>]
+            type getPointPositionForValue =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member angle: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    angle: float
-                ) =
+                static member Create (x: float, y: float, angle: float) : getPointPositionForValue = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val angle : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getBasePosition
+            [<Interface>]
+            type getBasePosition =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member angle: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    angle: float
-                ) =
+                static member Create (x: float, y: float, angle: float) : getBasePosition = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val angle : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getPointLabelPosition
+            [<Interface>]
+            type getPointLabelPosition =
+                abstract member left: obj with get, set
+                abstract member top: obj with get, set
+                abstract member right: obj with get, set
+                abstract member bottom: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    left: obj,
-                    top: obj,
-                    right: obj,
-                    bottom: obj
-                ) =
+                static member Create (left: obj, top: obj, right: obj, bottom: obj) : getPointLabelPosition = nativeOnly
 
-                member val left : obj = nativeOnly with get, set
-                member val top : obj = nativeOnly with get, set
-                member val right : obj = nativeOnly with get, set
-                member val bottom : obj = nativeOnly with get, set
+            module descriptors__ =
 
-            module descriptors =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type angleLines
+                [<Interface>]
+                type angleLines =
+                    abstract member _fallback: string with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        _fallback: string
-                    ) =
-
-                    member val _fallback : string = nativeOnly with get, set
+                    static member Create (_fallback: string) : angleLines = nativeOnly
 
     module dist_scales_scale_time =
 
@@ -11597,33 +10923,23 @@ TimeScale.defaults = $0"""
 
         module TimeScale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _cache
+            [<Interface>]
+            type _cache =
+                abstract member data: ResizeArray<float> with get, set
+                abstract member labels: ResizeArray<float> with get, set
+                abstract member all: ResizeArray<float> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    data: ResizeArray<float>,
-                    labels: ResizeArray<float>,
-                    all: ResizeArray<float>
-                ) =
+                static member Create (data: ResizeArray<float>, labels: ResizeArray<float>, all: ResizeArray<float>) : _cache = nativeOnly
 
-                member val data : ResizeArray<float> = nativeOnly with get, set
-                member val labels : ResizeArray<float> = nativeOnly with get, set
-                member val all : ResizeArray<float> = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _parseOpts
+            [<Interface>]
+            type _parseOpts =
+                abstract member parser: obj with get, set
+                abstract member round: obj with get, set
+                abstract member isoWeekday: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    parser: obj,
-                    round: obj,
-                    isoWeekday: obj
-                ) =
-
-                member val parser : obj = nativeOnly with get, set
-                member val round : obj = nativeOnly with get, set
-                member val isoWeekday : obj = nativeOnly with get, set
+                static member Create (parser: obj, round: obj, isoWeekday: obj) : _parseOpts = nativeOnly
 
     module dist_scales_scale_timeseries =
 
@@ -11800,6 +11116,8 @@ TimeScale.defaults = $0"""
             abstract member cp1y: float option with get, set
             abstract member cp2x: float option with get, set
             abstract member cp2y: float option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (x: float, y: float, ?skip: bool, ?cp1x: float, ?cp1y: float, ?cp2x: float, ?cp2y: float) : SplinePoint = nativeOnly
 
         module CornerRadius =
 
@@ -11831,37 +11149,37 @@ TimeScale.defaults = $0"""
         [<Erase>]
         type Exports =
             [<Import("BarController", "chart.js/dist/types/index.js")>]
-            static member inline BarController: Exports.BarController.Type_1 = nativeOnly
+            static member inline BarController: Exports.BarController__.Type_1 = nativeOnly
             [<Import("BubbleController", "chart.js/dist/types/index.js")>]
-            static member inline BubbleController: Exports.BubbleController.Type_1 = nativeOnly
+            static member inline BubbleController: Exports.BubbleController__.Type_1 = nativeOnly
             [<Import("LineController", "chart.js/dist/types/index.js")>]
-            static member inline LineController: Exports.LineController.Type_1 = nativeOnly
+            static member inline LineController: Exports.LineController__.Type_1 = nativeOnly
             [<Import("ScatterController", "chart.js/dist/types/index.js")>]
-            static member inline ScatterController: Exports.ScatterController.Type_1 = nativeOnly
+            static member inline ScatterController: Exports.ScatterController__.Type_1 = nativeOnly
             [<Import("DoughnutController", "chart.js/dist/types/index.js")>]
-            static member inline DoughnutController: Exports.DoughnutController.Type_1 = nativeOnly
+            static member inline DoughnutController: Exports.DoughnutController__.Type_1 = nativeOnly
             [<Import("PieController", "chart.js/dist/types/index.js")>]
-            static member inline PieController: Exports.PieController.Type_1 = nativeOnly
+            static member inline PieController: Exports.PieController__.Type_1 = nativeOnly
             [<Import("PolarAreaController", "chart.js/dist/types/index.js")>]
-            static member inline PolarAreaController: Exports.PolarAreaController.Type_1 = nativeOnly
+            static member inline PolarAreaController: Exports.PolarAreaController__.Type_1 = nativeOnly
             [<Import("RadarController", "chart.js/dist/types/index.js")>]
-            static member inline RadarController: Exports.RadarController.Type_1 = nativeOnly
+            static member inline RadarController: Exports.RadarController__.Type_1 = nativeOnly
             [<Import("registerables", "chart.js/dist/types/index.js")>]
             static member inline registerables: ReadonlyArray<ChartJs.dist_types.ChartComponentLike> = nativeOnly
             [<Import("defaults", "chart.js/dist/types/index.js")>]
             static member inline defaults: ChartJs.dist_types.Defaults = nativeOnly
             [<Import("Interaction", "chart.js/dist/types/index.js")>]
-            static member inline Interaction: Exports.Interaction.Type_1 = nativeOnly
+            static member inline Interaction: Exports.Interaction__.Type_1 = nativeOnly
             [<Import("layouts", "chart.js/dist/types/index.js")>]
-            static member inline layouts: Exports.layouts.Type_1 = nativeOnly
+            static member inline layouts: Exports.layouts__.Type_1 = nativeOnly
             [<Import("registry", "chart.js/dist/types/index.js")>]
             static member inline registry: ChartJs.dist_types.Registry = nativeOnly
             [<Import("Ticks", "chart.js/dist/types/index.js")>]
-            static member inline Ticks: Exports.Ticks.Type_1 = nativeOnly
+            static member inline Ticks: Exports.Ticks__.Type_1 = nativeOnly
             [<Import("LineElement", "chart.js/dist/types/index.js")>]
-            static member inline LineElement: Exports.LineElement.Type_1 = nativeOnly
+            static member inline LineElement: Exports.LineElement__.Type_1 = nativeOnly
             [<Import("BarElement", "chart.js/dist/types/index.js")>]
-            static member inline BarElement: Exports.BarElement.Type_1 = nativeOnly
+            static member inline BarElement: Exports.BarElement__.Type_1 = nativeOnly
             [<Import("Decimation", "chart.js/dist/types/index.js")>]
             static member inline Decimation: ChartJs.dist_types.Plugin = nativeOnly
             [<Import("Filler", "chart.js/dist/types/index.js")>]
@@ -11875,17 +11193,17 @@ TimeScale.defaults = $0"""
             [<Import("Tooltip", "chart.js/dist/types/index.js")>]
             static member inline Tooltip: ChartJs.dist_types.Tooltip = nativeOnly
             [<Import("CategoryScale", "chart.js/dist/types/index.js")>]
-            static member inline CategoryScale: Exports.CategoryScale.Type_1 = nativeOnly
+            static member inline CategoryScale: Exports.CategoryScale__.Type_1 = nativeOnly
             [<Import("LinearScale", "chart.js/dist/types/index.js")>]
-            static member inline LinearScale: Exports.LinearScale.Type_1 = nativeOnly
+            static member inline LinearScale: Exports.LinearScale__.Type_1 = nativeOnly
             [<Import("LogarithmicScale", "chart.js/dist/types/index.js")>]
-            static member inline LogarithmicScale: Exports.LogarithmicScale.Type_1 = nativeOnly
+            static member inline LogarithmicScale: Exports.LogarithmicScale__.Type_1 = nativeOnly
             [<Import("TimeScale", "chart.js/dist/types/index.js")>]
-            static member inline TimeScale: Exports.TimeScale.Type_1 = nativeOnly
+            static member inline TimeScale: Exports.TimeScale__.Type_1 = nativeOnly
             [<Import("TimeSeriesScale", "chart.js/dist/types/index.js")>]
-            static member inline TimeSeriesScale: Exports.TimeSeriesScale.Type_1 = nativeOnly
+            static member inline TimeSeriesScale: Exports.TimeSeriesScale__.Type_1 = nativeOnly
             [<Import("RadialLinearScale", "chart.js/dist/types/index.js")>]
-            static member inline RadialLinearScale: Exports.RadialLinearScale.Type_1 = nativeOnly
+            static member inline RadialLinearScale: Exports.RadialLinearScale__.Type_1 = nativeOnly
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
             static member Chart<'TType, 'TData, 'TLabel> (item: string, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
@@ -11899,9 +11217,9 @@ TimeScale.defaults = $0"""
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
             static member Chart<'TType, 'TData, 'TLabel> (item: Glutinum.Web.HTMLCanvasElement, config: ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
-            static member Chart<'TType, 'TData, 'TLabel> (item: Exports.Chart.item_1, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
+            static member Chart<'TType, 'TData, 'TLabel> (item: ChartItem.U5.Case4, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
-            static member Chart<'TType, 'TData, 'TLabel> (item: Exports.Chart.item_1, config: ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
+            static member Chart<'TType, 'TData, 'TLabel> (item: ChartItem.U5.Case4, config: ChartJs.dist_types.ChartConfigurationCustomTypesPerDataset<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
             static member Chart<'TType, 'TData, 'TLabel> (item: obj, config: ChartJs.dist_types.ChartConfiguration<'TType, 'TData, 'TLabel>) : Chart<'TType, 'TData, 'TLabel> = nativeOnly
             [<Import("Chart", "chart.js/dist/types/index.js"); EmitConstructor>]
@@ -11968,11 +11286,11 @@ TimeScale.defaults = $0"""
             abstract member active: bool with get, set
             abstract member chart: ChartJs.dist_types.Chart with get, set
             abstract member dataIndex: float with get, set
-            abstract member dataset: ChartJs.dist_types_utils.UnionToIntersection<ChartJs.dist_types.ChartDataset<'TType>> with get, set
+            abstract member dataset: obj with get, set
             abstract member datasetIndex: float with get, set
             abstract member ``type``: string with get, set
             abstract member mode: string with get, set
-            abstract member parsed: ChartJs.dist_types_utils.UnionToIntersection<ChartJs.dist_types.ParsedDataType<'TType>> with get, set
+            abstract member parsed: obj with get, set
             abstract member raw: obj with get, set
 
         [<AllowNullLiteral>]
@@ -12495,7 +11813,7 @@ Chart.overrides"""
 import { Chart } from "chart.js/dist/types/index.js";
 Chart.version"""
             static member inline instances
-                with get () : Chart.instances =
+                with get () : Chart.instances__ =
                     emitJsExpr () $$"""
 import { Chart } from "chart.js/dist/types/index.js";
 Chart.instances"""
@@ -12529,10 +11847,10 @@ Chart.unregister($0)"""
             Chart<'TType, 'TData, obj>
 
         type Chart<'TType> =
-            Chart<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            Chart<'TType, obj, obj>
 
         type Chart =
-            Chart<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            Chart<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartItem =
             U5<string, Glutinum.Web.CanvasRenderingContext2D, Glutinum.Web.HTMLCanvasElement, ChartItem.U5.Case4, obj>
@@ -12677,19 +11995,14 @@ Chart.unregister($0)"""
             [<EmitIndexer>]
             abstract member Item: key: string -> Overrides.Item with get, set
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type InteractionOptions
+        [<Interface>]
+        type InteractionOptions =
+            abstract member axis: string option with get, set
+            abstract member intersect: bool option with get, set
+            abstract member includeInvisible: bool option with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                ?axis: string,
-                ?intersect: bool,
-                ?includeInvisible: bool
-            ) =
-
-            member val axis : string option = nativeOnly with get, set
-            member val intersect : bool option = nativeOnly with get, set
-            member val includeInvisible : bool option = nativeOnly with get, set
+            static member Create (?axis: string, ?intersect: bool, ?includeInvisible: bool) : InteractionOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -13435,6 +12748,8 @@ Chart.unregister($0)"""
             /// Dimensions for drawing the label backdrop
             /// </summary>
             abstract member backdrop: ChartJs.dist_types.BackdropOptions option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?color: ChartJs.dist_types_color.Color, ?decorationWidth: float, ?maxWidth: float, ?rotation: float, ?strikethrough: bool, ?strokeColor: ChartJs.dist_types_color.Color, ?strokeWidth: float, ?textAlign: Glutinum.Web.CanvasTextAlign, ?textBaseline: Glutinum.Web.CanvasTextBaseline, ?translation: float * float, ?underline: bool, ?backdrop: ChartJs.dist_types.BackdropOptions) : RenderTextOpts = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -13589,7 +12904,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// Called when a resize occurs. Gets passed two arguments: the chart instance and the new size.
             /// </summary>
-            abstract member onResize: chart: ChartJs.dist_types.Chart * size: CoreChartOptions.onResize.size -> unit
+            abstract member onResize: chart: ChartJs.dist_types.Chart * size: Overrides.Item.onResize.size -> unit
             /// <summary>
             /// Override the window's default devicePixelRatio.
             /// </summary>
@@ -13684,6 +12999,10 @@ Chart.unregister($0)"""
         type CanvasFontSpec =
             inherit ChartJs.dist_types.FontSpec
             abstract member string: string with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (family: string, size: float, style: CanvasFontSpec.style, weight: CanvasFontSpec.weight, lineHeight: float, string: string) : CanvasFontSpec = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (family: string, size: float, style: CanvasFontSpec.style, weight: CanvasFontSpec.weight, lineHeight: string, string: string) : CanvasFontSpec = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -13836,7 +13155,7 @@ Chart.unregister($0)"""
             /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line. Can also be a number specifying the maximum gap length to span. The unit of the value depends on the scale used.
             /// </summary>
             abstract member spanGaps: U2<bool, float> with get, set
-            abstract member segment: LineOptions.segment with get, set
+            abstract member segment: LineControllerDatasetOptions.Extends.segment with get, set
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -14526,7 +13845,7 @@ Chart.unregister($0)"""
         [<AllowNullLiteral>]
         [<Interface>]
         type ScriptableTooltipContext<'TType> =
-            abstract member chart: ChartJs.dist_types.Chart<'TType, ChartJs.dist_types_utils.DistributiveArray<obj>, obj> with get, set
+            abstract member chart: ChartJs.dist_types.Chart<'TType, ResizeArray<obj>, obj> with get, set
             abstract member tooltip: ChartJs.dist_types.TooltipModel<'TType> with get, set
             abstract member tooltipItems: ResizeArray<ChartJs.dist_types.TooltipItem<'TType>> with get, set
 
@@ -14695,7 +14014,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// Parsed data values for the given <c>dataIndex</c> and <c>datasetIndex</c>
             /// </summary>
-            abstract member parsed: ChartJs.dist_types_utils.UnionToIntersection<ChartJs.dist_types.ParsedDataType<'TType>> with get, set
+            abstract member parsed: obj with get, set
             /// <summary>
             /// Raw data values for the given <c>dataIndex</c> and <c>datasetIndex</c>
             /// </summary>
@@ -14707,7 +14026,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// The dataset the item comes from
             /// </summary>
-            abstract member dataset: ChartJs.dist_types_utils.UnionToIntersection<ChartJs.dist_types.ChartDataset<'TType>> with get, set
+            abstract member dataset: obj with get, set
             /// <summary>
             /// Index of the dataset the item comes from
             /// </summary>
@@ -14862,7 +14181,7 @@ Chart.unregister($0)"""
             /// z-index of tick layer. Useful when ticks are drawn on chart area. Values <= 0 are drawn under datasets, > 0 on top.
             /// </summary>
             abstract member z: float with get, set
-            abstract member major: CartesianTickOptions.major with get, set
+            abstract member major: TickOptions.major with get, set
             /// <summary>
             /// The number of ticks to examine when deciding how many labels will fit. Setting a smaller value will be faster, but may be less accurate when there is large variability in label length.
             /// </summary>
@@ -15013,7 +14332,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// Options for the scale title.
             /// </summary>
-            abstract member title: CategoryScaleOptions.title with get, set
+            abstract member title: CartesianScaleOptions.title with get, set
             /// <summary>
             /// If true, data will be comprised between datasets of data
             /// </summary>
@@ -15148,7 +14467,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// Options for the scale title.
             /// </summary>
-            abstract member title: LinearScaleOptions.title with get, set
+            abstract member title: CartesianScaleOptions.title with get, set
             /// <summary>
             /// If true, data will be comprised between datasets of data
             /// </summary>
@@ -15290,7 +14609,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// Options for the scale title.
             /// </summary>
-            abstract member title: LogarithmicScaleOptions.title with get, set
+            abstract member title: CartesianScaleOptions.title with get, set
             /// <summary>
             /// If true, data will be comprised between datasets of data
             /// </summary>
@@ -15392,7 +14711,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// If defined, dates will be rounded to the start of this unit. See Time Units below for the allowed units.
             /// </summary>
-            abstract member round: U2<bool, ChartJs.dist_core_core_adapters.TimeUnit> with get, set
+            abstract member round: TimeScaleTimeOptions.round with get, set
             /// <summary>
             /// If boolean and true and the unit is set to 'week', then the first day of the week will be Monday. Otherwise, it will be Sunday.
             /// If <c>number</c>, the index of the first day of the week (0 - Sunday, 6 - Saturday).
@@ -15409,7 +14728,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// If defined, will force the unit to be a certain type. See Time Units section below for details.
             /// </summary>
-            abstract member unit: U2<bool, ChartJs.dist_core_core_adapters.TimeUnit> with get, set
+            abstract member unit: TimeScaleTimeOptions.unit with get, set
             /// <summary>
             /// The minimum display format to be used for a time unit.
             /// </summary>
@@ -15467,7 +14786,7 @@ Chart.unregister($0)"""
             /// <summary>
             /// Options for the scale title.
             /// </summary>
-            abstract member title: TimeScaleOptions.title with get, set
+            abstract member title: CartesianScaleOptions.title with get, set
             /// <summary>
             /// If true, data will be comprised between datasets of data
             /// </summary>
@@ -15618,7 +14937,7 @@ Chart.unregister($0)"""
             /// z-index of tick layer. Useful when ticks are drawn on chart area. Values <= 0 are drawn under datasets, > 0 on top.
             /// </summary>
             abstract member z: float with get, set
-            abstract member major: RadialTickOptions.major with get, set
+            abstract member major: TickOptions.major with get, set
             /// <summary>
             /// The Intl.NumberFormat options used by the default label formatter
             /// </summary>
@@ -15836,8 +15155,10 @@ Chart.unregister($0)"""
         type ScaleOptionsByType<'TScale> =
             interface end
 
+        [<AllowNullLiteral>]
+        [<Interface>]
         type ScaleOptions<'TScale> =
-            ChartJs.dist_types_utils.DeepPartial<ChartJs.dist_types.ScaleOptionsByType<'TScale>>
+            interface end
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -16056,52 +15377,52 @@ Chart.unregister($0)"""
             ParsedDataType<ChartJs.dist_types.ChartType>
 
         type ChartDataset<'TType> =
-            ChartDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>>
+            ChartDataset<'TType, obj>
 
         type ChartDataset =
-            ChartDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>>
+            ChartDataset<ChartJs.dist_types.ChartType, obj>
 
         type ChartDatasetCustomTypesPerDataset<'TType> =
-            ChartDatasetCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>>
+            ChartDatasetCustomTypesPerDataset<'TType, obj>
 
         type ChartDatasetCustomTypesPerDataset =
-            ChartDatasetCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>>
+            ChartDatasetCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj>
 
         type ChartData<'TType, 'TData> =
             ChartData<'TType, 'TData, obj>
 
         type ChartData<'TType> =
-            ChartData<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartData<'TType, obj, obj>
 
         type ChartData =
-            ChartData<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartData<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartDataCustomTypesPerDataset<'TType, 'TData> =
             ChartDataCustomTypesPerDataset<'TType, 'TData, obj>
 
         type ChartDataCustomTypesPerDataset<'TType> =
-            ChartDataCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartDataCustomTypesPerDataset<'TType, obj, obj>
 
         type ChartDataCustomTypesPerDataset =
-            ChartDataCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartDataCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartConfiguration<'TType, 'TData> =
             ChartConfiguration<'TType, 'TData, obj>
 
         type ChartConfiguration<'TType> =
-            ChartConfiguration<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartConfiguration<'TType, obj, obj>
 
         type ChartConfiguration =
-            ChartConfiguration<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartConfiguration<ChartJs.dist_types.ChartType, obj, obj>
 
         type ChartConfigurationCustomTypesPerDataset<'TType, 'TData> =
             ChartConfigurationCustomTypesPerDataset<'TType, 'TData, obj>
 
         type ChartConfigurationCustomTypesPerDataset<'TType> =
-            ChartConfigurationCustomTypesPerDataset<'TType, ChartJs.dist_types.DefaultDataPoint<'TType>, obj>
+            ChartConfigurationCustomTypesPerDataset<'TType, obj, obj>
 
         type ChartConfigurationCustomTypesPerDataset =
-            ChartConfigurationCustomTypesPerDataset<ChartJs.dist_types.ChartType, ChartJs.dist_types.DefaultDataPoint<ChartJs.dist_types.ChartType>, obj>
+            ChartConfigurationCustomTypesPerDataset<ChartJs.dist_types.ChartType, obj, obj>
 
         module Scriptable =
 
@@ -16209,27 +15530,18 @@ Chart.unregister($0)"""
                     | middle
                     | Case1 of bool
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type segment
+                [<Interface>]
+                type segment =
+                    abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>
-                    ) =
-
-                    member val backgroundColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderCapStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderDashOffset : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderJoinStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderWidth : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
+                    static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment = nativeOnly
 
         module RadarControllerDatasetOptions =
 
@@ -16347,7 +15659,7 @@ Chart.unregister($0)"""
                 /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line. Can also be a number specifying the maximum gap length to span. The unit of the value depends on the scale used.
                 /// </summary>
                 abstract member spanGaps: U2<bool, float> with get, set
-                abstract member segment: RadarControllerDatasetOptions.Extends.segment with get, set
+                abstract member segment: LineControllerDatasetOptions.Extends.segment with get, set
                 abstract member borderWidth: float with get, set
                 abstract member borderColor: ChartJs.dist_types_color.Color with get, set
                 abstract member backgroundColor: ChartJs.dist_types_color.Color with get, set
@@ -16374,28 +15686,6 @@ Chart.unregister($0)"""
                     | after
                     | middle
                     | Case1 of bool
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type segment
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>
-                    ) =
-
-                    member val backgroundColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderCapStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderDashOffset : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderJoinStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderWidth : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
 
         module ChartMetaCommon =
 
@@ -16433,21 +15723,17 @@ Chart.unregister($0)"""
                 [<EmitIndexer>]
                 abstract member Item: key: string -> ChartJs.dist_types.Scale with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getContext_1
+            [<Interface>]
+            type getContext_1 =
+                abstract member chart: ChartJs.dist_types.Chart with get, set
+                abstract member ``type``: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chart: ChartJs.dist_types.Chart,
-                    ``type``: string
-                ) =
-
-                member val chart : ChartJs.dist_types.Chart = nativeOnly with get, set
-                member val ``type`` : string = nativeOnly with get, set
+                static member Create (chart: ChartJs.dist_types.Chart, ``type``: string) : getContext_1 = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type instances =
+            type instances__ =
                 [<EmitIndexer>]
                 abstract member Item: key: string -> ChartJs.dist_types.Chart with get, set
 
@@ -16455,83 +15741,61 @@ Chart.unregister($0)"""
 
                 module mode =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ctx
+                    [<Interface>]
+                    type ctx =
+                        abstract member datasetIndex: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            datasetIndex: float
-                        ) =
-
-                        member val datasetIndex : float = nativeOnly with get, set
+                        static member Create (datasetIndex: float) : ctx = nativeOnly
 
         module ChartItem =
 
             module U5 =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Case4
+                [<Interface>]
+                type Case4 =
+                    abstract member canvas: Glutinum.Web.HTMLCanvasElement with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        canvas: Glutinum.Web.HTMLCanvasElement
-                    ) =
-
-                    member val canvas : Glutinum.Web.HTMLCanvasElement = nativeOnly with get, set
+                    static member Create (canvas: Glutinum.Web.HTMLCanvasElement) : Case4 = nativeOnly
 
         module DatasetController =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getLabelAndValue_1
+            [<Interface>]
+            type getLabelAndValue_1 =
+                abstract member label: string with get, set
+                abstract member value: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    label: string,
-                    value: string
-                ) =
+                static member Create (label: string, value: string) : getLabelAndValue_1 = nativeOnly
 
-                member val label : string = nativeOnly with get, set
-                member val value : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMinMax_1
+            [<Interface>]
+            type getMinMax_1 =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
-
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
+                static member Create (min: float, max: float) : getMinMax_1 = nativeOnly
 
             module updateRangeFromParsed =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type range
+                [<Interface>]
+                type range =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
-
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
+                    static member Create (min: float, max: float) : range = nativeOnly
 
         module DatasetControllerChartComponent =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type defaults
+            [<Interface>]
+            type defaults =
+                abstract member datasetElementType: U2<string, bool> option with get, set
+                abstract member dataElementType: U2<string, bool> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?datasetElementType: U2<string, bool>,
-                    ?dataElementType: U2<string, bool>
-                ) =
-
-                member val datasetElementType : U2<string, bool> option = nativeOnly with get, set
-                member val dataElementType : U2<string, bool> option = nativeOnly with get, set
+                static member Create (?datasetElementType: U2<string, bool>, ?dataElementType: U2<string, bool>) : defaults = nativeOnly
 
         module Defaults =
 
@@ -16625,7 +15889,7 @@ Chart.unregister($0)"""
                 /// <summary>
                 /// How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
                 /// </summary>
-                abstract member parsing: U2<Overrides.Item.parsing.U2.Case1, bool> with get, set
+                abstract member parsing: U2<ParsingOptions.parsing.U2.Case1, bool> with get, set
                 /// <summary>
                 /// Chart.js is fastest if you provide data with indices that are unique, sorted, and consistent across datasets and provide the normalized: true option to let Chart.js know that you have done so.
                 /// </summary>
@@ -16689,85 +15953,61 @@ Chart.unregister($0)"""
                     abstract member autoPadding: bool option with get, set
                     abstract member padding: ChartJs.dist_types.Scriptable<ChartJs.dist_types_geometric.Padding, ChartJs.dist_types.ScriptableContext<obj>> option with get, set
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bar
+                [<Interface>]
+                type bar =
+                    abstract member datasets: ChartJs.dist_types.BarControllerDatasetOptions with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: ChartJs.dist_types.BarControllerDatasetOptions
-                    ) =
+                    static member Create (datasets: ChartJs.dist_types.BarControllerDatasetOptions) : bar = nativeOnly
 
-                    member val datasets : ChartJs.dist_types.BarControllerDatasetOptions = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type line
+                [<Interface>]
+                type line =
+                    abstract member datasets: obj with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: obj
-                    ) =
+                    static member Create (datasets: obj) : line = nativeOnly
 
-                    member val datasets : obj = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type scatter
+                [<Interface>]
+                type scatter =
+                    abstract member datasets: ChartJs.dist_types.LineControllerDatasetOptions with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: ChartJs.dist_types.LineControllerDatasetOptions
-                    ) =
+                    static member Create (datasets: ChartJs.dist_types.LineControllerDatasetOptions) : scatter = nativeOnly
 
-                    member val datasets : ChartJs.dist_types.LineControllerDatasetOptions = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bubble
+                [<Interface>]
+                type bubble =
+                    abstract member datasets: ChartJs.dist_types.BubbleControllerDatasetOptions with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: ChartJs.dist_types.BubbleControllerDatasetOptions
-                    ) =
+                    static member Create (datasets: ChartJs.dist_types.BubbleControllerDatasetOptions) : bubble = nativeOnly
 
-                    member val datasets : ChartJs.dist_types.BubbleControllerDatasetOptions = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type pie
+                [<Interface>]
+                type pie =
+                    abstract member datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions
-                    ) =
+                    static member Create (datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions) : pie = nativeOnly
 
-                    member val datasets : ChartJs.dist_types.DoughnutControllerDatasetOptions = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type doughnut
+                [<Interface>]
+                type doughnut =
+                    abstract member datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions
-                    ) =
+                    static member Create (datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions) : doughnut = nativeOnly
 
-                    member val datasets : ChartJs.dist_types.DoughnutControllerDatasetOptions = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type polarArea
+                [<Interface>]
+                type polarArea =
+                    abstract member datasets: ChartJs.dist_types.PolarAreaControllerDatasetOptions with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: ChartJs.dist_types.PolarAreaControllerDatasetOptions
-                    ) =
+                    static member Create (datasets: ChartJs.dist_types.PolarAreaControllerDatasetOptions) : polarArea = nativeOnly
 
-                    member val datasets : ChartJs.dist_types.PolarAreaControllerDatasetOptions = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type radar
+                [<Interface>]
+                type radar =
+                    abstract member datasets: obj with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        datasets: obj
-                    ) =
-
-                    member val datasets : obj = nativeOnly with get, set
+                    static member Create (datasets: obj) : radar = nativeOnly
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -16799,27 +16039,13 @@ Chart.unregister($0)"""
 
                 module onResize =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type size
+                    [<Interface>]
+                    type size =
+                        abstract member width: float with get, set
+                        abstract member height: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            width: float,
-                            height: float
-                        ) =
-
-                        member val width : float = nativeOnly with get, set
-                        member val height : float = nativeOnly with get, set
-
-                module parsing =
-
-                    module U2 =
-
-                        [<AllowNullLiteral>]
-                        [<Interface>]
-                        type Case1 =
-                            [<EmitIndexer>]
-                            abstract member Item: key: string -> string with get, set
+                        static member Create (width: float, height: float) : size = nativeOnly
 
         module Plugin =
 
@@ -16830,281 +16056,202 @@ Chart.unregister($0)"""
 
             module beforeUpdate =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member mode: ChartJs.dist_types.UpdateMode with get, set
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        mode: ChartJs.dist_types.UpdateMode,
-                        cancelable: bool
-                    ) =
-
-                    member val mode : ChartJs.dist_types.UpdateMode = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (mode: ChartJs.dist_types.UpdateMode, cancelable: bool) : args = nativeOnly
 
             module afterUpdate =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member mode: ChartJs.dist_types.UpdateMode with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        mode: ChartJs.dist_types.UpdateMode
-                    ) =
-
-                    member val mode : ChartJs.dist_types.UpdateMode = nativeOnly with get, set
+                    static member Create (mode: ChartJs.dist_types.UpdateMode) : args = nativeOnly
 
             module beforeDatasetsUpdate =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member mode: ChartJs.dist_types.UpdateMode with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        mode: ChartJs.dist_types.UpdateMode
-                    ) =
-
-                    member val mode : ChartJs.dist_types.UpdateMode = nativeOnly with get, set
+                    static member Create (mode: ChartJs.dist_types.UpdateMode) : args = nativeOnly
 
             module afterDatasetsUpdate =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member mode: ChartJs.dist_types.UpdateMode with get, set
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        mode: ChartJs.dist_types.UpdateMode,
-                        cancelable: bool
-                    ) =
-
-                    member val mode : ChartJs.dist_types.UpdateMode = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (mode: ChartJs.dist_types.UpdateMode, cancelable: bool) : args = nativeOnly
 
             module beforeDatasetUpdate =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member index: float with get, set
+                    abstract member meta: ChartJs.dist_types.ChartMeta with get, set
+                    abstract member mode: ChartJs.dist_types.UpdateMode with get, set
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        index: float,
-                        meta: ChartJs.dist_types.ChartMeta,
-                        mode: ChartJs.dist_types.UpdateMode,
-                        cancelable: bool
-                    ) =
-
-                    member val index : float = nativeOnly with get, set
-                    member val meta : ChartJs.dist_types.ChartMeta = nativeOnly with get, set
-                    member val mode : ChartJs.dist_types.UpdateMode = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (index: float, meta: ChartJs.dist_types.ChartMeta, mode: ChartJs.dist_types.UpdateMode, cancelable: bool) : args = nativeOnly
 
             module afterDatasetUpdate =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member index: float with get, set
+                    abstract member meta: ChartJs.dist_types.ChartMeta with get, set
+                    abstract member mode: ChartJs.dist_types.UpdateMode with get, set
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        index: float,
-                        meta: ChartJs.dist_types.ChartMeta,
-                        mode: ChartJs.dist_types.UpdateMode,
-                        cancelable: bool
-                    ) =
-
-                    member val index : float = nativeOnly with get, set
-                    member val meta : ChartJs.dist_types.ChartMeta = nativeOnly with get, set
-                    member val mode : ChartJs.dist_types.UpdateMode = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (index: float, meta: ChartJs.dist_types.ChartMeta, mode: ChartJs.dist_types.UpdateMode, cancelable: bool) : args = nativeOnly
 
             module beforeLayout =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cancelable: bool
-                    ) =
-
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (cancelable: bool) : args = nativeOnly
 
             module beforeDataLimits =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member scale: ChartJs.dist_types.Scale with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        scale: ChartJs.dist_types.Scale
-                    ) =
-
-                    member val scale : ChartJs.dist_types.Scale = nativeOnly with get, set
+                    static member Create (scale: ChartJs.dist_types.Scale) : args = nativeOnly
 
             module afterDataLimits =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member scale: ChartJs.dist_types.Scale with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        scale: ChartJs.dist_types.Scale
-                    ) =
-
-                    member val scale : ChartJs.dist_types.Scale = nativeOnly with get, set
+                    static member Create (scale: ChartJs.dist_types.Scale) : args = nativeOnly
 
             module beforeBuildTicks =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member scale: ChartJs.dist_types.Scale with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        scale: ChartJs.dist_types.Scale
-                    ) =
-
-                    member val scale : ChartJs.dist_types.Scale = nativeOnly with get, set
+                    static member Create (scale: ChartJs.dist_types.Scale) : args = nativeOnly
 
             module afterBuildTicks =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member scale: ChartJs.dist_types.Scale with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        scale: ChartJs.dist_types.Scale
-                    ) =
-
-                    member val scale : ChartJs.dist_types.Scale = nativeOnly with get, set
+                    static member Create (scale: ChartJs.dist_types.Scale) : args = nativeOnly
 
             module beforeRender =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cancelable: bool
-                    ) =
-
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (cancelable: bool) : args = nativeOnly
 
             module beforeDraw =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cancelable: bool
-                    ) =
-
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (cancelable: bool) : args = nativeOnly
 
             module beforeDatasetsDraw =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cancelable: bool
-                    ) =
-
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (cancelable: bool) : args = nativeOnly
 
             module beforeDatasetDraw =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member index: float with get, set
+                    abstract member meta: ChartJs.dist_types.ChartMeta with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        index: float,
-                        meta: ChartJs.dist_types.ChartMeta
-                    ) =
-
-                    member val index : float = nativeOnly with get, set
-                    member val meta : ChartJs.dist_types.ChartMeta = nativeOnly with get, set
+                    static member Create (index: float, meta: ChartJs.dist_types.ChartMeta) : args = nativeOnly
 
             module afterDatasetDraw =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member index: float with get, set
+                    abstract member meta: ChartJs.dist_types.ChartMeta with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        index: float,
-                        meta: ChartJs.dist_types.ChartMeta
-                    ) =
-
-                    member val index : float = nativeOnly with get, set
-                    member val meta : ChartJs.dist_types.ChartMeta = nativeOnly with get, set
+                    static member Create (index: float, meta: ChartJs.dist_types.ChartMeta) : args = nativeOnly
 
             module beforeEvent =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member event: ChartJs.dist_types.ChartEvent with get, set
+                    abstract member replay: bool with get, set
+                    abstract member changed: bool option with get, set
+                    abstract member cancelable: bool with get, set
+                    abstract member inChartArea: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        event: ChartJs.dist_types.ChartEvent,
-                        replay: bool,
-                        cancelable: bool,
-                        inChartArea: bool,
-                        ?changed: bool
-                    ) =
-
-                    member val event : ChartJs.dist_types.ChartEvent = nativeOnly with get, set
-                    member val replay : bool = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
-                    member val inChartArea : bool = nativeOnly with get, set
-                    member val changed : bool option = nativeOnly with get, set
+                    static member Create (event: ChartJs.dist_types.ChartEvent, replay: bool, cancelable: bool, inChartArea: bool, ?changed: bool) : args = nativeOnly
 
             module afterEvent =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member event: ChartJs.dist_types.ChartEvent with get, set
+                    abstract member replay: bool with get, set
+                    abstract member changed: bool option with get, set
+                    abstract member cancelable: bool with get, set
+                    abstract member inChartArea: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        event: ChartJs.dist_types.ChartEvent,
-                        replay: bool,
-                        cancelable: bool,
-                        inChartArea: bool,
-                        ?changed: bool
-                    ) =
-
-                    member val event : ChartJs.dist_types.ChartEvent = nativeOnly with get, set
-                    member val replay : bool = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
-                    member val inChartArea : bool = nativeOnly with get, set
-                    member val changed : bool option = nativeOnly with get, set
+                    static member Create (event: ChartJs.dist_types.ChartEvent, replay: bool, cancelable: bool, inChartArea: bool, ?changed: bool) : args = nativeOnly
 
             module resize =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args
+                [<Interface>]
+                type args =
+                    abstract member size: Plugin.resize.args.size with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        size: Plugin.resize.args.size
-                    ) =
-
-                    member val size : Plugin.resize.args.size = nativeOnly with get, set
+                    static member Create (size: Plugin.resize.args.size) : args = nativeOnly
 
                 module args =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type size
+                    [<Interface>]
+                    type size =
+                        abstract member width: float with get, set
+                        abstract member height: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            width: float,
-                            height: float
-                        ) =
-
-                        member val width : float = nativeOnly with get, set
-                        member val height : float = nativeOnly with get, set
+                        static member Create (width: float, height: float) : size = nativeOnly
 
         module ChartComponentLike =
 
@@ -17126,33 +16273,23 @@ Chart.unregister($0)"""
 
         module Scale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getUserBounds_1
+            [<Interface>]
+            type getUserBounds_1 =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
+                abstract member minDefined: bool with get, set
+                abstract member maxDefined: bool with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float,
-                    minDefined: bool,
-                    maxDefined: bool
-                ) =
+                static member Create (min: float, max: float, minDefined: bool, maxDefined: bool) : getUserBounds_1 = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-                member val minDefined : bool = nativeOnly with get, set
-                member val maxDefined : bool = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMinMax_1
+            [<Interface>]
+            type getMinMax_1 =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
-
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
+                static member Create (min: float, max: float) : getMinMax_1 = nativeOnly
 
         module ChartComponent =
 
@@ -17228,20 +16365,6 @@ Chart.unregister($0)"""
                         | bolder
                         | Case1 of float
 
-            module onResize =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type size
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        width: float,
-                        height: float
-                    ) =
-
-                    member val width : float = nativeOnly with get, set
-                    member val height : float = nativeOnly with get, set
-
         module AnimationsSpec =
 
             module Item =
@@ -17293,47 +16416,37 @@ Chart.unregister($0)"""
 
         module TransitionSpec =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type animation<'TType>
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?duration: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    ?easing: ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    ?delay: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    ?loop: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>>
-                ) =
-
+            [<Interface>]
+            type animation<'TType> =
                 /// <summary>
                 /// The number of milliseconds an animation takes.
                 /// </summary>
-                member val duration : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                abstract member duration: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
                 /// <summary>
                 /// Easing function to use
                 /// </summary>
-                member val easing : ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                abstract member easing: ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
                 /// <summary>
                 /// Delay before starting the animations.
                 /// </summary>
-                member val delay : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                abstract member delay: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
                 /// <summary>
                 /// If set to true, the animations loop endlessly.
                 /// </summary>
-                member val loop : ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                abstract member loop: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?duration: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>, ?easing: ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>>, ?delay: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>, ?loop: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>>) : animation<'TType> = nativeOnly
 
         module TransitionsSpec =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Item<'TType>
+            [<Interface>]
+            type Item<'TType> =
+                abstract member animation: ChartJs.dist_types.AnimationSpec<'TType> with get, set
+                abstract member animations: ChartJs.dist_types.AnimationsSpec<'TType> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    animation: ChartJs.dist_types.AnimationSpec<'TType>,
-                    animations: ChartJs.dist_types.AnimationsSpec<'TType>
-                ) =
-
-                member val animation : ChartJs.dist_types.AnimationSpec<'TType> = nativeOnly with get, set
-                member val animations : ChartJs.dist_types.AnimationsSpec<'TType> = nativeOnly with get, set
+                static member Create (animation: ChartJs.dist_types.AnimationSpec<'TType>, animations: ChartJs.dist_types.AnimationsSpec<'TType>) : Item<'TType> = nativeOnly
 
         module AnimationOptions =
 
@@ -17389,6 +16502,26 @@ Chart.unregister($0)"""
                 | bolder
                 | Case1 of float
 
+        module CanvasFontSpec =
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type style =
+                | normal
+                | italic
+                | oblique
+                | initial
+                | ``inherit``
+
+            [<RequireQualifiedAccess>]
+            [<Erase(CaseRules.None)>]
+            type weight =
+                | normal
+                | bold
+                | lighter
+                | bolder
+                | Case1 of float
+
         module VisualElement =
 
             module getRange =
@@ -17422,28 +16555,6 @@ Chart.unregister($0)"""
                 | after
                 | middle
                 | Case1 of bool
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type segment
-                [<ParamObject; Emit("$0")>]
-                (
-                    backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                    borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                    borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                    borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                    borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                    borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                    borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>
-                ) =
-
-                member val backgroundColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                member val borderColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                member val borderCapStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                member val borderDashOffset : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                member val borderJoinStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                member val borderWidth : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
 
         module LineElement =
 
@@ -17487,270 +16598,194 @@ Chart.unregister($0)"""
 
                 module U2 =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case2
+                    [<Interface>]
+                    type Case2 =
+                        abstract member top: float option with get, set
+                        abstract member right: float option with get, set
+                        abstract member bottom: float option with get, set
+                        abstract member left: float option with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            ?top: float,
-                            ?right: float,
-                            ?bottom: float,
-                            ?left: float
-                        ) =
-
-                        member val top : float option = nativeOnly with get, set
-                        member val right : float option = nativeOnly with get, set
-                        member val bottom : float option = nativeOnly with get, set
-                        member val left : float option = nativeOnly with get, set
+                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
         module ElementOptionsByType =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type arc<'TType>
-                [<ParamObject; Emit("$0")>]
-                (
-                    selfJoin: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderAlign: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.arc.borderAlign, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.ArcBorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    offset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    circular: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    spacing: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>
-                ) =
-
+            [<Interface>]
+            type arc<'TType> =
                 /// <summary>
                 /// If true, Arc can take up 100% of a circular graph without any visual split or cut. This option doesn't support borderRadius and borderJoinStyle miter
                 /// </summary>
-                member val selfJoin : ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member selfJoin: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Arc stroke alignment.
                 /// </summary>
-                member val borderAlign : ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.arc.borderAlign, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderAlign: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.arc.borderAlign, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Line dash. See MDN.
                 /// </summary>
-                member val borderDash : ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Line dash offset. See MDN.
                 /// </summary>
-                member val borderDashOffset : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Line join style. See MDN. Default is 'round' when <c>borderAlign</c> is 'inner', else 'bevel'.
                 /// </summary>
-                member val borderJoinStyle : ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Sets the border radius for arcs
                 /// </summary>
-                member val borderRadius : ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.ArcBorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.ArcBorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Arc offset (in pixels).
                 /// </summary>
-                member val offset : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member offset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// If false, Arc will be flat.
                 /// </summary>
-                member val circular : ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member circular: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Spacing between arcs
                 /// </summary>
-                member val spacing : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val backgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderDash : ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderDashOffset : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverOffset : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBackgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type bar<'TType>
+                abstract member spacing: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ``base``: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderSkipped: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.borderSkipped, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    inflateAmount: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.inflateAmount, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderWidth: ChartJs.dist_types.ScriptableAndArray<U2<float, ElementOptionsByType.bar.borderWidth.U2.Case2>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>
-                ) =
+                static member Create (selfJoin: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>, borderAlign: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.arc.borderAlign, ChartJs.dist_types.ScriptableContext<'TType>>, borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>, borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>>, borderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.ArcBorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>>, offset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, circular: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>, spacing: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>) : arc<'TType> = nativeOnly
 
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type bar<'TType> =
                 /// <summary>
                 /// The base value for the bar in data units along the value axis.
                 /// </summary>
-                member val ``base`` : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member ``base``: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Skipped (excluded) border: 'start', 'end', 'left',  'right', 'bottom', 'top', 'middle', false (none) or true (all).
                 /// </summary>
-                member val borderSkipped : ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.borderSkipped, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderSkipped: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.borderSkipped, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Border radius
                 /// </summary>
-                member val borderRadius : ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Amount to inflate the rectangle(s). This can be used to hide artifacts between bars.
                 /// Unit is pixels. 'auto' translates to 0.33 pixels when barPercentage * categoryPercentage is 1, else 0.
                 /// </summary>
-                member val inflateAmount : ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.inflateAmount, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member inflateAmount: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.inflateAmount, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Width of the border, number for all sides, object to specify width for each side specifically
                 /// </summary>
-                member val borderWidth : ChartJs.dist_types.ScriptableAndArray<U2<float, ElementOptionsByType.bar.borderWidth.U2.Case2>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val backgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderRadius : ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBackgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type line<'TType>
+                abstract member borderWidth: ChartJs.dist_types.ScriptableAndArray<U2<float, ElementOptionsByType.bar.borderWidth.U2.Case2>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    borderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    capBezierPoints: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    cubicInterpolationMode: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.cubicInterpolationMode, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    tension: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    stepped: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.stepped, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    fill: ChartJs.dist_types.ScriptableAndArray<U2<ChartJs.dist_types.FillTarget, ChartJs.dist_types.ComplexFillTarget>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    spanGaps: ChartJs.dist_types.ScriptableAndArray<U2<float, bool>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    segment: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.segment, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>
-                ) =
+                static member Create (``base``: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderSkipped: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.borderSkipped, ChartJs.dist_types.ScriptableContext<'TType>>, borderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>>, inflateAmount: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.bar.inflateAmount, ChartJs.dist_types.ScriptableContext<'TType>>, borderWidth: ChartJs.dist_types.ScriptableAndArray<U2<float, ElementOptionsByType.bar.borderWidth.U2.Case2_1>, ChartJs.dist_types.ScriptableContext<'TType>>, backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderRadius: ChartJs.dist_types.ScriptableAndArray<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>) : bar<'TType> = nativeOnly
 
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type line<'TType> =
                 /// <summary>
                 /// Line cap style. See MDN.
                 /// </summary>
-                member val borderCapStyle : ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Line dash. See MDN.
                 /// </summary>
-                member val borderDash : ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Line dash offset. See MDN.
                 /// </summary>
-                member val borderDashOffset : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Line join style. See MDN.
                 /// </summary>
-                member val borderJoinStyle : ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// true to keep Bézier control inside the chart, false for no restriction.
                 /// </summary>
-                member val capBezierPoints : ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member capBezierPoints: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Interpolation mode to apply.
                 /// </summary>
-                member val cubicInterpolationMode : ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.cubicInterpolationMode, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member cubicInterpolationMode: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.cubicInterpolationMode, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Bézier curve tension (0 for no Bézier curves).
                 /// </summary>
-                member val tension : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member tension: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// true to show the line as a stepped line (tension will be ignored).
                 /// </summary>
-                member val stepped : ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.stepped, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member stepped: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.stepped, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Both line and radar charts support a fill option on the dataset object which can be used to create area between two datasets or a dataset and a boundary, i.e. the scale origin, start or end
                 /// </summary>
-                member val fill : ChartJs.dist_types.ScriptableAndArray<U2<ChartJs.dist_types.FillTarget, ChartJs.dist_types.ComplexFillTarget>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member fill: ChartJs.dist_types.ScriptableAndArray<U2<ChartJs.dist_types.FillTarget, ChartJs.dist_types.ComplexFillTarget>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line. Can also be a number specifying the maximum gap length to span. The unit of the value depends on the scale used.
                 /// </summary>
-                member val spanGaps : ChartJs.dist_types.ScriptableAndArray<U2<float, bool>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val segment : ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.segment, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val backgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderCapStyle : ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderDash : ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderDashOffset : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderJoinStyle : ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBackgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type point<'TType>
+                abstract member spanGaps: ChartJs.dist_types.ScriptableAndArray<U2<float, bool>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member segment: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.segment, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    radius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hitRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    pointStyle: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types.PointStyle, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    rotation: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    drawActiveElementsOnTop: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>,
-                    hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>
-                ) =
+                static member Create (borderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>>, borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>, borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>>, capBezierPoints: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>, cubicInterpolationMode: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.cubicInterpolationMode, ChartJs.dist_types.ScriptableContext<'TType>>, tension: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, stepped: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.stepped, ChartJs.dist_types.ScriptableContext<'TType>>, fill: ChartJs.dist_types.ScriptableAndArray<U2<ChartJs.dist_types.FillTarget, ChartJs.dist_types.ComplexFillTarget>, ChartJs.dist_types.ScriptableContext<'TType>>, spanGaps: ChartJs.dist_types.ScriptableAndArray<U2<float, bool>, ChartJs.dist_types.ScriptableContext<'TType>>, segment: ChartJs.dist_types.ScriptableAndArray<ElementOptionsByType.line.segment_1, ChartJs.dist_types.ScriptableContext<'TType>>, borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>) : line<'TType> = nativeOnly
 
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type point<'TType> =
                 /// <summary>
                 /// Point radius
                 /// </summary>
-                member val radius : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member radius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Extra radius added to point radius for hit detection.
                 /// </summary>
-                member val hitRadius : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member hitRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Point style
                 /// </summary>
-                member val pointStyle : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types.PointStyle, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member pointStyle: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types.PointStyle, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Point rotation (in degrees).
                 /// </summary>
-                member val rotation : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member rotation: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Draw the active elements over the other elements of the dataset,
                 /// </summary>
-                member val drawActiveElementsOnTop : ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val borderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val backgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member drawActiveElementsOnTop: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
                 /// <summary>
                 /// Point radius when hovered.
                 /// </summary>
-                member val hoverRadius : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderWidth : ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBorderColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
-                member val hoverBackgroundColor : ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> = nativeOnly with get, set
+                abstract member hoverRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                abstract member hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>> with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (radius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hitRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, pointStyle: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types.PointStyle, ChartJs.dist_types.ScriptableContext<'TType>>, rotation: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, drawActiveElementsOnTop: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<'TType>>, borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>, hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<'TType>>) : point<'TType> = nativeOnly
 
             module arc =
 
@@ -17784,21 +16819,25 @@ Chart.unregister($0)"""
 
                     module U2 =
 
-                        [<Global>]
                         [<AllowNullLiteral>]
-                        type Case2
+                        [<Interface>]
+                        type Case2 =
+                            abstract member top: float option with get, set
+                            abstract member right: float option with get, set
+                            abstract member bottom: float option with get, set
+                            abstract member left: float option with get, set
                             [<ParamObject; Emit("$0")>]
-                            (
-                                ?top: float,
-                                ?right: float,
-                                ?bottom: float,
-                                ?left: float
-                            ) =
+                            static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
-                            member val top : float option = nativeOnly with get, set
-                            member val right : float option = nativeOnly with get, set
-                            member val bottom : float option = nativeOnly with get, set
-                            member val left : float option = nativeOnly with get, set
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type Case2_1 =
+                            abstract member top: float option with get, set
+                            abstract member right: float option with get, set
+                            abstract member bottom: float option with get, set
+                            abstract member left: float option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2_1 = nativeOnly
 
             module line =
 
@@ -17816,41 +16855,41 @@ Chart.unregister($0)"""
                     | after
                     | Case1 of bool
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type segment
+                [<Interface>]
+                type segment =
+                    abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                        borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>
-                    ) =
+                    static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment = nativeOnly
 
-                    member val backgroundColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderCapStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderDashOffset : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderJoinStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                    member val borderWidth : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type segment_1 =
+                    abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment_1 = nativeOnly
 
         module BasePlatform =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getMaximumSize_1
+            [<Interface>]
+            type getMaximumSize_1 =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
-
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
+                static member Create (width: float, height: float) : getMaximumSize_1 = nativeOnly
 
         module LttbDecimationOptions =
 
@@ -17881,131 +16920,104 @@ Chart.unregister($0)"""
 
             module Cases =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Case3
+                [<Interface>]
+                type Case3 =
+                    abstract member value: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        value: float
-                    ) =
-
-                    member val value : float = nativeOnly with get, set
+                    static member Create (value: float) : Case3 = nativeOnly
 
         module LegendOptions =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type labels
-                [<ParamObject; Emit("$0")>]
-                (
-                    boxWidth: float,
-                    boxHeight: float,
-                    color: ChartJs.dist_types_color.Color,
-                    font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.labels.font, ChartJs.dist_types.ScriptableChartContext>,
-                    padding: float,
-                    pointStyleWidth: float,
-                    generateLabels: ResizeArray<ChartJs.dist_types.LegendItem>,
-                    filter: bool,
-                    sort: float,
-                    pointStyle: ChartJs.dist_types.PointStyle,
-                    usePointStyle: bool,
-                    useBorderRadius: bool,
-                    borderRadius: float,
-                    ?textAlign: ChartJs.dist_types.TextAlign
-                ) =
-
+            [<Interface>]
+            type labels =
                 /// <summary>
                 /// Width of colored box.
                 /// </summary>
-                member val boxWidth : float = nativeOnly with get, set
+                abstract member boxWidth: float with get, set
                 /// <summary>
                 /// Height of the coloured box.
                 /// </summary>
-                member val boxHeight : float = nativeOnly with get, set
+                abstract member boxHeight: float with get, set
                 /// <summary>
                 /// Color of label
                 /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
+                abstract member color: ChartJs.dist_types_color.Color with get, set
                 /// <summary>
                 /// Font of label
                 /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.labels.font, ChartJs.dist_types.ScriptableChartContext> = nativeOnly with get, set
+                abstract member font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.labels.font, ChartJs.dist_types.ScriptableChartContext> with get, set
                 /// <summary>
                 /// Padding between rows of colored boxes.
                 /// </summary>
-                member val padding : float = nativeOnly with get, set
+                abstract member padding: float with get, set
                 /// <summary>
                 /// If usePointStyle is true, the width of the point style used for the legend.
                 /// </summary>
-                member val pointStyleWidth : float = nativeOnly with get, set
+                abstract member pointStyleWidth: float with get, set
                 /// <summary>
                 /// Generates legend items for each thing in the legend. Default implementation returns the text + styling for the color box. See Legend Item for details.
                 /// </summary>
-                member val generateLabels : ResizeArray<ChartJs.dist_types.LegendItem> = nativeOnly
+                abstract member generateLabels: chart: ChartJs.dist_types.Chart -> ResizeArray<ChartJs.dist_types.LegendItem>
                 /// <summary>
                 /// Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data
                 /// </summary>
-                member val filter : bool = nativeOnly
+                abstract member filter: item: ChartJs.dist_types.LegendItem * data: ChartJs.dist_types.ChartData -> bool
                 /// <summary>
                 /// Sorts the legend items
                 /// </summary>
-                member val sort : float = nativeOnly
+                abstract member sort: a: ChartJs.dist_types.LegendItem * b: ChartJs.dist_types.LegendItem * data: ChartJs.dist_types.ChartData -> float
                 /// <summary>
                 /// Override point style for the legend. Only applies if usePointStyle is true
                 /// </summary>
-                member val pointStyle : ChartJs.dist_types.PointStyle = nativeOnly with get, set
-                /// <summary>
-                /// Label style will match corresponding point style (size is based on the minimum value between boxWidth and font.size).
-                /// </summary>
-                member val usePointStyle : bool = nativeOnly with get, set
-                /// <summary>
-                /// Label borderRadius will match corresponding borderRadius.
-                /// </summary>
-                member val useBorderRadius : bool = nativeOnly with get, set
-                /// <summary>
-                /// Override the borderRadius to use.
-                /// </summary>
-                member val borderRadius : float = nativeOnly with get, set
+                abstract member pointStyle: ChartJs.dist_types.PointStyle with get, set
                 /// <summary>
                 /// Text alignment
                 /// </summary>
-                member val textAlign : ChartJs.dist_types.TextAlign option = nativeOnly with get, set
+                abstract member textAlign: ChartJs.dist_types.TextAlign option with get, set
+                /// <summary>
+                /// Label style will match corresponding point style (size is based on the minimum value between boxWidth and font.size).
+                /// </summary>
+                abstract member usePointStyle: bool with get, set
+                /// <summary>
+                /// Label borderRadius will match corresponding borderRadius.
+                /// </summary>
+                abstract member useBorderRadius: bool with get, set
+                /// <summary>
+                /// Override the borderRadius to use.
+                /// </summary>
+                abstract member borderRadius: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (boxWidth: float, boxHeight: float, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.labels.font, ChartJs.dist_types.ScriptableChartContext>, padding: float, pointStyleWidth: float, generateLabels: ResizeArray<ChartJs.dist_types.LegendItem>, filter: bool, sort: float, pointStyle: ChartJs.dist_types.PointStyle, usePointStyle: bool, useBorderRadius: bool, borderRadius: float, ?textAlign: ChartJs.dist_types.TextAlign) : labels = nativeOnly
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type title
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext>, position: LegendOptions.title.position, text: string) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext>, position: LegendOptions.title.position, text: string, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext>, position: LegendOptions.title.position, text: string, padding: ChartJs.dist_types_geometric.ChartArea) =
-                    title()
-
+            [<Interface>]
+            type title =
                 /// <summary>
                 /// Is the legend title displayed.
                 /// </summary>
-                member val display : bool = nativeOnly with get, set
+                abstract member display: bool with get, set
                 /// <summary>
                 /// Color of title
                 /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
+                abstract member color: ChartJs.dist_types_color.Color with get, set
                 /// <summary>
                 /// see Fonts
                 /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext> = nativeOnly with get, set
-                member val position : LegendOptions.title.position = nativeOnly with get, set
+                abstract member font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext> with get, set
+                abstract member position: LegendOptions.title.position with get, set
+                abstract member padding: U2<float, ChartJs.dist_types_geometric.ChartArea> option with get, set
                 /// <summary>
                 /// The string title.
                 /// </summary>
-                member val text : string = nativeOnly with get, set
-                member val padding : U2<float, ChartJs.dist_types_geometric.ChartArea> option = nativeOnly with get, set
+                abstract member text: string with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext>, position: LegendOptions.title.position, text: string) : title = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext>, position: LegendOptions.title.position, text: string, padding: float) : title = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LegendOptions.title.font, ChartJs.dist_types.ScriptableChartContext>, position: LegendOptions.title.position, text: string, padding: ChartJs.dist_types_geometric.ChartArea) : title = nativeOnly
 
             module labels =
 
@@ -18170,45 +17182,32 @@ Chart.unregister($0)"""
 
                 module U2 =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case2
+                    [<Interface>]
+                    type Case2 =
+                        abstract member top: float with get, set
+                        abstract member bottom: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            top: float,
-                            bottom: float
-                        ) =
-
-                        member val top : float = nativeOnly with get, set
-                        member val bottom : float = nativeOnly with get, set
+                        static member Create (top: float, bottom: float) : Case2 = nativeOnly
 
         module TooltipModel =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type body
+            [<Interface>]
+            type body =
+                abstract member before: ResizeArray<string> with get, set
+                abstract member lines: ResizeArray<string> with get, set
+                abstract member after: ResizeArray<string> with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    before: ResizeArray<string>,
-                    lines: ResizeArray<string>,
-                    after: ResizeArray<string>
-                ) =
+                static member Create (before: ResizeArray<string>, lines: ResizeArray<string>, after: ResizeArray<string>) : body = nativeOnly
 
-                member val before : ResizeArray<string> = nativeOnly with get, set
-                member val lines : ResizeArray<string> = nativeOnly with get, set
-                member val after : ResizeArray<string> = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type labelPointStyles
+            [<Interface>]
+            type labelPointStyles =
+                abstract member pointStyle: ChartJs.dist_types.PointStyle with get, set
+                abstract member rotation: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    pointStyle: ChartJs.dist_types.PointStyle,
-                    rotation: float
-                ) =
-
-                member val pointStyle : ChartJs.dist_types.PointStyle = nativeOnly with get, set
-                member val rotation : float = nativeOnly with get, set
+                static member Create (pointStyle: ChartJs.dist_types.PointStyle, rotation: float) : labelPointStyles = nativeOnly
 
         module TooltipDatasetCallbacks =
 
@@ -18216,17 +17215,13 @@ Chart.unregister($0)"""
 
                 module U2 =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case1
+                    [<Interface>]
+                    type Case1 =
+                        abstract member pointStyle: ChartJs.dist_types.PointStyle with get, set
+                        abstract member rotation: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            pointStyle: ChartJs.dist_types.PointStyle,
-                            rotation: float
-                        ) =
-
-                        member val pointStyle : ChartJs.dist_types.PointStyle = nativeOnly with get, set
-                        member val rotation : float = nativeOnly with get, set
+                        static member Create (pointStyle: ChartJs.dist_types.PointStyle, rotation: float) : Case1 = nativeOnly
 
         module TooltipCallbacks =
 
@@ -18234,45 +17229,34 @@ Chart.unregister($0)"""
 
                 module U2 =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case1
+                    [<Interface>]
+                    type Case1 =
+                        abstract member pointStyle: ChartJs.dist_types.PointStyle with get, set
+                        abstract member rotation: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            pointStyle: ChartJs.dist_types.PointStyle,
-                            rotation: float
-                        ) =
-
-                        member val pointStyle : ChartJs.dist_types.PointStyle = nativeOnly with get, set
-                        member val rotation : float = nativeOnly with get, set
+                        static member Create (pointStyle: ChartJs.dist_types.PointStyle, rotation: float) : Case1 = nativeOnly
 
         module ExtendedPlugin =
 
             module beforeTooltipDraw =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args<'Model>
+                [<Interface>]
+                type args<'Model> =
+                    abstract member tooltip: 'Model with get, set
+                    abstract member cancelable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        tooltip: 'Model,
-                        cancelable: bool
-                    ) =
-
-                    member val tooltip : 'Model = nativeOnly with get, set
-                    member val cancelable : bool = nativeOnly with get, set
+                    static member Create (tooltip: 'Model, cancelable: bool) : args<'Model> = nativeOnly
 
             module afterTooltipDraw =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args<'Model>
+                [<Interface>]
+                type args<'Model> =
+                    abstract member tooltip: 'Model with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        tooltip: 'Model
-                    ) =
-
-                    member val tooltip : 'Model = nativeOnly with get, set
+                    static member Create (tooltip: 'Model) : args<'Model> = nativeOnly
 
         module TooltipOptions =
 
@@ -18356,17 +17340,13 @@ Chart.unregister($0)"""
 
             module external =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type args<'TType>
+                [<Interface>]
+                type args<'TType> =
+                    abstract member chart: ChartJs.dist_types.Chart with get, set
+                    abstract member tooltip: ChartJs.dist_types.TooltipModel<'TType> with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        chart: ChartJs.dist_types.Chart,
-                        tooltip: ChartJs.dist_types.TooltipModel<'TType>
-                    ) =
-
-                    member val chart : ChartJs.dist_types.Chart = nativeOnly with get, set
-                    member val tooltip : ChartJs.dist_types.TooltipModel<'TType> = nativeOnly with get, set
+                    static member Create (chart: ChartJs.dist_types.Chart, tooltip: ChartJs.dist_types.TooltipModel<'TType>) : args<'TType> = nativeOnly
 
             module titleFont =
 
@@ -18438,33 +17418,27 @@ Chart.unregister($0)"""
 
                 module U2 =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case1<'TType>
-                        [<ParamObject; Emit("$0")>]
-                        (
-                            ?duration: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                            ?easing: ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>>,
-                            ?delay: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>,
-                            ?loop: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>>
-                        ) =
-
+                    [<Interface>]
+                    type Case1<'TType> =
                         /// <summary>
                         /// The number of milliseconds an animation takes.
                         /// </summary>
-                        member val duration : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                        abstract member duration: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
                         /// <summary>
                         /// Easing function to use
                         /// </summary>
-                        member val easing : ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                        abstract member easing: ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
                         /// <summary>
                         /// Delay before starting the animations.
                         /// </summary>
-                        member val delay : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                        abstract member delay: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
                         /// <summary>
                         /// If set to true, the animations loop endlessly.
                         /// </summary>
-                        member val loop : ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>> option = nativeOnly with get, set
+                        abstract member loop: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>> option with get, set
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (?duration: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>, ?easing: ChartJs.dist_types.Scriptable<obj, ChartJs.dist_types.ScriptableContext<'TType>>, ?delay: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<'TType>>, ?loop: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<'TType>>) : Case1<'TType> = nativeOnly
 
         module TickOptions =
 
@@ -18495,18 +17469,15 @@ Chart.unregister($0)"""
                 /// </summary>
                 abstract member lineHeight: U2<float, string> option with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type major
-                [<ParamObject; Emit("$0")>]
-                (
-                    enabled: bool
-                ) =
-
+            [<Interface>]
+            type major =
                 /// <summary>
                 /// If true, major ticks are generated. A major tick will affect autoskipping and major will be defined on ticks in the scriptable options context.
                 /// </summary>
-                member val enabled : bool = nativeOnly with get, set
+                abstract member enabled: bool with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (enabled: bool) : major = nativeOnly
 
             module font =
 
@@ -18558,19 +17529,6 @@ Chart.unregister($0)"""
                 /// Height of an individual line of text (see MDN).
                 /// </summary>
                 abstract member lineHeight: U2<float, string> option with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type major
-                [<ParamObject; Emit("$0")>]
-                (
-                    enabled: bool
-                ) =
-
-                /// <summary>
-                /// If true, major ticks are generated. A major tick will affect autoskipping and major will be defined on ticks in the scriptable options context.
-                /// </summary>
-                member val enabled : bool = nativeOnly with get, set
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -18662,51 +17620,41 @@ Chart.unregister($0)"""
                 abstract member offset: bool option with get, set
                 abstract member z: float option with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type title
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: CartesianScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: CartesianScaleOptions.title.padding.U2.Case2) =
-                    title()
-
+            [<Interface>]
+            type title =
                 /// <summary>
                 /// If true, displays the axis title.
                 /// </summary>
-                member val display : bool = nativeOnly with get, set
+                abstract member display: bool with get, set
                 /// <summary>
                 /// Alignment of the axis title.
                 /// </summary>
-                member val align : ChartJs.dist_types.Align = nativeOnly with get, set
+                abstract member align: ChartJs.dist_types.Align with get, set
                 /// <summary>
                 /// The text for the title, e.g. "# of People" or "Response Choices".
                 /// </summary>
-                member val text : U2<string, ResizeArray<string>> = nativeOnly with get, set
+                abstract member text: U2<string, ResizeArray<string>> with get, set
                 /// <summary>
                 /// Color of the axis label.
                 /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
+                abstract member color: ChartJs.dist_types_color.Color with get, set
                 /// <summary>
                 /// Information about the axis title font.
                 /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext> = nativeOnly with get, set
+                abstract member font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext> with get, set
                 /// <summary>
                 /// Padding to apply around scale labels.
                 /// </summary>
-                member val padding : U2<float, CartesianScaleOptions.title.padding.U2.Case2> = nativeOnly with get, set
+                abstract member padding: U2<float, CartesianScaleOptions.title.padding.U2.Case2> with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) : title = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: CartesianScaleOptions.title.padding.U2.Case2) : title = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) : title = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CartesianScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: CartesianScaleOptions.title.padding.U2.Case2) : title = nativeOnly
 
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
@@ -18776,28 +17724,23 @@ Chart.unregister($0)"""
 
                     module U2 =
 
-                        [<Global>]
                         [<AllowNullLiteral>]
-                        type Case2
-                            [<ParamObject; Emit("$0")>]
-                            (
-                                top: float,
-                                bottom: float,
-                                y: float
-                            ) =
-
+                        [<Interface>]
+                        type Case2 =
                             /// <summary>
                             /// Padding on the (relative) top side of this axis label.
                             /// </summary>
-                            member val top : float = nativeOnly with get, set
+                            abstract member top: float with get, set
                             /// <summary>
                             /// Padding on the (relative) bottom side of this axis label.
                             /// </summary>
-                            member val bottom : float = nativeOnly with get, set
+                            abstract member bottom: float with get, set
                             /// <summary>
                             /// This is a shorthand for defining top/bottom to the same values.
                             /// </summary>
-                            member val y : float = nativeOnly with get, set
+                            abstract member y: float with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (top: float, bottom: float, y: float) : Case2 = nativeOnly
 
         module CategoryScaleOptions =
 
@@ -18815,7 +17758,7 @@ Chart.unregister($0)"""
                 | right
                 | bottom
                 | center
-                | Case1 of CategoryScaleOptions.position.Cases.Case1
+                | Case1 of CartesianScaleOptions.position.Cases.Case1
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -18841,52 +17784,6 @@ Chart.unregister($0)"""
                 abstract member offset: bool option with get, set
                 abstract member z: float option with get, set
 
-            [<Global>]
-            [<AllowNullLiteral>]
-            type title
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CategoryScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CategoryScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: CategoryScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CategoryScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<CategoryScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: CategoryScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                /// <summary>
-                /// If true, displays the axis title.
-                /// </summary>
-                member val display : bool = nativeOnly with get, set
-                /// <summary>
-                /// Alignment of the axis title.
-                /// </summary>
-                member val align : ChartJs.dist_types.Align = nativeOnly with get, set
-                /// <summary>
-                /// The text for the title, e.g. "# of People" or "Response Choices".
-                /// </summary>
-                member val text : U2<string, ResizeArray<string>> = nativeOnly with get, set
-                /// <summary>
-                /// Color of the axis label.
-                /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
-                /// <summary>
-                /// Information about the axis title font.
-                /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<CategoryScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext> = nativeOnly with get, set
-                /// <summary>
-                /// Padding to apply around scale labels.
-                /// </summary>
-                member val padding : U2<float, CategoryScaleOptions.title.padding.U2.Case2> = nativeOnly with get, set
-
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
             type stacked =
@@ -18898,91 +17795,6 @@ Chart.unregister($0)"""
             type display =
                 | auto
                 | Case1 of bool
-
-            module position =
-
-                module Cases =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: scale: string -> float with get, set
-
-            module title =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type font =
-                    /// <summary>
-                    /// Default font family for all text, follows CSS font-family options.
-                    /// </summary>
-                    abstract member family: string option with get, set
-                    /// <summary>
-                    /// Default font size (in px) for text. Does not apply to radialLinear scale point labels.
-                    /// </summary>
-                    abstract member size: float option with get, set
-                    /// <summary>
-                    /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
-                    /// </summary>
-                    abstract member style: CategoryScaleOptions.title.font.Partial.style option with get, set
-                    /// <summary>
-                    /// Default font weight (boldness). (see MDN).
-                    /// </summary>
-                    abstract member weight: CategoryScaleOptions.title.font.Partial.weight option with get, set
-                    /// <summary>
-                    /// Height of an individual line of text (see MDN).
-                    /// </summary>
-                    abstract member lineHeight: U2<float, string> option with get, set
-
-                module font =
-
-                    module Partial =
-
-                        [<RequireQualifiedAccess>]
-                        [<StringEnum(CaseRules.None)>]
-                        type style =
-                            | normal
-                            | italic
-                            | oblique
-                            | initial
-                            | ``inherit``
-
-                        [<RequireQualifiedAccess>]
-                        [<Erase(CaseRules.None)>]
-                        type weight =
-                            | normal
-                            | bold
-                            | lighter
-                            | bolder
-                            | Case1 of float
-
-                module padding =
-
-                    module U2 =
-
-                        [<Global>]
-                        [<AllowNullLiteral>]
-                        type Case2
-                            [<ParamObject; Emit("$0")>]
-                            (
-                                top: float,
-                                bottom: float,
-                                y: float
-                            ) =
-
-                            /// <summary>
-                            /// Padding on the (relative) top side of this axis label.
-                            /// </summary>
-                            member val top : float = nativeOnly with get, set
-                            /// <summary>
-                            /// Padding on the (relative) bottom side of this axis label.
-                            /// </summary>
-                            member val bottom : float = nativeOnly with get, set
-                            /// <summary>
-                            /// This is a shorthand for defining top/bottom to the same values.
-                            /// </summary>
-                            member val y : float = nativeOnly with get, set
 
         module LinearScaleOptions =
 
@@ -19000,7 +17812,7 @@ Chart.unregister($0)"""
                 | right
                 | bottom
                 | center
-                | Case1 of LinearScaleOptions.position.Cases.Case1
+                | Case1 of CartesianScaleOptions.position.Cases.Case1
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -19026,52 +17838,6 @@ Chart.unregister($0)"""
                 abstract member offset: bool option with get, set
                 abstract member z: float option with get, set
 
-            [<Global>]
-            [<AllowNullLiteral>]
-            type title
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LinearScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LinearScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: LinearScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LinearScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LinearScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: LinearScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                /// <summary>
-                /// If true, displays the axis title.
-                /// </summary>
-                member val display : bool = nativeOnly with get, set
-                /// <summary>
-                /// Alignment of the axis title.
-                /// </summary>
-                member val align : ChartJs.dist_types.Align = nativeOnly with get, set
-                /// <summary>
-                /// The text for the title, e.g. "# of People" or "Response Choices".
-                /// </summary>
-                member val text : U2<string, ResizeArray<string>> = nativeOnly with get, set
-                /// <summary>
-                /// Color of the axis label.
-                /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
-                /// <summary>
-                /// Information about the axis title font.
-                /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<LinearScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext> = nativeOnly with get, set
-                /// <summary>
-                /// Padding to apply around scale labels.
-                /// </summary>
-                member val padding : U2<float, LinearScaleOptions.title.padding.U2.Case2> = nativeOnly with get, set
-
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
             type stacked =
@@ -19083,91 +17849,6 @@ Chart.unregister($0)"""
             type display =
                 | auto
                 | Case1 of bool
-
-            module position =
-
-                module Cases =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: scale: string -> float with get, set
-
-            module title =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type font =
-                    /// <summary>
-                    /// Default font family for all text, follows CSS font-family options.
-                    /// </summary>
-                    abstract member family: string option with get, set
-                    /// <summary>
-                    /// Default font size (in px) for text. Does not apply to radialLinear scale point labels.
-                    /// </summary>
-                    abstract member size: float option with get, set
-                    /// <summary>
-                    /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
-                    /// </summary>
-                    abstract member style: LinearScaleOptions.title.font.Partial.style option with get, set
-                    /// <summary>
-                    /// Default font weight (boldness). (see MDN).
-                    /// </summary>
-                    abstract member weight: LinearScaleOptions.title.font.Partial.weight option with get, set
-                    /// <summary>
-                    /// Height of an individual line of text (see MDN).
-                    /// </summary>
-                    abstract member lineHeight: U2<float, string> option with get, set
-
-                module font =
-
-                    module Partial =
-
-                        [<RequireQualifiedAccess>]
-                        [<StringEnum(CaseRules.None)>]
-                        type style =
-                            | normal
-                            | italic
-                            | oblique
-                            | initial
-                            | ``inherit``
-
-                        [<RequireQualifiedAccess>]
-                        [<Erase(CaseRules.None)>]
-                        type weight =
-                            | normal
-                            | bold
-                            | lighter
-                            | bolder
-                            | Case1 of float
-
-                module padding =
-
-                    module U2 =
-
-                        [<Global>]
-                        [<AllowNullLiteral>]
-                        type Case2
-                            [<ParamObject; Emit("$0")>]
-                            (
-                                top: float,
-                                bottom: float,
-                                y: float
-                            ) =
-
-                            /// <summary>
-                            /// Padding on the (relative) top side of this axis label.
-                            /// </summary>
-                            member val top : float = nativeOnly with get, set
-                            /// <summary>
-                            /// Padding on the (relative) bottom side of this axis label.
-                            /// </summary>
-                            member val bottom : float = nativeOnly with get, set
-                            /// <summary>
-                            /// This is a shorthand for defining top/bottom to the same values.
-                            /// </summary>
-                            member val y : float = nativeOnly with get, set
 
         module LogarithmicScaleOptions =
 
@@ -19185,7 +17866,7 @@ Chart.unregister($0)"""
                 | right
                 | bottom
                 | center
-                | Case1 of LogarithmicScaleOptions.position.Cases.Case1
+                | Case1 of CartesianScaleOptions.position.Cases.Case1
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -19211,52 +17892,6 @@ Chart.unregister($0)"""
                 abstract member offset: bool option with get, set
                 abstract member z: float option with get, set
 
-            [<Global>]
-            [<AllowNullLiteral>]
-            type title
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LogarithmicScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LogarithmicScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: LogarithmicScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LogarithmicScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<LogarithmicScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: LogarithmicScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                /// <summary>
-                /// If true, displays the axis title.
-                /// </summary>
-                member val display : bool = nativeOnly with get, set
-                /// <summary>
-                /// Alignment of the axis title.
-                /// </summary>
-                member val align : ChartJs.dist_types.Align = nativeOnly with get, set
-                /// <summary>
-                /// The text for the title, e.g. "# of People" or "Response Choices".
-                /// </summary>
-                member val text : U2<string, ResizeArray<string>> = nativeOnly with get, set
-                /// <summary>
-                /// Color of the axis label.
-                /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
-                /// <summary>
-                /// Information about the axis title font.
-                /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<LogarithmicScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext> = nativeOnly with get, set
-                /// <summary>
-                /// Padding to apply around scale labels.
-                /// </summary>
-                member val padding : U2<float, LogarithmicScaleOptions.title.padding.U2.Case2> = nativeOnly with get, set
-
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
             type stacked =
@@ -19269,98 +17904,41 @@ Chart.unregister($0)"""
                 | auto
                 | Case1 of bool
 
-            module position =
-
-                module Cases =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: scale: string -> float with get, set
-
-            module title =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type font =
-                    /// <summary>
-                    /// Default font family for all text, follows CSS font-family options.
-                    /// </summary>
-                    abstract member family: string option with get, set
-                    /// <summary>
-                    /// Default font size (in px) for text. Does not apply to radialLinear scale point labels.
-                    /// </summary>
-                    abstract member size: float option with get, set
-                    /// <summary>
-                    /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
-                    /// </summary>
-                    abstract member style: LogarithmicScaleOptions.title.font.Partial.style option with get, set
-                    /// <summary>
-                    /// Default font weight (boldness). (see MDN).
-                    /// </summary>
-                    abstract member weight: LogarithmicScaleOptions.title.font.Partial.weight option with get, set
-                    /// <summary>
-                    /// Height of an individual line of text (see MDN).
-                    /// </summary>
-                    abstract member lineHeight: U2<float, string> option with get, set
-
-                module font =
-
-                    module Partial =
-
-                        [<RequireQualifiedAccess>]
-                        [<StringEnum(CaseRules.None)>]
-                        type style =
-                            | normal
-                            | italic
-                            | oblique
-                            | initial
-                            | ``inherit``
-
-                        [<RequireQualifiedAccess>]
-                        [<Erase(CaseRules.None)>]
-                        type weight =
-                            | normal
-                            | bold
-                            | lighter
-                            | bolder
-                            | Case1 of float
-
-                module padding =
-
-                    module U2 =
-
-                        [<Global>]
-                        [<AllowNullLiteral>]
-                        type Case2
-                            [<ParamObject; Emit("$0")>]
-                            (
-                                top: float,
-                                bottom: float,
-                                y: float
-                            ) =
-
-                            /// <summary>
-                            /// Padding on the (relative) top side of this axis label.
-                            /// </summary>
-                            member val top : float = nativeOnly with get, set
-                            /// <summary>
-                            /// Padding on the (relative) bottom side of this axis label.
-                            /// </summary>
-                            member val bottom : float = nativeOnly with get, set
-                            /// <summary>
-                            /// This is a shorthand for defining top/bottom to the same values.
-                            /// </summary>
-                            member val y : float = nativeOnly with get, set
-
         module TimeScaleTimeOptions =
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type round =
+                | [<CompiledValue(false)>] False
+                | millisecond
+                | second
+                | minute
+                | hour
+                | day
+                | week
+                | month
+                | quarter
+                | year
 
             [<AllowNullLiteral>]
             [<Interface>]
             type displayFormats =
                 [<EmitIndexer>]
                 abstract member Item: key: string -> string with get, set
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type unit =
+                | [<CompiledValue(false)>] False
+                | millisecond
+                | second
+                | minute
+                | hour
+                | day
+                | week
+                | month
+                | quarter
+                | year
 
         module TimeScaleTickOptions =
 
@@ -19387,7 +17965,7 @@ Chart.unregister($0)"""
                 | right
                 | bottom
                 | center
-                | Case1 of TimeScaleOptions.position.Cases.Case1
+                | Case1 of CartesianScaleOptions.position.Cases.Case1
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -19413,52 +17991,6 @@ Chart.unregister($0)"""
                 abstract member offset: bool option with get, set
                 abstract member z: float option with get, set
 
-            [<Global>]
-            [<AllowNullLiteral>]
-            type title
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<TimeScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: string, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<TimeScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: TimeScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<TimeScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: float) =
-                    title()
-
-                [<ParamObject; Emit("$0")>]
-                new (display: bool, align: ChartJs.dist_types.Align, text: ResizeArray<string>, color: ChartJs.dist_types_color.Color, font: ChartJs.dist_types.ScriptableAndScriptableOptions<TimeScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext>, padding: TimeScaleOptions.title.padding.U2.Case2) =
-                    title()
-
-                /// <summary>
-                /// If true, displays the axis title.
-                /// </summary>
-                member val display : bool = nativeOnly with get, set
-                /// <summary>
-                /// Alignment of the axis title.
-                /// </summary>
-                member val align : ChartJs.dist_types.Align = nativeOnly with get, set
-                /// <summary>
-                /// The text for the title, e.g. "# of People" or "Response Choices".
-                /// </summary>
-                member val text : U2<string, ResizeArray<string>> = nativeOnly with get, set
-                /// <summary>
-                /// Color of the axis label.
-                /// </summary>
-                member val color : ChartJs.dist_types_color.Color = nativeOnly with get, set
-                /// <summary>
-                /// Information about the axis title font.
-                /// </summary>
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<TimeScaleOptions.title.font, ChartJs.dist_types.ScriptableCartesianScaleContext> = nativeOnly with get, set
-                /// <summary>
-                /// Padding to apply around scale labels.
-                /// </summary>
-                member val padding : U2<float, TimeScaleOptions.title.padding.U2.Case2> = nativeOnly with get, set
-
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
             type stacked =
@@ -19471,100 +18003,12 @@ Chart.unregister($0)"""
                 | auto
                 | Case1 of bool
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type adapters
+            [<Interface>]
+            type adapters =
+                abstract member date: obj with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    date: obj
-                ) =
-
-                member val date : obj = nativeOnly with get, set
-
-            module position =
-
-                module Cases =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: scale: string -> float with get, set
-
-            module title =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type font =
-                    /// <summary>
-                    /// Default font family for all text, follows CSS font-family options.
-                    /// </summary>
-                    abstract member family: string option with get, set
-                    /// <summary>
-                    /// Default font size (in px) for text. Does not apply to radialLinear scale point labels.
-                    /// </summary>
-                    abstract member size: float option with get, set
-                    /// <summary>
-                    /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
-                    /// </summary>
-                    abstract member style: TimeScaleOptions.title.font.Partial.style option with get, set
-                    /// <summary>
-                    /// Default font weight (boldness). (see MDN).
-                    /// </summary>
-                    abstract member weight: TimeScaleOptions.title.font.Partial.weight option with get, set
-                    /// <summary>
-                    /// Height of an individual line of text (see MDN).
-                    /// </summary>
-                    abstract member lineHeight: U2<float, string> option with get, set
-
-                module font =
-
-                    module Partial =
-
-                        [<RequireQualifiedAccess>]
-                        [<StringEnum(CaseRules.None)>]
-                        type style =
-                            | normal
-                            | italic
-                            | oblique
-                            | initial
-                            | ``inherit``
-
-                        [<RequireQualifiedAccess>]
-                        [<Erase(CaseRules.None)>]
-                        type weight =
-                            | normal
-                            | bold
-                            | lighter
-                            | bolder
-                            | Case1 of float
-
-                module padding =
-
-                    module U2 =
-
-                        [<Global>]
-                        [<AllowNullLiteral>]
-                        type Case2
-                            [<ParamObject; Emit("$0")>]
-                            (
-                                top: float,
-                                bottom: float,
-                                y: float
-                            ) =
-
-                            /// <summary>
-                            /// Padding on the (relative) top side of this axis label.
-                            /// </summary>
-                            member val top : float = nativeOnly with get, set
-                            /// <summary>
-                            /// Padding on the (relative) bottom side of this axis label.
-                            /// </summary>
-                            member val bottom : float = nativeOnly with get, set
-                            /// <summary>
-                            /// This is a shorthand for defining top/bottom to the same values.
-                            /// </summary>
-                            member val y : float = nativeOnly with get, set
+                static member Create (date: obj) : adapters = nativeOnly
 
         module RadialTickOptions =
 
@@ -19594,19 +18038,6 @@ Chart.unregister($0)"""
                 /// Height of an individual line of text (see MDN).
                 /// </summary>
                 abstract member lineHeight: U2<float, string> option with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type major
-                [<ParamObject; Emit("$0")>]
-                (
-                    enabled: bool
-                ) =
-
-                /// <summary>
-                /// If true, major ticks are generated. A major tick will affect autoskipping and major will be defined on ticks in the scriptable options context.
-                /// </summary>
-                member val enabled : bool = nativeOnly with get, set
 
             module font =
 
@@ -19638,38 +18069,31 @@ Chart.unregister($0)"""
                 | auto
                 | Case1 of bool
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type angleLines
-                [<ParamObject; Emit("$0")>]
-                (
-                    display: bool,
-                    color: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScaleContext>,
-                    lineWidth: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext>,
-                    borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float>, ChartJs.dist_types.ScriptableScaleContext>,
-                    borderDashOffset: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext>
-                ) =
-
+            [<Interface>]
+            type angleLines =
                 /// <summary>
                 /// if true, angle lines are shown.
                 /// </summary>
-                member val display : bool = nativeOnly with get, set
+                abstract member display: bool with get, set
                 /// <summary>
                 /// Color of angled lines.
                 /// </summary>
-                member val color : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScaleContext> = nativeOnly with get, set
+                abstract member color: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScaleContext> with get, set
                 /// <summary>
                 /// Width of angled lines.
                 /// </summary>
-                member val lineWidth : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext> = nativeOnly with get, set
+                abstract member lineWidth: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext> with get, set
                 /// <summary>
                 /// Length and spacing of dashes on angled lines. See MDN.
                 /// </summary>
-                member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float>, ChartJs.dist_types.ScriptableScaleContext> = nativeOnly with get, set
+                abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float>, ChartJs.dist_types.ScriptableScaleContext> with get, set
                 /// <summary>
                 /// Offset for line dashes. See MDN.
                 /// </summary>
-                member val borderDashOffset : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext> = nativeOnly with get, set
+                abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext> with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (display: bool, color: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScaleContext>, lineWidth: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float>, ChartJs.dist_types.ScriptableScaleContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScaleContext>) : angleLines = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -19688,55 +18112,44 @@ Chart.unregister($0)"""
                 abstract member offset: bool option with get, set
                 abstract member z: float option with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type pointLabels
-                [<ParamObject; Emit("$0")>]
-                (
-                    backdropColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext>,
-                    backdropPadding: ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types_geometric.ChartArea>, ChartJs.dist_types.ScriptableScalePointLabelContext>,
-                    borderRadius: ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableScalePointLabelContext>,
-                    display: RadialLinearScaleOptions.pointLabels.display,
-                    color: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext>,
-                    font: ChartJs.dist_types.ScriptableAndScriptableOptions<RadialLinearScaleOptions.pointLabels.font, ChartJs.dist_types.ScriptableScalePointLabelContext>,
-                    callback: RadialLinearScaleOptions.pointLabels.callback,
-                    padding: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScalePointLabelContext>,
-                    centerPointLabels: bool
-                ) =
-
+            [<Interface>]
+            type pointLabels =
                 /// <summary>
                 /// Background color of the point label.
                 /// </summary>
-                member val backdropColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext> = nativeOnly with get, set
+                abstract member backdropColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext> with get, set
                 /// <summary>
                 /// Padding of label backdrop.
                 /// </summary>
-                member val backdropPadding : ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types_geometric.ChartArea>, ChartJs.dist_types.ScriptableScalePointLabelContext> = nativeOnly with get, set
+                abstract member backdropPadding: ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types_geometric.ChartArea>, ChartJs.dist_types.ScriptableScalePointLabelContext> with get, set
                 /// <summary>
                 /// Border radius
                 /// </summary>
-                member val borderRadius : ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableScalePointLabelContext> = nativeOnly with get, set
+                abstract member borderRadius: ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableScalePointLabelContext> with get, set
                 /// <summary>
                 /// if true, point labels are shown. When <c>display: 'auto'</c>, the label is hidden if it overlaps with another label.
                 /// </summary>
-                member val display : RadialLinearScaleOptions.pointLabels.display = nativeOnly with get, set
+                abstract member display: RadialLinearScaleOptions.pointLabels.display with get, set
                 /// <summary>
                 /// Color of label
                 /// </summary>
-                member val color : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext> = nativeOnly with get, set
-                member val font : ChartJs.dist_types.ScriptableAndScriptableOptions<RadialLinearScaleOptions.pointLabels.font, ChartJs.dist_types.ScriptableScalePointLabelContext> = nativeOnly with get, set
+                abstract member color: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext> with get, set
+                abstract member font: ChartJs.dist_types.ScriptableAndScriptableOptions<RadialLinearScaleOptions.pointLabels.font, ChartJs.dist_types.ScriptableScalePointLabelContext> with get, set
                 /// <summary>
                 /// Callback function to transform data labels to point labels. The default implementation simply returns the current string.
                 /// </summary>
-                member val callback : RadialLinearScaleOptions.pointLabels.callback = nativeOnly with get, set
+                abstract member callback: RadialLinearScaleOptions.pointLabels.callback with get, set
                 /// <summary>
                 /// Padding around the pointLabels
                 /// </summary>
-                member val padding : ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScalePointLabelContext> = nativeOnly with get, set
+                abstract member padding: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScalePointLabelContext> with get, set
                 /// <summary>
                 /// if true, point labels are centered.
                 /// </summary>
-                member val centerPointLabels : bool = nativeOnly with get, set
+                abstract member centerPointLabels: bool with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (backdropColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext>, backdropPadding: ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types_geometric.ChartArea>, ChartJs.dist_types.ScriptableScalePointLabelContext>, borderRadius: ChartJs.dist_types.Scriptable<U2<float, ChartJs.dist_types.BorderRadius>, ChartJs.dist_types.ScriptableScalePointLabelContext>, display: RadialLinearScaleOptions.pointLabels.display, color: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableScalePointLabelContext>, font: ChartJs.dist_types.ScriptableAndScriptableOptions<RadialLinearScaleOptions.pointLabels.font, ChartJs.dist_types.ScriptableScalePointLabelContext>, callback: RadialLinearScaleOptions.pointLabels.callback, padding: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableScalePointLabelContext>, centerPointLabels: bool) : pointLabels = nativeOnly
 
             module pointLabels =
 
@@ -19797,111 +18210,78 @@ Chart.unregister($0)"""
 
         module RadialLinearScale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getPointPosition_1
+            [<Interface>]
+            type getPointPosition_1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member angle: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    angle: float
-                ) =
+                static member Create (x: float, y: float, angle: float) : getPointPosition_1 = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val angle : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getPointPositionForValue_1
+            [<Interface>]
+            type getPointPositionForValue_1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member angle: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    angle: float
-                ) =
+                static member Create (x: float, y: float, angle: float) : getPointPositionForValue_1 = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val angle : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getBasePosition_1
+            [<Interface>]
+            type getBasePosition_1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member angle: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    angle: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val angle : float = nativeOnly with get, set
+                static member Create (x: float, y: float, angle: float) : getBasePosition_1 = nativeOnly
 
         module CartesianScaleTypeRegistry =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type linear
+            [<Interface>]
+            type linear =
+                abstract member options: ChartJs.dist_types.LinearScaleOptions with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    options: ChartJs.dist_types.LinearScaleOptions
-                ) =
+                static member Create (options: ChartJs.dist_types.LinearScaleOptions) : linear = nativeOnly
 
-                member val options : ChartJs.dist_types.LinearScaleOptions = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type logarithmic
+            [<Interface>]
+            type logarithmic =
+                abstract member options: ChartJs.dist_types.LogarithmicScaleOptions with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    options: ChartJs.dist_types.LogarithmicScaleOptions
-                ) =
+                static member Create (options: ChartJs.dist_types.LogarithmicScaleOptions) : logarithmic = nativeOnly
 
-                member val options : ChartJs.dist_types.LogarithmicScaleOptions = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type category
+            [<Interface>]
+            type category =
+                abstract member options: ChartJs.dist_types.CategoryScaleOptions with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    options: ChartJs.dist_types.CategoryScaleOptions
-                ) =
+                static member Create (options: ChartJs.dist_types.CategoryScaleOptions) : category = nativeOnly
 
-                member val options : ChartJs.dist_types.CategoryScaleOptions = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type time
+            [<Interface>]
+            type time =
+                abstract member options: ChartJs.dist_types.TimeScaleOptions with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    options: ChartJs.dist_types.TimeScaleOptions
-                ) =
+                static member Create (options: ChartJs.dist_types.TimeScaleOptions) : time = nativeOnly
 
-                member val options : ChartJs.dist_types.TimeScaleOptions = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type timeseries
+            [<Interface>]
+            type timeseries =
+                abstract member options: ChartJs.dist_types.TimeScaleOptions with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    options: ChartJs.dist_types.TimeScaleOptions
-                ) =
-
-                member val options : ChartJs.dist_types.TimeScaleOptions = nativeOnly with get, set
+                static member Create (options: ChartJs.dist_types.TimeScaleOptions) : timeseries = nativeOnly
 
         module RadialScaleTypeRegistry =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type radialLinear
+            [<Interface>]
+            type radialLinear =
+                abstract member options: ChartJs.dist_types.RadialLinearScaleOptions with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    options: ChartJs.dist_types.RadialLinearScaleOptions
-                ) =
-
-                member val options : ChartJs.dist_types.RadialLinearScaleOptions = nativeOnly with get, set
+                static member Create (options: ChartJs.dist_types.RadialLinearScaleOptions) : radialLinear = nativeOnly
 
         module CartesianParsedData =
 
@@ -19921,199 +18301,127 @@ Chart.unregister($0)"""
 
         module BarParsedData =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _custom
+            [<Interface>]
+            type _custom =
+                abstract member barStart: float with get, set
+                abstract member barEnd: float with get, set
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    barStart: float,
-                    barEnd: float,
-                    start: float,
-                    ``end``: float,
-                    min: float,
-                    max: float
-                ) =
-
-                member val barStart : float = nativeOnly with get, set
-                member val barEnd : float = nativeOnly with get, set
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
+                static member Create (barStart: float, barEnd: float, start: float, ``end``: float, min: float, max: float) : _custom = nativeOnly
 
         module ChartTypeRegistry =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type bar
-                private () =
-
+            [<Interface>]
+            type bar =
+                abstract member chartOptions: ChartJs.dist_types.BarControllerChartOptions with get, set
+                abstract member datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions with get, set
+                abstract member defaultDataPoint: U2<float, float * float> option with get, set
+                abstract member metaExtensions: obj with get, set
+                abstract member parsedDataType: ChartJs.dist_types.BarParsedData with get, set
+                abstract member scales: ChartTypeRegistry.bar.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales) =
-                    bar()
-
+                static member Create (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales) : bar = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: float) =
-                    bar()
-
+                static member Create (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: float) : bar = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: float * float) =
-                    bar()
+                static member Create (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: float * float) : bar = nativeOnly
 
-                member val chartOptions : ChartJs.dist_types.BarControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartJs.dist_types.BarControllerDatasetOptions = nativeOnly with get, set
-                member val metaExtensions : obj = nativeOnly with get, set
-                member val parsedDataType : ChartJs.dist_types.BarParsedData = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.bar.scales = nativeOnly with get, set
-                member val defaultDataPoint : U2<float, float * float> option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type line
-                private () =
-
+            [<Interface>]
+            type line =
+                abstract member chartOptions: ChartJs.dist_types.LineControllerChartOptions with get, set
+                abstract member datasetOptions: ChartTypeRegistry.line.datasetOptions with get, set
+                abstract member defaultDataPoint: U2<ChartJs.dist_types.ScatterDataPoint, float> option with get, set
+                abstract member metaExtensions: obj with get, set
+                abstract member parsedDataType: ChartJs.dist_types.CartesianParsedData with get, set
+                abstract member scales: ChartTypeRegistry.line.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.LineControllerChartOptions, datasetOptions: ChartTypeRegistry.line.datasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.line.scales) =
-                    line()
-
+                static member Create (chartOptions: ChartJs.dist_types.LineControllerChartOptions, datasetOptions: ChartTypeRegistry.line.datasetOptions_1, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.line.scales) : line = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.LineControllerChartOptions, datasetOptions: ChartTypeRegistry.line.datasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.line.scales, defaultDataPoint: ChartJs.dist_types.ScatterDataPoint) =
-                    line()
-
+                static member Create (chartOptions: ChartJs.dist_types.LineControllerChartOptions, datasetOptions: ChartTypeRegistry.line.datasetOptions_1, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.line.scales, defaultDataPoint: ChartJs.dist_types.ScatterDataPoint) : line = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.LineControllerChartOptions, datasetOptions: ChartTypeRegistry.line.datasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.line.scales, defaultDataPoint: float) =
-                    line()
+                static member Create (chartOptions: ChartJs.dist_types.LineControllerChartOptions, datasetOptions: ChartTypeRegistry.line.datasetOptions_1, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.line.scales, defaultDataPoint: float) : line = nativeOnly
 
-                member val chartOptions : ChartJs.dist_types.LineControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartTypeRegistry.line.datasetOptions = nativeOnly with get, set
-                member val metaExtensions : obj = nativeOnly with get, set
-                member val parsedDataType : ChartJs.dist_types.CartesianParsedData = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.line.scales = nativeOnly with get, set
-                member val defaultDataPoint : U2<ChartJs.dist_types.ScatterDataPoint, float> option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type scatter
-                private () =
-
+            [<Interface>]
+            type scatter =
+                abstract member chartOptions: ChartJs.dist_types.ScatterControllerChartOptions with get, set
+                abstract member datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions with get, set
+                abstract member defaultDataPoint: U2<ChartJs.dist_types.ScatterDataPoint, float> option with get, set
+                abstract member metaExtensions: obj with get, set
+                abstract member parsedDataType: ChartJs.dist_types.CartesianParsedData with get, set
+                abstract member scales: ChartTypeRegistry.scatter.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.ScatterControllerChartOptions, datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.scatter.scales) =
-                    scatter()
-
+                static member Create (chartOptions: ChartJs.dist_types.ScatterControllerChartOptions, datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.scatter.scales) : scatter = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.ScatterControllerChartOptions, datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.scatter.scales, defaultDataPoint: ChartJs.dist_types.ScatterDataPoint) =
-                    scatter()
-
+                static member Create (chartOptions: ChartJs.dist_types.ScatterControllerChartOptions, datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.scatter.scales, defaultDataPoint: ChartJs.dist_types.ScatterDataPoint) : scatter = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (chartOptions: ChartJs.dist_types.ScatterControllerChartOptions, datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.scatter.scales, defaultDataPoint: float) =
-                    scatter()
+                static member Create (chartOptions: ChartJs.dist_types.ScatterControllerChartOptions, datasetOptions: ChartJs.dist_types.ScatterControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.CartesianParsedData, scales: ChartTypeRegistry.scatter.scales, defaultDataPoint: float) : scatter = nativeOnly
 
-                member val chartOptions : ChartJs.dist_types.ScatterControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartJs.dist_types.ScatterControllerDatasetOptions = nativeOnly with get, set
-                member val metaExtensions : obj = nativeOnly with get, set
-                member val parsedDataType : ChartJs.dist_types.CartesianParsedData = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.scatter.scales = nativeOnly with get, set
-                member val defaultDataPoint : U2<ChartJs.dist_types.ScatterDataPoint, float> option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type bubble
+            [<Interface>]
+            type bubble =
+                abstract member chartOptions: obj with get, set
+                abstract member datasetOptions: ChartJs.dist_types.BubbleControllerDatasetOptions with get, set
+                abstract member defaultDataPoint: ChartJs.dist_types.BubbleDataPoint with get, set
+                abstract member metaExtensions: obj with get, set
+                abstract member parsedDataType: ChartJs.dist_types.BubbleParsedData with get, set
+                abstract member scales: ChartTypeRegistry.bubble.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chartOptions: obj,
-                    datasetOptions: ChartJs.dist_types.BubbleControllerDatasetOptions,
-                    defaultDataPoint: ChartJs.dist_types.BubbleDataPoint,
-                    metaExtensions: obj,
-                    parsedDataType: ChartJs.dist_types.BubbleParsedData,
-                    scales: ChartTypeRegistry.bubble.scales
-                ) =
+                static member Create (chartOptions: obj, datasetOptions: ChartJs.dist_types.BubbleControllerDatasetOptions, defaultDataPoint: ChartJs.dist_types.BubbleDataPoint, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BubbleParsedData, scales: ChartTypeRegistry.bubble.scales) : bubble = nativeOnly
 
-                member val chartOptions : obj = nativeOnly with get, set
-                member val datasetOptions : ChartJs.dist_types.BubbleControllerDatasetOptions = nativeOnly with get, set
-                member val defaultDataPoint : ChartJs.dist_types.BubbleDataPoint = nativeOnly with get, set
-                member val metaExtensions : obj = nativeOnly with get, set
-                member val parsedDataType : ChartJs.dist_types.BubbleParsedData = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.bubble.scales = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type pie
+            [<Interface>]
+            type pie =
+                abstract member chartOptions: ChartJs.dist_types.PieControllerChartOptions with get, set
+                abstract member datasetOptions: ChartJs.dist_types.PieControllerDatasetOptions with get, set
+                abstract member defaultDataPoint: ChartJs.dist_types.PieDataPoint with get, set
+                abstract member metaExtensions: ChartJs.dist_types.PieMetaExtensions with get, set
+                abstract member parsedDataType: float with get, set
+                abstract member scales: ChartTypeRegistry.pie.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chartOptions: ChartJs.dist_types.PieControllerChartOptions,
-                    datasetOptions: ChartJs.dist_types.PieControllerDatasetOptions,
-                    defaultDataPoint: ChartJs.dist_types.PieDataPoint,
-                    metaExtensions: ChartJs.dist_types.PieMetaExtensions,
-                    parsedDataType: float,
-                    scales: ChartTypeRegistry.pie.scales
-                ) =
+                static member Create (chartOptions: ChartJs.dist_types.PieControllerChartOptions, datasetOptions: ChartJs.dist_types.PieControllerDatasetOptions, defaultDataPoint: ChartJs.dist_types.PieDataPoint, metaExtensions: ChartJs.dist_types.PieMetaExtensions, parsedDataType: float, scales: ChartTypeRegistry.pie.scales) : pie = nativeOnly
 
-                member val chartOptions : ChartJs.dist_types.PieControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartJs.dist_types.PieControllerDatasetOptions = nativeOnly with get, set
-                member val defaultDataPoint : ChartJs.dist_types.PieDataPoint = nativeOnly with get, set
-                member val metaExtensions : ChartJs.dist_types.PieMetaExtensions = nativeOnly with get, set
-                member val parsedDataType : float = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.pie.scales = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type doughnut
+            [<Interface>]
+            type doughnut =
+                abstract member chartOptions: ChartJs.dist_types.DoughnutControllerChartOptions with get, set
+                abstract member datasetOptions: ChartJs.dist_types.DoughnutControllerDatasetOptions with get, set
+                abstract member defaultDataPoint: ChartJs.dist_types.DoughnutDataPoint with get, set
+                abstract member metaExtensions: ChartJs.dist_types.DoughnutMetaExtensions with get, set
+                abstract member parsedDataType: float with get, set
+                abstract member scales: ChartTypeRegistry.doughnut.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chartOptions: ChartJs.dist_types.DoughnutControllerChartOptions,
-                    datasetOptions: ChartJs.dist_types.DoughnutControllerDatasetOptions,
-                    defaultDataPoint: ChartJs.dist_types.DoughnutDataPoint,
-                    metaExtensions: ChartJs.dist_types.DoughnutMetaExtensions,
-                    parsedDataType: float,
-                    scales: ChartTypeRegistry.doughnut.scales
-                ) =
+                static member Create (chartOptions: ChartJs.dist_types.DoughnutControllerChartOptions, datasetOptions: ChartJs.dist_types.DoughnutControllerDatasetOptions, defaultDataPoint: ChartJs.dist_types.DoughnutDataPoint, metaExtensions: ChartJs.dist_types.DoughnutMetaExtensions, parsedDataType: float, scales: ChartTypeRegistry.doughnut.scales) : doughnut = nativeOnly
 
-                member val chartOptions : ChartJs.dist_types.DoughnutControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartJs.dist_types.DoughnutControllerDatasetOptions = nativeOnly with get, set
-                member val defaultDataPoint : ChartJs.dist_types.DoughnutDataPoint = nativeOnly with get, set
-                member val metaExtensions : ChartJs.dist_types.DoughnutMetaExtensions = nativeOnly with get, set
-                member val parsedDataType : float = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.doughnut.scales = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type polarArea
+            [<Interface>]
+            type polarArea =
+                abstract member chartOptions: ChartJs.dist_types.PolarAreaControllerChartOptions with get, set
+                abstract member datasetOptions: ChartJs.dist_types.PolarAreaControllerDatasetOptions with get, set
+                abstract member defaultDataPoint: float with get, set
+                abstract member metaExtensions: obj with get, set
+                abstract member parsedDataType: ChartJs.dist_types.RadialParsedData with get, set
+                abstract member scales: ChartTypeRegistry.polarArea.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chartOptions: ChartJs.dist_types.PolarAreaControllerChartOptions,
-                    datasetOptions: ChartJs.dist_types.PolarAreaControllerDatasetOptions,
-                    defaultDataPoint: float,
-                    metaExtensions: obj,
-                    parsedDataType: ChartJs.dist_types.RadialParsedData,
-                    scales: ChartTypeRegistry.polarArea.scales
-                ) =
+                static member Create (chartOptions: ChartJs.dist_types.PolarAreaControllerChartOptions, datasetOptions: ChartJs.dist_types.PolarAreaControllerDatasetOptions, defaultDataPoint: float, metaExtensions: obj, parsedDataType: ChartJs.dist_types.RadialParsedData, scales: ChartTypeRegistry.polarArea.scales) : polarArea = nativeOnly
 
-                member val chartOptions : ChartJs.dist_types.PolarAreaControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartJs.dist_types.PolarAreaControllerDatasetOptions = nativeOnly with get, set
-                member val defaultDataPoint : float = nativeOnly with get, set
-                member val metaExtensions : obj = nativeOnly with get, set
-                member val parsedDataType : ChartJs.dist_types.RadialParsedData = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.polarArea.scales = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type radar
+            [<Interface>]
+            type radar =
+                abstract member chartOptions: ChartJs.dist_types.RadarControllerChartOptions with get, set
+                abstract member datasetOptions: ChartTypeRegistry.radar.datasetOptions with get, set
+                abstract member defaultDataPoint: float option with get, set
+                abstract member metaExtensions: obj with get, set
+                abstract member parsedDataType: ChartJs.dist_types.RadialParsedData with get, set
+                abstract member scales: ChartTypeRegistry.radar.scales with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    chartOptions: ChartJs.dist_types.RadarControllerChartOptions,
-                    datasetOptions: ChartTypeRegistry.radar.datasetOptions,
-                    metaExtensions: obj,
-                    parsedDataType: ChartJs.dist_types.RadialParsedData,
-                    scales: ChartTypeRegistry.radar.scales,
-                    ?defaultDataPoint: float
-                ) =
-
-                member val chartOptions : ChartJs.dist_types.RadarControllerChartOptions = nativeOnly with get, set
-                member val datasetOptions : ChartTypeRegistry.radar.datasetOptions = nativeOnly with get, set
-                member val metaExtensions : obj = nativeOnly with get, set
-                member val parsedDataType : ChartJs.dist_types.RadialParsedData = nativeOnly with get, set
-                member val scales : ChartTypeRegistry.radar.scales = nativeOnly with get, set
-                member val defaultDataPoint : float option = nativeOnly with get, set
+                static member Create (chartOptions: ChartJs.dist_types.RadarControllerChartOptions, datasetOptions: ChartTypeRegistry.radar.datasetOptions_1, metaExtensions: obj, parsedDataType: ChartJs.dist_types.RadialParsedData, scales: ChartTypeRegistry.radar.scales, ?defaultDataPoint: float) : radar = nativeOnly
 
             module bar =
 
@@ -20171,7 +18479,7 @@ Chart.unregister($0)"""
                     /// <summary>
                     /// How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
                     /// </summary>
-                    abstract member parsing: U2<ChartTypeRegistry.line.datasetOptions.parsing.U2.Case1, bool> with get, set
+                    abstract member parsing: U2<ParsingOptions.parsing.U2.Case1, bool> with get, set
                     /// <summary>
                     /// Chart.js is fastest if you provide data with indices that are unique, sorted, and consistent across datasets and provide the normalized: true option to let Chart.js know that you have done so.
                     /// </summary>
@@ -20277,6 +18585,146 @@ Chart.unregister($0)"""
                     | time
                     | timeseries
 
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type datasetOptions_1 =
+                    /// <summary>
+                    /// The ID of the x axis to plot this dataset on.
+                    /// </summary>
+                    abstract member xAxisID: string with get, set
+                    /// <summary>
+                    /// The ID of the y axis to plot this dataset on.
+                    /// </summary>
+                    abstract member yAxisID: string with get, set
+                    /// <summary>
+                    /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line. Can also be a number specifying the maximum gap length to span. The unit of the value depends on the scale used.
+                    /// </summary>
+                    abstract member spanGaps: U2<bool, float> with get, set
+                    abstract member showLine: bool with get, set
+                    /// <summary>
+                    /// The base axis of the chart. 'x' for vertical charts and 'y' for horizontal charts.
+                    /// </summary>
+                    abstract member indexAxis: ChartTypeRegistry.line.datasetOptions.indexAxis with get, set
+                    /// <summary>
+                    /// How to clip relative to chartArea. Positive value allows overflow, negative value clips that many pixels inside chartArea. 0 = clip at chartArea. Clipping can also be configured per side: <c>clip: {left: 5, top: false, right: -2, bottom: 0}</c>
+                    /// </summary>
+                    abstract member clip: U3<float, ChartJs.dist_types_geometric.ChartArea, bool> with get, set
+                    /// <summary>
+                    /// The label for the dataset which appears in the legend and tooltips.
+                    /// </summary>
+                    abstract member label: string with get, set
+                    /// <summary>
+                    /// The drawing order of dataset. Also affects order for stacking, tooltip and legend.
+                    /// </summary>
+                    abstract member order: float with get, set
+                    /// <summary>
+                    /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack).
+                    /// </summary>
+                    abstract member stack: string with get, set
+                    /// <summary>
+                    /// Configures the visibility state of the dataset. Set it to true, to hide the dataset from the chart.
+                    /// </summary>
+                    abstract member hidden: bool with get, set
+                    /// <summary>
+                    /// How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
+                    /// </summary>
+                    abstract member parsing: U2<ParsingOptions.parsing.U2.Case1, bool> with get, set
+                    /// <summary>
+                    /// Chart.js is fastest if you provide data with indices that are unique, sorted, and consistent across datasets and provide the normalized: true option to let Chart.js know that you have done so.
+                    /// </summary>
+                    abstract member normalized: bool with get, set
+                    /// <summary>
+                    /// The fill color for points.
+                    /// </summary>
+                    abstract member pointBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The border color for points.
+                    /// </summary>
+                    abstract member pointBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The width of the point border in pixels.
+                    /// </summary>
+                    abstract member pointBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The pixel size of the non-displayed point that reacts to mouse events.
+                    /// </summary>
+                    abstract member pointHitRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The radius of the point shape. If set to 0, the point is not rendered.
+                    /// </summary>
+                    abstract member pointRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The rotation of the point in degrees.
+                    /// </summary>
+                    abstract member pointRotation: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Style of the point.
+                    /// </summary>
+                    abstract member pointStyle: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types.PointStyle, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Point background color when hovered.
+                    /// </summary>
+                    abstract member pointHoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Point border color when hovered.
+                    /// </summary>
+                    abstract member pointHoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Border width of point when hovered.
+                    /// </summary>
+                    abstract member pointHoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The radius of the point when hovered.
+                    /// </summary>
+                    abstract member pointHoverRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line dash. See MDN.
+                    /// </summary>
+                    abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line dash offset. See MDN.
+                    /// </summary>
+                    abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line join style. See MDN.
+                    /// </summary>
+                    abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line cap style. See MDN.
+                    /// </summary>
+                    abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// true to keep Bézier control inside the chart, false for no restriction.
+                    /// </summary>
+                    abstract member capBezierPoints: ChartJs.dist_types.Scriptable<bool, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Interpolation mode to apply.
+                    /// </summary>
+                    abstract member cubicInterpolationMode: ChartJs.dist_types.Scriptable<ChartTypeRegistry.line.datasetOptions.cubicInterpolationMode, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Bézier curve tension (0 for no Bézier curves).
+                    /// </summary>
+                    abstract member tension: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// true to show the line as a stepped line (tension will be ignored).
+                    /// </summary>
+                    abstract member stepped: ChartJs.dist_types.Scriptable<ChartTypeRegistry.line.datasetOptions.stepped, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member fill: obj with get, set
+                    abstract member segment: ChartJs.dist_types.Scriptable<ChartTypeRegistry.line.datasetOptions.segment_1, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderDash: ChartJs.dist_types.Scriptable<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderDashOffset: ChartJs.dist_types.Scriptable<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member animation: U2<bool, obj> with get, set
+                    abstract member animations: ChartJs.dist_types.AnimationsSpec<string> with get, set
+                    abstract member transitions: ChartJs.dist_types.TransitionsSpec<string> with get, set
+
                 module datasetOptions =
 
                     [<RequireQualifiedAccess>]
@@ -20299,37 +18747,31 @@ Chart.unregister($0)"""
                         | after
                         | Case1 of bool
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type segment
+                    [<Interface>]
+                    type segment =
+                        abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>
-                        ) =
+                        static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment = nativeOnly
 
-                        member val backgroundColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderCapStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderDashOffset : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderJoinStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderWidth : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-
-                    module parsing =
-
-                        module U2 =
-
-                            [<AllowNullLiteral>]
-                            [<Interface>]
-                            type Case1 =
-                                [<EmitIndexer>]
-                                abstract member Item: key: string -> string with get, set
+                    [<AllowNullLiteral>]
+                    [<Interface>]
+                    type segment_1 =
+                        abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment_1 = nativeOnly
 
             module scatter =
 
@@ -20430,7 +18872,7 @@ Chart.unregister($0)"""
                     /// <summary>
                     /// How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
                     /// </summary>
-                    abstract member parsing: U2<ChartTypeRegistry.radar.datasetOptions.parsing.U2.Case1, bool> with get, set
+                    abstract member parsing: U2<ParsingOptions.parsing.U2.Case1, bool> with get, set
                     /// <summary>
                     /// Chart.js is fastest if you provide data with indices that are unique, sorted, and consistent across datasets and provide the normalized: true option to let Chart.js know that you have done so.
                     /// </summary>
@@ -20549,6 +18991,166 @@ Chart.unregister($0)"""
                 type scales =
                     | radialLinear
 
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type datasetOptions_1 =
+                    /// <summary>
+                    /// The ID of the x axis to plot this dataset on.
+                    /// </summary>
+                    abstract member xAxisID: string with get, set
+                    /// <summary>
+                    /// The ID of the y axis to plot this dataset on.
+                    /// </summary>
+                    abstract member yAxisID: string with get, set
+                    /// <summary>
+                    /// If true, lines will be drawn between points with no or null data. If false, points with NaN data will create a break in the line. Can also be a number specifying the maximum gap length to span. The unit of the value depends on the scale used.
+                    /// </summary>
+                    abstract member spanGaps: U2<bool, float> with get, set
+                    /// <summary>
+                    /// If false, the line is not drawn for this dataset.
+                    /// </summary>
+                    abstract member showLine: bool with get, set
+                    /// <summary>
+                    /// The base axis of the chart. 'x' for vertical charts and 'y' for horizontal charts.
+                    /// </summary>
+                    abstract member indexAxis: ChartTypeRegistry.radar.datasetOptions.indexAxis with get, set
+                    /// <summary>
+                    /// How to clip relative to chartArea. Positive value allows overflow, negative value clips that many pixels inside chartArea. 0 = clip at chartArea. Clipping can also be configured per side: <c>clip: {left: 5, top: false, right: -2, bottom: 0}</c>
+                    /// </summary>
+                    abstract member clip: U3<float, ChartJs.dist_types_geometric.ChartArea, bool> with get, set
+                    /// <summary>
+                    /// The label for the dataset which appears in the legend and tooltips.
+                    /// </summary>
+                    abstract member label: string with get, set
+                    /// <summary>
+                    /// The drawing order of dataset. Also affects order for stacking, tooltip and legend.
+                    /// </summary>
+                    abstract member order: float with get, set
+                    /// <summary>
+                    /// The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack).
+                    /// </summary>
+                    abstract member stack: string with get, set
+                    /// <summary>
+                    /// Configures the visibility state of the dataset. Set it to true, to hide the dataset from the chart.
+                    /// </summary>
+                    abstract member hidden: bool with get, set
+                    /// <summary>
+                    /// How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
+                    /// </summary>
+                    abstract member parsing: U2<ParsingOptions.parsing.U2.Case1, bool> with get, set
+                    /// <summary>
+                    /// Chart.js is fastest if you provide data with indices that are unique, sorted, and consistent across datasets and provide the normalized: true option to let Chart.js know that you have done so.
+                    /// </summary>
+                    abstract member normalized: bool with get, set
+                    /// <summary>
+                    /// Point radius
+                    /// </summary>
+                    abstract member radius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Extra radius added to point radius for hit detection.
+                    /// </summary>
+                    abstract member hitRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member pointStyle: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types.PointStyle, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Point rotation (in degrees).
+                    /// </summary>
+                    abstract member rotation: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Draw the active elements over the other elements of the dataset,
+                    /// </summary>
+                    abstract member drawActiveElementsOnTop: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member borderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member borderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member backgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Point radius when hovered.
+                    /// </summary>
+                    abstract member hoverRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The fill color for points.
+                    /// </summary>
+                    abstract member pointBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The border color for points.
+                    /// </summary>
+                    abstract member pointBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The width of the point border in pixels.
+                    /// </summary>
+                    abstract member pointBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The pixel size of the non-displayed point that reacts to mouse events.
+                    /// </summary>
+                    abstract member pointHitRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The radius of the point shape. If set to 0, the point is not rendered.
+                    /// </summary>
+                    abstract member pointRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The rotation of the point in degrees.
+                    /// </summary>
+                    abstract member pointRotation: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Point background color when hovered.
+                    /// </summary>
+                    abstract member pointHoverBackgroundColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Point border color when hovered.
+                    /// </summary>
+                    abstract member pointHoverBorderColor: ChartJs.dist_types.ScriptableAndArray<ChartJs.dist_types_color.Color, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Border width of point when hovered.
+                    /// </summary>
+                    abstract member pointHoverBorderWidth: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// The radius of the point when hovered.
+                    /// </summary>
+                    abstract member pointHoverRadius: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line cap style. See MDN.
+                    /// </summary>
+                    abstract member borderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line dash. See MDN.
+                    /// </summary>
+                    abstract member borderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line dash offset. See MDN.
+                    /// </summary>
+                    abstract member borderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Line join style. See MDN.
+                    /// </summary>
+                    abstract member borderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// true to keep Bézier control inside the chart, false for no restriction.
+                    /// </summary>
+                    abstract member capBezierPoints: ChartJs.dist_types.ScriptableAndArray<bool, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Interpolation mode to apply.
+                    /// </summary>
+                    abstract member cubicInterpolationMode: ChartJs.dist_types.ScriptableAndArray<ChartTypeRegistry.radar.datasetOptions.cubicInterpolationMode, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// Bézier curve tension (0 for no Bézier curves).
+                    /// </summary>
+                    abstract member tension: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    /// <summary>
+                    /// true to show the line as a stepped line (tension will be ignored).
+                    /// </summary>
+                    abstract member stepped: ChartJs.dist_types.ScriptableAndArray<ChartTypeRegistry.radar.datasetOptions.stepped, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member fill: obj with get, set
+                    abstract member segment: ChartJs.dist_types.ScriptableAndArray<ChartTypeRegistry.radar.datasetOptions.segment_1, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderCapStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineCap, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderDash: ChartJs.dist_types.ScriptableAndArray<ResizeArray<float>, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderDashOffset: ChartJs.dist_types.ScriptableAndArray<float, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member hoverBorderJoinStyle: ChartJs.dist_types.ScriptableAndArray<Glutinum.Web.CanvasLineJoin, ChartJs.dist_types.ScriptableContext<string>> with get, set
+                    abstract member animation: U2<bool, obj> with get, set
+                    abstract member animations: ChartJs.dist_types.AnimationsSpec<string> with get, set
+                    abstract member transitions: ChartJs.dist_types.TransitionsSpec<string> with get, set
+
                 module datasetOptions =
 
                     [<RequireQualifiedAccess>]
@@ -20571,70 +19173,50 @@ Chart.unregister($0)"""
                         | after
                         | Case1 of bool
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type segment
+                    [<Interface>]
+                    type segment =
+                        abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>,
-                            borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>
-                        ) =
+                        static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment = nativeOnly
 
-                        member val backgroundColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderColor : ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderCapStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderDash : ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderDashOffset : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderJoinStyle : ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-                        member val borderWidth : ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> = nativeOnly with get, set
-
-                    module parsing =
-
-                        module U2 =
-
-                            [<AllowNullLiteral>]
-                            [<Interface>]
-                            type Case1 =
-                                [<EmitIndexer>]
-                                abstract member Item: key: string -> string with get, set
+                    [<AllowNullLiteral>]
+                    [<Interface>]
+                    type segment_1 =
+                        abstract member backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        abstract member borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext> with get, set
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (backgroundColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderColor: ChartJs.dist_types.Scriptable<ChartJs.dist_types_color.Color option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderCapStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineCap option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDash: ChartJs.dist_types.Scriptable<ResizeArray<float> option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderDashOffset: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderJoinStyle: ChartJs.dist_types.Scriptable<Glutinum.Web.CanvasLineJoin option, ChartJs.dist_types.ScriptableLineSegmentContext>, borderWidth: ChartJs.dist_types.Scriptable<float option, ChartJs.dist_types.ScriptableLineSegmentContext>) : segment_1 = nativeOnly
 
         module DatasetChartOptions =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Item
-                private () =
-
+            [<Interface>]
+            type Item =
+                abstract member datasets: U6<ChartJs.dist_types.BarControllerDatasetOptions, ChartJs.dist_types.LineControllerDatasetOptions, obj, ChartJs.dist_types.BubbleControllerDatasetOptions, ChartJs.dist_types.DoughnutControllerDatasetOptions, ChartJs.dist_types.PolarAreaControllerDatasetOptions> with get, set
                 [<ParamObject; Emit("$0")>]
-                new (datasets: ChartJs.dist_types.BarControllerDatasetOptions) =
-                    Item()
-
+                static member Create (datasets: ChartJs.dist_types.BarControllerDatasetOptions) : Item = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (datasets: ChartJs.dist_types.LineControllerDatasetOptions) =
-                    Item()
-
+                static member Create (datasets: ChartJs.dist_types.LineControllerDatasetOptions) : Item = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (datasets: obj) =
-                    Item()
-
+                static member Create (datasets: obj) : Item = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (datasets: ChartJs.dist_types.BubbleControllerDatasetOptions) =
-                    Item()
-
+                static member Create (datasets: ChartJs.dist_types.BubbleControllerDatasetOptions) : Item = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions) =
-                    Item()
-
+                static member Create (datasets: ChartJs.dist_types.DoughnutControllerDatasetOptions) : Item = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (datasets: ChartJs.dist_types.PolarAreaControllerDatasetOptions) =
-                    Item()
-
-                member val datasets : U6<ChartJs.dist_types.BarControllerDatasetOptions, ChartJs.dist_types.LineControllerDatasetOptions, obj, ChartJs.dist_types.BubbleControllerDatasetOptions, ChartJs.dist_types.DoughnutControllerDatasetOptions, ChartJs.dist_types.PolarAreaControllerDatasetOptions> = nativeOnly with get, set
+                static member Create (datasets: ChartJs.dist_types.PolarAreaControllerDatasetOptions) : Item = nativeOnly
 
         module ScaleChartOptions =
 
@@ -20677,21 +19259,15 @@ Chart.unregister($0)"""
                     type Case3 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> U2<float, ChartDataset.borderWidth.U9.Case3.ReturnType.U2.Case2> option
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case4
+                    [<Interface>]
+                    type Case4 =
+                        abstract member top: float option with get, set
+                        abstract member right: float option with get, set
+                        abstract member bottom: float option with get, set
+                        abstract member left: float option with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            ?top: float,
-                            ?right: float,
-                            ?bottom: float,
-                            ?left: float
-                        ) =
-
-                        member val top : float option = nativeOnly with get, set
-                        member val right : float option = nativeOnly with get, set
-                        member val bottom : float option = nativeOnly with get, set
-                        member val left : float option = nativeOnly with get, set
+                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case4 = nativeOnly
 
                     type Case6 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
@@ -20711,41 +19287,29 @@ Chart.unregister($0)"""
 
                             module U2 =
 
-                                [<Global>]
                                 [<AllowNullLiteral>]
-                                type Case2
+                                [<Interface>]
+                                type Case2 =
+                                    abstract member top: float option with get, set
+                                    abstract member right: float option with get, set
+                                    abstract member bottom: float option with get, set
+                                    abstract member left: float option with get, set
                                     [<ParamObject; Emit("$0")>]
-                                    (
-                                        ?top: float,
-                                        ?right: float,
-                                        ?bottom: float,
-                                        ?left: float
-                                    ) =
-
-                                    member val top : float option = nativeOnly with get, set
-                                    member val right : float option = nativeOnly with get, set
-                                    member val bottom : float option = nativeOnly with get, set
-                                    member val left : float option = nativeOnly with get, set
+                                    static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
                     module Case5 =
 
                         module U2 =
 
-                            [<Global>]
                             [<AllowNullLiteral>]
-                            type Case2
+                            [<Interface>]
+                            type Case2 =
+                                abstract member top: float option with get, set
+                                abstract member right: float option with get, set
+                                abstract member bottom: float option with get, set
+                                abstract member left: float option with get, set
                                 [<ParamObject; Emit("$0")>]
-                                (
-                                    ?top: float,
-                                    ?right: float,
-                                    ?bottom: float,
-                                    ?left: float
-                                ) =
-
-                                member val top : float option = nativeOnly with get, set
-                                member val right : float option = nativeOnly with get, set
-                                member val bottom : float option = nativeOnly with get, set
-                                member val left : float option = nativeOnly with get, set
+                                static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
             module backgroundColor =
 
@@ -20867,21 +19431,15 @@ Chart.unregister($0)"""
                     type Case3 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> U2<float, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case3.ReturnType.U2.Case2> option
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case4
+                    [<Interface>]
+                    type Case4 =
+                        abstract member top: float option with get, set
+                        abstract member right: float option with get, set
+                        abstract member bottom: float option with get, set
+                        abstract member left: float option with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            ?top: float,
-                            ?right: float,
-                            ?bottom: float,
-                            ?left: float
-                        ) =
-
-                        member val top : float option = nativeOnly with get, set
-                        member val right : float option = nativeOnly with get, set
-                        member val bottom : float option = nativeOnly with get, set
-                        member val left : float option = nativeOnly with get, set
+                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case4 = nativeOnly
 
                     type Case6 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
@@ -20901,41 +19459,29 @@ Chart.unregister($0)"""
 
                             module U2 =
 
-                                [<Global>]
                                 [<AllowNullLiteral>]
-                                type Case2
+                                [<Interface>]
+                                type Case2 =
+                                    abstract member top: float option with get, set
+                                    abstract member right: float option with get, set
+                                    abstract member bottom: float option with get, set
+                                    abstract member left: float option with get, set
                                     [<ParamObject; Emit("$0")>]
-                                    (
-                                        ?top: float,
-                                        ?right: float,
-                                        ?bottom: float,
-                                        ?left: float
-                                    ) =
-
-                                    member val top : float option = nativeOnly with get, set
-                                    member val right : float option = nativeOnly with get, set
-                                    member val bottom : float option = nativeOnly with get, set
-                                    member val left : float option = nativeOnly with get, set
+                                    static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
                     module Case5 =
 
                         module U2 =
 
-                            [<Global>]
                             [<AllowNullLiteral>]
-                            type Case2
+                            [<Interface>]
+                            type Case2 =
+                                abstract member top: float option with get, set
+                                abstract member right: float option with get, set
+                                abstract member bottom: float option with get, set
+                                abstract member left: float option with get, set
                                 [<ParamObject; Emit("$0")>]
-                                (
-                                    ?top: float,
-                                    ?right: float,
-                                    ?bottom: float,
-                                    ?left: float
-                                ) =
-
-                                member val top : float option = nativeOnly with get, set
-                                member val right : float option = nativeOnly with get, set
-                                member val bottom : float option = nativeOnly with get, set
-                                member val left : float option = nativeOnly with get, set
+                                static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
             module backgroundColor =
 
@@ -21034,212 +19580,150 @@ Chart.unregister($0)"""
 
         module Exports =
 
-            module BarController =
+            module BarController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.BarController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.BarController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module BubbleController =
+            module BubbleController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.BubbleController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.BubbleController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LineController =
+            module LineController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LineController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LineController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module ScatterController =
+            module ScatterController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.ScatterController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.ScatterController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module DoughnutController =
+            module DoughnutController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.DoughnutController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.DoughnutController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module PieController =
+            module PieController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.PieController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.PieController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module PolarAreaController =
+            module PolarAreaController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.PolarAreaController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.PolarAreaController with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module RadarController =
+            module RadarController__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.RadarController.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.RadarController with get, set
 
-                module Type =
+            module Interaction__ =
 
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module Interaction =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type_1
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        modes: ChartJs.dist_types.InteractionModeMap,
-                        evaluateInteractionItems: ResizeArray<ChartJs.dist_types.InteractionItem>
-                    ) =
-
-                    member val modes : ChartJs.dist_types.InteractionModeMap = nativeOnly with get, set
+                [<Interface>]
+                type Type_1 =
+                    abstract member modes: ChartJs.dist_types.InteractionModeMap with get, set
                     /// <summary>
                     /// Helper function to select candidate elements for interaction
                     /// </summary>
-                    member val evaluateInteractionItems : ResizeArray<ChartJs.dist_types.InteractionItem> = nativeOnly
-
-            module layouts =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type Type_1
+                    abstract member evaluateInteractionItems: chart: ChartJs.dist_types.Chart * axis: ChartJs.dist_types.InteractionAxis * position: ChartJs.dist_types_geometric.Point * handler: Exports.Interaction__.Type.evaluateInteractionItems.handler_1 * ?intersect: bool -> ResizeArray<ChartJs.dist_types.InteractionItem>
                     [<ParamObject; Emit("$0")>]
-                    (
-                        addBox: unit,
-                        removeBox: unit,
-                        configure: unit,
-                        update: unit
-                    ) =
+                    static member Create (modes: ChartJs.dist_types.InteractionModeMap, evaluateInteractionItems: ResizeArray<ChartJs.dist_types.InteractionItem>) : Type_1 = nativeOnly
 
+                module Type =
+
+                    module evaluateInteractionItems =
+
+                        type handler_1 =
+                            delegate of element: Exports.Interaction__.Type.evaluateInteractionItems.handler.element_1 * datasetIndex: float * index: float -> unit
+
+                        module handler =
+
+                            [<AllowNullLiteral>]
+                            [<Interface>]
+                            type element_1 =
+                                inherit ChartJs.dist_types.VisualElement
+
+            module layouts__ =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Type_1 =
                     /// <summary>
                     /// Register a box to a chart.
                     /// A box is simply a reference to an object that requires layout. eg. Scales, Legend, Title.
@@ -21250,7 +19734,7 @@ Chart.unregister($0)"""
                     /// <param name="item">
                     /// the item to add to be laid out
                     /// </param>
-                    member val addBox : unit = nativeOnly
+                    abstract member addBox: chart: ChartJs.dist_types.Chart * item: ChartJs.dist_types_layout.LayoutItem -> unit
                     /// <summary>
                     /// Remove a layoutItem from a chart
                     /// </summary>
@@ -21260,7 +19744,7 @@ Chart.unregister($0)"""
                     /// <param name="layoutItem">
                     /// the item to remove from the layout
                     /// </param>
-                    member val removeBox : unit = nativeOnly
+                    abstract member removeBox: chart: ChartJs.dist_types.Chart * layoutItem: ChartJs.dist_types_layout.LayoutItem -> unit
                     /// <summary>
                     /// Sets (or updates) options on the given <c>item</c>.
                     /// </summary>
@@ -21273,7 +19757,7 @@ Chart.unregister($0)"""
                     /// <param name="options">
                     /// the new item options.
                     /// </param>
-                    member val configure : unit = nativeOnly
+                    abstract member configure: chart: ChartJs.dist_types.Chart * item: ChartJs.dist_types_layout.LayoutItem * options: Exports.layouts__.Type.configure.options_1 -> unit
                     /// <summary>
                     /// Fits boxes of the given chart into the given size by having each box measure itself
                     /// then running a fitting algorithm
@@ -21287,35 +19771,37 @@ Chart.unregister($0)"""
                     /// <param name="height">
                     /// the height to fit into
                     /// </param>
-                    member val update : unit = nativeOnly
-
-            module Ticks =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type Type_1
+                    abstract member update: chart: ChartJs.dist_types.Chart * width: float * height: float -> unit
                     [<ParamObject; Emit("$0")>]
-                    (
-                        formatters: Exports.Ticks.Type.formatters_1
-                    ) =
-
-                    member val formatters : Exports.Ticks.Type.formatters_1 = nativeOnly with get, set
+                    static member Create (addBox: unit, removeBox: unit, configure: unit, update: unit) : Type_1 = nativeOnly
 
                 module Type =
 
-                    [<Global>]
+                    module configure =
+
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type options_1 =
+                            abstract member fullSize: float option with get, set
+                            abstract member position: ChartJs.dist_types_layout.LayoutPosition option with get, set
+                            abstract member weight: float option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (?fullSize: float, ?position: ChartJs.dist_types_layout.LayoutPosition, ?weight: float) : options_1 = nativeOnly
+
+            module Ticks__ =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Type_1 =
+                    abstract member formatters: Exports.Ticks__.Type.formatters_1 with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (formatters: Exports.Ticks__.Type.formatters_1) : Type_1 = nativeOnly
+
+                module Type =
+
                     [<AllowNullLiteral>]
-                    type formatters_1
-                        private () =
-
-                        [<ParamObject; Emit("$0")>]
-                        new (values: string, numeric: string, logarithmic: string) =
-                            formatters_1()
-
-                        [<ParamObject; Emit("$0")>]
-                        new (values: ResizeArray<string>, numeric: string, logarithmic: string) =
-                            formatters_1()
-
+                    [<Interface>]
+                    type formatters_1 =
                         /// <summary>
                         /// Formatter for value labels
                         /// </summary>
@@ -21325,7 +19811,7 @@ Chart.unregister($0)"""
                         /// <returns>
                         /// the label to display
                         /// </returns>
-                        member val values : U2<string, ResizeArray<string>> = nativeOnly
+                        abstract member values: value: obj -> U2<string, ResizeArray<string>>
                         /// <summary>
                         /// Formatter for numeric ticks
                         /// </summary>
@@ -21341,7 +19827,7 @@ Chart.unregister($0)"""
                         /// <returns>
                         /// string representation of the tickValue parameter
                         /// </returns>
-                        member val numeric : string = nativeOnly
+                        abstract member numeric: tickValue: float * index: float * ticks: ResizeArray<Exports.Ticks__.Type.formatters.numeric.ticks_1> -> string
                         /// <summary>
                         /// Formatter for logarithmic ticks
                         /// </summary>
@@ -21357,213 +19843,155 @@ Chart.unregister($0)"""
                         /// <returns>
                         /// string representation of the tickValue parameter
                         /// </returns>
-                        member val logarithmic : string = nativeOnly
+                        abstract member logarithmic: tickValue: float * index: float * ticks: ResizeArray<Exports.Ticks__.Type.formatters.logarithmic.ticks_1> -> string
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (values: string, numeric: string, logarithmic: string) : formatters_1 = nativeOnly
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (values: ResizeArray<string>, numeric: string, logarithmic: string) : formatters_1 = nativeOnly
 
-            module LineElement =
+                    module formatters =
+
+                        module numeric =
+
+                            [<AllowNullLiteral>]
+                            [<Interface>]
+                            type ticks_1 =
+                                abstract member value: float with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (value: float) : ticks_1 = nativeOnly
+
+                        module logarithmic =
+
+                            [<AllowNullLiteral>]
+                            [<Interface>]
+                            type ticks_1 =
+                                abstract member value: float with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (value: float) : ticks_1 = nativeOnly
+
+            module LineElement__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LineElement.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LineElement with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module BarElement =
+            module BarElement__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.BarElement.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.BarElement with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module CategoryScale =
+            module CategoryScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.CategoryScale.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.CategoryScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LinearScale =
+            module LinearScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LinearScale.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LinearScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module LogarithmicScale =
+            module LogarithmicScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.LogarithmicScale.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.LogarithmicScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module TimeScale =
+            module TimeScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.TimeScale.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.TimeScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module TimeSeriesScale =
+            module TimeSeriesScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.TimeSeriesScale.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.TimeSeriesScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module RadialLinearScale =
+            module RadialLinearScale__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
                 type Type_1 =
                     abstract member id: string with get, set
                     abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                    abstract member defaultRoutes: Exports.RadialLinearScale.Type.defaultRoutes_1 option with get, set
+                    abstract member defaultRoutes: ChartComponent.defaultRoutes option with get, set
                     abstract member beforeRegister: unit -> unit
                     abstract member afterRegister: unit -> unit
                     abstract member beforeUnregister: unit -> unit
                     abstract member afterUnregister: unit -> unit
                     abstract member prototype: ChartJs.dist_types.RadialLinearScale with get, set
 
-                module Type =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type defaultRoutes_1 =
-                        [<EmitIndexer>]
-                        abstract member Item: property: string -> string with get, set
-
-            module Chart =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type item_1
-                    [<ParamObject; Emit("$0")>]
-                    (
-                        canvas: Glutinum.Web.HTMLCanvasElement
-                    ) =
-
-                    member val canvas : Glutinum.Web.HTMLCanvasElement = nativeOnly with get, set
-
             module Scale =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type cfg_1
+                [<Interface>]
+                type cfg_1 =
+                    abstract member id: string with get, set
+                    abstract member ``type``: string with get, set
+                    abstract member ctx: Glutinum.Web.CanvasRenderingContext2D with get, set
+                    abstract member chart: ChartJs.dist_types.Chart with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        id: string,
-                        ``type``: string,
-                        ctx: Glutinum.Web.CanvasRenderingContext2D,
-                        chart: ChartJs.dist_types.Chart
-                    ) =
-
-                    member val id : string = nativeOnly with get, set
-                    member val ``type`` : string = nativeOnly with get, set
-                    member val ctx : Glutinum.Web.CanvasRenderingContext2D = nativeOnly with get, set
-                    member val chart : ChartJs.dist_types.Chart = nativeOnly with get, set
+                    static member Create (id: string, ``type``: string, ctx: Glutinum.Web.CanvasRenderingContext2D, chart: ChartJs.dist_types.Chart) : cfg_1 = nativeOnly
 
     module dist_types_layout =
 
@@ -21715,7 +20143,7 @@ Chart.unregister($0)"""
             [<Import("color", "chart.js/helpers")>]
             static member color (value: string) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/helpers")>]
-            static member color (value: Exports.color.value_2) : KurkleColor.Color = nativeOnly
+            static member color (value: Exports.color__.value_2) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/helpers")>]
             static member color (value: float * float * float) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/helpers")>]
@@ -21810,9 +20238,9 @@ Chart.unregister($0)"""
             /// If true, iterates backward on the loopable.
             /// </param>
             [<Import("each", "chart.js/helpers")>]
-            static member each<'T, 'TA> (loopable: Exports.each.loopable_2<'T>, fn: Exports.each.fn_4<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
+            static member each<'T, 'TA> (loopable: Exports.each__.loopable_2<'T>, fn: Exports.each__.fn_4<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
             [<Import("each", "chart.js/helpers")>]
-            static member each<'T, 'TA> (loopable: ResizeArray<'T>, fn: Exports.each.fn_5<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
+            static member each<'T, 'TA> (loopable: ResizeArray<'T>, fn: Exports.each__.fn_5<'T>, ?thisArg: 'TA, ?reverse: bool) : unit = nativeOnly
             /// <summary>
             /// Returns true if the <c>a0</c> and <c>a1</c> arrays have the same content, else returns false.
             /// </summary>
@@ -21930,15 +20358,15 @@ Chart.unregister($0)"""
             [<Import("isFinite", "chart.js/helpers")>]
             static member isFinite (value: obj) : bool = nativeOnly
             [<Import("toPercentage", "chart.js/helpers")>]
-            static member inline toPercentage: Exports.toPercentage.Type_2 = nativeOnly
+            static member inline toPercentage: Exports.toPercentage__.Type_2 = nativeOnly
             [<Import("toDimension", "chart.js/helpers")>]
-            static member inline toDimension: Exports.toDimension.Type_2 = nativeOnly
+            static member inline toDimension: Exports.toDimension__.Type_2 = nativeOnly
             [<Import("defined", "chart.js/helpers")>]
             static member inline defined: (obj -> bool) = nativeOnly
             [<Import("isFunction", "chart.js/helpers")>]
             static member inline isFunction: (obj -> bool) = nativeOnly
             [<Import("setsEqual", "chart.js/helpers")>]
-            static member inline setsEqual: Exports.setsEqual.Type_2 = nativeOnly
+            static member inline setsEqual: Exports.setsEqual__.Type_2 = nativeOnly
             /// <summary>
             /// Converts the given font object into a CSS font string.
             /// </summary>
@@ -21951,9 +20379,9 @@ Chart.unregister($0)"""
             [<Import("toFontString", "chart.js/helpers")>]
             static member toFontString (font: ChartJs.dist_types.FontSpec) : string = nativeOnly
             [<Import("_measureText", "chart.js/helpers")>]
-            static member _measureText (ctx: Glutinum.Web.CanvasRenderingContext2D, data: Exports._measureText.data_2, gc: ResizeArray<string>, longest: float, string: string) : float = nativeOnly
+            static member _measureText (ctx: Glutinum.Web.CanvasRenderingContext2D, data: Exports._measureText__.data_2, gc: ResizeArray<string>, longest: float, string: string) : float = nativeOnly
             [<Import("_longestText", "chart.js/helpers")>]
-            static member _longestText (ctx: Glutinum.Web.CanvasRenderingContext2D, font: string, arrayOfThings: ChartJs.dist_helpers_helpers_canvas.Things, ?cache: Exports._longestText.cache_2) : float = nativeOnly
+            static member _longestText (ctx: Glutinum.Web.CanvasRenderingContext2D, font: string, arrayOfThings: ChartJs.dist_helpers_helpers_canvas.Things, ?cache: Exports._longestText__.cache_2) : float = nativeOnly
             /// <summary>
             /// Returns the aligned pixel value to avoid anti-aliasing blur
             /// </summary>
@@ -22022,7 +20450,7 @@ Chart.unregister($0)"""
             /// Bounding rect
             /// </param>
             [<Import("addRoundedRectPath", "chart.js/helpers")>]
-            static member addRoundedRectPath (ctx: Glutinum.Web.CanvasRenderingContext2D, rect: Exports.addRoundedRectPath.rect_2) : unit = nativeOnly
+            static member addRoundedRectPath (ctx: Glutinum.Web.CanvasRenderingContext2D, rect: Exports.addRoundedRectPath__.rect_2) : unit = nativeOnly
             /// <summary>
             /// Binary search
             /// </summary>
@@ -22036,9 +20464,9 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_lookup", "chart.js/helpers")>]
-            static member _lookup (table: ResizeArray<float>, value: float, ?cmp: (float -> bool)) : Exports._lookup_2 = nativeOnly
+            static member _lookup (table: ResizeArray<float>, value: float, ?cmp: (float -> bool)) : Exports._lookup___4 = nativeOnly
             [<Import("_lookup", "chart.js/helpers")>]
-            static member _lookup<'T> (table: ResizeArray<'T>, value: float, cmp: (float -> bool)) : Exports._lookup_2 = nativeOnly
+            static member _lookup<'T> (table: ResizeArray<'T>, value: float, cmp: (float -> bool)) : Exports._lookup___5 = nativeOnly
             /// <summary>
             /// Return subset of <c>values</c> between <c>min</c> and <c>max</c> inclusive.
             /// Values are assumed to be in sorted order.
@@ -22088,7 +20516,7 @@ Chart.unregister($0)"""
             /// lookup last index
             /// </param>
             [<Import("_lookupByKey", "chart.js/helpers")>]
-            static member inline _lookupByKey: Exports._lookupByKey.Type_2 = nativeOnly
+            static member inline _lookupByKey: Exports._lookupByKey__.Type_2 = nativeOnly
             /// <summary>
             /// Reverse binary search
             /// </summary>
@@ -22102,7 +20530,7 @@ Chart.unregister($0)"""
             /// value to find
             /// </param>
             [<Import("_rlookupByKey", "chart.js/helpers")>]
-            static member inline _rlookupByKey: Exports._rlookupByKey.Type_2 = nativeOnly
+            static member inline _rlookupByKey: Exports._rlookupByKey__.Type_2 = nativeOnly
             /// <summary>
             /// Creates a Proxy for resolving raw values for options.
             /// </summary>
@@ -22186,9 +20614,9 @@ Chart.unregister($0)"""
             [<Import("_descriptors", "chart.js/helpers")>]
             static member _descriptors (proxy: ChartJs.dist_helpers_helpers_config_types.ResolverCache, ?defaults: ChartJs.dist_helpers_helpers_config_types.DescriptorDefaults) : ChartJs.dist_helpers_helpers_config_types.Descriptor = nativeOnly
             [<Import("_parseObjectDataRadialScale", "chart.js/helpers")>]
-            static member _parseObjectDataRadialScale (meta: ChartJs.dist_types.ChartMeta<Exports._parseObjectDataRadialScale.meta_2>, data: ResizeArray<ChartJs.dist_types_basic.AnyObject>, start: float, count: float) : ResizeArray<Exports._parseObjectDataRadialScale_2> = nativeOnly
+            static member _parseObjectDataRadialScale (meta: ChartJs.dist_types.ChartMeta<Exports._parseObjectDataRadialScale__.meta_2>, data: ResizeArray<ChartJs.dist_types_basic.AnyObject>, start: float, count: float) : ResizeArray<Exports._parseObjectDataRadialScale___2> = nativeOnly
             [<Import("splineCurve", "chart.js/helpers")>]
-            static member splineCurve (firstPoint: ChartJs.dist_types_geometric.SplinePoint, middlePoint: ChartJs.dist_types_geometric.SplinePoint, afterPoint: ChartJs.dist_types_geometric.SplinePoint, t: float) : Exports.splineCurve_2 = nativeOnly
+            static member splineCurve (firstPoint: ChartJs.dist_types_geometric.SplinePoint, middlePoint: ChartJs.dist_types_geometric.SplinePoint, afterPoint: ChartJs.dist_types_geometric.SplinePoint, t: float) : Exports.splineCurve___2 = nativeOnly
             /// <summary>
             /// This function calculates Bézier control points in a similar way than |splineCurve|,
             /// but preserves monotonicity of the provided data and ensures no local extremums are added
@@ -22196,9 +20624,9 @@ Chart.unregister($0)"""
             /// See : https://en.wikipedia.org/wiki/Monotone_cubic_interpolation
             /// </summary>
             [<Import("splineCurveMonotone", "chart.js/helpers")>]
-            static member splineCurveMonotone (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, ?indexAxis: Exports.splineCurveMonotone.indexAxis_2) : unit = nativeOnly
+            static member splineCurveMonotone (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, ?indexAxis: Exports.splineCurveMonotone__.indexAxis_2) : unit = nativeOnly
             [<Import("_updateBezierControlPoints", "chart.js/helpers")>]
-            static member _updateBezierControlPoints (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, options: obj, area: ChartJs.dist_types_geometric.ChartArea, loop: bool, indexAxis: Exports._updateBezierControlPoints.indexAxis_2) : unit = nativeOnly
+            static member _updateBezierControlPoints (points: ResizeArray<ChartJs.dist_types_geometric.SplinePoint>, options: obj, area: ChartJs.dist_types_geometric.ChartArea, loop: bool, indexAxis: Exports._updateBezierControlPoints__.indexAxis_2) : unit = nativeOnly
             [<Import("_isDomSupported", "chart.js/helpers")>]
             static member _isDomSupported () : bool = nativeOnly
             [<Import("_getParentNode", "chart.js/helpers")>]
@@ -22218,7 +20646,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22232,7 +20660,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.Event, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22246,7 +20674,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22260,7 +20688,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: ChartJs.dist_types.ChartEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22274,7 +20702,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22288,7 +20716,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.TouchEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22302,7 +20730,7 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_types.Chart) : Exports.getRelativePosition___2 = nativeOnly
             /// <summary>
             /// Gets an event's x, y coordinates, relative to the chart area
             /// </summary>
@@ -22316,9 +20744,9 @@ Chart.unregister($0)"""
             /// x and y coordinates of the event
             /// </returns>
             [<Import("getRelativePosition", "chart.js/helpers")>]
-            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition_2 = nativeOnly
+            static member getRelativePosition (event: Glutinum.Web.MouseEvent, chart: ChartJs.dist_core_core_controller.Chart) : Exports.getRelativePosition___2 = nativeOnly
             [<Import("getMaximumSize", "chart.js/helpers")>]
-            static member getMaximumSize (canvas: Glutinum.Web.HTMLCanvasElement, ?bbWidth: float, ?bbHeight: float, ?aspectRatio: float) : Exports.getMaximumSize_2 = nativeOnly
+            static member getMaximumSize (canvas: Glutinum.Web.HTMLCanvasElement, ?bbWidth: float, ?bbHeight: float, ?aspectRatio: float) : Exports.getMaximumSize___2 = nativeOnly
             /// <param name="chart">
             ///
             /// </param>
@@ -22358,7 +20786,7 @@ Chart.unregister($0)"""
             /// Size in pixels or undefined if unknown.
             /// </returns>
             [<Import("readUsedSize", "chart.js/helpers")>]
-            static member readUsedSize (element: Glutinum.Web.HTMLElement, property: Exports.readUsedSize.property_2) : float option = nativeOnly
+            static member readUsedSize (element: Glutinum.Web.HTMLElement, property: Exports.readUsedSize__.property_2) : float option = nativeOnly
             /// <summary>
             /// Detects support for options object argument in addEventListener.
             /// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Safely_detecting_option_support
@@ -22382,7 +20810,7 @@ Chart.unregister($0)"""
             /// Return start and count of visible points.
             /// </summary>
             [<Import("_getStartAndCountOfVisiblePoints", "chart.js/helpers")>]
-            static member _getStartAndCountOfVisiblePoints (meta: ChartJs.dist_types.ChartMeta<Exports._getStartAndCountOfVisiblePoints.meta_2>, points: ResizeArray<ChartJs.dist_elements_element_point.PointElement>, animationsDisabled: bool) : Exports._getStartAndCountOfVisiblePoints_2 = nativeOnly
+            static member _getStartAndCountOfVisiblePoints (meta: ChartJs.dist_types.ChartMeta<Exports._getStartAndCountOfVisiblePoints__.meta_2>, points: ResizeArray<ChartJs.dist_elements_element_point.PointElement>, animationsDisabled: bool) : Exports._getStartAndCountOfVisiblePoints___2 = nativeOnly
             /// <summary>
             /// Checks if the scale ranges have changed.
             /// </summary>
@@ -22395,28 +20823,28 @@ Chart.unregister($0)"""
             /// Request animation polyfill
             /// </summary>
             [<Import("requestAnimFrame", "chart.js/helpers")>]
-            static member inline requestAnimFrame: U2<Exports.requestAnimFrame.Type.U2.Case1_2, (obj -> unit)> = nativeOnly
+            static member inline requestAnimFrame: U2<Exports.requestAnimFrame__.Type.U2.Case1_2, (obj -> unit)> = nativeOnly
             /// <summary>
             /// Converts 'start' to 'left', 'end' to 'right' and others to 'center'
             /// </summary>
             [<Import("_toLeftRightCenter", "chart.js/helpers")>]
-            static member inline _toLeftRightCenter: (Exports._toLeftRightCenter.Type.align_2 -> Exports._toLeftRightCenter.Type_2) = nativeOnly
+            static member inline _toLeftRightCenter: (Exports._toLeftRightCenter__.Type.align_2 -> Exports._toLeftRightCenter__.Type_2) = nativeOnly
             /// <summary>
             /// Returns <c>start</c>, <c>end</c> or <c>(start + end) / 2</c> depending on <c>align</c>. Defaults to <c>center</c>
             /// </summary>
             [<Import("_alignStartEnd", "chart.js/helpers")>]
-            static member inline _alignStartEnd: Exports._alignStartEnd.Type_2 = nativeOnly
+            static member inline _alignStartEnd: Exports._alignStartEnd__.Type_2 = nativeOnly
             /// <summary>
             /// Returns <c>left</c>, <c>right</c> or <c>(left + right) / 2</c> depending on <c>align</c>. Defaults to <c>left</c>
             /// </summary>
             [<Import("_textX", "chart.js/helpers")>]
-            static member inline _textX: Exports._textX.Type_2 = nativeOnly
+            static member inline _textX: Exports._textX__.Type_2 = nativeOnly
             [<Import("_pointInLine", "chart.js/helpers")>]
-            static member _pointInLine (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, ?mode: obj) : Exports._pointInLine_2 = nativeOnly
+            static member _pointInLine (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, ?mode: obj) : Exports._pointInLine___2 = nativeOnly
             [<Import("_steppedInterpolation", "chart.js/helpers")>]
-            static member _steppedInterpolation (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, mode: Exports._steppedInterpolation.mode_2) : Exports._steppedInterpolation_2 = nativeOnly
+            static member _steppedInterpolation (p1: ChartJs.dist_types_geometric.Point, p2: ChartJs.dist_types_geometric.Point, t: float, mode: Exports._steppedInterpolation__.mode_2) : Exports._steppedInterpolation___2 = nativeOnly
             [<Import("_bezierInterpolation", "chart.js/helpers")>]
-            static member _bezierInterpolation (p1: ChartJs.dist_types_geometric.SplinePoint, p2: ChartJs.dist_types_geometric.SplinePoint, t: float, ?mode: obj) : Exports._bezierInterpolation_2 = nativeOnly
+            static member _bezierInterpolation (p1: ChartJs.dist_types_geometric.SplinePoint, p2: ChartJs.dist_types_geometric.SplinePoint, t: float, ?mode: obj) : Exports._bezierInterpolation___2 = nativeOnly
             [<Import("formatNumber", "chart.js/helpers")>]
             static member formatNumber (num: float, locale: string, ?options: obj) : string = nativeOnly
             /// <summary>
@@ -22454,7 +20882,7 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_readValueToProps", "chart.js/helpers")>]
-            static member _readValueToProps (value: float, props: ResizeArray<string>) : Exports._readValueToProps_4<string> = nativeOnly
+            static member _readValueToProps (value: float, props: ResizeArray<string>) : Exports._readValueToProps___4<string> = nativeOnly
             /// <param name="value">
             ///
             /// </param>
@@ -22462,11 +20890,11 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_readValueToProps", "chart.js/helpers")>]
-            static member _readValueToProps (value: Exports._readValueToProps.value_4<string>, props: ResizeArray<string>) : Exports._readValueToProps_4<string> = nativeOnly
+            static member _readValueToProps (value: Exports._readValueToProps__.value_4<string>, props: ResizeArray<string>) : Exports._readValueToProps___4<string> = nativeOnly
             [<Import("_readValueToProps", "chart.js/helpers")>]
-            static member _readValueToProps (value: float, props: Exports._readValueToProps.props_2<string, string>) : Exports._readValueToProps_5<string> = nativeOnly
+            static member _readValueToProps (value: float, props: Exports._readValueToProps__.props_2<string, string>) : Exports._readValueToProps___5<string> = nativeOnly
             [<Import("_readValueToProps", "chart.js/helpers")>]
-            static member _readValueToProps (value: Exports._readValueToProps.value_5, props: Exports._readValueToProps.props_2<string, string>) : Exports._readValueToProps_5<string> = nativeOnly
+            static member _readValueToProps (value: Exports._readValueToProps__.value_5, props: Exports._readValueToProps__.props_2<string, string>) : Exports._readValueToProps___5<string> = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -22479,7 +20907,7 @@ Chart.unregister($0)"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/helpers")>]
-            static member toTRBL (value: float) : Exports.toTRBL_6 = nativeOnly
+            static member toTRBL (value: float) : Exports.toTRBL___6 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -22492,7 +20920,7 @@ Chart.unregister($0)"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/helpers")>]
-            static member toTRBL (value: ChartJs.dist_types_geometric.TRBL) : Exports.toTRBL_7 = nativeOnly
+            static member toTRBL (value: ChartJs.dist_types_geometric.TRBL) : Exports.toTRBL___7 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL object.
             /// </summary>
@@ -22505,7 +20933,7 @@ Chart.unregister($0)"""
             /// The padding values (top, right, bottom, left)
             /// </returns>
             [<Import("toTRBL", "chart.js/helpers")>]
-            static member toTRBL (value: ChartJs.dist_types_geometric.Point) : Exports.toTRBL_8 = nativeOnly
+            static member toTRBL (value: ChartJs.dist_types_geometric.Point) : Exports.toTRBL___8 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL corners object (similar with css border-radius).
             /// </summary>
@@ -22517,7 +20945,7 @@ Chart.unregister($0)"""
             /// The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
             /// </returns>
             [<Import("toTRBLCorners", "chart.js/helpers")>]
-            static member toTRBLCorners (value: float) : Exports.toTRBLCorners_4 = nativeOnly
+            static member toTRBLCorners (value: float) : Exports.toTRBLCorners___4 = nativeOnly
             /// <summary>
             /// Converts the given value into a TRBL corners object (similar with css border-radius).
             /// </summary>
@@ -22529,7 +20957,7 @@ Chart.unregister($0)"""
             /// The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
             /// </returns>
             [<Import("toTRBLCorners", "chart.js/helpers")>]
-            static member toTRBLCorners (value: ChartJs.dist_types_geometric.TRBLCorners) : Exports.toTRBLCorners_5 = nativeOnly
+            static member toTRBLCorners (value: ChartJs.dist_types_geometric.TRBLCorners) : Exports.toTRBLCorners___5 = nativeOnly
             /// <summary>
             /// Converts the given value into a padding object with pre-computed width/height.
             /// </summary>
@@ -22582,7 +21010,7 @@ Chart.unregister($0)"""
             /// The font object.
             /// </returns>
             [<Import("toFont", "chart.js/helpers")>]
-            static member toFont (options: Exports.toFont.options_2, ?fallback: Exports.toFont.fallback_2) : Exports.toFont_2 = nativeOnly
+            static member toFont (options: Exports.toFont__.options_2, ?fallback: Exports.toFont__.fallback_2) : Exports.toFont___2 = nativeOnly
             /// <summary>
             /// Evaluates the given <c>inputs</c> sequentially and returns the first defined value.
             /// </summary>
@@ -22604,7 +21032,7 @@ Chart.unregister($0)"""
             /// Will be set to <c>false</c> if option is not cacheable.
             /// </param>
             [<Import("resolve", "chart.js/helpers")>]
-            static member resolve (inputs: ResizeArray<obj>, ?context: obj, ?index: float, ?info: Exports.resolve.info_2) : obj = nativeOnly
+            static member resolve (inputs: ResizeArray<obj>, ?context: obj, ?index: float, ?info: Exports.resolve__.info_2) : obj = nativeOnly
             /// <param name="minmax">
             ///
             /// </param>
@@ -22615,7 +21043,7 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_addGrace", "chart.js/helpers")>]
-            static member _addGrace (minmax: Exports._addGrace.minmax_2, grace: float, beginAtZero: bool) : Exports._addGrace_2 = nativeOnly
+            static member _addGrace (minmax: Exports._addGrace__.minmax_2, grace: float, beginAtZero: bool) : Exports._addGrace___2 = nativeOnly
             /// <param name="minmax">
             ///
             /// </param>
@@ -22626,7 +21054,7 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_addGrace", "chart.js/helpers")>]
-            static member _addGrace (minmax: Exports._addGrace.minmax_2, grace: string, beginAtZero: bool) : Exports._addGrace_2 = nativeOnly
+            static member _addGrace (minmax: Exports._addGrace__.minmax_2, grace: string, beginAtZero: bool) : Exports._addGrace___2 = nativeOnly
             /// <summary>
             /// Create a context inheriting parentContext
             /// </summary>
@@ -22657,7 +21085,7 @@ Chart.unregister($0)"""
             [<Import("almostWhole", "chart.js/helpers")>]
             static member almostWhole (x: float, epsilon: float) : bool = nativeOnly
             [<Import("_setMinAndMaxByKey", "chart.js/helpers")>]
-            static member _setMinAndMaxByKey (array: ResizeArray<Exports._setMinAndMaxByKey.array_2>, target: Exports._setMinAndMaxByKey.target_2, property: string) : unit = nativeOnly
+            static member _setMinAndMaxByKey (array: ResizeArray<Exports._setMinAndMaxByKey__.array_2>, target: Exports._setMinAndMaxByKey__.target_2, property: string) : unit = nativeOnly
             [<Import("toRadians", "chart.js/helpers")>]
             static member toRadians (degrees: float) : float = nativeOnly
             [<Import("toDegrees", "chart.js/helpers")>]
@@ -22675,7 +21103,7 @@ Chart.unregister($0)"""
             [<Import("_decimalPlaces", "chart.js/helpers")>]
             static member _decimalPlaces (x: float) : float = nativeOnly
             [<Import("getAngleFromPoint", "chart.js/helpers")>]
-            static member getAngleFromPoint (centrePoint: ChartJs.dist_types_geometric.Point, anglePoint: ChartJs.dist_types_geometric.Point) : Exports.getAngleFromPoint_2 = nativeOnly
+            static member getAngleFromPoint (centrePoint: ChartJs.dist_types_geometric.Point, anglePoint: ChartJs.dist_types_geometric.Point) : Exports.getAngleFromPoint___2 = nativeOnly
             [<Import("distanceBetweenPoints", "chart.js/helpers")>]
             static member distanceBetweenPoints (pt1: ChartJs.dist_types_geometric.Point, pt2: ChartJs.dist_types_geometric.Point) : float = nativeOnly
             /// <summary>
@@ -22746,7 +21174,7 @@ Chart.unregister($0)"""
             [<Import("getRtlAdapter", "chart.js/helpers")>]
             static member getRtlAdapter (rtl: bool, rectX: float, width: float) : ChartJs.dist_helpers_helpers_rtl.RTLAdapter = nativeOnly
             [<Import("overrideTextDirection", "chart.js/helpers")>]
-            static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection.direction_2) : unit = nativeOnly
+            static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection__.direction_2) : unit = nativeOnly
             [<Import("restoreTextDirection", "chart.js/helpers")>]
             static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: string * string) : unit = nativeOnly
             /// <summary>
@@ -22762,7 +21190,7 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_boundSegment", "chart.js/helpers")>]
-            static member _boundSegment (segment: Exports._boundSegment.segment_2, points: ResizeArray<ChartJs.dist_helpers_helpers_segment.PointElement>, ?bounds: Exports._boundSegment.bounds_2) : ResizeArray<Exports._boundSegment_2> = nativeOnly
+            static member _boundSegment (segment: Exports._boundSegment__.segment_2, points: ResizeArray<ChartJs.dist_helpers_helpers_segment.PointElement>, ?bounds: Exports._boundSegment__.bounds_2) : ResizeArray<Exports._boundSegment___2> = nativeOnly
             /// <summary>
             /// Returns the segments of the line that are inside given bounds
             /// </summary>
@@ -22773,7 +21201,7 @@ Chart.unregister($0)"""
             ///
             /// </param>
             [<Import("_boundSegments", "chart.js/helpers")>]
-            static member _boundSegments (line: ChartJs.dist_helpers_helpers_segment.LineElement, ?bounds: Exports._boundSegments.bounds_2) : ResizeArray<Exports._boundSegments_2> = nativeOnly
+            static member _boundSegments (line: ChartJs.dist_helpers_helpers_segment.LineElement, ?bounds: Exports._boundSegments__.bounds_2) : ResizeArray<Exports._boundSegments___2> = nativeOnly
             /// <summary>
             /// Compute the continuous segments that define the whole line
             /// There can be skipped points within a segment, if spanGaps is true.
@@ -22821,249 +21249,188 @@ Chart.unregister($0)"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type _lookup_2
+            [<Interface>]
+            type _lookup___4 =
+                abstract member lo: float with get, set
+                abstract member hi: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    lo: float,
-                    hi: float
-                ) =
-
-                member val lo : float = nativeOnly with get, set
-                member val hi : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _parseObjectDataRadialScale_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    r: obj
-                ) =
-
-                member val r : obj = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type splineCurve_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    previous: ChartJs.dist_types_geometric.SplinePoint,
-                    next: ChartJs.dist_types_geometric.SplinePoint
-                ) =
-
-                member val previous : ChartJs.dist_types_geometric.SplinePoint = nativeOnly with get, set
-                member val next : ChartJs.dist_types_geometric.SplinePoint = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type getRelativePosition_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type getMaximumSize_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    height: float
-                ) =
-
-                member val width : float = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _getStartAndCountOfVisiblePoints_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    count: float
-                ) =
-
-                member val start : float = nativeOnly with get, set
-                member val count : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _pointInLine_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _steppedInterpolation_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type _bezierInterpolation_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+                static member Create (lo: float, hi: float) : _lookup___4 = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type _readValueToProps_4<'K> =
+            type _lookup___5 =
+                abstract member lo: float with get, set
+                abstract member hi: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (lo: float, hi: float) : _lookup___5 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _parseObjectDataRadialScale___2 =
+                abstract member r: obj with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (r: obj) : _parseObjectDataRadialScale___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type splineCurve___2 =
+                abstract member previous: ChartJs.dist_types_geometric.SplinePoint with get, set
+                abstract member next: ChartJs.dist_types_geometric.SplinePoint with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (previous: ChartJs.dist_types_geometric.SplinePoint, next: ChartJs.dist_types_geometric.SplinePoint) : splineCurve___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type getRelativePosition___2 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : getRelativePosition___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type getMaximumSize___2 =
+                abstract member width: float with get, set
+                abstract member height: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (width: float, height: float) : getMaximumSize___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _getStartAndCountOfVisiblePoints___2 =
+                abstract member start: float with get, set
+                abstract member count: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (start: float, count: float) : _getStartAndCountOfVisiblePoints___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _pointInLine___2 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : _pointInLine___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _steppedInterpolation___2 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : _steppedInterpolation___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _bezierInterpolation___2 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : _bezierInterpolation___2 = nativeOnly
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type _readValueToProps___4<'K> =
                 [<EmitIndexer>]
                 abstract member Item: key: 'K -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type _readValueToProps_5<'T> =
+            type _readValueToProps___5<'T> =
                 [<EmitIndexer>]
                 abstract member Item: key: 'T -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_6 =
+            type toTRBL___6 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_6.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___6.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_7 =
+            type toTRBL___7 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_7.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___7.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBL_8 =
+            type toTRBL___8 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBL.toTRBL_8.key -> float with get, set
+                abstract member Item: key: Exports.toTRBL__.toTRBL___8.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBLCorners_4 =
+            type toTRBLCorners___4 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBLCorners.toTRBLCorners_4.key -> float with get, set
+                abstract member Item: key: Exports.toTRBLCorners__.toTRBLCorners___4.key -> float with get, set
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type toTRBLCorners_5 =
+            type toTRBLCorners___5 =
                 [<EmitIndexer>]
-                abstract member Item: key: Exports.toTRBLCorners.toTRBLCorners_5.key -> float with get, set
+                abstract member Item: key: Exports.toTRBLCorners__.toTRBLCorners___5.key -> float with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type toFont_2
+            [<Interface>]
+            type toFont___2 =
+                abstract member family: string with get, set
+                abstract member lineHeight: float with get, set
+                abstract member size: float with get, set
+                abstract member style: Exports.toFont__.style_2 with get, set
+                abstract member weight: Exports.toFont__.weight_2 with get, set
+                abstract member string: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    family: string,
-                    lineHeight: float,
-                    size: float,
-                    style: Exports.toFont.style_2,
-                    weight: Exports.toFont.weight_2,
-                    string: string
-                ) =
+                static member Create (family: string, lineHeight: float, size: float, style: Exports.toFont__.style_2, weight: Exports.toFont__.weight_2, string: string) : toFont___2 = nativeOnly
 
-                member val family : string = nativeOnly with get, set
-                member val lineHeight : float = nativeOnly with get, set
-                member val size : float = nativeOnly with get, set
-                member val style : Exports.toFont.style_2 = nativeOnly with get, set
-                member val weight : Exports.toFont.weight_2 = nativeOnly with get, set
-                member val string : string = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _addGrace_2
+            [<Interface>]
+            type _addGrace___2 =
+                abstract member min: float with get, set
+                abstract member max: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    min: float,
-                    max: float
-                ) =
+                static member Create (min: float, max: float) : _addGrace___2 = nativeOnly
 
-                member val min : float = nativeOnly with get, set
-                member val max : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type getAngleFromPoint_2
+            [<Interface>]
+            type getAngleFromPoint___2 =
+                abstract member angle: float with get, set
+                abstract member distance: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    angle: float,
-                    distance: float
-                ) =
+                static member Create (angle: float, distance: float) : getAngleFromPoint___2 = nativeOnly
 
-                member val angle : float = nativeOnly with get, set
-                member val distance : float = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _boundSegment_2
+            [<Interface>]
+            type _boundSegment___2 =
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member loop: bool with get, set
+                abstract member style: obj option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    ``end``: float,
-                    loop: bool,
-                    ?style: obj
-                ) =
+                static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : _boundSegment___2 = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val loop : bool = nativeOnly with get, set
-                member val style : obj option = nativeOnly with get, set
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type _boundSegments_2
+            [<Interface>]
+            type _boundSegments___2 =
+                abstract member start: float with get, set
+                abstract member ``end``: float with get, set
+                abstract member loop: bool with get, set
+                abstract member style: obj option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    start: float,
-                    ``end``: float,
-                    loop: bool,
-                    ?style: obj
-                ) =
+                static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : _boundSegments___2 = nativeOnly
 
-                member val start : float = nativeOnly with get, set
-                member val ``end`` : float = nativeOnly with get, set
-                member val loop : bool = nativeOnly with get, set
-                member val style : obj option = nativeOnly with get, set
+            module color__ =
 
-            module color =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type value_2
+                [<Interface>]
+                type value_2 =
+                    abstract member r: float with get, set
+                    abstract member g: float with get, set
+                    abstract member b: float with get, set
+                    abstract member a: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        r: float,
-                        g: float,
-                        b: float,
-                        a: float
-                    ) =
+                    static member Create (r: float, g: float, b: float, a: float) : value_2 = nativeOnly
 
-                    member val r : float = nativeOnly with get, set
-                    member val g : float = nativeOnly with get, set
-                    member val b : float = nativeOnly with get, set
-                    member val a : float = nativeOnly with get, set
-
-            module each =
+            module each__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -23077,22 +21444,22 @@ Chart.unregister($0)"""
                 type fn_5<'T> =
                     delegate of v: 'T * i: float -> unit
 
-            module toPercentage =
+            module toPercentage__ =
 
                 type Type_2 =
                     delegate of value: U2<float, string> * dimension: float -> float
 
-            module toDimension =
+            module toDimension__ =
 
                 type Type_2 =
                     delegate of value: U2<float, string> * dimension: float -> float
 
-            module setsEqual =
+            module setsEqual__ =
 
                 type Type_2 =
                     delegate of a: obj * b: obj -> bool
 
-            module _measureText =
+            module _measureText__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -23100,21 +21467,16 @@ Chart.unregister($0)"""
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
 
-            module _longestText =
+            module _longestText__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type cache_2
+                [<Interface>]
+                type cache_2 =
+                    abstract member data: Exports._longestText__.cache.data_2 option with get, set
+                    abstract member garbageCollect: ResizeArray<string> option with get, set
+                    abstract member font: string option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        ?data: Exports._longestText.cache.data_2,
-                        ?garbageCollect: ResizeArray<string>,
-                        ?font: string
-                    ) =
-
-                    member val data : Exports._longestText.cache.data_2 option = nativeOnly with get, set
-                    member val garbageCollect : ResizeArray<string> option = nativeOnly with get, set
-                    member val font : string option = nativeOnly with get, set
+                    static member Create (?data: Exports._longestText__.cache.data_2, ?garbageCollect: ResizeArray<string>, ?font: string) : cache_2 = nativeOnly
 
                 module cache =
 
@@ -23124,7 +21486,7 @@ Chart.unregister($0)"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-            module addRoundedRectPath =
+            module addRoundedRectPath__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -23135,10 +21497,10 @@ Chart.unregister($0)"""
                     abstract member h: float with get, set
                     abstract member radius: obj with get, set
 
-            module _lookupByKey =
+            module _lookupByKey__ =
 
                 type Type_2 =
-                    delegate of table: ResizeArray<Exports._lookupByKey.Type.table_2> * key: string * value: float * ?last: bool -> Exports._lookupByKey.Type.ReturnType_2
+                    delegate of table: ResizeArray<Exports._lookupByKey__.Type.table_2> * key: string * value: float * ?last: bool -> Exports._lookupByKey__.Type.ReturnType_2
 
                 module Type =
 
@@ -23148,22 +21510,18 @@ Chart.unregister($0)"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ReturnType_2
+                    [<Interface>]
+                    type ReturnType_2 =
+                        abstract member lo: float with get, set
+                        abstract member hi: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            lo: float,
-                            hi: float
-                        ) =
+                        static member Create (lo: float, hi: float) : ReturnType_2 = nativeOnly
 
-                        member val lo : float = nativeOnly with get, set
-                        member val hi : float = nativeOnly with get, set
-
-            module _rlookupByKey =
+            module _rlookupByKey__ =
 
                 type Type_2 =
-                    delegate of table: ResizeArray<Exports._rlookupByKey.Type.table_2> * key: string * value: float -> Exports._rlookupByKey.Type.ReturnType_2
+                    delegate of table: ResizeArray<Exports._rlookupByKey__.Type.table_2> * key: string * value: float -> Exports._rlookupByKey__.Type.ReturnType_2
 
                 module Type =
 
@@ -23173,19 +21531,15 @@ Chart.unregister($0)"""
                         [<EmitIndexer>]
                         abstract member Item: key: string -> float with get, set
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type ReturnType_2
+                    [<Interface>]
+                    type ReturnType_2 =
+                        abstract member lo: float with get, set
+                        abstract member hi: float with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            lo: float,
-                            hi: float
-                        ) =
+                        static member Create (lo: float, hi: float) : ReturnType_2 = nativeOnly
 
-                        member val lo : float = nativeOnly with get, set
-                        member val hi : float = nativeOnly with get, set
-
-            module _parseObjectDataRadialScale =
+            module _parseObjectDataRadialScale__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23193,7 +21547,7 @@ Chart.unregister($0)"""
                     | line
                     | scatter
 
-            module splineCurveMonotone =
+            module splineCurveMonotone__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23201,7 +21555,7 @@ Chart.unregister($0)"""
                     | x
                     | y
 
-            module _updateBezierControlPoints =
+            module _updateBezierControlPoints__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23209,7 +21563,7 @@ Chart.unregister($0)"""
                     | x
                     | y
 
-            module readUsedSize =
+            module readUsedSize__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23217,7 +21571,7 @@ Chart.unregister($0)"""
                     | width
                     | height
 
-            module _getStartAndCountOfVisiblePoints =
+            module _getStartAndCountOfVisiblePoints__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23225,7 +21579,7 @@ Chart.unregister($0)"""
                     | line
                     | scatter
 
-            module requestAnimFrame =
+            module requestAnimFrame__ =
 
                 module Type =
 
@@ -23237,7 +21591,7 @@ Chart.unregister($0)"""
                             [<Emit("$0($1...)")>]
                             abstract member Invoke: callback: Glutinum.Web.FrameRequestCallback -> float
 
-            module _toLeftRightCenter =
+            module _toLeftRightCenter__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23255,10 +21609,10 @@ Chart.unregister($0)"""
                         | ``end``
                         | center
 
-            module _alignStartEnd =
+            module _alignStartEnd__ =
 
                 type Type_2 =
-                    delegate of align: Exports._alignStartEnd.Type.align_2 * start: float * ``end``: float -> float
+                    delegate of align: Exports._alignStartEnd__.Type.align_2 * start: float * ``end``: float -> float
 
                 module Type =
 
@@ -23269,10 +21623,10 @@ Chart.unregister($0)"""
                         | ``end``
                         | center
 
-            module _textX =
+            module _textX__ =
 
                 type Type_2 =
-                    delegate of align: Exports._textX.Type.align_2 * left: float * right: float * rtl: bool -> float
+                    delegate of align: Exports._textX__.Type.align_2 * left: float * right: float * rtl: bool -> float
 
                 module Type =
 
@@ -23283,7 +21637,7 @@ Chart.unregister($0)"""
                         | right
                         | center
 
-            module _steppedInterpolation =
+            module _steppedInterpolation__ =
 
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
@@ -23292,7 +21646,7 @@ Chart.unregister($0)"""
                     | after
                     | Case1 of obj
 
-            module _readValueToProps =
+            module _readValueToProps__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -23312,19 +21666,9 @@ Chart.unregister($0)"""
                     [<EmitIndexer>]
                     abstract member Item: key: obj -> float with get, set
 
-            module toTRBL =
+            module toTRBL__ =
 
-                module toTRBL_6 =
-
-                    [<RequireQualifiedAccess>]
-                    [<StringEnum(CaseRules.None)>]
-                    type key =
-                        | left
-                        | top
-                        | bottom
-                        | right
-
-                module toTRBL_7 =
+                module toTRBL___6 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -23334,7 +21678,7 @@ Chart.unregister($0)"""
                         | bottom
                         | right
 
-                module toTRBL_8 =
+                module toTRBL___7 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -23344,9 +21688,19 @@ Chart.unregister($0)"""
                         | bottom
                         | right
 
-            module toTRBLCorners =
+                module toTRBL___8 =
 
-                module toTRBLCorners_4 =
+                    [<RequireQualifiedAccess>]
+                    [<StringEnum(CaseRules.None)>]
+                    type key =
+                        | left
+                        | top
+                        | bottom
+                        | right
+
+            module toTRBLCorners__ =
+
+                module toTRBLCorners___4 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -23356,7 +21710,7 @@ Chart.unregister($0)"""
                         | bottomLeft
                         | bottomRight
 
-                module toTRBLCorners_5 =
+                module toTRBLCorners___5 =
 
                     [<RequireQualifiedAccess>]
                     [<StringEnum(CaseRules.None)>]
@@ -23366,7 +21720,7 @@ Chart.unregister($0)"""
                         | bottomLeft
                         | bottomRight
 
-            module toFont =
+            module toFont__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -23382,11 +21736,11 @@ Chart.unregister($0)"""
                     /// <summary>
                     /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
                     /// </summary>
-                    abstract member style: Exports.toFont.options.Partial.style_2 option with get, set
+                    abstract member style: Exports.toFont__.options.Partial.style_2 option with get, set
                     /// <summary>
                     /// Default font weight (boldness). (see MDN).
                     /// </summary>
-                    abstract member weight: Exports.toFont.options.Partial.weight_2 option with get, set
+                    abstract member weight: Exports.toFont__.options.Partial.weight_2 option with get, set
                     /// <summary>
                     /// Height of an individual line of text (see MDN).
                     /// </summary>
@@ -23406,11 +21760,11 @@ Chart.unregister($0)"""
                     /// <summary>
                     /// Default font style. Does not apply to tooltip title or footer. Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit)
                     /// </summary>
-                    abstract member style: Exports.toFont.fallback.Partial.style_2 option with get, set
+                    abstract member style: Exports.toFont__.fallback.Partial.style_2 option with get, set
                     /// <summary>
                     /// Default font weight (boldness). (see MDN).
                     /// </summary>
-                    abstract member weight: Exports.toFont.fallback.Partial.weight_2 option with get, set
+                    abstract member weight: Exports.toFont__.fallback.Partial.weight_2 option with get, set
                     /// <summary>
                     /// Height of an individual line of text (see MDN).
                     /// </summary>
@@ -23478,33 +21832,26 @@ Chart.unregister($0)"""
                             | bolder
                             | Case1 of float
 
-            module resolve =
+            module resolve__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type info_2
+                [<Interface>]
+                type info_2 =
+                    abstract member cacheable: bool with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        cacheable: bool
-                    ) =
+                    static member Create (cacheable: bool) : info_2 = nativeOnly
 
-                    member val cacheable : bool = nativeOnly with get, set
+            module _addGrace__ =
 
-            module _addGrace =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type minmax_2
+                [<Interface>]
+                type minmax_2 =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
+                    static member Create (min: float, max: float) : minmax_2 = nativeOnly
 
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
-
-            module _setMinAndMaxByKey =
+            module _setMinAndMaxByKey__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -23512,19 +21859,15 @@ Chart.unregister($0)"""
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type target_2
+                [<Interface>]
+                type target_2 =
+                    abstract member min: float with get, set
+                    abstract member max: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        min: float,
-                        max: float
-                    ) =
+                    static member Create (min: float, max: float) : target_2 = nativeOnly
 
-                    member val min : float = nativeOnly with get, set
-                    member val max : float = nativeOnly with get, set
-
-            module overrideTextDirection =
+            module overrideTextDirection__ =
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -23532,64 +21875,48 @@ Chart.unregister($0)"""
                     | ltr
                     | rtl
 
-            module _boundSegment =
+            module _boundSegment__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type segment_2
+                [<Interface>]
+                type segment_2 =
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
+                    abstract member loop: bool with get, set
+                    abstract member style: obj option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        start: float,
-                        ``end``: float,
-                        loop: bool,
-                        ?style: obj
-                    ) =
+                    static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : segment_2 = nativeOnly
 
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
-                    member val loop : bool = nativeOnly with get, set
-                    member val style : obj option = nativeOnly with get, set
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bounds_2
+                [<Interface>]
+                type bounds_2 =
+                    abstract member property: string with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        property: string,
-                        start: float,
-                        ``end``: float
-                    ) =
+                    static member Create (property: string, start: float, ``end``: float) : bounds_2 = nativeOnly
 
-                    member val property : string = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+            module _boundSegments__ =
 
-            module _boundSegments =
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type bounds_2
+                [<Interface>]
+                type bounds_2 =
+                    abstract member property: string with get, set
+                    abstract member start: float with get, set
+                    abstract member ``end``: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        property: string,
-                        start: float,
-                        ``end``: float
-                    ) =
-
-                    member val property : string = nativeOnly with get, set
-                    member val start : float = nativeOnly with get, set
-                    member val ``end`` : float = nativeOnly with get, set
+                    static member Create (property: string, start: float, ``end``: float) : bounds_2 = nativeOnly
 
     module Exports =
 
-        module BarController =
+        module BarController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.BarController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
@@ -23600,208 +21927,149 @@ Chart.unregister($0)"""
 
                 [<AllowNullLiteral>]
                 [<Interface>]
-                type defaultRoutes_2 =
+                type defaultRoutes_1 =
                     [<EmitIndexer>]
                     abstract member Item: property: string -> string with get, set
 
-        module BubbleController =
+        module BubbleController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.BubbleController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.BubbleController with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module DoughnutController =
+        module DoughnutController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.DoughnutController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.DoughnutController with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module LineController =
+        module LineController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.LineController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.LineController with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module PieController =
+        module PieController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.PieController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.PieController with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module PolarAreaController =
+        module PolarAreaController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.PolarAreaController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.PolarAreaController with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module RadarController =
+        module RadarController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.RadarController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.RadarController with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module ScatterController =
+        module ScatterController__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.ScatterController.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.ScatterController with get, set
 
+        module Interaction__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type Type_2 =
+                abstract member modes: ChartJs.dist_types.InteractionModeMap with get, set
+                /// <summary>
+                /// Helper function to select candidate elements for interaction
+                /// </summary>
+                abstract member evaluateInteractionItems: chart: ChartJs.dist_types.Chart * axis: ChartJs.dist_types.InteractionAxis * position: ChartJs.dist_types_geometric.Point * handler: Exports.Interaction__.Type.evaluateInteractionItems.handler_2 * ?intersect: bool -> ResizeArray<ChartJs.dist_types.InteractionItem>
+                [<ParamObject; Emit("$0")>]
+                static member Create (modes: ChartJs.dist_types.InteractionModeMap, evaluateInteractionItems: ResizeArray<ChartJs.dist_types.InteractionItem>) : Type_2 = nativeOnly
+
+            module Type =
+
+                module evaluateInteractionItems =
+
+                    type handler_2 =
+                        delegate of element: Exports.Interaction__.Type.evaluateInteractionItems.handler.element_2 * datasetIndex: float * index: float -> unit
+
+                    module handler =
+
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type element_2 =
+                            inherit ChartJs.dist_types.VisualElement
+
+        module Ticks__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type Type_2 =
+                abstract member formatters: Exports.Ticks__.Type.formatters_2 with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (formatters: Exports.Ticks__.Type.formatters_2) : Type_2 = nativeOnly
+
             module Type =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module Interaction =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type Type_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    modes: ChartJs.dist_types.InteractionModeMap,
-                    evaluateInteractionItems: ResizeArray<ChartJs.dist_types.InteractionItem>
-                ) =
-
-                member val modes : ChartJs.dist_types.InteractionModeMap = nativeOnly with get, set
-                /// <summary>
-                /// Helper function to select candidate elements for interaction
-                /// </summary>
-                member val evaluateInteractionItems : ResizeArray<ChartJs.dist_types.InteractionItem> = nativeOnly
-
-        module Ticks =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type Type_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    formatters: Exports.Ticks.Type.formatters_2
-                ) =
-
-                member val formatters : Exports.Ticks.Type.formatters_2 = nativeOnly with get, set
-
-            module Type =
-
-                [<Global>]
-                [<AllowNullLiteral>]
-                type formatters_2
-                    private () =
-
-                    [<ParamObject; Emit("$0")>]
-                    new (values: string, numeric: string, logarithmic: string) =
-                        formatters_2()
-
-                    [<ParamObject; Emit("$0")>]
-                    new (values: ResizeArray<string>, numeric: string, logarithmic: string) =
-                        formatters_2()
-
+                type formatters_2 =
                     /// <summary>
                     /// Formatter for value labels
                     /// </summary>
@@ -23811,7 +22079,7 @@ Chart.unregister($0)"""
                     /// <returns>
                     /// the label to display
                     /// </returns>
-                    member val values : U2<string, ResizeArray<string>> = nativeOnly
+                    abstract member values: value: obj -> U2<string, ResizeArray<string>>
                     /// <summary>
                     /// Formatter for numeric ticks
                     /// </summary>
@@ -23827,7 +22095,7 @@ Chart.unregister($0)"""
                     /// <returns>
                     /// string representation of the tickValue parameter
                     /// </returns>
-                    member val numeric : string = nativeOnly
+                    abstract member numeric: tickValue: float * index: float * ticks: ResizeArray<Exports.Ticks__.Type.formatters.numeric.ticks_2> -> string
                     /// <summary>
                     /// Formatter for logarithmic ticks
                     /// </summary>
@@ -23843,21 +22111,37 @@ Chart.unregister($0)"""
                     /// <returns>
                     /// string representation of the tickValue parameter
                     /// </returns>
-                    member val logarithmic : string = nativeOnly
+                    abstract member logarithmic: tickValue: float * index: float * ticks: ResizeArray<Exports.Ticks__.Type.formatters.logarithmic.ticks_2> -> string
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (values: string, numeric: string, logarithmic: string) : formatters_2 = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (values: ResizeArray<string>, numeric: string, logarithmic: string) : formatters_2 = nativeOnly
 
-        module layouts =
+                module formatters =
 
-            [<Global>]
+                    module numeric =
+
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type ticks_2 =
+                            abstract member value: float with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (value: float) : ticks_2 = nativeOnly
+
+                    module logarithmic =
+
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type ticks_2 =
+                            abstract member value: float with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (value: float) : ticks_2 = nativeOnly
+
+        module layouts__ =
+
             [<AllowNullLiteral>]
-            type Type_2
-                [<ParamObject; Emit("$0")>]
-                (
-                    addBox: unit,
-                    removeBox: unit,
-                    configure: unit,
-                    update: unit
-                ) =
-
+            [<Interface>]
+            type Type_2 =
                 /// <summary>
                 /// Register a box to a chart.
                 /// A box is simply a reference to an object that requires layout. eg. Scales, Legend, Title.
@@ -23868,7 +22152,7 @@ Chart.unregister($0)"""
                 /// <param name="item">
                 /// the item to add to be laid out
                 /// </param>
-                member val addBox : unit = nativeOnly
+                abstract member addBox: chart: ChartJs.dist_types.Chart * item: ChartJs.dist_types_layout.LayoutItem -> unit
                 /// <summary>
                 /// Remove a layoutItem from a chart
                 /// </summary>
@@ -23878,7 +22162,7 @@ Chart.unregister($0)"""
                 /// <param name="layoutItem">
                 /// the item to remove from the layout
                 /// </param>
-                member val removeBox : unit = nativeOnly
+                abstract member removeBox: chart: ChartJs.dist_types.Chart * layoutItem: ChartJs.dist_types_layout.LayoutItem -> unit
                 /// <summary>
                 /// Sets (or updates) options on the given <c>item</c>.
                 /// </summary>
@@ -23891,7 +22175,7 @@ Chart.unregister($0)"""
                 /// <param name="options">
                 /// the new item options.
                 /// </param>
-                member val configure : unit = nativeOnly
+                abstract member configure: chart: ChartJs.dist_types.Chart * item: ChartJs.dist_types_layout.LayoutItem * options: Exports.layouts__.Type.configure.options_2 -> unit
                 /// <summary>
                 /// Fits boxes of the given chart into the given size by having each box measure itself
                 /// then running a fitting algorithm
@@ -23905,213 +22189,155 @@ Chart.unregister($0)"""
                 /// <param name="height">
                 /// the height to fit into
                 /// </param>
-                member val update : unit = nativeOnly
+                abstract member update: chart: ChartJs.dist_types.Chart * width: float * height: float -> unit
+                [<ParamObject; Emit("$0")>]
+                static member Create (addBox: unit, removeBox: unit, configure: unit, update: unit) : Type_2 = nativeOnly
 
-        module BarElement =
+            module Type =
+
+                module configure =
+
+                    [<AllowNullLiteral>]
+                    [<Interface>]
+                    type options_2 =
+                        abstract member fullSize: float option with get, set
+                        abstract member position: ChartJs.dist_types_layout.LayoutPosition option with get, set
+                        abstract member weight: float option with get, set
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (?fullSize: float, ?position: ChartJs.dist_types_layout.LayoutPosition, ?weight: float) : options_2 = nativeOnly
+
+        module BarElement__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.BarElement.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.BarElement with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module LineElement =
+        module LineElement__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.LineElement.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.LineElement with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module CategoryScale =
+        module CategoryScale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.CategoryScale.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.CategoryScale with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module LinearScale =
+        module LinearScale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.LinearScale.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.LinearScale with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module LogarithmicScale =
+        module LogarithmicScale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.LogarithmicScale.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.LogarithmicScale with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module RadialLinearScale =
+        module RadialLinearScale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.RadialLinearScale.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.RadialLinearScale with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module TimeScale =
+        module TimeScale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.TimeScale.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.TimeScale with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
-        module TimeSeriesScale =
+        module TimeSeriesScale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type_2 =
                 abstract member id: string with get, set
                 abstract member defaults: ChartJs.dist_types_basic.AnyObject option with get, set
-                abstract member defaultRoutes: Exports.TimeSeriesScale.Type.defaultRoutes_2 option with get, set
+                abstract member defaultRoutes: Exports.BarController__.Type.defaultRoutes_1 option with get, set
                 abstract member beforeRegister: unit -> unit
                 abstract member afterRegister: unit -> unit
                 abstract member beforeUnregister: unit -> unit
                 abstract member afterUnregister: unit -> unit
                 abstract member prototype: ChartJs.dist_types.TimeSeriesScale with get, set
 
-            module Type =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type defaultRoutes_2 =
-                    [<EmitIndexer>]
-                    abstract member Item: property: string -> string with get, set
-
         module Chart =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type item_2
+            [<Interface>]
+            type item_1 =
+                abstract member canvas: Glutinum.Web.HTMLCanvasElement with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    canvas: Glutinum.Web.HTMLCanvasElement
-                ) =
-
-                member val canvas : Glutinum.Web.HTMLCanvasElement = nativeOnly with get, set
+                static member Create (canvas: Glutinum.Web.HTMLCanvasElement) : item_1 = nativeOnly
 
         module Scale =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type cfg_2
+            [<Interface>]
+            type cfg_2 =
+                abstract member id: string with get, set
+                abstract member ``type``: string with get, set
+                abstract member ctx: Glutinum.Web.CanvasRenderingContext2D with get, set
+                abstract member chart: ChartJs.dist_types.Chart with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    id: string,
-                    ``type``: string,
-                    ctx: Glutinum.Web.CanvasRenderingContext2D,
-                    chart: ChartJs.dist_types.Chart
-                ) =
-
-                member val id : string = nativeOnly with get, set
-                member val ``type`` : string = nativeOnly with get, set
-                member val ctx : Glutinum.Web.CanvasRenderingContext2D = nativeOnly with get, set
-                member val chart : ChartJs.dist_types.Chart = nativeOnly with get, set
+                static member Create (id: string, ``type``: string, ctx: Glutinum.Web.CanvasRenderingContext2D, chart: ChartJs.dist_types.Chart) : cfg_2 = nativeOnly
 
 module KurkleColor =
 
@@ -24125,7 +22351,7 @@ module KurkleColor =
         /// the string
         /// </param>
         [<Import("hexParse", "@kurkle/color")>]
-        static member hexParse (str: string) : Exports.hexParse = nativeOnly
+        static member hexParse (str: string) : Exports.hexParse__ = nativeOnly
         /// <summary>
         /// Return HEX string from color
         /// </summary>
@@ -24561,18 +22787,12 @@ module KurkleColor =
 
     module Exports =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type hexParse
+        [<Interface>]
+        type hexParse__ =
+            abstract member r: float with get, set
+            abstract member g: float with get, set
+            abstract member b: float with get, set
+            abstract member a: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                r: float,
-                g: float,
-                b: float,
-                a: float
-            ) =
-
-            member val r : float = nativeOnly with get, set
-            member val g : float = nativeOnly with get, set
-            member val b : float = nativeOnly with get, set
-            member val a : float = nativeOnly with get, set
+            static member Create (r: float, g: float, b: float, a: float) : hexParse__ = nativeOnly

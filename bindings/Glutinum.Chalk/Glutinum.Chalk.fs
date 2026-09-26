@@ -16,7 +16,7 @@ module Chalk =
         /// Return a new Chalk instance.
         /// </summary>
         [<Import("Chalk", "chalk")>]
-        static member inline Chalk: Exports.Chalk.Type = nativeOnly
+        static member inline Chalk: Exports.Chalk__.Type = nativeOnly
         [<Import("supportsColor", "chalk")>]
         static member inline supportsColor: Chalk.source_vendor_supports_color.ColorInfo = nativeOnly
         [<Import("chalkStderr", "chalk")>]
@@ -71,14 +71,9 @@ Basic color names. The combination of foreground and background color names.""")
         [<ImportDefault("chalk")>]
         static member inline chalk: ChalkInstance = nativeOnly
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type Options
-        [<ParamObject; Emit("$0")>]
-        (
-            ?level: Chalk.source_vendor_supports_color.ColorSupportLevel
-        ) =
-
+    [<Interface>]
+    type Options =
         /// <summary>
         /// Specify the color support for Chalk.
         ///
@@ -98,7 +93,9 @@ Basic color names. The combination of foreground and background color names.""")
         ///
         /// If the value is neither <c>undefined</c> nor an integer from 0 to 3.
         /// </remarks>
-        member val level : Chalk.source_vendor_supports_color.ColorSupportLevel option = nativeOnly with get
+        abstract member level: Chalk.source_vendor_supports_color.ColorSupportLevel option with get
+        [<ParamObject; Emit("$0")>]
+        static member Create (?level: Chalk.source_vendor_supports_color.ColorSupportLevel) : Options = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -783,7 +780,7 @@ Basic color names. The combination of foreground and background color names.
             [<Import("createSupportsColor", "chalk/source/vendor/supports-color/index.js")>]
             static member createSupportsColor (?stream: obj, ?options: Chalk.source_vendor_supports_color.Options) : Chalk.source_vendor_supports_color.ColorInfo = nativeOnly
             [<ImportDefault("chalk/source/vendor/supports-color/index.js")>]
-            static member inline supportsColor: Exports.supportsColor.Type = nativeOnly
+            static member inline supportsColor: Exports.supportsColor__.Type = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -825,19 +822,15 @@ Basic color names. The combination of foreground and background color names.
 
         module Exports =
 
-            module supportsColor =
+            module supportsColor__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type
+                [<Interface>]
+                type Type =
+                    abstract member stdout: Chalk.source_vendor_supports_color.ColorInfo with get, set
+                    abstract member stderr: Chalk.source_vendor_supports_color.ColorInfo with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        stdout: Chalk.source_vendor_supports_color.ColorInfo,
-                        stderr: Chalk.source_vendor_supports_color.ColorInfo
-                    ) =
-
-                    member val stdout : Chalk.source_vendor_supports_color.ColorInfo = nativeOnly with get, set
-                    member val stderr : Chalk.source_vendor_supports_color.ColorInfo = nativeOnly with get, set
+                    static member Create (stdout: Chalk.source_vendor_supports_color.ColorInfo, stderr: Chalk.source_vendor_supports_color.ColorInfo) : Type = nativeOnly
 
     module ChalkInstance =
 
@@ -852,7 +845,7 @@ Basic color names. The combination of foreground and background color names.
 
     module Exports =
 
-        module Chalk =
+        module Chalk__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -860,7 +853,7 @@ Basic color names. The combination of foreground and background color names.
                 [<EmitConstructor>]
                 abstract member Create: ?options: Chalk.Options -> Chalk.ChalkInstance
 
-        module chalkStderr =
+        module chalkStderr__ =
 
             module Type =
 
@@ -875,7 +868,7 @@ Basic color names. The combination of foreground and background color names.
                     type underlineRgb =
                         delegate of red: float * green: float * blue: float -> ChalkInstance
 
-        module chalk =
+        module chalk__ =
 
             module Type =
 

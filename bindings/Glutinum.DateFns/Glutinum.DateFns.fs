@@ -3160,9 +3160,9 @@ module DateFns =
         [<Import("format", "date-fns")>]
         static member format (date: obj, formatStr: string, ?options: DateFns.format.FormatOptions) : string = nativeOnly
         [<Import("formatters", "date-fns")>]
-        static member inline formatters: Exports.formatters.Type_3 = nativeOnly
+        static member inline formatters: Exports.formatters__.Type_3 = nativeOnly
         [<Import("longFormatters", "date-fns")>]
-        static member inline longFormatters: Exports.longFormatters.Type_5 = nativeOnly
+        static member inline longFormatters: Exports.longFormatters__.Type_5 = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -5752,7 +5752,7 @@ module DateFns =
         [<Import("lightFormat", "date-fns")>]
         static member lightFormat (date: obj, formatStr: string) : string = nativeOnly
         [<Import("lightFormatters", "date-fns")>]
-        static member inline lightFormatters: Exports.lightFormatters.Type_3 = nativeOnly
+        static member inline lightFormatters: Exports.lightFormatters__.Type_3 = nativeOnly
         /// <example>
         /// // Which of these dates is the latest?
         /// const result = max([
@@ -6666,7 +6666,7 @@ module DateFns =
         [<Import("parse", "date-fns")>]
         static member parse<'DateType, 'ResultDate> (dateStr: string, formatStr: string, referenceDate: string, ?options: DateFns.parse.ParseOptions<'ResultDate>) : 'ResultDate = nativeOnly
         [<Import("parsers", "date-fns")>]
-        static member inline parsers: Exports.parsers.Type_3 = nativeOnly
+        static member inline parsers: Exports.parsers__.Type_3 = nativeOnly
         /// <example>
         /// // Convert string '2014-02-11T11:30:30' to date:
         /// const result = parseISO('2014-02-11T11:30:30')
@@ -12198,39 +12198,34 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("formatters", "date-fns/_lib/format/formatters.js")>]
-            static member inline formatters: Exports.formatters.Type = nativeOnly
+            static member inline formatters: Exports.formatters__.Type = nativeOnly
 
         type Formatter =
             delegate of date: Date * token: string * localize: DateFns.locale_types.Localize * options: Formatter.options -> string
 
         module Formatter =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?locale: obj,
-                    ?weekStartsOn: DateFns.types.Day,
-                    ?firstWeekContainsDate: DateFns.types.FirstWeekContainsDate
-                ) =
-
+            [<Interface>]
+            type options =
                 /// <summary>
                 /// The locale to use in the function.
                 /// </summary>
-                member val locale : obj option = nativeOnly with get, set
+                abstract member locale: obj option with get, set
                 /// <summary>
                 /// Which day the week starts on.
                 /// </summary>
-                member val weekStartsOn : DateFns.types.Day option = nativeOnly with get, set
+                abstract member weekStartsOn: DateFns.types.Day option with get, set
                 /// <summary>
                 /// See <see href="FirstWeekContainsDate">FirstWeekContainsDate</see> for more details.
                 /// </summary>
-                member val firstWeekContainsDate : DateFns.types.FirstWeekContainsDate option = nativeOnly with get, set
+                abstract member firstWeekContainsDate: DateFns.types.FirstWeekContainsDate option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?locale: obj, ?weekStartsOn: DateFns.types.Day, ?firstWeekContainsDate: DateFns.types.FirstWeekContainsDate) : options = nativeOnly
 
         module Exports =
 
-            module formatters =
+            module formatters__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -12244,37 +12239,26 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("lightFormatters", "date-fns/_lib/format/lightFormatters.js")>]
-            static member inline lightFormatters: Exports.lightFormatters.Type = nativeOnly
+            static member inline lightFormatters: Exports.lightFormatters__.Type = nativeOnly
 
         module Exports =
 
-            module lightFormatters =
+            module lightFormatters__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type
+                [<Interface>]
+                type Type =
+                    abstract member y: date: Date * token: string -> string
+                    abstract member M: date: Date * token: string -> string
+                    abstract member d: date: Date * token: string -> string
+                    abstract member a: date: Date * token: string -> string
+                    abstract member h: date: Date * token: string -> string
+                    abstract member H: date: Date * token: string -> string
+                    abstract member m: date: Date * token: string -> string
+                    abstract member s: date: Date * token: string -> string
+                    abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    (
-                        y: string,
-                        M: string,
-                        d: string,
-                        a: string,
-                        h: string,
-                        H: string,
-                        m: string,
-                        s: string,
-                        S: string
-                    ) =
-
-                    member val y : string = nativeOnly
-                    member val M : string = nativeOnly
-                    member val d : string = nativeOnly
-                    member val a : string = nativeOnly
-                    member val h : string = nativeOnly
-                    member val H : string = nativeOnly
-                    member val m : string = nativeOnly
-                    member val s : string = nativeOnly
-                    member val S : string = nativeOnly
+                    static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type = nativeOnly
 
     module _lib_format_longFormatters =
 
@@ -12282,14 +12266,14 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("longFormatters", "date-fns/_lib/format/longFormatters.js")>]
-            static member inline longFormatters: Exports.longFormatters.Type = nativeOnly
+            static member inline longFormatters: Exports.longFormatters__.Type = nativeOnly
 
         type LongFormatter =
             delegate of pattern: string * formatLong: DateFns.locale_types.FormatLong -> string
 
         module Exports =
 
-            module longFormatters =
+            module longFormatters__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -14593,18 +14577,12 @@ module DateFns =
         /// <summary>
         /// The <see href="differenceInMinutes">differenceInMinutes</see> function options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type DifferenceInMinutesOptions
+        [<Interface>]
+        type DifferenceInMinutesOptions =
+            inherit DateFns.types.RoundingOptions
             [<ParamObject; Emit("$0")>]
-            (
-                ?roundingMethod: DateFns.types.RoundingMethod
-            ) =
-
-            /// <summary>
-            /// The rounding method to use
-            /// </summary>
-            member val roundingMethod : DateFns.types.RoundingMethod option = nativeOnly with get, set
+            static member Create (?roundingMethod: DateFns.types.RoundingMethod) : DifferenceInMinutesOptions = nativeOnly
 
     module differenceInMonths =
 
@@ -14705,18 +14683,12 @@ module DateFns =
         /// <summary>
         /// The <see href="differenceInSeconds">differenceInSeconds</see> function options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type DifferenceInSecondsOptions
+        [<Interface>]
+        type DifferenceInSecondsOptions =
+            inherit DateFns.types.RoundingOptions
             [<ParamObject; Emit("$0")>]
-            (
-                ?roundingMethod: DateFns.types.RoundingMethod
-            ) =
-
-            /// <summary>
-            /// The rounding method to use
-            /// </summary>
-            member val roundingMethod : DateFns.types.RoundingMethod option = nativeOnly with get, set
+            static member Create (?roundingMethod: DateFns.types.RoundingMethod) : DifferenceInSecondsOptions = nativeOnly
 
     module differenceInWeeks =
 
@@ -16612,9 +16584,9 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("formatters", "date-fns/format")>]
-            static member inline formatters: Exports.formatters.Type_1 = nativeOnly
+            static member inline formatters: Exports.formatters__.Type_1 = nativeOnly
             [<Import("longFormatters", "date-fns/format")>]
-            static member inline longFormatters: Exports.longFormatters.Type_1 = nativeOnly
+            static member inline longFormatters: Exports.longFormatters__.Type_1 = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -16699,7 +16671,7 @@ module DateFns =
 
         module Exports =
 
-            module formatters =
+            module formatters__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -16713,7 +16685,7 @@ module DateFns =
                     [<EmitIndexer>]
                     abstract member Item: token: string -> DateFns._lib_format_formatters.Formatter with get, set
 
-            module longFormatters =
+            module longFormatters__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -22768,18 +22740,15 @@ module DateFns =
         /// <summary>
         /// The locale options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type IntlFormatLocaleOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                locale: DateFns.types.MaybeArray<string>
-            ) =
-
+        [<Interface>]
+        type IntlFormatLocaleOptions =
             /// <summary>
             /// The locales to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument)
             /// </summary>
-            member val locale : DateFns.types.MaybeArray<string> = nativeOnly with get, set
+            abstract member locale: DateFns.types.MaybeArray<string> with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (locale: DateFns.types.MaybeArray<string>) : IntlFormatLocaleOptions = nativeOnly
 
     module intlFormatDistance =
 
@@ -24833,7 +24802,7 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("lightFormatters", "date-fns/lightFormat")>]
-            static member inline lightFormatters: Exports.lightFormatters.Type_1 = nativeOnly
+            static member inline lightFormatters: Exports.lightFormatters__.Type_1 = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -24860,59 +24829,37 @@ module DateFns =
 
         module Exports =
 
-            module lightFormatters =
+            module lightFormatters__ =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type_1
+                [<Interface>]
+                type Type_1 =
+                    abstract member y: date: Date * token: string -> string
+                    abstract member M: date: Date * token: string -> string
+                    abstract member d: date: Date * token: string -> string
+                    abstract member a: date: Date * token: string -> string
+                    abstract member h: date: Date * token: string -> string
+                    abstract member H: date: Date * token: string -> string
+                    abstract member m: date: Date * token: string -> string
+                    abstract member s: date: Date * token: string -> string
+                    abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    (
-                        y: string,
-                        M: string,
-                        d: string,
-                        a: string,
-                        h: string,
-                        H: string,
-                        m: string,
-                        s: string,
-                        S: string
-                    ) =
+                    static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type_1 = nativeOnly
 
-                    member val y : string = nativeOnly
-                    member val M : string = nativeOnly
-                    member val d : string = nativeOnly
-                    member val a : string = nativeOnly
-                    member val h : string = nativeOnly
-                    member val H : string = nativeOnly
-                    member val m : string = nativeOnly
-                    member val s : string = nativeOnly
-                    member val S : string = nativeOnly
-
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Type_2
+                [<Interface>]
+                type Type_2 =
+                    abstract member y: date: Date * token: string -> string
+                    abstract member M: date: Date * token: string -> string
+                    abstract member d: date: Date * token: string -> string
+                    abstract member a: date: Date * token: string -> string
+                    abstract member h: date: Date * token: string -> string
+                    abstract member H: date: Date * token: string -> string
+                    abstract member m: date: Date * token: string -> string
+                    abstract member s: date: Date * token: string -> string
+                    abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    (
-                        y: string,
-                        M: string,
-                        d: string,
-                        a: string,
-                        h: string,
-                        H: string,
-                        m: string,
-                        s: string,
-                        S: string
-                    ) =
-
-                    member val y : string = nativeOnly
-                    member val M : string = nativeOnly
-                    member val d : string = nativeOnly
-                    member val a : string = nativeOnly
-                    member val h : string = nativeOnly
-                    member val H : string = nativeOnly
-                    member val m : string = nativeOnly
-                    member val s : string = nativeOnly
-                    member val S : string = nativeOnly
+                    static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type_2 = nativeOnly
 
     module locale =
 
@@ -25970,24 +25917,20 @@ module DateFns =
         /// <summary>
         /// The <see href="FormatDistanceFn">FormatDistanceFn</see> function options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type FormatDistanceFnOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                ?addSuffix: bool,
-                ?comparison: FormatDistanceFnOptions.comparison
-            ) =
-
+        [<Interface>]
+        type FormatDistanceFnOptions =
             /// <summary>
             /// Add "X ago"/"in X" in the locale language
             /// </summary>
-            member val addSuffix : bool option = nativeOnly with get, set
+            abstract member addSuffix: bool option with get, set
             /// <summary>
             /// The distance vector. -1 represents past and 1 future. Tells which suffix
             /// to use.
             /// </summary>
-            member val comparison : FormatDistanceFnOptions.comparison option = nativeOnly with get, set
+            abstract member comparison: FormatDistanceFnOptions.comparison option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?addSuffix: bool, ?comparison: FormatDistanceFnOptions.comparison) : FormatDistanceFnOptions = nativeOnly
 
         /// <summary>
         /// The function used inside the <see href="FormatDistanceFn">FormatDistanceFn</see> function, implementing
@@ -26091,18 +26034,12 @@ module DateFns =
         /// <summary>
         /// The <see href="FormatRelativeTokenFn">FormatRelativeTokenFn</see> function options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type FormatRelativeTokenFnOptions
+        [<Interface>]
+        type FormatRelativeTokenFnOptions =
+            inherit DateFns.types.WeekOptions
             [<ParamObject; Emit("$0")>]
-            (
-                ?weekStartsOn: DateFns.types.Day
-            ) =
-
-            /// <summary>
-            /// Which day the week starts on.
-            /// </summary>
-            member val weekStartsOn : DateFns.types.Day option = nativeOnly with get, set
+            static member Create (?weekStartsOn: DateFns.types.Day) : FormatRelativeTokenFnOptions = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -26164,6 +26101,8 @@ module DateFns =
             /// The function that can preprocess parts/tokens *
             /// </summary>
             abstract member preprocessor: Localize.preprocessor<obj> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (ordinalNumber: DateFns.locale_types.LocalizeFn<float>, era: DateFns.locale_types.LocalizeFn<DateFns.types.Era>, quarter: DateFns.locale_types.LocalizeFn<DateFns.types.Quarter>, month: DateFns.locale_types.LocalizeFn<DateFns.types.Month>, day: DateFns.locale_types.LocalizeFn<DateFns.types.Day>, dayPeriod: DateFns.locale_types.LocalizeFn<DateFns.locale_types.LocaleDayPeriod>, ?preprocessor: Localize.preprocessor<obj>) : Localize = nativeOnly
 
         /// <summary>
         /// Individual localize function. Part of <see href="Localize">Localize</see>.
@@ -26186,31 +26125,26 @@ module DateFns =
         /// <summary>
         /// The <see href="LocalizeFn">LocalizeFn</see> function options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type LocalizeFnOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                ?width: DateFns.locale_types.LocaleWidth,
-                ?context: LocalizeFnOptions.context,
-                ?unit: DateFns.locale_types.LocaleUnit
-            ) =
-
+        [<Interface>]
+        type LocalizeFnOptions =
             /// <summary>
             /// The width to use formatting the value, defines how short or long
             /// the formatted string might be.
             /// </summary>
-            member val width : DateFns.locale_types.LocaleWidth option = nativeOnly with get, set
+            abstract member width: DateFns.locale_types.LocaleWidth option with get, set
             /// <summary>
             /// The context where the formatted value is used - standalone: the result
             /// should make grammatical sense as is and formatting: the result is a part
             /// of the formatted string. See: https://date-fns.org/docs/I18n-Contribution-Guide
             /// </summary>
-            member val context : LocalizeFnOptions.context option = nativeOnly with get, set
+            abstract member context: LocalizeFnOptions.context option with get, set
             /// <summary>
             /// The unit to format
             /// </summary>
-            member val unit : DateFns.locale_types.LocaleUnit option = nativeOnly with get, set
+            abstract member unit: DateFns.locale_types.LocaleUnit option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?width: DateFns.locale_types.LocaleWidth, ?context: LocalizeFnOptions.context, ?unit: DateFns.locale_types.LocaleUnit) : LocalizeFnOptions = nativeOnly
 
         /// <summary>
         /// The object with functions used to match and parse various localized values.
@@ -26242,6 +26176,8 @@ module DateFns =
             /// The function that parses a localized time of the day.
             /// </summary>
             abstract member dayPeriod: str: string * ?options: Match.dayPeriod.options -> DateFns.locale_types.MatchFnResult<DateFns.locale_types.LocaleDayPeriod> option
+            [<ParamObject; Emit("$0")>]
+            static member Create (ordinalNumber: DateFns.locale_types.MatchFn<float, Match.ordinalNumber>, era: DateFns.locale_types.MatchFn<DateFns.types.Era>, quarter: DateFns.locale_types.MatchFn<DateFns.types.Quarter>, month: DateFns.locale_types.MatchFn<DateFns.types.Month>, day: DateFns.locale_types.MatchFn<DateFns.types.Day>, dayPeriod: DateFns.locale_types.MatchFn<DateFns.locale_types.LocaleDayPeriod>) : Match = nativeOnly
 
         /// <summary>
         /// The match function. Part of <see href="Match">Match</see>. Implements matcher for particular
@@ -26344,6 +26280,8 @@ module DateFns =
             /// The function that returns a localized format of date and time combined
             /// </summary>
             abstract member dateTime: options: DateFns.locale_types.FormatLongFnOptions -> string
+            [<ParamObject; Emit("$0")>]
+            static member Create (date: DateFns.locale_types.FormatLongFn, time: DateFns.locale_types.FormatLongFn, dateTime: DateFns.locale_types.FormatLongFn) : FormatLong = nativeOnly
 
         /// <summary>
         /// The format long function. Formats date, time or both.
@@ -26360,18 +26298,15 @@ module DateFns =
         /// <summary>
         /// The <see href="FormatLongFn">FormatLongFn</see> function options.
         /// </summary>
-        [<Global>]
         [<AllowNullLiteral>]
-        type FormatLongFnOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                ?width: DateFns.locale_types.FormatLongWidth
-            ) =
-
+        [<Interface>]
+        type FormatLongFnOptions =
             /// <summary>
             /// Format width to set
             /// </summary>
-            member val width : DateFns.locale_types.FormatLongWidth option = nativeOnly with get, set
+            abstract member width: DateFns.locale_types.FormatLongWidth option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?width: DateFns.locale_types.FormatLongWidth) : FormatLongFnOptions = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -26382,11 +26317,29 @@ module DateFns =
             | short
             | any
 
-        /// <summary>
-        /// The formatting unit value, represents the raw value that can be formatted.
-        /// </summary>
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
         type LocaleUnitValue =
-            U5<DateFns.types.Era, DateFns.types.Quarter, DateFns.types.Month, DateFns.types.Day, DateFns.locale_types.LocaleDayPeriod>
+            | [<CompiledValue(0)>] ``0``
+            | [<CompiledValue(1)>] ``1``
+            | [<CompiledValue(2)>] ``2``
+            | [<CompiledValue(3)>] ``3``
+            | [<CompiledValue(4)>] ``4``
+            | [<CompiledValue(5)>] ``5``
+            | [<CompiledValue(6)>] ``6``
+            | [<CompiledValue(7)>] ``7``
+            | [<CompiledValue(8)>] ``8``
+            | [<CompiledValue(9)>] ``9``
+            | [<CompiledValue(10)>] ``10``
+            | [<CompiledValue(11)>] ``11``
+            | am
+            | pm
+            | midnight
+            | noon
+            | morning
+            | afternoon
+            | evening
+            | night
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -26573,6 +26526,13 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.locale_types.LocaleDayPeriod> option with get, set
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type ordinalNumber =
+                abstract member unit: DateFns.locale_types.LocaleUnit with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (unit: DateFns.locale_types.LocaleUnit) : ordinalNumber = nativeOnly
 
         module MatchFn =
 
@@ -27643,9 +27603,9 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("longFormatters", "date-fns/parse")>]
-            static member inline longFormatters: Exports.longFormatters.Type_3 = nativeOnly
+            static member inline longFormatters: Exports.longFormatters__.Type_3 = nativeOnly
             [<Import("parsers", "date-fns/parse")>]
-            static member inline parsers: Exports.parsers.Type = nativeOnly
+            static member inline parsers: Exports.parsers__.Type = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -27843,7 +27803,7 @@ module DateFns =
 
         module Exports =
 
-            module longFormatters =
+            module longFormatters__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -27857,7 +27817,7 @@ module DateFns =
                     [<EmitIndexer>]
                     abstract member Item: key: string -> DateFns._lib_format_longFormatters.LongFormatter with get, set
 
-            module parsers =
+            module parsers__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -27898,17 +27858,13 @@ module DateFns =
                 | [<CompiledName("*")>] _STAR_
                 | Case1 of ResizeArray<string>
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type run<'Value>
+            [<Interface>]
+            type run<'Value> =
+                abstract member setter: DateFns.parse__lib_Setter.ValueSetter<'Value> with get, set
+                abstract member rest: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    setter: DateFns.parse__lib_Setter.ValueSetter<'Value>,
-                    rest: string
-                ) =
-
-                member val setter : DateFns.parse__lib_Setter.ValueSetter<'Value> = nativeOnly with get, set
-                member val rest : string = nativeOnly with get, set
+                static member Create (setter: DateFns.parse__lib_Setter.ValueSetter<'Value>, rest: string) : run<'Value> = nativeOnly
 
     module parse__lib_Setter =
 
@@ -27941,7 +27897,7 @@ module DateFns =
         [<Interface>]
         type DateTimezoneSetter =
             inherit DateFns.parse__lib_Setter.Setter
-            abstract member context: DateFns.types.ContextFn<Date> with get, set
+            abstract member context: value: obj -> Date
             abstract member set<'DateType>: date: 'DateType * flags: DateFns.parse__lib_types.ParseFlags -> 'DateType
 
         module Exports =
@@ -27960,11 +27916,11 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("parsers", "date-fns/parse/_lib/parsers.js")>]
-            static member inline parsers: Exports.parsers.Type_2 = nativeOnly
+            static member inline parsers: Exports.parsers__.Type_2 = nativeOnly
 
         module Exports =
 
-            module parsers =
+            module parsers__ =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -27979,6 +27935,8 @@ module DateFns =
         type ParseFlags =
             abstract member timestampIsSet: bool option with get, set
             abstract member era: float option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?timestampIsSet: bool, ?era: float) : ParseFlags = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -28001,17 +27959,13 @@ module DateFns =
 
         module ParseResult =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Value<'TValue>
+            [<Interface>]
+            type Value<'TValue> =
+                abstract member value: 'TValue with get, set
+                abstract member rest: string with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    value: 'TValue,
-                    rest: string
-                ) =
-
-                member val value : 'TValue = nativeOnly with get, set
-                member val rest : string = nativeOnly with get, set
+                static member Create (value: 'TValue, rest: string) : Value<'TValue> = nativeOnly
 
     module parseISO =
 
@@ -33678,6 +33632,8 @@ module DateFns =
             /// The milliseconds
             /// </summary>
             abstract member milliseconds: float option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?year: float, ?month: float, ?date: float, ?hours: float, ?minutes: float, ?seconds: float, ?milliseconds: float) : DateValues = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -33994,7 +33950,7 @@ module DateFns =
 
     module Exports =
 
-        module formatters =
+        module formatters__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -34002,7 +33958,7 @@ module DateFns =
                 [<EmitIndexer>]
                 abstract member Item: token: string -> DateFns._lib_format_formatters.Formatter with get, set
 
-        module longFormatters =
+        module longFormatters__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -34010,35 +33966,24 @@ module DateFns =
                 [<EmitIndexer>]
                 abstract member Item: key: string -> DateFns._lib_format_longFormatters.LongFormatter with get, set
 
-        module lightFormatters =
+        module lightFormatters__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Type_3
+            [<Interface>]
+            type Type_3 =
+                abstract member y: date: Date * token: string -> string
+                abstract member M: date: Date * token: string -> string
+                abstract member d: date: Date * token: string -> string
+                abstract member a: date: Date * token: string -> string
+                abstract member h: date: Date * token: string -> string
+                abstract member H: date: Date * token: string -> string
+                abstract member m: date: Date * token: string -> string
+                abstract member s: date: Date * token: string -> string
+                abstract member S: date: Date * token: string -> string
                 [<ParamObject; Emit("$0")>]
-                (
-                    y: string,
-                    M: string,
-                    d: string,
-                    a: string,
-                    h: string,
-                    H: string,
-                    m: string,
-                    s: string,
-                    S: string
-                ) =
+                static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type_3 = nativeOnly
 
-                member val y : string = nativeOnly
-                member val M : string = nativeOnly
-                member val d : string = nativeOnly
-                member val a : string = nativeOnly
-                member val h : string = nativeOnly
-                member val H : string = nativeOnly
-                member val m : string = nativeOnly
-                member val s : string = nativeOnly
-                member val S : string = nativeOnly
-
-        module parsers =
+        module parsers__ =
 
             [<AllowNullLiteral>]
             [<Interface>]

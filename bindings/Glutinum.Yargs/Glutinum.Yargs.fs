@@ -15,7 +15,7 @@ module Yargs =
     [<Erase>]
     type Exports =
         [<ImportDefault("yargs"); Emit("$0($1...)")>]
-        static member yargs (?args: U2<ResizeArray<string>, string>, ?cwd: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member yargs (?args: U2<ResizeArray<string>, string>, ?cwd: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
         ///
@@ -23,7 +23,7 @@ module Yargs =
         /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.alias($1...)")>]
-        static member alias (shortName: 'K1, longName: U2<'K2, ResizeArray<'K2>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member alias (shortName: obj, longName: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
         ///
@@ -31,7 +31,7 @@ module Yargs =
         /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.alias($1...)")>]
-        static member alias (shortName: U2<string, ResizeArray<string>>, longName: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member alias (shortName: U2<string, ResizeArray<string>>, longName: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
         ///
@@ -39,7 +39,7 @@ module Yargs =
         /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.alias($1...)")>]
-        static member alias (aliases: Exports.alias.aliases) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member alias (aliases: Exports.alias__.aliases) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Get the arguments as a plain old object.
         ///
@@ -53,7 +53,7 @@ module Yargs =
         /// </summary>
         [<ImportDefault("yargs")>]
         [<Emit("$0.argv")>]
-        static member inline argv: U2<Exports.argv.Type.U2.Case1, JS.Promise<Exports.argv.Type.U2.Case2>> = nativeOnly
+        static member inline argv: U2<Exports.argv__.Type.U2.Case1, JS.Promise<Exports.argv__.Type.U2.Case2>> = nativeOnly
         /// <summary>
         /// Tell the parser to interpret <c>key</c> as an array.
         /// If <c>.array('foo')</c> is set, <c>--foo foo bar</c> will be parsed as <c>['foo', 'bar']</c> rather than as <c>'foo'</c>.
@@ -62,7 +62,7 @@ module Yargs =
         /// When the option is used with a positional, use <c>--</c> to tell <c>yargs</c> to stop adding values to the array.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.array($1...)")>]
-        static member array (key: U2<'K, ResizeArray<'K>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member array (key: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Interpret <c>key</c> as a boolean. If a non-flag option follows <c>key</c> in <c>process.argv</c>, that string won't get set as the value of <c>key</c>.
         ///
@@ -71,7 +71,7 @@ module Yargs =
         /// If <c>key</c> is an array, interpret all the elements as booleans.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.boolean($1...)")>]
-        static member boolean (key: U2<'K, ResizeArray<'K>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member boolean (key: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Check that certain conditions are met in the provided arguments.
         /// </summary>
@@ -83,7 +83,7 @@ module Yargs =
         /// Indicates whether <c>check()</c> should be enabled both at the top-level and for each sub-command.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.check($1...)")>]
-        static member check (func: Exports.check.func<'T>, ?``global``: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member check (func: Exports.check__.func<'T>, ?``global``: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Limit valid values for key to a predefined set of choices, given as an array or as an individual value.
         /// If this method is called multiple times, all enumerated values will be merged together.
@@ -94,7 +94,7 @@ module Yargs =
         /// Choices can also be specified as choices in the object given to <c>option()</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.choices($1...)")>]
-        static member choices (key: 'K, values: 'C) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member choices (key: obj, values: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Limit valid values for key to a predefined set of choices, given as an array or as an individual value.
         /// If this method is called multiple times, all enumerated values will be merged together.
@@ -105,7 +105,7 @@ module Yargs =
         /// Choices can also be specified as choices in the object given to <c>option()</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.choices($1...)")>]
-        static member choices (choices: 'C) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member choices (choices: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Provide a synchronous function to coerce or transform the value(s) given on the command line for <c>key</c>.
         ///
@@ -123,7 +123,7 @@ module Yargs =
         /// If you are using dot-notion or arrays, .e.g., <c>user.email</c> and <c>user.password</c>, coercion will be applied to the final object that has been parsed
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.coerce($1...)")>]
-        static member coerce (key: U2<'K, ResizeArray<'K>>, func: (obj -> 'V)) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member coerce (key: U2<obj, ResizeArray<obj>>, func: (obj -> obj)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Provide a synchronous function to coerce or transform the value(s) given on the command line for <c>key</c>.
         ///
@@ -141,7 +141,7 @@ module Yargs =
         /// If you are using dot-notion or arrays, .e.g., <c>user.email</c> and <c>user.password</c>, coercion will be applied to the final object that has been parsed
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.coerce($1...)")>]
-        static member coerce (opts: 'O) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member coerce (opts: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
@@ -162,47 +162,47 @@ module Yargs =
         /// Function, which will be executed with the parsed <c>argv</c> object.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (command: U2<string, ResizeArray<string>>, description: string, ?builder: Yargs.yargs_.BuilderCallback<'T, 'U>, ?handler: (Yargs.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>), ?middlewares: ResizeArray<Yargs.yargs_.MiddlewareFunction<'U>>, ?deprecated: U2<bool, string>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (command: U2<string, ResizeArray<string>>, description: string, ?builder: Yargs.yargs_.BuilderCallback<obj, obj>, ?handler: (Yargs.yargs_.ArgumentsCamelCase<obj> -> U2<unit, JS.Promise<unit>>), ?middlewares: ResizeArray<Yargs.yargs_.MiddlewareFunction<obj>>, ?deprecated: U2<bool, string>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (command: U2<string, ResizeArray<string>>, description: string, ?builder: 'O, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>), ?middlewares: ResizeArray<Yargs.yargs_.MiddlewareFunction<'O>>, ?deprecated: U2<bool, string>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (command: U2<string, ResizeArray<string>>, description: string, ?builder: obj, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<obj>> -> U2<unit, JS.Promise<unit>>), ?middlewares: ResizeArray<Yargs.yargs_.MiddlewareFunction<obj>>, ?deprecated: U2<bool, string>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (command: U2<string, ResizeArray<string>>, description: string, ``module``: Yargs.yargs_.CommandModule<'T, 'U>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (command: U2<string, ResizeArray<string>>, description: string, ``module``: Yargs.yargs_.CommandModule<obj, obj>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: Yargs.yargs_.BuilderCallback<'T, 'U>, ?handler: (Yargs.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>), ?middlewares: ResizeArray<Yargs.yargs_.MiddlewareFunction<'U>>, ?deprecated: U2<bool, string>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: Yargs.yargs_.BuilderCallback<obj, obj>, ?handler: (Yargs.yargs_.ArgumentsCamelCase<obj> -> U2<unit, JS.Promise<unit>>), ?middlewares: ResizeArray<Yargs.yargs_.MiddlewareFunction<obj>>, ?deprecated: U2<bool, string>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: 'O, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: obj, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<obj>> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (command: U2<string, ResizeArray<string>>, showInHelp: bool, ``module``: Yargs.yargs_.CommandModule<'T, 'U>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (command: U2<string, ResizeArray<string>>, showInHelp: bool, ``module``: Yargs.yargs_.CommandModule<obj, obj>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (``module``: Yargs.yargs_.CommandModule<'T, 'U>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (``module``: Yargs.yargs_.CommandModule<obj, obj>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define the commands exposed by your application.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.command($1...)")>]
-        static member command (modules: ResizeArray<Yargs.yargs_.CommandModule<'T, 'U>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member command (modules: ResizeArray<Yargs.yargs_.CommandModule<obj, obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Apply command modules from a directory relative to the module calling this method.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.commandDir($1...)")>]
-        static member commandDir (dir: string, ?opts: Yargs.yargs_.RequireDirectoryOptions) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member commandDir (dir: string, ?opts: Yargs.yargs_.RequireDirectoryOptions) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
@@ -219,63 +219,63 @@ module Yargs =
         /// Rather than relying on yargs' default completion functionality, which shiver me timbers is pretty awesome, you can provide your own completion method.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?func: Yargs.yargs_.AsyncCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?func: Yargs.yargs_.AsyncCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?func: Yargs.yargs_.SyncCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?func: Yargs.yargs_.SyncCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?func: Yargs.yargs_.PromiseCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?func: Yargs.yargs_.PromiseCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?func: Yargs.yargs_.FallbackCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?func: Yargs.yargs_.FallbackCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.AsyncCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.AsyncCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.SyncCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.SyncCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.PromiseCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.PromiseCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Enable bash/zsh-completion shortcuts for commands and options.
         ///
         /// If invoked without parameters, <c>.completion()</c> will make completion the command to output the completion script.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.completion($1...)")>]
-        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.FallbackCompletionFunction) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member completion (cmd: string, ?description: U2<string, bool>, ?func: Yargs.yargs_.FallbackCompletionFunction) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
         /// The file is loaded and parsed, and its properties are set as arguments.
@@ -290,7 +290,7 @@ module Yargs =
         /// An explicit configuration <c>object</c>
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.config($1...)")>]
-        static member config () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member config () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
         /// The file is loaded and parsed, and its properties are set as arguments.
@@ -299,7 +299,7 @@ module Yargs =
         /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.config($1...)")>]
-        static member config (key: U2<string, ResizeArray<string>>, ?description: string, ?parseFn: (string -> obj)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member config (key: U2<string, ResizeArray<string>>, ?description: string, ?parseFn: (string -> obj)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
         /// The file is loaded and parsed, and its properties are set as arguments.
@@ -308,7 +308,7 @@ module Yargs =
         /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.config($1...)")>]
-        static member config (key: U2<string, ResizeArray<string>>, parseFn: (string -> obj)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member config (key: U2<string, ResizeArray<string>>, parseFn: (string -> obj)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
         /// The file is loaded and parsed, and its properties are set as arguments.
@@ -317,26 +317,26 @@ module Yargs =
         /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.config($1...)")>]
-        static member config (explicitConfigurationObject: obj) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member config (explicitConfigurationObject: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Given the key <c>x</c> is set, the key <c>y</c> must not be set. <c>y</c> can either be a single string or an array of argument names that <c>x</c> conflicts with.
         ///
         /// Optionally <c>.conflicts()</c> can accept an object specifying multiple conflicting keys.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.conflicts($1...)")>]
-        static member conflicts (key: string, value: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member conflicts (key: string, value: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Given the key <c>x</c> is set, the key <c>y</c> must not be set. <c>y</c> can either be a single string or an array of argument names that <c>x</c> conflicts with.
         ///
         /// Optionally <c>.conflicts()</c> can accept an object specifying multiple conflicting keys.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.conflicts($1...)")>]
-        static member conflicts (conflicts: Exports.conflicts.conflicts) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member conflicts (conflicts: Exports.conflicts__.conflicts) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Interpret <c>key</c> as a boolean flag, but set its parsed value to the number of flag occurrences rather than <c>true</c> or <c>false</c>. Default value is thus <c>0</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.count($1...)")>]
-        static member count (key: U2<'K, ResizeArray<'K>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member count (key: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set <c>argv[key]</c> to <c>value</c> if no option was specified in <c>process.argv</c>.
         ///
@@ -347,7 +347,7 @@ module Yargs =
         /// Optionally, <c>description</c> can also be provided and will take precedence over displaying the value in the usage instructions.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.default($1...)")>]
-        static member ``default`` (key: 'K, value: 'V, ?description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member ``default`` (key: obj, value: obj, ?description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set <c>argv[key]</c> to <c>value</c> if no option was specified in <c>process.argv</c>.
         ///
@@ -358,18 +358,18 @@ module Yargs =
         /// Optionally, <c>description</c> can also be provided and will take precedence over displaying the value in the usage instructions.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.default($1...)")>]
-        static member ``default`` (defaults: 'D, ?description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member ``default`` (defaults: obj, ?description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.demand($1...)"); Obsolete("""since version 6.6.0
 Use '.demandCommand()' or '.demandOption()' instead""")>]
-        static member demand (key: U2<'K, ResizeArray<'K>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<'T, 'K>> = nativeOnly
+        static member demand (key: U2<obj, ResizeArray<obj>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<obj, obj>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.demand($1...)")>]
-        static member demand (key: U2<string, ResizeArray<string>>, ?required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demand (key: U2<string, ResizeArray<string>>, ?required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.demand($1...)")>]
-        static member demand (positionals: float, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demand (positionals: float, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.demand($1...)")>]
-        static member demand (positionals: float, ?required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demand (positionals: float, ?required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.demand($1...)")>]
-        static member demand (positionals: float, max: float, ?msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demand (positionals: float, max: float, ?msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <param name="key">
         /// If is a string, show the usage information and exit if key wasn't specified in <c>process.argv</c>.
         /// If is an array, demand each element.
@@ -381,51 +381,51 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Controls whether the option is demanded; this is useful when using .options() to specify command line parameters.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.demandOption($1...)")>]
-        static member demandOption (key: U2<'K, ResizeArray<'K>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<'T, 'K>> = nativeOnly
+        static member demandOption (key: U2<obj, ResizeArray<obj>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<obj, obj>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.demandOption($1...)")>]
-        static member demandOption (key: U2<string, ResizeArray<string>>, ?demand: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demandOption (key: U2<string, ResizeArray<string>>, ?demand: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Demand in context of commands.
         /// You can demand a minimum and a maximum number a user can have within your program, as well as provide corresponding error messages if either of the demands is not met.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.demandCommand($1...)")>]
-        static member demandCommand () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demandCommand () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Demand in context of commands.
         /// You can demand a minimum and a maximum number a user can have within your program, as well as provide corresponding error messages if either of the demands is not met.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.demandCommand($1...)")>]
-        static member demandCommand (min: float, ?minMsg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demandCommand (min: float, ?minMsg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Demand in context of commands.
         /// You can demand a minimum and a maximum number a user can have within your program, as well as provide corresponding error messages if either of the demands is not met.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.demandCommand($1...)")>]
-        static member demandCommand (min: float, ?max: float, ?minMsg: string, ?maxMsg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member demandCommand (min: float, ?max: float, ?minMsg: string, ?maxMsg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Shows a [deprecated] notice in front of the option
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.deprecateOption($1...)")>]
-        static member deprecateOption (option: string, ?msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member deprecateOption (option: string, ?msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Describe a <c>key</c> for the generated usage information.
         ///
         /// Optionally <c>.describe()</c> can take an object that maps keys to descriptions.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.describe($1...)")>]
-        static member describe (key: U2<string, ResizeArray<string>>, description: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member describe (key: U2<string, ResizeArray<string>>, description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Describe a <c>key</c> for the generated usage information.
         ///
         /// Optionally <c>.describe()</c> can take an object that maps keys to descriptions.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.describe($1...)")>]
-        static member describe (descriptions: Exports.describe.descriptions) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member describe (descriptions: Exports.describe__.descriptions) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Should yargs attempt to detect the os' locale? Defaults to <c>true</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.detectLocale($1...)")>]
-        static member detectLocale (detect: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member detectLocale (detect: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tell yargs to parse environment variables matching the given prefix and apply them to argv as though they were command line arguments.
         ///
@@ -442,7 +442,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Env var parsing is disabled by default, but you can also explicitly disable it by calling <c>.env(false)</c>, e.g. if you need to undo previous configuration.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.env($1...)")>]
-        static member env () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member env () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tell yargs to parse environment variables matching the given prefix and apply them to argv as though they were command line arguments.
         ///
@@ -459,7 +459,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Env var parsing is disabled by default, but you can also explicitly disable it by calling <c>.env(false)</c>, e.g. if you need to undo previous configuration.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.env($1...)")>]
-        static member env (prefix: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member env (prefix: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tell yargs to parse environment variables matching the given prefix and apply them to argv as though they were command line arguments.
         ///
@@ -476,31 +476,31 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Env var parsing is disabled by default, but you can also explicitly disable it by calling <c>.env(false)</c>, e.g. if you need to undo previous configuration.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.env($1...)")>]
-        static member env (enable: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member env (enable: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// A message to print at the end of the usage instructions
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.epilog($1...)")>]
-        static member epilog (msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member epilog (msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// A message to print at the end of the usage instructions
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.epilogue($1...)")>]
-        static member epilogue (msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member epilogue (msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Give some example invocations of your program.
         /// Inside <c>cmd</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
         /// Examples will be printed out as part of the help message.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.example($1...)")>]
-        static member example (command: string, description: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member example (command: string, description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Give some example invocations of your program.
         /// Inside <c>cmd</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
         /// Examples will be printed out as part of the help message.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.example($1...)")>]
-        static member example (command: ResizeArray<string * string option>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member example (command: ResizeArray<string * string option>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Manually indicate that the program should exit, and provide context about why we wanted to exit. Follows the behavior set by <c>.exitProcess().</c>
         /// </summary>
@@ -511,7 +511,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Calling <c>.exitProcess(false)</c> disables this behavior, enabling further actions after yargs have been validated.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.exitProcess($1...)")>]
-        static member exitProcess (enabled: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member exitProcess (enabled: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Method to execute when a failure occurs, rather than printing the failure message.
         /// </summary>
@@ -519,7 +519,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Is called with the failure message that would have been printed, the Error instance originally thrown and yargs state when the failure occurred.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.fail($1...)")>]
-        static member fail (func: U2<Exports.fail.func.U2.Case1<'T>, bool>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member fail (func: U2<Exports.fail__.func.U2.Case1<'T>, bool>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Allows to programmatically get completion choices for any line.
         /// </summary>
@@ -530,7 +530,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// The callback to be called with the resulting completions.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.getCompletion($1...)")>]
-        static member getCompletion (args: ResizeArray<string>, ``done``: Exports.getCompletion.``done``) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member getCompletion (args: ResizeArray<string>, ``done``: Exports.getCompletion__.``done``) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Allows to programmatically get completion choices for any line.
         /// </summary>
@@ -547,17 +547,17 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Options default to being global.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.global($1...)")>]
-        static member ``global`` (key: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member ``global`` (key: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Given a key, or an array of keys, places options under an alternative heading when displaying usage instructions
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.group($1...)")>]
-        static member group (key: U2<string, ResizeArray<string>>, groupName: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member group (key: U2<string, ResizeArray<string>>, groupName: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Hides a key from the generated usage information. Unless a <c>--show-hidden</c> option is also passed with <c>--help</c> (see <c>showHidden()</c>).
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.hide($1...)")>]
-        static member hide (key: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member hide (key: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Configure an (e.g. <c>--help</c>) and implicit command that displays the usage string and exits the process.
         /// By default yargs enables help on the <c>--help</c> option.
@@ -574,7 +574,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If <c>false</c> is provided, it will disable --help.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.help($1...)")>]
-        static member help () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member help () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Configure an (e.g. <c>--help</c>) and implicit command that displays the usage string and exits the process.
         /// By default yargs enables help on the <c>--help</c> option.
@@ -585,7 +585,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If invoked without parameters, <c>.help()</c> will use <c>--help</c> as the option and help as the implicit command to trigger help output.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.help($1...)")>]
-        static member help (enableExplicit: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member help (enableExplicit: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Configure an (e.g. <c>--help</c>) and implicit command that displays the usage string and exits the process.
         /// By default yargs enables help on the <c>--help</c> option.
@@ -596,7 +596,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If invoked without parameters, <c>.help()</c> will use <c>--help</c> as the option and help as the implicit command to trigger help output.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.help($1...)")>]
-        static member help (option: string, enableExplicit: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member help (option: string, enableExplicit: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Configure an (e.g. <c>--help</c>) and implicit command that displays the usage string and exits the process.
         /// By default yargs enables help on the <c>--help</c> option.
@@ -607,7 +607,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If invoked without parameters, <c>.help()</c> will use <c>--help</c> as the option and help as the implicit command to trigger help output.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.help($1...)")>]
-        static member help (option: string, ?description: string, ?enableExplicit: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member help (option: string, ?description: string, ?enableExplicit: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Given the key <c>x</c> is set, it is required that the key <c>y</c> is set.
         /// y<c> can either be the name of an argument to imply, a number indicating the position of an argument or an array of multiple implications to associate with </c>x<c>.
@@ -615,7 +615,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Optionally </c>.implies()` can accept an object specifying multiple implications.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.implies($1...)")>]
-        static member implies (key: string, value: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member implies (key: string, value: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Given the key <c>x</c> is set, it is required that the key <c>y</c> is set.
         /// y<c> can either be the name of an argument to imply, a number indicating the position of an argument or an array of multiple implications to associate with </c>x<c>.
@@ -623,7 +623,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Optionally </c>.implies()` can accept an object specifying multiple implications.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.implies($1...)")>]
-        static member implies (implies: Exports.implies.implies) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member implies (implies: Exports.implies__.implies) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Return the locale that yargs is currently using.
         ///
@@ -641,7 +641,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Note that the OS locale can be modified by setting/exporting the <c>LC_ALL</c> environment variable.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.locale($1...)")>]
-        static member locale (loc: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member locale (loc: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Define global middleware functions to be called first, in list order, for all cli command.
         /// </summary>
@@ -652,26 +652,26 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Set to <c>true</c> to apply middleware before validation. This will execute the middleware prior to validation checks, but after parsing.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.middleware($1...)")>]
-        static member middleware (callbacks: U2<Yargs.yargs_.MiddlewareFunction<'T>, ResizeArray<Yargs.yargs_.MiddlewareFunction<'T>>>, ?applyBeforeValidation: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member middleware (callbacks: U2<Yargs.yargs_.MiddlewareFunction<obj>, ResizeArray<Yargs.yargs_.MiddlewareFunction<obj>>>, ?applyBeforeValidation: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// The number of arguments that should be consumed after a key. This can be a useful hint to prevent parsing ambiguity.
         ///
         /// Optionally <c>.nargs()</c> can take an object of <c>key</c>/<c>narg</c> pairs.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.nargs($1...)")>]
-        static member nargs (key: string, count: float) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member nargs (key: string, count: float) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// The number of arguments that should be consumed after a key. This can be a useful hint to prevent parsing ambiguity.
         ///
         /// Optionally <c>.nargs()</c> can take an object of <c>key</c>/<c>narg</c> pairs.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.nargs($1...)")>]
-        static member nargs (nargs: Exports.nargs.nargs) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member nargs (nargs: Exports.nargs__.nargs) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// The key provided represents a path and should have <c>path.normalize()</c> applied.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.normalize($1...)")>]
-        static member normalize (key: U2<'K, ResizeArray<'K>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member normalize (key: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tell the parser to always interpret key as a number.
         ///
@@ -684,7 +684,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Note that decimals, hexadecimals, and scientific notation are all accepted.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.number($1...)")>]
-        static member number (key: U2<'K, ResizeArray<'K>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member number (key: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Method to execute when a command finishes successfully.
         /// </summary>
@@ -692,31 +692,31 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Is called with the successful result of the command that finished.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.onFinishCommand($1...)")>]
-        static member onFinishCommand (func: (obj -> unit)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member onFinishCommand (func: (obj -> unit)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// This method can be used to make yargs aware of options that could exist.
         /// You can also pass an opt object which can hold further customization, like <c>.alias()</c>, <c>.demandOption()</c> etc. for that option.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.option($1...)")>]
-        static member option (key: 'K, options: 'O) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member option (key: obj, options: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// This method can be used to make yargs aware of options that could exist.
         /// You can also pass an opt object which can hold further customization, like <c>.alias()</c>, <c>.demandOption()</c> etc. for that option.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.option($1...)")>]
-        static member option (options: 'O) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member option (options: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// This method can be used to make yargs aware of options that could exist.
         /// You can also pass an opt object which can hold further customization, like <c>.alias()</c>, <c>.demandOption()</c> etc. for that option.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.options($1...)")>]
-        static member options (key: 'K, options: 'O) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member options (key: obj, options: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// This method can be used to make yargs aware of options that could exist.
         /// You can also pass an opt object which can hold further customization, like <c>.alias()</c>, <c>.demandOption()</c> etc. for that option.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.options($1...)")>]
-        static member options (options: 'O) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member options (options: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Parse <c>args</c> instead of <c>process.argv</c>. Returns the <c>argv</c> object. <c>args</c> may either be a pre-processed argv array, or a raw argument string.
         ///
@@ -726,22 +726,22 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Provides a useful mechanism for passing state information to commands
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.parse($1...)")>]
-        static member parse () : U2<Exports.parse.U2.Case1, JS.Promise<Exports.parse.U2.Case2>> = nativeOnly
+        static member parse () : U2<Exports.parse__.U2.Case1, JS.Promise<Exports.parse__.U2.Case2>> = nativeOnly
         /// <summary>
         /// Parse <c>args</c> instead of <c>process.argv</c>. Returns the <c>argv</c> object. <c>args</c> may either be a pre-processed argv array, or a raw argument string.
         ///
         /// Note: Providing a callback to parse() disables the <c>exitProcess</c> setting until after the callback is invoked.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.parse($1...)")>]
-        static member parse (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<'T>) : U2<Exports.parse.U2.Case1, JS.Promise<Exports.parse.U2.Case2>> = nativeOnly
+        static member parse (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : U2<Exports.parse__.U2.Case1, JS.Promise<Exports.parse__.U2.Case2>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseSync($1...)")>]
-        static member parseSync () : Exports.parseSync = nativeOnly
+        static member parseSync () : Exports.parseSync__ = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseSync($1...)")>]
-        static member parseSync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<'T>) : Exports.parseSync = nativeOnly
+        static member parseSync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : Exports.parseSync__ = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseAsync($1...)")>]
-        static member parseAsync () : JS.Promise<Exports.parseAsync> = nativeOnly
+        static member parseAsync () : JS.Promise<Exports.parseAsync__> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseAsync($1...)")>]
-        static member parseAsync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<'T>) : JS.Promise<Exports.parseAsync> = nativeOnly
+        static member parseAsync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : JS.Promise<Exports.parseAsync__> = nativeOnly
         /// <summary>
         /// If the arguments have not been parsed, this property is <c>false</c>.
         ///
@@ -754,7 +754,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Allows to configure advanced yargs features.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.parserConfiguration($1...)")>]
-        static member parserConfiguration (configuration: Exports.parserConfiguration.configuration) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member parserConfiguration (configuration: Exports.parserConfiguration__.configuration) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Similar to <c>config()</c>, indicates that yargs should interpret the object from the specified key in package.json as a configuration object.
         /// </summary>
@@ -762,61 +762,61 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If provided, the package.json will be read from this location
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.pkgConf($1...)")>]
-        static member pkgConf (key: U2<string, ResizeArray<string>>, ?cwd: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member pkgConf (key: U2<string, ResizeArray<string>>, ?cwd: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Allows you to configure a command's positional arguments with an API similar to <c>.option()</c>.
         /// <c>.positional()</c> should be called in a command's builder function, and is not available on the top-level yargs instance. If so, it will throw an error.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.positional($1...)")>]
-        static member positional (key: 'K, opt: 'O) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member positional (key: obj, opt: obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Should yargs provide suggestions regarding similar commands if no matching command is found?
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.recommendCommands($1...)")>]
-        static member recommendCommands () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member recommendCommands () : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)"); Obsolete("""since version 6.6.0
 Use '.demandCommand()' or '.demandOption()' instead""")>]
-        static member require (key: U2<'K, ResizeArray<'K>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<'T, 'K>> = nativeOnly
+        static member require (key: U2<obj, ResizeArray<obj>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<obj, obj>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)")>]
-        static member require (key: string, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member require (key: string, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)")>]
-        static member require (key: string, required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member require (key: string, required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)")>]
-        static member require (keys: ResizeArray<float>, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member require (keys: ResizeArray<float>, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)")>]
-        static member require (keys: ResizeArray<float>, required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member require (keys: ResizeArray<float>, required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)")>]
-        static member require (positionals: float, required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member require (positionals: float, required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.require($1...)")>]
-        static member require (positionals: float, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member require (positionals: float, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)"); Obsolete("""since version 6.6.0
 Use '.demandCommand()' or '.demandOption()' instead""")>]
-        static member required (key: U2<'K, ResizeArray<'K>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<'T, 'K>> = nativeOnly
+        static member required (key: U2<obj, ResizeArray<obj>>, ?msg: U2<string, bool>) : Yargs.yargs_.Argv<Yargs.yargs_.Defined<obj, obj>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)")>]
-        static member required (key: string, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member required (key: string, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)")>]
-        static member required (key: string, required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member required (key: string, required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)")>]
-        static member required (keys: ResizeArray<float>, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member required (keys: ResizeArray<float>, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)")>]
-        static member required (keys: ResizeArray<float>, required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member required (keys: ResizeArray<float>, required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)")>]
-        static member required (positionals: float, required: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member required (positionals: float, required: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.required($1...)")>]
-        static member required (positionals: float, msg: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member required (positionals: float, msg: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.requiresArg($1...)")>]
-        static member requiresArg (key: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member requiresArg (key: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set the name of your script ($0). Default is the base filename executed by node (<c>process.argv[1]</c>)
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.scriptName($1...)")>]
-        static member scriptName (``$0``: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member scriptName (``$0``: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Generate a bash completion script.
         /// Users of your application can install this script in their <c>.bashrc</c>, and yargs will provide completion shortcuts for commands and options.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.showCompletionScript($1...)")>]
-        static member showCompletionScript () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showCompletionScript () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Configure the <c>--show-hidden</c> option that displays the hidden keys (see <c>hide()</c>).
         /// </summary>
@@ -828,12 +828,12 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Changes the default description ("Show hidden options")
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.showHidden($1...)")>]
-        static member showHidden (?option: U2<string, bool>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showHidden (?option: U2<string, bool>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Configure the <c>--show-hidden</c> option that displays the hidden keys (see <c>hide()</c>).
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.showHidden($1...)")>]
-        static member showHidden (option: string, ?description: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showHidden (option: string, ?description: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Print the usage data using the console function consoleLevel for printing.
         /// Provide the usage data as a string.
@@ -842,7 +842,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         ///
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.showHelp($1...)")>]
-        static member showHelp (?consoleLevel: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showHelp (?consoleLevel: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Print the usage data using the console function consoleLevel for printing.
         /// Provide the usage data as a string.
@@ -851,7 +851,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// a function with a single argument.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.showHelp($1...)")>]
-        static member showHelp (printCallback: (string -> unit)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showHelp (printCallback: (string -> unit)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// By default, yargs outputs a usage string if any error is detected.
         /// Use the <c>.showHelpOnFail()</c> method to customize this behavior.
@@ -863,7 +863,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Message that is output after the error message.
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.showHelpOnFail($1...)")>]
-        static member showHelpOnFail (enable: bool, ?message: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showHelpOnFail (enable: bool, ?message: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Print the version data using the console function consoleLevel or the specified function.
         /// </summary>
@@ -871,54 +871,54 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         ///
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.showVersion($1...)")>]
-        static member showVersion (?level: Exports.showVersion.level) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member showVersion (?level: Exports.showVersion__.level) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Specifies either a single option key (string), or an array of options. If any of the options is present, yargs validation is skipped.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.skipValidation($1...)")>]
-        static member skipValidation (key: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member skipValidation (key: U2<string, ResizeArray<string>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Any command-line argument given that is not demanded, or does not have a corresponding description, will be reported as an error.
         ///
         /// Unrecognized commands will also be reported as errors.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.strict($1...)")>]
-        static member strict () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member strict () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Any command-line argument given that is not demanded, or does not have a corresponding description, will be reported as an error.
         ///
         /// Unrecognized commands will also be reported as errors.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.strict($1...)")>]
-        static member strict (enabled: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member strict (enabled: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Similar to .strict(), except that it only applies to unrecognized commands.
         /// A user can still provide arbitrary options, but unknown positional commands
         /// will raise an error.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.strictCommands($1...)")>]
-        static member strictCommands () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member strictCommands () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Similar to .strict(), except that it only applies to unrecognized commands.
         /// A user can still provide arbitrary options, but unknown positional commands
         /// will raise an error.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.strictCommands($1...)")>]
-        static member strictCommands (enabled: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member strictCommands (enabled: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Similar to <c>.strict()</c>, except that it only applies to unrecognized options. A
         /// user can still provide arbitrary positional options, but unknown options
         /// will raise an error.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.strictOptions($1...)")>]
-        static member strictOptions () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member strictOptions () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Similar to <c>.strict()</c>, except that it only applies to unrecognized options. A
         /// user can still provide arbitrary positional options, but unknown options
         /// will raise an error.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.strictOptions($1...)")>]
-        static member strictOptions (enabled: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member strictOptions (enabled: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Tell the parser logic not to interpret <c>key</c> as a number or boolean. This can be useful if you need to preserve leading zeros in an input.
         ///
@@ -927,18 +927,18 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// <c>.string('_')</c> will result in non-hyphenated arguments being interpreted as strings, regardless of whether they resemble numbers.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.string($1...)")>]
-        static member string (key: U2<'K, ResizeArray<'K>>) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member string (key: U2<obj, ResizeArray<obj>>) : Yargs.yargs_.Argv<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.terminalWidth($1...)")>]
         static member terminalWidth () : float = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.updateLocale($1...)")>]
-        static member updateLocale (obj: Exports.updateLocale.obj) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member updateLocale (obj: Exports.updateLocale__.obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Override the default strings used by yargs with the key/value pairs provided in obj
         ///
         /// If you explicitly specify a locale(), you should do so before calling <c>updateStrings()</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.updateStrings($1...)")>]
-        static member updateStrings (obj: Exports.updateStrings.obj) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member updateStrings (obj: Exports.updateStrings__.obj) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set a usage message to show which commands to use.
         /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -948,7 +948,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// and allows you to provide configuration for the positional arguments accepted by your program:
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.usage($1...)")>]
-        static member usage (message: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member usage (message: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set a usage message to show which commands to use.
         /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -958,7 +958,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// and allows you to provide configuration for the positional arguments accepted by your program:
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.usage($1...)")>]
-        static member usage (command: U2<string, ResizeArray<string>>, description: string, ?builder: (Yargs.yargs_.Argv<'T> -> Yargs.yargs_.Argv<'U>), ?handler: (Yargs.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member usage (command: U2<string, ResizeArray<string>>, description: string, ?builder: (Yargs.yargs_.Argv<obj> -> Yargs.yargs_.Argv<obj>), ?handler: (Yargs.yargs_.ArgumentsCamelCase<obj> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set a usage message to show which commands to use.
         /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -968,7 +968,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// and allows you to provide configuration for the positional arguments accepted by your program:
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.usage($1...)")>]
-        static member usage (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: (Yargs.yargs_.Argv<'T> -> Yargs.yargs_.Argv<'U>), ?handler: (Yargs.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member usage (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: (Yargs.yargs_.Argv<obj> -> Yargs.yargs_.Argv<obj>), ?handler: (Yargs.yargs_.ArgumentsCamelCase<obj> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set a usage message to show which commands to use.
         /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -978,7 +978,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// and allows you to provide configuration for the positional arguments accepted by your program:
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.usage($1...)")>]
-        static member usage (command: U2<string, ResizeArray<string>>, description: string, ?builder: 'O, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member usage (command: U2<string, ResizeArray<string>>, description: string, ?builder: obj, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<obj>> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set a usage message to show which commands to use.
         /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -988,7 +988,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// and allows you to provide configuration for the positional arguments accepted by your program:
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.usage($1...)")>]
-        static member usage (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: 'O, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member usage (command: U2<string, ResizeArray<string>>, showInHelp: bool, ?builder: obj, ?handler: (Yargs.yargs_.ArgumentsCamelCase<Yargs.yargs_.InferredOptionTypes<obj>> -> U2<unit, JS.Promise<unit>>)) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Add an option (e.g. <c>--version</c>) that displays the version number (given by the version parameter) and exits the process.
         /// By default yargs enables version for the <c>--version</c> option.
@@ -998,7 +998,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If the boolean argument <c>false</c> is provided, it will disable <c>--version</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.version($1...)")>]
-        static member version () : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member version () : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Add an option (e.g. <c>--version</c>) that displays the version number (given by the version parameter) and exits the process.
         /// By default yargs enables version for the <c>--version</c> option.
@@ -1008,7 +1008,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If the boolean argument <c>false</c> is provided, it will disable <c>--version</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.version($1...)")>]
-        static member version (version: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member version (version: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Add an option (e.g. <c>--version</c>) that displays the version number (given by the version parameter) and exits the process.
         /// By default yargs enables version for the <c>--version</c> option.
@@ -1018,7 +1018,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If the boolean argument <c>false</c> is provided, it will disable <c>--version</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.version($1...)")>]
-        static member version (enable: bool) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member version (enable: bool) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Add an option (e.g. <c>--version</c>) that displays the version number (given by the version parameter) and exits the process.
         /// By default yargs enables version for the <c>--version</c> option.
@@ -1028,7 +1028,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If the boolean argument <c>false</c> is provided, it will disable <c>--version</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.version($1...)")>]
-        static member version (optionKey: string, version: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member version (optionKey: string, version: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Add an option (e.g. <c>--version</c>) that displays the version number (given by the version parameter) and exits the process.
         /// By default yargs enables version for the <c>--version</c> option.
@@ -1038,7 +1038,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// If the boolean argument <c>false</c> is provided, it will disable <c>--version</c>.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.version($1...)")>]
-        static member version (optionKey: string, description: string, version: string) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member version (optionKey: string, description: string, version: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Format usage output to wrap at columns many columns.
         ///
@@ -1046,7 +1046,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Use <c>.wrap(yargs.terminalWidth())</c> to maximize the width of yargs' usage instructions.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.wrap($1...)")>]
-        static member wrap (columns: float option) : Yargs.yargs_.Argv<'T> = nativeOnly
+        static member wrap (columns: float option) : Yargs.yargs_.Argv<obj> = nativeOnly
 
     module yargs_ =
 
@@ -2292,17 +2292,6 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// <param name="description">
             /// Changes the default description ("Show hidden options")
             /// </param>
-            abstract member showHidden: option: string -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Configure the <c>--show-hidden</c> option that displays the hidden keys (see <c>hide()</c>).
-            /// </summary>
-            /// <param name="option">
-            /// If <c>boolean</c>, it enables/disables this option altogether. i.e. hidden keys will be permanently hidden if first argument is <c>false</c>.
-            /// If <c>string</c> it changes the key name ("--show-hidden").
-            /// </param>
-            /// <param name="description">
-            /// Changes the default description ("Show hidden options")
-            /// </param>
             abstract member showHidden: option: bool -> Yargs.yargs_.Argv<'T>
             /// <summary>
             /// Configure the <c>--show-hidden</c> option that displays the hidden keys (see <c>hide()</c>).
@@ -2568,40 +2557,33 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// </summary>
             abstract member ``$0``: string with get, set
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type RequireDirectoryOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                ?recurse: bool,
-                ?extensions: ReadonlyArray<string>,
-                ?visit: RequireDirectoryOptions.visit,
-                ?``include``: U2<RegExp, (string -> bool)>,
-                ?exclude: U2<RegExp, (string -> bool)>
-            ) =
-
+        [<Interface>]
+        type RequireDirectoryOptions =
             /// <summary>
             /// Look for command modules in all subdirectories and apply them as a flattened (non-hierarchical) list.
             /// </summary>
-            member val recurse : bool option = nativeOnly with get, set
+            abstract member recurse: bool option with get, set
             /// <summary>
             /// The types of files to look for when requiring command modules.
             /// </summary>
-            member val extensions : ReadonlyArray<string> option = nativeOnly with get, set
+            abstract member extensions: ReadonlyArray<string> option with get, set
             /// <summary>
             /// A synchronous function called for each command module encountered.
             /// Accepts <c>commandObject</c>, <c>pathToFile</c>, and <c>filename</c> as arguments.
             /// Returns <c>commandObject</c> to include the command; any falsy value to exclude/skip it.
             /// </summary>
-            member val visit : RequireDirectoryOptions.visit option = nativeOnly with get, set
+            abstract member visit: RequireDirectoryOptions.visit option with get, set
             /// <summary>
             /// Whitelist certain modules
             /// </summary>
-            member val ``include`` : U2<RegExp, (string -> bool)> option = nativeOnly with get, set
+            abstract member ``include``: U2<RegExp, (string -> bool)> option with get, set
             /// <summary>
             /// Blacklist certain modules.
             /// </summary>
-            member val exclude : U2<RegExp, (string -> bool)> option = nativeOnly with get, set
+            abstract member exclude: U2<RegExp, (string -> bool)> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?recurse: bool, ?extensions: ReadonlyArray<string>, ?visit: RequireDirectoryOptions.visit, ?``include``: U2<RegExp, (string -> bool)>, ?exclude: U2<RegExp, (string -> bool)>) : RequireDirectoryOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -3421,17 +3403,17 @@ Use 'demandOption' instead""")>]
 
         [<AllowNullLiteral>]
         [<Interface>]
-        type parseSync =
+        type parseSync__ =
             [<EmitIndexer>]
             abstract member Item: key: string -> obj with get, set
 
         [<AllowNullLiteral>]
         [<Interface>]
-        type parseAsync =
+        type parseAsync__ =
             [<EmitIndexer>]
             abstract member Item: key: string -> obj with get, set
 
-        module alias =
+        module alias__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3439,7 +3421,7 @@ Use 'demandOption' instead""")>]
                 [<EmitIndexer>]
                 abstract member Item: shortName: string -> U2<string, ReadonlyArray<string>> with get, set
 
-        module argv =
+        module argv__ =
 
             module Type =
 
@@ -3457,10 +3439,10 @@ Use 'demandOption' instead""")>]
                         [<EmitIndexer>]
                         abstract member Item: key: string -> obj with get, set
 
-        module check =
+        module check__ =
 
             type func<'T> =
-                delegate of argv: Yargs.yargs_.Arguments<'T> * aliases: Exports.check.func.aliases -> unit
+                delegate of argv: Yargs.yargs_.Arguments<'T> * aliases: Exports.check__.func.aliases -> unit
 
             module func =
 
@@ -3470,7 +3452,7 @@ Use 'demandOption' instead""")>]
                     [<EmitIndexer>]
                     abstract member Item: alias: string -> string with get, set
 
-        module conflicts =
+        module conflicts__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3478,7 +3460,7 @@ Use 'demandOption' instead""")>]
                 [<EmitIndexer>]
                 abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
 
-        module describe =
+        module describe__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3486,7 +3468,7 @@ Use 'demandOption' instead""")>]
                 [<EmitIndexer>]
                 abstract member Item: key: string -> string with get, set
 
-        module fail =
+        module fail__ =
 
             module func =
 
@@ -3495,12 +3477,12 @@ Use 'demandOption' instead""")>]
                     type Case1<'T> =
                         delegate of msg: string * err: Exception * yargs: Yargs.yargs_.Argv<'T> -> unit
 
-        module getCompletion =
+        module getCompletion__ =
 
             type ``done`` =
                 delegate of err: Exception option * completions: ResizeArray<string> -> unit
 
-        module implies =
+        module implies__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3508,7 +3490,7 @@ Use 'demandOption' instead""")>]
                 [<EmitIndexer>]
                 abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
 
-        module nargs =
+        module nargs__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3516,7 +3498,7 @@ Use 'demandOption' instead""")>]
                 [<EmitIndexer>]
                 abstract member Item: key: string -> float with get, set
 
-        module parse =
+        module parse__ =
 
             module U2 =
 
@@ -3532,7 +3514,7 @@ Use 'demandOption' instead""")>]
                     [<EmitIndexer>]
                     abstract member Item: key: string -> obj with get, set
 
-        module parserConfiguration =
+        module parserConfiguration__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3614,7 +3596,7 @@ Use 'demandOption' instead""")>]
                 /// </summary>
                 abstract member ``sort-commands``: bool option with get, set
 
-        module showVersion =
+        module showVersion__ =
 
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
@@ -3623,7 +3605,7 @@ Use 'demandOption' instead""")>]
                 | log
                 | Case1 of (string -> unit)
 
-        module updateLocale =
+        module updateLocale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3631,7 +3613,7 @@ Use 'demandOption' instead""")>]
                 [<EmitIndexer>]
                 abstract member Item: key: string -> string with get, set
 
-        module updateStrings =
+        module updateStrings__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -3771,81 +3753,66 @@ module YargsParser =
             /// </summary>
             abstract member ``unknown-options-as-args``: bool with get, set
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type Options
-            [<ParamObject; Emit("$0")>]
-            (
-                ?alias: Options.alias,
-                ?array: U2<ResizeArray<string>, ResizeArray<Options.array.U2.Case2>>,
-                ?boolean: ResizeArray<string>,
-                ?config: U3<string, ResizeArray<string>, Options.config.U3.Case3>,
-                ?configuration: Options.configuration,
-                ?coerce: Options.coerce,
-                ?count: ResizeArray<string>,
-                ?``default``: Options.``default``,
-                ?envPrefix: string,
-                ?narg: Options.narg,
-                ?normalize: ResizeArray<string>,
-                ?string: ResizeArray<string>,
-                ?number: ResizeArray<string>
-            ) =
-
+        [<Interface>]
+        type Options =
             /// <summary>
             /// An object representing the set of aliases for a key: <c>{ alias: { foo: ['f']} }</c>.
             /// </summary>
-            member val alias : Options.alias option = nativeOnly with get, set
+            abstract member alias: Options.alias option with get, set
             /// <summary>
             /// Indicate that keys should be parsed as an array: <c>{ array: ['foo', 'bar'] }</c>.
             /// Indicate that keys should be parsed as an array and coerced to booleans / numbers:
             /// { array: [ { key: 'foo', boolean: true }, {key: 'bar', number: true} ] }`.
             /// </summary>
-            member val array : U2<ResizeArray<string>, ResizeArray<Options.array.U2.Case2>> option = nativeOnly with get, set
+            abstract member array: U2<ResizeArray<string>, ResizeArray<Options.array.U2.Case2>> option with get, set
             /// <summary>
             /// Arguments should be parsed as booleans: <c>{ boolean: ['x', 'y'] }</c>.
             /// </summary>
-            member val boolean : ResizeArray<string> option = nativeOnly with get, set
+            abstract member boolean: ResizeArray<string> option with get, set
             /// <summary>
             /// Indicate a key that represents a path to a configuration file (this file will be loaded and parsed).
             /// </summary>
-            member val config : U3<string, ResizeArray<string>, Options.config.U3.Case3> option = nativeOnly with get, set
+            abstract member config: U3<string, ResizeArray<string>, Options.config.U3.Case3> option with get, set
             /// <summary>
             /// Provide configuration options to the yargs-parser.
             /// </summary>
-            member val configuration : Options.configuration option = nativeOnly with get, set
+            abstract member configuration: Options.configuration option with get, set
             /// <summary>
             /// Provide a custom synchronous function that returns a coerced value from the argument provided (or throws an error), e.g.
             /// <c>{ coerce: { foo: function (arg) { return modifiedArg } } }</c>.
             /// </summary>
-            member val coerce : Options.coerce option = nativeOnly with get, set
+            abstract member coerce: Options.coerce option with get, set
             /// <summary>
             /// Indicate a key that should be used as a counter, e.g., <c>-vvv = {v: 3}</c>.
             /// </summary>
-            member val count : ResizeArray<string> option = nativeOnly with get, set
+            abstract member count: ResizeArray<string> option with get, set
             /// <summary>
             /// Provide default values for keys: <c>{ default: { x: 33, y: 'hello world!' } }</c>.
             /// </summary>
-            member val ``default`` : Options.``default`` option = nativeOnly with get, set
+            abstract member ``default``: Options.``default`` option with get, set
             /// <summary>
             /// Environment variables (<c>process.env</c>) with the prefix provided should be parsed.
             /// </summary>
-            member val envPrefix : string option = nativeOnly with get, set
+            abstract member envPrefix: string option with get, set
             /// <summary>
             /// Specify that a key requires n arguments: <c>{ narg: {x: 2} }</c>.
             /// </summary>
-            member val narg : Options.narg option = nativeOnly with get, set
+            abstract member narg: Options.narg option with get, set
             /// <summary>
             /// <c>path.normalize()</c> will be applied to values set to this key.
             /// </summary>
-            member val normalize : ResizeArray<string> option = nativeOnly with get, set
+            abstract member normalize: ResizeArray<string> option with get, set
             /// <summary>
             /// Keys should be treated as strings (even if they resemble a number <c>-x 33</c>).
             /// </summary>
-            member val string : ResizeArray<string> option = nativeOnly with get, set
+            abstract member string: ResizeArray<string> option with get, set
             /// <summary>
             /// Keys should be treated as numbers.
             /// </summary>
-            member val number : ResizeArray<string> option = nativeOnly with get, set
+            abstract member number: ResizeArray<string> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?alias: Options.alias, ?array: U2<ResizeArray<string>, ResizeArray<Options.array.U2.Case2>>, ?boolean: ResizeArray<string>, ?config: U3<string, ResizeArray<string>, Options.config.U3.Case3>, ?configuration: Options.configuration, ?coerce: Options.coerce, ?count: ResizeArray<string>, ?``default``: Options.``default``, ?envPrefix: string, ?narg: Options.narg, ?normalize: ResizeArray<string>, ?string: ResizeArray<string>, ?number: ResizeArray<string>) : Options = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -3979,19 +3946,14 @@ module YargsParser =
 
                 module U2 =
 
-                    [<Global>]
                     [<AllowNullLiteral>]
-                    type Case2
+                    [<Interface>]
+                    type Case2 =
+                        abstract member key: string with get, set
+                        abstract member boolean: bool option with get, set
+                        abstract member number: bool option with get, set
                         [<ParamObject; Emit("$0")>]
-                        (
-                            key: string,
-                            ?boolean: bool,
-                            ?number: bool
-                        ) =
-
-                        member val key : string = nativeOnly with get, set
-                        member val boolean : bool option = nativeOnly with get, set
-                        member val number : bool option = nativeOnly with get, set
+                        static member Create (key: string, ?boolean: bool, ?number: bool) : Case2 = nativeOnly
 
             module config =
 

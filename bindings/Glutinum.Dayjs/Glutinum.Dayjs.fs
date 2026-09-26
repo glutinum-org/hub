@@ -45,14 +45,14 @@ module Dayjs =
         [<ImportDefault("dayjs"); Emit("$0.extend($1...)")>]
         static member extend<'T> (plugin: Dayjs.dayjs_.PluginFunc<'T>, ?option: 'T) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs"); Emit("$0.locale($1...)")>]
-        static member locale (?preset: U2<string, Dayjs.ILocale>, ?``object``: Exports.locale.``object_1``, ?isLocal: bool) : string = nativeOnly
+        static member locale (?preset: U2<string, Dayjs.ILocale>, ?``object``: Exports.locale__.``object``, ?isLocal: bool) : string = nativeOnly
         [<ImportDefault("dayjs"); Emit("$0.isDayjs($1...)")>]
         static member isDayjs (d: obj) : bool = nativeOnly
         [<ImportDefault("dayjs"); Emit("$0.unix($1...)")>]
         static member unix (t: float) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
         [<Emit("$0.Ls")>]
-        static member inline Ls: Exports.Ls.Type_1 = nativeOnly
+        static member inline Ls: Exports.Ls__.Type = nativeOnly
 
     module dayjs_ =
 
@@ -1442,11 +1442,11 @@ module Dayjs =
 
     module Exports =
 
-        module locale =
+        module locale__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type ``object_1`` =
+            type ``object`` =
                 abstract member name: string option with get, set
                 abstract member weekdays: ResizeArray<string> option with get, set
                 abstract member months: ResizeArray<string> option with get, set
@@ -1455,8 +1455,8 @@ module Dayjs =
                 abstract member monthsShort: ResizeArray<string> option with get, set
                 abstract member weekdaysMin: ResizeArray<string> option with get, set
                 abstract member ordinal: (float -> U2<float, string>) option with get, set
-                abstract member formats: Exports.locale.``object``.Partial.formats_1 option with get, set
-                abstract member relativeTime: Exports.locale.``object``.Partial.relativeTime_1 option with get, set
+                abstract member formats: Exports.locale__.``object``.Partial.formats option with get, set
+                abstract member relativeTime: Exports.locale__.``object``.Partial.relativeTime option with get, set
 
             module ``object`` =
 
@@ -1464,7 +1464,7 @@ module Dayjs =
 
                     [<AllowNullLiteral>]
                     [<Interface>]
-                    type formats_1 =
+                    type formats =
                         abstract member LT: string option with get, set
                         abstract member LTS: string option with get, set
                         abstract member L: string option with get, set
@@ -1474,7 +1474,7 @@ module Dayjs =
 
                     [<AllowNullLiteral>]
                     [<Interface>]
-                    type relativeTime_1 =
+                    type relativeTime =
                         abstract member future: string option with get, set
                         abstract member past: string option with get, set
                         abstract member s: string option with get, set
@@ -1489,10 +1489,10 @@ module Dayjs =
                         abstract member y: string option with get, set
                         abstract member yy: string option with get, set
 
-        module Ls =
+        module Ls__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type Type_1 =
+            type Type =
                 [<EmitIndexer>]
                 abstract member Item: key: string -> Dayjs.ILocale with get, set

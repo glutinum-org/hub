@@ -40,7 +40,7 @@ module Leaflet =
         [<Import("latLng", "leaflet")>]
         static member latLng (coords: Leaflet.LatLngLiteral) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
-        static member latLng (coords: Exports.latLng.coords) : Leaflet.LatLng = nativeOnly
+        static member latLng (coords: Exports.latLng__.coords) : Leaflet.LatLng = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (southWest: Leaflet.LatLng, northEast: Leaflet.LatLng) : Leaflet.LatLngBounds = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
@@ -66,7 +66,7 @@ module Leaflet =
         [<Import("point", "leaflet")>]
         static member point (coords: Leaflet.PointTuple) : Leaflet.Point = nativeOnly
         [<Import("point", "leaflet")>]
-        static member point (coords: Exports.point.coords) : Leaflet.Point = nativeOnly
+        static member point (coords: Exports.point__.coords) : Leaflet.Point = nativeOnly
         [<Import("bounds", "leaflet")>]
         static member bounds (topLeft: Leaflet.Point, bottomRight: Leaflet.Point) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
@@ -316,13 +316,13 @@ module Leaflet =
         [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("extend", "leaflet")>]
-        static member inline extend: Exports.extend.Type = nativeOnly
+        static member inline extend: Exports.extend__.Type = nativeOnly
         [<Import("bind", "leaflet")>]
-        static member inline bind: Exports.bind.Type = nativeOnly
+        static member inline bind: Exports.bind__.Type = nativeOnly
         [<Import("stamp", "leaflet")>]
         static member inline stamp: (obj -> float) = nativeOnly
         [<Import("setOptions", "leaflet")>]
-        static member inline setOptions: Exports.setOptions.Type = nativeOnly
+        static member inline setOptions: Exports.setOptions__.Type = nativeOnly
         [<Import("noConflict", "leaflet")>]
         static member noConflict () : obj = nativeOnly
         [<Import("Class", "leaflet"); EmitConstructor>]
@@ -728,19 +728,14 @@ Class.callInitHooks()"""
 
         module Exports =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type getScale
+            [<Interface>]
+            type getScale =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                abstract member boundingClientRect: Glutinum.Web.DOMRect with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float,
-                    boundingClientRect: Glutinum.Web.DOMRect
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-                member val boundingClientRect : Glutinum.Web.DOMRect = nativeOnly with get, set
+                static member Create (x: float, y: float, boundingClientRect: Glutinum.Web.DOMRect) : getScale = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -836,19 +831,14 @@ Class.callInitHooks()"""
         abstract member lng: float with get, set
         abstract member alt: float option with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type LatLngLiteral
+    [<Interface>]
+    type LatLngLiteral =
+        abstract member lat: float with get, set
+        abstract member lng: float with get, set
+        abstract member alt: float option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            lat: float,
-            lng: float,
-            ?alt: float
-        ) =
-
-        member val lat : float = nativeOnly with get, set
-        member val lng : float = nativeOnly with get, set
-        member val alt : float option = nativeOnly with get, set
+        static member Create (lat: float, lng: float, ?alt: float) : LatLngLiteral = nativeOnly
 
     type LatLngTuple =
         float * float * float option
@@ -1010,115 +1000,62 @@ Class.callInitHooks()"""
     type TileErrorEventHandlerFn =
         delegate of event: Leaflet.TileErrorEvent -> unit
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type LeafletEventHandlerFnMap
+    [<Interface>]
+    type LeafletEventHandlerFnMap =
+        abstract member baselayerchange: Leaflet.LayersControlEventHandlerFn option with get, set
+        abstract member overlayadd: Leaflet.LayersControlEventHandlerFn option with get, set
+        abstract member overlayremove: Leaflet.LayersControlEventHandlerFn option with get, set
+        abstract member layeradd: Leaflet.LayerEventHandlerFn option with get, set
+        abstract member layerremove: Leaflet.LayerEventHandlerFn option with get, set
+        abstract member zoomlevelschange: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member unload: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member viewreset: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member load: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member zoomstart: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member movestart: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member zoom: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member move: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member zoomend: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member moveend: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member autopanstart: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member dragstart: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member drag: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member add: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member remove: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member loading: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member error: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member update: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member down: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member predrag: Leaflet.LeafletEventHandlerFn option with get, set
+        abstract member resize: Leaflet.ResizeEventHandlerFn option with get, set
+        abstract member popupopen: Leaflet.PopupEventHandlerFn option with get, set
+        abstract member popupclose: Leaflet.PopupEventHandlerFn option with get, set
+        abstract member tooltipopen: Leaflet.TooltipEventHandlerFn option with get, set
+        abstract member tooltipclose: Leaflet.TooltipEventHandlerFn option with get, set
+        abstract member locationerror: Leaflet.ErrorEventHandlerFn option with get, set
+        abstract member locationfound: Leaflet.LocationEventHandlerFn option with get, set
+        abstract member click: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member dblclick: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member mousedown: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member mouseup: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member mouseover: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member mouseout: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member mousemove: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member contextmenu: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member preclick: Leaflet.LeafletMouseEventHandlerFn option with get, set
+        abstract member keypress: Leaflet.LeafletKeyboardEventHandlerFn option with get, set
+        abstract member keydown: Leaflet.LeafletKeyboardEventHandlerFn option with get, set
+        abstract member keyup: Leaflet.LeafletKeyboardEventHandlerFn option with get, set
+        abstract member zoomanim: Leaflet.ZoomAnimEventHandlerFn option with get, set
+        abstract member dragend: Leaflet.DragEndEventHandlerFn option with get, set
+        abstract member tileunload: Leaflet.TileEventHandlerFn option with get, set
+        abstract member tileloadstart: Leaflet.TileEventHandlerFn option with get, set
+        abstract member tileload: Leaflet.TileEventHandlerFn option with get, set
+        abstract member tileabort: Leaflet.TileEventHandlerFn option with get, set
+        abstract member tileerror: Leaflet.TileErrorEventHandlerFn option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?baselayerchange: Leaflet.LayersControlEventHandlerFn,
-            ?overlayadd: Leaflet.LayersControlEventHandlerFn,
-            ?overlayremove: Leaflet.LayersControlEventHandlerFn,
-            ?layeradd: Leaflet.LayerEventHandlerFn,
-            ?layerremove: Leaflet.LayerEventHandlerFn,
-            ?zoomlevelschange: Leaflet.LeafletEventHandlerFn,
-            ?unload: Leaflet.LeafletEventHandlerFn,
-            ?viewreset: Leaflet.LeafletEventHandlerFn,
-            ?load: Leaflet.LeafletEventHandlerFn,
-            ?zoomstart: Leaflet.LeafletEventHandlerFn,
-            ?movestart: Leaflet.LeafletEventHandlerFn,
-            ?zoom: Leaflet.LeafletEventHandlerFn,
-            ?move: Leaflet.LeafletEventHandlerFn,
-            ?zoomend: Leaflet.LeafletEventHandlerFn,
-            ?moveend: Leaflet.LeafletEventHandlerFn,
-            ?autopanstart: Leaflet.LeafletEventHandlerFn,
-            ?dragstart: Leaflet.LeafletEventHandlerFn,
-            ?drag: Leaflet.LeafletEventHandlerFn,
-            ?add: Leaflet.LeafletEventHandlerFn,
-            ?remove: Leaflet.LeafletEventHandlerFn,
-            ?loading: Leaflet.LeafletEventHandlerFn,
-            ?error: Leaflet.LeafletEventHandlerFn,
-            ?update: Leaflet.LeafletEventHandlerFn,
-            ?down: Leaflet.LeafletEventHandlerFn,
-            ?predrag: Leaflet.LeafletEventHandlerFn,
-            ?resize: Leaflet.ResizeEventHandlerFn,
-            ?popupopen: Leaflet.PopupEventHandlerFn,
-            ?popupclose: Leaflet.PopupEventHandlerFn,
-            ?tooltipopen: Leaflet.TooltipEventHandlerFn,
-            ?tooltipclose: Leaflet.TooltipEventHandlerFn,
-            ?locationerror: Leaflet.ErrorEventHandlerFn,
-            ?locationfound: Leaflet.LocationEventHandlerFn,
-            ?click: Leaflet.LeafletMouseEventHandlerFn,
-            ?dblclick: Leaflet.LeafletMouseEventHandlerFn,
-            ?mousedown: Leaflet.LeafletMouseEventHandlerFn,
-            ?mouseup: Leaflet.LeafletMouseEventHandlerFn,
-            ?mouseover: Leaflet.LeafletMouseEventHandlerFn,
-            ?mouseout: Leaflet.LeafletMouseEventHandlerFn,
-            ?mousemove: Leaflet.LeafletMouseEventHandlerFn,
-            ?contextmenu: Leaflet.LeafletMouseEventHandlerFn,
-            ?preclick: Leaflet.LeafletMouseEventHandlerFn,
-            ?keypress: Leaflet.LeafletKeyboardEventHandlerFn,
-            ?keydown: Leaflet.LeafletKeyboardEventHandlerFn,
-            ?keyup: Leaflet.LeafletKeyboardEventHandlerFn,
-            ?zoomanim: Leaflet.ZoomAnimEventHandlerFn,
-            ?dragend: Leaflet.DragEndEventHandlerFn,
-            ?tileunload: Leaflet.TileEventHandlerFn,
-            ?tileloadstart: Leaflet.TileEventHandlerFn,
-            ?tileload: Leaflet.TileEventHandlerFn,
-            ?tileabort: Leaflet.TileEventHandlerFn,
-            ?tileerror: Leaflet.TileErrorEventHandlerFn
-        ) =
-
-        member val baselayerchange : Leaflet.LayersControlEventHandlerFn option = nativeOnly with get, set
-        member val overlayadd : Leaflet.LayersControlEventHandlerFn option = nativeOnly with get, set
-        member val overlayremove : Leaflet.LayersControlEventHandlerFn option = nativeOnly with get, set
-        member val layeradd : Leaflet.LayerEventHandlerFn option = nativeOnly with get, set
-        member val layerremove : Leaflet.LayerEventHandlerFn option = nativeOnly with get, set
-        member val zoomlevelschange : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val unload : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val viewreset : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val load : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val zoomstart : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val movestart : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val zoom : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val move : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val zoomend : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val moveend : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val autopanstart : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val dragstart : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val drag : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val add : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val remove : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val loading : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val error : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val update : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val down : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val predrag : Leaflet.LeafletEventHandlerFn option = nativeOnly with get, set
-        member val resize : Leaflet.ResizeEventHandlerFn option = nativeOnly with get, set
-        member val popupopen : Leaflet.PopupEventHandlerFn option = nativeOnly with get, set
-        member val popupclose : Leaflet.PopupEventHandlerFn option = nativeOnly with get, set
-        member val tooltipopen : Leaflet.TooltipEventHandlerFn option = nativeOnly with get, set
-        member val tooltipclose : Leaflet.TooltipEventHandlerFn option = nativeOnly with get, set
-        member val locationerror : Leaflet.ErrorEventHandlerFn option = nativeOnly with get, set
-        member val locationfound : Leaflet.LocationEventHandlerFn option = nativeOnly with get, set
-        member val click : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val dblclick : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val mousedown : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val mouseup : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val mouseover : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val mouseout : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val mousemove : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val contextmenu : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val preclick : Leaflet.LeafletMouseEventHandlerFn option = nativeOnly with get, set
-        member val keypress : Leaflet.LeafletKeyboardEventHandlerFn option = nativeOnly with get, set
-        member val keydown : Leaflet.LeafletKeyboardEventHandlerFn option = nativeOnly with get, set
-        member val keyup : Leaflet.LeafletKeyboardEventHandlerFn option = nativeOnly with get, set
-        member val zoomanim : Leaflet.ZoomAnimEventHandlerFn option = nativeOnly with get, set
-        member val dragend : Leaflet.DragEndEventHandlerFn option = nativeOnly with get, set
-        member val tileunload : Leaflet.TileEventHandlerFn option = nativeOnly with get, set
-        member val tileloadstart : Leaflet.TileEventHandlerFn option = nativeOnly with get, set
-        member val tileload : Leaflet.TileEventHandlerFn option = nativeOnly with get, set
-        member val tileabort : Leaflet.TileEventHandlerFn option = nativeOnly with get, set
-        member val tileerror : Leaflet.TileErrorEventHandlerFn option = nativeOnly with get, set
+        static member Create (?baselayerchange: Leaflet.LayersControlEventHandlerFn, ?overlayadd: Leaflet.LayersControlEventHandlerFn, ?overlayremove: Leaflet.LayersControlEventHandlerFn, ?layeradd: Leaflet.LayerEventHandlerFn, ?layerremove: Leaflet.LayerEventHandlerFn, ?zoomlevelschange: Leaflet.LeafletEventHandlerFn, ?unload: Leaflet.LeafletEventHandlerFn, ?viewreset: Leaflet.LeafletEventHandlerFn, ?load: Leaflet.LeafletEventHandlerFn, ?zoomstart: Leaflet.LeafletEventHandlerFn, ?movestart: Leaflet.LeafletEventHandlerFn, ?zoom: Leaflet.LeafletEventHandlerFn, ?move: Leaflet.LeafletEventHandlerFn, ?zoomend: Leaflet.LeafletEventHandlerFn, ?moveend: Leaflet.LeafletEventHandlerFn, ?autopanstart: Leaflet.LeafletEventHandlerFn, ?dragstart: Leaflet.LeafletEventHandlerFn, ?drag: Leaflet.LeafletEventHandlerFn, ?add: Leaflet.LeafletEventHandlerFn, ?remove: Leaflet.LeafletEventHandlerFn, ?loading: Leaflet.LeafletEventHandlerFn, ?error: Leaflet.LeafletEventHandlerFn, ?update: Leaflet.LeafletEventHandlerFn, ?down: Leaflet.LeafletEventHandlerFn, ?predrag: Leaflet.LeafletEventHandlerFn, ?resize: Leaflet.ResizeEventHandlerFn, ?popupopen: Leaflet.PopupEventHandlerFn, ?popupclose: Leaflet.PopupEventHandlerFn, ?tooltipopen: Leaflet.TooltipEventHandlerFn, ?tooltipclose: Leaflet.TooltipEventHandlerFn, ?locationerror: Leaflet.ErrorEventHandlerFn, ?locationfound: Leaflet.LocationEventHandlerFn, ?click: Leaflet.LeafletMouseEventHandlerFn, ?dblclick: Leaflet.LeafletMouseEventHandlerFn, ?mousedown: Leaflet.LeafletMouseEventHandlerFn, ?mouseup: Leaflet.LeafletMouseEventHandlerFn, ?mouseover: Leaflet.LeafletMouseEventHandlerFn, ?mouseout: Leaflet.LeafletMouseEventHandlerFn, ?mousemove: Leaflet.LeafletMouseEventHandlerFn, ?contextmenu: Leaflet.LeafletMouseEventHandlerFn, ?preclick: Leaflet.LeafletMouseEventHandlerFn, ?keypress: Leaflet.LeafletKeyboardEventHandlerFn, ?keydown: Leaflet.LeafletKeyboardEventHandlerFn, ?keyup: Leaflet.LeafletKeyboardEventHandlerFn, ?zoomanim: Leaflet.ZoomAnimEventHandlerFn, ?dragend: Leaflet.DragEndEventHandlerFn, ?tileunload: Leaflet.TileEventHandlerFn, ?tileloadstart: Leaflet.TileEventHandlerFn, ?tileload: Leaflet.TileEventHandlerFn, ?tileabort: Leaflet.TileEventHandlerFn, ?tileerror: Leaflet.TileErrorEventHandlerFn) : LeafletEventHandlerFnMap = nativeOnly
 
     /// <summary>
     /// A set of methods shared between event-powered classes (like Map and Marker).
@@ -3073,19 +3010,16 @@ Class.callInitHooks()"""
         /// </summary>
         abstract member hasEventListeners: ``type``: string -> bool
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type DraggableOptions
-        [<ParamObject; Emit("$0")>]
-        (
-            clickTolerance: float
-        ) =
-
+    [<Interface>]
+    type DraggableOptions =
         /// <summary>
         /// The max number of pixels a user can shift the mouse pointer during a click
         /// for it to be considered a valid click (as opposed to a mouse drag).
         /// </summary>
-        member val clickTolerance : float = nativeOnly with get, set
+        abstract member clickTolerance: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (clickTolerance: float) : DraggableOptions = nativeOnly
 
     /// <summary>
     /// A class for making DOM elements draggable (including touch support).
@@ -4258,91 +4192,48 @@ Control.extend($0)"""
         inherit Leaflet.ZoomOptions
         inherit Leaflet.PanOptions
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type InvalidateSizeOptions
+    [<Interface>]
+    type InvalidateSizeOptions =
+        inherit Leaflet.ZoomPanOptions
+        abstract member debounceMoveend: bool option with get, set
+        abstract member pan: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?animate: bool,
-            ?duration: float,
-            ?easeLinearity: float,
-            ?noMoveStart: bool,
-            ?debounceMoveend: bool,
-            ?pan: bool
-        ) =
+        static member Create (?animate: bool, ?duration: float, ?easeLinearity: float, ?noMoveStart: bool, ?debounceMoveend: bool, ?pan: bool) : InvalidateSizeOptions = nativeOnly
 
-        member val animate : bool option = nativeOnly with get, set
-        member val duration : float option = nativeOnly with get, set
-        member val easeLinearity : float option = nativeOnly with get, set
-        member val noMoveStart : bool option = nativeOnly with get, set
-        member val debounceMoveend : bool option = nativeOnly with get, set
-        member val pan : bool option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type FitBoundsOptions
+    [<Interface>]
+    type FitBoundsOptions =
+        inherit Leaflet.ZoomOptions
+        inherit Leaflet.PanOptions
+        abstract member paddingTopLeft: Leaflet.PointExpression option with get, set
+        abstract member paddingBottomRight: Leaflet.PointExpression option with get, set
+        abstract member padding: Leaflet.PointExpression option with get, set
+        abstract member maxZoom: float option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?animate: bool,
-            ?duration: float,
-            ?easeLinearity: float,
-            ?noMoveStart: bool,
-            ?paddingTopLeft: Leaflet.PointExpression,
-            ?paddingBottomRight: Leaflet.PointExpression,
-            ?padding: Leaflet.PointExpression,
-            ?maxZoom: float
-        ) =
+        static member Create (?animate: bool, ?duration: float, ?easeLinearity: float, ?noMoveStart: bool, ?paddingTopLeft: Leaflet.PointExpression, ?paddingBottomRight: Leaflet.PointExpression, ?padding: Leaflet.PointExpression, ?maxZoom: float) : FitBoundsOptions = nativeOnly
 
-        member val animate : bool option = nativeOnly with get, set
-        member val duration : float option = nativeOnly with get, set
-        member val easeLinearity : float option = nativeOnly with get, set
-        member val noMoveStart : bool option = nativeOnly with get, set
-        member val paddingTopLeft : Leaflet.PointExpression option = nativeOnly with get, set
-        member val paddingBottomRight : Leaflet.PointExpression option = nativeOnly with get, set
-        member val padding : Leaflet.PointExpression option = nativeOnly with get, set
-        member val maxZoom : float option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type PanInsideOptions
+    [<Interface>]
+    type PanInsideOptions =
+        inherit Leaflet.PanOptions
+        abstract member paddingTopLeft: Leaflet.PointExpression option with get, set
+        abstract member paddingBottomRight: Leaflet.PointExpression option with get, set
+        abstract member padding: Leaflet.PointExpression option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?animate: bool,
-            ?duration: float,
-            ?easeLinearity: float,
-            ?noMoveStart: bool,
-            ?paddingTopLeft: Leaflet.PointExpression,
-            ?paddingBottomRight: Leaflet.PointExpression,
-            ?padding: Leaflet.PointExpression
-        ) =
+        static member Create (?animate: bool, ?duration: float, ?easeLinearity: float, ?noMoveStart: bool, ?paddingTopLeft: Leaflet.PointExpression, ?paddingBottomRight: Leaflet.PointExpression, ?padding: Leaflet.PointExpression) : PanInsideOptions = nativeOnly
 
-        member val animate : bool option = nativeOnly with get, set
-        member val duration : float option = nativeOnly with get, set
-        member val easeLinearity : float option = nativeOnly with get, set
-        member val noMoveStart : bool option = nativeOnly with get, set
-        member val paddingTopLeft : Leaflet.PointExpression option = nativeOnly with get, set
-        member val paddingBottomRight : Leaflet.PointExpression option = nativeOnly with get, set
-        member val padding : Leaflet.PointExpression option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type LocateOptions
+    [<Interface>]
+    type LocateOptions =
+        abstract member watch: bool option with get, set
+        abstract member setView: bool option with get, set
+        abstract member maxZoom: float option with get, set
+        abstract member timeout: float option with get, set
+        abstract member maximumAge: float option with get, set
+        abstract member enableHighAccuracy: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?watch: bool,
-            ?setView: bool,
-            ?maxZoom: float,
-            ?timeout: float,
-            ?maximumAge: float,
-            ?enableHighAccuracy: bool
-        ) =
-
-        member val watch : bool option = nativeOnly with get, set
-        member val setView : bool option = nativeOnly with get, set
-        member val maxZoom : float option = nativeOnly with get, set
-        member val timeout : float option = nativeOnly with get, set
-        member val maximumAge : float option = nativeOnly with get, set
-        member val enableHighAccuracy : bool option = nativeOnly with get, set
+        static member Create (?watch: bool, ?setView: bool, ?maxZoom: float, ?timeout: float, ?maximumAge: float, ?enableHighAccuracy: bool) : LocateOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4365,115 +4256,48 @@ Control.extend($0)"""
         [<Obsolete("The same as {@link LeafletEvent.propagatedFrom propagatedFrom}.")>]
         abstract member layer: obj with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type LeafletMouseEvent
+    [<Interface>]
+    type LeafletMouseEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member latlng: Leaflet.LatLng with get, set
+        abstract member layerPoint: Leaflet.Point with get, set
+        abstract member containerPoint: Leaflet.Point with get, set
+        abstract member originalEvent: Glutinum.Web.MouseEvent with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            latlng: Leaflet.LatLng,
-            layerPoint: Leaflet.Point,
-            containerPoint: Leaflet.Point,
-            originalEvent: Glutinum.Web.MouseEvent
-        ) =
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, latlng: Leaflet.LatLng, layerPoint: Leaflet.Point, containerPoint: Leaflet.Point, originalEvent: Glutinum.Web.MouseEvent) : LeafletMouseEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val latlng : Leaflet.LatLng = nativeOnly with get, set
-        member val layerPoint : Leaflet.Point = nativeOnly with get, set
-        member val containerPoint : Leaflet.Point = nativeOnly with get, set
-        member val originalEvent : Glutinum.Web.MouseEvent = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type LeafletKeyboardEvent
+    [<Interface>]
+    type LeafletKeyboardEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member originalEvent: Glutinum.Web.KeyboardEvent with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            originalEvent: Glutinum.Web.KeyboardEvent
-        ) =
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, originalEvent: Glutinum.Web.KeyboardEvent) : LeafletKeyboardEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val originalEvent : Glutinum.Web.KeyboardEvent = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type LocationEvent
+    [<Interface>]
+    type LocationEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member latlng: Leaflet.LatLng with get, set
+        abstract member bounds: Leaflet.LatLngBounds with get, set
+        abstract member accuracy: float with get, set
+        abstract member altitude: float with get, set
+        abstract member altitudeAccuracy: float with get, set
+        abstract member heading: float with get, set
+        abstract member speed: float with get, set
+        abstract member timestamp: float with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            latlng: Leaflet.LatLng,
-            bounds: Leaflet.LatLngBounds,
-            accuracy: float,
-            altitude: float,
-            altitudeAccuracy: float,
-            heading: float,
-            speed: float,
-            timestamp: float
-        ) =
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, latlng: Leaflet.LatLng, bounds: Leaflet.LatLngBounds, accuracy: float, altitude: float, altitudeAccuracy: float, heading: float, speed: float, timestamp: float) : LocationEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val latlng : Leaflet.LatLng = nativeOnly with get, set
-        member val bounds : Leaflet.LatLngBounds = nativeOnly with get, set
-        member val accuracy : float = nativeOnly with get, set
-        member val altitude : float = nativeOnly with get, set
-        member val altitudeAccuracy : float = nativeOnly with get, set
-        member val heading : float = nativeOnly with get, set
-        member val speed : float = nativeOnly with get, set
-        member val timestamp : float = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type ErrorEvent
+    [<Interface>]
+    type ErrorEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member message: string with get, set
+        abstract member code: float with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            message: string,
-            code: float
-        ) =
-
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val message : string = nativeOnly with get, set
-        member val code : float = nativeOnly with get, set
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, message: string, code: float) : ErrorEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4481,27 +4305,13 @@ Control.extend($0)"""
         inherit Leaflet.LeafletEvent
         abstract member layer: Leaflet.Layer with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type LayersControlEvent
+    [<Interface>]
+    type LayersControlEvent =
+        inherit Leaflet.LayerEvent
+        abstract member name: string with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: Leaflet.Layer,
-            name: string
-        ) =
-
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : Leaflet.Layer = nativeOnly with get, set
-        member val name : string = nativeOnly with get, set
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: Leaflet.Layer, name: string) : LayersControlEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4510,55 +4320,22 @@ Control.extend($0)"""
         abstract member tile: Glutinum.Web.HTMLImageElement with get, set
         abstract member coords: Leaflet.Coords with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type TileErrorEvent
+    [<Interface>]
+    type TileErrorEvent =
+        inherit Leaflet.TileEvent
+        abstract member error: Exception with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            tile: Glutinum.Web.HTMLImageElement,
-            coords: Leaflet.Coords,
-            error: Exception
-        ) =
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, tile: Glutinum.Web.HTMLImageElement, coords: Leaflet.Coords, error: Exception) : TileErrorEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val tile : Glutinum.Web.HTMLImageElement = nativeOnly with get, set
-        member val coords : Leaflet.Coords = nativeOnly with get, set
-        member val error : Exception = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type ResizeEvent
+    [<Interface>]
+    type ResizeEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member oldSize: Leaflet.Point with get, set
+        abstract member newSize: Leaflet.Point with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            oldSize: Leaflet.Point,
-            newSize: Leaflet.Point
-        ) =
-
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val oldSize : Leaflet.Point = nativeOnly with get, set
-        member val newSize : Leaflet.Point = nativeOnly with get, set
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, oldSize: Leaflet.Point, newSize: Leaflet.Point) : ResizeEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4569,95 +4346,39 @@ Control.extend($0)"""
         abstract member geometryType: string with get, set
         abstract member id: string with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type PopupEvent
+    [<Interface>]
+    type PopupEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member popup: Leaflet.Popup with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            popup: Leaflet.Popup
-        ) =
+        static member Create (``type``: string, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, popup: Leaflet.Popup) : PopupEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val popup : Leaflet.Popup = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type TooltipEvent
+    [<Interface>]
+    type TooltipEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member tooltip: Leaflet.Tooltip with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            tooltip: Leaflet.Tooltip
-        ) =
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, tooltip: Leaflet.Tooltip) : TooltipEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val tooltip : Leaflet.Tooltip = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type DragEndEvent
+    [<Interface>]
+    type DragEndEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member distance: float with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            distance: float
-        ) =
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, distance: float) : DragEndEvent = nativeOnly
 
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val distance : float = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type ZoomAnimEvent
+    [<Interface>]
+    type ZoomAnimEvent =
+        inherit Leaflet.LeafletEvent
+        abstract member center: Leaflet.LatLng with get, set
+        abstract member zoom: float with get, set
+        abstract member noUpdate: bool with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: string,
-            popup: obj,
-            target: obj,
-            sourceTarget: obj,
-            propagatedFrom: obj,
-            layer: obj,
-            center: Leaflet.LatLng,
-            zoom: float,
-            noUpdate: bool
-        ) =
-
-        member val ``type`` : string = nativeOnly with get, set
-        member val popup : obj = nativeOnly with get, set
-        member val target : obj = nativeOnly with get, set
-        member val sourceTarget : obj = nativeOnly with get, set
-        member val propagatedFrom : obj = nativeOnly with get, set
-        member val layer : obj = nativeOnly with get, set
-        member val center : Leaflet.LatLng = nativeOnly with get, set
-        member val zoom : float = nativeOnly with get, set
-        member val noUpdate : bool = nativeOnly with get, set
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, center: Leaflet.LatLng, zoom: float, noUpdate: bool) : ZoomAnimEvent = nativeOnly
 
     module DomEvent_ =
 
@@ -4665,49 +4386,49 @@ Control.extend($0)"""
         [<Erase>]
         type Exports =
             [<Emit("$0.on($1...)")>]
-            abstract member on: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> obj
+            abstract member on: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.on($1...)")>]
-            abstract member on: el: Glutinum.Web.HTMLElement * eventMap: Exports.on.eventMap * ?context: obj -> obj
+            abstract member on: el: Glutinum.Web.HTMLElement * eventMap: Exports.on.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.off($1...)")>]
-            abstract member off: el: Glutinum.Web.HTMLElement -> obj
+            abstract member off: el: Glutinum.Web.HTMLElement -> Leaflet.DomEvent_.Exports
             [<Emit("$0.off($1...)")>]
-            abstract member off: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> obj
+            abstract member off: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.off($1...)")>]
-            abstract member off: el: Glutinum.Web.HTMLElement * eventMap: Exports.off.eventMap * ?context: obj -> obj
+            abstract member off: el: Glutinum.Web.HTMLElement * eventMap: Exports.off.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
-            abstract member stopPropagation: ev: Leaflet.LeafletMouseEvent -> obj
+            abstract member stopPropagation: ev: Leaflet.LeafletMouseEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
-            abstract member stopPropagation: ev: Leaflet.LeafletKeyboardEvent -> obj
+            abstract member stopPropagation: ev: Leaflet.LeafletKeyboardEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
-            abstract member stopPropagation: ev: Leaflet.LeafletEvent -> obj
+            abstract member stopPropagation: ev: Leaflet.LeafletEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
-            abstract member stopPropagation: ev: Glutinum.Web.Event -> obj
+            abstract member stopPropagation: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
             [<Emit("$0.disableScrollPropagation($1...)")>]
-            abstract member disableScrollPropagation: el: Glutinum.Web.HTMLElement -> obj
+            abstract member disableScrollPropagation: el: Glutinum.Web.HTMLElement -> Leaflet.DomEvent_.Exports
             [<Emit("$0.disableClickPropagation($1...)")>]
-            abstract member disableClickPropagation: el: Glutinum.Web.HTMLElement -> obj
+            abstract member disableClickPropagation: el: Glutinum.Web.HTMLElement -> Leaflet.DomEvent_.Exports
             [<Emit("$0.preventDefault($1...)")>]
-            abstract member preventDefault: ev: Glutinum.Web.Event -> obj
+            abstract member preventDefault: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stop($1...)")>]
-            abstract member stop: ev: Leaflet.LeafletMouseEvent -> obj
+            abstract member stop: ev: Leaflet.LeafletMouseEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stop($1...)")>]
-            abstract member stop: ev: Leaflet.LeafletKeyboardEvent -> obj
+            abstract member stop: ev: Leaflet.LeafletKeyboardEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stop($1...)")>]
-            abstract member stop: ev: Leaflet.LeafletEvent -> obj
+            abstract member stop: ev: Leaflet.LeafletEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stop($1...)")>]
-            abstract member stop: ev: Glutinum.Web.Event -> obj
+            abstract member stop: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
             [<Emit("$0.getMousePosition($1...)")>]
             abstract member getMousePosition: ev: Glutinum.Web.MouseEvent * ?container: Glutinum.Web.HTMLElement -> Leaflet.Point
             [<Emit("$0.getWheelDelta($1...)")>]
             abstract member getWheelDelta: ev: Glutinum.Web.Event -> float
             [<Emit("$0.addListener($1...)")>]
-            abstract member addListener: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> obj
+            abstract member addListener: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.addListener($1...)")>]
-            abstract member addListener: el: Glutinum.Web.HTMLElement * eventMap: Exports.addListener.eventMap * ?context: obj -> obj
+            abstract member addListener: el: Glutinum.Web.HTMLElement * eventMap: Exports.addListener.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.removeListener($1...)")>]
-            abstract member removeListener: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> obj
+            abstract member removeListener: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.removeListener($1...)")>]
-            abstract member removeListener: el: Glutinum.Web.HTMLElement * eventMap: Exports.removeListener.eventMap * ?context: obj -> obj
+            abstract member removeListener: el: Glutinum.Web.HTMLElement * eventMap: Exports.removeListener.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.getPropagationPath($1...)")>]
             abstract member getPropagationPath: ev: Glutinum.Web.Event -> ResizeArray<Glutinum.Web.HTMLElement>
 
@@ -4926,37 +4647,18 @@ Control.extend($0)"""
         abstract member shadowAnchor: Leaflet.PointExpression option with get, set
         abstract member className: string option with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type IconOptions
-        private () =
-
+    [<Interface>]
+    type IconOptions =
+        inherit Leaflet.BaseIconOptions
+        abstract member iconUrl: string with get, set
+        abstract member crossOrigin: U2<Leaflet.CrossOrigin, bool> option with get, set
         [<ParamObject; Emit("$0")>]
-        new (iconUrl: string, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) =
-            IconOptions()
-
+        static member Create (iconUrl: string, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : IconOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (iconUrl: string, crossOrigin: Leaflet.CrossOrigin, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) =
-            IconOptions()
-
+        static member Create (iconUrl: string, crossOrigin: Leaflet.CrossOrigin, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : IconOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (iconUrl: string, crossOrigin: bool, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) =
-            IconOptions()
-
-        member val iconUrl : string = nativeOnly with get, set
-        member val pane : string option = nativeOnly with get, set
-        member val attribution : string option = nativeOnly with get, set
-        member val iconRetinaUrl : string option = nativeOnly with get, set
-        member val iconSize : Leaflet.PointExpression option = nativeOnly with get, set
-        member val iconAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val popupAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val tooltipAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val shadowUrl : string option = nativeOnly with get, set
-        member val shadowRetinaUrl : string option = nativeOnly with get, set
-        member val shadowSize : Leaflet.PointExpression option = nativeOnly with get, set
-        member val shadowAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val className : string option = nativeOnly with get, set
-        member val crossOrigin : U2<Leaflet.CrossOrigin, bool> option = nativeOnly with get, set
+        static member Create (iconUrl: string, crossOrigin: bool, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : IconOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4976,41 +4678,13 @@ Control.extend($0)"""
             [<Emit("new $0.Default($1...)")>]
             abstract member Default: ?options: Leaflet.Icon_.DefaultIconOptions -> Default
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type DefaultIconOptions
+        [<Interface>]
+        type DefaultIconOptions =
+            inherit Leaflet.BaseIconOptions
+            abstract member imagePath: string option with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                ?pane: string,
-                ?attribution: string,
-                ?iconUrl: string,
-                ?iconRetinaUrl: string,
-                ?iconSize: Leaflet.PointExpression,
-                ?iconAnchor: Leaflet.PointExpression,
-                ?popupAnchor: Leaflet.PointExpression,
-                ?tooltipAnchor: Leaflet.PointExpression,
-                ?shadowUrl: string,
-                ?shadowRetinaUrl: string,
-                ?shadowSize: Leaflet.PointExpression,
-                ?shadowAnchor: Leaflet.PointExpression,
-                ?className: string,
-                ?imagePath: string
-            ) =
-
-            member val pane : string option = nativeOnly with get, set
-            member val attribution : string option = nativeOnly with get, set
-            member val iconUrl : string option = nativeOnly with get, set
-            member val iconRetinaUrl : string option = nativeOnly with get, set
-            member val iconSize : Leaflet.PointExpression option = nativeOnly with get, set
-            member val iconAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-            member val popupAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-            member val tooltipAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-            member val shadowUrl : string option = nativeOnly with get, set
-            member val shadowRetinaUrl : string option = nativeOnly with get, set
-            member val shadowSize : Leaflet.PointExpression option = nativeOnly with get, set
-            member val shadowAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-            member val className : string option = nativeOnly with get, set
-            member val imagePath : string option = nativeOnly with get, set
+            static member Create (?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string, ?imagePath: string) : DefaultIconOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -5026,42 +4700,24 @@ Default.imagePath"""
 import { Default } from "leaflet";
 Default.imagePath = $0"""
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type DivIconOptions
-        private () =
-
+    [<Interface>]
+    type DivIconOptions =
+        inherit Leaflet.BaseIconOptions
+        abstract member html: U3<string, Glutinum.Web.Element, bool> option with get, set
+        abstract member bgPos: Leaflet.PointExpression option with get, set
+        abstract member iconSize: Leaflet.PointExpression option with get, set
+        abstract member iconAnchor: Leaflet.PointExpression option with get, set
+        abstract member popupAnchor: Leaflet.PointExpression option with get, set
+        abstract member className: string option with get, set
         [<ParamObject; Emit("$0")>]
-        new (?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) =
-            DivIconOptions()
-
+        static member Create (?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) : DivIconOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (html: string, ?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) =
-            DivIconOptions()
-
+        static member Create (html: string, ?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) : DivIconOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (html: Glutinum.Web.Element, ?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) =
-            DivIconOptions()
-
+        static member Create (html: Glutinum.Web.Element, ?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) : DivIconOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (html: bool, ?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) =
-            DivIconOptions()
-
-        member val pane : string option = nativeOnly with get, set
-        member val attribution : string option = nativeOnly with get, set
-        member val iconUrl : string option = nativeOnly with get, set
-        member val iconRetinaUrl : string option = nativeOnly with get, set
-        member val tooltipAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val shadowUrl : string option = nativeOnly with get, set
-        member val shadowRetinaUrl : string option = nativeOnly with get, set
-        member val shadowSize : Leaflet.PointExpression option = nativeOnly with get, set
-        member val shadowAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val html : U3<string, Glutinum.Web.Element, bool> option = nativeOnly with get, set
-        member val bgPos : Leaflet.PointExpression option = nativeOnly with get, set
-        member val iconSize : Leaflet.PointExpression option = nativeOnly with get, set
-        member val iconAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val popupAnchor : Leaflet.PointExpression option = nativeOnly with get, set
-        member val className : string option = nativeOnly with get, set
+        static member Create (html: bool, ?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?bgPos: Leaflet.PointExpression, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?className: string) : DivIconOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -6050,25 +5706,17 @@ Default.imagePath = $0"""
 
     module InternalTiles =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type Item
+        [<Interface>]
+        type Item =
+            abstract member active: bool option with get, set
+            abstract member coords: Leaflet.Coords with get, set
+            abstract member current: bool with get, set
+            abstract member el: Glutinum.Web.HTMLElement with get, set
+            abstract member loaded: Date option with get, set
+            abstract member retain: bool option with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                coords: Leaflet.Coords,
-                current: bool,
-                el: Glutinum.Web.HTMLElement,
-                ?active: bool,
-                ?loaded: Date,
-                ?retain: bool
-            ) =
-
-            member val coords : Leaflet.Coords = nativeOnly with get, set
-            member val current : bool = nativeOnly with get, set
-            member val el : Glutinum.Web.HTMLElement = nativeOnly with get, set
-            member val active : bool option = nativeOnly with get, set
-            member val loaded : Date option = nativeOnly with get, set
-            member val retain : bool option = nativeOnly with get, set
+            static member Create (coords: Leaflet.Coords, current: bool, el: Glutinum.Web.HTMLElement, ?active: bool, ?loaded: Date, ?retain: bool) : Item = nativeOnly
 
     module CircleMarker =
 
@@ -6114,68 +5762,56 @@ Default.imagePath = $0"""
 
             module fn =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type event
+                [<Interface>]
+                type event =
+                    abstract member target: Leaflet.Map with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        target: Leaflet.Map
-                    ) =
-
-                    member val target : Leaflet.Map = nativeOnly with get, set
+                    static member Create (target: Leaflet.Map) : event = nativeOnly
 
     module Exports =
 
-        module latLng =
+        module latLng__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type coords
+            [<Interface>]
+            type coords =
+                abstract member lat: float with get, set
+                abstract member lng: float with get, set
+                abstract member alt: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    lat: float,
-                    lng: float,
-                    ?alt: float
-                ) =
+                static member Create (lat: float, lng: float, ?alt: float) : coords = nativeOnly
 
-                member val lat : float = nativeOnly with get, set
-                member val lng : float = nativeOnly with get, set
-                member val alt : float option = nativeOnly with get, set
+        module point__ =
 
-        module point =
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type coords
+            [<Interface>]
+            type coords =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : coords = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
-
-        module extend =
+        module extend__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
             type Type =
                 [<Emit("$0($1...)")>]
-                abstract member Invoke: dest: 'D * ?src: 'S1 -> obj
+                abstract member Invoke<'D, 'S1>: dest: 'D * ?src: 'S1 -> obj
                 [<Emit("$0($1...)")>]
-                abstract member Invoke: dest: 'D * src1: 'S1 * src2: 'S2 -> obj
+                abstract member Invoke<'D, 'S1, 'S2>: dest: 'D * src1: 'S1 * src2: 'S2 -> obj
                 [<Emit("$0($1...)")>]
-                abstract member Invoke: dest: 'D * src1: 'S1 * src2: 'S2 * src3: 'S3 -> obj
+                abstract member Invoke<'D, 'S1, 'S2, 'S3>: dest: 'D * src1: 'S1 * src2: 'S2 * src3: 'S3 -> obj
                 [<Emit("$0($1...)")>]
                 abstract member Invoke: dest: obj * [<ParamArray>] src: obj [] -> obj
 
-        module bind =
+        module bind__ =
 
             type Type =
                 delegate of fn: System.Delegate * [<ParamArray>] obj: obj [] -> (unit -> unit)
 
-        module setOptions =
+        module setOptions__ =
 
             type Type =
                 delegate of obj: obj * options: obj -> unit

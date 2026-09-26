@@ -20,7 +20,7 @@ document.body.appendChild host |> ignore
 // The option object is a typed class
 let view =
     Codemirror.Exports.EditorView(
-        CodemirrorView.EditorViewConfig(
+        CodemirrorView.EditorViewConfig.Create(
             doc = U2.Case1 "let answer = 42",
             extensions = Codemirror.Exports.basicSetup,
             parent = U2.Case1 host
@@ -39,7 +39,10 @@ view.dispatch (
         spec.changes <-
             Some(
                 U3.Case1(
-                    CodemirrorState.ChangeSpec.U3.Case1(from = length, insert = "\nlet other = 1")
+                    CodemirrorState.ChangeSpec.U3.Case1.Create(
+                        from = length,
+                        insert = "\nlet other = 1"
+                    )
                 )
             )
     )

@@ -19,7 +19,7 @@ report "supported" $"{midi.supported}"
 report "enabled-before" $"{midi.enabled}"
 
 // Notes are parsed from their identifier
-let note = Exports.Note("C#4", Exports.Note.options (duration = 500.0))
+let note = Exports.Note("C#4", Exports.Note.options.Create(duration = 500.0))
 report "note" $"{note.name}{note.accidental} {note.identifier} {note.duration}"
 
 // Utilities are static members of the class

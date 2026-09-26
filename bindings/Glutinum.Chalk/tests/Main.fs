@@ -84,7 +84,7 @@ let main _ =
                         fun _ ->
                             let plain =
                                 Chalk.Exports.Chalk.Create(
-                                    Chalk.Options(level = Chalk.ColorSupportLevel.``0``)
+                                    Chalk.Options.Create(level = Chalk.ColorSupportLevel.``0``)
                                 )
 
                             assertThat (plain.red.Invoke "hello") (isEqualTo "hello")

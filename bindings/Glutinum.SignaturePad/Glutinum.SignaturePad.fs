@@ -26,45 +26,31 @@ module SignaturePad =
         abstract member y: float with get, set
         abstract member pressure: float with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type FromDataOptions
+    [<Interface>]
+    type FromDataOptions =
+        abstract member clear: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?clear: bool
-        ) =
+        static member Create (?clear: bool) : FromDataOptions = nativeOnly
 
-        member val clear : bool option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type FromDataUrlOptions
+    [<Interface>]
+    type FromDataUrlOptions =
+        abstract member ratio: float option with get, set
+        abstract member width: float option with get, set
+        abstract member height: float option with get, set
+        abstract member xOffset: float option with get, set
+        abstract member yOffset: float option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?ratio: float,
-            ?width: float,
-            ?height: float,
-            ?xOffset: float,
-            ?yOffset: float
-        ) =
+        static member Create (?ratio: float, ?width: float, ?height: float, ?xOffset: float, ?yOffset: float) : FromDataUrlOptions = nativeOnly
 
-        member val ratio : float option = nativeOnly with get, set
-        member val width : float option = nativeOnly with get, set
-        member val height : float option = nativeOnly with get, set
-        member val xOffset : float option = nativeOnly with get, set
-        member val yOffset : float option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type ToSVGOptions
+    [<Interface>]
+    type ToSVGOptions =
+        abstract member includeBackgroundColor: bool option with get, set
+        abstract member includeDataUrl: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?includeBackgroundColor: bool,
-            ?includeDataUrl: bool
-        ) =
-
-        member val includeBackgroundColor : bool option = nativeOnly with get, set
-        member val includeDataUrl : bool option = nativeOnly with get, set
+        static member Create (?includeBackgroundColor: bool, ?includeDataUrl: bool) : ToSVGOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -80,37 +66,25 @@ module SignaturePad =
         /// </summary>
         abstract member compositeOperation: Glutinum.Web.GlobalCompositeOperation with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type Options
-        [<ParamObject; Emit("$0")>]
-        (
-            ?dotSize: float,
-            ?minWidth: float,
-            ?maxWidth: float,
-            ?penColor: string,
-            ?velocityFilterWeight: float,
-            ?compositeOperation: Glutinum.Web.GlobalCompositeOperation,
-            ?minDistance: float,
-            ?backgroundColor: string,
-            ?throttle: float,
-            ?canvasContextOptions: Glutinum.Web.CanvasRenderingContext2DSettings
-        ) =
-
-        member val dotSize : float option = nativeOnly with get, set
-        member val minWidth : float option = nativeOnly with get, set
-        member val maxWidth : float option = nativeOnly with get, set
-        member val penColor : string option = nativeOnly with get, set
-        member val velocityFilterWeight : float option = nativeOnly with get, set
+    [<Interface>]
+    type Options =
+        abstract member minDistance: float option with get, set
+        abstract member backgroundColor: string option with get, set
+        abstract member throttle: float option with get, set
+        abstract member canvasContextOptions: Glutinum.Web.CanvasRenderingContext2DSettings option with get, set
+        abstract member dotSize: float option with get, set
+        abstract member minWidth: float option with get, set
+        abstract member maxWidth: float option with get, set
+        abstract member penColor: string option with get, set
+        abstract member velocityFilterWeight: float option with get, set
         /// <summary>
         /// This is the globalCompositeOperation for the line.
         /// *default: 'source-over'*
         /// </summary>
-        member val compositeOperation : Glutinum.Web.GlobalCompositeOperation option = nativeOnly with get, set
-        member val minDistance : float option = nativeOnly with get, set
-        member val backgroundColor : string option = nativeOnly with get, set
-        member val throttle : float option = nativeOnly with get, set
-        member val canvasContextOptions : Glutinum.Web.CanvasRenderingContext2DSettings option = nativeOnly with get, set
+        abstract member compositeOperation: Glutinum.Web.GlobalCompositeOperation option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?dotSize: float, ?minWidth: float, ?maxWidth: float, ?penColor: string, ?velocityFilterWeight: float, ?compositeOperation: Glutinum.Web.GlobalCompositeOperation, ?minDistance: float, ?backgroundColor: string, ?throttle: float, ?canvasContextOptions: Glutinum.Web.CanvasRenderingContext2DSettings) : Options = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]

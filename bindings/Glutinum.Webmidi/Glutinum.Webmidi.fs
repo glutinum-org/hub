@@ -246,19 +246,16 @@ module Webmidi =
 
     module WebMidiApi_ =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type MIDIOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                sysex: bool
-            ) =
-
+        [<Interface>]
+        type MIDIOptions =
             /// <summary>
             /// This member informs the system whether the ability to send and receive system
             /// exclusive messages is requested or allowed on a given MIDIAccess object.
             /// </summary>
-            member val sysex : bool = nativeOnly with get, set
+            abstract member sysex: bool with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (sysex: bool) : MIDIOptions = nativeOnly
 
         /// <summary>
         /// This is a maplike interface whose value is a MIDIInput instance and key is its
@@ -822,38 +819,26 @@ module Webmidi =
             /// </summary>
             abstract member clear: unit -> unit
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type MIDIMessageEvent
-            private () =
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.Input, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) =
-                MIDIMessageEvent()
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.InputChannel, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) =
-                MIDIMessageEvent()
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.Output, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) =
-                MIDIMessageEvent()
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.WebMidi, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) =
-                MIDIMessageEvent()
-
-            member val target : U4<Webmidi.Input, Webmidi.InputChannel, Webmidi.Output, Webmidi.WebMidi> = nativeOnly with get, set
-            member val timestamp : Glutinum.Web.DOMHighResTimeStamp = nativeOnly with get, set
-            member val ``type`` : string = nativeOnly with get, set
+        [<Interface>]
+        type MIDIMessageEvent =
+            inherit Webmidi.Event
             /// <summary>
             /// A timestamp specifying when the event occurred.
             /// </summary>
-            member val receivedTime : float = nativeOnly with get, set
+            abstract member receivedTime: float with get, set
             /// <summary>
             /// A Uint8Array containing the MIDI data bytes of a single MIDI message.
             /// </summary>
-            member val data : JS.Uint8Array = nativeOnly with get, set
+            abstract member data: JS.Uint8Array with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.Input, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) : MIDIMessageEvent = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.InputChannel, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) : MIDIMessageEvent = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.Output, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) : MIDIMessageEvent = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.WebMidi, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, receivedTime: float, data: JS.Uint8Array) : MIDIMessageEvent = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -868,34 +853,22 @@ module Webmidi =
             /// </summary>
             abstract member data: JS.Uint8Array with get, set
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type MIDIConnectionEvent
-            private () =
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.Input, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) =
-                MIDIConnectionEvent()
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.InputChannel, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) =
-                MIDIConnectionEvent()
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.Output, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) =
-                MIDIConnectionEvent()
-
-            [<ParamObject; Emit("$0")>]
-            new (target: Webmidi.WebMidi, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) =
-                MIDIConnectionEvent()
-
-            member val target : U4<Webmidi.Input, Webmidi.InputChannel, Webmidi.Output, Webmidi.WebMidi> = nativeOnly with get, set
-            member val timestamp : Glutinum.Web.DOMHighResTimeStamp = nativeOnly with get, set
-            member val ``type`` : string = nativeOnly with get, set
+        [<Interface>]
+        type MIDIConnectionEvent =
+            inherit Webmidi.Event
             /// <summary>
             /// The port that has been connected or disconnected.
             /// </summary>
-            member val port : Webmidi.WebMidiApi_.MIDIPort = nativeOnly with get, set
+            abstract member port: Webmidi.WebMidiApi_.MIDIPort with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.Input, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) : MIDIConnectionEvent = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.InputChannel, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) : MIDIConnectionEvent = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.Output, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) : MIDIConnectionEvent = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (target: Webmidi.WebMidi, timestamp: Glutinum.Web.DOMHighResTimeStamp, ``type``: string, port: Webmidi.WebMidiApi_.MIDIPort) : MIDIConnectionEvent = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1531,7 +1504,7 @@ module Webmidi =
         /// | <c>pitchbend</c>         | 0xE         | 14      |
         /// </summary>
         static member inline CHANNEL_MESSAGES
-            with get () : Enumerations.CHANNEL_MESSAGES =
+            with get () : Enumerations.CHANNEL_MESSAGES__ =
                 nativeOnly
         /// <summary>
         /// A simple array of the 16 valid MIDI channel numbers (<c>1</c> to <c>16</c>):
@@ -1553,7 +1526,7 @@ module Webmidi =
         /// | <c>polymodeon</c>          | 0x7F        | 127     |
         /// </summary>
         static member inline CHANNEL_MODE_MESSAGES
-            with get () : Enumerations.CHANNEL_MODE_MESSAGES =
+            with get () : Enumerations.CHANNEL_MODE_MESSAGES__ =
                 nativeOnly
         /// <summary>
         /// An array of objects, ordered by control number, describing control change messages. Each object
@@ -1726,7 +1699,7 @@ module Webmidi =
         /// | <c>rollangle</c>                  | [0x3D, 0x08] |
         /// </summary>
         static member inline REGISTERED_PARAMETERS
-            with get () : Enumerations.REGISTERED_PARAMETERS =
+            with get () : Enumerations.REGISTERED_PARAMETERS__ =
                 nativeOnly
         /// <summary>
         /// Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
@@ -1773,7 +1746,7 @@ module Webmidi =
         /// | <c>unknownsystemmessage</c> |             |  -1     |
         /// </summary>
         static member inline SYSTEM_MESSAGES
-            with get () : Enumerations.SYSTEM_MESSAGES =
+            with get () : Enumerations.SYSTEM_MESSAGES__ =
                 nativeOnly
         /// <summary>
         /// Array of channel-specific event names that can be listened for. This includes channel mode
@@ -8964,7 +8937,7 @@ Utilities.buildNote()"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote (input: float, ?options: Utilities.buildNote.options): Webmidi.Note =
+        static member inline buildNote (input: float, ?options: Utilities.buildNote__.options): Webmidi.Note =
             emitJsExpr (input, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNote($0, $1)"""
@@ -8988,7 +8961,7 @@ Utilities.buildNote($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote (input: string, ?options: Utilities.buildNote.options): Webmidi.Note =
+        static member inline buildNote (input: string, ?options: Utilities.buildNote__.options): Webmidi.Note =
             emitJsExpr (input, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNote($0, $1)"""
@@ -9012,7 +8985,7 @@ Utilities.buildNote($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote (input: Webmidi.Note, ?options: Utilities.buildNote.options): Webmidi.Note =
+        static member inline buildNote (input: Webmidi.Note, ?options: Utilities.buildNote__.options): Webmidi.Note =
             emitJsExpr (input, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNote($0, $1)"""
@@ -9068,7 +9041,7 @@ Utilities.buildNoteArray()"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: float, ?options: Utilities.buildNoteArray.options): ResizeArray<Webmidi.Note> =
+        static member inline buildNoteArray (notes: float, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
             emitJsExpr (notes, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNoteArray($0, $1)"""
@@ -9096,7 +9069,7 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: string, ?options: Utilities.buildNoteArray.options): ResizeArray<Webmidi.Note> =
+        static member inline buildNoteArray (notes: string, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
             emitJsExpr (notes, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNoteArray($0, $1)"""
@@ -9124,7 +9097,7 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: Webmidi.Note, ?options: Utilities.buildNoteArray.options): ResizeArray<Webmidi.Note> =
+        static member inline buildNoteArray (notes: Webmidi.Note, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
             emitJsExpr (notes, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNoteArray($0, $1)"""
@@ -9152,7 +9125,7 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: ResizeArray<float>, ?options: Utilities.buildNoteArray.options): ResizeArray<Webmidi.Note> =
+        static member inline buildNoteArray (notes: ResizeArray<float>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
             emitJsExpr (notes, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNoteArray($0, $1)"""
@@ -9180,7 +9153,7 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: ResizeArray<string>, ?options: Utilities.buildNoteArray.options): ResizeArray<Webmidi.Note> =
+        static member inline buildNoteArray (notes: ResizeArray<string>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
             emitJsExpr (notes, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNoteArray($0, $1)"""
@@ -9208,7 +9181,7 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: ResizeArray<Webmidi.Note>, ?options: Utilities.buildNoteArray.options): ResizeArray<Webmidi.Note> =
+        static member inline buildNoteArray (notes: ResizeArray<Webmidi.Note>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
             emitJsExpr (notes, options) $$"""
 import { Utilities } from "webmidi";
 Utilities.buildNoteArray($0, $1)"""
@@ -9254,7 +9227,7 @@ Utilities.fromFloatTo7Bit($0)"""
         /// <param name="value">
         /// A float between 0 and 1
         /// </param>
-        static member inline fromFloatToMsbLsb (value: float): Utilities.fromFloatToMsbLsb =
+        static member inline fromFloatToMsbLsb (value: float): Utilities.fromFloatToMsbLsb__ =
             emitJsExpr (value) $$"""
 import { Utilities } from "webmidi";
 Utilities.fromFloatToMsbLsb($0)"""
@@ -9339,7 +9312,7 @@ Utilities.getChannelModeByNumber($0)"""
         /// A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
         /// number (0-127).
         /// </param>
-        static member inline getNoteDetails (value: string): Utilities.getNoteDetails =
+        static member inline getNoteDetails (value: string): Utilities.getNoteDetails__ =
             emitJsExpr (value) $$"""
 import { Utilities } from "webmidi";
 Utilities.getNoteDetails($0)"""
@@ -9361,7 +9334,7 @@ Utilities.getNoteDetails($0)"""
         /// A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
         /// number (0-127).
         /// </param>
-        static member inline getNoteDetails (value: float): Utilities.getNoteDetails =
+        static member inline getNoteDetails (value: float): Utilities.getNoteDetails__ =
             emitJsExpr (value) $$"""
 import { Utilities } from "webmidi";
 Utilities.getNoteDetails($0)"""
@@ -11262,1836 +11235,1257 @@ Utilities.toTimestamp($0)"""
 
         module addListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member context: obj option with get, set
+                abstract member prepend: bool option with get, set
+                abstract member duration: float option with get, set
+                abstract member remaining: float option with get, set
+                abstract member arguments: ResizeArray<obj> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?context: obj,
-                    ?prepend: bool,
-                    ?duration: float,
-                    ?remaining: float,
-                    ?arguments: ResizeArray<obj>
-                ) =
-
-                member val context : obj option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
+                static member Create (?context: obj, ?prepend: bool, ?duration: float, ?remaining: float, ?arguments: ResizeArray<obj>) : options = nativeOnly
 
         module addOneTimeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member context: obj option with get, set
+                abstract member prepend: bool option with get, set
+                abstract member duration: float option with get, set
+                abstract member arguments: ResizeArray<obj> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?context: obj,
-                    ?prepend: bool,
-                    ?duration: float,
-                    ?arguments: ResizeArray<obj>
-                ) =
-
-                member val context : obj option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
+                static member Create (?context: obj, ?prepend: bool, ?duration: float, ?arguments: ResizeArray<obj>) : options = nativeOnly
 
         module removeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member context: obj option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?context: obj,
-                    ?remaining: float
-                ) =
-
-                member val context : obj option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (?context: obj, ?remaining: float) : options = nativeOnly
 
         module waitFor =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member duration: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?duration: float
-                ) =
-
-                member val duration : float option = nativeOnly with get, set
+                static member Create (?duration: float) : options = nativeOnly
 
     module Enumerations =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type CHANNEL_MESSAGES
+        [<Interface>]
+        type CHANNEL_MESSAGES__ =
+            abstract member noteoff: float with get, set
+            abstract member noteon: float with get, set
+            abstract member keyaftertouch: float with get, set
+            abstract member controlchange: float with get, set
+            abstract member programchange: float with get, set
+            abstract member channelaftertouch: float with get, set
+            abstract member pitchbend: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                noteoff: float,
-                noteon: float,
-                keyaftertouch: float,
-                controlchange: float,
-                programchange: float,
-                channelaftertouch: float,
-                pitchbend: float
-            ) =
+            static member Create (noteoff: float, noteon: float, keyaftertouch: float, controlchange: float, programchange: float, channelaftertouch: float, pitchbend: float) : CHANNEL_MESSAGES__ = nativeOnly
 
-            member val noteoff : float = nativeOnly with get, set
-            member val noteon : float = nativeOnly with get, set
-            member val keyaftertouch : float = nativeOnly with get, set
-            member val controlchange : float = nativeOnly with get, set
-            member val programchange : float = nativeOnly with get, set
-            member val channelaftertouch : float = nativeOnly with get, set
-            member val pitchbend : float = nativeOnly with get, set
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type CHANNEL_MODE_MESSAGES
+        [<Interface>]
+        type CHANNEL_MODE_MESSAGES__ =
+            abstract member allsoundoff: float with get, set
+            abstract member resetallcontrollers: float with get, set
+            abstract member localcontrol: float with get, set
+            abstract member allnotesoff: float with get, set
+            abstract member omnimodeoff: float with get, set
+            abstract member omnimodeon: float with get, set
+            abstract member monomodeon: float with get, set
+            abstract member polymodeon: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                allsoundoff: float,
-                resetallcontrollers: float,
-                localcontrol: float,
-                allnotesoff: float,
-                omnimodeoff: float,
-                omnimodeon: float,
-                monomodeon: float,
-                polymodeon: float
-            ) =
+            static member Create (allsoundoff: float, resetallcontrollers: float, localcontrol: float, allnotesoff: float, omnimodeoff: float, omnimodeon: float, monomodeon: float, polymodeon: float) : CHANNEL_MODE_MESSAGES__ = nativeOnly
 
-            member val allsoundoff : float = nativeOnly with get, set
-            member val resetallcontrollers : float = nativeOnly with get, set
-            member val localcontrol : float = nativeOnly with get, set
-            member val allnotesoff : float = nativeOnly with get, set
-            member val omnimodeoff : float = nativeOnly with get, set
-            member val omnimodeon : float = nativeOnly with get, set
-            member val monomodeon : float = nativeOnly with get, set
-            member val polymodeon : float = nativeOnly with get, set
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type REGISTERED_PARAMETERS
+        [<Interface>]
+        type REGISTERED_PARAMETERS__ =
+            abstract member pitchbendrange: ResizeArray<float> with get, set
+            abstract member channelfinetuning: ResizeArray<float> with get, set
+            abstract member channelcoarsetuning: ResizeArray<float> with get, set
+            abstract member tuningprogram: ResizeArray<float> with get, set
+            abstract member tuningbank: ResizeArray<float> with get, set
+            abstract member modulationrange: ResizeArray<float> with get, set
+            abstract member azimuthangle: ResizeArray<float> with get, set
+            abstract member elevationangle: ResizeArray<float> with get, set
+            abstract member gain: ResizeArray<float> with get, set
+            abstract member distanceratio: ResizeArray<float> with get, set
+            abstract member maximumdistance: ResizeArray<float> with get, set
+            abstract member maximumdistancegain: ResizeArray<float> with get, set
+            abstract member referencedistanceratio: ResizeArray<float> with get, set
+            abstract member panspreadangle: ResizeArray<float> with get, set
+            abstract member rollangle: ResizeArray<float> with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                pitchbendrange: ResizeArray<float>,
-                channelfinetuning: ResizeArray<float>,
-                channelcoarsetuning: ResizeArray<float>,
-                tuningprogram: ResizeArray<float>,
-                tuningbank: ResizeArray<float>,
-                modulationrange: ResizeArray<float>,
-                azimuthangle: ResizeArray<float>,
-                elevationangle: ResizeArray<float>,
-                gain: ResizeArray<float>,
-                distanceratio: ResizeArray<float>,
-                maximumdistance: ResizeArray<float>,
-                maximumdistancegain: ResizeArray<float>,
-                referencedistanceratio: ResizeArray<float>,
-                panspreadangle: ResizeArray<float>,
-                rollangle: ResizeArray<float>
-            ) =
+            static member Create (pitchbendrange: ResizeArray<float>, channelfinetuning: ResizeArray<float>, channelcoarsetuning: ResizeArray<float>, tuningprogram: ResizeArray<float>, tuningbank: ResizeArray<float>, modulationrange: ResizeArray<float>, azimuthangle: ResizeArray<float>, elevationangle: ResizeArray<float>, gain: ResizeArray<float>, distanceratio: ResizeArray<float>, maximumdistance: ResizeArray<float>, maximumdistancegain: ResizeArray<float>, referencedistanceratio: ResizeArray<float>, panspreadangle: ResizeArray<float>, rollangle: ResizeArray<float>) : REGISTERED_PARAMETERS__ = nativeOnly
 
-            member val pitchbendrange : ResizeArray<float> = nativeOnly with get, set
-            member val channelfinetuning : ResizeArray<float> = nativeOnly with get, set
-            member val channelcoarsetuning : ResizeArray<float> = nativeOnly with get, set
-            member val tuningprogram : ResizeArray<float> = nativeOnly with get, set
-            member val tuningbank : ResizeArray<float> = nativeOnly with get, set
-            member val modulationrange : ResizeArray<float> = nativeOnly with get, set
-            member val azimuthangle : ResizeArray<float> = nativeOnly with get, set
-            member val elevationangle : ResizeArray<float> = nativeOnly with get, set
-            member val gain : ResizeArray<float> = nativeOnly with get, set
-            member val distanceratio : ResizeArray<float> = nativeOnly with get, set
-            member val maximumdistance : ResizeArray<float> = nativeOnly with get, set
-            member val maximumdistancegain : ResizeArray<float> = nativeOnly with get, set
-            member val referencedistanceratio : ResizeArray<float> = nativeOnly with get, set
-            member val panspreadangle : ResizeArray<float> = nativeOnly with get, set
-            member val rollangle : ResizeArray<float> = nativeOnly with get, set
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type SYSTEM_MESSAGES
+        [<Interface>]
+        type SYSTEM_MESSAGES__ =
+            abstract member sysex: float with get, set
+            abstract member timecode: float with get, set
+            abstract member songposition: float with get, set
+            abstract member songselect: float with get, set
+            abstract member tunerequest: float with get, set
+            abstract member tuningrequest: float with get, set
+            abstract member sysexend: float with get, set
+            abstract member clock: float with get, set
+            abstract member start: float with get, set
+            abstract member ``continue``: float with get, set
+            abstract member stop: float with get, set
+            abstract member activesensing: float with get, set
+            abstract member reset: float with get, set
+            abstract member midimessage: float with get, set
+            abstract member unknownsystemmessage: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                sysex: float,
-                timecode: float,
-                songposition: float,
-                songselect: float,
-                tunerequest: float,
-                tuningrequest: float,
-                sysexend: float,
-                clock: float,
-                start: float,
-                ``continue``: float,
-                stop: float,
-                activesensing: float,
-                reset: float,
-                midimessage: float,
-                unknownsystemmessage: float
-            ) =
-
-            member val sysex : float = nativeOnly with get, set
-            member val timecode : float = nativeOnly with get, set
-            member val songposition : float = nativeOnly with get, set
-            member val songselect : float = nativeOnly with get, set
-            member val tunerequest : float = nativeOnly with get, set
-            member val tuningrequest : float = nativeOnly with get, set
-            member val sysexend : float = nativeOnly with get, set
-            member val clock : float = nativeOnly with get, set
-            member val start : float = nativeOnly with get, set
-            member val ``continue`` : float = nativeOnly with get, set
-            member val stop : float = nativeOnly with get, set
-            member val activesensing : float = nativeOnly with get, set
-            member val reset : float = nativeOnly with get, set
-            member val midimessage : float = nativeOnly with get, set
-            member val unknownsystemmessage : float = nativeOnly with get, set
+            static member Create (sysex: float, timecode: float, songposition: float, songselect: float, tunerequest: float, tuningrequest: float, sysexend: float, clock: float, start: float, ``continue``: float, stop: float, activesensing: float, reset: float, midimessage: float, unknownsystemmessage: float) : SYSTEM_MESSAGES__ = nativeOnly
 
     module Input =
 
         module addForwarder =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member types: U2<string, ResizeArray<string>> option with get, set
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float) =
-                    options()
-
+                static member Create (channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>) =
-                    options()
-
+                static member Create (channels: ResizeArray<float>) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: string) =
-                    options()
-
+                static member Create (types: string) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: string, channels: float) =
-                    options()
-
+                static member Create (types: string, channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: string, channels: ResizeArray<float>) =
-                    options()
-
+                static member Create (types: string, channels: ResizeArray<float>) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: ResizeArray<string>) =
-                    options()
-
+                static member Create (types: ResizeArray<string>) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: ResizeArray<string>, channels: float) =
-                    options()
-
+                static member Create (types: ResizeArray<string>, channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: ResizeArray<string>, channels: ResizeArray<float>) =
-                    options()
-
-                member val types : U2<string, ResizeArray<string>> option = nativeOnly with get, set
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
+                static member Create (types: ResizeArray<string>, channels: ResizeArray<float>) : options = nativeOnly
 
         module addListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) =
-                    options()
-
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) =
-                    options()
-
+                static member Create (channels: float, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) =
-                    options()
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (channels: ResizeArray<float>, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) : options = nativeOnly
 
         module addOneTimeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) =
-                    options()
-
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) =
-                    options()
-
+                static member Create (channels: float, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) =
-                    options()
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
+                static member Create (channels: ResizeArray<float>, ?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) : options = nativeOnly
 
         module hasListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float) =
-                    options()
-
+                static member Create (channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>) =
-                    options()
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
+                static member Create (channels: ResizeArray<float>) : options = nativeOnly
 
         module removeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member context: obj option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?context: obj, ?remaining: float) =
-                    options()
-
+                static member Create (?context: obj, ?remaining: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float, ?context: obj, ?remaining: float) =
-                    options()
-
+                static member Create (channels: float, ?context: obj, ?remaining: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>, ?context: obj, ?remaining: float) =
-                    options()
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (channels: ResizeArray<float>, ?context: obj, ?remaining: float) : options = nativeOnly
 
     module InputChannel =
 
         module addListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?arguments: ResizeArray<obj>,
-                    ?context: obj,
-                    ?duration: float,
-                    ?prepend: bool,
-                    ?remaining: float
-                ) =
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) : options = nativeOnly
 
         module addOneTimeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?arguments: ResizeArray<obj>,
-                    ?context: obj,
-                    ?duration: float,
-                    ?prepend: bool
-                ) =
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) : options = nativeOnly
 
         module removeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member context: obj option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?context: obj, ?remaining: float) =
-                    options()
-
+                static member Create (?context: obj, ?remaining: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float, ?context: obj, ?remaining: float) =
-                    options()
-
+                static member Create (channels: float, ?context: obj, ?remaining: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>, ?context: obj, ?remaining: float) =
-                    options()
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (channels: ResizeArray<float>, ?context: obj, ?remaining: float) : options = nativeOnly
 
     module Output =
 
         module addListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?arguments: ResizeArray<obj>,
-                    ?context: obj,
-                    ?duration: float,
-                    ?prepend: bool,
-                    ?remaining: float
-                ) =
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) : options = nativeOnly
 
         module addOneTimeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?arguments: ResizeArray<obj>,
-                    ?context: obj,
-                    ?duration: float,
-                    ?prepend: bool
-                ) =
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) : options = nativeOnly
 
         module playNote =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member duration: float option with get, set
+                abstract member attack: float option with get, set
+                abstract member rawAttack: float option with get, set
+                abstract member release: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?duration: float,
-                    ?attack: float,
-                    ?rawAttack: float,
-                    ?release: float,
-                    ?rawRelease: float,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float, ?time: U2<float, string>) : options = nativeOnly
 
         module removeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member context: obj option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?context: obj,
-                    ?remaining: float
-                ) =
-
-                member val context : obj option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (?context: obj, ?remaining: float) : options = nativeOnly
 
         module send =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendSysex =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendTimecodeQuarterFrame =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendSongPosition =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendSongSelect =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendTuneRequest =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendClock =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendStart =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendContinue =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendStop =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendActiveSensing =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendReset =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendKeyAftertouch =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member rawValue: bool option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?rawValue: bool,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val rawValue : bool option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?rawValue: bool, ?time: U2<float, string>) : options = nativeOnly
 
         module sendControlChange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendPitchBendRange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendRpnValue =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendChannelAftertouch =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member rawValue: bool option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?rawValue: bool,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val rawValue : bool option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?rawValue: bool, ?time: U2<float, string>) : options = nativeOnly
 
         module sendPitchBend =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member rawValue: bool option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?rawValue: bool,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val rawValue : bool option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?rawValue: bool, ?time: U2<float, string>) : options = nativeOnly
 
         module sendProgramChange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendModulationRange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendMasterTuning =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendTuningProgram =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendTuningBank =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendChannelMode =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendAllSoundOff =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendAllNotesOff =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendResetAllControllers =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendPolyphonicMode =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendLocalControl =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendOmniMode =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendNrpnValue =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendRpnIncrement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendRpnDecrement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?time: U2<float, string>) : options = nativeOnly
 
         module sendNoteOff =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member release: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?release: float,
-                    ?rawRelease: float,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?release: float, ?rawRelease: float, ?time: U2<float, string>) : options = nativeOnly
 
         module stopNote =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member release: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?release: float,
-                    ?rawRelease: float,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?release: float, ?rawRelease: float, ?time: U2<float, string>) : options = nativeOnly
 
         module sendNoteOn =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
+                abstract member attack: float option with get, set
+                abstract member rawAttack: float option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?channels: U2<float, ResizeArray<float>>,
-                    ?attack: float,
-                    ?rawAttack: float,
-                    ?time: U2<float, string>
-                ) =
-
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (?channels: U2<float, ResizeArray<float>>, ?attack: float, ?rawAttack: float, ?time: U2<float, string>) : options = nativeOnly
 
     module OutputChannel =
 
         module send =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendKeyAftertouch =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member rawValue: bool option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?rawValue: bool) =
-                    options()
-
+                static member Create (?rawValue: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?rawValue: bool) =
-                    options()
-
+                static member Create (time: float, ?rawValue: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?rawValue: bool) =
-                    options()
-
-                member val rawValue : bool option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string, ?rawValue: bool) : options = nativeOnly
 
         module sendControlChange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendRpnDecrement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendRpnIncrement =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module playNote =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member duration: float option with get, set
+                abstract member attack: float option with get, set
+                abstract member rawAttack: float option with get, set
+                abstract member release: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float) =
-                    options()
-
+                static member Create (?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float) =
-                    options()
-
+                static member Create (time: float, ?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float) =
-                    options()
-
-                member val duration : float option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string, ?duration: float, ?attack: float, ?rawAttack: float, ?release: float, ?rawRelease: float) : options = nativeOnly
 
         module sendNoteOff =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
+                abstract member release: float option with get, set
+                abstract member rawRelease: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?release: float, ?rawRelease: float) =
-                    options()
-
+                static member Create (?release: float, ?rawRelease: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?release: float, ?rawRelease: float) =
-                    options()
-
+                static member Create (time: float, ?release: float, ?rawRelease: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?release: float, ?rawRelease: float) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
+                static member Create (time: string, ?release: float, ?rawRelease: float) : options = nativeOnly
 
         module stopNote =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member release: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?release: float, ?rawRelease: float) =
-                    options()
-
+                static member Create (?release: float, ?rawRelease: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?release: float, ?rawRelease: float) =
-                    options()
-
+                static member Create (time: float, ?release: float, ?rawRelease: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?release: float, ?rawRelease: float) =
-                    options()
-
-                member val release : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string, ?release: float, ?rawRelease: float) : options = nativeOnly
 
         module sendNoteOn =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
+                abstract member attack: float option with get, set
+                abstract member rawAttack: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?attack: float, ?rawAttack: float) =
-                    options()
-
+                static member Create (?attack: float, ?rawAttack: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?attack: float, ?rawAttack: float) =
-                    options()
-
+                static member Create (time: float, ?attack: float, ?rawAttack: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?attack: float, ?rawAttack: float) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
+                static member Create (time: string, ?attack: float, ?rawAttack: float) : options = nativeOnly
 
         module sendChannelMode =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendOmniMode =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendChannelAftertouch =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member rawValue: bool option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?rawValue: bool) =
-                    options()
-
+                static member Create (?rawValue: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?rawValue: bool) =
-                    options()
-
+                static member Create (time: float, ?rawValue: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?rawValue: bool) =
-                    options()
-
-                member val rawValue : bool option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string, ?rawValue: bool) : options = nativeOnly
 
         module sendMasterTuning =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendModulationRange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendNrpnValue =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendPitchBend =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                private () =
-
+            [<Interface>]
+            type options =
+                abstract member rawValue: bool option with get, set
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (?rawValue: bool) =
-                    options()
-
+                static member Create (?rawValue: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float, ?rawValue: bool) =
-                    options()
-
+                static member Create (time: float, ?rawValue: bool) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string, ?rawValue: bool) =
-                    options()
-
-                member val rawValue : bool option = nativeOnly with get, set
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string, ?rawValue: bool) : options = nativeOnly
 
         module sendPitchBendRange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendProgramChange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendRpnValue =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendTuningBank =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendTuningProgram =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendLocalControl =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendAllNotesOff =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendAllSoundOff =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendResetAllControllers =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
         module sendPolyphonicMode =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member time: U2<float, string> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: float) =
-                    options()
-
+                static member Create (time: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (time: string) =
-                    options()
-
-                member val time : U2<float, string> option = nativeOnly with get, set
+                static member Create (time: string) : options = nativeOnly
 
     module Utilities =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type fromFloatToMsbLsb
+        [<Interface>]
+        type fromFloatToMsbLsb__ =
+            abstract member lsb: float with get, set
+            abstract member msb: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                lsb: float,
-                msb: float
-            ) =
+            static member Create (lsb: float, msb: float) : fromFloatToMsbLsb__ = nativeOnly
 
-            member val lsb : float = nativeOnly with get, set
-            member val msb : float = nativeOnly with get, set
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type getNoteDetails
+        [<Interface>]
+        type getNoteDetails__ =
+            abstract member accidental: string with get, set
+            abstract member identifier: string with get, set
+            abstract member name: string with get, set
+            abstract member octave: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                accidental: string,
-                identifier: string,
-                name: string,
-                octave: float
-            ) =
+            static member Create (accidental: string, identifier: string, name: string, octave: float) : getNoteDetails__ = nativeOnly
 
-            member val accidental : string = nativeOnly with get, set
-            member val identifier : string = nativeOnly with get, set
-            member val name : string = nativeOnly with get, set
-            member val octave : float = nativeOnly with get, set
+        module buildNote__ =
 
-        module buildNote =
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member duration: float option with get, set
+                abstract member attack: float option with get, set
+                abstract member release: float option with get, set
+                abstract member rawAttack: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member octaveOffset: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?duration: float,
-                    ?attack: float,
-                    ?release: float,
-                    ?rawAttack: float,
-                    ?rawRelease: float,
-                    ?octaveOffset: float
-                ) =
+                static member Create (?duration: float, ?attack: float, ?release: float, ?rawAttack: float, ?rawRelease: float, ?octaveOffset: float) : options = nativeOnly
 
-                member val duration : float option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val octaveOffset : float option = nativeOnly with get, set
+        module buildNoteArray__ =
 
-        module buildNoteArray =
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member duration: float option with get, set
+                abstract member attack: float option with get, set
+                abstract member release: float option with get, set
+                abstract member rawAttack: float option with get, set
+                abstract member rawRelease: float option with get, set
+                abstract member octaveOffset: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?duration: float,
-                    ?attack: float,
-                    ?release: float,
-                    ?rawAttack: float,
-                    ?rawRelease: float,
-                    ?octaveOffset: float
-                ) =
-
-                member val duration : float option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
-                member val octaveOffset : float option = nativeOnly with get, set
+                static member Create (?duration: float, ?attack: float, ?release: float, ?rawAttack: float, ?rawRelease: float, ?octaveOffset: float) : options = nativeOnly
 
     module WebMidi =
 
         module addListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?arguments: ResizeArray<obj>,
-                    ?context: obj,
-                    ?duration: float,
-                    ?prepend: bool,
-                    ?remaining: float
-                ) =
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool, ?remaining: float) : options = nativeOnly
 
         module addOneTimeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member arguments: ResizeArray<obj> option with get, set
+                abstract member context: obj option with get, set
+                abstract member duration: float option with get, set
+                abstract member prepend: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?arguments: ResizeArray<obj>,
-                    ?context: obj,
-                    ?duration: float,
-                    ?prepend: bool
-                ) =
-
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
-                member val context : obj option = nativeOnly with get, set
-                member val duration : float option = nativeOnly with get, set
-                member val prepend : bool option = nativeOnly with get, set
+                static member Create (?arguments: ResizeArray<obj>, ?context: obj, ?duration: float, ?prepend: bool) : options = nativeOnly
 
         module enable =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member callback: Action option with get, set
+                abstract member sysex: bool option with get, set
+                abstract member validation: bool option with get, set
+                abstract member software: bool option with get, set
+                abstract member requestMIDIAccessFunction: Action option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?callback: Action,
-                    ?sysex: bool,
-                    ?validation: bool,
-                    ?software: bool,
-                    ?requestMIDIAccessFunction: Action
-                ) =
-
-                member val callback : Action option = nativeOnly with get, set
-                member val sysex : bool option = nativeOnly with get, set
-                member val validation : bool option = nativeOnly with get, set
-                member val software : bool option = nativeOnly with get, set
-                member val requestMIDIAccessFunction : Action option = nativeOnly with get, set
+                static member Create (?callback: Action, ?sysex: bool, ?validation: bool, ?software: bool, ?requestMIDIAccessFunction: Action) : options = nativeOnly
 
         module getInputById =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member disconnected: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?disconnected: bool
-                ) =
-
-                member val disconnected : bool option = nativeOnly with get, set
+                static member Create (?disconnected: bool) : options = nativeOnly
 
         module getInputByName =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member disconnected: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?disconnected: bool
-                ) =
-
-                member val disconnected : bool option = nativeOnly with get, set
+                static member Create (?disconnected: bool) : options = nativeOnly
 
         module getOutputById =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member disconnected: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?disconnected: bool
-                ) =
-
-                member val disconnected : bool option = nativeOnly with get, set
+                static member Create (?disconnected: bool) : options = nativeOnly
 
         module getOutputByName =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member disconnected: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?disconnected: bool
-                ) =
-
-                member val disconnected : bool option = nativeOnly with get, set
+                static member Create (?disconnected: bool) : options = nativeOnly
 
         module removeListener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member context: obj option with get, set
+                abstract member remaining: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?context: obj,
-                    ?remaining: float
-                ) =
-
-                member val context : obj option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
+                static member Create (?context: obj, ?remaining: float) : options = nativeOnly
 
     module ControlChangeMessageEvent =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type controller
+        [<Interface>]
+        type controller =
+            abstract member name: string with get, set
+            abstract member number: float with get, set
+            abstract member description: string with get, set
+            abstract member position: string with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                name: string,
-                number: float,
-                description: string,
-                position: string
-            ) =
-
-            member val name : string = nativeOnly with get, set
-            member val number : float = nativeOnly with get, set
-            member val description : string = nativeOnly with get, set
-            member val position : string = nativeOnly with get, set
+            static member Create (name: string, number: float, description: string, position: string) : controller = nativeOnly
 
     module Exports =
 
         module Listener =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member context: obj option with get, set
+                abstract member remaining: float option with get, set
+                abstract member arguments: ResizeArray<obj> option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?context: obj,
-                    ?remaining: float,
-                    ?arguments: ResizeArray<obj>
-                ) =
-
-                member val context : obj option = nativeOnly with get, set
-                member val remaining : float option = nativeOnly with get, set
-                member val arguments : ResizeArray<obj> option = nativeOnly with get, set
+                static member Create (?context: obj, ?remaining: float, ?arguments: ResizeArray<obj>) : options = nativeOnly
 
         module Forwarder =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member types: U2<string, ResizeArray<string>> option with get, set
+                abstract member channels: U2<float, ResizeArray<float>> option with get, set
                 [<ParamObject; Emit("$0")>]
-                () =
-
+                static member Create () : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: float) =
-                    options()
-
+                static member Create (channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (channels: ResizeArray<float>) =
-                    options()
-
+                static member Create (channels: ResizeArray<float>) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: string) =
-                    options()
-
+                static member Create (types: string) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: string, channels: float) =
-                    options()
-
+                static member Create (types: string, channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: string, channels: ResizeArray<float>) =
-                    options()
-
+                static member Create (types: string, channels: ResizeArray<float>) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: ResizeArray<string>) =
-                    options()
-
+                static member Create (types: ResizeArray<string>) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: ResizeArray<string>, channels: float) =
-                    options()
-
+                static member Create (types: ResizeArray<string>, channels: float) : options = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (types: ResizeArray<string>, channels: ResizeArray<float>) =
-                    options()
-
-                member val types : U2<string, ResizeArray<string>> option = nativeOnly with get, set
-                member val channels : U2<float, ResizeArray<float>> option = nativeOnly with get, set
+                static member Create (types: ResizeArray<string>, channels: ResizeArray<float>) : options = nativeOnly
 
         module Note =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member duration: float option with get, set
+                abstract member attack: float option with get, set
+                abstract member release: float option with get, set
+                abstract member rawAttack: float option with get, set
+                abstract member rawRelease: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?duration: float,
-                    ?attack: float,
-                    ?release: float,
-                    ?rawAttack: float,
-                    ?rawRelease: float
-                ) =
-
-                member val duration : float option = nativeOnly with get, set
-                member val attack : float option = nativeOnly with get, set
-                member val release : float option = nativeOnly with get, set
-                member val rawAttack : float option = nativeOnly with get, set
-                member val rawRelease : float option = nativeOnly with get, set
+                static member Create (?duration: float, ?attack: float, ?release: float, ?rawAttack: float, ?rawRelease: float) : options = nativeOnly

@@ -21,7 +21,7 @@ document.body.appendChild canvas |> ignore
 let pad =
     SignaturePad.Exports.SignaturePad(
         canvas,
-        SignaturePad.Options(penColor = "rgb(0, 0, 255)", minWidth = 1.0)
+        SignaturePad.Options.Create(penColor = "rgb(0, 0, 255)", minWidth = 1.0)
     )
 
 report "empty" $"empty: {pad.isEmpty ()}"

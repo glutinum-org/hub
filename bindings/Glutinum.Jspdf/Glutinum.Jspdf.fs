@@ -51,31 +51,20 @@ module Jspdf =
         [<Import("TilingPattern", "jspdf"); EmitConstructor>]
         static member TilingPattern (boundingBox: ResizeArray<float>, xStep: float, yStep: float, ?gState: Jspdf.GState, ?matrix: Jspdf.Matrix) : TilingPattern = nativeOnly
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type Annotation
+    [<Interface>]
+    type Annotation =
+        abstract member ``type``: Annotation.``type`` with get, set
+        abstract member title: string option with get, set
+        abstract member bounds: Annotation.bounds with get, set
+        abstract member contents: string with get, set
+        abstract member ``open``: bool option with get, set
+        abstract member color: string option with get, set
+        abstract member name: string option with get, set
+        abstract member top: float option with get, set
+        abstract member pageNumber: float option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ``type``: Annotation.``type``,
-            bounds: Annotation.bounds,
-            contents: string,
-            ?title: string,
-            ?``open``: bool,
-            ?color: string,
-            ?name: string,
-            ?top: float,
-            ?pageNumber: float
-        ) =
-
-        member val ``type`` : Annotation.``type`` = nativeOnly with get, set
-        member val bounds : Annotation.bounds = nativeOnly with get, set
-        member val contents : string = nativeOnly with get, set
-        member val title : string option = nativeOnly with get, set
-        member val ``open`` : bool option = nativeOnly with get, set
-        member val color : string option = nativeOnly with get, set
-        member val name : string option = nativeOnly with get, set
-        member val top : float option = nativeOnly with get, set
-        member val pageNumber : float option = nativeOnly with get, set
+        static member Create (``type``: Annotation.``type``, bounds: Annotation.bounds, contents: string, ?title: string, ?``open``: bool, ?color: string, ?name: string, ?top: float, ?pageNumber: float) : Annotation = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -84,15 +73,12 @@ module Jspdf =
         abstract member magFactor: TextWithLinkOptions.magFactor option with get, set
         abstract member zoom: float option with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type AutoPrintInput
+    [<Interface>]
+    type AutoPrintInput =
+        abstract member variant: AutoPrintInput.variant with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            variant: AutoPrintInput.variant
-        ) =
-
-        member val variant : AutoPrintInput.variant = nativeOnly with get, set
+        static member Create (variant: AutoPrintInput.variant) : AutoPrintInput = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -235,77 +221,50 @@ module Jspdf =
         abstract member weight: obj option with get, set
         abstract member src: ResizeArray<HTMLFontFace.src> with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type HTMLOptions
-        private () =
-
+    [<Interface>]
+    type HTMLOptions =
+        abstract member callback: (Jspdf.jsPDF -> unit) option with get, set
+        abstract member margin: U2<float, ResizeArray<float>> option with get, set
+        abstract member autoPaging: HTMLOptions.autoPaging option with get, set
+        abstract member filename: string option with get, set
+        abstract member image: Jspdf.HTMLOptionImage option with get, set
+        abstract member html2canvas: Jspdf.Html2CanvasOptions option with get, set
+        abstract member jsPDF: Jspdf.jsPDF option with get, set
+        abstract member x: float option with get, set
+        abstract member y: float option with get, set
+        abstract member width: float option with get, set
+        abstract member windowWidth: float option with get, set
+        abstract member fontFaces: ResizeArray<Jspdf.HTMLFontFace> option with get, set
         [<ParamObject; Emit("$0")>]
-        new (?callback: (Jspdf.jsPDF -> unit), ?autoPaging: HTMLOptions.autoPaging, ?filename: string, ?image: Jspdf.HTMLOptionImage, ?html2canvas: Jspdf.Html2CanvasOptions, ?jsPDF: Jspdf.jsPDF, ?x: float, ?y: float, ?width: float, ?windowWidth: float, ?fontFaces: ResizeArray<Jspdf.HTMLFontFace>) =
-            HTMLOptions()
-
+        static member Create (?callback: (Jspdf.jsPDF -> unit), ?autoPaging: HTMLOptions.autoPaging, ?filename: string, ?image: Jspdf.HTMLOptionImage, ?html2canvas: Jspdf.Html2CanvasOptions, ?jsPDF: Jspdf.jsPDF, ?x: float, ?y: float, ?width: float, ?windowWidth: float, ?fontFaces: ResizeArray<Jspdf.HTMLFontFace>) : HTMLOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (margin: float, ?callback: (Jspdf.jsPDF -> unit), ?autoPaging: HTMLOptions.autoPaging, ?filename: string, ?image: Jspdf.HTMLOptionImage, ?html2canvas: Jspdf.Html2CanvasOptions, ?jsPDF: Jspdf.jsPDF, ?x: float, ?y: float, ?width: float, ?windowWidth: float, ?fontFaces: ResizeArray<Jspdf.HTMLFontFace>) =
-            HTMLOptions()
-
+        static member Create (margin: float, ?callback: (Jspdf.jsPDF -> unit), ?autoPaging: HTMLOptions.autoPaging, ?filename: string, ?image: Jspdf.HTMLOptionImage, ?html2canvas: Jspdf.Html2CanvasOptions, ?jsPDF: Jspdf.jsPDF, ?x: float, ?y: float, ?width: float, ?windowWidth: float, ?fontFaces: ResizeArray<Jspdf.HTMLFontFace>) : HTMLOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (margin: ResizeArray<float>, ?callback: (Jspdf.jsPDF -> unit), ?autoPaging: HTMLOptions.autoPaging, ?filename: string, ?image: Jspdf.HTMLOptionImage, ?html2canvas: Jspdf.Html2CanvasOptions, ?jsPDF: Jspdf.jsPDF, ?x: float, ?y: float, ?width: float, ?windowWidth: float, ?fontFaces: ResizeArray<Jspdf.HTMLFontFace>) =
-            HTMLOptions()
+        static member Create (margin: ResizeArray<float>, ?callback: (Jspdf.jsPDF -> unit), ?autoPaging: HTMLOptions.autoPaging, ?filename: string, ?image: Jspdf.HTMLOptionImage, ?html2canvas: Jspdf.Html2CanvasOptions, ?jsPDF: Jspdf.jsPDF, ?x: float, ?y: float, ?width: float, ?windowWidth: float, ?fontFaces: ResizeArray<Jspdf.HTMLFontFace>) : HTMLOptions = nativeOnly
 
-        member val callback : (Jspdf.jsPDF -> unit) option = nativeOnly with get, set
-        member val margin : U2<float, ResizeArray<float>> option = nativeOnly with get, set
-        member val autoPaging : HTMLOptions.autoPaging option = nativeOnly with get, set
-        member val filename : string option = nativeOnly with get, set
-        member val image : Jspdf.HTMLOptionImage option = nativeOnly with get, set
-        member val html2canvas : Jspdf.Html2CanvasOptions option = nativeOnly with get, set
-        member val jsPDF : Jspdf.jsPDF option = nativeOnly with get, set
-        member val x : float option = nativeOnly with get, set
-        member val y : float option = nativeOnly with get, set
-        member val width : float option = nativeOnly with get, set
-        member val windowWidth : float option = nativeOnly with get, set
-        member val fontFaces : ResizeArray<Jspdf.HTMLFontFace> option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type ViewerPreferencesInput
+    [<Interface>]
+    type ViewerPreferencesInput =
+        abstract member HideToolbar: bool option with get, set
+        abstract member HideMenubar: bool option with get, set
+        abstract member HideWindowUI: bool option with get, set
+        abstract member FitWindow: bool option with get, set
+        abstract member CenterWindow: bool option with get, set
+        abstract member DisplayDocTitle: bool option with get, set
+        abstract member NonFullScreenPageMode: ViewerPreferencesInput.NonFullScreenPageMode option with get, set
+        abstract member Direction: ViewerPreferencesInput.Direction option with get, set
+        abstract member ViewArea: ViewerPreferencesInput.ViewArea option with get, set
+        abstract member ViewClip: ViewerPreferencesInput.ViewClip option with get, set
+        abstract member PrintArea: ViewerPreferencesInput.PrintArea option with get, set
+        abstract member PrintClip: ViewerPreferencesInput.PrintClip option with get, set
+        abstract member PrintScaling: ViewerPreferencesInput.PrintScaling option with get, set
+        abstract member Duplex: ViewerPreferencesInput.Duplex option with get, set
+        abstract member PickTrayByPDFSize: bool option with get, set
+        abstract member PrintPageRange: ResizeArray<ResizeArray<float>> option with get, set
+        abstract member NumCopies: float option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?HideToolbar: bool,
-            ?HideMenubar: bool,
-            ?HideWindowUI: bool,
-            ?FitWindow: bool,
-            ?CenterWindow: bool,
-            ?DisplayDocTitle: bool,
-            ?NonFullScreenPageMode: ViewerPreferencesInput.NonFullScreenPageMode,
-            ?Direction: ViewerPreferencesInput.Direction,
-            ?ViewArea: ViewerPreferencesInput.ViewArea,
-            ?ViewClip: ViewerPreferencesInput.ViewClip,
-            ?PrintArea: ViewerPreferencesInput.PrintArea,
-            ?PrintClip: ViewerPreferencesInput.PrintClip,
-            ?PrintScaling: ViewerPreferencesInput.PrintScaling,
-            ?Duplex: ViewerPreferencesInput.Duplex,
-            ?PickTrayByPDFSize: bool,
-            ?PrintPageRange: ResizeArray<ResizeArray<float>>,
-            ?NumCopies: float
-        ) =
-
-        member val HideToolbar : bool option = nativeOnly with get, set
-        member val HideMenubar : bool option = nativeOnly with get, set
-        member val HideWindowUI : bool option = nativeOnly with get, set
-        member val FitWindow : bool option = nativeOnly with get, set
-        member val CenterWindow : bool option = nativeOnly with get, set
-        member val DisplayDocTitle : bool option = nativeOnly with get, set
-        member val NonFullScreenPageMode : ViewerPreferencesInput.NonFullScreenPageMode option = nativeOnly with get, set
-        member val Direction : ViewerPreferencesInput.Direction option = nativeOnly with get, set
-        member val ViewArea : ViewerPreferencesInput.ViewArea option = nativeOnly with get, set
-        member val ViewClip : ViewerPreferencesInput.ViewClip option = nativeOnly with get, set
-        member val PrintArea : ViewerPreferencesInput.PrintArea option = nativeOnly with get, set
-        member val PrintClip : ViewerPreferencesInput.PrintClip option = nativeOnly with get, set
-        member val PrintScaling : ViewerPreferencesInput.PrintScaling option = nativeOnly with get, set
-        member val Duplex : ViewerPreferencesInput.Duplex option = nativeOnly with get, set
-        member val PickTrayByPDFSize : bool option = nativeOnly with get, set
-        member val PrintPageRange : ResizeArray<ResizeArray<float>> option = nativeOnly with get, set
-        member val NumCopies : float option = nativeOnly with get, set
+        static member Create (?HideToolbar: bool, ?HideMenubar: bool, ?HideWindowUI: bool, ?FitWindow: bool, ?CenterWindow: bool, ?DisplayDocTitle: bool, ?NonFullScreenPageMode: ViewerPreferencesInput.NonFullScreenPageMode, ?Direction: ViewerPreferencesInput.Direction, ?ViewArea: ViewerPreferencesInput.ViewArea, ?ViewClip: ViewerPreferencesInput.ViewClip, ?PrintArea: ViewerPreferencesInput.PrintArea, ?PrintClip: ViewerPreferencesInput.PrintClip, ?PrintScaling: ViewerPreferencesInput.PrintScaling, ?Duplex: ViewerPreferencesInput.Duplex, ?PickTrayByPDFSize: bool, ?PrintPageRange: ResizeArray<ResizeArray<float>>, ?NumCopies: float) : ViewerPreferencesInput = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -319,15 +278,12 @@ module Jspdf =
         abstract member options: obj with get, set
         abstract member children: ResizeArray<obj> with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type OutlineOptions
+    [<Interface>]
+    type OutlineOptions =
+        abstract member pageNumber: float with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            pageNumber: float
-        ) =
-
-        member val pageNumber : float = nativeOnly with get, set
+        static member Create (pageNumber: float) : OutlineOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -546,40 +502,28 @@ module Jspdf =
         | WEBP
         | BMP
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type ImageOptions
-        private () =
-
+    [<Interface>]
+    type ImageOptions =
+        abstract member imageData: U5<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array, Jspdf.RGBAData> with get, set
+        abstract member x: float with get, set
+        abstract member y: float with get, set
+        abstract member width: float with get, set
+        abstract member height: float with get, set
+        abstract member alias: string option with get, set
+        abstract member compression: Jspdf.ImageCompression option with get, set
+        abstract member rotation: float option with get, set
+        abstract member format: Jspdf.ImageFormat option with get, set
         [<ParamObject; Emit("$0")>]
-        new (imageData: string, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) =
-            ImageOptions()
-
+        static member Create (imageData: string, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) : ImageOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (imageData: Glutinum.Web.HTMLImageElement, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) =
-            ImageOptions()
-
+        static member Create (imageData: Glutinum.Web.HTMLImageElement, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) : ImageOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (imageData: Glutinum.Web.HTMLCanvasElement, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) =
-            ImageOptions()
-
+        static member Create (imageData: Glutinum.Web.HTMLCanvasElement, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) : ImageOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (imageData: JS.Uint8Array, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) =
-            ImageOptions()
-
+        static member Create (imageData: JS.Uint8Array, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) : ImageOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (imageData: Jspdf.RGBAData, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) =
-            ImageOptions()
-
-        member val imageData : U5<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array, Jspdf.RGBAData> = nativeOnly with get, set
-        member val x : float = nativeOnly with get, set
-        member val y : float = nativeOnly with get, set
-        member val width : float = nativeOnly with get, set
-        member val height : float = nativeOnly with get, set
-        member val alias : string option = nativeOnly with get, set
-        member val compression : Jspdf.ImageCompression option = nativeOnly with get, set
-        member val rotation : float option = nativeOnly with get, set
-        member val format : Jspdf.ImageFormat option = nativeOnly with get, set
+        static member Create (imageData: Jspdf.RGBAData, x: float, y: float, width: float, height: float, ?alias: string, ?compression: Jspdf.ImageCompression, ?rotation: float, ?format: Jspdf.ImageFormat) : ImageOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -639,33 +583,21 @@ module Jspdf =
         abstract member col: float option with get, set
         abstract member data: obj option with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type TableConfig
+    [<Interface>]
+    type TableConfig =
+        abstract member printHeaders: bool option with get, set
+        abstract member autoSize: bool option with get, set
+        abstract member margins: TableConfig.margins option with get, set
+        abstract member fontSize: float option with get, set
+        abstract member padding: float option with get, set
+        abstract member headerBackgroundColor: string option with get, set
+        abstract member headerTextColor: string option with get, set
+        abstract member rowStart: TableConfig.rowStart option with get, set
+        abstract member cellStart: TableConfig.cellStart option with get, set
+        abstract member css: TableConfig.css option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?printHeaders: bool,
-            ?autoSize: bool,
-            ?margins: TableConfig.margins,
-            ?fontSize: float,
-            ?padding: float,
-            ?headerBackgroundColor: string,
-            ?headerTextColor: string,
-            ?rowStart: TableConfig.rowStart,
-            ?cellStart: TableConfig.cellStart,
-            ?css: TableConfig.css
-        ) =
-
-        member val printHeaders : bool option = nativeOnly with get, set
-        member val autoSize : bool option = nativeOnly with get, set
-        member val margins : TableConfig.margins option = nativeOnly with get, set
-        member val fontSize : float option = nativeOnly with get, set
-        member val padding : float option = nativeOnly with get, set
-        member val headerBackgroundColor : string option = nativeOnly with get, set
-        member val headerTextColor : string option = nativeOnly with get, set
-        member val rowStart : TableConfig.rowStart option = nativeOnly with get, set
-        member val cellStart : TableConfig.cellStart option = nativeOnly with get, set
-        member val css : TableConfig.css option = nativeOnly with get, set
+        static member Create (?printHeaders: bool, ?autoSize: bool, ?margins: TableConfig.margins, ?fontSize: float, ?padding: float, ?headerBackgroundColor: string, ?headerTextColor: string, ?rowStart: TableConfig.rowStart, ?cellStart: TableConfig.cellStart, ?css: TableConfig.css) : TableConfig = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -683,34 +615,26 @@ module Jspdf =
         abstract member ownerPassword: string option with get, set
         abstract member userPermissions: ResizeArray<EncryptionOptions.userPermissions> option with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type jsPDFOptions
-        private () =
-
+    [<Interface>]
+    type jsPDFOptions =
+        abstract member orientation: jsPDFOptions.orientation option with get, set
+        abstract member unit: jsPDFOptions.unit option with get, set
+        abstract member format: U2<string, ResizeArray<float>> option with get, set
+        abstract member compress: bool option with get, set
+        abstract member precision: float option with get, set
+        abstract member filters: ResizeArray<string> option with get, set
+        abstract member userUnit: float option with get, set
+        abstract member encryption: Jspdf.EncryptionOptions option with get, set
+        abstract member putOnlyUsedFonts: bool option with get, set
+        abstract member hotfixes: ResizeArray<string> option with get, set
+        abstract member floatPrecision: jsPDFOptions.floatPrecision option with get, set
         [<ParamObject; Emit("$0")>]
-        new (?orientation: jsPDFOptions.orientation, ?unit: jsPDFOptions.unit, ?compress: bool, ?precision: float, ?filters: ResizeArray<string>, ?userUnit: float, ?encryption: Jspdf.EncryptionOptions, ?putOnlyUsedFonts: bool, ?hotfixes: ResizeArray<string>, ?floatPrecision: jsPDFOptions.floatPrecision) =
-            jsPDFOptions()
-
+        static member Create (?orientation: jsPDFOptions.orientation, ?unit: jsPDFOptions.unit, ?compress: bool, ?precision: float, ?filters: ResizeArray<string>, ?userUnit: float, ?encryption: Jspdf.EncryptionOptions, ?putOnlyUsedFonts: bool, ?hotfixes: ResizeArray<string>, ?floatPrecision: jsPDFOptions.floatPrecision) : jsPDFOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (format: string, ?orientation: jsPDFOptions.orientation, ?unit: jsPDFOptions.unit, ?compress: bool, ?precision: float, ?filters: ResizeArray<string>, ?userUnit: float, ?encryption: Jspdf.EncryptionOptions, ?putOnlyUsedFonts: bool, ?hotfixes: ResizeArray<string>, ?floatPrecision: jsPDFOptions.floatPrecision) =
-            jsPDFOptions()
-
+        static member Create (format: string, ?orientation: jsPDFOptions.orientation, ?unit: jsPDFOptions.unit, ?compress: bool, ?precision: float, ?filters: ResizeArray<string>, ?userUnit: float, ?encryption: Jspdf.EncryptionOptions, ?putOnlyUsedFonts: bool, ?hotfixes: ResizeArray<string>, ?floatPrecision: jsPDFOptions.floatPrecision) : jsPDFOptions = nativeOnly
         [<ParamObject; Emit("$0")>]
-        new (format: ResizeArray<float>, ?orientation: jsPDFOptions.orientation, ?unit: jsPDFOptions.unit, ?compress: bool, ?precision: float, ?filters: ResizeArray<string>, ?userUnit: float, ?encryption: Jspdf.EncryptionOptions, ?putOnlyUsedFonts: bool, ?hotfixes: ResizeArray<string>, ?floatPrecision: jsPDFOptions.floatPrecision) =
-            jsPDFOptions()
-
-        member val orientation : jsPDFOptions.orientation option = nativeOnly with get, set
-        member val unit : jsPDFOptions.unit option = nativeOnly with get, set
-        member val format : U2<string, ResizeArray<float>> option = nativeOnly with get, set
-        member val compress : bool option = nativeOnly with get, set
-        member val precision : float option = nativeOnly with get, set
-        member val filters : ResizeArray<string> option = nativeOnly with get, set
-        member val userUnit : float option = nativeOnly with get, set
-        member val encryption : Jspdf.EncryptionOptions option = nativeOnly with get, set
-        member val putOnlyUsedFonts : bool option = nativeOnly with get, set
-        member val hotfixes : ResizeArray<string> option = nativeOnly with get, set
-        member val floatPrecision : jsPDFOptions.floatPrecision option = nativeOnly with get, set
+        static member Create (format: ResizeArray<float>, ?orientation: jsPDFOptions.orientation, ?unit: jsPDFOptions.unit, ?compress: bool, ?precision: float, ?filters: ResizeArray<string>, ?userUnit: float, ?encryption: Jspdf.EncryptionOptions, ?putOnlyUsedFonts: bool, ?hotfixes: ResizeArray<string>, ?floatPrecision: jsPDFOptions.floatPrecision) : jsPDFOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -744,55 +668,36 @@ module Jspdf =
         abstract member objectNumber: float with get, set
         abstract member postScriptName: string with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type DocumentProperties
+    [<Interface>]
+    type DocumentProperties =
+        abstract member title: string option with get, set
+        abstract member subject: string option with get, set
+        abstract member author: string option with get, set
+        abstract member keywords: string option with get, set
+        abstract member creator: string option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?title: string,
-            ?subject: string,
-            ?author: string,
-            ?keywords: string,
-            ?creator: string
-        ) =
+        static member Create (?title: string, ?subject: string, ?author: string, ?keywords: string, ?creator: string) : DocumentProperties = nativeOnly
 
-        member val title : string option = nativeOnly with get, set
-        member val subject : string option = nativeOnly with get, set
-        member val author : string option = nativeOnly with get, set
-        member val keywords : string option = nativeOnly with get, set
-        member val creator : string option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type PatternData
+    [<Interface>]
+    type PatternData =
+        abstract member key: string with get, set
+        abstract member matrix: Jspdf.Matrix option with get, set
+        abstract member boundingBox: ResizeArray<float> option with get, set
+        abstract member xStep: float option with get, set
+        abstract member yStep: float option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            key: string,
-            ?matrix: Jspdf.Matrix,
-            ?boundingBox: ResizeArray<float>,
-            ?xStep: float,
-            ?yStep: float
-        ) =
+        static member Create (key: string, ?matrix: Jspdf.Matrix, ?boundingBox: ResizeArray<float>, ?xStep: float, ?yStep: float) : PatternData = nativeOnly
 
-        member val key : string = nativeOnly with get, set
-        member val matrix : Jspdf.Matrix option = nativeOnly with get, set
-        member val boundingBox : ResizeArray<float> option = nativeOnly with get, set
-        member val xStep : float option = nativeOnly with get, set
-        member val yStep : float option = nativeOnly with get, set
-
-    [<Global>]
     [<AllowNullLiteral>]
-    type RGBAData
+    [<Interface>]
+    type RGBAData =
+        abstract member data: JS.Uint8ClampedArray with get, set
+        abstract member width: float with get, set
+        abstract member height: float with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            data: JS.Uint8ClampedArray,
-            width: float,
-            height: float
-        ) =
-
-        member val data : JS.Uint8ClampedArray = nativeOnly with get, set
-        member val width : float = nativeOnly with get, set
-        member val height : float = nativeOnly with get, set
+        static member Create (data: JS.Uint8ClampedArray, width: float, height: float) : RGBAData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -873,8 +778,8 @@ module Jspdf =
         abstract member output_blob: unit -> Glutinum.Web.Blob
         abstract member output: ``type``: jsPDF.output.``type`` -> Glutinum.Web.URL
         abstract member output: ``type``: jsPDF.output.``type_1`` * ?options: jsPDF.output.options -> string
-        abstract member output: ``type``: jsPDF.output.``type_2`` * ?options: jsPDF.output.options -> Glutinum.Web.Window
-        abstract member output: ``type``: jsPDF.output.``type_3`` * ?options: jsPDF.output.options -> bool
+        abstract member output: ``type``: jsPDF.output.``type_2`` * ?options: jsPDF.output.options_1 -> Glutinum.Web.Window
+        abstract member output: ``type``: jsPDF.output.``type_3`` * ?options: jsPDF.output.options_2 -> bool
         abstract member pdfEscape: text: string * flags: obj -> string
         abstract member path: ?lines: ResizeArray<obj> * ?style: string -> Jspdf.jsPDF
         abstract member rect: x: float * y: float * w: float * h: float * ?style: string -> Jspdf.jsPDF
@@ -1296,21 +1201,15 @@ jsPDF.API = $0"""
             | freetext
             | link
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type bounds
+        [<Interface>]
+        type bounds =
+            abstract member x: float with get, set
+            abstract member y: float with get, set
+            abstract member w: float with get, set
+            abstract member h: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                x: float,
-                y: float,
-                w: float,
-                h: float
-            ) =
-
-            member val x : float = nativeOnly with get, set
-            member val y : float = nativeOnly with get, set
-            member val w : float = nativeOnly with get, set
-            member val h : float = nativeOnly with get, set
+            static member Create (x: float, y: float, w: float, h: float) : bounds = nativeOnly
 
     module TextWithLinkOptions =
 
@@ -1352,9 +1251,9 @@ jsPDF.API = $0"""
             [<Emit("$0($1...)")>]
             abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_1`` * ?options: HTMLWorker.outputPdf.Invoke.options -> string
             [<Emit("$0($1...)")>]
-            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_2`` * ?options: HTMLWorker.outputPdf.Invoke.options -> Glutinum.Web.Window
+            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_2`` * ?options: HTMLWorker.outputPdf.Invoke.options_1 -> Glutinum.Web.Window
             [<Emit("$0($1...)")>]
-            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_3`` * ?options: HTMLWorker.outputPdf.Invoke.options -> bool
+            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_3`` * ?options: HTMLWorker.outputPdf.Invoke.options_2 -> bool
 
         module from =
 
@@ -1394,15 +1293,12 @@ jsPDF.API = $0"""
                     | datauristring
                     | dataurlstring
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type options
+                [<Interface>]
+                type options =
+                    abstract member filename: string option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        ?filename: string
-                    ) =
-
-                    member val filename : string option = nativeOnly with get, set
+                    static member Create (?filename: string) : options = nativeOnly
 
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
@@ -1411,11 +1307,25 @@ jsPDF.API = $0"""
                     | pdfjsnewwindow
                     | dataurlnewwindow
 
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type options_1 =
+                    abstract member filename: string option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?filename: string) : options_1 = nativeOnly
+
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
                 type ``type_3`` =
                     | dataurl
                     | datauri
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type options_2 =
+                    abstract member filename: string option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?filename: string) : options_2 = nativeOnly
 
     module HTMLOptionImage =
 
@@ -1448,17 +1358,13 @@ jsPDF.API = $0"""
             | ``extra-expanded``
             | ``ultra-expanded``
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type src
+        [<Interface>]
+        type src =
+            abstract member url: string with get, set
+            abstract member format: string with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                url: string,
-                format: string
-            ) =
-
-            member val url : string = nativeOnly with get, set
-            member val format : string = nativeOnly with get, set
+            static member Create (url: string, format: string) : src = nativeOnly
 
     module HTMLOptions =
 
@@ -1621,17 +1527,13 @@ jsPDF.API = $0"""
             | middle
             | hanging
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type flags
+        [<Interface>]
+        type flags =
+            abstract member noBOM: bool with get, set
+            abstract member autoencode: bool with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                noBOM: bool,
-                autoencode: bool
-            ) =
-
-            member val noBOM : bool = nativeOnly with get, set
-            member val autoencode : bool = nativeOnly with get, set
+            static member Create (noBOM: bool, autoencode: bool) : flags = nativeOnly
 
         [<RequireQualifiedAccess>]
         type rotationDirection =
@@ -1652,21 +1554,15 @@ jsPDF.API = $0"""
 
     module TableConfig =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type margins
+        [<Interface>]
+        type margins =
+            abstract member top: float with get, set
+            abstract member bottom: float with get, set
+            abstract member left: float with get, set
+            abstract member width: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                top: float,
-                bottom: float,
-                left: float,
-                width: float
-            ) =
-
-            member val top : float = nativeOnly with get, set
-            member val bottom : float = nativeOnly with get, set
-            member val left : float = nativeOnly with get, set
-            member val width : float = nativeOnly with get, set
+            static member Create (top: float, bottom: float, left: float, width: float) : margins = nativeOnly
 
         type rowStart =
             delegate of e: Jspdf.TableRowData * doc: Jspdf.jsPDF -> unit
@@ -1674,15 +1570,12 @@ jsPDF.API = $0"""
         type cellStart =
             delegate of e: Jspdf.TableCellData * doc: Jspdf.jsPDF -> unit
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type css
+        [<Interface>]
+        type css =
+            abstract member ``font-size``: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                ``font-size``: float
-            ) =
-
-            member val ``font-size`` : float = nativeOnly with get, set
+            static member Create (``font-size``: float) : css = nativeOnly
 
     module CellConfig =
 
@@ -1755,83 +1648,52 @@ jsPDF.API = $0"""
             [<EmitIndexer>]
             abstract member Item: key: string -> ResizeArray<string> with get, set
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type ``internal``
+        [<Interface>]
+        type ``internal`` =
+            abstract member events: Jspdf.PubSub with get, set
+            abstract member scaleFactor: float with get, set
+            abstract member pageSize: jsPDF.``internal``.pageSize with get, set
+            abstract member pages: ResizeArray<float> with get, set
+            abstract member getEncryptor: objectId: float -> (string -> string)
             [<ParamObject; Emit("$0")>]
-            (
-                events: Jspdf.PubSub,
-                scaleFactor: float,
-                pageSize: jsPDF.``internal``.pageSize,
-                pages: ResizeArray<float>,
-                getEncryptor: (string -> string)
-            ) =
+            static member Create (events: Jspdf.PubSub, scaleFactor: float, pageSize: jsPDF.``internal``.pageSize, pages: ResizeArray<float>, getEncryptor: (string -> string)) : ``internal`` = nativeOnly
 
-            member val events : Jspdf.PubSub = nativeOnly with get, set
-            member val scaleFactor : float = nativeOnly with get, set
-            member val pageSize : jsPDF.``internal``.pageSize = nativeOnly with get, set
-            member val pages : ResizeArray<float> = nativeOnly with get, set
-            member val getEncryptor : (string -> string) = nativeOnly
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type AcroForm
+        [<Interface>]
+        type AcroForm =
+            abstract member ChoiceField: unit -> Jspdf.AcroFormChoiceField
+            abstract member ListBox: unit -> Jspdf.AcroFormListBox
+            abstract member ComboBox: unit -> Jspdf.AcroFormComboBox
+            abstract member EditBox: unit -> Jspdf.AcroFormEditBox
+            abstract member Button: unit -> Jspdf.AcroFormButton
+            abstract member PushButton: unit -> Jspdf.AcroFormPushButton
+            abstract member RadioButton: unit -> Jspdf.AcroFormRadioButton
+            abstract member CheckBox: unit -> Jspdf.AcroFormCheckBox
+            abstract member TextField: unit -> Jspdf.AcroFormTextField
+            abstract member PasswordField: unit -> Jspdf.AcroFormPasswordField
+            abstract member Appearance: unit -> obj
             [<ParamObject; Emit("$0")>]
-            (
-                ChoiceField: Jspdf.AcroFormChoiceField,
-                ListBox: Jspdf.AcroFormListBox,
-                ComboBox: Jspdf.AcroFormComboBox,
-                EditBox: Jspdf.AcroFormEditBox,
-                Button: Jspdf.AcroFormButton,
-                PushButton: Jspdf.AcroFormPushButton,
-                RadioButton: Jspdf.AcroFormRadioButton,
-                CheckBox: Jspdf.AcroFormCheckBox,
-                TextField: Jspdf.AcroFormTextField,
-                PasswordField: Jspdf.AcroFormPasswordField,
-                Appearance: obj
-            ) =
+            static member Create (ChoiceField: Jspdf.AcroFormChoiceField, ListBox: Jspdf.AcroFormListBox, ComboBox: Jspdf.AcroFormComboBox, EditBox: Jspdf.AcroFormEditBox, Button: Jspdf.AcroFormButton, PushButton: Jspdf.AcroFormPushButton, RadioButton: Jspdf.AcroFormRadioButton, CheckBox: Jspdf.AcroFormCheckBox, TextField: Jspdf.AcroFormTextField, PasswordField: Jspdf.AcroFormPasswordField, Appearance: obj) : AcroForm = nativeOnly
 
-            member val ChoiceField : Jspdf.AcroFormChoiceField = nativeOnly
-            member val ListBox : Jspdf.AcroFormListBox = nativeOnly
-            member val ComboBox : Jspdf.AcroFormComboBox = nativeOnly
-            member val EditBox : Jspdf.AcroFormEditBox = nativeOnly
-            member val Button : Jspdf.AcroFormButton = nativeOnly
-            member val PushButton : Jspdf.AcroFormPushButton = nativeOnly
-            member val RadioButton : Jspdf.AcroFormRadioButton = nativeOnly
-            member val CheckBox : Jspdf.AcroFormCheckBox = nativeOnly
-            member val TextField : Jspdf.AcroFormTextField = nativeOnly
-            member val PasswordField : Jspdf.AcroFormPasswordField = nativeOnly
-            member val Appearance : obj = nativeOnly
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type canvas
+        [<Interface>]
+        type canvas =
+            abstract member pdf: Jspdf.jsPDF with get, set
+            abstract member width: float with get, set
+            abstract member height: float with get, set
+            abstract member getContext: ?``type``: string -> Jspdf.Context2d
+            abstract member style: obj with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                pdf: Jspdf.jsPDF,
-                width: float,
-                height: float,
-                getContext: Jspdf.Context2d,
-                style: obj
-            ) =
+            static member Create (pdf: Jspdf.jsPDF, width: float, height: float, getContext: Jspdf.Context2d, style: obj) : canvas = nativeOnly
 
-            member val pdf : Jspdf.jsPDF = nativeOnly with get, set
-            member val width : float = nativeOnly with get, set
-            member val height : float = nativeOnly with get, set
-            member val getContext : Jspdf.Context2d = nativeOnly
-            member val style : obj = nativeOnly with get, set
-
-        [<Global>]
         [<AllowNullLiteral>]
-        type getTextDimensions
+        [<Interface>]
+        type getTextDimensions =
+            abstract member w: float with get, set
+            abstract member h: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                w: float,
-                h: float
-            ) =
-
-            member val w : float = nativeOnly with get, set
-            member val h : float = nativeOnly with get, set
+            static member Create (w: float, h: float) : getTextDimensions = nativeOnly
 
         module addFont =
 
@@ -1867,15 +1729,12 @@ jsPDF.API = $0"""
                 | datauristring
                 | dataurlstring
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member filename: string option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?filename: string
-                ) =
-
-                member val filename : string option = nativeOnly with get, set
+                static member Create (?filename: string) : options = nativeOnly
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -1884,23 +1743,34 @@ jsPDF.API = $0"""
                 | pdfjsnewwindow
                 | dataurlnewwindow
 
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type options_1 =
+                abstract member filename: string option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?filename: string) : options_1 = nativeOnly
+
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_3`` =
                 | dataurl
                 | datauri
 
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type options_2 =
+                abstract member filename: string option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?filename: string) : options_2 = nativeOnly
+
         module save =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member returnPromise: bool with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    returnPromise: bool
-                ) =
-
-                member val returnPromise : bool = nativeOnly with get, set
+                static member Create (returnPromise: bool) : options = nativeOnly
 
         module setDisplayMode =
 
@@ -1932,21 +1802,15 @@ jsPDF.API = $0"""
 
         module ``internal`` =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type pageSize
+            [<Interface>]
+            type pageSize =
+                abstract member width: float with get, set
+                abstract member getWidth: (unit -> float) with get, set
+                abstract member height: float with get, set
+                abstract member getHeight: (unit -> float) with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    width: float,
-                    getWidth: (unit -> float),
-                    height: float,
-                    getHeight: (unit -> float)
-                ) =
-
-                member val width : float = nativeOnly with get, set
-                member val getWidth : (unit -> float) = nativeOnly with get, set
-                member val height : float = nativeOnly with get, set
-                member val getHeight : (unit -> float) = nativeOnly with get, set
+                static member Create (width: float, getWidth: (unit -> float), height: float, getHeight: (unit -> float)) : pageSize = nativeOnly
 
         module setHeaderFunction =
 
@@ -1955,21 +1819,15 @@ jsPDF.API = $0"""
 
         module getTextDimensions =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member font: string option with get, set
+                abstract member fontSize: float option with get, set
+                abstract member maxWidth: float option with get, set
+                abstract member scaleFactor: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?font: string,
-                    ?fontSize: float,
-                    ?maxWidth: float,
-                    ?scaleFactor: float
-                ) =
-
-                member val font : string option = nativeOnly with get, set
-                member val fontSize : float option = nativeOnly with get, set
-                member val maxWidth : float option = nativeOnly with get, set
-                member val scaleFactor : float option = nativeOnly with get, set
+                static member Create (?font: string, ?fontSize: float, ?maxWidth: float, ?scaleFactor: float) : options = nativeOnly
 
         module table =
 
@@ -1981,21 +1839,15 @@ jsPDF.API = $0"""
 
     module Matrix =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type decompose
+        [<Interface>]
+        type decompose =
+            abstract member scale: Jspdf.Matrix with get, set
+            abstract member translate: Jspdf.Matrix with get, set
+            abstract member rotate: Jspdf.Matrix with get, set
+            abstract member skew: Jspdf.Matrix with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                scale: Jspdf.Matrix,
-                translate: Jspdf.Matrix,
-                rotate: Jspdf.Matrix,
-                skew: Jspdf.Matrix
-            ) =
-
-            member val scale : Jspdf.Matrix = nativeOnly with get, set
-            member val translate : Jspdf.Matrix = nativeOnly with get, set
-            member val rotate : Jspdf.Matrix = nativeOnly with get, set
-            member val skew : Jspdf.Matrix = nativeOnly with get, set
+            static member Create (scale: Jspdf.Matrix, translate: Jspdf.Matrix, rotate: Jspdf.Matrix, skew: Jspdf.Matrix) : decompose = nativeOnly
 
     module Exports =
 

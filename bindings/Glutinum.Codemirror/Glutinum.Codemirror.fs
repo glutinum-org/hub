@@ -94,7 +94,7 @@ module CodemirrorState =
         /// precedence and then by order within each precedence.
         /// </summary>
         [<Import("Prec", "@codemirror/state")>]
-        static member inline Prec: Exports.Prec.Type = nativeOnly
+        static member inline Prec: Exports.Prec__.Type = nativeOnly
         /// <summary>
         /// Utility function for combining behaviors to fill in a config
         /// object from an array of provided configs. <c>defaults</c> should hold
@@ -105,7 +105,7 @@ module CodemirrorState =
         /// provide combine functions per field to do something else.
         /// </summary>
         [<Import("combineConfig", "@codemirror/state")>]
-        static member combineConfig (configs: ResizeArray<Exports.combineConfig.configs>, defaults: Exports.combineConfig.defaults, ?combine: Exports.combineConfig.combine) : obj = nativeOnly
+        static member combineConfig (configs: ResizeArray<Exports.combineConfig__.configs>, defaults: Exports.combineConfig__.defaults, ?combine: Exports.combineConfig__.combine) : obj = nativeOnly
         /// <summary>
         /// Returns a next grapheme cluster break _after_ (not equal to)
         /// <c>pos</c>, if <c>forward</c> is true, or before otherwise. Returns <c>pos</c>
@@ -134,7 +134,7 @@ module CodemirrorState =
         /// The amount of positions a character takes up in a JavaScript string.
         /// </summary>
         [<Import("codePointSize", "@codemirror/state")>]
-        static member codePointSize (code: float) : Exports.codePointSize = nativeOnly
+        static member codePointSize (code: float) : Exports.codePointSize__ = nativeOnly
         /// <summary>
         /// Count the column position at the given offset into the string,
         /// taking extending characters and tab size into account.
@@ -528,7 +528,7 @@ ChangeDesc.fromJSON($0)"""
         /// Create a change set for the given changes, for a document of the
         /// given length, using <c>lineSep</c> as line separator.
         /// </summary>
-        static member inline ``of`` (changes: ChangeSet.``of``.changes, length: float, ?lineSep: string): CodemirrorState.ChangeSet =
+        static member inline ``of`` (changes: ChangeSpec.U3.Case1, length: float, ?lineSep: string): CodemirrorState.ChangeSet =
             emitJsExpr (changes, length, lineSep) $$"""
 import { ChangeSet } from "@codemirror/state";
 ChangeSet.of($0, $1, $2)"""
@@ -809,7 +809,7 @@ EditorSelection.undirectionalRange($0, $1)"""
         /// <summary>
         /// Define a new facet.
         /// </summary>
-        static member inline define (?config: Facet.define.config<'Output, 'Input>): CodemirrorState.Facet<'Input, 'Output> =
+        static member inline define (?config: Facet.define__.config<'Output, 'Input>): CodemirrorState.Facet<'Input, 'Output> =
             emitJsExpr (config) $$"""
 import { Facet } from "@codemirror/state";
 Facet.define($0)"""
@@ -924,7 +924,7 @@ Facet.define($0)"""
         /// <summary>
         /// Define a state field.
         /// </summary>
-        static member inline define (config: StateField.define.config<'Value>): CodemirrorState.StateField<'Value> =
+        static member inline define (config: StateField.define__.config<'Value>): CodemirrorState.StateField<'Value> =
             emitJsExpr (config) $$"""
 import { StateField } from "@codemirror/state";
 StateField.define($0)"""
@@ -968,7 +968,7 @@ StateField.define($0)"""
         /// Create an instance of this compartment to add to your [state
         /// configuration](https://codemirror.net/6/docs/ref/#state.EditorStateConfig.extensions).
         /// </summary>
-        abstract member ``of``: ext: Compartment.``of``.ext -> CodemirrorState.Extension
+        abstract member ``of``: ext: Extension.U2.Case1 -> CodemirrorState.Extension
         /// <summary>
         /// Create an instance of this compartment to add to your [state
         /// configuration](https://codemirror.net/6/docs/ref/#state.EditorStateConfig.extensions).
@@ -978,7 +978,7 @@ StateField.define($0)"""
         /// Create an [effect](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) that
         /// reconfigures this compartment.
         /// </summary>
-        abstract member reconfigure: content: Compartment.reconfigure.content -> CodemirrorState.StateEffect<obj>
+        abstract member reconfigure: content: Extension.U2.Case1 -> CodemirrorState.StateEffect<obj>
         /// <summary>
         /// Create an [effect](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) that
         /// reconfigures this compartment.
@@ -1473,7 +1473,7 @@ Transaction.remote = $0"""
         /// description, taking the state's document length and line
         /// separator into account.
         /// </summary>
-        abstract member changes: spec: EditorState.changes.spec -> CodemirrorState.ChangeSet
+        abstract member changes: spec: ChangeSpec.U3.Case1 -> CodemirrorState.ChangeSet
         /// <summary>
         /// Create a [change set](https://codemirror.net/6/docs/ref/#state.ChangeSet) from the given change
         /// description, taking the state's document length and line
@@ -1513,7 +1513,7 @@ Transaction.remote = $0"""
         /// to [<c>toJSON</c>](https://codemirror.net/6/docs/ref/#state.EditorState.toJSON) when serializing as
         /// third argument.
         /// </summary>
-        static member inline fromJSON (json: obj, ?config: CodemirrorState.EditorStateConfig, ?fields: EditorState.fromJSON.fields): CodemirrorState.EditorState =
+        static member inline fromJSON (json: obj, ?config: CodemirrorState.EditorStateConfig, ?fields: EditorState.fromJSON__.fields): CodemirrorState.EditorState =
             emitJsExpr (json, config, fields) $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.fromJSON($0, $1, $2)"""
@@ -1609,11 +1609,11 @@ EditorState.readOnly = $0"""
         /// its argument.
         /// </summary>
         static member inline phrases
-            with get () : CodemirrorState.Facet<EditorState.phrases, ReadonlyArray<EditorState.phrases>> =
+            with get () : CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__>> =
                 emitJsExpr () $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.phrases"""
-            and set (value: CodemirrorState.Facet<EditorState.phrases, ReadonlyArray<EditorState.phrases>>) =
+            and set (value: CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__>>) =
                 emitJsExpr (value) $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.phrases = $0"""
@@ -1633,11 +1633,11 @@ EditorState.phrases = $0"""
         /// data](https://codemirror.net/6/docs/ref/#state.EditorState.languageDataAt) providers.
         /// </summary>
         static member inline languageData
-            with get () : CodemirrorState.Facet<EditorState.languageData, ReadonlyArray<EditorState.languageData>> =
+            with get () : CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__>> =
                 emitJsExpr () $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.languageData"""
-            and set (value: CodemirrorState.Facet<EditorState.languageData, ReadonlyArray<EditorState.languageData>>) =
+            and set (value: CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__>>) =
                 emitJsExpr (value) $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.languageData = $0"""
@@ -1742,11 +1742,11 @@ EditorState.transactionFilter = $0"""
         /// Extenders run _after_ filters, when both are present.
         /// </summary>
         static member inline transactionExtender
-            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender option)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender___1 option)>> =
                 emitJsExpr () $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.transactionExtender"""
-            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender option)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender___1 option)>>) =
                 emitJsExpr (value) $$"""
 import { EditorState } from "@codemirror/state";
 EditorState.transactionExtender = $0"""
@@ -2104,26 +2104,18 @@ RangeSet.empty = $0"""
 
         module U3 =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Case1
-                private () =
-
+            [<Interface>]
+            type Case1 =
+                abstract member from: float with get, set
+                abstract member ``to``: float option with get, set
+                abstract member insert: U2<string, CodemirrorState.Text> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (from: float, ?``to``: float) =
-                    Case1()
-
+                static member Create (from: float, ?``to``: float) : Case1 = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (from: float, insert: string, ?``to``: float) =
-                    Case1()
-
+                static member Create (from: float, insert: string, ?``to``: float) : Case1 = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (from: float, insert: CodemirrorState.Text, ?``to``: float) =
-                    Case1()
-
-                member val from : float = nativeOnly with get, set
-                member val ``to`` : float option = nativeOnly with get, set
-                member val insert : U2<string, CodemirrorState.Text> option = nativeOnly with get, set
+                static member Create (from: float, insert: CodemirrorState.Text, ?``to``: float) : Case1 = nativeOnly
 
     module ChangeSet =
 
@@ -2131,29 +2123,6 @@ RangeSet.empty = $0"""
 
             type f =
                 delegate of fromA: float * toA: float * fromB: float * toB: float * inserted: CodemirrorState.Text -> unit
-
-        module ``of`` =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type changes
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (from: float, ?``to``: float) =
-                    changes()
-
-                [<ParamObject; Emit("$0")>]
-                new (from: float, insert: string, ?``to``: float) =
-                    changes()
-
-                [<ParamObject; Emit("$0")>]
-                new (from: float, insert: CodemirrorState.Text, ?``to``: float) =
-                    changes()
-
-                member val from : float = nativeOnly with get, set
-                member val ``to`` : float option = nativeOnly with get, set
-                member val insert : U2<string, CodemirrorState.Text> option = nativeOnly with get, set
 
     module SelectionRange =
 
@@ -2173,40 +2142,23 @@ RangeSet.empty = $0"""
 
     module Facet =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type reader<'Output>
-            [<ParamObject; Emit("$0")>]
-            (
-                tag: 'Output
-            ) =
-
+        [<Interface>]
+        type reader<'Output> =
             /// <summary>
             /// Dummy tag that makes sure TypeScript doesn't consider all object
             /// types as conforming to this type. Not actually present on the
             /// object.
             /// </summary>
-            member val tag : 'Output = nativeOnly with get, set
+            abstract member tag: 'Output with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (tag: 'Output) : reader<'Output> = nativeOnly
 
-        module define =
+        module define__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type config<'Output, 'Input>
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define.config.compare<'Output>, ?compareInput: Facet.define.config.compareInput<'Input>, ?``static``: bool) =
-                    config()
-
-                [<ParamObject; Emit("$0")>]
-                new (enables: CodemirrorState.Extension, ?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define.config.compare<'Output>, ?compareInput: Facet.define.config.compareInput<'Input>, ?``static``: bool) =
-                    config()
-
-                [<ParamObject; Emit("$0")>]
-                new (enables: (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension), ?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define.config.compare<'Output>, ?compareInput: Facet.define.config.compareInput<'Input>, ?``static``: bool) =
-                    config()
-
+            [<Interface>]
+            type config<'Output, 'Input> =
                 /// <summary>
                 /// How to combine the input values into a single output value. When
                 /// not given, the array of input values becomes the output. This
@@ -2214,23 +2166,23 @@ RangeSet.empty = $0"""
                 /// an empty array, to compute the facet's default value when no
                 /// inputs are present.
                 /// </summary>
-                member val combine : (ResizeArray<'Input> -> 'Output) option = nativeOnly with get, set
+                abstract member combine: (ResizeArray<'Input> -> 'Output) option with get, set
                 /// <summary>
                 /// How to compare output values to determine whether the value of
                 /// the facet changed. Defaults to comparing by <c>===</c> or, if no
                 /// <c>combine</c> function was given, comparing each element of the
                 /// array with <c>===</c>.
                 /// </summary>
-                member val compare : Facet.define.config.compare<'Output> option = nativeOnly with get, set
+                abstract member compare: Facet.define__.config.compare<'Output> option with get, set
                 /// <summary>
                 /// How to compare input values to avoid recomputing the output
                 /// value when no inputs changed. Defaults to comparing with <c>===</c>.
                 /// </summary>
-                member val compareInput : Facet.define.config.compareInput<'Input> option = nativeOnly with get, set
+                abstract member compareInput: Facet.define__.config.compareInput<'Input> option with get, set
                 /// <summary>
                 /// Forbids dynamic inputs to this facet.
                 /// </summary>
-                member val ``static`` : bool option = nativeOnly with get, set
+                abstract member ``static``: bool option with get, set
                 /// <summary>
                 /// If given, these extension(s) (or the result of calling the given
                 /// function with the facet) will be added to any state where this
@@ -2239,7 +2191,13 @@ RangeSet.empty = $0"""
                 /// state at all, these extensions won't be added in that
                 /// situation.)
                 /// </summary>
-                member val enables : U2<CodemirrorState.Extension, (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension)> option = nativeOnly with get, set
+                abstract member enables: U2<CodemirrorState.Extension, (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension)> option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define__.config.compare<'Output>, ?compareInput: Facet.define__.config.compareInput<'Input>, ?``static``: bool) : config<'Output, 'Input> = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (enables: CodemirrorState.Extension, ?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define__.config.compare<'Output>, ?compareInput: Facet.define__.config.compareInput<'Input>, ?``static``: bool) : config<'Output, 'Input> = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (enables: (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension), ?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define__.config.compare<'Output>, ?compareInput: Facet.define__.config.compareInput<'Input>, ?``static``: bool) : config<'Output, 'Input> = nativeOnly
 
             module config =
 
@@ -2253,20 +2211,17 @@ RangeSet.empty = $0"""
 
         module Cases =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Case1<'T>
-                [<ParamObject; Emit("$0")>]
-                (
-                    tag: 'T
-                ) =
-
+            [<Interface>]
+            type Case1<'T> =
                 /// <summary>
                 /// Dummy tag that makes sure TypeScript doesn't consider all object
                 /// types as conforming to this type. Not actually present on the
                 /// object.
                 /// </summary>
-                member val tag : 'T = nativeOnly with get, set
+                abstract member tag: 'T with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (tag: 'T) : Case1<'T> = nativeOnly
 
     module StateFieldSpec =
 
@@ -2284,37 +2239,27 @@ RangeSet.empty = $0"""
 
     module StateField =
 
-        module define =
+        module define__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type config<'Value>
-                [<ParamObject; Emit("$0")>]
-                (
-                    create: (CodemirrorState.EditorState -> 'Value),
-                    update: StateField.define.config.update<'Value>,
-                    ?compare: StateField.define.config.compare<'Value>,
-                    ?provide: (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension),
-                    ?toJSON: StateField.define.config.toJSON<'Value>,
-                    ?fromJSON: StateField.define.config.fromJSON<'Value>
-                ) =
-
+            [<Interface>]
+            type config<'Value> =
                 /// <summary>
                 /// Creates the initial value for the field when a state is created.
                 /// </summary>
-                member val create : (CodemirrorState.EditorState -> 'Value) = nativeOnly with get, set
+                abstract member create: (CodemirrorState.EditorState -> 'Value) with get, set
                 /// <summary>
                 /// Compute a new value from the field's previous value and a
                 /// [transaction](https://codemirror.net/6/docs/ref/#state.Transaction).
                 /// </summary>
-                member val update : StateField.define.config.update<'Value> = nativeOnly with get, set
+                abstract member update: StateField.define__.config.update<'Value> with get, set
                 /// <summary>
                 /// Compare two values of the field, returning <c>true</c> when they are
                 /// the same. This is used to avoid recomputing facets that depend
                 /// on the field when its value did not change. Defaults to using
                 /// <c>===</c>.
                 /// </summary>
-                member val compare : StateField.define.config.compare<'Value> option = nativeOnly with get, set
+                abstract member compare: StateField.define__.config.compare<'Value> option with get, set
                 /// <summary>
                 /// Provide extensions based on this field. The given function will
                 /// be called once with the initialized field. It will usually want
@@ -2323,18 +2268,20 @@ RangeSet.empty = $0"""
                 /// extensions that should be enabled when the field is present in a
                 /// configuration.
                 /// </summary>
-                member val provide : (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension) option = nativeOnly with get, set
+                abstract member provide: (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension) option with get, set
                 /// <summary>
                 /// A function used to serialize this field's content to JSON. Only
                 /// necessary when this field is included in the argument to
                 /// [<c>EditorState.toJSON</c>](https://codemirror.net/6/docs/ref/#state.EditorState.toJSON).
                 /// </summary>
-                member val toJSON : StateField.define.config.toJSON<'Value> option = nativeOnly with get, set
+                abstract member toJSON: StateField.define__.config.toJSON<'Value> option with get, set
                 /// <summary>
                 /// A function that deserializes the JSON representation of this
                 /// field's content.
                 /// </summary>
-                member val fromJSON : StateField.define.config.fromJSON<'Value> option = nativeOnly with get, set
+                abstract member fromJSON: StateField.define__.config.fromJSON<'Value> option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (create: (CodemirrorState.EditorState -> 'Value), update: StateField.define__.config.update<'Value>, ?compare: StateField.define__.config.compare<'Value>, ?provide: (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension), ?toJSON: StateField.define__.config.toJSON<'Value>, ?fromJSON: StateField.define__.config.fromJSON<'Value>) : config<'Value> = nativeOnly
 
             module config =
 
@@ -2354,41 +2301,12 @@ RangeSet.empty = $0"""
 
         module U2 =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Case1
+            [<Interface>]
+            type Case1 =
+                abstract member extension: CodemirrorState.Extension with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    extension: CodemirrorState.Extension
-                ) =
-
-                member val extension : CodemirrorState.Extension = nativeOnly with get, set
-
-    module Compartment =
-
-        module ``of`` =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type ext
-                [<ParamObject; Emit("$0")>]
-                (
-                    extension: CodemirrorState.Extension
-                ) =
-
-                member val extension : CodemirrorState.Extension = nativeOnly with get, set
-
-        module reconfigure =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type content
-                [<ParamObject; Emit("$0")>]
-                (
-                    extension: CodemirrorState.Extension
-                ) =
-
-                member val extension : CodemirrorState.Extension = nativeOnly with get, set
+                static member Create (extension: CodemirrorState.Extension) : Case1 = nativeOnly
 
     module StateEffectSpec =
 
@@ -2406,17 +2324,13 @@ RangeSet.empty = $0"""
 
             module U2 =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Case2
+                [<Interface>]
+                type Case2 =
+                    abstract member anchor: float with get, set
+                    abstract member head: float option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        anchor: float,
-                        ?head: float
-                    ) =
-
-                    member val anchor : float = nativeOnly with get, set
-                    member val head : float option = nativeOnly with get, set
+                    static member Create (anchor: float, ?head: float) : Case2 = nativeOnly
 
     module EditorStateConfig =
 
@@ -2424,155 +2338,128 @@ RangeSet.empty = $0"""
 
             module U2 =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Case2
+                [<Interface>]
+                type Case2 =
+                    abstract member anchor: float with get, set
+                    abstract member head: float option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        anchor: float,
-                        ?head: float
-                    ) =
-
-                    member val anchor : float = nativeOnly with get, set
-                    member val head : float option = nativeOnly with get, set
+                    static member Create (anchor: float, ?head: float) : Case2 = nativeOnly
 
     module EditorState =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type changeByRange
+        [<Interface>]
+        type changeByRange =
+            abstract member changes: CodemirrorState.ChangeSet with get, set
+            abstract member selection: CodemirrorState.EditorSelection with get, set
+            abstract member effects: ReadonlyArray<CodemirrorState.StateEffect<obj>> with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                changes: CodemirrorState.ChangeSet,
-                selection: CodemirrorState.EditorSelection,
-                effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>
-            ) =
-
-            member val changes : CodemirrorState.ChangeSet = nativeOnly with get, set
-            member val selection : CodemirrorState.EditorSelection = nativeOnly with get, set
-            member val effects : ReadonlyArray<CodemirrorState.StateEffect<obj>> = nativeOnly with get, set
+            static member Create (changes: CodemirrorState.ChangeSet, selection: CodemirrorState.EditorSelection, effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) : changeByRange = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
-        type phrases =
+        type phrases__ =
             [<EmitIndexer>]
             abstract member Item: key: string -> string with get, set
 
-        type languageData =
-            delegate of state: CodemirrorState.EditorState * pos: float * side: EditorState.languageData.side -> ReadonlyArray<EditorState.languageData.ReturnType>
+        type languageData__ =
+            delegate of state: CodemirrorState.EditorState * pos: float * side: EditorState.languageData__.side -> ReadonlyArray<EditorState.languageData__.ReturnType>
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type transactionExtender
-            [<ParamObject; Emit("$0")>]
-            () =
-
-            [<ParamObject; Emit("$0")>]
-            new (annotations: CodemirrorState.Annotation<obj>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (effects: CodemirrorState.StateEffect<obj>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (effects: CodemirrorState.StateEffect<obj>, annotations: CodemirrorState.Annotation<obj>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (effects: CodemirrorState.StateEffect<obj>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) =
-                transactionExtender()
-
-            [<ParamObject; Emit("$0")>]
-            new (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) =
-                transactionExtender()
-
+        [<Interface>]
+        type transactionExtender__ =
             /// <summary>
             /// Attach [state effects](https://codemirror.net/6/docs/ref/#state.StateEffect) to this transaction.
             /// Again, when they contain positions and this same spec makes
             /// changes, those positions should refer to positions in the
             /// updated document.
             /// </summary>
-            member val effects : U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option = nativeOnly with get, set
+            abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
             /// <summary>
             /// Set [annotations](https://codemirror.net/6/docs/ref/#state.Annotation) for this transaction.
             /// </summary>
-            member val annotations : U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>> option = nativeOnly with get, set
+            abstract member annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create () : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: CodemirrorState.StateEffect<obj>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type transactionExtender___1 =
+            /// <summary>
+            /// Attach [state effects](https://codemirror.net/6/docs/ref/#state.StateEffect) to this transaction.
+            /// Again, when they contain positions and this same spec makes
+            /// changes, those positions should refer to positions in the
+            /// updated document.
+            /// </summary>
+            abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
+            /// <summary>
+            /// Set [annotations](https://codemirror.net/6/docs/ref/#state.Annotation) for this transaction.
+            /// </summary>
+            abstract member annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create () : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (annotations: CodemirrorState.Annotation<obj>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: CodemirrorState.StateEffect<obj>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender___1 = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender___1 = nativeOnly
 
         module changeByRange =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type f
-                private () =
-
+            [<Interface>]
+            type f =
+                abstract member range: CodemirrorState.SelectionRange with get, set
+                abstract member changes: CodemirrorState.ChangeSpec option with get, set
+                abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
                 [<ParamObject; Emit("$0")>]
-                new (range: CodemirrorState.SelectionRange, ?changes: CodemirrorState.ChangeSpec) =
-                    f()
-
+                static member Create (range: CodemirrorState.SelectionRange, ?changes: CodemirrorState.ChangeSpec) : f = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (range: CodemirrorState.SelectionRange, effects: CodemirrorState.StateEffect<obj>, ?changes: CodemirrorState.ChangeSpec) =
-                    f()
-
+                static member Create (range: CodemirrorState.SelectionRange, effects: CodemirrorState.StateEffect<obj>, ?changes: CodemirrorState.ChangeSpec) : f = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                new (range: CodemirrorState.SelectionRange, effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, ?changes: CodemirrorState.ChangeSpec) =
-                    f()
-
-                member val range : CodemirrorState.SelectionRange = nativeOnly with get, set
-                member val changes : CodemirrorState.ChangeSpec option = nativeOnly with get, set
-                member val effects : U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option = nativeOnly with get, set
-
-        module changes =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type spec
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (from: float, ?``to``: float) =
-                    spec()
-
-                [<ParamObject; Emit("$0")>]
-                new (from: float, insert: string, ?``to``: float) =
-                    spec()
-
-                [<ParamObject; Emit("$0")>]
-                new (from: float, insert: CodemirrorState.Text, ?``to``: float) =
-                    spec()
-
-                member val from : float = nativeOnly with get, set
-                member val ``to`` : float option = nativeOnly with get, set
-                member val insert : U2<string, CodemirrorState.Text> option = nativeOnly with get, set
+                static member Create (range: CodemirrorState.SelectionRange, effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, ?changes: CodemirrorState.ChangeSpec) : f = nativeOnly
 
         module facet =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type facet<'Output>
-                [<ParamObject; Emit("$0")>]
-                (
-                    tag: 'Output
-                ) =
-
+            [<Interface>]
+            type facet<'Output> =
                 /// <summary>
                 /// Dummy tag that makes sure TypeScript doesn't consider all object
                 /// types as conforming to this type. Not actually present on the
                 /// object.
                 /// </summary>
-                member val tag : 'Output = nativeOnly with get, set
+                abstract member tag: 'Output with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (tag: 'Output) : facet<'Output> = nativeOnly
 
         module toJSON =
 
@@ -2582,7 +2469,7 @@ RangeSet.empty = $0"""
                 [<EmitIndexer>]
                 abstract member Item: prop: string -> CodemirrorState.StateField<obj> with get, set
 
-        module fromJSON =
+        module fromJSON__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -2590,7 +2477,7 @@ RangeSet.empty = $0"""
                 [<EmitIndexer>]
                 abstract member Item: prop: string -> CodemirrorState.StateField<obj> with get, set
 
-        module languageData =
+        module languageData__ =
 
             [<RequireQualifiedAccess>]
             type side =
@@ -2614,17 +2501,13 @@ RangeSet.empty = $0"""
 
     module StateCommand =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type target
+        [<Interface>]
+        type target =
+            abstract member state: CodemirrorState.EditorState with get, set
+            abstract member dispatch: (CodemirrorState.Transaction -> unit) with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                state: CodemirrorState.EditorState,
-                dispatch: (CodemirrorState.Transaction -> unit)
-            ) =
-
-            member val state : CodemirrorState.EditorState = nativeOnly with get, set
-            member val dispatch : (CodemirrorState.Transaction -> unit) = nativeOnly with get, set
+            static member Create (state: CodemirrorState.EditorState, dispatch: (CodemirrorState.Transaction -> unit)) : target = nativeOnly
 
     module RangeSetUpdate =
 
@@ -2635,45 +2518,38 @@ RangeSet.empty = $0"""
 
         module update =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type updateSpec<'U>
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?add: ReadonlyArray<CodemirrorState.Range<'U>>,
-                    ?sort: bool,
-                    ?filter: RangeSet.update.updateSpec.filter<'U>,
-                    ?filterFrom: float,
-                    ?filterTo: float
-                ) =
-
+            [<Interface>]
+            type updateSpec<'U> =
                 /// <summary>
                 /// An array of ranges to add. If given, this should be sorted by
                 /// <c>from</c> position and <c>startSide</c> unless
                 /// [<c>sort</c>](https://codemirror.net/6/docs/ref/#state.RangeSet.update^updateSpec.sort) is given as
                 /// <c>true</c>.
                 /// </summary>
-                member val add : ReadonlyArray<CodemirrorState.Range<'U>> option = nativeOnly with get, set
+                abstract member add: ReadonlyArray<CodemirrorState.Range<'U>> option with get, set
                 /// <summary>
                 /// Indicates whether the library should sort the ranges in <c>add</c>.
                 /// Defaults to <c>false</c>.
                 /// </summary>
-                member val sort : bool option = nativeOnly with get, set
+                abstract member sort: bool option with get, set
                 /// <summary>
                 /// Filter the ranges already in the set. Only those for which this
                 /// function returns <c>true</c> are kept.
                 /// </summary>
-                member val filter : RangeSet.update.updateSpec.filter<'U> option = nativeOnly with get, set
+                abstract member filter: RangeSet.update.updateSpec.filter<'U> option with get, set
                 /// <summary>
                 /// Can be used to limit the range on which the filter is
                 /// applied. Filtering only a small range, as opposed to the entire
                 /// set, can make updates cheaper.
                 /// </summary>
-                member val filterFrom : float option = nativeOnly with get, set
+                abstract member filterFrom: float option with get, set
                 /// <summary>
                 /// The end position to apply the filter to.
                 /// </summary>
-                member val filterTo : float option = nativeOnly with get, set
+                abstract member filterTo: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?add: ReadonlyArray<CodemirrorState.Range<'U>>, ?sort: bool, ?filter: RangeSet.update.updateSpec.filter<'U>, ?filterFrom: float, ?filterTo: float) : updateSpec<'U> = nativeOnly
 
             module updateSpec =
 
@@ -2688,50 +2564,43 @@ RangeSet.empty = $0"""
     module Exports =
 
         [<RequireQualifiedAccess>]
-        type codePointSize =
+        type codePointSize__ =
             | ``1`` = 1
             | ``2`` = 2
 
-        module Prec =
+        module Prec__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type Type
-                [<ParamObject; Emit("$0")>]
-                (
-                    highest: (CodemirrorState.Extension -> CodemirrorState.Extension),
-                    high: (CodemirrorState.Extension -> CodemirrorState.Extension),
-                    ``default``: (CodemirrorState.Extension -> CodemirrorState.Extension),
-                    low: (CodemirrorState.Extension -> CodemirrorState.Extension),
-                    lowest: (CodemirrorState.Extension -> CodemirrorState.Extension)
-                ) =
-
+            [<Interface>]
+            type Type =
                 /// <summary>
                 /// The highest precedence level, for extensions that should end up
                 /// near the start of the precedence ordering.
                 /// </summary>
-                member val highest : (CodemirrorState.Extension -> CodemirrorState.Extension) = nativeOnly with get, set
+                abstract member highest: (CodemirrorState.Extension -> CodemirrorState.Extension) with get, set
                 /// <summary>
                 /// A higher-than-default precedence, for extensions that should
                 /// come before those with default precedence.
                 /// </summary>
-                member val high : (CodemirrorState.Extension -> CodemirrorState.Extension) = nativeOnly with get, set
+                abstract member high: (CodemirrorState.Extension -> CodemirrorState.Extension) with get, set
                 /// <summary>
                 /// The default precedence, which is also used for extensions
                 /// without an explicit precedence.
                 /// </summary>
-                member val ``default`` : (CodemirrorState.Extension -> CodemirrorState.Extension) = nativeOnly with get, set
+                abstract member ``default``: (CodemirrorState.Extension -> CodemirrorState.Extension) with get, set
                 /// <summary>
                 /// A lower-than-default precedence.
                 /// </summary>
-                member val low : (CodemirrorState.Extension -> CodemirrorState.Extension) = nativeOnly with get, set
+                abstract member low: (CodemirrorState.Extension -> CodemirrorState.Extension) with get, set
                 /// <summary>
                 /// The lowest precedence level. Meant for things that should end up
                 /// near the end of the extension order.
                 /// </summary>
-                member val lowest : (CodemirrorState.Extension -> CodemirrorState.Extension) = nativeOnly with get, set
+                abstract member lowest: (CodemirrorState.Extension -> CodemirrorState.Extension) with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (highest: (CodemirrorState.Extension -> CodemirrorState.Extension), high: (CodemirrorState.Extension -> CodemirrorState.Extension), ``default``: (CodemirrorState.Extension -> CodemirrorState.Extension), low: (CodemirrorState.Extension -> CodemirrorState.Extension), lowest: (CodemirrorState.Extension -> CodemirrorState.Extension)) : Type = nativeOnly
 
-        module combineConfig =
+        module combineConfig__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -2747,7 +2616,7 @@ RangeSet.empty = $0"""
             [<Interface>]
             type combine =
                 [<EmitIndexer>]
-                abstract member Item: key: string -> Exports.combineConfig.combine.Item with get, set
+                abstract member Item: key: string -> Exports.combineConfig__.combine.Item with get, set
 
             module combine =
 
@@ -2877,7 +2746,7 @@ module CodemirrorView =
         /// [range](https://codemirror.net/6/docs/ref/#state.SelectionRange) per line.
         /// </summary>
         [<Import("rectangularSelection", "@codemirror/view")>]
-        static member rectangularSelection (?options: Exports.rectangularSelection.options) : CodemirrorState.Extension = nativeOnly
+        static member rectangularSelection (?options: Exports.rectangularSelection__.options) : CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// Returns an extension that turns the pointer cursor into a
         /// crosshair when a given modifier key, defaulting to Alt, is held
@@ -2886,12 +2755,12 @@ module CodemirrorView =
         /// [<c>rectangularSelection</c>](https://codemirror.net/6/docs/ref/#view.rectangularSelection).
         /// </summary>
         [<Import("crosshairCursor", "@codemirror/view")>]
-        static member crosshairCursor (?options: Exports.crosshairCursor.options) : CodemirrorState.Extension = nativeOnly
+        static member crosshairCursor (?options: Exports.crosshairCursor__.options) : CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// Creates an extension that configures tooltip behavior.
         /// </summary>
         [<Import("tooltips", "@codemirror/view")>]
-        static member tooltips (?config: Exports.tooltips.config) : CodemirrorState.Extension = nativeOnly
+        static member tooltips (?config: Exports.tooltips__.config) : CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// Facet to which an extension can add a value to show a tooltip.
         /// </summary>
@@ -2916,7 +2785,7 @@ module CodemirrorView =
         /// extension.
         /// </summary>
         [<Import("hoverTooltip", "@codemirror/view")>]
-        static member hoverTooltip (source: CodemirrorView.HoverTooltipSource, ?options: Exports.hoverTooltip.options) : obj = nativeOnly
+        static member hoverTooltip (source: CodemirrorView.HoverTooltipSource, ?options: Exports.hoverTooltip__.options) : obj = nativeOnly
         /// <summary>
         /// Activate hover tooltips for the given position and side. If you
         /// provide a specific hover tooltip (the value returned from
@@ -2930,7 +2799,7 @@ module CodemirrorView =
         /// to deactivate them.
         /// </summary>
         [<Import("activateHover", "@codemirror/view")>]
-        static member activateHover (view: CodemirrorView.EditorView, pos: float, side: Exports.activateHover.side, ?options: Exports.activateHover.options) : unit = nativeOnly
+        static member activateHover (view: CodemirrorView.EditorView, pos: float, side: Exports.activateHover__.side, ?options: Exports.activateHover__.options) : unit = nativeOnly
         /// <summary>
         /// Get the active tooltip view for a given tooltip, if available.
         /// </summary>
@@ -2990,7 +2859,7 @@ module CodemirrorView =
         /// transaction right after.
         /// </summary>
         [<Import("showDialog", "@codemirror/view")>]
-        static member showDialog (view: CodemirrorView.EditorView, config: CodemirrorView.DialogConfig) : Exports.showDialog = nativeOnly
+        static member showDialog (view: CodemirrorView.EditorView, config: CodemirrorView.DialogConfig) : Exports.showDialog__ = nativeOnly
         /// <summary>
         /// Find the [<c>Panel</c>](https://codemirror.net/6/docs/ref/#view.Panel) for an open dialog, using a class
         /// name as identifier.
@@ -3011,7 +2880,7 @@ module CodemirrorView =
         /// Should not provide widgets with a <c>toDOM</c> method.
         /// </summary>
         [<Import("gutterWidgetClass", "@codemirror/view")>]
-        static member inline gutterWidgetClass: CodemirrorState.Facet<Exports.gutterWidgetClass.Type, ReadonlyArray<Exports.gutterWidgetClass.Type>> = nativeOnly
+        static member inline gutterWidgetClass: CodemirrorState.Facet<Exports.gutterWidgetClass__.Type, ReadonlyArray<Exports.gutterWidgetClass__.Type>> = nativeOnly
         /// <summary>
         /// Define an editor gutter. The order in which the gutters appear is
         /// determined by their extension priority.
@@ -3029,7 +2898,7 @@ module CodemirrorView =
         /// sticky</c>](https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky)).
         /// </summary>
         [<Import("gutters", "@codemirror/view")>]
-        static member gutters (?config: Exports.gutters.config) : CodemirrorState.Extension = nativeOnly
+        static member gutters (?config: Exports.gutters__.config) : CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// Facet used to provide markers to the line number gutter.
         /// </summary>
@@ -3039,7 +2908,7 @@ module CodemirrorView =
         /// Facet used to create markers in the line number gutter next to widgets.
         /// </summary>
         [<Import("lineNumberWidgetMarker", "@codemirror/view")>]
-        static member inline lineNumberWidgetMarker: CodemirrorState.Facet<Exports.lineNumberWidgetMarker.Type, ReadonlyArray<Exports.lineNumberWidgetMarker.Type>> = nativeOnly
+        static member inline lineNumberWidgetMarker: CodemirrorState.Facet<Exports.lineNumberWidgetMarker__.Type, ReadonlyArray<Exports.lineNumberWidgetMarker__.Type>> = nativeOnly
         /// <summary>
         /// Create a line number gutter extension.
         /// </summary>
@@ -3463,31 +3332,26 @@ Decoration.none"""
 import { Decoration } from "@codemirror/view";
 Decoration.none = $0"""
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type BlockWrapperSpec
-        [<ParamObject; Emit("$0")>]
-        (
-            tagName: string,
-            ?attributes: BlockWrapperSpec.attributes,
-            ?rank: float
-        ) =
-
+    [<Interface>]
+    type BlockWrapperSpec =
         /// <summary>
         /// Tag name of the wrapping element.
         /// </summary>
-        member val tagName : string = nativeOnly with get, set
+        abstract member tagName: string with get, set
         /// <summary>
         /// DOM attributes to add to the wrapping element.
         /// </summary>
-        member val attributes : BlockWrapperSpec.attributes option = nativeOnly with get, set
+        abstract member attributes: BlockWrapperSpec.attributes option with get, set
         /// <summary>
         /// When multiple overlapping block wrappers are produced by the
         /// same source, this determines their relative precedence. Lower
         /// rank wrappers are nested inside higher-rank ones. Should be
         /// a number between 0 and 100.
         /// </summary>
-        member val rank : float option = nativeOnly with get, set
+        abstract member rank: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (tagName: string, ?attributes: BlockWrapperSpec.attributes, ?rank: float) : BlockWrapperSpec = nativeOnly
 
     /// <summary>
     /// A block wrapper defines a DOM node that wraps lines or other block
@@ -3641,7 +3505,7 @@ BlockWrapper.set($0, $1)"""
         /// Define a plugin from a constructor function that creates the
         /// plugin's value, given an editor view.
         /// </summary>
-        static member inline define (create: ViewPlugin.define.create<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> =
+        static member inline define (create: ViewPlugin.define__.create<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> =
             emitJsExpr (create, spec) $$"""
 import { ViewPlugin } from "@codemirror/view";
 ViewPlugin.define($0, $1)"""
@@ -3649,7 +3513,7 @@ ViewPlugin.define($0, $1)"""
         /// Create a plugin for a class whose constructor takes a single
         /// editor view as argument.
         /// </summary>
-        static member inline fromClass (cls: ViewPlugin.fromClass.cls<'V>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> =
+        static member inline fromClass (cls: ViewPlugin.fromClass__.cls<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> =
             emitJsExpr (cls, spec) $$"""
 import { ViewPlugin } from "@codemirror/view";
 ViewPlugin.fromClass($0, $1)"""
@@ -3831,53 +3695,23 @@ ViewPlugin.fromClass($0, $1)"""
     /// The type of object given to the [<c>EditorView</c>](https://codemirror.net/6/docs/ref/#view.EditorView)
     /// constructor.
     /// </summary>
-    [<Global>]
     [<AllowNullLiteral>]
-    type EditorViewConfig
-        [<ParamObject; Emit("$0")>]
-        (
-            ?doc: U2<string, CodemirrorState.Text>,
-            ?selection: U2<CodemirrorState.EditorSelection, EditorViewConfig.selection.U2.Case2>,
-            ?extensions: CodemirrorState.Extension,
-            ?state: CodemirrorState.EditorState,
-            ?parent: U2<Glutinum.Web.Element, Glutinum.Web.DocumentFragment>,
-            ?root: U2<Glutinum.Web.Document, Glutinum.Web.ShadowRoot>,
-            ?scrollTo: CodemirrorState.StateEffect<obj>,
-            ?dispatchTransactions: EditorViewConfig.dispatchTransactions,
-            ?dispatch: EditorViewConfig.dispatch
-        ) =
-
-        /// <summary>
-        /// The initial document. Defaults to an empty document. Can be
-        /// provided either as a plain string (which will be split into
-        /// lines according to the value of the [<c>lineSeparator</c>
-        /// facet](https://codemirror.net/6/docs/ref/#state.EditorState^lineSeparator)), or an instance of
-        /// the [<c>Text</c>](https://codemirror.net/6/docs/ref/#state.Text) class (which is what the state will use
-        /// to represent the document).
-        /// </summary>
-        member val doc : U2<string, CodemirrorState.Text> option = nativeOnly with get, set
-        /// <summary>
-        /// The starting selection. Defaults to a cursor at the very start
-        /// of the document.
-        /// </summary>
-        member val selection : U2<CodemirrorState.EditorSelection, EditorViewConfig.selection.U2.Case2> option = nativeOnly with get, set
-        /// <summary>
-        /// [Extension(s)](https://codemirror.net/6/docs/ref/#state.Extension) to associate with this state.
-        /// </summary>
-        member val extensions : CodemirrorState.Extension option = nativeOnly with get, set
+    [<Interface>]
+    type EditorViewConfig =
+        inherit CodemirrorState.EditorStateConfig
         /// <summary>
         /// The view's initial state. If not given, a new state is created
         /// by passing this configuration object to
         /// [<c>EditorState.create</c>](https://codemirror.net/6/docs/ref/#state.EditorState^create), using its
         /// <c>doc</c>, <c>selection</c>, and <c>extensions</c> field (if provided).
         /// </summary>
-        member val state : CodemirrorState.EditorState option = nativeOnly with get, set
+        abstract member state: CodemirrorState.EditorState option with get, set
         /// <summary>
         /// When given, the editor is immediately appended to the given
         /// element on creation. (Otherwise, you'll have to place the view's
         /// [<c>dom</c>](https://codemirror.net/6/docs/ref/#view.EditorView.dom) element in the document yourself.)
         /// </summary>
-        member val parent : U2<Glutinum.Web.Element, Glutinum.Web.DocumentFragment> option = nativeOnly with get, set
+        abstract member parent: U2<Glutinum.Web.Element, Glutinum.Web.DocumentFragment> option with get, set
         /// <summary>
         /// If the view is going to be mounted in a shadow root or document
         /// other than the one held by the global variable <c>document</c> (the
@@ -3885,27 +3719,29 @@ ViewPlugin.fromClass($0, $1)"""
         /// not this option, the editor will automatically look up a root
         /// from the parent.
         /// </summary>
-        member val root : U2<Glutinum.Web.Document, Glutinum.Web.ShadowRoot> option = nativeOnly with get, set
+        abstract member root: U2<Glutinum.Web.Document, Glutinum.Web.ShadowRoot> option with get, set
         /// <summary>
         /// Pass an effect created with
         /// [<c>EditorView.scrollIntoView</c>](https://codemirror.net/6/docs/ref/#view.EditorView^scrollIntoView) or
         /// [<c>EditorView.scrollSnapshot</c>](https://codemirror.net/6/docs/ref/#view.EditorView.scrollSnapshot)
         /// here to set an initial scroll position.
         /// </summary>
-        member val scrollTo : CodemirrorState.StateEffect<obj> option = nativeOnly with get, set
+        abstract member scrollTo: CodemirrorState.StateEffect<obj> option with get, set
         /// <summary>
         /// Override the way transactions are
         /// [dispatched](https://codemirror.net/6/docs/ref/#view.EditorView.dispatch) for this editor view.
         /// Your implementation, if provided, should probably call the
         /// view's [<c>update</c> method](https://codemirror.net/6/docs/ref/#view.EditorView.update).
         /// </summary>
-        member val dispatchTransactions : EditorViewConfig.dispatchTransactions option = nativeOnly with get, set
+        abstract member dispatchTransactions: EditorViewConfig.dispatchTransactions option with get, set
         /// <summary>
         /// *Deprecated** single-transaction version of
         /// <c>dispatchTransactions</c>. Will force transactions to be dispatched
         /// one at a time when used.
         /// </summary>
-        member val dispatch : EditorViewConfig.dispatch option = nativeOnly with get, set
+        abstract member dispatch: EditorViewConfig.dispatch option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?doc: U2<string, CodemirrorState.Text>, ?selection: U2<CodemirrorState.EditorSelection, EditorViewConfig.selection.U2.Case2>, ?extensions: CodemirrorState.Extension, ?state: CodemirrorState.EditorState, ?parent: U2<Glutinum.Web.Element, Glutinum.Web.DocumentFragment>, ?root: U2<Glutinum.Web.Document, Glutinum.Web.ShadowRoot>, ?scrollTo: CodemirrorState.StateEffect<obj>, ?dispatchTransactions: EditorViewConfig.dispatchTransactions, ?dispatch: EditorViewConfig.dispatch) : EditorViewConfig = nativeOnly
 
     /// <summary>
     /// An editor view represents the editor's user interface. It holds
@@ -4193,7 +4029,7 @@ ViewPlugin.fromClass($0, $1)"""
         /// argument, in which case it'll return an estimated position that
         /// would be near the coordinates if it were rendered.
         /// </summary>
-        abstract member posAtCoords: coords: EditorView.posAtCoords.coords -> float option
+        abstract member posAtCoords: coords: EditorView.posAtCoords.coords_1 -> float option
         /// <summary>
         /// Like [<c>posAtCoords</c>](https://codemirror.net/6/docs/ref/#view.EditorView.posAtCoords), but also
         /// returns which side of the position the coordinates are closest
@@ -4211,7 +4047,7 @@ ViewPlugin.fromClass($0, $1)"""
         /// returned, with <c>assoc</c> 1, whereas on the right side, you'd get
         /// the position after the character, with <c>assoc</c> -1.
         /// </summary>
-        abstract member posAndSideAtCoords: coords: EditorView.posAndSideAtCoords.coords -> EditorView.posAndSideAtCoords option
+        abstract member posAndSideAtCoords: coords: EditorView.posAndSideAtCoords.coords_1 -> EditorView.posAndSideAtCoords_1 option
         /// <summary>
         /// Get the screen coordinates at the given document position.
         /// <c>side</c> determines whether the coordinates are based on the
@@ -4301,7 +4137,7 @@ ViewPlugin.fromClass($0, $1)"""
         /// [added](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) to a transaction to
         /// cause it to scroll the given position or range into view.
         /// </summary>
-        static member inline scrollIntoView (pos: float, ?options: EditorView.scrollIntoView.options): CodemirrorState.StateEffect<obj> =
+        static member inline scrollIntoView (pos: float, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> =
             emitJsExpr (pos, options) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.scrollIntoView($0, $1)"""
@@ -4310,7 +4146,7 @@ EditorView.scrollIntoView($0, $1)"""
         /// [added](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) to a transaction to
         /// cause it to scroll the given position or range into view.
         /// </summary>
-        static member inline scrollIntoView (pos: CodemirrorState.SelectionRange, ?options: EditorView.scrollIntoView.options): CodemirrorState.StateEffect<obj> =
+        static member inline scrollIntoView (pos: CodemirrorState.SelectionRange, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> =
             emitJsExpr (pos, options) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.scrollIntoView($0, $1)"""
@@ -4391,7 +4227,7 @@ EditorView.styleModule = $0"""
         /// editor's [scroll element](https://codemirror.net/6/docs/ref/#view.EditorView.scrollDOM) or one of
         /// its parent nodes is scrolled.
         /// </summary>
-        static member inline domEventHandlers (handlers: EditorView.domEventHandlers.handlers): CodemirrorState.Extension =
+        static member inline domEventHandlers (handlers: EditorView.domEventHandlers__.handlers): CodemirrorState.Extension =
             emitJsExpr (handlers) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.domEventHandlers($0)"""
@@ -4403,7 +4239,7 @@ EditorView.domEventHandlers($0)"""
         /// and observers from running when they return true, and should not
         /// call <c>preventDefault</c>.
         /// </summary>
-        static member inline domEventObservers (observers: EditorView.domEventObservers.observers): CodemirrorState.Extension =
+        static member inline domEventObservers (observers: EditorView.domEventObservers__.observers): CodemirrorState.Extension =
             emitJsExpr (observers) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.domEventObservers($0)"""
@@ -4419,11 +4255,11 @@ EditorView.domEventObservers($0)"""
         /// dispatching the custom behavior as a separate transaction.
         /// </summary>
         static member inline inputHandler
-            with get () : CodemirrorState.Facet<EditorView.inputHandler, ReadonlyArray<EditorView.inputHandler>> =
+            with get () : CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__>> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.inputHandler"""
-            and set (value: CodemirrorState.Facet<EditorView.inputHandler, ReadonlyArray<EditorView.inputHandler>>) =
+            and set (value: CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__>>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.inputHandler = $0"""
@@ -4432,11 +4268,11 @@ EditorView.inputHandler = $0"""
         /// pasted or dropped into the editor.
         /// </summary>
         static member inline clipboardInputFilter
-            with get () : CodemirrorState.Facet<EditorView.clipboardInputFilter, ReadonlyArray<EditorView.clipboardInputFilter>> =
+            with get () : CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__>> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.clipboardInputFilter"""
-            and set (value: CodemirrorState.Facet<EditorView.clipboardInputFilter, ReadonlyArray<EditorView.clipboardInputFilter>>) =
+            and set (value: CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__>>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.clipboardInputFilter = $0"""
@@ -4444,11 +4280,11 @@ EditorView.clipboardInputFilter = $0"""
         /// Transform text copied or dragged from the editor.
         /// </summary>
         static member inline clipboardOutputFilter
-            with get () : CodemirrorState.Facet<EditorView.clipboardOutputFilter, ReadonlyArray<EditorView.clipboardOutputFilter>> =
+            with get () : CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__>> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.clipboardOutputFilter"""
-            and set (value: CodemirrorState.Facet<EditorView.clipboardOutputFilter, ReadonlyArray<EditorView.clipboardOutputFilter>>) =
+            and set (value: CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__>>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.clipboardOutputFilter = $0"""
@@ -4459,11 +4295,11 @@ EditorView.clipboardOutputFilter = $0"""
         /// applied. Scroll handlers should never initiate editor updates.
         /// </summary>
         static member inline scrollHandler
-            with get () : CodemirrorState.Facet<EditorView.scrollHandler, ReadonlyArray<EditorView.scrollHandler>> =
+            with get () : CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler___1>> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.scrollHandler"""
-            and set (value: CodemirrorState.Facet<EditorView.scrollHandler, ReadonlyArray<EditorView.scrollHandler>>) =
+            and set (value: CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler___1>>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.scrollHandler = $0"""
@@ -4472,11 +4308,11 @@ EditorView.scrollHandler = $0"""
         /// to be dispatched when the editor's focus state changes.
         /// </summary>
         static member inline focusChangeEffect
-            with get () : CodemirrorState.Facet<EditorView.focusChangeEffect, ReadonlyArray<EditorView.focusChangeEffect>> =
+            with get () : CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__>> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.focusChangeEffect"""
-            and set (value: CodemirrorState.Facet<EditorView.focusChangeEffect, ReadonlyArray<EditorView.focusChangeEffect>>) =
+            and set (value: CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__>>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.focusChangeEffect = $0"""
@@ -4690,11 +4526,11 @@ EditorView.bidiIsolatedRanges = $0"""
         /// axes. Defaults to 5 pixels on both axes.
         /// </summary>
         static member inline cursorScrollMargin
-            with get () : CodemirrorState.Facet<U2<float, EditorView.cursorScrollMargin.U2.Case2>, EditorView.cursorScrollMargin> =
+            with get () : CodemirrorState.Facet<U2<float, EditorView.cursorScrollMargin__.U2.Case2>, EditorView.cursorScrollMargin__> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.cursorScrollMargin"""
-            and set (value: CodemirrorState.Facet<U2<float, EditorView.cursorScrollMargin.U2.Case2>, EditorView.cursorScrollMargin>) =
+            and set (value: CodemirrorState.Facet<U2<float, EditorView.cursorScrollMargin__.U2.Case2>, EditorView.cursorScrollMargin__>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.cursorScrollMargin = $0"""
@@ -4707,11 +4543,11 @@ EditorView.cursorScrollMargin = $0"""
         /// [<c>cursorScrollMargin</c>](https://codemirror.net/6/docs/ref/#view.EditorView^cursorScrollMargin).
         /// </summary>
         static member inline scrollMargins
-            with get () : CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins option)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option)>> =
                 emitJsExpr () $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.scrollMargins"""
-            and set (value: CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins option)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option)>>) =
                 emitJsExpr (value) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.scrollMargins = $0"""
@@ -4733,7 +4569,7 @@ EditorView.scrollMargins = $0"""
         /// themes](https://codemirror.net/6/docs/ref/#view.EditorView^baseTheme) to be used (as opposed to
         /// <c>&light</c> when a light theme is active).
         /// </summary>
-        static member inline theme (spec: EditorView.theme.spec, ?options: EditorView.theme.options): CodemirrorState.Extension =
+        static member inline theme (spec: EditorView.theme__.spec, ?options: EditorView.theme__.options): CodemirrorState.Extension =
             emitJsExpr (spec, options) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.theme($0, $1)"""
@@ -4759,7 +4595,7 @@ EditorView.darkTheme = $0"""
         /// that. You can also use <c>&dark</c> or <c>&light</c> instead to only
         /// target editors with a dark or light theme.
         /// </summary>
-        static member inline baseTheme (spec: EditorView.baseTheme.spec): CodemirrorState.Extension =
+        static member inline baseTheme (spec: EditorView.baseTheme__.spec): CodemirrorState.Extension =
             emitJsExpr (spec) $$"""
 import { EditorView } from "@codemirror/view";
 EditorView.baseTheme($0)"""
@@ -4956,16 +4792,9 @@ EditorView.findFromDOM($0)"""
         /// </summary>
         abstract member iosSelectionHandles: bool option with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type SpecialCharConfig
-        [<ParamObject; Emit("$0")>]
-        (
-            ?render: SpecialCharConfig.render,
-            ?specialChars: RegExp,
-            ?addSpecialChars: RegExp
-        ) =
-
+    [<Interface>]
+    type SpecialCharConfig =
         /// <summary>
         /// An optional function that renders the placeholder elements.
         ///
@@ -4981,17 +4810,19 @@ EditorView.findFromDOM($0)"""
         /// The given placeholder string is a suggestion for how to display
         /// the character visually.
         /// </summary>
-        member val render : SpecialCharConfig.render option = nativeOnly with get, set
+        abstract member render: SpecialCharConfig.render option with get, set
         /// <summary>
         /// Regular expression that matches the special characters to
         /// highlight. Must have its 'g'/global flag set.
         /// </summary>
-        member val specialChars : RegExp option = nativeOnly with get, set
+        abstract member specialChars: RegExp option with get, set
         /// <summary>
         /// Regular expression that can be used to add characters to the
         /// default set of characters to highlight.
         /// </summary>
-        member val addSpecialChars : RegExp option = nativeOnly with get, set
+        abstract member addSpecialChars: RegExp option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?render: SpecialCharConfig.render, ?specialChars: RegExp, ?addSpecialChars: RegExp) : SpecialCharConfig = nativeOnly
 
     /// <summary>
     /// Markers shown in a [layer](https://codemirror.net/6/docs/ref/#view.layer) must conform to this
@@ -5368,89 +5199,73 @@ RectangleMarker.forRange($0, $1, $2)"""
         [<EmitIndexer>]
         abstract member Item: event: string -> Handlers.Item with get, set
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type GutterConfig
-        [<ParamObject; Emit("$0")>]
-        (
-            ?``class``: string,
-            ?renderEmptyElements: bool,
-            ?markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ReadonlyArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>),
-            ?lineMarker: GutterConfig.lineMarker,
-            ?widgetMarker: GutterConfig.widgetMarker,
-            ?lineMarkerChange: (CodemirrorView.ViewUpdate -> bool),
-            ?initialSpacer: (CodemirrorView.EditorView -> CodemirrorView.GutterMarker),
-            ?updateSpacer: GutterConfig.updateSpacer,
-            ?domEventHandlers: CodemirrorView.Handlers,
-            ?side: GutterConfig.side
-        ) =
-
+    [<Interface>]
+    type GutterConfig =
         /// <summary>
         /// An extra CSS class to be added to the wrapper (<c>cm-gutter</c>)
         /// element.
         /// </summary>
-        member val ``class`` : string option = nativeOnly with get, set
+        abstract member ``class``: string option with get, set
         /// <summary>
         /// Controls whether empty gutter elements should be rendered.
         /// Defaults to false.
         /// </summary>
-        member val renderEmptyElements : bool option = nativeOnly with get, set
+        abstract member renderEmptyElements: bool option with get, set
         /// <summary>
         /// Retrieve a set of markers to use in this gutter.
         /// </summary>
-        member val markers : (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ReadonlyArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>) option = nativeOnly with get, set
+        abstract member markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ReadonlyArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>) option with get, set
         /// <summary>
         /// Can be used to optionally add a single marker to every line.
         /// </summary>
-        member val lineMarker : GutterConfig.lineMarker option = nativeOnly with get, set
+        abstract member lineMarker: GutterConfig.lineMarker option with get, set
         /// <summary>
         /// Associate markers with block widgets in the document.
         /// </summary>
-        member val widgetMarker : GutterConfig.widgetMarker option = nativeOnly with get, set
+        abstract member widgetMarker: GutterConfig.widgetMarker option with get, set
         /// <summary>
         /// If line or widget markers depend on additional state, and should
         /// be updated when that changes, pass a predicate here that checks
         /// whether a given view update might change the line markers.
         /// </summary>
-        member val lineMarkerChange : (CodemirrorView.ViewUpdate -> bool) option = nativeOnly with get, set
+        abstract member lineMarkerChange: (CodemirrorView.ViewUpdate -> bool) option with get, set
         /// <summary>
         /// Add a hidden spacer element that gives the gutter its base
         /// width.
         /// </summary>
-        member val initialSpacer : (CodemirrorView.EditorView -> CodemirrorView.GutterMarker) option = nativeOnly with get, set
+        abstract member initialSpacer: (CodemirrorView.EditorView -> CodemirrorView.GutterMarker) option with get, set
         /// <summary>
         /// Update the spacer element when the view is updated.
         /// </summary>
-        member val updateSpacer : GutterConfig.updateSpacer option = nativeOnly with get, set
+        abstract member updateSpacer: GutterConfig.updateSpacer option with get, set
         /// <summary>
         /// Supply event handlers for DOM events on this gutter.
         /// </summary>
-        member val domEventHandlers : CodemirrorView.Handlers option = nativeOnly with get, set
+        abstract member domEventHandlers: CodemirrorView.Handlers option with get, set
         /// <summary>
         /// By default, gutters are shown horizontally before the editor
         /// content (to the left in a left-to-right layout). Set this to
         /// <c>"after"</c> to show a gutter on the other side of the content.
         /// </summary>
-        member val side : GutterConfig.side option = nativeOnly with get, set
-
-    [<Global>]
-    [<AllowNullLiteral>]
-    type LineNumberConfig
+        abstract member side: GutterConfig.side option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?formatNumber: LineNumberConfig.formatNumber,
-            ?domEventHandlers: CodemirrorView.Handlers
-        ) =
+        static member Create (?``class``: string, ?renderEmptyElements: bool, ?markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ReadonlyArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>), ?lineMarker: GutterConfig.lineMarker, ?widgetMarker: GutterConfig.widgetMarker, ?lineMarkerChange: (CodemirrorView.ViewUpdate -> bool), ?initialSpacer: (CodemirrorView.EditorView -> CodemirrorView.GutterMarker), ?updateSpacer: GutterConfig.updateSpacer, ?domEventHandlers: CodemirrorView.Handlers, ?side: GutterConfig.side) : GutterConfig = nativeOnly
 
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type LineNumberConfig =
         /// <summary>
         /// How to display line numbers. Defaults to simply converting them
         /// to string.
         /// </summary>
-        member val formatNumber : LineNumberConfig.formatNumber option = nativeOnly with get, set
+        abstract member formatNumber: LineNumberConfig.formatNumber option with get, set
         /// <summary>
         /// Supply event handlers for DOM events on this gutter.
         /// </summary>
-        member val domEventHandlers : CodemirrorView.Handlers option = nativeOnly with get, set
+        abstract member domEventHandlers: CodemirrorView.Handlers option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?formatNumber: LineNumberConfig.formatNumber, ?domEventHandlers: CodemirrorView.Handlers) : LineNumberConfig = nativeOnly
 
     module MarkDecorationSpec =
 
@@ -5478,16 +5293,16 @@ RectangleMarker.forRange($0, $1, $2)"""
 
     module ViewPlugin =
 
-        module define =
+        module define__ =
 
             type create<'V, 'Arg> =
                 delegate of view: CodemirrorView.EditorView * arg: 'Arg -> 'V
 
-        module fromClass =
+        module fromClass__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
-            type cls<'V> =
+            type cls<'V, 'Arg> =
                 [<EmitConstructor>]
                 abstract member Create: view: CodemirrorView.EditorView * arg: 'Arg -> 'V
 
@@ -5508,110 +5323,93 @@ RectangleMarker.forRange($0, $1, $2)"""
 
             module U2 =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Case2
+                [<Interface>]
+                type Case2 =
+                    abstract member anchor: float with get, set
+                    abstract member head: float option with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        anchor: float,
-                        ?head: float
-                    ) =
-
-                    member val anchor : float = nativeOnly with get, set
-                    member val head : float option = nativeOnly with get, set
+                    static member Create (anchor: float, ?head: float) : Case2 = nativeOnly
 
     module EditorView =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type viewport
+        [<Interface>]
+        type viewport =
+            abstract member from: float with get, set
+            abstract member ``to``: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                from: float,
-                ``to``: float
-            ) =
-
-            member val from : float = nativeOnly with get, set
-            member val ``to`` : float = nativeOnly with get, set
-
-        [<Global>]
-        [<AllowNullLiteral>]
-        type visibleRanges
-            [<ParamObject; Emit("$0")>]
-            (
-                from: float,
-                ``to``: float
-            ) =
-
-            member val from : float = nativeOnly with get, set
-            member val ``to`` : float = nativeOnly with get, set
-
-        [<Global>]
-        [<AllowNullLiteral>]
-        type documentPadding
-            [<ParamObject; Emit("$0")>]
-            (
-                top: float,
-                bottom: float
-            ) =
-
-            member val top : float = nativeOnly with get, set
-            member val bottom : float = nativeOnly with get, set
-
-        [<Global>]
-        [<AllowNullLiteral>]
-        type domAtPos
-            [<ParamObject; Emit("$0")>]
-            (
-                node: Glutinum.Web.Node,
-                offset: float
-            ) =
-
-            member val node : Glutinum.Web.Node = nativeOnly with get, set
-            member val offset : float = nativeOnly with get, set
-
-        [<Global>]
-        [<AllowNullLiteral>]
-        type posAndSideAtCoords
-            [<ParamObject; Emit("$0")>]
-            (
-                pos: float,
-                assoc: EditorView.posAndSideAtCoords.assoc
-            ) =
-
-            member val pos : float = nativeOnly with get, set
-            member val assoc : EditorView.posAndSideAtCoords.assoc = nativeOnly with get, set
-
-        type inputHandler =
-            delegate of view: CodemirrorView.EditorView * from: float * ``to``: float * text: string * insert: (unit -> CodemirrorState.Transaction) -> bool
-
-        type clipboardInputFilter =
-            delegate of text: string * state: CodemirrorState.EditorState -> string
-
-        type clipboardOutputFilter =
-            delegate of text: string * state: CodemirrorState.EditorState -> string
-
-        type scrollHandler =
-            delegate of view: CodemirrorView.EditorView * range: CodemirrorState.SelectionRange * options: EditorView.scrollHandler.options -> bool
-
-        type focusChangeEffect =
-            delegate of state: CodemirrorState.EditorState * focusing: bool -> CodemirrorState.StateEffect<obj> option
-
-        [<Global>]
-        [<AllowNullLiteral>]
-        type cursorScrollMargin
-            [<ParamObject; Emit("$0")>]
-            (
-                x: float,
-                y: float
-            ) =
-
-            member val x : float = nativeOnly with get, set
-            member val y : float = nativeOnly with get, set
+            static member Create (from: float, ``to``: float) : viewport = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
-        type scrollMargins =
+        type visibleRanges =
+            abstract member from: float with get, set
+            abstract member ``to``: float with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (from: float, ``to``: float) : visibleRanges = nativeOnly
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type documentPadding =
+            abstract member top: float with get, set
+            abstract member bottom: float with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (top: float, bottom: float) : documentPadding = nativeOnly
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type domAtPos =
+            abstract member node: Glutinum.Web.Node with get, set
+            abstract member offset: float with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (node: Glutinum.Web.Node, offset: float) : domAtPos = nativeOnly
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type posAndSideAtCoords =
+            abstract member pos: float with get, set
+            abstract member assoc: EditorView.posAndSideAtCoords.assoc with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (pos: float, assoc: EditorView.posAndSideAtCoords.assoc) : posAndSideAtCoords = nativeOnly
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type posAndSideAtCoords_1 =
+            abstract member pos: float with get, set
+            abstract member assoc: EditorView.posAndSideAtCoords.assoc with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (pos: float, assoc: EditorView.posAndSideAtCoords.assoc) : posAndSideAtCoords_1 = nativeOnly
+
+        type inputHandler__ =
+            delegate of view: CodemirrorView.EditorView * from: float * ``to``: float * text: string * insert: (unit -> CodemirrorState.Transaction) -> bool
+
+        type clipboardInputFilter__ =
+            delegate of text: string * state: CodemirrorState.EditorState -> string
+
+        type clipboardOutputFilter__ =
+            delegate of text: string * state: CodemirrorState.EditorState -> string
+
+        type scrollHandler__ =
+            delegate of view: CodemirrorView.EditorView * range: CodemirrorState.SelectionRange * options: EditorView.scrollHandler__.options -> bool
+
+        type scrollHandler___1 =
+            delegate of view: CodemirrorView.EditorView * range: CodemirrorState.SelectionRange * options: EditorView.scrollHandler__.options_1 -> bool
+
+        type focusChangeEffect__ =
+            delegate of state: CodemirrorState.EditorState * focusing: bool -> CodemirrorState.StateEffect<obj> option
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type cursorScrollMargin__ =
+            abstract member x: float with get, set
+            abstract member y: float with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (x: float, y: float) : cursorScrollMargin__ = nativeOnly
+
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type scrollMargins__ =
             abstract member left: float option with get
             abstract member right: float option with get
             abstract member top: float option with get
@@ -5626,36 +5424,44 @@ RectangleMarker.forRange($0, $1, $2)"""
 
         module posAtCoords =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type coords
+            [<Interface>]
+            type coords =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
+                static member Create (x: float, y: float) : coords = nativeOnly
 
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type coords_1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : coords_1 = nativeOnly
 
         module posAndSideAtCoords =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type coords
+            [<Interface>]
+            type coords =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: float,
-                    y: float
-                ) =
-
-                member val x : float = nativeOnly with get, set
-                member val y : float = nativeOnly with get, set
+                static member Create (x: float, y: float) : coords = nativeOnly
 
             [<RequireQualifiedAccess>]
             type assoc =
                 | _MINUS_1 = -1
                 | ``1`` = 1
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type coords_1 =
+                abstract member x: float with get, set
+                abstract member y: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: float, y: float) : coords_1 = nativeOnly
 
         module coordsAtPos =
 
@@ -5664,19 +5470,11 @@ RectangleMarker.forRange($0, $1, $2)"""
                 | _MINUS_1 = -1
                 | ``1`` = 1
 
-        module scrollIntoView =
+        module scrollIntoView__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?y: CodemirrorView.ScrollStrategy,
-                    ?x: CodemirrorView.ScrollStrategy,
-                    ?yMargin: float,
-                    ?xMargin: float
-                ) =
-
+            [<Interface>]
+            type options =
                 /// <summary>
                 /// By default (<c>"nearest"</c>) the position will be vertically
                 /// scrolled only the minimal amount required to move the given
@@ -5684,239 +5482,137 @@ RectangleMarker.forRange($0, $1, $2)"""
                 /// to the top of the view, <c>"end"</c> to move it to the bottom, or
                 /// <c>"center"</c> to move it to the center.
                 /// </summary>
-                member val y : CodemirrorView.ScrollStrategy option = nativeOnly with get, set
+                abstract member y: CodemirrorView.ScrollStrategy option with get, set
                 /// <summary>
                 /// Effect similar to
                 /// [<c>y</c>](https://codemirror.net/6/docs/ref/#view.EditorView^scrollIntoView^options.y), but for the
                 /// horizontal scroll position.
                 /// </summary>
-                member val x : CodemirrorView.ScrollStrategy option = nativeOnly with get, set
+                abstract member x: CodemirrorView.ScrollStrategy option with get, set
                 /// <summary>
                 /// Extra vertical distance to add when moving something into
                 /// view. Not used with the <c>"center"</c> strategy. Defaults to 5.
                 /// Must be less than the height of the editor.
                 /// </summary>
-                member val yMargin : float option = nativeOnly with get, set
+                abstract member yMargin: float option with get, set
                 /// <summary>
                 /// Extra horizontal distance to add. Not used with the <c>"center"</c>
                 /// strategy. Defaults to 5. Must be less than the width of the
                 /// editor.
                 /// </summary>
-                member val xMargin : float option = nativeOnly with get, set
-
-        module domEventHandlers =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type handlers
+                abstract member xMargin: float option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?fullscreenchange: EditorView.domEventHandlers.handlers.fullscreenchange,
-                    ?fullscreenerror: EditorView.domEventHandlers.handlers.fullscreenerror,
-                    ?abort: EditorView.domEventHandlers.handlers.abort,
-                    ?animationcancel: EditorView.domEventHandlers.handlers.animationcancel,
-                    ?animationend: EditorView.domEventHandlers.handlers.animationend,
-                    ?animationiteration: EditorView.domEventHandlers.handlers.animationiteration,
-                    ?animationstart: EditorView.domEventHandlers.handlers.animationstart,
-                    ?auxclick: EditorView.domEventHandlers.handlers.auxclick,
-                    ?beforeinput: EditorView.domEventHandlers.handlers.beforeinput,
-                    ?blur: EditorView.domEventHandlers.handlers.blur,
-                    ?cancel: EditorView.domEventHandlers.handlers.cancel,
-                    ?canplay: EditorView.domEventHandlers.handlers.canplay,
-                    ?canplaythrough: EditorView.domEventHandlers.handlers.canplaythrough,
-                    ?change: EditorView.domEventHandlers.handlers.change,
-                    ?click: EditorView.domEventHandlers.handlers.click,
-                    ?close: EditorView.domEventHandlers.handlers.close,
-                    ?compositionend: EditorView.domEventHandlers.handlers.compositionend,
-                    ?compositionstart: EditorView.domEventHandlers.handlers.compositionstart,
-                    ?compositionupdate: EditorView.domEventHandlers.handlers.compositionupdate,
-                    ?contextmenu: EditorView.domEventHandlers.handlers.contextmenu,
-                    ?copy: EditorView.domEventHandlers.handlers.copy,
-                    ?cuechange: EditorView.domEventHandlers.handlers.cuechange,
-                    ?cut: EditorView.domEventHandlers.handlers.cut,
-                    ?dblclick: EditorView.domEventHandlers.handlers.dblclick,
-                    ?drag: EditorView.domEventHandlers.handlers.drag,
-                    ?dragend: EditorView.domEventHandlers.handlers.dragend,
-                    ?dragenter: EditorView.domEventHandlers.handlers.dragenter,
-                    ?dragleave: EditorView.domEventHandlers.handlers.dragleave,
-                    ?dragover: EditorView.domEventHandlers.handlers.dragover,
-                    ?dragstart: EditorView.domEventHandlers.handlers.dragstart,
-                    ?drop: EditorView.domEventHandlers.handlers.drop,
-                    ?durationchange: EditorView.domEventHandlers.handlers.durationchange,
-                    ?emptied: EditorView.domEventHandlers.handlers.emptied,
-                    ?ended: EditorView.domEventHandlers.handlers.ended,
-                    ?error: EditorView.domEventHandlers.handlers.error,
-                    ?focus: EditorView.domEventHandlers.handlers.focus,
-                    ?focusin: EditorView.domEventHandlers.handlers.focusin,
-                    ?focusout: EditorView.domEventHandlers.handlers.focusout,
-                    ?formdata: EditorView.domEventHandlers.handlers.formdata,
-                    ?gotpointercapture: EditorView.domEventHandlers.handlers.gotpointercapture,
-                    ?input: EditorView.domEventHandlers.handlers.input,
-                    ?invalid: EditorView.domEventHandlers.handlers.invalid,
-                    ?keydown: EditorView.domEventHandlers.handlers.keydown,
-                    ?keypress: EditorView.domEventHandlers.handlers.keypress,
-                    ?keyup: EditorView.domEventHandlers.handlers.keyup,
-                    ?load: EditorView.domEventHandlers.handlers.load,
-                    ?loadeddata: EditorView.domEventHandlers.handlers.loadeddata,
-                    ?loadedmetadata: EditorView.domEventHandlers.handlers.loadedmetadata,
-                    ?loadstart: EditorView.domEventHandlers.handlers.loadstart,
-                    ?lostpointercapture: EditorView.domEventHandlers.handlers.lostpointercapture,
-                    ?mousedown: EditorView.domEventHandlers.handlers.mousedown,
-                    ?mouseenter: EditorView.domEventHandlers.handlers.mouseenter,
-                    ?mouseleave: EditorView.domEventHandlers.handlers.mouseleave,
-                    ?mousemove: EditorView.domEventHandlers.handlers.mousemove,
-                    ?mouseout: EditorView.domEventHandlers.handlers.mouseout,
-                    ?mouseover: EditorView.domEventHandlers.handlers.mouseover,
-                    ?mouseup: EditorView.domEventHandlers.handlers.mouseup,
-                    ?paste: EditorView.domEventHandlers.handlers.paste,
-                    ?pause: EditorView.domEventHandlers.handlers.pause,
-                    ?play: EditorView.domEventHandlers.handlers.play,
-                    ?playing: EditorView.domEventHandlers.handlers.playing,
-                    ?pointercancel: EditorView.domEventHandlers.handlers.pointercancel,
-                    ?pointerdown: EditorView.domEventHandlers.handlers.pointerdown,
-                    ?pointerenter: EditorView.domEventHandlers.handlers.pointerenter,
-                    ?pointerleave: EditorView.domEventHandlers.handlers.pointerleave,
-                    ?pointermove: EditorView.domEventHandlers.handlers.pointermove,
-                    ?pointerout: EditorView.domEventHandlers.handlers.pointerout,
-                    ?pointerover: EditorView.domEventHandlers.handlers.pointerover,
-                    ?pointerup: EditorView.domEventHandlers.handlers.pointerup,
-                    ?progress: EditorView.domEventHandlers.handlers.progress,
-                    ?ratechange: EditorView.domEventHandlers.handlers.ratechange,
-                    ?reset: EditorView.domEventHandlers.handlers.reset,
-                    ?resize: EditorView.domEventHandlers.handlers.resize,
-                    ?scroll: EditorView.domEventHandlers.handlers.scroll,
-                    ?scrollend: EditorView.domEventHandlers.handlers.scrollend,
-                    ?securitypolicyviolation: EditorView.domEventHandlers.handlers.securitypolicyviolation,
-                    ?seeked: EditorView.domEventHandlers.handlers.seeked,
-                    ?seeking: EditorView.domEventHandlers.handlers.seeking,
-                    ?select: EditorView.domEventHandlers.handlers.select,
-                    ?selectionchange: EditorView.domEventHandlers.handlers.selectionchange,
-                    ?selectstart: EditorView.domEventHandlers.handlers.selectstart,
-                    ?slotchange: EditorView.domEventHandlers.handlers.slotchange,
-                    ?stalled: EditorView.domEventHandlers.handlers.stalled,
-                    ?submit: EditorView.domEventHandlers.handlers.submit,
-                    ?suspend: EditorView.domEventHandlers.handlers.suspend,
-                    ?timeupdate: EditorView.domEventHandlers.handlers.timeupdate,
-                    ?toggle: EditorView.domEventHandlers.handlers.toggle,
-                    ?touchcancel: EditorView.domEventHandlers.handlers.touchcancel,
-                    ?touchend: EditorView.domEventHandlers.handlers.touchend,
-                    ?touchmove: EditorView.domEventHandlers.handlers.touchmove,
-                    ?touchstart: EditorView.domEventHandlers.handlers.touchstart,
-                    ?transitioncancel: EditorView.domEventHandlers.handlers.transitioncancel,
-                    ?transitionend: EditorView.domEventHandlers.handlers.transitionend,
-                    ?transitionrun: EditorView.domEventHandlers.handlers.transitionrun,
-                    ?transitionstart: EditorView.domEventHandlers.handlers.transitionstart,
-                    ?volumechange: EditorView.domEventHandlers.handlers.volumechange,
-                    ?waiting: EditorView.domEventHandlers.handlers.waiting,
-                    ?webkitanimationend: EditorView.domEventHandlers.handlers.webkitanimationend,
-                    ?webkitanimationiteration: EditorView.domEventHandlers.handlers.webkitanimationiteration,
-                    ?webkitanimationstart: EditorView.domEventHandlers.handlers.webkitanimationstart,
-                    ?webkittransitionend: EditorView.domEventHandlers.handlers.webkittransitionend,
-                    ?wheel: EditorView.domEventHandlers.handlers.wheel
-                ) =
+                static member Create (?y: CodemirrorView.ScrollStrategy, ?x: CodemirrorView.ScrollStrategy, ?yMargin: float, ?xMargin: float) : options = nativeOnly
 
-                member val fullscreenchange : EditorView.domEventHandlers.handlers.fullscreenchange option = nativeOnly with get, set
-                member val fullscreenerror : EditorView.domEventHandlers.handlers.fullscreenerror option = nativeOnly with get, set
-                member val abort : EditorView.domEventHandlers.handlers.abort option = nativeOnly with get, set
-                member val animationcancel : EditorView.domEventHandlers.handlers.animationcancel option = nativeOnly with get, set
-                member val animationend : EditorView.domEventHandlers.handlers.animationend option = nativeOnly with get, set
-                member val animationiteration : EditorView.domEventHandlers.handlers.animationiteration option = nativeOnly with get, set
-                member val animationstart : EditorView.domEventHandlers.handlers.animationstart option = nativeOnly with get, set
-                member val auxclick : EditorView.domEventHandlers.handlers.auxclick option = nativeOnly with get, set
-                member val beforeinput : EditorView.domEventHandlers.handlers.beforeinput option = nativeOnly with get, set
-                member val blur : EditorView.domEventHandlers.handlers.blur option = nativeOnly with get, set
-                member val cancel : EditorView.domEventHandlers.handlers.cancel option = nativeOnly with get, set
-                member val canplay : EditorView.domEventHandlers.handlers.canplay option = nativeOnly with get, set
-                member val canplaythrough : EditorView.domEventHandlers.handlers.canplaythrough option = nativeOnly with get, set
-                member val change : EditorView.domEventHandlers.handlers.change option = nativeOnly with get, set
-                member val click : EditorView.domEventHandlers.handlers.click option = nativeOnly with get, set
-                member val close : EditorView.domEventHandlers.handlers.close option = nativeOnly with get, set
-                member val compositionend : EditorView.domEventHandlers.handlers.compositionend option = nativeOnly with get, set
-                member val compositionstart : EditorView.domEventHandlers.handlers.compositionstart option = nativeOnly with get, set
-                member val compositionupdate : EditorView.domEventHandlers.handlers.compositionupdate option = nativeOnly with get, set
-                member val contextmenu : EditorView.domEventHandlers.handlers.contextmenu option = nativeOnly with get, set
-                member val copy : EditorView.domEventHandlers.handlers.copy option = nativeOnly with get, set
-                member val cuechange : EditorView.domEventHandlers.handlers.cuechange option = nativeOnly with get, set
-                member val cut : EditorView.domEventHandlers.handlers.cut option = nativeOnly with get, set
-                member val dblclick : EditorView.domEventHandlers.handlers.dblclick option = nativeOnly with get, set
-                member val drag : EditorView.domEventHandlers.handlers.drag option = nativeOnly with get, set
-                member val dragend : EditorView.domEventHandlers.handlers.dragend option = nativeOnly with get, set
-                member val dragenter : EditorView.domEventHandlers.handlers.dragenter option = nativeOnly with get, set
-                member val dragleave : EditorView.domEventHandlers.handlers.dragleave option = nativeOnly with get, set
-                member val dragover : EditorView.domEventHandlers.handlers.dragover option = nativeOnly with get, set
-                member val dragstart : EditorView.domEventHandlers.handlers.dragstart option = nativeOnly with get, set
-                member val drop : EditorView.domEventHandlers.handlers.drop option = nativeOnly with get, set
-                member val durationchange : EditorView.domEventHandlers.handlers.durationchange option = nativeOnly with get, set
-                member val emptied : EditorView.domEventHandlers.handlers.emptied option = nativeOnly with get, set
-                member val ended : EditorView.domEventHandlers.handlers.ended option = nativeOnly with get, set
-                member val error : EditorView.domEventHandlers.handlers.error option = nativeOnly with get, set
-                member val focus : EditorView.domEventHandlers.handlers.focus option = nativeOnly with get, set
-                member val focusin : EditorView.domEventHandlers.handlers.focusin option = nativeOnly with get, set
-                member val focusout : EditorView.domEventHandlers.handlers.focusout option = nativeOnly with get, set
-                member val formdata : EditorView.domEventHandlers.handlers.formdata option = nativeOnly with get, set
-                member val gotpointercapture : EditorView.domEventHandlers.handlers.gotpointercapture option = nativeOnly with get, set
-                member val input : EditorView.domEventHandlers.handlers.input option = nativeOnly with get, set
-                member val invalid : EditorView.domEventHandlers.handlers.invalid option = nativeOnly with get, set
-                member val keydown : EditorView.domEventHandlers.handlers.keydown option = nativeOnly with get, set
-                member val keypress : EditorView.domEventHandlers.handlers.keypress option = nativeOnly with get, set
-                member val keyup : EditorView.domEventHandlers.handlers.keyup option = nativeOnly with get, set
-                member val load : EditorView.domEventHandlers.handlers.load option = nativeOnly with get, set
-                member val loadeddata : EditorView.domEventHandlers.handlers.loadeddata option = nativeOnly with get, set
-                member val loadedmetadata : EditorView.domEventHandlers.handlers.loadedmetadata option = nativeOnly with get, set
-                member val loadstart : EditorView.domEventHandlers.handlers.loadstart option = nativeOnly with get, set
-                member val lostpointercapture : EditorView.domEventHandlers.handlers.lostpointercapture option = nativeOnly with get, set
-                member val mousedown : EditorView.domEventHandlers.handlers.mousedown option = nativeOnly with get, set
-                member val mouseenter : EditorView.domEventHandlers.handlers.mouseenter option = nativeOnly with get, set
-                member val mouseleave : EditorView.domEventHandlers.handlers.mouseleave option = nativeOnly with get, set
-                member val mousemove : EditorView.domEventHandlers.handlers.mousemove option = nativeOnly with get, set
-                member val mouseout : EditorView.domEventHandlers.handlers.mouseout option = nativeOnly with get, set
-                member val mouseover : EditorView.domEventHandlers.handlers.mouseover option = nativeOnly with get, set
-                member val mouseup : EditorView.domEventHandlers.handlers.mouseup option = nativeOnly with get, set
-                member val paste : EditorView.domEventHandlers.handlers.paste option = nativeOnly with get, set
-                member val pause : EditorView.domEventHandlers.handlers.pause option = nativeOnly with get, set
-                member val play : EditorView.domEventHandlers.handlers.play option = nativeOnly with get, set
-                member val playing : EditorView.domEventHandlers.handlers.playing option = nativeOnly with get, set
-                member val pointercancel : EditorView.domEventHandlers.handlers.pointercancel option = nativeOnly with get, set
-                member val pointerdown : EditorView.domEventHandlers.handlers.pointerdown option = nativeOnly with get, set
-                member val pointerenter : EditorView.domEventHandlers.handlers.pointerenter option = nativeOnly with get, set
-                member val pointerleave : EditorView.domEventHandlers.handlers.pointerleave option = nativeOnly with get, set
-                member val pointermove : EditorView.domEventHandlers.handlers.pointermove option = nativeOnly with get, set
-                member val pointerout : EditorView.domEventHandlers.handlers.pointerout option = nativeOnly with get, set
-                member val pointerover : EditorView.domEventHandlers.handlers.pointerover option = nativeOnly with get, set
-                member val pointerup : EditorView.domEventHandlers.handlers.pointerup option = nativeOnly with get, set
-                member val progress : EditorView.domEventHandlers.handlers.progress option = nativeOnly with get, set
-                member val ratechange : EditorView.domEventHandlers.handlers.ratechange option = nativeOnly with get, set
-                member val reset : EditorView.domEventHandlers.handlers.reset option = nativeOnly with get, set
-                member val resize : EditorView.domEventHandlers.handlers.resize option = nativeOnly with get, set
-                member val scroll : EditorView.domEventHandlers.handlers.scroll option = nativeOnly with get, set
-                member val scrollend : EditorView.domEventHandlers.handlers.scrollend option = nativeOnly with get, set
-                member val securitypolicyviolation : EditorView.domEventHandlers.handlers.securitypolicyviolation option = nativeOnly with get, set
-                member val seeked : EditorView.domEventHandlers.handlers.seeked option = nativeOnly with get, set
-                member val seeking : EditorView.domEventHandlers.handlers.seeking option = nativeOnly with get, set
-                member val select : EditorView.domEventHandlers.handlers.select option = nativeOnly with get, set
-                member val selectionchange : EditorView.domEventHandlers.handlers.selectionchange option = nativeOnly with get, set
-                member val selectstart : EditorView.domEventHandlers.handlers.selectstart option = nativeOnly with get, set
-                member val slotchange : EditorView.domEventHandlers.handlers.slotchange option = nativeOnly with get, set
-                member val stalled : EditorView.domEventHandlers.handlers.stalled option = nativeOnly with get, set
-                member val submit : EditorView.domEventHandlers.handlers.submit option = nativeOnly with get, set
-                member val suspend : EditorView.domEventHandlers.handlers.suspend option = nativeOnly with get, set
-                member val timeupdate : EditorView.domEventHandlers.handlers.timeupdate option = nativeOnly with get, set
-                member val toggle : EditorView.domEventHandlers.handlers.toggle option = nativeOnly with get, set
-                member val touchcancel : EditorView.domEventHandlers.handlers.touchcancel option = nativeOnly with get, set
-                member val touchend : EditorView.domEventHandlers.handlers.touchend option = nativeOnly with get, set
-                member val touchmove : EditorView.domEventHandlers.handlers.touchmove option = nativeOnly with get, set
-                member val touchstart : EditorView.domEventHandlers.handlers.touchstart option = nativeOnly with get, set
-                member val transitioncancel : EditorView.domEventHandlers.handlers.transitioncancel option = nativeOnly with get, set
-                member val transitionend : EditorView.domEventHandlers.handlers.transitionend option = nativeOnly with get, set
-                member val transitionrun : EditorView.domEventHandlers.handlers.transitionrun option = nativeOnly with get, set
-                member val transitionstart : EditorView.domEventHandlers.handlers.transitionstart option = nativeOnly with get, set
-                member val volumechange : EditorView.domEventHandlers.handlers.volumechange option = nativeOnly with get, set
-                member val waiting : EditorView.domEventHandlers.handlers.waiting option = nativeOnly with get, set
-                member val webkitanimationend : EditorView.domEventHandlers.handlers.webkitanimationend option = nativeOnly with get, set
-                member val webkitanimationiteration : EditorView.domEventHandlers.handlers.webkitanimationiteration option = nativeOnly with get, set
-                member val webkitanimationstart : EditorView.domEventHandlers.handlers.webkitanimationstart option = nativeOnly with get, set
-                member val webkittransitionend : EditorView.domEventHandlers.handlers.webkittransitionend option = nativeOnly with get, set
-                member val wheel : EditorView.domEventHandlers.handlers.wheel option = nativeOnly with get, set
+        module domEventHandlers__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type handlers =
+                abstract member fullscreenchange: EditorView.domEventHandlers__.handlers.fullscreenchange option with get, set
+                abstract member fullscreenerror: EditorView.domEventHandlers__.handlers.fullscreenerror option with get, set
+                abstract member abort: EditorView.domEventHandlers__.handlers.abort option with get, set
+                abstract member animationcancel: EditorView.domEventHandlers__.handlers.animationcancel option with get, set
+                abstract member animationend: EditorView.domEventHandlers__.handlers.animationend option with get, set
+                abstract member animationiteration: EditorView.domEventHandlers__.handlers.animationiteration option with get, set
+                abstract member animationstart: EditorView.domEventHandlers__.handlers.animationstart option with get, set
+                abstract member auxclick: EditorView.domEventHandlers__.handlers.auxclick option with get, set
+                abstract member beforeinput: EditorView.domEventHandlers__.handlers.beforeinput option with get, set
+                abstract member blur: EditorView.domEventHandlers__.handlers.blur option with get, set
+                abstract member cancel: EditorView.domEventHandlers__.handlers.cancel option with get, set
+                abstract member canplay: EditorView.domEventHandlers__.handlers.canplay option with get, set
+                abstract member canplaythrough: EditorView.domEventHandlers__.handlers.canplaythrough option with get, set
+                abstract member change: EditorView.domEventHandlers__.handlers.change option with get, set
+                abstract member click: EditorView.domEventHandlers__.handlers.click option with get, set
+                abstract member close: EditorView.domEventHandlers__.handlers.close option with get, set
+                abstract member compositionend: EditorView.domEventHandlers__.handlers.compositionend option with get, set
+                abstract member compositionstart: EditorView.domEventHandlers__.handlers.compositionstart option with get, set
+                abstract member compositionupdate: EditorView.domEventHandlers__.handlers.compositionupdate option with get, set
+                abstract member contextmenu: EditorView.domEventHandlers__.handlers.contextmenu option with get, set
+                abstract member copy: EditorView.domEventHandlers__.handlers.copy option with get, set
+                abstract member cuechange: EditorView.domEventHandlers__.handlers.cuechange option with get, set
+                abstract member cut: EditorView.domEventHandlers__.handlers.cut option with get, set
+                abstract member dblclick: EditorView.domEventHandlers__.handlers.dblclick option with get, set
+                abstract member drag: EditorView.domEventHandlers__.handlers.drag option with get, set
+                abstract member dragend: EditorView.domEventHandlers__.handlers.dragend option with get, set
+                abstract member dragenter: EditorView.domEventHandlers__.handlers.dragenter option with get, set
+                abstract member dragleave: EditorView.domEventHandlers__.handlers.dragleave option with get, set
+                abstract member dragover: EditorView.domEventHandlers__.handlers.dragover option with get, set
+                abstract member dragstart: EditorView.domEventHandlers__.handlers.dragstart option with get, set
+                abstract member drop: EditorView.domEventHandlers__.handlers.drop option with get, set
+                abstract member durationchange: EditorView.domEventHandlers__.handlers.durationchange option with get, set
+                abstract member emptied: EditorView.domEventHandlers__.handlers.emptied option with get, set
+                abstract member ended: EditorView.domEventHandlers__.handlers.ended option with get, set
+                abstract member error: EditorView.domEventHandlers__.handlers.error option with get, set
+                abstract member focus: EditorView.domEventHandlers__.handlers.focus option with get, set
+                abstract member focusin: EditorView.domEventHandlers__.handlers.focusin option with get, set
+                abstract member focusout: EditorView.domEventHandlers__.handlers.focusout option with get, set
+                abstract member formdata: EditorView.domEventHandlers__.handlers.formdata option with get, set
+                abstract member gotpointercapture: EditorView.domEventHandlers__.handlers.gotpointercapture option with get, set
+                abstract member input: EditorView.domEventHandlers__.handlers.input option with get, set
+                abstract member invalid: EditorView.domEventHandlers__.handlers.invalid option with get, set
+                abstract member keydown: EditorView.domEventHandlers__.handlers.keydown option with get, set
+                abstract member keypress: EditorView.domEventHandlers__.handlers.keypress option with get, set
+                abstract member keyup: EditorView.domEventHandlers__.handlers.keyup option with get, set
+                abstract member load: EditorView.domEventHandlers__.handlers.load option with get, set
+                abstract member loadeddata: EditorView.domEventHandlers__.handlers.loadeddata option with get, set
+                abstract member loadedmetadata: EditorView.domEventHandlers__.handlers.loadedmetadata option with get, set
+                abstract member loadstart: EditorView.domEventHandlers__.handlers.loadstart option with get, set
+                abstract member lostpointercapture: EditorView.domEventHandlers__.handlers.lostpointercapture option with get, set
+                abstract member mousedown: EditorView.domEventHandlers__.handlers.mousedown option with get, set
+                abstract member mouseenter: EditorView.domEventHandlers__.handlers.mouseenter option with get, set
+                abstract member mouseleave: EditorView.domEventHandlers__.handlers.mouseleave option with get, set
+                abstract member mousemove: EditorView.domEventHandlers__.handlers.mousemove option with get, set
+                abstract member mouseout: EditorView.domEventHandlers__.handlers.mouseout option with get, set
+                abstract member mouseover: EditorView.domEventHandlers__.handlers.mouseover option with get, set
+                abstract member mouseup: EditorView.domEventHandlers__.handlers.mouseup option with get, set
+                abstract member paste: EditorView.domEventHandlers__.handlers.paste option with get, set
+                abstract member pause: EditorView.domEventHandlers__.handlers.pause option with get, set
+                abstract member play: EditorView.domEventHandlers__.handlers.play option with get, set
+                abstract member playing: EditorView.domEventHandlers__.handlers.playing option with get, set
+                abstract member pointercancel: EditorView.domEventHandlers__.handlers.pointercancel option with get, set
+                abstract member pointerdown: EditorView.domEventHandlers__.handlers.pointerdown option with get, set
+                abstract member pointerenter: EditorView.domEventHandlers__.handlers.pointerenter option with get, set
+                abstract member pointerleave: EditorView.domEventHandlers__.handlers.pointerleave option with get, set
+                abstract member pointermove: EditorView.domEventHandlers__.handlers.pointermove option with get, set
+                abstract member pointerout: EditorView.domEventHandlers__.handlers.pointerout option with get, set
+                abstract member pointerover: EditorView.domEventHandlers__.handlers.pointerover option with get, set
+                abstract member pointerup: EditorView.domEventHandlers__.handlers.pointerup option with get, set
+                abstract member progress: EditorView.domEventHandlers__.handlers.progress option with get, set
+                abstract member ratechange: EditorView.domEventHandlers__.handlers.ratechange option with get, set
+                abstract member reset: EditorView.domEventHandlers__.handlers.reset option with get, set
+                abstract member resize: EditorView.domEventHandlers__.handlers.resize option with get, set
+                abstract member scroll: EditorView.domEventHandlers__.handlers.scroll option with get, set
+                abstract member scrollend: EditorView.domEventHandlers__.handlers.scrollend option with get, set
+                abstract member securitypolicyviolation: EditorView.domEventHandlers__.handlers.securitypolicyviolation option with get, set
+                abstract member seeked: EditorView.domEventHandlers__.handlers.seeked option with get, set
+                abstract member seeking: EditorView.domEventHandlers__.handlers.seeking option with get, set
+                abstract member select: EditorView.domEventHandlers__.handlers.select option with get, set
+                abstract member selectionchange: EditorView.domEventHandlers__.handlers.selectionchange option with get, set
+                abstract member selectstart: EditorView.domEventHandlers__.handlers.selectstart option with get, set
+                abstract member slotchange: EditorView.domEventHandlers__.handlers.slotchange option with get, set
+                abstract member stalled: EditorView.domEventHandlers__.handlers.stalled option with get, set
+                abstract member submit: EditorView.domEventHandlers__.handlers.submit option with get, set
+                abstract member suspend: EditorView.domEventHandlers__.handlers.suspend option with get, set
+                abstract member timeupdate: EditorView.domEventHandlers__.handlers.timeupdate option with get, set
+                abstract member toggle: EditorView.domEventHandlers__.handlers.toggle option with get, set
+                abstract member touchcancel: EditorView.domEventHandlers__.handlers.touchcancel option with get, set
+                abstract member touchend: EditorView.domEventHandlers__.handlers.touchend option with get, set
+                abstract member touchmove: EditorView.domEventHandlers__.handlers.touchmove option with get, set
+                abstract member touchstart: EditorView.domEventHandlers__.handlers.touchstart option with get, set
+                abstract member transitioncancel: EditorView.domEventHandlers__.handlers.transitioncancel option with get, set
+                abstract member transitionend: EditorView.domEventHandlers__.handlers.transitionend option with get, set
+                abstract member transitionrun: EditorView.domEventHandlers__.handlers.transitionrun option with get, set
+                abstract member transitionstart: EditorView.domEventHandlers__.handlers.transitionstart option with get, set
+                abstract member volumechange: EditorView.domEventHandlers__.handlers.volumechange option with get, set
+                abstract member waiting: EditorView.domEventHandlers__.handlers.waiting option with get, set
+                abstract member webkitanimationend: EditorView.domEventHandlers__.handlers.webkitanimationend option with get, set
+                abstract member webkitanimationiteration: EditorView.domEventHandlers__.handlers.webkitanimationiteration option with get, set
+                abstract member webkitanimationstart: EditorView.domEventHandlers__.handlers.webkitanimationstart option with get, set
+                abstract member webkittransitionend: EditorView.domEventHandlers__.handlers.webkittransitionend option with get, set
+                abstract member wheel: EditorView.domEventHandlers__.handlers.wheel option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?fullscreenchange: EditorView.domEventHandlers__.handlers.fullscreenchange, ?fullscreenerror: EditorView.domEventHandlers__.handlers.fullscreenerror, ?abort: EditorView.domEventHandlers__.handlers.abort, ?animationcancel: EditorView.domEventHandlers__.handlers.animationcancel, ?animationend: EditorView.domEventHandlers__.handlers.animationend, ?animationiteration: EditorView.domEventHandlers__.handlers.animationiteration, ?animationstart: EditorView.domEventHandlers__.handlers.animationstart, ?auxclick: EditorView.domEventHandlers__.handlers.auxclick, ?beforeinput: EditorView.domEventHandlers__.handlers.beforeinput, ?blur: EditorView.domEventHandlers__.handlers.blur, ?cancel: EditorView.domEventHandlers__.handlers.cancel, ?canplay: EditorView.domEventHandlers__.handlers.canplay, ?canplaythrough: EditorView.domEventHandlers__.handlers.canplaythrough, ?change: EditorView.domEventHandlers__.handlers.change, ?click: EditorView.domEventHandlers__.handlers.click, ?close: EditorView.domEventHandlers__.handlers.close, ?compositionend: EditorView.domEventHandlers__.handlers.compositionend, ?compositionstart: EditorView.domEventHandlers__.handlers.compositionstart, ?compositionupdate: EditorView.domEventHandlers__.handlers.compositionupdate, ?contextmenu: EditorView.domEventHandlers__.handlers.contextmenu, ?copy: EditorView.domEventHandlers__.handlers.copy, ?cuechange: EditorView.domEventHandlers__.handlers.cuechange, ?cut: EditorView.domEventHandlers__.handlers.cut, ?dblclick: EditorView.domEventHandlers__.handlers.dblclick, ?drag: EditorView.domEventHandlers__.handlers.drag, ?dragend: EditorView.domEventHandlers__.handlers.dragend, ?dragenter: EditorView.domEventHandlers__.handlers.dragenter, ?dragleave: EditorView.domEventHandlers__.handlers.dragleave, ?dragover: EditorView.domEventHandlers__.handlers.dragover, ?dragstart: EditorView.domEventHandlers__.handlers.dragstart, ?drop: EditorView.domEventHandlers__.handlers.drop, ?durationchange: EditorView.domEventHandlers__.handlers.durationchange, ?emptied: EditorView.domEventHandlers__.handlers.emptied, ?ended: EditorView.domEventHandlers__.handlers.ended, ?error: EditorView.domEventHandlers__.handlers.error, ?focus: EditorView.domEventHandlers__.handlers.focus, ?focusin: EditorView.domEventHandlers__.handlers.focusin, ?focusout: EditorView.domEventHandlers__.handlers.focusout, ?formdata: EditorView.domEventHandlers__.handlers.formdata, ?gotpointercapture: EditorView.domEventHandlers__.handlers.gotpointercapture, ?input: EditorView.domEventHandlers__.handlers.input, ?invalid: EditorView.domEventHandlers__.handlers.invalid, ?keydown: EditorView.domEventHandlers__.handlers.keydown, ?keypress: EditorView.domEventHandlers__.handlers.keypress, ?keyup: EditorView.domEventHandlers__.handlers.keyup, ?load: EditorView.domEventHandlers__.handlers.load, ?loadeddata: EditorView.domEventHandlers__.handlers.loadeddata, ?loadedmetadata: EditorView.domEventHandlers__.handlers.loadedmetadata, ?loadstart: EditorView.domEventHandlers__.handlers.loadstart, ?lostpointercapture: EditorView.domEventHandlers__.handlers.lostpointercapture, ?mousedown: EditorView.domEventHandlers__.handlers.mousedown, ?mouseenter: EditorView.domEventHandlers__.handlers.mouseenter, ?mouseleave: EditorView.domEventHandlers__.handlers.mouseleave, ?mousemove: EditorView.domEventHandlers__.handlers.mousemove, ?mouseout: EditorView.domEventHandlers__.handlers.mouseout, ?mouseover: EditorView.domEventHandlers__.handlers.mouseover, ?mouseup: EditorView.domEventHandlers__.handlers.mouseup, ?paste: EditorView.domEventHandlers__.handlers.paste, ?pause: EditorView.domEventHandlers__.handlers.pause, ?play: EditorView.domEventHandlers__.handlers.play, ?playing: EditorView.domEventHandlers__.handlers.playing, ?pointercancel: EditorView.domEventHandlers__.handlers.pointercancel, ?pointerdown: EditorView.domEventHandlers__.handlers.pointerdown, ?pointerenter: EditorView.domEventHandlers__.handlers.pointerenter, ?pointerleave: EditorView.domEventHandlers__.handlers.pointerleave, ?pointermove: EditorView.domEventHandlers__.handlers.pointermove, ?pointerout: EditorView.domEventHandlers__.handlers.pointerout, ?pointerover: EditorView.domEventHandlers__.handlers.pointerover, ?pointerup: EditorView.domEventHandlers__.handlers.pointerup, ?progress: EditorView.domEventHandlers__.handlers.progress, ?ratechange: EditorView.domEventHandlers__.handlers.ratechange, ?reset: EditorView.domEventHandlers__.handlers.reset, ?resize: EditorView.domEventHandlers__.handlers.resize, ?scroll: EditorView.domEventHandlers__.handlers.scroll, ?scrollend: EditorView.domEventHandlers__.handlers.scrollend, ?securitypolicyviolation: EditorView.domEventHandlers__.handlers.securitypolicyviolation, ?seeked: EditorView.domEventHandlers__.handlers.seeked, ?seeking: EditorView.domEventHandlers__.handlers.seeking, ?select: EditorView.domEventHandlers__.handlers.select, ?selectionchange: EditorView.domEventHandlers__.handlers.selectionchange, ?selectstart: EditorView.domEventHandlers__.handlers.selectstart, ?slotchange: EditorView.domEventHandlers__.handlers.slotchange, ?stalled: EditorView.domEventHandlers__.handlers.stalled, ?submit: EditorView.domEventHandlers__.handlers.submit, ?suspend: EditorView.domEventHandlers__.handlers.suspend, ?timeupdate: EditorView.domEventHandlers__.handlers.timeupdate, ?toggle: EditorView.domEventHandlers__.handlers.toggle, ?touchcancel: EditorView.domEventHandlers__.handlers.touchcancel, ?touchend: EditorView.domEventHandlers__.handlers.touchend, ?touchmove: EditorView.domEventHandlers__.handlers.touchmove, ?touchstart: EditorView.domEventHandlers__.handlers.touchstart, ?transitioncancel: EditorView.domEventHandlers__.handlers.transitioncancel, ?transitionend: EditorView.domEventHandlers__.handlers.transitionend, ?transitionrun: EditorView.domEventHandlers__.handlers.transitionrun, ?transitionstart: EditorView.domEventHandlers__.handlers.transitionstart, ?volumechange: EditorView.domEventHandlers__.handlers.volumechange, ?waiting: EditorView.domEventHandlers__.handlers.waiting, ?webkitanimationend: EditorView.domEventHandlers__.handlers.webkitanimationend, ?webkitanimationiteration: EditorView.domEventHandlers__.handlers.webkitanimationiteration, ?webkitanimationstart: EditorView.domEventHandlers__.handlers.webkitanimationstart, ?webkittransitionend: EditorView.domEventHandlers__.handlers.webkittransitionend, ?wheel: EditorView.domEventHandlers__.handlers.wheel) : handlers = nativeOnly
 
             module handlers =
 
@@ -6226,219 +5922,115 @@ RectangleMarker.forRange($0, $1, $2)"""
                 type wheel =
                     delegate of event: Glutinum.Web.WheelEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
-        module domEventObservers =
+        module domEventObservers__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type observers
+            [<Interface>]
+            type observers =
+                abstract member fullscreenchange: EditorView.domEventObservers__.observers.fullscreenchange option with get, set
+                abstract member fullscreenerror: EditorView.domEventObservers__.observers.fullscreenerror option with get, set
+                abstract member abort: EditorView.domEventObservers__.observers.abort option with get, set
+                abstract member animationcancel: EditorView.domEventObservers__.observers.animationcancel option with get, set
+                abstract member animationend: EditorView.domEventObservers__.observers.animationend option with get, set
+                abstract member animationiteration: EditorView.domEventObservers__.observers.animationiteration option with get, set
+                abstract member animationstart: EditorView.domEventObservers__.observers.animationstart option with get, set
+                abstract member auxclick: EditorView.domEventObservers__.observers.auxclick option with get, set
+                abstract member beforeinput: EditorView.domEventObservers__.observers.beforeinput option with get, set
+                abstract member blur: EditorView.domEventObservers__.observers.blur option with get, set
+                abstract member cancel: EditorView.domEventObservers__.observers.cancel option with get, set
+                abstract member canplay: EditorView.domEventObservers__.observers.canplay option with get, set
+                abstract member canplaythrough: EditorView.domEventObservers__.observers.canplaythrough option with get, set
+                abstract member change: EditorView.domEventObservers__.observers.change option with get, set
+                abstract member click: EditorView.domEventObservers__.observers.click option with get, set
+                abstract member close: EditorView.domEventObservers__.observers.close option with get, set
+                abstract member compositionend: EditorView.domEventObservers__.observers.compositionend option with get, set
+                abstract member compositionstart: EditorView.domEventObservers__.observers.compositionstart option with get, set
+                abstract member compositionupdate: EditorView.domEventObservers__.observers.compositionupdate option with get, set
+                abstract member contextmenu: EditorView.domEventObservers__.observers.contextmenu option with get, set
+                abstract member copy: EditorView.domEventObservers__.observers.copy option with get, set
+                abstract member cuechange: EditorView.domEventObservers__.observers.cuechange option with get, set
+                abstract member cut: EditorView.domEventObservers__.observers.cut option with get, set
+                abstract member dblclick: EditorView.domEventObservers__.observers.dblclick option with get, set
+                abstract member drag: EditorView.domEventObservers__.observers.drag option with get, set
+                abstract member dragend: EditorView.domEventObservers__.observers.dragend option with get, set
+                abstract member dragenter: EditorView.domEventObservers__.observers.dragenter option with get, set
+                abstract member dragleave: EditorView.domEventObservers__.observers.dragleave option with get, set
+                abstract member dragover: EditorView.domEventObservers__.observers.dragover option with get, set
+                abstract member dragstart: EditorView.domEventObservers__.observers.dragstart option with get, set
+                abstract member drop: EditorView.domEventObservers__.observers.drop option with get, set
+                abstract member durationchange: EditorView.domEventObservers__.observers.durationchange option with get, set
+                abstract member emptied: EditorView.domEventObservers__.observers.emptied option with get, set
+                abstract member ended: EditorView.domEventObservers__.observers.ended option with get, set
+                abstract member error: EditorView.domEventObservers__.observers.error option with get, set
+                abstract member focus: EditorView.domEventObservers__.observers.focus option with get, set
+                abstract member focusin: EditorView.domEventObservers__.observers.focusin option with get, set
+                abstract member focusout: EditorView.domEventObservers__.observers.focusout option with get, set
+                abstract member formdata: EditorView.domEventObservers__.observers.formdata option with get, set
+                abstract member gotpointercapture: EditorView.domEventObservers__.observers.gotpointercapture option with get, set
+                abstract member input: EditorView.domEventObservers__.observers.input option with get, set
+                abstract member invalid: EditorView.domEventObservers__.observers.invalid option with get, set
+                abstract member keydown: EditorView.domEventObservers__.observers.keydown option with get, set
+                abstract member keypress: EditorView.domEventObservers__.observers.keypress option with get, set
+                abstract member keyup: EditorView.domEventObservers__.observers.keyup option with get, set
+                abstract member load: EditorView.domEventObservers__.observers.load option with get, set
+                abstract member loadeddata: EditorView.domEventObservers__.observers.loadeddata option with get, set
+                abstract member loadedmetadata: EditorView.domEventObservers__.observers.loadedmetadata option with get, set
+                abstract member loadstart: EditorView.domEventObservers__.observers.loadstart option with get, set
+                abstract member lostpointercapture: EditorView.domEventObservers__.observers.lostpointercapture option with get, set
+                abstract member mousedown: EditorView.domEventObservers__.observers.mousedown option with get, set
+                abstract member mouseenter: EditorView.domEventObservers__.observers.mouseenter option with get, set
+                abstract member mouseleave: EditorView.domEventObservers__.observers.mouseleave option with get, set
+                abstract member mousemove: EditorView.domEventObservers__.observers.mousemove option with get, set
+                abstract member mouseout: EditorView.domEventObservers__.observers.mouseout option with get, set
+                abstract member mouseover: EditorView.domEventObservers__.observers.mouseover option with get, set
+                abstract member mouseup: EditorView.domEventObservers__.observers.mouseup option with get, set
+                abstract member paste: EditorView.domEventObservers__.observers.paste option with get, set
+                abstract member pause: EditorView.domEventObservers__.observers.pause option with get, set
+                abstract member play: EditorView.domEventObservers__.observers.play option with get, set
+                abstract member playing: EditorView.domEventObservers__.observers.playing option with get, set
+                abstract member pointercancel: EditorView.domEventObservers__.observers.pointercancel option with get, set
+                abstract member pointerdown: EditorView.domEventObservers__.observers.pointerdown option with get, set
+                abstract member pointerenter: EditorView.domEventObservers__.observers.pointerenter option with get, set
+                abstract member pointerleave: EditorView.domEventObservers__.observers.pointerleave option with get, set
+                abstract member pointermove: EditorView.domEventObservers__.observers.pointermove option with get, set
+                abstract member pointerout: EditorView.domEventObservers__.observers.pointerout option with get, set
+                abstract member pointerover: EditorView.domEventObservers__.observers.pointerover option with get, set
+                abstract member pointerup: EditorView.domEventObservers__.observers.pointerup option with get, set
+                abstract member progress: EditorView.domEventObservers__.observers.progress option with get, set
+                abstract member ratechange: EditorView.domEventObservers__.observers.ratechange option with get, set
+                abstract member reset: EditorView.domEventObservers__.observers.reset option with get, set
+                abstract member resize: EditorView.domEventObservers__.observers.resize option with get, set
+                abstract member scroll: EditorView.domEventObservers__.observers.scroll option with get, set
+                abstract member scrollend: EditorView.domEventObservers__.observers.scrollend option with get, set
+                abstract member securitypolicyviolation: EditorView.domEventObservers__.observers.securitypolicyviolation option with get, set
+                abstract member seeked: EditorView.domEventObservers__.observers.seeked option with get, set
+                abstract member seeking: EditorView.domEventObservers__.observers.seeking option with get, set
+                abstract member select: EditorView.domEventObservers__.observers.select option with get, set
+                abstract member selectionchange: EditorView.domEventObservers__.observers.selectionchange option with get, set
+                abstract member selectstart: EditorView.domEventObservers__.observers.selectstart option with get, set
+                abstract member slotchange: EditorView.domEventObservers__.observers.slotchange option with get, set
+                abstract member stalled: EditorView.domEventObservers__.observers.stalled option with get, set
+                abstract member submit: EditorView.domEventObservers__.observers.submit option with get, set
+                abstract member suspend: EditorView.domEventObservers__.observers.suspend option with get, set
+                abstract member timeupdate: EditorView.domEventObservers__.observers.timeupdate option with get, set
+                abstract member toggle: EditorView.domEventObservers__.observers.toggle option with get, set
+                abstract member touchcancel: EditorView.domEventObservers__.observers.touchcancel option with get, set
+                abstract member touchend: EditorView.domEventObservers__.observers.touchend option with get, set
+                abstract member touchmove: EditorView.domEventObservers__.observers.touchmove option with get, set
+                abstract member touchstart: EditorView.domEventObservers__.observers.touchstart option with get, set
+                abstract member transitioncancel: EditorView.domEventObservers__.observers.transitioncancel option with get, set
+                abstract member transitionend: EditorView.domEventObservers__.observers.transitionend option with get, set
+                abstract member transitionrun: EditorView.domEventObservers__.observers.transitionrun option with get, set
+                abstract member transitionstart: EditorView.domEventObservers__.observers.transitionstart option with get, set
+                abstract member volumechange: EditorView.domEventObservers__.observers.volumechange option with get, set
+                abstract member waiting: EditorView.domEventObservers__.observers.waiting option with get, set
+                abstract member webkitanimationend: EditorView.domEventObservers__.observers.webkitanimationend option with get, set
+                abstract member webkitanimationiteration: EditorView.domEventObservers__.observers.webkitanimationiteration option with get, set
+                abstract member webkitanimationstart: EditorView.domEventObservers__.observers.webkitanimationstart option with get, set
+                abstract member webkittransitionend: EditorView.domEventObservers__.observers.webkittransitionend option with get, set
+                abstract member wheel: EditorView.domEventObservers__.observers.wheel option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?fullscreenchange: EditorView.domEventObservers.observers.fullscreenchange,
-                    ?fullscreenerror: EditorView.domEventObservers.observers.fullscreenerror,
-                    ?abort: EditorView.domEventObservers.observers.abort,
-                    ?animationcancel: EditorView.domEventObservers.observers.animationcancel,
-                    ?animationend: EditorView.domEventObservers.observers.animationend,
-                    ?animationiteration: EditorView.domEventObservers.observers.animationiteration,
-                    ?animationstart: EditorView.domEventObservers.observers.animationstart,
-                    ?auxclick: EditorView.domEventObservers.observers.auxclick,
-                    ?beforeinput: EditorView.domEventObservers.observers.beforeinput,
-                    ?blur: EditorView.domEventObservers.observers.blur,
-                    ?cancel: EditorView.domEventObservers.observers.cancel,
-                    ?canplay: EditorView.domEventObservers.observers.canplay,
-                    ?canplaythrough: EditorView.domEventObservers.observers.canplaythrough,
-                    ?change: EditorView.domEventObservers.observers.change,
-                    ?click: EditorView.domEventObservers.observers.click,
-                    ?close: EditorView.domEventObservers.observers.close,
-                    ?compositionend: EditorView.domEventObservers.observers.compositionend,
-                    ?compositionstart: EditorView.domEventObservers.observers.compositionstart,
-                    ?compositionupdate: EditorView.domEventObservers.observers.compositionupdate,
-                    ?contextmenu: EditorView.domEventObservers.observers.contextmenu,
-                    ?copy: EditorView.domEventObservers.observers.copy,
-                    ?cuechange: EditorView.domEventObservers.observers.cuechange,
-                    ?cut: EditorView.domEventObservers.observers.cut,
-                    ?dblclick: EditorView.domEventObservers.observers.dblclick,
-                    ?drag: EditorView.domEventObservers.observers.drag,
-                    ?dragend: EditorView.domEventObservers.observers.dragend,
-                    ?dragenter: EditorView.domEventObservers.observers.dragenter,
-                    ?dragleave: EditorView.domEventObservers.observers.dragleave,
-                    ?dragover: EditorView.domEventObservers.observers.dragover,
-                    ?dragstart: EditorView.domEventObservers.observers.dragstart,
-                    ?drop: EditorView.domEventObservers.observers.drop,
-                    ?durationchange: EditorView.domEventObservers.observers.durationchange,
-                    ?emptied: EditorView.domEventObservers.observers.emptied,
-                    ?ended: EditorView.domEventObservers.observers.ended,
-                    ?error: EditorView.domEventObservers.observers.error,
-                    ?focus: EditorView.domEventObservers.observers.focus,
-                    ?focusin: EditorView.domEventObservers.observers.focusin,
-                    ?focusout: EditorView.domEventObservers.observers.focusout,
-                    ?formdata: EditorView.domEventObservers.observers.formdata,
-                    ?gotpointercapture: EditorView.domEventObservers.observers.gotpointercapture,
-                    ?input: EditorView.domEventObservers.observers.input,
-                    ?invalid: EditorView.domEventObservers.observers.invalid,
-                    ?keydown: EditorView.domEventObservers.observers.keydown,
-                    ?keypress: EditorView.domEventObservers.observers.keypress,
-                    ?keyup: EditorView.domEventObservers.observers.keyup,
-                    ?load: EditorView.domEventObservers.observers.load,
-                    ?loadeddata: EditorView.domEventObservers.observers.loadeddata,
-                    ?loadedmetadata: EditorView.domEventObservers.observers.loadedmetadata,
-                    ?loadstart: EditorView.domEventObservers.observers.loadstart,
-                    ?lostpointercapture: EditorView.domEventObservers.observers.lostpointercapture,
-                    ?mousedown: EditorView.domEventObservers.observers.mousedown,
-                    ?mouseenter: EditorView.domEventObservers.observers.mouseenter,
-                    ?mouseleave: EditorView.domEventObservers.observers.mouseleave,
-                    ?mousemove: EditorView.domEventObservers.observers.mousemove,
-                    ?mouseout: EditorView.domEventObservers.observers.mouseout,
-                    ?mouseover: EditorView.domEventObservers.observers.mouseover,
-                    ?mouseup: EditorView.domEventObservers.observers.mouseup,
-                    ?paste: EditorView.domEventObservers.observers.paste,
-                    ?pause: EditorView.domEventObservers.observers.pause,
-                    ?play: EditorView.domEventObservers.observers.play,
-                    ?playing: EditorView.domEventObservers.observers.playing,
-                    ?pointercancel: EditorView.domEventObservers.observers.pointercancel,
-                    ?pointerdown: EditorView.domEventObservers.observers.pointerdown,
-                    ?pointerenter: EditorView.domEventObservers.observers.pointerenter,
-                    ?pointerleave: EditorView.domEventObservers.observers.pointerleave,
-                    ?pointermove: EditorView.domEventObservers.observers.pointermove,
-                    ?pointerout: EditorView.domEventObservers.observers.pointerout,
-                    ?pointerover: EditorView.domEventObservers.observers.pointerover,
-                    ?pointerup: EditorView.domEventObservers.observers.pointerup,
-                    ?progress: EditorView.domEventObservers.observers.progress,
-                    ?ratechange: EditorView.domEventObservers.observers.ratechange,
-                    ?reset: EditorView.domEventObservers.observers.reset,
-                    ?resize: EditorView.domEventObservers.observers.resize,
-                    ?scroll: EditorView.domEventObservers.observers.scroll,
-                    ?scrollend: EditorView.domEventObservers.observers.scrollend,
-                    ?securitypolicyviolation: EditorView.domEventObservers.observers.securitypolicyviolation,
-                    ?seeked: EditorView.domEventObservers.observers.seeked,
-                    ?seeking: EditorView.domEventObservers.observers.seeking,
-                    ?select: EditorView.domEventObservers.observers.select,
-                    ?selectionchange: EditorView.domEventObservers.observers.selectionchange,
-                    ?selectstart: EditorView.domEventObservers.observers.selectstart,
-                    ?slotchange: EditorView.domEventObservers.observers.slotchange,
-                    ?stalled: EditorView.domEventObservers.observers.stalled,
-                    ?submit: EditorView.domEventObservers.observers.submit,
-                    ?suspend: EditorView.domEventObservers.observers.suspend,
-                    ?timeupdate: EditorView.domEventObservers.observers.timeupdate,
-                    ?toggle: EditorView.domEventObservers.observers.toggle,
-                    ?touchcancel: EditorView.domEventObservers.observers.touchcancel,
-                    ?touchend: EditorView.domEventObservers.observers.touchend,
-                    ?touchmove: EditorView.domEventObservers.observers.touchmove,
-                    ?touchstart: EditorView.domEventObservers.observers.touchstart,
-                    ?transitioncancel: EditorView.domEventObservers.observers.transitioncancel,
-                    ?transitionend: EditorView.domEventObservers.observers.transitionend,
-                    ?transitionrun: EditorView.domEventObservers.observers.transitionrun,
-                    ?transitionstart: EditorView.domEventObservers.observers.transitionstart,
-                    ?volumechange: EditorView.domEventObservers.observers.volumechange,
-                    ?waiting: EditorView.domEventObservers.observers.waiting,
-                    ?webkitanimationend: EditorView.domEventObservers.observers.webkitanimationend,
-                    ?webkitanimationiteration: EditorView.domEventObservers.observers.webkitanimationiteration,
-                    ?webkitanimationstart: EditorView.domEventObservers.observers.webkitanimationstart,
-                    ?webkittransitionend: EditorView.domEventObservers.observers.webkittransitionend,
-                    ?wheel: EditorView.domEventObservers.observers.wheel
-                ) =
-
-                member val fullscreenchange : EditorView.domEventObservers.observers.fullscreenchange option = nativeOnly with get, set
-                member val fullscreenerror : EditorView.domEventObservers.observers.fullscreenerror option = nativeOnly with get, set
-                member val abort : EditorView.domEventObservers.observers.abort option = nativeOnly with get, set
-                member val animationcancel : EditorView.domEventObservers.observers.animationcancel option = nativeOnly with get, set
-                member val animationend : EditorView.domEventObservers.observers.animationend option = nativeOnly with get, set
-                member val animationiteration : EditorView.domEventObservers.observers.animationiteration option = nativeOnly with get, set
-                member val animationstart : EditorView.domEventObservers.observers.animationstart option = nativeOnly with get, set
-                member val auxclick : EditorView.domEventObservers.observers.auxclick option = nativeOnly with get, set
-                member val beforeinput : EditorView.domEventObservers.observers.beforeinput option = nativeOnly with get, set
-                member val blur : EditorView.domEventObservers.observers.blur option = nativeOnly with get, set
-                member val cancel : EditorView.domEventObservers.observers.cancel option = nativeOnly with get, set
-                member val canplay : EditorView.domEventObservers.observers.canplay option = nativeOnly with get, set
-                member val canplaythrough : EditorView.domEventObservers.observers.canplaythrough option = nativeOnly with get, set
-                member val change : EditorView.domEventObservers.observers.change option = nativeOnly with get, set
-                member val click : EditorView.domEventObservers.observers.click option = nativeOnly with get, set
-                member val close : EditorView.domEventObservers.observers.close option = nativeOnly with get, set
-                member val compositionend : EditorView.domEventObservers.observers.compositionend option = nativeOnly with get, set
-                member val compositionstart : EditorView.domEventObservers.observers.compositionstart option = nativeOnly with get, set
-                member val compositionupdate : EditorView.domEventObservers.observers.compositionupdate option = nativeOnly with get, set
-                member val contextmenu : EditorView.domEventObservers.observers.contextmenu option = nativeOnly with get, set
-                member val copy : EditorView.domEventObservers.observers.copy option = nativeOnly with get, set
-                member val cuechange : EditorView.domEventObservers.observers.cuechange option = nativeOnly with get, set
-                member val cut : EditorView.domEventObservers.observers.cut option = nativeOnly with get, set
-                member val dblclick : EditorView.domEventObservers.observers.dblclick option = nativeOnly with get, set
-                member val drag : EditorView.domEventObservers.observers.drag option = nativeOnly with get, set
-                member val dragend : EditorView.domEventObservers.observers.dragend option = nativeOnly with get, set
-                member val dragenter : EditorView.domEventObservers.observers.dragenter option = nativeOnly with get, set
-                member val dragleave : EditorView.domEventObservers.observers.dragleave option = nativeOnly with get, set
-                member val dragover : EditorView.domEventObservers.observers.dragover option = nativeOnly with get, set
-                member val dragstart : EditorView.domEventObservers.observers.dragstart option = nativeOnly with get, set
-                member val drop : EditorView.domEventObservers.observers.drop option = nativeOnly with get, set
-                member val durationchange : EditorView.domEventObservers.observers.durationchange option = nativeOnly with get, set
-                member val emptied : EditorView.domEventObservers.observers.emptied option = nativeOnly with get, set
-                member val ended : EditorView.domEventObservers.observers.ended option = nativeOnly with get, set
-                member val error : EditorView.domEventObservers.observers.error option = nativeOnly with get, set
-                member val focus : EditorView.domEventObservers.observers.focus option = nativeOnly with get, set
-                member val focusin : EditorView.domEventObservers.observers.focusin option = nativeOnly with get, set
-                member val focusout : EditorView.domEventObservers.observers.focusout option = nativeOnly with get, set
-                member val formdata : EditorView.domEventObservers.observers.formdata option = nativeOnly with get, set
-                member val gotpointercapture : EditorView.domEventObservers.observers.gotpointercapture option = nativeOnly with get, set
-                member val input : EditorView.domEventObservers.observers.input option = nativeOnly with get, set
-                member val invalid : EditorView.domEventObservers.observers.invalid option = nativeOnly with get, set
-                member val keydown : EditorView.domEventObservers.observers.keydown option = nativeOnly with get, set
-                member val keypress : EditorView.domEventObservers.observers.keypress option = nativeOnly with get, set
-                member val keyup : EditorView.domEventObservers.observers.keyup option = nativeOnly with get, set
-                member val load : EditorView.domEventObservers.observers.load option = nativeOnly with get, set
-                member val loadeddata : EditorView.domEventObservers.observers.loadeddata option = nativeOnly with get, set
-                member val loadedmetadata : EditorView.domEventObservers.observers.loadedmetadata option = nativeOnly with get, set
-                member val loadstart : EditorView.domEventObservers.observers.loadstart option = nativeOnly with get, set
-                member val lostpointercapture : EditorView.domEventObservers.observers.lostpointercapture option = nativeOnly with get, set
-                member val mousedown : EditorView.domEventObservers.observers.mousedown option = nativeOnly with get, set
-                member val mouseenter : EditorView.domEventObservers.observers.mouseenter option = nativeOnly with get, set
-                member val mouseleave : EditorView.domEventObservers.observers.mouseleave option = nativeOnly with get, set
-                member val mousemove : EditorView.domEventObservers.observers.mousemove option = nativeOnly with get, set
-                member val mouseout : EditorView.domEventObservers.observers.mouseout option = nativeOnly with get, set
-                member val mouseover : EditorView.domEventObservers.observers.mouseover option = nativeOnly with get, set
-                member val mouseup : EditorView.domEventObservers.observers.mouseup option = nativeOnly with get, set
-                member val paste : EditorView.domEventObservers.observers.paste option = nativeOnly with get, set
-                member val pause : EditorView.domEventObservers.observers.pause option = nativeOnly with get, set
-                member val play : EditorView.domEventObservers.observers.play option = nativeOnly with get, set
-                member val playing : EditorView.domEventObservers.observers.playing option = nativeOnly with get, set
-                member val pointercancel : EditorView.domEventObservers.observers.pointercancel option = nativeOnly with get, set
-                member val pointerdown : EditorView.domEventObservers.observers.pointerdown option = nativeOnly with get, set
-                member val pointerenter : EditorView.domEventObservers.observers.pointerenter option = nativeOnly with get, set
-                member val pointerleave : EditorView.domEventObservers.observers.pointerleave option = nativeOnly with get, set
-                member val pointermove : EditorView.domEventObservers.observers.pointermove option = nativeOnly with get, set
-                member val pointerout : EditorView.domEventObservers.observers.pointerout option = nativeOnly with get, set
-                member val pointerover : EditorView.domEventObservers.observers.pointerover option = nativeOnly with get, set
-                member val pointerup : EditorView.domEventObservers.observers.pointerup option = nativeOnly with get, set
-                member val progress : EditorView.domEventObservers.observers.progress option = nativeOnly with get, set
-                member val ratechange : EditorView.domEventObservers.observers.ratechange option = nativeOnly with get, set
-                member val reset : EditorView.domEventObservers.observers.reset option = nativeOnly with get, set
-                member val resize : EditorView.domEventObservers.observers.resize option = nativeOnly with get, set
-                member val scroll : EditorView.domEventObservers.observers.scroll option = nativeOnly with get, set
-                member val scrollend : EditorView.domEventObservers.observers.scrollend option = nativeOnly with get, set
-                member val securitypolicyviolation : EditorView.domEventObservers.observers.securitypolicyviolation option = nativeOnly with get, set
-                member val seeked : EditorView.domEventObservers.observers.seeked option = nativeOnly with get, set
-                member val seeking : EditorView.domEventObservers.observers.seeking option = nativeOnly with get, set
-                member val select : EditorView.domEventObservers.observers.select option = nativeOnly with get, set
-                member val selectionchange : EditorView.domEventObservers.observers.selectionchange option = nativeOnly with get, set
-                member val selectstart : EditorView.domEventObservers.observers.selectstart option = nativeOnly with get, set
-                member val slotchange : EditorView.domEventObservers.observers.slotchange option = nativeOnly with get, set
-                member val stalled : EditorView.domEventObservers.observers.stalled option = nativeOnly with get, set
-                member val submit : EditorView.domEventObservers.observers.submit option = nativeOnly with get, set
-                member val suspend : EditorView.domEventObservers.observers.suspend option = nativeOnly with get, set
-                member val timeupdate : EditorView.domEventObservers.observers.timeupdate option = nativeOnly with get, set
-                member val toggle : EditorView.domEventObservers.observers.toggle option = nativeOnly with get, set
-                member val touchcancel : EditorView.domEventObservers.observers.touchcancel option = nativeOnly with get, set
-                member val touchend : EditorView.domEventObservers.observers.touchend option = nativeOnly with get, set
-                member val touchmove : EditorView.domEventObservers.observers.touchmove option = nativeOnly with get, set
-                member val touchstart : EditorView.domEventObservers.observers.touchstart option = nativeOnly with get, set
-                member val transitioncancel : EditorView.domEventObservers.observers.transitioncancel option = nativeOnly with get, set
-                member val transitionend : EditorView.domEventObservers.observers.transitionend option = nativeOnly with get, set
-                member val transitionrun : EditorView.domEventObservers.observers.transitionrun option = nativeOnly with get, set
-                member val transitionstart : EditorView.domEventObservers.observers.transitionstart option = nativeOnly with get, set
-                member val volumechange : EditorView.domEventObservers.observers.volumechange option = nativeOnly with get, set
-                member val waiting : EditorView.domEventObservers.observers.waiting option = nativeOnly with get, set
-                member val webkitanimationend : EditorView.domEventObservers.observers.webkitanimationend option = nativeOnly with get, set
-                member val webkitanimationiteration : EditorView.domEventObservers.observers.webkitanimationiteration option = nativeOnly with get, set
-                member val webkitanimationstart : EditorView.domEventObservers.observers.webkitanimationstart option = nativeOnly with get, set
-                member val webkittransitionend : EditorView.domEventObservers.observers.webkittransitionend option = nativeOnly with get, set
-                member val wheel : EditorView.domEventObservers.observers.wheel option = nativeOnly with get, set
+                static member Create (?fullscreenchange: EditorView.domEventObservers__.observers.fullscreenchange, ?fullscreenerror: EditorView.domEventObservers__.observers.fullscreenerror, ?abort: EditorView.domEventObservers__.observers.abort, ?animationcancel: EditorView.domEventObservers__.observers.animationcancel, ?animationend: EditorView.domEventObservers__.observers.animationend, ?animationiteration: EditorView.domEventObservers__.observers.animationiteration, ?animationstart: EditorView.domEventObservers__.observers.animationstart, ?auxclick: EditorView.domEventObservers__.observers.auxclick, ?beforeinput: EditorView.domEventObservers__.observers.beforeinput, ?blur: EditorView.domEventObservers__.observers.blur, ?cancel: EditorView.domEventObservers__.observers.cancel, ?canplay: EditorView.domEventObservers__.observers.canplay, ?canplaythrough: EditorView.domEventObservers__.observers.canplaythrough, ?change: EditorView.domEventObservers__.observers.change, ?click: EditorView.domEventObservers__.observers.click, ?close: EditorView.domEventObservers__.observers.close, ?compositionend: EditorView.domEventObservers__.observers.compositionend, ?compositionstart: EditorView.domEventObservers__.observers.compositionstart, ?compositionupdate: EditorView.domEventObservers__.observers.compositionupdate, ?contextmenu: EditorView.domEventObservers__.observers.contextmenu, ?copy: EditorView.domEventObservers__.observers.copy, ?cuechange: EditorView.domEventObservers__.observers.cuechange, ?cut: EditorView.domEventObservers__.observers.cut, ?dblclick: EditorView.domEventObservers__.observers.dblclick, ?drag: EditorView.domEventObservers__.observers.drag, ?dragend: EditorView.domEventObservers__.observers.dragend, ?dragenter: EditorView.domEventObservers__.observers.dragenter, ?dragleave: EditorView.domEventObservers__.observers.dragleave, ?dragover: EditorView.domEventObservers__.observers.dragover, ?dragstart: EditorView.domEventObservers__.observers.dragstart, ?drop: EditorView.domEventObservers__.observers.drop, ?durationchange: EditorView.domEventObservers__.observers.durationchange, ?emptied: EditorView.domEventObservers__.observers.emptied, ?ended: EditorView.domEventObservers__.observers.ended, ?error: EditorView.domEventObservers__.observers.error, ?focus: EditorView.domEventObservers__.observers.focus, ?focusin: EditorView.domEventObservers__.observers.focusin, ?focusout: EditorView.domEventObservers__.observers.focusout, ?formdata: EditorView.domEventObservers__.observers.formdata, ?gotpointercapture: EditorView.domEventObservers__.observers.gotpointercapture, ?input: EditorView.domEventObservers__.observers.input, ?invalid: EditorView.domEventObservers__.observers.invalid, ?keydown: EditorView.domEventObservers__.observers.keydown, ?keypress: EditorView.domEventObservers__.observers.keypress, ?keyup: EditorView.domEventObservers__.observers.keyup, ?load: EditorView.domEventObservers__.observers.load, ?loadeddata: EditorView.domEventObservers__.observers.loadeddata, ?loadedmetadata: EditorView.domEventObservers__.observers.loadedmetadata, ?loadstart: EditorView.domEventObservers__.observers.loadstart, ?lostpointercapture: EditorView.domEventObservers__.observers.lostpointercapture, ?mousedown: EditorView.domEventObservers__.observers.mousedown, ?mouseenter: EditorView.domEventObservers__.observers.mouseenter, ?mouseleave: EditorView.domEventObservers__.observers.mouseleave, ?mousemove: EditorView.domEventObservers__.observers.mousemove, ?mouseout: EditorView.domEventObservers__.observers.mouseout, ?mouseover: EditorView.domEventObservers__.observers.mouseover, ?mouseup: EditorView.domEventObservers__.observers.mouseup, ?paste: EditorView.domEventObservers__.observers.paste, ?pause: EditorView.domEventObservers__.observers.pause, ?play: EditorView.domEventObservers__.observers.play, ?playing: EditorView.domEventObservers__.observers.playing, ?pointercancel: EditorView.domEventObservers__.observers.pointercancel, ?pointerdown: EditorView.domEventObservers__.observers.pointerdown, ?pointerenter: EditorView.domEventObservers__.observers.pointerenter, ?pointerleave: EditorView.domEventObservers__.observers.pointerleave, ?pointermove: EditorView.domEventObservers__.observers.pointermove, ?pointerout: EditorView.domEventObservers__.observers.pointerout, ?pointerover: EditorView.domEventObservers__.observers.pointerover, ?pointerup: EditorView.domEventObservers__.observers.pointerup, ?progress: EditorView.domEventObservers__.observers.progress, ?ratechange: EditorView.domEventObservers__.observers.ratechange, ?reset: EditorView.domEventObservers__.observers.reset, ?resize: EditorView.domEventObservers__.observers.resize, ?scroll: EditorView.domEventObservers__.observers.scroll, ?scrollend: EditorView.domEventObservers__.observers.scrollend, ?securitypolicyviolation: EditorView.domEventObservers__.observers.securitypolicyviolation, ?seeked: EditorView.domEventObservers__.observers.seeked, ?seeking: EditorView.domEventObservers__.observers.seeking, ?select: EditorView.domEventObservers__.observers.select, ?selectionchange: EditorView.domEventObservers__.observers.selectionchange, ?selectstart: EditorView.domEventObservers__.observers.selectstart, ?slotchange: EditorView.domEventObservers__.observers.slotchange, ?stalled: EditorView.domEventObservers__.observers.stalled, ?submit: EditorView.domEventObservers__.observers.submit, ?suspend: EditorView.domEventObservers__.observers.suspend, ?timeupdate: EditorView.domEventObservers__.observers.timeupdate, ?toggle: EditorView.domEventObservers__.observers.toggle, ?touchcancel: EditorView.domEventObservers__.observers.touchcancel, ?touchend: EditorView.domEventObservers__.observers.touchend, ?touchmove: EditorView.domEventObservers__.observers.touchmove, ?touchstart: EditorView.domEventObservers__.observers.touchstart, ?transitioncancel: EditorView.domEventObservers__.observers.transitioncancel, ?transitionend: EditorView.domEventObservers__.observers.transitionend, ?transitionrun: EditorView.domEventObservers__.observers.transitionrun, ?transitionstart: EditorView.domEventObservers__.observers.transitionstart, ?volumechange: EditorView.domEventObservers__.observers.volumechange, ?waiting: EditorView.domEventObservers__.observers.waiting, ?webkitanimationend: EditorView.domEventObservers__.observers.webkitanimationend, ?webkitanimationiteration: EditorView.domEventObservers__.observers.webkitanimationiteration, ?webkitanimationstart: EditorView.domEventObservers__.observers.webkitanimationstart, ?webkittransitionend: EditorView.domEventObservers__.observers.webkittransitionend, ?wheel: EditorView.domEventObservers__.observers.wheel) : observers = nativeOnly
 
             module observers =
 
@@ -6748,41 +6340,41 @@ RectangleMarker.forRange($0, $1, $2)"""
                 type wheel =
                     delegate of event: Glutinum.Web.WheelEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
-        module scrollHandler =
+        module scrollHandler__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member x: CodemirrorView.ScrollStrategy with get, set
+                abstract member y: CodemirrorView.ScrollStrategy with get, set
+                abstract member xMargin: float with get, set
+                abstract member yMargin: float with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    x: CodemirrorView.ScrollStrategy,
-                    y: CodemirrorView.ScrollStrategy,
-                    xMargin: float,
-                    yMargin: float
-                ) =
+                static member Create (x: CodemirrorView.ScrollStrategy, y: CodemirrorView.ScrollStrategy, xMargin: float, yMargin: float) : options = nativeOnly
 
-                member val x : CodemirrorView.ScrollStrategy = nativeOnly with get, set
-                member val y : CodemirrorView.ScrollStrategy = nativeOnly with get, set
-                member val xMargin : float = nativeOnly with get, set
-                member val yMargin : float = nativeOnly with get, set
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type options_1 =
+                abstract member x: CodemirrorView.ScrollStrategy with get, set
+                abstract member y: CodemirrorView.ScrollStrategy with get, set
+                abstract member xMargin: float with get, set
+                abstract member yMargin: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (x: CodemirrorView.ScrollStrategy, y: CodemirrorView.ScrollStrategy, xMargin: float, yMargin: float) : options_1 = nativeOnly
 
-        module cursorScrollMargin =
+        module cursorScrollMargin__ =
 
             module U2 =
 
-                [<Global>]
                 [<AllowNullLiteral>]
-                type Case2
+                [<Interface>]
+                type Case2 =
+                    abstract member x: float with get, set
+                    abstract member y: float with get, set
                     [<ParamObject; Emit("$0")>]
-                    (
-                        x: float,
-                        y: float
-                    ) =
+                    static member Create (x: float, y: float) : Case2 = nativeOnly
 
-                    member val x : float = nativeOnly with get, set
-                    member val y : float = nativeOnly with get, set
-
-        module theme =
+        module theme__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -6790,17 +6382,14 @@ RectangleMarker.forRange($0, $1, $2)"""
                 [<EmitIndexer>]
                 abstract member Item: selector: string -> StyleMod.StyleSpec with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member dark: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?dark: bool
-                ) =
+                static member Create (?dark: bool) : options = nativeOnly
 
-                member val dark : bool option = nativeOnly with get, set
-
-        module baseTheme =
+        module baseTheme__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -6820,17 +6409,13 @@ RectangleMarker.forRange($0, $1, $2)"""
 
     module TooltipView =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type offset
+        [<Interface>]
+        type offset =
+            abstract member x: float with get, set
+            abstract member y: float with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                x: float,
-                y: float
-            ) =
-
-            member val x : float = nativeOnly with get, set
-            member val y : float = nativeOnly with get, set
+            static member Create (x: float, y: float) : offset = nativeOnly
 
     module HoverTooltipSource =
 
@@ -6879,45 +6464,35 @@ RectangleMarker.forRange($0, $1, $2)"""
 
     module Exports =
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type showDialog
+        [<Interface>]
+        type showDialog__ =
+            abstract member close: CodemirrorState.StateEffect<obj> with get, set
+            abstract member result: JS.Promise<Glutinum.Web.HTMLFormElement option> with get, set
             [<ParamObject; Emit("$0")>]
-            (
-                close: CodemirrorState.StateEffect<obj>,
-                result: JS.Promise<Glutinum.Web.HTMLFormElement option>
-            ) =
+            static member Create (close: CodemirrorState.StateEffect<obj>, result: JS.Promise<Glutinum.Web.HTMLFormElement option>) : showDialog__ = nativeOnly
 
-            member val close : CodemirrorState.StateEffect<obj> = nativeOnly with get, set
-            member val result : JS.Promise<Glutinum.Web.HTMLFormElement option> = nativeOnly with get, set
+        module rectangularSelection__ =
 
-        module rectangularSelection =
-
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?eventFilter: (Glutinum.Web.MouseEvent -> bool)
-                ) =
-
+            [<Interface>]
+            type options =
                 /// <summary>
                 /// A custom predicate function, which takes a <c>mousedown</c> event and
                 /// returns true if it should be used for rectangular selection.
                 /// </summary>
-                member val eventFilter : (Glutinum.Web.MouseEvent -> bool) option = nativeOnly with get, set
-
-        module crosshairCursor =
-
-            [<Global>]
-            [<AllowNullLiteral>]
-            type options
+                abstract member eventFilter: (Glutinum.Web.MouseEvent -> bool) option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?key: Exports.crosshairCursor.options.key
-                ) =
+                static member Create (?eventFilter: (Glutinum.Web.MouseEvent -> bool)) : options = nativeOnly
 
-                member val key : Exports.crosshairCursor.options.key option = nativeOnly with get, set
+        module crosshairCursor__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type options =
+                abstract member key: Exports.crosshairCursor__.options.key option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?key: Exports.crosshairCursor__.options.key) : options = nativeOnly
 
             module options =
 
@@ -6929,18 +6504,11 @@ RectangleMarker.forRange($0, $1, $2)"""
                     | Shift
                     | Meta
 
-        module tooltips =
+        module tooltips__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type config
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?position: Exports.tooltips.config.position,
-                    ?parent: Glutinum.Web.HTMLElement,
-                    ?tooltipSpace: (CodemirrorView.EditorView -> CodemirrorView.Rect)
-                ) =
-
+            [<Interface>]
+            type config =
                 /// <summary>
                 /// By default, tooltips use <c>"fixed"</c>
                 /// [positioning](https://developer.mozilla.org/en-US/docs/Web/CSS/position),
@@ -6956,7 +6524,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                 /// If the tooltip parent element sits in a transformed element, the
                 /// library also falls back to absolute positioning.
                 /// </summary>
-                member val position : Exports.tooltips.config.position option = nativeOnly with get, set
+                abstract member position: Exports.tooltips__.config.position option with get, set
                 /// <summary>
                 /// The element to put the tooltips into. By default, they are put
                 /// in the editor (<c>cm-editor</c>) element, and that is usually what
@@ -6964,7 +6532,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                 /// issues, and you need to use a different parent to work around
                 /// those.
                 /// </summary>
-                member val parent : Glutinum.Web.HTMLElement option = nativeOnly with get, set
+                abstract member parent: Glutinum.Web.HTMLElement option with get, set
                 /// <summary>
                 /// By default, when figuring out whether there is room for a
                 /// tooltip at a given position, the extension considers the entire
@@ -6973,7 +6541,9 @@ RectangleMarker.forRange($0, $1, $2)"""
                 /// showing tooltips. You can provide a function here that returns
                 /// an alternative rectangle.
                 /// </summary>
-                member val tooltipSpace : (CodemirrorView.EditorView -> CodemirrorView.Rect) option = nativeOnly with get, set
+                abstract member tooltipSpace: (CodemirrorView.EditorView -> CodemirrorView.Rect) option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?position: Exports.tooltips__.config.position, ?parent: Glutinum.Web.HTMLElement, ?tooltipSpace: (CodemirrorView.EditorView -> CodemirrorView.Rect)) : config = nativeOnly
 
             module config =
 
@@ -6983,33 +6553,28 @@ RectangleMarker.forRange($0, $1, $2)"""
                     | ``fixed``
                     | absolute
 
-        module hoverTooltip =
+        module hoverTooltip__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
-                [<ParamObject; Emit("$0")>]
-                (
-                    ?hideOn: Exports.hoverTooltip.options.hideOn,
-                    ?hideOnChange: Exports.hoverTooltip.options.hideOnChange,
-                    ?hoverTime: float
-                ) =
-
+            [<Interface>]
+            type options =
                 /// <summary>
                 /// Controls whether a transaction hides the tooltip. The default
                 /// is to not hide.
                 /// </summary>
-                member val hideOn : Exports.hoverTooltip.options.hideOn option = nativeOnly with get, set
+                abstract member hideOn: Exports.hoverTooltip__.options.hideOn option with get, set
                 /// <summary>
                 /// When enabled (this defaults to false), close the tooltip
                 /// whenever the document changes or the selection is set.
                 /// </summary>
-                member val hideOnChange : Exports.hoverTooltip.options.hideOnChange option = nativeOnly with get, set
+                abstract member hideOnChange: Exports.hoverTooltip__.options.hideOnChange option with get, set
                 /// <summary>
                 /// Hover time after which the tooltip should appear, in
                 /// milliseconds. Defaults to 300ms.
                 /// </summary>
-                member val hoverTime : float option = nativeOnly with get, set
+                abstract member hoverTime: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?hideOn: Exports.hoverTooltip__.options.hideOn, ?hideOnChange: Exports.hoverTooltip__.options.hideOnChange, ?hoverTime: float) : options = nativeOnly
 
             module options =
 
@@ -7022,77 +6587,56 @@ RectangleMarker.forRange($0, $1, $2)"""
                     | touch
                     | Case1 of bool
 
-        module activateHover =
+        module activateHover__ =
 
             [<RequireQualifiedAccess>]
             type side =
                 | _MINUS_1 = -1
                 | ``1`` = 1
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member tooltip: CodemirrorState.Extension option with get, set
+                abstract member until: (CodemirrorState.Transaction -> bool) option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?tooltip: CodemirrorState.Extension,
-                    ?until: (CodemirrorState.Transaction -> bool)
-                ) =
+                static member Create (?tooltip: CodemirrorState.Extension, ?until: (CodemirrorState.Transaction -> bool)) : options = nativeOnly
 
-                member val tooltip : CodemirrorState.Extension option = nativeOnly with get, set
-                member val until : (CodemirrorState.Transaction -> bool) option = nativeOnly with get, set
-
-        module gutterWidgetClass =
+        module gutterWidgetClass__ =
 
             type Type =
                 delegate of view: CodemirrorView.EditorView * widget: CodemirrorView.WidgetType * block: CodemirrorView.BlockInfo -> CodemirrorView.GutterMarker option
 
-        module gutters =
+        module gutters__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type config
+            [<Interface>]
+            type config =
+                abstract member ``fixed``: bool option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?``fixed``: bool
-                ) =
+                static member Create (?``fixed``: bool) : config = nativeOnly
 
-                member val ``fixed`` : bool option = nativeOnly with get, set
-
-        module lineNumberWidgetMarker =
+        module lineNumberWidgetMarker__ =
 
             type Type =
                 delegate of view: CodemirrorView.EditorView * widget: CodemirrorView.WidgetType * block: CodemirrorView.BlockInfo -> CodemirrorView.GutterMarker option
 
         module MatchDecorator =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type config
-                private () =
-
-                [<ParamObject; Emit("$0")>]
-                new (regexp: RegExp, ?decorate: Exports.MatchDecorator.config.decorate, ?boundary: RegExp, ?maxLength: float) =
-                    config()
-
-                [<ParamObject; Emit("$0")>]
-                new (regexp: RegExp, decoration: CodemirrorView.Decoration, ?decorate: Exports.MatchDecorator.config.decorate, ?boundary: RegExp, ?maxLength: float) =
-                    config()
-
-                [<ParamObject; Emit("$0")>]
-                new (regexp: RegExp, decoration: Exports.MatchDecorator.config.decoration.U2.Case2, ?decorate: Exports.MatchDecorator.config.decorate, ?boundary: RegExp, ?maxLength: float) =
-                    config()
-
+            [<Interface>]
+            type config =
                 /// <summary>
                 /// The regular expression to match against the content. Will only
                 /// be matched inside lines (not across them). Should have its 'g'
                 /// flag set.
                 /// </summary>
-                member val regexp : RegExp = nativeOnly with get, set
+                abstract member regexp: RegExp with get, set
                 /// <summary>
                 /// The decoration to apply to matches, either directly or as a
                 /// function of the match.
                 /// </summary>
-                member val decoration : U2<CodemirrorView.Decoration, Exports.MatchDecorator.config.decoration.U2.Case2> option = nativeOnly with get, set
+                abstract member decoration: U2<CodemirrorView.Decoration, Exports.MatchDecorator.config.decoration.U2.Case2> option with get, set
                 /// <summary>
                 /// Customize the way decorations are added for matches. This
                 /// function, when given, will be called for matches and should
@@ -7103,14 +6647,14 @@ RectangleMarker.forRange($0, $1, $2)"""
                 /// The <c>decoration</c> option is ignored when <c>decorate</c> is
                 /// provided.
                 /// </summary>
-                member val decorate : Exports.MatchDecorator.config.decorate option = nativeOnly with get, set
+                abstract member decorate: Exports.MatchDecorator.config.decorate option with get, set
                 /// <summary>
                 /// By default, changed lines are re-matched entirely. You can
                 /// provide a boundary expression, which should match single
                 /// character strings that can never occur in <c>regexp</c>, to reduce
                 /// the amount of re-matching.
                 /// </summary>
-                member val boundary : RegExp option = nativeOnly with get, set
+                abstract member boundary: RegExp option with get, set
                 /// <summary>
                 /// Matching happens by line, by default, but when lines are
                 /// folded or very long lines are only partially drawn, the
@@ -7118,7 +6662,13 @@ RectangleMarker.forRange($0, $1, $2)"""
                 /// controls how much additional invisible content it should
                 /// include in its matches. Defaults to 1000.
                 /// </summary>
-                member val maxLength : float option = nativeOnly with get, set
+                abstract member maxLength: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (regexp: RegExp, ?decorate: Exports.MatchDecorator.config.decorate, ?boundary: RegExp, ?maxLength: float) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (regexp: RegExp, decoration: CodemirrorView.Decoration, ?decorate: Exports.MatchDecorator.config.decorate, ?boundary: RegExp, ?maxLength: float) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (regexp: RegExp, decoration: Exports.MatchDecorator.config.decoration.U2.Case2, ?decorate: Exports.MatchDecorator.config.decorate, ?boundary: RegExp, ?maxLength: float) : config = nativeOnly
 
             module config =
 
@@ -7149,27 +6699,27 @@ module StyleMod =
     [<Interface>]
     type StyleModule =
         abstract member getRules: unit -> string
-        static member inline mount (root: Glutinum.Web.Document, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount.options): unit =
+        static member inline mount (root: Glutinum.Web.Document, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit =
             emitJsExpr (root, ``module``, options) $$"""
 import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.Document, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount.options): unit =
+        static member inline mount (root: Glutinum.Web.Document, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit =
             emitJsExpr (root, ``module``, options) $$"""
 import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount.options): unit =
+        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit =
             emitJsExpr (root, ``module``, options) $$"""
 import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount.options): unit =
+        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit =
             emitJsExpr (root, ``module``, options) $$"""
 import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount.options): unit =
+        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit =
             emitJsExpr (root, ``module``, options) $$"""
 import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount.options): unit =
+        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit =
             emitJsExpr (root, ``module``, options) $$"""
 import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)"""
@@ -7186,17 +6736,14 @@ StyleModule.newName()"""
 
     module StyleModule =
 
-        module mount =
+        module mount__ =
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member nonce: string option with get, set
                 [<ParamObject; Emit("$0")>]
-                (
-                    ?nonce: string
-                ) =
-
-                member val nonce : string option = nativeOnly with get, set
+                static member Create (?nonce: string) : options = nativeOnly
 
     module Exports =
 
@@ -7208,12 +6755,9 @@ StyleModule.newName()"""
                 [<EmitIndexer>]
                 abstract member Item: selector: string -> StyleMod.StyleSpec with get, set
 
-            [<Global>]
             [<AllowNullLiteral>]
-            type options
+            [<Interface>]
+            type options =
+                abstract member finish: sel: string -> string
                 [<ParamObject; Emit("$0")>]
-                (
-                    finish: string
-                ) =
-
-                member val finish : string = nativeOnly
+                static member Create (finish: string) : options = nativeOnly

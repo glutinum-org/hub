@@ -120,29 +120,24 @@ module Express =
             [<Emit("$0.Router($1...)")>]
             abstract member Router: ?options: Express.e_.RouterOptions -> ExpressServeStaticCore.Router
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type RouterOptions
-            [<ParamObject; Emit("$0")>]
-            (
-                ?caseSensitive: bool,
-                ?mergeParams: bool,
-                ?strict: bool
-            ) =
-
+        [<Interface>]
+        type RouterOptions =
             /// <summary>
             /// Enable case sensitivity.
             /// </summary>
-            member val caseSensitive : bool option = nativeOnly with get, set
+            abstract member caseSensitive: bool option with get, set
             /// <summary>
             /// Preserve the req.params values from the parent router.
             /// If the parent and the child have conflicting param names, the child’s value take precedence.
             /// </summary>
-            member val mergeParams : bool option = nativeOnly with get, set
+            abstract member mergeParams: bool option with get, set
             /// <summary>
             /// Enable strict routing.
             /// </summary>
-            member val strict : bool option = nativeOnly with get, set
+            abstract member strict: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?caseSensitive: bool, ?mergeParams: bool, ?strict: bool) : RouterOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -395,7 +390,7 @@ module BodyParser =
     [<Erase>]
     type Exports =
         [<ImportDefault("body-parser"); Emit("$0($1...)")>]
-        static member bodyParser (?options: Exports.bodyParser.options) : Connect.createServer_.NextHandleFunction = nativeOnly
+        static member bodyParser (?options: Exports.bodyParser__.options) : Connect.createServer_.NextHandleFunction = nativeOnly
         /// <summary>
         /// Returns middleware that only parses json and only looks at requests
         /// where the Content-Type header matches the type option.
@@ -583,7 +578,7 @@ module BodyParser =
 
     module Exports =
 
-        module bodyParser =
+        module bodyParser__ =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -973,13 +968,13 @@ module ExpressServeStaticCore =
     [<Interface>]
     type IRouterMatcher<'T, 'Method> =
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
         abstract member Invoke: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> 'T
 
@@ -991,9 +986,9 @@ module ExpressServeStaticCore =
         [<Emit("$0($1...)")>]
         abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2313,187 +2308,27 @@ module ExpressServeStaticCore =
     type Send<'ResBody, 'T> =
         delegate of ?body: 'ResBody -> 'T
 
-    [<Global>]
     [<AllowNullLiteral>]
-    type SendFileOptions
-        [<ParamObject; Emit("$0")>]
-        (
-            ?acceptRanges: bool,
-            ?cacheControl: bool,
-            ?dotfiles: SendFileOptions.dotfiles,
-            ?``end``: float,
-            ?etag: bool,
-            ?extensions: U3<ResizeArray<string>, string, bool>,
-            ?immutable: bool,
-            ?index: U3<ResizeArray<string>, string, bool>,
-            ?lastModified: bool,
-            ?maxAge: U2<string, float>,
-            ?root: string,
-            ?start: float,
-            ?headers: SendFileOptions.headers
-        ) =
-
-        /// <summary>
-        /// Enable or disable accepting ranged requests, defaults to true.
-        /// Disabling this will not send Accept-Ranges and ignore the contents of the Range request header.
-        /// </summary>
-        member val acceptRanges : bool option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable setting Cache-Control response header, defaults to true.
-        /// Disabling this will ignore the maxAge option.
-        /// </summary>
-        member val cacheControl : bool option = nativeOnly with get, set
-        /// <summary>
-        /// Set how "dotfiles" are treated when encountered.
-        /// A dotfile is a file or directory that begins with a dot (".").
-        /// Note this check is done on the path itself without checking if the path actually exists on the disk.
-        /// If root is specified, only the dotfiles above the root are checked (i.e. the root itself can be within a dotfile when when set to "deny").
-        /// 'allow' No special treatment for dotfiles.
-        /// 'deny' Send a 403 for any request for a dotfile.
-        /// 'ignore' Pretend like the dotfile does not exist and 404.
-        /// The default value is similar to 'ignore', with the exception that this default will not ignore the files within a directory that begins with a dot, for backward-compatibility.
-        /// </summary>
-        member val dotfiles : SendFileOptions.dotfiles option = nativeOnly with get, set
-        /// <summary>
-        /// Byte offset at which the stream ends, defaults to the length of the file minus 1.
-        /// The end is inclusive in the stream, meaning end: 3 will include the 4th byte in the stream.
-        /// </summary>
-        member val ``end`` : float option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable etag generation, defaults to true.
-        /// </summary>
-        member val etag : bool option = nativeOnly with get, set
-        /// <summary>
-        /// If a given file doesn't exist, try appending one of the given extensions, in the given order.
-        /// By default, this is disabled (set to false).
-        /// An example value that will serve extension-less HTML files: ['html', 'htm'].
-        /// This is skipped if the requested file already has an extension.
-        /// </summary>
-        member val extensions : U3<ResizeArray<string>, string, bool> option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable the immutable directive in the Cache-Control response header, defaults to false.
-        /// If set to true, the maxAge option should also be specified to enable caching.
-        /// The immutable directive will prevent supported clients from making conditional requests during the life of the maxAge option to check if the file has changed.
-        /// </summary>
-        member val immutable : bool option = nativeOnly with get, set
-        /// <summary>
-        /// By default send supports "index.html" files, to disable this set false or to supply a new index pass a string or an array in preferred order.
-        /// </summary>
-        member val index : U3<ResizeArray<string>, string, bool> option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable Last-Modified header, defaults to true.
-        /// Uses the file system's last modified value.
-        /// </summary>
-        member val lastModified : bool option = nativeOnly with get, set
-        /// <summary>
-        /// Provide a max-age in milliseconds for http caching, defaults to 0.
-        /// This can also be a string accepted by the ms module.
-        /// </summary>
-        member val maxAge : U2<string, float> option = nativeOnly with get, set
-        /// <summary>
-        /// Serve files relative to path.
-        /// </summary>
-        member val root : string option = nativeOnly with get, set
-        /// <summary>
-        /// Byte offset at which the stream starts, defaults to 0.
-        /// The start is inclusive, meaning start: 2 will include the 3rd byte in the stream.
-        /// </summary>
-        member val start : float option = nativeOnly with get, set
+    [<Interface>]
+    type SendFileOptions =
+        inherit Send.send_.SendOptions
         /// <summary>
         /// Object containing HTTP headers to serve with the file.
         /// </summary>
-        member val headers : SendFileOptions.headers option = nativeOnly with get, set
-
-    [<Global>]
-    [<AllowNullLiteral>]
-    type DownloadOptions
+        abstract member headers: SendFileOptions.headers option with get, set
         [<ParamObject; Emit("$0")>]
-        (
-            ?acceptRanges: bool,
-            ?cacheControl: bool,
-            ?dotfiles: DownloadOptions.dotfiles,
-            ?``end``: float,
-            ?etag: bool,
-            ?extensions: U3<ResizeArray<string>, string, bool>,
-            ?immutable: bool,
-            ?index: U3<ResizeArray<string>, string, bool>,
-            ?lastModified: bool,
-            ?maxAge: U2<string, float>,
-            ?root: string,
-            ?start: float,
-            ?headers: DownloadOptions.headers
-        ) =
+        static member Create (?acceptRanges: bool, ?cacheControl: bool, ?dotfiles: SendFileOptions.dotfiles, ?``end``: float, ?etag: bool, ?extensions: U3<ResizeArray<string>, string, bool>, ?immutable: bool, ?index: U3<ResizeArray<string>, string, bool>, ?lastModified: bool, ?maxAge: U2<string, float>, ?root: string, ?start: float, ?headers: SendFileOptions.headers) : SendFileOptions = nativeOnly
 
-        /// <summary>
-        /// Enable or disable accepting ranged requests, defaults to true.
-        /// Disabling this will not send Accept-Ranges and ignore the contents of the Range request header.
-        /// </summary>
-        member val acceptRanges : bool option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable setting Cache-Control response header, defaults to true.
-        /// Disabling this will ignore the maxAge option.
-        /// </summary>
-        member val cacheControl : bool option = nativeOnly with get, set
-        /// <summary>
-        /// Set how "dotfiles" are treated when encountered.
-        /// A dotfile is a file or directory that begins with a dot (".").
-        /// Note this check is done on the path itself without checking if the path actually exists on the disk.
-        /// If root is specified, only the dotfiles above the root are checked (i.e. the root itself can be within a dotfile when when set to "deny").
-        /// 'allow' No special treatment for dotfiles.
-        /// 'deny' Send a 403 for any request for a dotfile.
-        /// 'ignore' Pretend like the dotfile does not exist and 404.
-        /// The default value is similar to 'ignore', with the exception that this default will not ignore the files within a directory that begins with a dot, for backward-compatibility.
-        /// </summary>
-        member val dotfiles : DownloadOptions.dotfiles option = nativeOnly with get, set
-        /// <summary>
-        /// Byte offset at which the stream ends, defaults to the length of the file minus 1.
-        /// The end is inclusive in the stream, meaning end: 3 will include the 4th byte in the stream.
-        /// </summary>
-        member val ``end`` : float option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable etag generation, defaults to true.
-        /// </summary>
-        member val etag : bool option = nativeOnly with get, set
-        /// <summary>
-        /// If a given file doesn't exist, try appending one of the given extensions, in the given order.
-        /// By default, this is disabled (set to false).
-        /// An example value that will serve extension-less HTML files: ['html', 'htm'].
-        /// This is skipped if the requested file already has an extension.
-        /// </summary>
-        member val extensions : U3<ResizeArray<string>, string, bool> option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable the immutable directive in the Cache-Control response header, defaults to false.
-        /// If set to true, the maxAge option should also be specified to enable caching.
-        /// The immutable directive will prevent supported clients from making conditional requests during the life of the maxAge option to check if the file has changed.
-        /// </summary>
-        member val immutable : bool option = nativeOnly with get, set
-        /// <summary>
-        /// By default send supports "index.html" files, to disable this set false or to supply a new index pass a string or an array in preferred order.
-        /// </summary>
-        member val index : U3<ResizeArray<string>, string, bool> option = nativeOnly with get, set
-        /// <summary>
-        /// Enable or disable Last-Modified header, defaults to true.
-        /// Uses the file system's last modified value.
-        /// </summary>
-        member val lastModified : bool option = nativeOnly with get, set
-        /// <summary>
-        /// Provide a max-age in milliseconds for http caching, defaults to 0.
-        /// This can also be a string accepted by the ms module.
-        /// </summary>
-        member val maxAge : U2<string, float> option = nativeOnly with get, set
-        /// <summary>
-        /// Serve files relative to path.
-        /// </summary>
-        member val root : string option = nativeOnly with get, set
-        /// <summary>
-        /// Byte offset at which the stream starts, defaults to 0.
-        /// The start is inclusive, meaning start: 2 will include the 3rd byte in the stream.
-        /// </summary>
-        member val start : float option = nativeOnly with get, set
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type DownloadOptions =
+        inherit Send.send_.SendOptions
         /// <summary>
         /// Object containing HTTP headers to serve with the file. The header <c>Content-Disposition</c> will be overridden by the filename argument.
         /// </summary>
-        member val headers : DownloadOptions.headers option = nativeOnly with get, set
+        abstract member headers: DownloadOptions.headers option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?acceptRanges: bool, ?cacheControl: bool, ?dotfiles: DownloadOptions.dotfiles, ?``end``: float, ?etag: bool, ?extensions: U3<ResizeArray<string>, string, bool>, ?immutable: bool, ?index: U3<ResizeArray<string>, string, bool>, ?lastModified: bool, ?maxAge: U2<string, float>, ?root: string, ?start: float, ?headers: DownloadOptions.headers) : DownloadOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3012,17 +2847,17 @@ module ExpressServeStaticCore =
         [<Emit("$0($1...)")>]
         abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
+        abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
         abstract member Invoke: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application<obj> -> 'T
 
@@ -3560,33 +3395,33 @@ module ExpressServeStaticCore =
 
     module SendFileOptions =
 
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type headers =
+            [<EmitIndexer>]
+            abstract member Item: key: string -> obj with get, set
+
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
         type dotfiles =
             | allow
             | deny
             | ignore
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type headers =
-            [<EmitIndexer>]
-            abstract member Item: key: string -> obj with get, set
 
     module DownloadOptions =
 
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type headers =
+            [<EmitIndexer>]
+            abstract member Item: key: string -> obj with get, set
+
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
         type dotfiles =
             | allow
             | deny
             | ignore
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type headers =
-            [<EmitIndexer>]
-            abstract member Item: key: string -> obj with get, set
 
     module Response =
 
@@ -3621,7 +3456,7 @@ module HttpErrors =
     [<Erase>]
     type Exports =
         [<ImportDefault("http-errors")>]
-        static member inline createHttpError: Exports.createHttpError = nativeOnly
+        static member inline createHttpError: Exports.createHttpError__ = nativeOnly
 
     module createHttpError_ =
 
@@ -3650,7 +3485,7 @@ module HttpErrors =
         [<Interface>]
         type CreateHttpError =
             [<Emit("$0($1...)")>]
-            abstract member Invoke: arg: 'N * [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<'N>
+            abstract member Invoke<'N>: arg: 'N * [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<'N>
             [<Emit("$0($1...)")>]
             abstract member Invoke: [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError
 
@@ -3796,7 +3631,7 @@ module HttpErrors =
 
         [<AllowNullLiteral>]
         [<Interface>]
-        type createHttpError =
+        type createHttpError__ =
             abstract member HttpError: HttpErrors.createHttpError_.HttpErrorConstructor with get, set
             abstract member BadRequest: HttpErrors.createHttpError_.HttpErrorConstructor<int> with get, set
             abstract member ``400``: HttpErrors.createHttpError_.HttpErrorConstructor<int> with get, set
@@ -3882,7 +3717,7 @@ module HttpErrors =
             abstract member ``511``: HttpErrors.createHttpError_.HttpErrorConstructor<int> with get, set
             abstract member isHttpError: HttpErrors.createHttpError_.IsHttpError with get, set
             [<Emit("$0($1...)")>]
-            abstract member Invoke: arg: 'N * [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<'N>
+            abstract member Invoke<'N>: arg: 'N * [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<'N>
             [<Emit("$0($1...)")>]
             abstract member Invoke: [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<float>
 
@@ -4259,19 +4094,16 @@ module RangeParser =
             abstract member start: float with get, set
             abstract member ``end``: float with get, set
 
-        [<Global>]
         [<AllowNullLiteral>]
-        type Options
-            [<ParamObject; Emit("$0")>]
-            (
-                ?combine: bool
-            ) =
-
+        [<Interface>]
+        type Options =
             /// <summary>
             /// The "combine" option can be set to <c>true</c> and overlapping & adjacent ranges
             /// will be combined into a single range.
             /// </summary>
-            member val combine : bool option = nativeOnly with get, set
+            abstract member combine: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?combine: bool) : Options = nativeOnly
 
         type ResultUnsatisfiable =
             int
