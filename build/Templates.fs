@@ -23,6 +23,12 @@ let project
         else
             $"\n        <!-- {compile} -->"
 
+    let packageType =
+        if hasExtensions then
+            "library"
+        else
+            "binding"
+
     let npmDependencies =
         match npm with
         | None -> ""
@@ -55,8 +61,8 @@ let project
         <PackageId>{binding.Name}</PackageId>
         <Description>{binding.Config.Description}</Description>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <FablePackageType>binding</FablePackageType>
-        <PackageTags>fable-javascript;fable-binding</PackageTags>
+        <FablePackageType>{packageType}</FablePackageType>
+        <PackageTags>fable-javascript</PackageTags>
         <ChangelogFile>CHANGELOG.md</ChangelogFile>
         <NoWarn>$(NoWarn);FS0044</NoWarn>{npmDependencies}
     </PropertyGroup>
