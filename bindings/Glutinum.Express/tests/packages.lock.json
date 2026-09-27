@@ -75,7 +75,7 @@
           "EasyBuild.PackageReleaseNotes.Tasks": "[2.1.0, )",
           "FSharp.Core": "[10.1.301, )",
           "Fable.Core": "[5.2.0, )",
-          "Fable.Package.SDK": "[1.3.2, )",
+          "Fable.Package.SDK": "[1.4.1, )",
           "Glutinum.Node": "[1.0.0-beta.1, )",
           "Glutinum.Types": "[1.0.0-beta.1, )"
         }
@@ -88,9 +88,9 @@
       },
       "Fable.Package.SDK": {
         "type": "CentralTransitive",
-        "requested": "[1.3.2, )",
-        "resolved": "1.3.2",
-        "contentHash": "vQB5IvCyy86LP9ilSpZGjLUT/7HI0Bp4Ht1Oyl+w68h734ySaq9xLjttErYoHx+nmnMjcv2EBjxrA24mZ/U/jQ=="
+        "requested": "[1.4.1, )",
+        "resolved": "1.4.1",
+        "contentHash": "2RMH3nx0VQZ6pcdoXpxhURSq6tFEVqK/eusZaxhA49wuDFQ6xLPjvoIHeBYHGnwbyfGSzq71R0xXKB/D87qknw=="
       },
       "Glutinum.Node": {
         "type": "CentralTransitive",
