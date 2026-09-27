@@ -1603,9 +1603,9 @@ module ExpressServeStaticCore =
         abstract member ``use``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
-        abstract member ``use``: path: string * subApplication: ExpressServeStaticCore.Application<obj> -> obj
-        abstract member ``use``: path: RegExp * subApplication: ExpressServeStaticCore.Application<obj> -> obj
-        abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application<obj> -> obj
+        abstract member ``use``: path: string * subApplication: ExpressServeStaticCore.Application -> obj
+        abstract member ``use``: path: RegExp * subApplication: ExpressServeStaticCore.Application -> obj
+        abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> obj
         abstract member route<'T>: prefix: 'T -> ExpressServeStaticCore.IRoute<'T>
         abstract member route: prefix: string -> ExpressServeStaticCore.IRoute
         abstract member route: prefix: RegExp -> ExpressServeStaticCore.IRoute
@@ -2859,7 +2859,7 @@ module ExpressServeStaticCore =
         [<Emit("$0($1...)")>]
         abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application<obj> -> 'T
+        abstract member Invoke: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> 'T
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2938,9 +2938,9 @@ module ExpressServeStaticCore =
         abstract member get: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
-        abstract member get: path: string * subApplication: ExpressServeStaticCore.Application<obj> -> obj
-        abstract member get: path: RegExp * subApplication: ExpressServeStaticCore.Application<obj> -> obj
-        abstract member get: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application<obj> -> obj
+        abstract member get: path: string * subApplication: ExpressServeStaticCore.Application -> obj
+        abstract member get: path: RegExp * subApplication: ExpressServeStaticCore.Application -> obj
+        abstract member get: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> obj
         /// <summary>
         /// Map the given param placeholder <c>name</c>(s) to the given callback(s).
         ///
@@ -3204,9 +3204,9 @@ module ExpressServeStaticCore =
         abstract member ``use``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
-        abstract member ``use``: path: string * subApplication: ExpressServeStaticCore.Application<obj> -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
-        abstract member ``use``: path: RegExp * subApplication: ExpressServeStaticCore.Application<obj> -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
-        abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application<obj> -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         /// <summary>
         /// The mount event is fired on a sub-app, when it is mounted on a parent app.
         /// The parent app is passed to the callback function.
@@ -3719,7 +3719,14 @@ module HttpErrors =
             [<Emit("$0($1...)")>]
             abstract member Invoke<'N>: arg: 'N * [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<'N>
             [<Emit("$0($1...)")>]
-            abstract member Invoke: [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<float>
+            abstract member Invoke: [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError
+
+        [<AutoOpen>]
+        module createHttpError__Extensions =
+
+            type createHttpError__ with
+                member inline this.isHttpError(error: obj) : bool =
+                    this.isHttpError.Invoke(error)
 
 module Qs =
 

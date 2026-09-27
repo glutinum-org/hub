@@ -2177,24 +2177,20 @@ module ChartJs =
         [<Interface>]
         type BarController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { BarController } from "chart.js/dist/controllers/controller.bar.js";
+BarController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { BarController } from "chart.js/dist/controllers/controller.bar.js";
-BarController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { BarController } from "chart.js/dist/controllers/controller.bar.js";
-BarController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { BarController } from "chart.js/dist/controllers/controller.bar.js";
+BarController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { BarController } from "chart.js/dist/controllers/controller.bar.js";
-BarController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { BarController } from "chart.js/dist/controllers/controller.bar.js";
-BarController.overrides = $0"""
+                    nativeOnly
             /// <summary>
             /// Overriding primitive data parsing since we support mixed primitive/array
             /// data for float bars
@@ -2227,24 +2223,20 @@ BarController.overrides = $0"""
         [<Interface>]
         type BubbleController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
+BubbleController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
-BubbleController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
-BubbleController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
+BubbleController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
-BubbleController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
-BubbleController.overrides = $0"""
+                    nativeOnly
             /// <summary>
             /// Parse array of primitive values
             /// </summary>
@@ -2283,33 +2275,27 @@ BubbleController.overrides = $0"""
         [<Interface>]
         type DoughnutController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
+DoughnutController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
-DoughnutController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
-DoughnutController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
+DoughnutController.descriptors{{=$0}}""")>]
             static member inline descriptors
                 with get () : DoughnutController.descriptors__ =
-                    emitJsExpr () $$"""
-import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
-DoughnutController.descriptors"""
+                    nativeOnly
                 and set (value: DoughnutController.descriptors__) =
-                    emitJsExpr (value) $$"""
-import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
-DoughnutController.descriptors = $0"""
+                    nativeOnly
+            [<Emit("""import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
+DoughnutController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
-DoughnutController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
-DoughnutController.overrides = $0"""
+                    nativeOnly
             abstract member innerRadius: float with get, set
             abstract member outerRadius: float with get, set
             abstract member offsetX: float with get, set
@@ -2370,24 +2356,20 @@ DoughnutController.overrides = $0"""
         [<Interface>]
         type LineController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { LineController } from "chart.js/dist/controllers/controller.line.js";
+LineController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { LineController } from "chart.js/dist/controllers/controller.line.js";
-LineController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { LineController } from "chart.js/dist/controllers/controller.line.js";
-LineController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { LineController } from "chart.js/dist/controllers/controller.line.js";
+LineController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { LineController } from "chart.js/dist/controllers/controller.line.js";
-LineController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { LineController } from "chart.js/dist/controllers/controller.line.js";
-LineController.overrides = $0"""
+                    nativeOnly
             abstract member update: mode: obj -> unit
             abstract member getMaxOverflow: unit -> obj
 
@@ -2416,24 +2398,20 @@ LineController.overrides = $0"""
         [<Interface>]
         type PolarAreaController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
+PolarAreaController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
-PolarAreaController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
-PolarAreaController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
+PolarAreaController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
-PolarAreaController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
-PolarAreaController.overrides = $0"""
+                    nativeOnly
             abstract member innerRadius: float with get, set
             abstract member outerRadius: float with get, set
             abstract member getLabelAndValue: index: obj -> PolarAreaController.getLabelAndValue
@@ -2482,24 +2460,20 @@ PolarAreaController.overrides = $0"""
         [<Interface>]
         type RadarController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
+RadarController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
-RadarController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
-RadarController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
+RadarController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
-RadarController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
-RadarController.overrides = $0"""
+                    nativeOnly
             abstract member getLabelAndValue: index: obj -> RadarController.getLabelAndValue
             /// <summary>
             /// Parse array of objects
@@ -2536,24 +2510,20 @@ RadarController.overrides = $0"""
         [<Interface>]
         type ScatterController =
             inherit ChartJs.dist_core_core_datasetController.DatasetController
+            [<Emit("""import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
+ScatterController.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
-ScatterController.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
-ScatterController.id = $0"""
+                    nativeOnly
+            [<Emit("""import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
+ScatterController.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
-ScatterController.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
-ScatterController.overrides = $0"""
+                    nativeOnly
             abstract member getLabelAndValue: index: obj -> ScatterController.getLabelAndValue
             abstract member update: mode: obj -> unit
             abstract member getMaxOverflow: unit -> obj
@@ -2776,7 +2746,7 @@ ScatterController.overrides = $0"""
                                 /// <summary>
                                 /// Will called with chart options after adapter creation.
                                 /// </summary>
-                                abstract member init: chartOptions: ChartJs.dist_types_utils._DeepPartialObject<obj> -> unit
+                                abstract member init: chartOptions: ChartJs.dist_types.ChartOptions -> unit
                                 /// <summary>
                                 /// Returns a map of time formats for the supported formatting units defined
                                 /// in Unit as well as 'datetime' representing a detailed date/time string.
@@ -3220,68 +3190,54 @@ ScatterController.overrides = $0"""
         [<AllowNullLiteral>]
         [<Interface>]
         type Chart =
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : ChartJs.dist_core_core_defaults.Defaults =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.defaults"""
+                    nativeOnly
                 and set (value: ChartJs.dist_core_core_defaults.Defaults) =
-                    emitJsExpr (value) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.defaults = $0"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.instances{{=$0}}""")>]
             static member inline instances
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.instances"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.instances = $0"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.overrides"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.overrides = $0"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.registry{{=$0}}""")>]
             static member inline registry
                 with get () : ChartJs.dist_core_core_registry.Registry =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.registry"""
+                    nativeOnly
                 and set (value: ChartJs.dist_core_core_registry.Registry) =
-                    emitJsExpr (value) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.registry = $0"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.version{{=$0}}""")>]
             static member inline version
                 with get () : string =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.version"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.version = $0"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.getChart{{=$0}}""")>]
             static member inline getChart
                 with get () : (obj -> unit) =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.getChart"""
+                    nativeOnly
                 and set (value: (obj -> unit)) =
-                    emitJsExpr (value) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.getChart = $0"""
-            static member inline register ([<ParamArray>] items: obj []): unit =
-                emitJsExpr (items) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.register($0)"""
-            static member inline unregister ([<ParamArray>] items: obj []): unit =
-                emitJsExpr (items) $$"""
-import { Chart } from "chart.js/dist/core/core.controller.js";
-Chart.unregister($0)"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.register($0)""")>]
+            static member inline register ([<ParamArray>] items: obj []): unit = nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
+Chart.unregister($0)""")>]
+            static member inline unregister ([<ParamArray>] items: obj []): unit = nativeOnly
             abstract member config: ChartJs.dist_core_core_config.Config with get, set
             abstract member platform: obj with get, set
             abstract member id: float with get, set
@@ -3475,39 +3431,33 @@ Chart.unregister($0)"""
         [<AllowNullLiteral>]
         [<Interface>]
         type DatasetController =
+            [<Emit("""import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
+DatasetController.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
-DatasetController.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
-DatasetController.defaults = $0"""
+                    nativeOnly
             /// <summary>
             /// Element type used to generate a meta dataset (e.g. Chart.element.LineElement).
             /// </summary>
+            [<Emit("""import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
+DatasetController.datasetElementType{{=$0}}""")>]
             static member inline datasetElementType
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
-DatasetController.datasetElementType"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
-DatasetController.datasetElementType = $0"""
+                    nativeOnly
             /// <summary>
             /// Element type used to generate a meta data (e.g. Chart.element.PointElement).
             /// </summary>
+            [<Emit("""import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
+DatasetController.dataElementType{{=$0}}""")>]
             static member inline dataElementType
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
-DatasetController.dataElementType"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
-DatasetController.dataElementType = $0"""
+                    nativeOnly
             abstract member chart: ChartJs.dist_core_core_controller.Chart with get, set
             abstract member _ctx: obj with get, set
             abstract member index: float with get, set
@@ -3852,24 +3802,20 @@ DatasetController.dataElementType = $0"""
         [<AllowNullLiteral>]
         [<Interface>]
         type Element<'T, 'O> =
+            [<Emit("""import { Element } from "chart.js/dist/core/core.element.js";
+Element.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { Element } from "chart.js/dist/core/core.element.js";
-Element.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { Element } from "chart.js/dist/core/core.element.js";
-Element.defaults = $0"""
+                    nativeOnly
+            [<Emit("""import { Element } from "chart.js/dist/core/core.element.js";
+Element.defaultRoutes{{=$0}}""")>]
             static member inline defaultRoutes
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { Element } from "chart.js/dist/core/core.element.js";
-Element.defaultRoutes"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { Element } from "chart.js/dist/core/core.element.js";
-Element.defaultRoutes = $0"""
+                    nativeOnly
             abstract member x: float with get, set
             abstract member y: float with get, set
             abstract member active: bool with get, set
@@ -4824,42 +4770,34 @@ Element.defaultRoutes = $0"""
         [<Interface>]
         type ArcElement =
             inherit ChartJs.dist_core_core_element.Element<ChartJs.dist_elements_element_arc.ArcProps, ChartJs.dist_types.ArcOptions>
+            [<Emit("""import { ArcElement } from "chart.js/dist/elements/element.arc.js";
+ArcElement.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.id = $0"""
+                    nativeOnly
+            [<Emit("""import { ArcElement } from "chart.js/dist/elements/element.arc.js";
+ArcElement.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : ArcElement.defaults__ =
-                    emitJsExpr () $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.defaults"""
+                    nativeOnly
                 and set (value: ArcElement.defaults__) =
-                    emitJsExpr (value) $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.defaults = $0"""
+                    nativeOnly
+            [<Emit("""import { ArcElement } from "chart.js/dist/elements/element.arc.js";
+ArcElement.defaultRoutes{{=$0}}""")>]
             static member inline defaultRoutes
                 with get () : ArcElement.defaultRoutes__ =
-                    emitJsExpr () $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.defaultRoutes"""
+                    nativeOnly
                 and set (value: ArcElement.defaultRoutes__) =
-                    emitJsExpr (value) $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.defaultRoutes = $0"""
+                    nativeOnly
+            [<Emit("""import { ArcElement } from "chart.js/dist/elements/element.arc.js";
+ArcElement.descriptors{{=$0}}""")>]
             static member inline descriptors
                 with get () : ArcElement.descriptors__ =
-                    emitJsExpr () $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.descriptors"""
+                    nativeOnly
                 and set (value: ArcElement.descriptors__) =
-                    emitJsExpr (value) $$"""
-import { ArcElement } from "chart.js/dist/elements/element.arc.js";
-ArcElement.descriptors = $0"""
+                    nativeOnly
             abstract member circumference: float with get, set
             abstract member endAngle: float with get, set
             abstract member fullCircles: float with get, set
@@ -4935,24 +4873,20 @@ ArcElement.descriptors = $0"""
         [<Interface>]
         type BarElement =
             inherit ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject>
+            [<Emit("""import { BarElement } from "chart.js/dist/elements/element.bar.js";
+BarElement.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { BarElement } from "chart.js/dist/elements/element.bar.js";
-BarElement.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { BarElement } from "chart.js/dist/elements/element.bar.js";
-BarElement.id = $0"""
+                    nativeOnly
+            [<Emit("""import { BarElement } from "chart.js/dist/elements/element.bar.js";
+BarElement.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { BarElement } from "chart.js/dist/elements/element.bar.js";
-BarElement.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { BarElement } from "chart.js/dist/elements/element.bar.js";
-BarElement.defaults = $0"""
+                    nativeOnly
             abstract member options: obj with get, set
             abstract member horizontal: obj with get, set
             abstract member ``base``: obj with get, set
@@ -4998,33 +4932,27 @@ BarElement.defaults = $0"""
         [<Interface>]
         type LineElement =
             inherit ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject>
+            [<Emit("""import { LineElement } from "chart.js/dist/elements/element.line.js";
+LineElement.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { LineElement } from "chart.js/dist/elements/element.line.js";
-LineElement.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { LineElement } from "chart.js/dist/elements/element.line.js";
-LineElement.id = $0"""
+                    nativeOnly
+            [<Emit("""import { LineElement } from "chart.js/dist/elements/element.line.js";
+LineElement.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { LineElement } from "chart.js/dist/elements/element.line.js";
-LineElement.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { LineElement } from "chart.js/dist/elements/element.line.js";
-LineElement.defaults = $0"""
+                    nativeOnly
+            [<Emit("""import { LineElement } from "chart.js/dist/elements/element.line.js";
+LineElement.descriptors{{=$0}}""")>]
             static member inline descriptors
                 with get () : LineElement.descriptors__ =
-                    emitJsExpr () $$"""
-import { LineElement } from "chart.js/dist/elements/element.line.js";
-LineElement.descriptors"""
+                    nativeOnly
                 and set (value: LineElement.descriptors__) =
-                    emitJsExpr (value) $$"""
-import { LineElement } from "chart.js/dist/elements/element.line.js";
-LineElement.descriptors = $0"""
+                    nativeOnly
             abstract member animated: bool with get, set
             abstract member options: obj with get, set
             abstract member _chart: obj with get, set
@@ -5172,36 +5100,30 @@ LineElement.descriptors = $0"""
         [<Interface>]
         type PointElement =
             inherit ChartJs.dist_core_core_element.Element<ChartJs.dist_elements_element_point.PointProps, PointElement.Extends>
+            [<Emit("""import { PointElement } from "chart.js/dist/elements/element.point.js";
+PointElement.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { PointElement } from "chart.js/dist/elements/element.point.js";
-PointElement.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { PointElement } from "chart.js/dist/elements/element.point.js";
-PointElement.id = $0"""
+                    nativeOnly
             abstract member parsed: ChartJs.dist_types.CartesianParsedData with get, set
             abstract member skip: bool option with get, set
             abstract member stop: bool option with get, set
+            [<Emit("""import { PointElement } from "chart.js/dist/elements/element.point.js";
+PointElement.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : PointElement.defaults__ =
-                    emitJsExpr () $$"""
-import { PointElement } from "chart.js/dist/elements/element.point.js";
-PointElement.defaults"""
+                    nativeOnly
                 and set (value: PointElement.defaults__) =
-                    emitJsExpr (value) $$"""
-import { PointElement } from "chart.js/dist/elements/element.point.js";
-PointElement.defaults = $0"""
+                    nativeOnly
+            [<Emit("""import { PointElement } from "chart.js/dist/elements/element.point.js";
+PointElement.defaultRoutes{{=$0}}""")>]
             static member inline defaultRoutes
                 with get () : PointElement.defaultRoutes__ =
-                    emitJsExpr () $$"""
-import { PointElement } from "chart.js/dist/elements/element.point.js";
-PointElement.defaultRoutes"""
+                    nativeOnly
                 and set (value: PointElement.defaultRoutes__) =
-                    emitJsExpr (value) $$"""
-import { PointElement } from "chart.js/dist/elements/element.point.js";
-PointElement.defaultRoutes = $0"""
+                    nativeOnly
             abstract member inRange: mouseX: float * mouseY: float * ?useFinalPosition: bool -> bool
             abstract member inXRange: mouseX: float * ?useFinalPosition: bool -> bool
             abstract member inYRange: mouseY: float * ?useFinalPosition: bool -> bool
@@ -5628,9 +5550,9 @@ PointElement.defaultRoutes = $0"""
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
             static member color (value: Exports.color__.value) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
-            static member color (value: float * float * float) : KurkleColor.Color = nativeOnly
+            static member color (value: (float * float * float)) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/helpers.color.js")>]
-            static member color (value: float * float * float * float) : KurkleColor.Color = nativeOnly
+            static member color (value: (float * float * float * float)) : KurkleColor.Color = nativeOnly
             [<Import("getHoverColor", "chart.js/dist/helpers/helpers.color.js")>]
             static member getHoverColor (value: Glutinum.Web.CanvasGradient) : Glutinum.Web.CanvasGradient = nativeOnly
             [<Import("getHoverColor", "chart.js/dist/helpers/helpers.color.js")>]
@@ -5745,11 +5667,47 @@ PointElement.defaultRoutes = $0"""
         type ResolverObjectKey =
             ChartJs.dist_helpers_helpers_config_types.ResolverObjectKey
 
+        type ResolverCache<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ResolverCache<'T, 'R>
+
+        type ResolverCache<'T> =
+            ResolverCache<'T, 'T>
+
+        type ResolverCache =
+            ResolverCache<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
+        type ResolverProxy<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ResolverProxy<'T, 'R>
+
+        type ResolverProxy<'T> =
+            ResolverProxy<'T, 'T>
+
+        type ResolverProxy =
+            ResolverProxy<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
         type DescriptorDefaults =
             ChartJs.dist_helpers_helpers_config_types.DescriptorDefaults
 
         type Descriptor =
             ChartJs.dist_helpers_helpers_config_types.Descriptor
+
+        type ContextCache<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ContextCache<'T, 'R>
+
+        type ContextCache<'T> =
+            ContextCache<'T, 'T>
+
+        type ContextCache =
+            ContextCache<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
+        type ContextProxy<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ContextProxy<'T, 'R>
+
+        type ContextProxy<'T> =
+            ContextProxy<'T, 'T>
+
+        type ContextProxy =
+            ContextProxy<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
 
         module Exports =
 
@@ -6025,15 +5983,13 @@ PointElement.defaultRoutes = $0"""
             [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
             static member merge<'T> (target: 'T, source: obj, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : 'T = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
-            static member merge<'T, 'S1> (target: 'T, source: 'S1, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
-            [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
             static member merge<'T, 'S1> (target: 'T, source: ResizeArray<'S1>, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
-            static member merge<'T, 'S1, 'S2> (target: 'T, source: 'S1 * 'S2, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2> (target: 'T, source: ('S1 * 'S2), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
-            static member merge<'T, 'S1, 'S2, 'S3> (target: 'T, source: 'S1 * 'S2 * 'S3, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2, 'S3> (target: 'T, source: ('S1 * 'S2 * 'S3), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
-            static member merge<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: 'S1 * 'S2 * 'S3 * 'S4, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: ('S1 * 'S2 * 'S3 * 'S4), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/helpers.core.js")>]
             static member merge<'T> (target: 'T, source: ResizeArray<ChartJs.dist_types_basic.AnyObject>, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : ChartJs.dist_types_basic.AnyObject = nativeOnly
             /// <summary>
@@ -6052,15 +6008,13 @@ PointElement.defaultRoutes = $0"""
             [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
             static member mergeIf<'T> (target: 'T, source: obj) : 'T = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
-            static member mergeIf<'T, 'S1> (target: 'T, source: 'S1) : obj = nativeOnly
-            [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
             static member mergeIf<'T, 'S1> (target: 'T, source: ResizeArray<'S1>) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
-            static member mergeIf<'T, 'S1, 'S2> (target: 'T, source: 'S1 * 'S2) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2> (target: 'T, source: ('S1 * 'S2)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
-            static member mergeIf<'T, 'S1, 'S2, 'S3> (target: 'T, source: 'S1 * 'S2 * 'S3) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2, 'S3> (target: 'T, source: ('S1 * 'S2 * 'S3)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
-            static member mergeIf<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: 'S1 * 'S2 * 'S3 * 'S4) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: ('S1 * 'S2 * 'S3 * 'S4)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/helpers.core.js")>]
             static member mergeIf<'T> (target: 'T, source: ResizeArray<ChartJs.dist_types_basic.AnyObject>) : ChartJs.dist_types_basic.AnyObject = nativeOnly
             /// <summary>
@@ -7007,8 +6961,6 @@ PointElement.defaultRoutes = $0"""
             /// </param>
             [<Import("createContext", "chart.js/dist/helpers/helpers.options.js")>]
             static member createContext (parentContext: obj, context: obj) : obj = nativeOnly
-            [<Import("createContext", "chart.js/dist/helpers/helpers.options.js")>]
-            static member createContext<'P> (parentContext: 'P, context: obj) : obj = nativeOnly
 
         module Exports =
 
@@ -7289,7 +7241,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("overrideTextDirection", "chart.js/dist/helpers/helpers.rtl.js")>]
             static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection__.direction) : unit = nativeOnly
             [<Import("restoreTextDirection", "chart.js/dist/helpers/helpers.rtl.js")>]
-            static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: string * string) : unit = nativeOnly
+            static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: (string * string)) : unit = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -7455,9 +7407,9 @@ PointElement.defaultRoutes = $0"""
             [<Import("color", "chart.js/dist/helpers/index.js")>]
             static member color (value: Exports.color__.value_1) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/index.js")>]
-            static member color (value: float * float * float) : KurkleColor.Color = nativeOnly
+            static member color (value: (float * float * float)) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/dist/helpers/index.js")>]
-            static member color (value: float * float * float * float) : KurkleColor.Color = nativeOnly
+            static member color (value: (float * float * float * float)) : KurkleColor.Color = nativeOnly
             [<Import("getHoverColor", "chart.js/dist/helpers/index.js")>]
             static member getHoverColor (value: Glutinum.Web.CanvasGradient) : Glutinum.Web.CanvasGradient = nativeOnly
             [<Import("getHoverColor", "chart.js/dist/helpers/index.js")>]
@@ -7598,15 +7550,13 @@ PointElement.defaultRoutes = $0"""
             [<Import("merge", "chart.js/dist/helpers/index.js")>]
             static member merge<'T> (target: 'T, source: obj, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : 'T = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/index.js")>]
-            static member merge<'T, 'S1> (target: 'T, source: 'S1, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
-            [<Import("merge", "chart.js/dist/helpers/index.js")>]
             static member merge<'T, 'S1> (target: 'T, source: ResizeArray<'S1>, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/index.js")>]
-            static member merge<'T, 'S1, 'S2> (target: 'T, source: 'S1 * 'S2, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2> (target: 'T, source: ('S1 * 'S2), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/index.js")>]
-            static member merge<'T, 'S1, 'S2, 'S3> (target: 'T, source: 'S1 * 'S2 * 'S3, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2, 'S3> (target: 'T, source: ('S1 * 'S2 * 'S3), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/index.js")>]
-            static member merge<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: 'S1 * 'S2 * 'S3 * 'S4, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: ('S1 * 'S2 * 'S3 * 'S4), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/dist/helpers/index.js")>]
             static member merge<'T> (target: 'T, source: ResizeArray<ChartJs.dist_types_basic.AnyObject>, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : ChartJs.dist_types_basic.AnyObject = nativeOnly
             /// <summary>
@@ -7625,15 +7575,13 @@ PointElement.defaultRoutes = $0"""
             [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
             static member mergeIf<'T> (target: 'T, source: obj) : 'T = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
-            static member mergeIf<'T, 'S1> (target: 'T, source: 'S1) : obj = nativeOnly
-            [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
             static member mergeIf<'T, 'S1> (target: 'T, source: ResizeArray<'S1>) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
-            static member mergeIf<'T, 'S1, 'S2> (target: 'T, source: 'S1 * 'S2) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2> (target: 'T, source: ('S1 * 'S2)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
-            static member mergeIf<'T, 'S1, 'S2, 'S3> (target: 'T, source: 'S1 * 'S2 * 'S3) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2, 'S3> (target: 'T, source: ('S1 * 'S2 * 'S3)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
-            static member mergeIf<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: 'S1 * 'S2 * 'S3 * 'S4) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: ('S1 * 'S2 * 'S3 * 'S4)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/dist/helpers/index.js")>]
             static member mergeIf<'T> (target: 'T, source: ResizeArray<ChartJs.dist_types_basic.AnyObject>) : ChartJs.dist_types_basic.AnyObject = nativeOnly
             /// <summary>
@@ -8376,8 +8324,6 @@ PointElement.defaultRoutes = $0"""
             /// </param>
             [<Import("createContext", "chart.js/dist/helpers/index.js")>]
             static member createContext (parentContext: obj, context: obj) : obj = nativeOnly
-            [<Import("createContext", "chart.js/dist/helpers/index.js")>]
-            static member createContext<'P> (parentContext: 'P, context: obj) : obj = nativeOnly
             [<Import("almostEquals", "chart.js/dist/helpers/index.js")>]
             static member almostEquals (x: float, y: float, epsilon: float) : bool = nativeOnly
             /// <summary>
@@ -8486,7 +8432,7 @@ PointElement.defaultRoutes = $0"""
             [<Import("overrideTextDirection", "chart.js/dist/helpers/index.js")>]
             static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection__.direction_1) : unit = nativeOnly
             [<Import("restoreTextDirection", "chart.js/dist/helpers/index.js")>]
-            static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: string * string) : unit = nativeOnly
+            static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: (string * string)) : unit = nativeOnly
             /// <summary>
             /// Returns the sub-segment(s) of a line segment that fall in the given bounds
             /// </summary>
@@ -8539,11 +8485,47 @@ PointElement.defaultRoutes = $0"""
         type ResolverObjectKey =
             ChartJs.dist_helpers_helpers_config_types.ResolverObjectKey
 
+        type ResolverCache<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ResolverCache<'T, 'R>
+
+        type ResolverCache<'T> =
+            ResolverCache<'T, 'T>
+
+        type ResolverCache =
+            ResolverCache<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
+        type ResolverProxy<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ResolverProxy<'T, 'R>
+
+        type ResolverProxy<'T> =
+            ResolverProxy<'T, 'T>
+
+        type ResolverProxy =
+            ResolverProxy<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
         type DescriptorDefaults =
             ChartJs.dist_helpers_helpers_config_types.DescriptorDefaults
 
         type Descriptor =
             ChartJs.dist_helpers_helpers_config_types.Descriptor
+
+        type ContextCache<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ContextCache<'T, 'R>
+
+        type ContextCache<'T> =
+            ContextCache<'T, 'T>
+
+        type ContextCache =
+            ContextCache<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
+        type ContextProxy<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ContextProxy<'T, 'R>
+
+        type ContextProxy<'T> =
+            ContextProxy<'T, 'T>
+
+        type ContextProxy =
+            ContextProxy<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
 
         type RTLAdapter =
             ChartJs.dist_helpers_helpers_rtl.RTLAdapter
@@ -9945,15 +9927,13 @@ PointElement.defaultRoutes = $0"""
         [<Interface>]
         type Tooltip =
             inherit ChartJs.dist_core_core_element.Element<ChartJs.dist_types_basic.AnyObject, ChartJs.dist_types_basic.AnyObject>
+            [<Emit("""import { Tooltip } from "chart.js/dist/plugins/plugin.tooltip.js";
+Tooltip.positioners{{=$0}}""")>]
             static member inline positioners
                 with get () : Tooltip.positioners__ =
-                    emitJsExpr () $$"""
-import { Tooltip } from "chart.js/dist/plugins/plugin.tooltip.js";
-Tooltip.positioners"""
+                    nativeOnly
                 and set (value: Tooltip.positioners__) =
-                    emitJsExpr (value) $$"""
-import { Tooltip } from "chart.js/dist/plugins/plugin.tooltip.js";
-Tooltip.positioners = $0"""
+                    nativeOnly
             abstract member opacity: float with get, set
             abstract member _active: ResizeArray<obj> with get, set
             abstract member _eventPosition: obj with get, set
@@ -10474,24 +10454,20 @@ Tooltip.positioners = $0"""
         [<Interface>]
         type CategoryScale =
             inherit ChartJs.dist_core_core_scale.Scale
+            [<Emit("""import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
+CategoryScale.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
-CategoryScale.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
-CategoryScale.id = $0"""
+                    nativeOnly
+            [<Emit("""import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
+CategoryScale.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
-CategoryScale.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
-CategoryScale.defaults = $0"""
+                    nativeOnly
             abstract member _startValue: float with get, set
             abstract member _valueRange: float with get, set
             abstract member _addedLabels: ResizeArray<obj> with get, set
@@ -10542,24 +10518,20 @@ CategoryScale.defaults = $0"""
         [<Interface>]
         type LinearScale =
             inherit ChartJs.dist_scales_scale_linearbase.LinearScaleBase
+            [<Emit("""import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
+LinearScale.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
-LinearScale.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
-LinearScale.id = $0"""
+                    nativeOnly
+            [<Emit("""import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
+LinearScale.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
-LinearScale.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
-LinearScale.defaults = $0"""
+                    nativeOnly
             /// <summary>
             /// Returns the location of the given data point. Value can either be an index or a numerical value
             /// The coordinate (0, 0) is at the upper-left corner of the canvas
@@ -10612,24 +10584,20 @@ LinearScale.defaults = $0"""
         [<Interface>]
         type LogarithmicScale =
             inherit ChartJs.dist_core_core_scale.Scale
+            [<Emit("""import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
+LogarithmicScale.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
-LogarithmicScale.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
-LogarithmicScale.id = $0"""
+                    nativeOnly
+            [<Emit("""import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
+LogarithmicScale.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
-LogarithmicScale.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
-LogarithmicScale.defaults = $0"""
+                    nativeOnly
             abstract member start: float with get, set
             abstract member ``end``: float with get, set
             abstract member _startValue: float with get, set
@@ -10670,42 +10638,34 @@ LogarithmicScale.defaults = $0"""
         [<Interface>]
         type RadialLinearScale =
             inherit ChartJs.dist_scales_scale_linearbase.LinearScaleBase
+            [<Emit("""import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
+RadialLinearScale.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.id = $0"""
+                    nativeOnly
+            [<Emit("""import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
+RadialLinearScale.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.defaults = $0"""
+                    nativeOnly
+            [<Emit("""import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
+RadialLinearScale.defaultRoutes{{=$0}}""")>]
             static member inline defaultRoutes
                 with get () : RadialLinearScale.defaultRoutes__ =
-                    emitJsExpr () $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.defaultRoutes"""
+                    nativeOnly
                 and set (value: RadialLinearScale.defaultRoutes__) =
-                    emitJsExpr (value) $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.defaultRoutes = $0"""
+                    nativeOnly
+            [<Emit("""import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
+RadialLinearScale.descriptors{{=$0}}""")>]
             static member inline descriptors
                 with get () : RadialLinearScale.descriptors__ =
-                    emitJsExpr () $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.descriptors"""
+                    nativeOnly
                 and set (value: RadialLinearScale.descriptors__) =
-                    emitJsExpr (value) $$"""
-import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
-RadialLinearScale.descriptors = $0"""
+                    nativeOnly
             abstract member xCenter: float with get, set
             abstract member yCenter: float with get, set
             abstract member drawingArea: float with get, set
@@ -10807,24 +10767,20 @@ RadialLinearScale.descriptors = $0"""
         [<Interface>]
         type TimeScale =
             inherit ChartJs.dist_core_core_scale.Scale
+            [<Emit("""import { TimeScale } from "chart.js/dist/scales/scale.time.js";
+TimeScale.id{{=$0}}""")>]
             static member inline id
                 with get () : string =
-                    emitJsExpr () $$"""
-import { TimeScale } from "chart.js/dist/scales/scale.time.js";
-TimeScale.id"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { TimeScale } from "chart.js/dist/scales/scale.time.js";
-TimeScale.id = $0"""
+                    nativeOnly
+            [<Emit("""import { TimeScale } from "chart.js/dist/scales/scale.time.js";
+TimeScale.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : obj =
-                    emitJsExpr () $$"""
-import { TimeScale } from "chart.js/dist/scales/scale.time.js";
-TimeScale.defaults"""
+                    nativeOnly
                 and set (value: obj) =
-                    emitJsExpr (value) $$"""
-import { TimeScale } from "chart.js/dist/scales/scale.time.js";
-TimeScale.defaults = $0"""
+                    nativeOnly
             abstract member _cache: TimeScale._cache with get, set
             abstract member _unit: ChartJs.dist_scales_scale_time.Unit with get, set
             abstract member _majorUnit: ChartJs.dist_scales_scale_time.Unit option with get, set
@@ -11706,31 +11662,7 @@ TimeScale.defaults = $0"""
         [<AllowNullLiteral>]
         [<Interface>]
         type ChartMeta<'TType, 'TElement, 'TDatasetElement> =
-            abstract member ``type``: string with get, set
-            abstract member controller: ChartJs.dist_types.DatasetController with get, set
-            abstract member order: float with get, set
-            abstract member label: string with get, set
-            abstract member index: float with get, set
-            abstract member visible: bool with get, set
-            abstract member stack: float with get, set
-            abstract member indexAxis: ChartMeta.indexAxis with get, set
-            abstract member data: ResizeArray<'TElement> with get, set
-            abstract member dataset: 'TDatasetElement option with get, set
-            abstract member hidden: bool with get, set
-            abstract member xAxisID: string option with get, set
-            abstract member yAxisID: string option with get, set
-            abstract member rAxisID: string option with get, set
-            abstract member iAxisID: string with get, set
-            abstract member vAxisID: string with get, set
-            abstract member xScale: ChartJs.dist_types.Scale option with get, set
-            abstract member yScale: ChartJs.dist_types.Scale option with get, set
-            abstract member rScale: ChartJs.dist_types.Scale option with get, set
-            abstract member iScale: ChartJs.dist_types.Scale option with get, set
-            abstract member vScale: ChartJs.dist_types.Scale option with get, set
-            abstract member _sorted: bool with get, set
-            abstract member _stacked: ChartMeta._stacked with get, set
-            abstract member _parsed: ResizeArray<obj> with get, set
-            abstract member _clip: ChartJs.dist_types.ChartMetaClip with get, set
+            inherit ChartJs.dist_types.ChartMetaCommon<'TElement, 'TDatasetElement>
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -11797,51 +11729,46 @@ TimeScale.defaults = $0"""
             abstract member notifyPlugins: hook: string * ?args: ChartJs.dist_types_basic.AnyObject -> U2<bool, unit>
             abstract member isPluginEnabled: pluginId: string -> bool
             abstract member getContext: unit -> Chart.getContext_1
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.defaults{{=$0}}""")>]
             static member inline defaults
                 with get () : ChartJs.dist_types.Defaults =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.defaults"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.overrides{{=$0}}""")>]
             static member inline overrides
                 with get () : ChartJs.dist_types.Overrides =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.overrides"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.version{{=$0}}""")>]
             static member inline version
                 with get () : string =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.version"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.instances{{=$0}}""")>]
             static member inline instances
                 with get () : Chart.instances__ =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.instances"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.registry{{=$0}}""")>]
             static member inline registry
                 with get () : ChartJs.dist_types.Registry =
-                    emitJsExpr () $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.registry"""
-            static member inline getChart (key: string): ChartJs.dist_types.Chart option =
-                emitJsExpr (key) $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.getChart($0)"""
-            static member inline getChart (key: Glutinum.Web.CanvasRenderingContext2D): ChartJs.dist_types.Chart option =
-                emitJsExpr (key) $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.getChart($0)"""
-            static member inline getChart (key: Glutinum.Web.HTMLCanvasElement): ChartJs.dist_types.Chart option =
-                emitJsExpr (key) $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.getChart($0)"""
-            static member inline register ([<ParamArray>] items: ChartJs.dist_types.ChartComponentLike []): unit =
-                emitJsExpr (items) $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.register($0)"""
-            static member inline unregister ([<ParamArray>] items: ChartJs.dist_types.ChartComponentLike []): unit =
-                emitJsExpr (items) $$"""
-import { Chart } from "chart.js/dist/types/index.js";
-Chart.unregister($0)"""
+                    nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.getChart($0)""")>]
+            static member inline getChart (key: string): ChartJs.dist_types.Chart option = nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.getChart($0)""")>]
+            static member inline getChart (key: Glutinum.Web.CanvasRenderingContext2D): ChartJs.dist_types.Chart option = nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.getChart($0)""")>]
+            static member inline getChart (key: Glutinum.Web.HTMLCanvasElement): ChartJs.dist_types.Chart option = nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.register($0)""")>]
+            static member inline register ([<ParamArray>] items: ChartJs.dist_types.ChartComponentLike []): unit = nativeOnly
+            [<Emit("""import { Chart } from "chart.js/dist/types/index.js";
+Chart.unregister($0)""")>]
+            static member inline unregister ([<ParamArray>] items: ChartJs.dist_types.ChartComponentLike []): unit = nativeOnly
 
         type Chart<'TType, 'TData> =
             Chart<'TType, 'TData, obj>
@@ -12749,7 +12676,7 @@ Chart.unregister($0)"""
             /// </summary>
             abstract member backdrop: ChartJs.dist_types.BackdropOptions option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?color: ChartJs.dist_types_color.Color, ?decorationWidth: float, ?maxWidth: float, ?rotation: float, ?strikethrough: bool, ?strokeColor: ChartJs.dist_types_color.Color, ?strokeWidth: float, ?textAlign: Glutinum.Web.CanvasTextAlign, ?textBaseline: Glutinum.Web.CanvasTextBaseline, ?translation: float * float, ?underline: bool, ?backdrop: ChartJs.dist_types.BackdropOptions) : RenderTextOpts = nativeOnly
+            static member Create (?color: ChartJs.dist_types_color.Color, ?decorationWidth: float, ?maxWidth: float, ?rotation: float, ?strikethrough: bool, ?strokeColor: ChartJs.dist_types_color.Color, ?strokeWidth: float, ?textAlign: Glutinum.Web.CanvasTextAlign, ?textBaseline: Glutinum.Web.CanvasTextBaseline, ?translation: (float * float), ?underline: bool, ?backdrop: ChartJs.dist_types.BackdropOptions) : RenderTextOpts = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -15210,12 +15137,12 @@ Chart.unregister($0)"""
             abstract member hidden: bool option with get, set
             abstract member parsing: U2<bool, ChartJs.dist_types_utils._DeepPartialObject<ChartDataset.parsing.U2.Case2>> option with get, set
             abstract member normalized: bool option with get, set
-            abstract member borderWidth: U9<float, ReadonlyArray<float option>, ChartDataset.borderWidth.U9.Case3, ChartJs.dist_types_utils._DeepPartialObject<ChartDataset.borderWidth.U9.Case4>, ReadonlyArray<U2<float, ChartJs.dist_types_utils._DeepPartialObject<ChartDataset.borderWidth.U9.Case5.U2.Case2>> option>, ChartDataset.borderWidth.U9.Case6, ChartDataset.borderWidth.U9.Case7, ChartDataset.borderWidth.U9.Case8, ChartDataset.borderWidth.U9.Case9> option with get, set
-            abstract member backgroundColor: U9<string, ChartDataset.backgroundColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDataset.backgroundColor.U9.Case6, ChartDataset.backgroundColor.U9.Case7, ChartDataset.backgroundColor.U9.Case8, ChartDataset.backgroundColor.U9.Case9> option with get, set
-            abstract member borderColor: U9<string, ChartDataset.borderColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDataset.borderColor.U9.Case6, ChartDataset.borderColor.U9.Case7, ChartDataset.borderColor.U9.Case8, ChartDataset.borderColor.U9.Case9> option with get, set
-            abstract member hoverBorderWidth: U7<float, ChartDataset.hoverBorderWidth.U7.Case2, ReadonlyArray<float option>, ChartDataset.hoverBorderWidth.U7.Case4, ChartDataset.hoverBorderWidth.U7.Case5, ChartDataset.hoverBorderWidth.U7.Case6, ChartDataset.hoverBorderWidth.U7.Case7> option with get, set
-            abstract member hoverBorderColor: U9<string, ChartDataset.hoverBorderColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDataset.hoverBorderColor.U9.Case6, ChartDataset.hoverBorderColor.U9.Case7, ChartDataset.hoverBorderColor.U9.Case8, ChartDataset.hoverBorderColor.U9.Case9> option with get, set
-            abstract member hoverBackgroundColor: U9<string, ChartDataset.hoverBackgroundColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDataset.hoverBackgroundColor.U9.Case6, ChartDataset.hoverBackgroundColor.U9.Case7, ChartDataset.hoverBackgroundColor.U9.Case8, ChartDataset.hoverBackgroundColor.U9.Case9> option with get, set
+            abstract member borderWidth: U9<float, ChartDataset.borderWidth.U9.Case2, ChartDataset.borderWidth.U9.Case3, ChartDataset.borderWidth.U9.Case4, ChartDataset.borderWidth.U9.Case5, ChartDataset.borderWidth.U9.Case6, ReadonlyArray<float option>, ChartJs.dist_types_utils._DeepPartialObject<ChartDataset.borderWidth.U9.Case8>, ReadonlyArray<U2<float, ChartJs.dist_types_utils._DeepPartialObject<ChartDataset.borderWidth.U9.Case9.U2.Case2>> option>> option with get, set
+            abstract member backgroundColor: U9<string, ChartDataset.backgroundColor.U9.Case2, ChartDataset.backgroundColor.U9.Case3, ChartDataset.backgroundColor.U9.Case4, ChartDataset.backgroundColor.U9.Case5, ChartDataset.backgroundColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
+            abstract member borderColor: U9<string, ChartDataset.borderColor.U9.Case2, ChartDataset.borderColor.U9.Case3, ChartDataset.borderColor.U9.Case4, ChartDataset.borderColor.U9.Case5, ChartDataset.borderColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
+            abstract member hoverBorderWidth: U7<float, ChartDataset.hoverBorderWidth.U7.Case2, ChartDataset.hoverBorderWidth.U7.Case3, ChartDataset.hoverBorderWidth.U7.Case4, ChartDataset.hoverBorderWidth.U7.Case5, ChartDataset.hoverBorderWidth.U7.Case6, ReadonlyArray<float option>> option with get, set
+            abstract member hoverBorderColor: U9<string, ChartDataset.hoverBorderColor.U9.Case2, ChartDataset.hoverBorderColor.U9.Case3, ChartDataset.hoverBorderColor.U9.Case4, ChartDataset.hoverBorderColor.U9.Case5, ChartDataset.hoverBorderColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
+            abstract member hoverBackgroundColor: U9<string, ChartDataset.hoverBackgroundColor.U9.Case2, ChartDataset.hoverBackgroundColor.U9.Case3, ChartDataset.hoverBackgroundColor.U9.Case4, ChartDataset.hoverBackgroundColor.U9.Case5, ChartDataset.hoverBackgroundColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
             abstract member tooltip: ChartJs.dist_types_utils._DeepPartialObject<ChartJs.dist_types.TooltipDatasetOptions<'TType>> option with get, set
             abstract member data: 'TData with get, set
 
@@ -15231,12 +15158,12 @@ Chart.unregister($0)"""
             abstract member hidden: bool option with get, set
             abstract member parsing: U2<bool, ChartJs.dist_types_utils._DeepPartialObject<ChartDatasetCustomTypesPerDataset.parsing.U2.Case2>> option with get, set
             abstract member normalized: bool option with get, set
-            abstract member borderWidth: U9<float, ReadonlyArray<float option>, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case3, ChartJs.dist_types_utils._DeepPartialObject<ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case4>, ReadonlyArray<U2<float, ChartJs.dist_types_utils._DeepPartialObject<ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case5.U2.Case2>> option>, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case6, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case7, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case8, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case9> option with get, set
-            abstract member backgroundColor: U9<string, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case6, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case7, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case8, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case9> option with get, set
-            abstract member borderColor: U9<string, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case6, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case7, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case8, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case9> option with get, set
-            abstract member hoverBorderWidth: U7<float, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case2, ReadonlyArray<float option>, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case4, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case5, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case6, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case7> option with get, set
-            abstract member hoverBorderColor: U9<string, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case6, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case7, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case8, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case9> option with get, set
-            abstract member hoverBackgroundColor: U9<string, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case2, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case6, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case7, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case8, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case9> option with get, set
+            abstract member borderWidth: U9<float, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case2, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case3, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case4, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case5, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case6, ReadonlyArray<float option>, ChartJs.dist_types_utils._DeepPartialObject<ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case8>, ReadonlyArray<U2<float, ChartJs.dist_types_utils._DeepPartialObject<ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case9.U2.Case2>> option>> option with get, set
+            abstract member backgroundColor: U9<string, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case2, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case3, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case4, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case5, ChartDatasetCustomTypesPerDataset.backgroundColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
+            abstract member borderColor: U9<string, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case2, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case3, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case4, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case5, ChartDatasetCustomTypesPerDataset.borderColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
+            abstract member hoverBorderWidth: U7<float, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case2, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case3, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case4, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case5, ChartDatasetCustomTypesPerDataset.hoverBorderWidth.U7.Case6, ReadonlyArray<float option>> option with get, set
+            abstract member hoverBorderColor: U9<string, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case2, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case3, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case4, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case5, ChartDatasetCustomTypesPerDataset.hoverBorderColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
+            abstract member hoverBackgroundColor: U9<string, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case2, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case3, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case4, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case5, ChartDatasetCustomTypesPerDataset.hoverBackgroundColor.U9.Case6, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>, ReadonlyArray<U3<string, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasGradient>, ChartJs.dist_types_utils._DeepPartialObject<Glutinum.Web.CanvasPattern>> option>> option with get, set
             abstract member tooltip: ChartJs.dist_types_utils._DeepPartialObject<ChartJs.dist_types.TooltipDatasetOptions<'TType>> option with get, set
             abstract member data: 'TData with get, set
 
@@ -15688,20 +15615,6 @@ Chart.unregister($0)"""
                     | Case1 of bool
 
         module ChartMetaCommon =
-
-            [<RequireQualifiedAccess>]
-            [<StringEnum(CaseRules.None)>]
-            type indexAxis =
-                | x
-                | y
-
-            [<RequireQualifiedAccess>]
-            [<Erase(CaseRules.None)>]
-            type _stacked =
-                | single
-                | Case1 of bool
-
-        module ChartMeta =
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -18329,7 +18242,7 @@ Chart.unregister($0)"""
                 [<ParamObject; Emit("$0")>]
                 static member Create (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: float) : bar = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                static member Create (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: float * float) : bar = nativeOnly
+                static member Create (chartOptions: ChartJs.dist_types.BarControllerChartOptions, datasetOptions: ChartJs.dist_types.BarControllerDatasetOptions, metaExtensions: obj, parsedDataType: ChartJs.dist_types.BarParsedData, scales: ChartTypeRegistry.bar.scales, defaultDataPoint: (float * float)) : bar = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -19256,32 +19169,32 @@ Chart.unregister($0)"""
 
                 module U9 =
 
+                    type Case2 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> U2<float, ChartDataset.borderWidth.U9.Case2.ReturnType.U2.Case2> option
+
                     type Case3 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> U2<float, ChartDataset.borderWidth.U9.Case3.ReturnType.U2.Case2> option
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case6 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
 
                     [<AllowNullLiteral>]
                     [<Interface>]
-                    type Case4 =
+                    type Case8 =
                         abstract member top: float option with get, set
                         abstract member right: float option with get, set
                         abstract member bottom: float option with get, set
                         abstract member left: float option with get, set
                         [<ParamObject; Emit("$0")>]
-                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case4 = nativeOnly
+                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case8 = nativeOnly
 
-                    type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    type Case9 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    module Case3 =
+                    module Case2 =
 
                         module ReturnType =
 
@@ -19297,7 +19210,7 @@ Chart.unregister($0)"""
                                     [<ParamObject; Emit("$0")>]
                                     static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
-                    module Case5 =
+                    module Case9 =
 
                         module U2 =
 
@@ -19318,16 +19231,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
             module borderColor =
@@ -19337,16 +19250,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
             module hoverBorderWidth =
@@ -19354,6 +19267,9 @@ Chart.unregister($0)"""
                 module U7 =
 
                     type Case2 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case3 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
 
                     type Case4 =
@@ -19365,9 +19281,6 @@ Chart.unregister($0)"""
                     type Case6 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
 
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
             module hoverBorderColor =
 
                 module U9 =
@@ -19375,16 +19288,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
             module hoverBackgroundColor =
@@ -19394,16 +19307,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
         module ChartDatasetCustomTypesPerDataset =
@@ -19428,32 +19341,32 @@ Chart.unregister($0)"""
 
                 module U9 =
 
+                    type Case2 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> U2<float, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case2.ReturnType.U2.Case2> option
+
                     type Case3 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> U2<float, ChartDatasetCustomTypesPerDataset.borderWidth.U9.Case3.ReturnType.U2.Case2> option
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case6 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
 
                     [<AllowNullLiteral>]
                     [<Interface>]
-                    type Case4 =
+                    type Case8 =
                         abstract member top: float option with get, set
                         abstract member right: float option with get, set
                         abstract member bottom: float option with get, set
                         abstract member left: float option with get, set
                         [<ParamObject; Emit("$0")>]
-                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case4 = nativeOnly
+                        static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case8 = nativeOnly
 
-                    type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    type Case9 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
-                    module Case3 =
+                    module Case2 =
 
                         module ReturnType =
 
@@ -19469,7 +19382,7 @@ Chart.unregister($0)"""
                                     [<ParamObject; Emit("$0")>]
                                     static member Create (?top: float, ?right: float, ?bottom: float, ?left: float) : Case2 = nativeOnly
 
-                    module Case5 =
+                    module Case9 =
 
                         module U2 =
 
@@ -19490,16 +19403,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
             module borderColor =
@@ -19509,16 +19422,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
             module hoverBorderWidth =
@@ -19526,6 +19439,9 @@ Chart.unregister($0)"""
                 module U7 =
 
                     type Case2 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
+
+                    type Case3 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
 
                     type Case4 =
@@ -19537,9 +19453,6 @@ Chart.unregister($0)"""
                     type Case6 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
 
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> float option
-
             module hoverBorderColor =
 
                 module U9 =
@@ -19547,16 +19460,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
             module hoverBackgroundColor =
@@ -19566,16 +19479,16 @@ Chart.unregister($0)"""
                     type Case2 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
+                    type Case3 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case4 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
+                    type Case5 =
+                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
+
                     type Case6 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case7 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case8 =
-                        delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
-
-                    type Case9 =
                         delegate of ctx: ChartJs.dist_types.ScriptableContext<string> * options: ChartJs.dist_types_basic.AnyObject -> ChartJs.dist_types_color.Color option
 
         module Exports =
@@ -20145,9 +20058,9 @@ Chart.unregister($0)"""
             [<Import("color", "chart.js/helpers")>]
             static member color (value: Exports.color__.value_2) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/helpers")>]
-            static member color (value: float * float * float) : KurkleColor.Color = nativeOnly
+            static member color (value: (float * float * float)) : KurkleColor.Color = nativeOnly
             [<Import("color", "chart.js/helpers")>]
-            static member color (value: float * float * float * float) : KurkleColor.Color = nativeOnly
+            static member color (value: (float * float * float * float)) : KurkleColor.Color = nativeOnly
             [<Import("getHoverColor", "chart.js/helpers")>]
             static member getHoverColor (value: Glutinum.Web.CanvasGradient) : Glutinum.Web.CanvasGradient = nativeOnly
             [<Import("getHoverColor", "chart.js/helpers")>]
@@ -20288,15 +20201,13 @@ Chart.unregister($0)"""
             [<Import("merge", "chart.js/helpers")>]
             static member merge<'T> (target: 'T, source: obj, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : 'T = nativeOnly
             [<Import("merge", "chart.js/helpers")>]
-            static member merge<'T, 'S1> (target: 'T, source: 'S1, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
-            [<Import("merge", "chart.js/helpers")>]
             static member merge<'T, 'S1> (target: 'T, source: ResizeArray<'S1>, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/helpers")>]
-            static member merge<'T, 'S1, 'S2> (target: 'T, source: 'S1 * 'S2, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2> (target: 'T, source: ('S1 * 'S2), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/helpers")>]
-            static member merge<'T, 'S1, 'S2, 'S3> (target: 'T, source: 'S1 * 'S2 * 'S3, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2, 'S3> (target: 'T, source: ('S1 * 'S2 * 'S3), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/helpers")>]
-            static member merge<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: 'S1 * 'S2 * 'S3 * 'S4, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
+            static member merge<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: ('S1 * 'S2 * 'S3 * 'S4), ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : obj = nativeOnly
             [<Import("merge", "chart.js/helpers")>]
             static member merge<'T> (target: 'T, source: ResizeArray<ChartJs.dist_types_basic.AnyObject>, ?options: ChartJs.dist_helpers_helpers_core.MergeOptions) : ChartJs.dist_types_basic.AnyObject = nativeOnly
             /// <summary>
@@ -20315,15 +20226,13 @@ Chart.unregister($0)"""
             [<Import("mergeIf", "chart.js/helpers")>]
             static member mergeIf<'T> (target: 'T, source: obj) : 'T = nativeOnly
             [<Import("mergeIf", "chart.js/helpers")>]
-            static member mergeIf<'T, 'S1> (target: 'T, source: 'S1) : obj = nativeOnly
-            [<Import("mergeIf", "chart.js/helpers")>]
             static member mergeIf<'T, 'S1> (target: 'T, source: ResizeArray<'S1>) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/helpers")>]
-            static member mergeIf<'T, 'S1, 'S2> (target: 'T, source: 'S1 * 'S2) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2> (target: 'T, source: ('S1 * 'S2)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/helpers")>]
-            static member mergeIf<'T, 'S1, 'S2, 'S3> (target: 'T, source: 'S1 * 'S2 * 'S3) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2, 'S3> (target: 'T, source: ('S1 * 'S2 * 'S3)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/helpers")>]
-            static member mergeIf<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: 'S1 * 'S2 * 'S3 * 'S4) : obj = nativeOnly
+            static member mergeIf<'T, 'S1, 'S2, 'S3, 'S4> (target: 'T, source: ('S1 * 'S2 * 'S3 * 'S4)) : obj = nativeOnly
             [<Import("mergeIf", "chart.js/helpers")>]
             static member mergeIf<'T> (target: 'T, source: ResizeArray<ChartJs.dist_types_basic.AnyObject>) : ChartJs.dist_types_basic.AnyObject = nativeOnly
             /// <summary>
@@ -21066,8 +20975,6 @@ Chart.unregister($0)"""
             /// </param>
             [<Import("createContext", "chart.js/helpers")>]
             static member createContext (parentContext: obj, context: obj) : obj = nativeOnly
-            [<Import("createContext", "chart.js/helpers")>]
-            static member createContext<'P> (parentContext: 'P, context: obj) : obj = nativeOnly
             [<Import("almostEquals", "chart.js/helpers")>]
             static member almostEquals (x: float, y: float, epsilon: float) : bool = nativeOnly
             /// <summary>
@@ -21176,7 +21083,7 @@ Chart.unregister($0)"""
             [<Import("overrideTextDirection", "chart.js/helpers")>]
             static member overrideTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, direction: Exports.overrideTextDirection__.direction_2) : unit = nativeOnly
             [<Import("restoreTextDirection", "chart.js/helpers")>]
-            static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: string * string) : unit = nativeOnly
+            static member restoreTextDirection (ctx: Glutinum.Web.CanvasRenderingContext2D, ?original: (string * string)) : unit = nativeOnly
             /// <summary>
             /// Returns the sub-segment(s) of a line segment that fall in the given bounds
             /// </summary>
@@ -21229,11 +21136,47 @@ Chart.unregister($0)"""
         type ResolverObjectKey =
             ChartJs.dist_helpers_helpers_config_types.ResolverObjectKey
 
+        type ResolverCache<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ResolverCache<'T, 'R>
+
+        type ResolverCache<'T> =
+            ResolverCache<'T, 'T>
+
+        type ResolverCache =
+            ResolverCache<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
+        type ResolverProxy<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ResolverProxy<'T, 'R>
+
+        type ResolverProxy<'T> =
+            ResolverProxy<'T, 'T>
+
+        type ResolverProxy =
+            ResolverProxy<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
         type DescriptorDefaults =
             ChartJs.dist_helpers_helpers_config_types.DescriptorDefaults
 
         type Descriptor =
             ChartJs.dist_helpers_helpers_config_types.Descriptor
+
+        type ContextCache<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ContextCache<'T, 'R>
+
+        type ContextCache<'T> =
+            ContextCache<'T, 'T>
+
+        type ContextCache =
+            ContextCache<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
+
+        type ContextProxy<'T, 'R> =
+            ChartJs.dist_helpers_helpers_config_types.ContextProxy<'T, 'R>
+
+        type ContextProxy<'T> =
+            ContextProxy<'T, 'T>
+
+        type ContextProxy =
+            ContextProxy<ResizeArray<ChartJs.dist_types_basic.AnyObject>, ResizeArray<ChartJs.dist_types_basic.AnyObject>>
 
         type RTLAdapter =
             ChartJs.dist_helpers_helpers_rtl.RTLAdapter

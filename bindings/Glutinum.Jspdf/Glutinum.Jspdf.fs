@@ -1114,15 +1114,13 @@ module Jspdf =
         abstract member addShadingPattern: key: string * pattern: Jspdf.ShadingPattern -> Jspdf.jsPDF
         abstract member beginTilingPattern: pattern: Jspdf.TilingPattern -> unit
         abstract member endTilingPattern: key: string * pattern: Jspdf.TilingPattern -> unit
+        [<Emit("""import { jsPDF } from "jspdf";
+jsPDF.API{{=$0}}""")>]
         static member inline API
             with get () : Jspdf.jsPDFAPI =
-                emitJsExpr () $$"""
-import { jsPDF } from "jspdf";
-jsPDF.API"""
+                nativeOnly
             and set (value: Jspdf.jsPDFAPI) =
-                emitJsExpr (value) $$"""
-import { jsPDF } from "jspdf";
-jsPDF.API = $0"""
+                nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]

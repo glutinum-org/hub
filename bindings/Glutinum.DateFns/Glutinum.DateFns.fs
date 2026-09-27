@@ -11110,11 +11110,17 @@ module DateFns =
     type ClampOptions =
         ClampOptions<Date>
 
+    type ClampResult<'DateType, 'IntervalType, 'Options> =
+        DateFns.clamp.ClampResult<'DateType, 'IntervalType, 'Options>
+
     type ClosestToOptions<'DateType> =
         DateFns.closestTo.ClosestToOptions<'DateType>
 
     type ClosestToOptions =
         ClosestToOptions<Date>
+
+    type ClosestToResult<'DateToCompare, 'DatesType, 'Options> =
+        DateFns.closestTo.ClosestToResult<'DateToCompare, 'DatesType, 'Options>
 
     type DifferenceInBusinessDaysOptions =
         DateFns.differenceInBusinessDays.DifferenceInBusinessDaysOptions
@@ -11173,11 +11179,17 @@ module DateFns =
     type EachDayOfIntervalOptions =
         EachDayOfIntervalOptions<Date>
 
+    type EachDayOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachDayOfInterval.EachDayOfIntervalResult<'IntervalType, 'Options>
+
     type EachHourOfIntervalOptions<'DateType> =
         DateFns.eachHourOfInterval.EachHourOfIntervalOptions<'DateType>
 
     type EachHourOfIntervalOptions =
         EachHourOfIntervalOptions<Date>
+
+    type EachHourOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachHourOfInterval.EachHourOfIntervalResult<'IntervalType, 'Options>
 
     type EachMinuteOfIntervalOptions<'DateType> =
         DateFns.eachMinuteOfInterval.EachMinuteOfIntervalOptions<'DateType>
@@ -11185,11 +11197,17 @@ module DateFns =
     type EachMinuteOfIntervalOptions =
         EachMinuteOfIntervalOptions<Date>
 
+    type EachMinuteOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachMinuteOfInterval.EachMinuteOfIntervalResult<'IntervalType, 'Options>
+
     type EachMonthOfIntervalOptions<'DateType> =
         DateFns.eachMonthOfInterval.EachMonthOfIntervalOptions<'DateType>
 
     type EachMonthOfIntervalOptions =
         EachMonthOfIntervalOptions<Date>
+
+    type EachMonthOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachMonthOfInterval.EachMonthOfIntervalResult<'IntervalType, 'Options>
 
     type EachQuarterOfIntervalOptions<'DateType> =
         DateFns.eachQuarterOfInterval.EachQuarterOfIntervalOptions<'DateType>
@@ -11197,17 +11215,26 @@ module DateFns =
     type EachQuarterOfIntervalOptions =
         EachQuarterOfIntervalOptions<Date>
 
+    type EachQuarterOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachQuarterOfInterval.EachQuarterOfIntervalResult<'IntervalType, 'Options>
+
     type EachWeekOfIntervalOptions<'DateType> =
         DateFns.eachWeekOfInterval.EachWeekOfIntervalOptions<'DateType>
 
     type EachWeekOfIntervalOptions =
         EachWeekOfIntervalOptions<Date>
 
+    type EachWeekOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachWeekOfInterval.EachWeekOfIntervalResult<'IntervalType, 'Options>
+
     type EachWeekendOfIntervalOptions<'DateType> =
         DateFns.eachWeekendOfInterval.EachWeekendOfIntervalOptions<'DateType>
 
     type EachWeekendOfIntervalOptions =
         EachWeekendOfIntervalOptions<Date>
+
+    type EachWeekendOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachWeekendOfInterval.EachWeekendOfIntervalResult<'IntervalType, 'Options>
 
     type EachWeekendOfMonthOptions<'DateType> =
         DateFns.eachWeekendOfMonth.EachWeekendOfMonthOptions<'DateType>
@@ -11226,6 +11253,9 @@ module DateFns =
 
     type EachYearOfIntervalOptions =
         EachYearOfIntervalOptions<Date>
+
+    type EachYearOfIntervalResult<'IntervalType, 'Options> =
+        DateFns.eachYearOfInterval.EachYearOfIntervalResult<'IntervalType, 'Options>
 
     type EndOfDayOptions<'DateType> =
         DateFns.endOfDay.EndOfDayOptions<'DateType>
@@ -11415,6 +11445,12 @@ module DateFns =
 
     type IntervalOptions =
         IntervalOptions<Date>
+
+    type IntervalResult<'StartDate, 'EndDate, 'Options> =
+        DateFns.interval.IntervalResult<'StartDate, 'EndDate, 'Options>
+
+    type IntervalResult<'StartDate, 'EndDate> =
+        IntervalResult<'StartDate, 'EndDate, obj>
 
     type IntervalToDurationOptions =
         DateFns.intervalToDuration.IntervalToDurationOptions
@@ -12120,6 +12156,9 @@ module DateFns =
 
     type Localize =
         DateFns.locale_types.Localize
+
+    type LocalizeFn<'Value> =
+        DateFns.locale_types.LocalizeFn<'Value>
 
     type LocalizeFnOptions =
         DateFns.locale_types.LocalizeFnOptions
@@ -18357,6 +18396,9 @@ module DateFns =
 
         type Localize =
             DateFns.locale_types.Localize
+
+        type LocalizeFn<'Value> =
+            DateFns.locale_types.LocalizeFn<'Value>
 
         type LocalizeFnOptions =
             DateFns.locale_types.LocalizeFnOptions
@@ -25098,6 +25140,9 @@ module DateFns =
 
         type Localize =
             DateFns.locale_types.Localize
+
+        type LocalizeFn<'Value> =
+            DateFns.locale_types.LocalizeFn<'Value>
 
         type LocalizeFnOptions =
             DateFns.locale_types.LocalizeFnOptions
@@ -33404,6 +33449,9 @@ module DateFns =
         type Localize =
             DateFns.locale_types.Localize
 
+        type LocalizeFn<'Value> =
+            DateFns.locale_types.LocalizeFn<'Value>
+
         type LocalizeFnOptions =
             DateFns.locale_types.LocalizeFnOptions
 
@@ -33799,7 +33847,7 @@ module DateFns =
         /// <summary>
         /// The nearest minutes function options. Used to build function options.
         /// </summary>
-        [<Obsolete("Use {@link NearestToUnitOptions } instead.")>]
+        [<Obsolete("Use {@link NearestToUnitOptions} instead.")>]
         type NearestMinutesOptions =
             DateFns.types.NearestToUnitOptions<DateFns.types.NearestMinutes>
 

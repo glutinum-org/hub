@@ -30,13 +30,13 @@ module Leaflet =
         /// Expects an coefficients array of the form <c>[a: Number, b: Number, c: Number, d: Number]</c>.
         /// </summary>
         [<Import("transformation", "leaflet")>]
-        static member transformation (coefficients: float * float * float * float) : Leaflet.Transformation = nativeOnly
+        static member transformation (coefficients: (float * float * float * float)) : Leaflet.Transformation = nativeOnly
         [<Import("latLng", "leaflet")>]
         static member latLng (latitude: float, longitude: float, ?altitude: float) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
         static member latLng (coords: Leaflet.LatLngTuple) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
-        static member latLng (coords: float * float * float) : Leaflet.LatLng = nativeOnly
+        static member latLng (coords: (float * float * float)) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
         static member latLng (coords: Leaflet.LatLngLiteral) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
@@ -581,30 +581,24 @@ module Leaflet =
     [<AllowNullLiteral>]
     [<Interface>]
     type Class =
-        static member inline extend (props: obj): obj =
-            emitJsExpr (props) $$"""
-import { Class } from "leaflet";
-Class.extend($0)"""
-        static member inline ``include`` (props: obj): obj =
-            emitJsExpr (props) $$"""
-import { Class } from "leaflet";
-Class.include($0)"""
-        static member inline mergeOptions (props: obj): obj =
-            emitJsExpr (props) $$"""
-import { Class } from "leaflet";
-Class.mergeOptions($0)"""
-        static member inline addInitHook (initHookFn: (unit -> unit)): obj =
-            emitJsExpr (initHookFn) $$"""
-import { Class } from "leaflet";
-Class.addInitHook($0)"""
-        static member inline addInitHook (methodName: string, [<ParamArray>] args: obj []): obj =
-            emitJsExpr (methodName, args) $$"""
-import { Class } from "leaflet";
-Class.addInitHook($0, $1)"""
-        static member inline callInitHooks () : unit =
-            emitJsExpr () $$"""
-import { Class } from "leaflet";
-Class.callInitHooks()"""
+        [<Emit("""import { Class } from "leaflet";
+Class.extend($0)""")>]
+        static member inline extend (props: obj): obj = nativeOnly
+        [<Emit("""import { Class } from "leaflet";
+Class.include($0)""")>]
+        static member inline ``include`` (props: obj): obj = nativeOnly
+        [<Emit("""import { Class } from "leaflet";
+Class.mergeOptions($0)""")>]
+        static member inline mergeOptions (props: obj): obj = nativeOnly
+        [<Emit("""import { Class } from "leaflet";
+Class.addInitHook($0)""")>]
+        static member inline addInitHook (initHookFn: (unit -> unit)): obj = nativeOnly
+        [<Emit("""import { Class } from "leaflet";
+Class.addInitHook($0, $1)""")>]
+        static member inline addInitHook (methodName: string, [<ParamArray>] args: obj []): obj = nativeOnly
+        [<Emit("""import { Class } from "leaflet";
+Class.callInitHooks()""")>]
+        static member inline callInitHooks () : unit = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3740,12 +3734,12 @@ Class.callInitHooks()"""
         /// A Function that will be used for converting GeoJSON coordinates to LatLngs.
         /// The default is the coordsToLatLng static method.
         /// </summary>
-        abstract member coordsToLatLng: coords: float * float -> Leaflet.LatLng
+        abstract member coordsToLatLng: coords: (float * float) -> Leaflet.LatLng
         /// <summary>
         /// A Function that will be used for converting GeoJSON coordinates to LatLngs.
         /// The default is the coordsToLatLng static method.
         /// </summary>
-        abstract member coordsToLatLng: coords: float * float * float -> Leaflet.LatLng
+        abstract member coordsToLatLng: coords: (float * float * float) -> Leaflet.LatLng
         /// <summary>
         /// Whether default Markers for "Point" type Features inherit from group options.
         /// </summary>
@@ -3762,117 +3756,102 @@ Class.callInitHooks()"""
         /// <summary>
         /// Convert layer into GeoJSON feature
         /// </summary>
-        static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.Feature<'G, 'P>): Glutinum.Geojson.Feature<'G, 'P> =
-            emitJsExpr (layer, newGeometry) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.getFeature($0, $1)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.getFeature($0, $1)""")>]
+        static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.Feature<'G, 'P>): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
         /// <summary>
         /// Convert layer into GeoJSON feature
         /// </summary>
-        static member inline getFeature (layer: Leaflet.Layer, newGeometry: 'G): Glutinum.Geojson.Feature<'G, 'P> =
-            emitJsExpr (layer, newGeometry) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.getFeature($0, $1)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.getFeature($0, $1)""")>]
+        static member inline getFeature (layer: Leaflet.Layer, newGeometry: 'G): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
         /// <summary>
         /// Convert layer into GeoJSON feature
         /// </summary>
-        static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> =
-            emitJsExpr (layer, newGeometry) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.getFeature($0, $1)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.getFeature($0, $1)""")>]
+        static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Convert layer into GeoJSON feature
         /// </summary>
-        static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> =
-            emitJsExpr (layer, newGeometry) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.getFeature($0, $1)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.getFeature($0, $1)""")>]
+        static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Creates a Layer from a given GeoJSON feature. Can use a custom pointToLayer
         /// and/or coordsToLatLng functions if provided as options.
         /// </summary>
-        static member inline geometryToLayer (featureData: Glutinum.Geojson.Feature<'G, 'P>, ?options: Leaflet.GeoJSONOptions<'P, 'G>): Leaflet.Layer =
-            emitJsExpr (featureData, options) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.geometryToLayer($0, $1)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.geometryToLayer($0, $1)""")>]
+        static member inline geometryToLayer (featureData: Glutinum.Geojson.Feature<'G, 'P>, ?options: Leaflet.GeoJSONOptions<'P, 'G>): Leaflet.Layer = nativeOnly
         /// <summary>
         /// Creates a Layer from a given GeoJSON feature. Can use a custom pointToLayer
         /// and/or coordsToLatLng functions if provided as options.
         /// </summary>
-        static member inline geometryToLayer (featureData: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>, ?options: Leaflet.GeoJSONOptions<obj, Glutinum.Geojson.GeometryObject>): Leaflet.Layer =
-            emitJsExpr (featureData, options) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.geometryToLayer($0, $1)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.geometryToLayer($0, $1)""")>]
+        static member inline geometryToLayer (featureData: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>, ?options: Leaflet.GeoJSONOptions<obj, Glutinum.Geojson.GeometryObject>): Leaflet.Layer = nativeOnly
         /// <summary>
         /// Creates a LatLng object from an array of 2 numbers (longitude, latitude) or
         /// 3 numbers (longitude, latitude, altitude) used in GeoJSON for points.
         /// </summary>
-        static member inline coordsToLatLng (coords: float * float): Leaflet.LatLng =
-            emitJsExpr (coords) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.coordsToLatLng($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.coordsToLatLng($0)""")>]
+        static member inline coordsToLatLng (coords: (float * float)): Leaflet.LatLng = nativeOnly
         /// <summary>
         /// Creates a LatLng object from an array of 2 numbers (longitude, latitude) or
         /// 3 numbers (longitude, latitude, altitude) used in GeoJSON for points.
         /// </summary>
-        static member inline coordsToLatLng (coords: float * float * float): Leaflet.LatLng =
-            emitJsExpr (coords) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.coordsToLatLng($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.coordsToLatLng($0)""")>]
+        static member inline coordsToLatLng (coords: (float * float * float)): Leaflet.LatLng = nativeOnly
         /// <summary>
         /// Creates a multidimensional array of LatLngs from a GeoJSON coordinates array.
         /// levelsDeep specifies the nesting level (0 is for an array of points, 1 for an array of
         /// arrays of points, etc., 0 by default).
         /// Can use a custom coordsToLatLng function.
         /// </summary>
-        static member inline coordsToLatLngs (coords: ResizeArray<obj>, ?levelsDeep: float, ?coordsToLatLng: (U2<float * float, float * float * float> -> Leaflet.LatLng)): ResizeArray<obj> =
-            emitJsExpr (coords, levelsDeep, coordsToLatLng) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.coordsToLatLngs($0, $1, $2)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.coordsToLatLngs($0, $1, $2)""")>]
+        static member inline coordsToLatLngs (coords: ResizeArray<obj>, ?levelsDeep: float, ?coordsToLatLng: (U2<float * float, float * float * float> -> Leaflet.LatLng)): ResizeArray<obj> = nativeOnly
         /// <summary>
         /// Reverse of coordsToLatLng
         /// </summary>
-        static member inline latLngToCoords (latlng: Leaflet.LatLng): U2<float * float, float * float * float> =
-            emitJsExpr (latlng) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.latLngToCoords($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.latLngToCoords($0)""")>]
+        static member inline latLngToCoords (latlng: Leaflet.LatLng): U2<float * float, float * float * float> = nativeOnly
         /// <summary>
         /// Reverse of coordsToLatLngs closed determines whether the first point should be
         /// appended to the end of the array to close the feature, only used when levelsDeep is 0.
         /// False by default.
         /// </summary>
-        static member inline latLngsToCoords (latlngs: ResizeArray<obj>, ?levelsDeep: float, ?closed: bool): ResizeArray<obj> =
-            emitJsExpr (latlngs, levelsDeep, closed) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.latLngsToCoords($0, $1, $2)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.latLngsToCoords($0, $1, $2)""")>]
+        static member inline latLngsToCoords (latlngs: ResizeArray<obj>, ?levelsDeep: float, ?closed: bool): ResizeArray<obj> = nativeOnly
         /// <summary>
         /// Normalize GeoJSON geometries/features into GeoJSON features.
         /// </summary>
-        static member inline asFeature (geojson: Glutinum.Geojson.Feature<'G, 'P>): Glutinum.Geojson.Feature<'G, 'P> =
-            emitJsExpr (geojson) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.asFeature($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.asFeature($0)""")>]
+        static member inline asFeature (geojson: Glutinum.Geojson.Feature<'G, 'P>): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
         /// <summary>
         /// Normalize GeoJSON geometries/features into GeoJSON features.
         /// </summary>
-        static member inline asFeature (geojson: 'G): Glutinum.Geojson.Feature<'G, 'P> =
-            emitJsExpr (geojson) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.asFeature($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.asFeature($0)""")>]
+        static member inline asFeature (geojson: 'G): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
         /// <summary>
         /// Normalize GeoJSON geometries/features into GeoJSON features.
         /// </summary>
-        static member inline asFeature (geojson: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> =
-            emitJsExpr (geojson) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.asFeature($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.asFeature($0)""")>]
+        static member inline asFeature (geojson: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Normalize GeoJSON geometries/features into GeoJSON features.
         /// </summary>
-        static member inline asFeature (geojson: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> =
-            emitJsExpr (geojson) $$"""
-import { GeoJSON } from "leaflet";
-GeoJSON.asFeature($0)"""
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.asFeature($0)""")>]
+        static member inline asFeature (geojson: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Adds a GeoJSON object to the layer.
         /// </summary>
@@ -3964,10 +3943,9 @@ GeoJSON.asFeature($0)"""
     [<Interface>]
     type Control<'Options> =
         inherit Leaflet.Class
-        static member inline extend (props: 'T): obj =
-            emitJsExpr (props) $$"""
-import { Control } from "leaflet";
-Control.extend($0)"""
+        [<Emit("""import { Control } from "leaflet";
+Control.extend($0)""")>]
+        static member inline extend (props: 'T): obj = nativeOnly
         abstract member getPosition: unit -> Leaflet.ControlPosition
         abstract member setPosition: position: Leaflet.ControlPosition -> Control<'Options>
         abstract member getContainer: unit -> Glutinum.Web.HTMLElement option
@@ -4690,15 +4668,13 @@ Control.extend($0)"""
         [<Interface>]
         type Default =
             inherit Leaflet.Icon<Leaflet.Icon_.DefaultIconOptions>
+            [<Emit("""import { Default } from "leaflet";
+Default.imagePath{{=$0}}""")>]
             static member inline imagePath
                 with get () : string =
-                    emitJsExpr () $$"""
-import { Default } from "leaflet";
-Default.imagePath"""
+                    nativeOnly
                 and set (value: string) =
-                    emitJsExpr (value) $$"""
-import { Default } from "leaflet";
-Default.imagePath = $0"""
+                    nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -5757,6 +5733,8 @@ Default.imagePath = $0"""
             abstract member markerPane: Glutinum.Web.HTMLElement with get, set
             abstract member tooltipPane: Glutinum.Web.HTMLElement with get, set
             abstract member popupPane: Glutinum.Web.HTMLElement with get, set
+            [<EmitIndexer>]
+            abstract member Item: name: string -> Glutinum.Web.HTMLElement with get, set
 
         module whenReady =
 
@@ -5803,8 +5781,6 @@ Default.imagePath = $0"""
                 abstract member Invoke<'D, 'S1, 'S2>: dest: 'D * src1: 'S1 * src2: 'S2 -> obj
                 [<Emit("$0($1...)")>]
                 abstract member Invoke<'D, 'S1, 'S2, 'S3>: dest: 'D * src1: 'S1 * src2: 'S2 * src3: 'S3 -> obj
-                [<Emit("$0($1...)")>]
-                abstract member Invoke: dest: obj * [<ParamArray>] src: obj [] -> obj
 
         module bind__ =
 

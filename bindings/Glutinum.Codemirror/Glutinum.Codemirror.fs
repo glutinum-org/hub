@@ -302,22 +302,19 @@ module CodemirrorState =
         /// <summary>
         /// Create a <c>Text</c> instance for the given array of lines.
         /// </summary>
-        static member inline ``of`` (text: ResizeArray<string>): CodemirrorState.Text =
-            emitJsExpr (text) $$"""
-import { Text } from "@codemirror/state";
-Text.of($0)"""
+        [<Emit("""import { Text } from "@codemirror/state";
+Text.of($0)""")>]
+        static member inline ``of`` (text: ResizeArray<string>): CodemirrorState.Text = nativeOnly
         /// <summary>
         /// The empty document.
         /// </summary>
+        [<Emit("""import { Text } from "@codemirror/state";
+Text.empty{{=$0}}""")>]
         static member inline empty
             with get () : CodemirrorState.Text =
-                emitJsExpr () $$"""
-import { Text } from "@codemirror/state";
-Text.empty"""
+                nativeOnly
             and set (value: CodemirrorState.Text) =
-                emitJsExpr (value) $$"""
-import { Text } from "@codemirror/state";
-Text.empty = $0"""
+                nativeOnly
 
     /// <summary>
     /// This type describes a line in the document. It is created
@@ -439,10 +436,9 @@ Text.empty = $0"""
         /// Create a change desc from its JSON representation (as produced
         /// by [<c>toJSON</c>](https://codemirror.net/6/docs/ref/#state.ChangeDesc.toJSON).
         /// </summary>
-        static member inline fromJSON (json: obj): CodemirrorState.ChangeDesc =
-            emitJsExpr (json) $$"""
-import { ChangeDesc } from "@codemirror/state";
-ChangeDesc.fromJSON($0)"""
+        [<Emit("""import { ChangeDesc } from "@codemirror/state";
+ChangeDesc.fromJSON($0)""")>]
+        static member inline fromJSON (json: obj): CodemirrorState.ChangeDesc = nativeOnly
 
     /// <summary>
     /// This type is used as argument to
@@ -528,41 +524,36 @@ ChangeDesc.fromJSON($0)"""
         /// Create a change set for the given changes, for a document of the
         /// given length, using <c>lineSep</c> as line separator.
         /// </summary>
-        static member inline ``of`` (changes: ChangeSpec.U3.Case1, length: float, ?lineSep: string): CodemirrorState.ChangeSet =
-            emitJsExpr (changes, length, lineSep) $$"""
-import { ChangeSet } from "@codemirror/state";
-ChangeSet.of($0, $1, $2)"""
+        [<Emit("""import { ChangeSet } from "@codemirror/state";
+ChangeSet.of($0, $1, $2)""")>]
+        static member inline ``of`` (changes: ChangeSpec.U3.Case1, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
         /// <summary>
         /// Create a change set for the given changes, for a document of the
         /// given length, using <c>lineSep</c> as line separator.
         /// </summary>
-        static member inline ``of`` (changes: CodemirrorState.ChangeSet, length: float, ?lineSep: string): CodemirrorState.ChangeSet =
-            emitJsExpr (changes, length, lineSep) $$"""
-import { ChangeSet } from "@codemirror/state";
-ChangeSet.of($0, $1, $2)"""
+        [<Emit("""import { ChangeSet } from "@codemirror/state";
+ChangeSet.of($0, $1, $2)""")>]
+        static member inline ``of`` (changes: CodemirrorState.ChangeSet, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
         /// <summary>
         /// Create a change set for the given changes, for a document of the
         /// given length, using <c>lineSep</c> as line separator.
         /// </summary>
-        static member inline ``of`` (changes: ResizeArray<CodemirrorState.ChangeSpec>, length: float, ?lineSep: string): CodemirrorState.ChangeSet =
-            emitJsExpr (changes, length, lineSep) $$"""
-import { ChangeSet } from "@codemirror/state";
-ChangeSet.of($0, $1, $2)"""
+        [<Emit("""import { ChangeSet } from "@codemirror/state";
+ChangeSet.of($0, $1, $2)""")>]
+        static member inline ``of`` (changes: ResizeArray<CodemirrorState.ChangeSpec>, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
         /// <summary>
         /// Create an empty changeset of the given length.
         /// </summary>
-        static member inline empty (length: float): CodemirrorState.ChangeSet =
-            emitJsExpr (length) $$"""
-import { ChangeSet } from "@codemirror/state";
-ChangeSet.empty($0)"""
+        [<Emit("""import { ChangeSet } from "@codemirror/state";
+ChangeSet.empty($0)""")>]
+        static member inline empty (length: float): CodemirrorState.ChangeSet = nativeOnly
         /// <summary>
         /// Create a changeset from its JSON representation (as produced by
         /// [<c>toJSON</c>](https://codemirror.net/6/docs/ref/#state.ChangeSet.toJSON).
         /// </summary>
-        static member inline fromJSON (json: obj): CodemirrorState.ChangeSet =
-            emitJsExpr (json) $$"""
-import { ChangeSet } from "@codemirror/state";
-ChangeSet.fromJSON($0)"""
+        [<Emit("""import { ChangeSet } from "@codemirror/state";
+ChangeSet.fromJSON($0)""")>]
+        static member inline fromJSON (json: obj): CodemirrorState.ChangeSet = nativeOnly
 
     /// <summary>
     /// A single selection range. When
@@ -643,10 +634,9 @@ ChangeSet.fromJSON($0)"""
         /// Convert a JSON representation of a range to a <c>SelectionRange</c>
         /// instance.
         /// </summary>
-        static member inline fromJSON (json: obj): CodemirrorState.SelectionRange =
-            emitJsExpr (json) $$"""
-import { SelectionRange } from "@codemirror/state";
-SelectionRange.fromJSON($0)"""
+        [<Emit("""import { SelectionRange } from "@codemirror/state";
+SelectionRange.fromJSON($0)""")>]
+        static member inline fromJSON (json: obj): CodemirrorState.SelectionRange = nativeOnly
 
     /// <summary>
     /// An editor selection holds one or more selection ranges.
@@ -704,48 +694,42 @@ SelectionRange.fromJSON($0)"""
         /// <summary>
         /// Create a selection from a JSON representation.
         /// </summary>
-        static member inline fromJSON (json: obj): CodemirrorState.EditorSelection =
-            emitJsExpr (json) $$"""
-import { EditorSelection } from "@codemirror/state";
-EditorSelection.fromJSON($0)"""
+        [<Emit("""import { EditorSelection } from "@codemirror/state";
+EditorSelection.fromJSON($0)""")>]
+        static member inline fromJSON (json: obj): CodemirrorState.EditorSelection = nativeOnly
         /// <summary>
         /// Create a selection holding a single range.
         /// </summary>
-        static member inline single (anchor: float, ?head: float): CodemirrorState.EditorSelection =
-            emitJsExpr (anchor, head) $$"""
-import { EditorSelection } from "@codemirror/state";
-EditorSelection.single($0, $1)"""
+        [<Emit("""import { EditorSelection } from "@codemirror/state";
+EditorSelection.single($0, $1)""")>]
+        static member inline single (anchor: float, ?head: float): CodemirrorState.EditorSelection = nativeOnly
         /// <summary>
         /// Sort and merge the given set of ranges, creating a valid
         /// selection.
         /// </summary>
-        static member inline create (ranges: ResizeArray<CodemirrorState.SelectionRange>, ?mainIndex: float): CodemirrorState.EditorSelection =
-            emitJsExpr (ranges, mainIndex) $$"""
-import { EditorSelection } from "@codemirror/state";
-EditorSelection.create($0, $1)"""
+        [<Emit("""import { EditorSelection } from "@codemirror/state";
+EditorSelection.create($0, $1)""")>]
+        static member inline create (ranges: ResizeArray<CodemirrorState.SelectionRange>, ?mainIndex: float): CodemirrorState.EditorSelection = nativeOnly
         /// <summary>
         /// Create a cursor selection range at the given position. You can
         /// safely ignore the optional arguments in most situations.
         /// </summary>
-        static member inline cursor (pos: float, ?assoc: float, ?bidiLevel: float, ?goalColumn: float): CodemirrorState.SelectionRange =
-            emitJsExpr (pos, assoc, bidiLevel, goalColumn) $$"""
-import { EditorSelection } from "@codemirror/state";
-EditorSelection.cursor($0, $1, $2, $3)"""
+        [<Emit("""import { EditorSelection } from "@codemirror/state";
+EditorSelection.cursor($0, $1, $2, $3)""")>]
+        static member inline cursor (pos: float, ?assoc: float, ?bidiLevel: float, ?goalColumn: float): CodemirrorState.SelectionRange = nativeOnly
         /// <summary>
         /// Create a selection range.
         /// </summary>
-        static member inline range (anchor: float, head: float, ?goalColumn: float, ?bidiLevel: float, ?assoc: float): CodemirrorState.SelectionRange =
-            emitJsExpr (anchor, head, goalColumn, bidiLevel, assoc) $$"""
-import { EditorSelection } from "@codemirror/state";
-EditorSelection.range($0, $1, $2, $3, $4)"""
+        [<Emit("""import { EditorSelection } from "@codemirror/state";
+EditorSelection.range($0, $1, $2, $3, $4)""")>]
+        static member inline range (anchor: float, head: float, ?goalColumn: float, ?bidiLevel: float, ?assoc: float): CodemirrorState.SelectionRange = nativeOnly
         /// <summary>
         /// Create an [undirectional](https://codemirror.net/6/docs/ref/#state.SelectionRange.undirectional)
         /// selection range.
         /// </summary>
-        static member inline undirectionalRange (from: float, ``to``: float): CodemirrorState.SelectionRange =
-            emitJsExpr (from, ``to``) $$"""
-import { EditorSelection } from "@codemirror/state";
-EditorSelection.undirectionalRange($0, $1)"""
+        [<Emit("""import { EditorSelection } from "@codemirror/state";
+EditorSelection.undirectionalRange($0, $1)""")>]
+        static member inline undirectionalRange (from: float, ``to``: float): CodemirrorState.SelectionRange = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -809,10 +793,9 @@ EditorSelection.undirectionalRange($0, $1)"""
         /// <summary>
         /// Define a new facet.
         /// </summary>
-        static member inline define (?config: Facet.define__.config<'Output, 'Input>): CodemirrorState.Facet<'Input, 'Output> =
-            emitJsExpr (config) $$"""
-import { Facet } from "@codemirror/state";
-Facet.define($0)"""
+        [<Emit("""import { Facet } from "@codemirror/state";
+Facet.define($0)""")>]
+        static member inline define (?config: Facet.define__.config<'Output, 'Input>): CodemirrorState.Facet<'Input, 'Output> = nativeOnly
         /// <summary>
         /// Returns an extension that adds the given value to this facet.
         /// </summary>
@@ -924,10 +907,9 @@ Facet.define($0)"""
         /// <summary>
         /// Define a state field.
         /// </summary>
-        static member inline define (config: StateField.define__.config<'Value>): CodemirrorState.StateField<'Value> =
-            emitJsExpr (config) $$"""
-import { StateField } from "@codemirror/state";
-StateField.define($0)"""
+        [<Emit("""import { StateField } from "@codemirror/state";
+StateField.define($0)""")>]
+        static member inline define (config: StateField.define__.config<'Value>): CodemirrorState.StateField<'Value> = nativeOnly
         /// <summary>
         /// Returns an extension that enables this field and overrides the
         /// way it is initialized. Can be useful when you need to provide a
@@ -1013,10 +995,9 @@ StateField.define($0)"""
         /// <summary>
         /// Define a new type of annotation.
         /// </summary>
-        static member inline define () : CodemirrorState.AnnotationType<'T> =
-            emitJsExpr () $$"""
-import { Annotation } from "@codemirror/state";
-Annotation.define()"""
+        [<Emit("""import { Annotation } from "@codemirror/state";
+Annotation.define()""")>]
+        static member inline define () : CodemirrorState.AnnotationType<'T> = nativeOnly
 
     /// <summary>
     /// Marker that identifies a type of [annotation](https://codemirror.net/6/docs/ref/#state.Annotation).
@@ -1085,10 +1066,9 @@ Annotation.define()"""
         /// [mapping](https://codemirror.net/6/docs/ref/#state.StateEffect.map) to indicate that an effect is
         /// removed.
         /// </summary>
-        static member inline define (?spec: CodemirrorState.StateEffectSpec<'Value>): CodemirrorState.StateEffectType<'Value> =
-            emitJsExpr (spec) $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.define($0)"""
+        [<Emit("""import { StateEffect } from "@codemirror/state";
+StateEffect.define($0)""")>]
+        static member inline define (?spec: CodemirrorState.StateEffectSpec<'Value>): CodemirrorState.StateEffectType<'Value> = nativeOnly
         /// <summary>
         /// Define a new effect type. The type parameter indicates the type
         /// of values that his effect holds. It should be a type that
@@ -1096,10 +1076,9 @@ StateEffect.define($0)"""
         /// [mapping](https://codemirror.net/6/docs/ref/#state.StateEffect.map) to indicate that an effect is
         /// removed.
         /// </summary>
-        static member inline define () : CodemirrorState.StateEffectType<'Value> =
-            emitJsExpr () $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.define()"""
+        [<Emit("""import { StateEffect } from "@codemirror/state";
+StateEffect.define()""")>]
+        static member inline define () : CodemirrorState.StateEffectType<'Value> = nativeOnly
         /// <summary>
         /// Define a new effect type. The type parameter indicates the type
         /// of values that his effect holds. It should be a type that
@@ -1107,17 +1086,15 @@ StateEffect.define()"""
         /// [mapping](https://codemirror.net/6/docs/ref/#state.StateEffect.map) to indicate that an effect is
         /// removed.
         /// </summary>
-        static member inline define (?spec: CodemirrorState.StateEffectSpec<obj>): CodemirrorState.StateEffectType<obj> =
-            emitJsExpr (spec) $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.define($0)"""
+        [<Emit("""import { StateEffect } from "@codemirror/state";
+StateEffect.define($0)""")>]
+        static member inline define (?spec: CodemirrorState.StateEffectSpec<obj>): CodemirrorState.StateEffectType<obj> = nativeOnly
         /// <summary>
         /// Map an array of effects through a change set.
         /// </summary>
-        static member inline mapEffects (effects: ResizeArray<CodemirrorState.StateEffect<obj>>, mapping: CodemirrorState.ChangeDesc): ReadonlyArray<CodemirrorState.StateEffect<obj>> =
-            emitJsExpr (effects, mapping) $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.mapEffects($0, $1)"""
+        [<Emit("""import { StateEffect } from "@codemirror/state";
+StateEffect.mapEffects($0, $1)""")>]
+        static member inline mapEffects (effects: ResizeArray<CodemirrorState.StateEffect<obj>>, mapping: CodemirrorState.ChangeDesc): ReadonlyArray<CodemirrorState.StateEffect<obj>> = nativeOnly
         /// <summary>
         /// This effect can be used to reconfigure the root extensions of
         /// the editor. Doing this will discard any extensions
@@ -1125,27 +1102,23 @@ StateEffect.mapEffects($0, $1)"""
         /// the content of [reconfigured](https://codemirror.net/6/docs/ref/#state.Compartment.reconfigure)
         /// compartments.
         /// </summary>
+        [<Emit("""import { StateEffect } from "@codemirror/state";
+StateEffect.reconfigure{{=$0}}""")>]
         static member inline reconfigure
             with get () : CodemirrorState.StateEffectType<CodemirrorState.Extension> =
-                emitJsExpr () $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.reconfigure"""
+                nativeOnly
             and set (value: CodemirrorState.StateEffectType<CodemirrorState.Extension>) =
-                emitJsExpr (value) $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.reconfigure = $0"""
+                nativeOnly
         /// <summary>
         /// Append extensions to the top-level configuration of the editor.
         /// </summary>
+        [<Emit("""import { StateEffect } from "@codemirror/state";
+StateEffect.appendConfig{{=$0}}""")>]
         static member inline appendConfig
             with get () : CodemirrorState.StateEffectType<CodemirrorState.Extension> =
-                emitJsExpr () $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.appendConfig"""
+                nativeOnly
             and set (value: CodemirrorState.StateEffectType<CodemirrorState.Extension>) =
-                emitJsExpr (value) $$"""
-import { StateEffect } from "@codemirror/state";
-StateEffect.appendConfig = $0"""
+                nativeOnly
 
     /// <summary>
     /// Describes a [transaction](https://codemirror.net/6/docs/ref/#state.Transaction) when calling the
@@ -1287,15 +1260,13 @@ StateEffect.appendConfig = $0"""
         /// Annotation used to store transaction timestamps. Automatically
         /// added to every transaction, holding <c>Date.now()</c>.
         /// </summary>
+        [<Emit("""import { Transaction } from "@codemirror/state";
+Transaction.time{{=$0}}""")>]
         static member inline time
             with get () : CodemirrorState.AnnotationType<float> =
-                emitJsExpr () $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.time"""
+                nativeOnly
             and set (value: CodemirrorState.AnnotationType<float>) =
-                emitJsExpr (value) $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.time = $0"""
+                nativeOnly
         /// <summary>
         /// Annotation used to associate a transaction with a user interface
         /// event. Holds a string identifying the event, using a
@@ -1322,43 +1293,37 @@ Transaction.time = $0"""
         /// Use [<c>isUserEvent</c>](https://codemirror.net/6/docs/ref/#state.Transaction.isUserEvent) to check
         /// whether the annotation matches a given event.
         /// </summary>
+        [<Emit("""import { Transaction } from "@codemirror/state";
+Transaction.userEvent{{=$0}}""")>]
         static member inline userEvent
             with get () : CodemirrorState.AnnotationType<string> =
-                emitJsExpr () $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.userEvent"""
+                nativeOnly
             and set (value: CodemirrorState.AnnotationType<string>) =
-                emitJsExpr (value) $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.userEvent = $0"""
+                nativeOnly
         /// <summary>
         /// Annotation indicating whether a transaction should be added to
         /// the undo history or not.
         /// </summary>
+        [<Emit("""import { Transaction } from "@codemirror/state";
+Transaction.addToHistory{{=$0}}""")>]
         static member inline addToHistory
             with get () : CodemirrorState.AnnotationType<bool> =
-                emitJsExpr () $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.addToHistory"""
+                nativeOnly
             and set (value: CodemirrorState.AnnotationType<bool>) =
-                emitJsExpr (value) $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.addToHistory = $0"""
+                nativeOnly
         /// <summary>
         /// Annotation indicating (when present and true) that a transaction
         /// represents a change made by some other actor, not the user. This
         /// is used, for example, to tag other people's changes in
         /// collaborative editing.
         /// </summary>
+        [<Emit("""import { Transaction } from "@codemirror/state";
+Transaction.remote{{=$0}}""")>]
         static member inline remote
             with get () : CodemirrorState.AnnotationType<bool> =
-                emitJsExpr () $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.remote"""
+                nativeOnly
             and set (value: CodemirrorState.AnnotationType<bool>) =
-                emitJsExpr (value) $$"""
-import { Transaction } from "@codemirror/state";
-Transaction.remote = $0"""
+                nativeOnly
 
     [<RequireQualifiedAccess>]
     type CharCategory =
@@ -1513,19 +1478,17 @@ Transaction.remote = $0"""
         /// to [<c>toJSON</c>](https://codemirror.net/6/docs/ref/#state.EditorState.toJSON) when serializing as
         /// third argument.
         /// </summary>
-        static member inline fromJSON (json: obj, ?config: CodemirrorState.EditorStateConfig, ?fields: EditorState.fromJSON__.fields): CodemirrorState.EditorState =
-            emitJsExpr (json, config, fields) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.fromJSON($0, $1, $2)"""
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.fromJSON($0, $1, $2)""")>]
+        static member inline fromJSON (json: obj, ?config: CodemirrorState.EditorStateConfig, ?fields: EditorState.fromJSON__.fields): CodemirrorState.EditorState = nativeOnly
         /// <summary>
         /// Create a new state. You'll usually only need this when
         /// initializing an editor—updated states are created by applying
         /// transactions.
         /// </summary>
-        static member inline create (?config: CodemirrorState.EditorStateConfig): CodemirrorState.EditorState =
-            emitJsExpr (config) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.create($0)"""
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.create($0)""")>]
+        static member inline create (?config: CodemirrorState.EditorStateConfig): CodemirrorState.EditorState = nativeOnly
         /// <summary>
         /// A facet that, when enabled, causes the editor to allow multiple
         /// ranges to be selected. Be careful though, because by default the
@@ -1534,29 +1497,25 @@ EditorState.create($0)"""
         /// [<c>drawSelection</c>](https://codemirror.net/6/docs/ref/#view.drawSelection) can be used to make
         /// secondary selections visible to the user.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.allowMultipleSelections{{=$0}}""")>]
         static member inline allowMultipleSelections
             with get () : CodemirrorState.Facet<bool, bool> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.allowMultipleSelections"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<bool, bool>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.allowMultipleSelections = $0"""
+                nativeOnly
         /// <summary>
         /// Configures the tab size to use in this state. The first
         /// (highest-precedence) value of the facet is used. If no value is
         /// given, this defaults to 4.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.tabSize{{=$0}}""")>]
         static member inline tabSize
             with get () : CodemirrorState.Facet<float, float> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.tabSize"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<float, float>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.tabSize = $0"""
+                nativeOnly
         /// <summary>
         /// The line separator to use. By default, any of <c>"\n"</c>, <c>"\r\n"</c>
         /// and <c>"\r"</c> is treated as a separator when splitting lines, and
@@ -1566,15 +1525,13 @@ EditorState.tabSize = $0"""
         /// will be used, allowing you to round-trip documents through the
         /// editor without normalizing line separators.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.lineSeparator{{=$0}}""")>]
         static member inline lineSeparator
             with get () : CodemirrorState.Facet<string, string option> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.lineSeparator"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<string, string option>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.lineSeparator = $0"""
+                nativeOnly
         /// <summary>
         /// Get the proper [line-break](https://codemirror.net/6/docs/ref/#state.EditorState^lineSeparator)
         /// string for this state.
@@ -1593,30 +1550,26 @@ EditorState.lineSeparator = $0"""
         /// controls whether the editor's DOM is set to be editable (and
         /// thus focusable).
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.readOnly{{=$0}}""")>]
         static member inline readOnly
             with get () : CodemirrorState.Facet<bool, bool> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.readOnly"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<bool, bool>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.readOnly = $0"""
+                nativeOnly
         /// <summary>
         /// Registers translation phrases. The
         /// [<c>phrase</c>](https://codemirror.net/6/docs/ref/#state.EditorState.phrase) method will look through
         /// all objects registered with this facet to find translations for
         /// its argument.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.phrases{{=$0}}""")>]
         static member inline phrases
             with get () : CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__>> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.phrases"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__>>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.phrases = $0"""
+                nativeOnly
         /// <summary>
         /// Look up a translation for the given phrase (via the
         /// [<c>phrases</c>](https://codemirror.net/6/docs/ref/#state.EditorState^phrases) facet), or return the
@@ -1632,15 +1585,13 @@ EditorState.phrases = $0"""
         /// A facet used to register [language
         /// data](https://codemirror.net/6/docs/ref/#state.EditorState.languageDataAt) providers.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.languageData{{=$0}}""")>]
         static member inline languageData
             with get () : CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__>> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.languageData"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__>>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.languageData = $0"""
+                nativeOnly
         /// <summary>
         /// Find the values for a given language data field, provided by the
         /// the [<c>languageData</c>](https://codemirror.net/6/docs/ref/#state.EditorState^languageData) facet.
@@ -1691,15 +1642,13 @@ EditorState.languageData = $0"""
         /// range. So for example <c>[10, 20, 100, 110]</c> suppresses changes
         /// between 10 and 20, and between 100 and 110.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.changeFilter{{=$0}}""")>]
         static member inline changeFilter
             with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>)>> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.changeFilter"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>)>>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.changeFilter = $0"""
+                nativeOnly
         /// <summary>
         /// Facet used to register a hook that gets a chance to update or
         /// replace transaction specs before they are applied. This will
@@ -1719,15 +1668,13 @@ EditorState.changeFilter = $0"""
         /// modifying transaction is likely to break something or degrade
         /// the user experience.)
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.transactionFilter{{=$0}}""")>]
         static member inline transactionFilter
             with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>)>> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.transactionFilter"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>)>>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.transactionFilter = $0"""
+                nativeOnly
         /// <summary>
         /// This is a more limited form of
         /// [<c>transactionFilter</c>](https://codemirror.net/6/docs/ref/#state.EditorState^transactionFilter),
@@ -1741,15 +1688,13 @@ EditorState.transactionFilter = $0"""
         ///
         /// Extenders run _after_ filters, when both are present.
         /// </summary>
+        [<Emit("""import { EditorState } from "@codemirror/state";
+EditorState.transactionExtender{{=$0}}""")>]
         static member inline transactionExtender
             with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender___1 option)>> =
-                emitJsExpr () $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.transactionExtender"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender___1 option)>>) =
-                emitJsExpr (value) $$"""
-import { EditorState } from "@codemirror/state";
-EditorState.transactionExtender = $0"""
+                nativeOnly
 
     /// <summary>
     /// Subtype of [<c>Command</c>](https://codemirror.net/6/docs/ref/#view.Command) that doesn't require access
@@ -1981,26 +1926,23 @@ EditorState.transactionExtender = $0"""
         /// Iterate over the ranges in a collection of sets, in order,
         /// starting from <c>from</c>.
         /// </summary>
-        static member inline iter (sets: ResizeArray<CodemirrorState.RangeSet<'T>>, ?from: float): CodemirrorState.RangeCursor<'T> =
-            emitJsExpr (sets, from) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.iter($0, $1)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.iter($0, $1)""")>]
+        static member inline iter (sets: ResizeArray<CodemirrorState.RangeSet<'T>>, ?from: float): CodemirrorState.RangeCursor<'T> = nativeOnly
         /// <summary>
         /// Iterate over two groups of sets, calling methods on <c>comparator</c>
         /// to notify it of possible differences.
         /// </summary>
-        static member inline compare (oldSets: ResizeArray<CodemirrorState.RangeSet<'T>>, newSets: ResizeArray<CodemirrorState.RangeSet<'T>>, textDiff: CodemirrorState.ChangeDesc, comparator: CodemirrorState.RangeComparator<'T>, ?minPointSize: float): unit =
-            emitJsExpr (oldSets, newSets, textDiff, comparator, minPointSize) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.compare($0, $1, $2, $3, $4)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.compare($0, $1, $2, $3, $4)""")>]
+        static member inline compare (oldSets: ResizeArray<CodemirrorState.RangeSet<'T>>, newSets: ResizeArray<CodemirrorState.RangeSet<'T>>, textDiff: CodemirrorState.ChangeDesc, comparator: CodemirrorState.RangeComparator<'T>, ?minPointSize: float): unit = nativeOnly
         /// <summary>
         /// Compare the contents of two groups of range sets, returning true
         /// if they are equivalent in the given range.
         /// </summary>
-        static member inline eq (oldSets: ResizeArray<CodemirrorState.RangeSet<'T>>, newSets: ResizeArray<CodemirrorState.RangeSet<'T>>, ?from: float, ?``to``: float): bool =
-            emitJsExpr (oldSets, newSets, from, ``to``) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.eq($0, $1, $2, $3)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.eq($0, $1, $2, $3)""")>]
+        static member inline eq (oldSets: ResizeArray<CodemirrorState.RangeSet<'T>>, newSets: ResizeArray<CodemirrorState.RangeSet<'T>>, ?from: float, ?``to``: float): bool = nativeOnly
         /// <summary>
         /// Iterate over a group of range sets at the same time, notifying
         /// the iterator about the ranges covering every given piece of
@@ -2008,10 +1950,9 @@ RangeSet.eq($0, $1, $2, $3)"""
         /// [<c>SpanIterator.span</c>](https://codemirror.net/6/docs/ref/#state.SpanIterator.span)) at the end
         /// of the iteration.
         /// </summary>
-        static member inline spans (sets: ResizeArray<CodemirrorState.RangeSet<'T>>, from: float, ``to``: float, iterator: CodemirrorState.SpanIterator<'T>, ?minPointSize: float): float =
-            emitJsExpr (sets, from, ``to``, iterator, minPointSize) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.spans($0, $1, $2, $3, $4)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.spans($0, $1, $2, $3, $4)""")>]
+        static member inline spans (sets: ResizeArray<CodemirrorState.RangeSet<'T>>, from: float, ``to``: float, iterator: CodemirrorState.SpanIterator<'T>, ?minPointSize: float): float = nativeOnly
         /// <summary>
         /// Create a range set for the given range or array of ranges. By
         /// default, this expects the ranges to be _sorted_ (by start
@@ -2019,10 +1960,9 @@ RangeSet.spans($0, $1, $2, $3, $4)"""
         /// <c>value.startSide</c>). You can pass <c>true</c> as second argument to
         /// cause the method to sort them.
         /// </summary>
-        static member inline ``of`` (ranges: ResizeArray<CodemirrorState.Range<'T>>, ?sort: bool): CodemirrorState.RangeSet<'T> =
-            emitJsExpr (ranges, sort) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.of($0, $1)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.of($0, $1)""")>]
+        static member inline ``of`` (ranges: ResizeArray<CodemirrorState.Range<'T>>, ?sort: bool): CodemirrorState.RangeSet<'T> = nativeOnly
         /// <summary>
         /// Create a range set for the given range or array of ranges. By
         /// default, this expects the ranges to be _sorted_ (by start
@@ -2030,29 +1970,25 @@ RangeSet.of($0, $1)"""
         /// <c>value.startSide</c>). You can pass <c>true</c> as second argument to
         /// cause the method to sort them.
         /// </summary>
-        static member inline ``of`` (ranges: CodemirrorState.Range<'T>, ?sort: bool): CodemirrorState.RangeSet<'T> =
-            emitJsExpr (ranges, sort) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.of($0, $1)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.of($0, $1)""")>]
+        static member inline ``of`` (ranges: CodemirrorState.Range<'T>, ?sort: bool): CodemirrorState.RangeSet<'T> = nativeOnly
         /// <summary>
         /// Join an array of range sets into a single set.
         /// </summary>
-        static member inline join (sets: ResizeArray<CodemirrorState.RangeSet<'T>>): CodemirrorState.RangeSet<'T> =
-            emitJsExpr (sets) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.join($0)"""
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.join($0)""")>]
+        static member inline join (sets: ResizeArray<CodemirrorState.RangeSet<'T>>): CodemirrorState.RangeSet<'T> = nativeOnly
         /// <summary>
         /// The empty set of ranges.
         /// </summary>
+        [<Emit("""import { RangeSet } from "@codemirror/state";
+RangeSet.empty{{=$0}}""")>]
         static member inline empty
             with get () : CodemirrorState.RangeSet<obj> =
-                emitJsExpr () $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.empty"""
+                nativeOnly
             and set (value: CodemirrorState.RangeSet<obj>) =
-                emitJsExpr (value) $$"""
-import { RangeSet } from "@codemirror/state";
-RangeSet.empty = $0"""
+                nativeOnly
 
     /// <summary>
     /// A range set builder is a data structure that helps build up a
@@ -3273,64 +3209,56 @@ module CodemirrorView =
         /// Such elements are split on line boundaries and on the boundaries
         /// of lower-precedence decorations.
         /// </summary>
-        static member inline mark (spec: CodemirrorView.MarkDecorationSpec): CodemirrorView.Decoration =
-            emitJsExpr (spec) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.mark($0)"""
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.mark($0)""")>]
+        static member inline mark (spec: CodemirrorView.MarkDecorationSpec): CodemirrorView.Decoration = nativeOnly
         /// <summary>
         /// Create a widget decoration, which displays a DOM element at the
         /// given position.
         /// </summary>
-        static member inline widget (spec: CodemirrorView.WidgetDecorationSpec): CodemirrorView.Decoration =
-            emitJsExpr (spec) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.widget($0)"""
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.widget($0)""")>]
+        static member inline widget (spec: CodemirrorView.WidgetDecorationSpec): CodemirrorView.Decoration = nativeOnly
         /// <summary>
         /// Create a replace decoration which replaces the given range with
         /// a widget, or simply hides it.
         /// </summary>
-        static member inline replace (spec: CodemirrorView.ReplaceDecorationSpec): CodemirrorView.Decoration =
-            emitJsExpr (spec) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.replace($0)"""
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.replace($0)""")>]
+        static member inline replace (spec: CodemirrorView.ReplaceDecorationSpec): CodemirrorView.Decoration = nativeOnly
         /// <summary>
         /// Create a line decoration, which can add DOM attributes to the
         /// line starting at the given position.
         /// </summary>
-        static member inline line (spec: CodemirrorView.LineDecorationSpec): CodemirrorView.Decoration =
-            emitJsExpr (spec) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.line($0)"""
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.line($0)""")>]
+        static member inline line (spec: CodemirrorView.LineDecorationSpec): CodemirrorView.Decoration = nativeOnly
         /// <summary>
         /// Build a [<c>DecorationSet</c>](https://codemirror.net/6/docs/ref/#view.DecorationSet) from the given
         /// decorated range or ranges. If the ranges aren't already sorted,
         /// pass <c>true</c> for <c>sort</c> to make the library sort them for you.
         /// </summary>
-        static member inline set (``of``: CodemirrorState.Range<CodemirrorView.Decoration>, ?sort: bool): CodemirrorView.DecorationSet =
-            emitJsExpr (``of``, sort) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.set($0, $1)"""
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.set($0, $1)""")>]
+        static member inline set (``of``: CodemirrorState.Range<CodemirrorView.Decoration>, ?sort: bool): CodemirrorView.DecorationSet = nativeOnly
         /// <summary>
         /// Build a [<c>DecorationSet</c>](https://codemirror.net/6/docs/ref/#view.DecorationSet) from the given
         /// decorated range or ranges. If the ranges aren't already sorted,
         /// pass <c>true</c> for <c>sort</c> to make the library sort them for you.
         /// </summary>
-        static member inline set (``of``: ResizeArray<CodemirrorState.Range<CodemirrorView.Decoration>>, ?sort: bool): CodemirrorView.DecorationSet =
-            emitJsExpr (``of``, sort) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.set($0, $1)"""
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.set($0, $1)""")>]
+        static member inline set (``of``: ResizeArray<CodemirrorState.Range<CodemirrorView.Decoration>>, ?sort: bool): CodemirrorView.DecorationSet = nativeOnly
         /// <summary>
         /// The empty set of decorations.
         /// </summary>
+        [<Emit("""import { Decoration } from "@codemirror/view";
+Decoration.none{{=$0}}""")>]
         static member inline none
             with get () : CodemirrorView.DecorationSet =
-                emitJsExpr () $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.none"""
+                nativeOnly
             and set (value: CodemirrorView.DecorationSet) =
-                emitJsExpr (value) $$"""
-import { Decoration } from "@codemirror/view";
-Decoration.none = $0"""
+                nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3375,24 +3303,21 @@ Decoration.none = $0"""
         /// Create a block wrapper object with the given tag name and
         /// attributes.
         /// </summary>
-        static member inline create (spec: CodemirrorView.BlockWrapperSpec): CodemirrorView.BlockWrapper =
-            emitJsExpr (spec) $$"""
-import { BlockWrapper } from "@codemirror/view";
-BlockWrapper.create($0)"""
+        [<Emit("""import { BlockWrapper } from "@codemirror/view";
+BlockWrapper.create($0)""")>]
+        static member inline create (spec: CodemirrorView.BlockWrapperSpec): CodemirrorView.BlockWrapper = nativeOnly
         /// <summary>
         /// Create a range set from the given block wrapper ranges.
         /// </summary>
-        static member inline set (``of``: CodemirrorState.Range<CodemirrorView.BlockWrapper>, ?sort: bool): CodemirrorState.RangeSet<CodemirrorView.BlockWrapper> =
-            emitJsExpr (``of``, sort) $$"""
-import { BlockWrapper } from "@codemirror/view";
-BlockWrapper.set($0, $1)"""
+        [<Emit("""import { BlockWrapper } from "@codemirror/view";
+BlockWrapper.set($0, $1)""")>]
+        static member inline set (``of``: CodemirrorState.Range<CodemirrorView.BlockWrapper>, ?sort: bool): CodemirrorState.RangeSet<CodemirrorView.BlockWrapper> = nativeOnly
         /// <summary>
         /// Create a range set from the given block wrapper ranges.
         /// </summary>
-        static member inline set (``of``: ResizeArray<CodemirrorState.Range<CodemirrorView.BlockWrapper>>, ?sort: bool): CodemirrorState.RangeSet<CodemirrorView.BlockWrapper> =
-            emitJsExpr (``of``, sort) $$"""
-import { BlockWrapper } from "@codemirror/view";
-BlockWrapper.set($0, $1)"""
+        [<Emit("""import { BlockWrapper } from "@codemirror/view";
+BlockWrapper.set($0, $1)""")>]
+        static member inline set (``of``: ResizeArray<CodemirrorState.Range<CodemirrorView.BlockWrapper>>, ?sort: bool): CodemirrorState.RangeSet<CodemirrorView.BlockWrapper> = nativeOnly
 
     /// <summary>
     /// Command functions are used in key bindings and other types of user
@@ -3505,18 +3430,16 @@ BlockWrapper.set($0, $1)"""
         /// Define a plugin from a constructor function that creates the
         /// plugin's value, given an editor view.
         /// </summary>
-        static member inline define (create: ViewPlugin.define__.create<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> =
-            emitJsExpr (create, spec) $$"""
-import { ViewPlugin } from "@codemirror/view";
-ViewPlugin.define($0, $1)"""
+        [<Emit("""import { ViewPlugin } from "@codemirror/view";
+ViewPlugin.define($0, $1)""")>]
+        static member inline define (create: ViewPlugin.define__.create<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> = nativeOnly
         /// <summary>
         /// Create a plugin for a class whose constructor takes a single
         /// editor view as argument.
         /// </summary>
-        static member inline fromClass (cls: ViewPlugin.fromClass__.cls<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> =
-            emitJsExpr (cls, spec) $$"""
-import { ViewPlugin } from "@codemirror/view";
-ViewPlugin.fromClass($0, $1)"""
+        [<Emit("""import { ViewPlugin } from "@codemirror/view";
+ViewPlugin.fromClass($0, $1)""")>]
+        static member inline fromClass (cls: ViewPlugin.fromClass__.cls<'V, 'Arg>, ?spec: CodemirrorView.PluginSpec<'V>): CodemirrorView.ViewPlugin<'V, 'Arg> = nativeOnly
 
     type ViewPlugin<'V> =
         ViewPlugin<'V, obj>
@@ -4137,19 +4060,17 @@ ViewPlugin.fromClass($0, $1)"""
         /// [added](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) to a transaction to
         /// cause it to scroll the given position or range into view.
         /// </summary>
-        static member inline scrollIntoView (pos: float, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> =
-            emitJsExpr (pos, options) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.scrollIntoView($0, $1)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.scrollIntoView($0, $1)""")>]
+        static member inline scrollIntoView (pos: float, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> = nativeOnly
         /// <summary>
         /// Returns an effect that can be
         /// [added](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) to a transaction to
         /// cause it to scroll the given position or range into view.
         /// </summary>
-        static member inline scrollIntoView (pos: CodemirrorState.SelectionRange, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> =
-            emitJsExpr (pos, options) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.scrollIntoView($0, $1)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.scrollIntoView($0, $1)""")>]
+        static member inline scrollIntoView (pos: CodemirrorState.SelectionRange, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> = nativeOnly
         /// <summary>
         /// Return an effect that resets the editor to its current (at the
         /// time this method was called) scroll position. Note that this
@@ -4206,15 +4127,13 @@ EditorView.scrollIntoView($0, $1)"""
         /// mounted in its [document
         /// root](https://codemirror.net/6/docs/ref/#view.EditorView.constructor^config.root).
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.styleModule{{=$0}}""")>]
         static member inline styleModule
             with get () : CodemirrorState.Facet<StyleMod.StyleModule, ReadonlyArray<StyleMod.StyleModule>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.styleModule"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<StyleMod.StyleModule, ReadonlyArray<StyleMod.StyleModule>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.styleModule = $0"""
+                nativeOnly
         /// <summary>
         /// Returns an extension that can be used to add DOM event handlers.
         /// The value should be an object mapping event names to handler
@@ -4227,10 +4146,9 @@ EditorView.styleModule = $0"""
         /// editor's [scroll element](https://codemirror.net/6/docs/ref/#view.EditorView.scrollDOM) or one of
         /// its parent nodes is scrolled.
         /// </summary>
-        static member inline domEventHandlers (handlers: EditorView.domEventHandlers__.handlers): CodemirrorState.Extension =
-            emitJsExpr (handlers) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.domEventHandlers($0)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.domEventHandlers($0)""")>]
+        static member inline domEventHandlers (handlers: EditorView.domEventHandlers__.handlers): CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// Create an extension that registers DOM event observers. Contrary
         /// to event [handlers](https://codemirror.net/6/docs/ref/#view.EditorView^domEventHandlers),
@@ -4239,10 +4157,9 @@ EditorView.domEventHandlers($0)"""
         /// and observers from running when they return true, and should not
         /// call <c>preventDefault</c>.
         /// </summary>
-        static member inline domEventObservers (observers: EditorView.domEventObservers__.observers): CodemirrorState.Extension =
-            emitJsExpr (observers) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.domEventObservers($0)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.domEventObservers($0)""")>]
+        static member inline domEventObservers (observers: EditorView.domEventObservers__.observers): CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// An input handler can override the way changes to the editable
         /// DOM content are handled. Handlers are passed the document
@@ -4254,83 +4171,71 @@ EditorView.domEventObservers($0)"""
         /// that would be applied for this input. This can be useful when
         /// dispatching the custom behavior as a separate transaction.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.inputHandler{{=$0}}""")>]
         static member inline inputHandler
             with get () : CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.inputHandler"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.inputHandler = $0"""
+                nativeOnly
         /// <summary>
         /// Functions provided in this facet will be used to transform text
         /// pasted or dropped into the editor.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.clipboardInputFilter{{=$0}}""")>]
         static member inline clipboardInputFilter
             with get () : CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.clipboardInputFilter"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.clipboardInputFilter = $0"""
+                nativeOnly
         /// <summary>
         /// Transform text copied or dragged from the editor.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.clipboardOutputFilter{{=$0}}""")>]
         static member inline clipboardOutputFilter
             with get () : CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.clipboardOutputFilter"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.clipboardOutputFilter = $0"""
+                nativeOnly
         /// <summary>
         /// Scroll handlers can override how things are scrolled into view.
         /// If they return <c>true</c>, no further handling happens for the
         /// scrolling. If they return false, the default scroll behavior is
         /// applied. Scroll handlers should never initiate editor updates.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.scrollHandler{{=$0}}""")>]
         static member inline scrollHandler
             with get () : CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler___1>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.scrollHandler"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler___1>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.scrollHandler = $0"""
+                nativeOnly
         /// <summary>
         /// This facet can be used to provide functions that create effects
         /// to be dispatched when the editor's focus state changes.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.focusChangeEffect{{=$0}}""")>]
         static member inline focusChangeEffect
             with get () : CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.focusChangeEffect"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.focusChangeEffect = $0"""
+                nativeOnly
         /// <summary>
         /// By default, the editor assumes all its content has the same
         /// [text direction](https://codemirror.net/6/docs/ref/#view.Direction). Configure this with a <c>true</c>
         /// value to make it read the text direction of every (rendered)
         /// line separately.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.perLineTextDirection{{=$0}}""")>]
         static member inline perLineTextDirection
             with get () : CodemirrorState.Facet<bool, bool> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.perLineTextDirection"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<bool, bool>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.perLineTextDirection = $0"""
+                nativeOnly
         /// <summary>
         /// Allows you to provide a function that should be called when the
         /// library catches an exception from an extension (mostly from view
@@ -4338,28 +4243,24 @@ EditorView.perLineTextDirection = $0"""
         /// from user-code-provided callbacks). This is mostly useful for
         /// debugging and logging. See [<c>logException</c>](https://codemirror.net/6/docs/ref/#view.logException).
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.exceptionSink{{=$0}}""")>]
         static member inline exceptionSink
             with get () : CodemirrorState.Facet<(obj -> unit), ReadonlyArray<(obj -> unit)>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.exceptionSink"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(obj -> unit), ReadonlyArray<(obj -> unit)>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.exceptionSink = $0"""
+                nativeOnly
         /// <summary>
         /// A facet that can be used to register a function to be called
         /// every time the view updates.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.updateListener{{=$0}}""")>]
         static member inline updateListener
             with get () : CodemirrorState.Facet<(CodemirrorView.ViewUpdate -> unit), ReadonlyArray<(CodemirrorView.ViewUpdate -> unit)>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.updateListener"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(CodemirrorView.ViewUpdate -> unit), ReadonlyArray<(CodemirrorView.ViewUpdate -> unit)>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.updateListener = $0"""
+                nativeOnly
         /// <summary>
         /// Facet that controls whether the editor content DOM is editable.
         /// When its highest-precedence value is <c>false</c>, the element will
@@ -4368,60 +4269,52 @@ EditorView.updateListener = $0"""
         /// when those are bound to keys or buttons. See the
         /// [<c>readOnly</c>](https://codemirror.net/6/docs/ref/#state.EditorState.readOnly) facet for that.)
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.editable{{=$0}}""")>]
         static member inline editable
             with get () : CodemirrorState.Facet<bool, bool> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.editable"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<bool, bool>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.editable = $0"""
+                nativeOnly
         /// <summary>
         /// Allows you to influence the way mouse selection happens. The
         /// functions in this facet will be called for a <c>mousedown</c> event
         /// on the editor, and can return an object that overrides the way a
         /// selection is computed from that mouse click or drag.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.mouseSelectionStyle{{=$0}}""")>]
         static member inline mouseSelectionStyle
             with get () : CodemirrorState.Facet<CodemirrorView.MakeSelectionStyle, ReadonlyArray<CodemirrorView.MakeSelectionStyle>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.mouseSelectionStyle"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<CodemirrorView.MakeSelectionStyle, ReadonlyArray<CodemirrorView.MakeSelectionStyle>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.mouseSelectionStyle = $0"""
+                nativeOnly
         /// <summary>
         /// Facet used to configure whether a given selection drag event
         /// should move or copy the selection. The given predicate will be
         /// called with the <c>mousedown</c> event, and can return <c>true</c> when
         /// the drag should move the content.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.dragMovesSelection{{=$0}}""")>]
         static member inline dragMovesSelection
             with get () : CodemirrorState.Facet<(Glutinum.Web.MouseEvent -> bool), ReadonlyArray<(Glutinum.Web.MouseEvent -> bool)>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.dragMovesSelection"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(Glutinum.Web.MouseEvent -> bool), ReadonlyArray<(Glutinum.Web.MouseEvent -> bool)>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.dragMovesSelection = $0"""
+                nativeOnly
         /// <summary>
         /// Facet used to configure whether a given selecting click adds a
         /// new range to the existing selection or replaces it entirely. The
         /// default behavior is to check <c>event.metaKey</c> on macOS, and
         /// <c>event.ctrlKey</c> elsewhere.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.clickAddsSelectionRange{{=$0}}""")>]
         static member inline clickAddsSelectionRange
             with get () : CodemirrorState.Facet<(Glutinum.Web.MouseEvent -> bool), ReadonlyArray<(Glutinum.Web.MouseEvent -> bool)>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.clickAddsSelectionRange"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(Glutinum.Web.MouseEvent -> bool), ReadonlyArray<(Glutinum.Web.MouseEvent -> bool)>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.clickAddsSelectionRange = $0"""
+                nativeOnly
         /// <summary>
         /// A facet that determines which [decorations](https://codemirror.net/6/docs/ref/#view.Decoration)
         /// are shown in the view. Decorations can be provided in two
@@ -4438,15 +4331,13 @@ EditorView.clickAddsSelectionRange = $0"""
         /// containing the decorations to
         /// [<c>EditorView.atomicRanges</c>](https://codemirror.net/6/docs/ref/#view.EditorView^atomicRanges).
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.decorations{{=$0}}""")>]
         static member inline decorations
             with get () : CodemirrorState.Facet<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>, ReadonlyArray<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.decorations"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>, ReadonlyArray<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.decorations = $0"""
+                nativeOnly
         /// <summary>
         /// [Block wrappers](https://codemirror.net/6/docs/ref/#view.BlockWrapper) provide a way to add DOM
         /// structure around editor lines and block widgets. Sets of
@@ -4454,15 +4345,13 @@ EditorView.decorations = $0"""
         /// nested in a similar way when they overlap. A wrapper affects all
         /// lines and block widgets that start inside its range.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.blockWrappers{{=$0}}""")>]
         static member inline blockWrappers
             with get () : CodemirrorState.Facet<U2<CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>, (CodemirrorView.EditorView -> CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>)>, ReadonlyArray<U2<CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>, (CodemirrorView.EditorView -> CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>)>>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.blockWrappers"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<U2<CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>, (CodemirrorView.EditorView -> CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>)>, ReadonlyArray<U2<CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>, (CodemirrorView.EditorView -> CodemirrorState.RangeSet<CodemirrorView.BlockWrapper>)>>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.blockWrappers = $0"""
+                nativeOnly
         /// <summary>
         /// Facet that works much like
         /// [<c>decorations</c>](https://codemirror.net/6/docs/ref/#view.EditorView^decorations), but puts its
@@ -4472,15 +4361,13 @@ EditorView.blockWrappers = $0"""
         /// regular decorations. Use this for mark elements that should, as
         /// much as possible, remain in one piece.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.outerDecorations{{=$0}}""")>]
         static member inline outerDecorations
             with get () : CodemirrorState.Facet<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>, ReadonlyArray<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.outerDecorations"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>, ReadonlyArray<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.outerDecorations = $0"""
+                nativeOnly
         /// <summary>
         /// Used to provide ranges that should be treated as atoms as far as
         /// cursor motion is concerned. This causes methods like
@@ -4492,15 +4379,13 @@ EditorView.outerDecorations = $0"""
         /// updates](https://codemirror.net/6/docs/ref/#state.TransactionSpec.selection) from moving into such
         /// regions.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.atomicRanges{{=$0}}""")>]
         static member inline atomicRanges
             with get () : CodemirrorState.Facet<(CodemirrorView.EditorView -> CodemirrorState.RangeSet<obj>), ReadonlyArray<(CodemirrorView.EditorView -> CodemirrorState.RangeSet<obj>)>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.atomicRanges"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(CodemirrorView.EditorView -> CodemirrorState.RangeSet<obj>), ReadonlyArray<(CodemirrorView.EditorView -> CodemirrorState.RangeSet<obj>)>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.atomicRanges = $0"""
+                nativeOnly
         /// <summary>
         /// When range decorations add a <c>unicode-bidi: isolate</c> style, they
         /// should also include a
@@ -4510,30 +4395,26 @@ EditorView.atomicRanges = $0"""
         /// for <c>unicode-bidi</c>, except of course <c>normal</c>, are not
         /// supported.)
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.bidiIsolatedRanges{{=$0}}""")>]
         static member inline bidiIsolatedRanges
             with get () : CodemirrorState.Facet<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>, ReadonlyArray<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.bidiIsolatedRanges"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>, ReadonlyArray<U2<CodemirrorView.DecorationSet, (CodemirrorView.EditorView -> CodemirrorView.DecorationSet)>>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.bidiIsolatedRanges = $0"""
+                nativeOnly
         /// <summary>
         /// Can be used to specify the distance that scrolling cursor into
         /// view keeps it away from the sides of the editor, either as a
         /// single pixel number or two different values for the different
         /// axes. Defaults to 5 pixels on both axes.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.cursorScrollMargin{{=$0}}""")>]
         static member inline cursorScrollMargin
             with get () : CodemirrorState.Facet<U2<float, EditorView.cursorScrollMargin__.U2.Case2>, EditorView.cursorScrollMargin__> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.cursorScrollMargin"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<U2<float, EditorView.cursorScrollMargin__.U2.Case2>, EditorView.cursorScrollMargin__>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.cursorScrollMargin = $0"""
+                nativeOnly
         /// <summary>
         /// Facet that allows extensions to provide additional scroll
         /// margins (space around the sides of the scrolling element that
@@ -4542,15 +4423,13 @@ EditorView.cursorScrollMargin = $0"""
         /// example a horizontally fixed gutter). Not to be confused with
         /// [<c>cursorScrollMargin</c>](https://codemirror.net/6/docs/ref/#view.EditorView^cursorScrollMargin).
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.scrollMargins{{=$0}}""")>]
         static member inline scrollMargins
             with get () : CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option)>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.scrollMargins"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option)>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.scrollMargins = $0"""
+                nativeOnly
         /// <summary>
         /// Create a theme extension. The first argument can be a
         /// [<c>style-mod</c>](https://code.haverbeke.berlin/marijn/style-mod#documentation)
@@ -4569,25 +4448,22 @@ EditorView.scrollMargins = $0"""
         /// themes](https://codemirror.net/6/docs/ref/#view.EditorView^baseTheme) to be used (as opposed to
         /// <c>&light</c> when a light theme is active).
         /// </summary>
-        static member inline theme (spec: EditorView.theme__.spec, ?options: EditorView.theme__.options): CodemirrorState.Extension =
-            emitJsExpr (spec, options) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.theme($0, $1)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.theme($0, $1)""")>]
+        static member inline theme (spec: EditorView.theme__.spec, ?options: EditorView.theme__.options): CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// This facet records whether a dark theme is active. The extension
         /// returned by [<c>theme</c>](https://codemirror.net/6/docs/ref/#view.EditorView^theme) automatically
         /// includes an instance of this when the <c>dark</c> option is set to
         /// true.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.darkTheme{{=$0}}""")>]
         static member inline darkTheme
             with get () : CodemirrorState.Facet<bool, bool> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.darkTheme"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<bool, bool>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.darkTheme = $0"""
+                nativeOnly
         /// <summary>
         /// Create an extension that adds styles to the base theme. Like
         /// with [<c>theme</c>](https://codemirror.net/6/docs/ref/#view.EditorView^theme), use <c>&</c> to indicate the
@@ -4595,50 +4471,43 @@ EditorView.darkTheme = $0"""
         /// that. You can also use <c>&dark</c> or <c>&light</c> instead to only
         /// target editors with a dark or light theme.
         /// </summary>
-        static member inline baseTheme (spec: EditorView.baseTheme__.spec): CodemirrorState.Extension =
-            emitJsExpr (spec) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.baseTheme($0)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.baseTheme($0)""")>]
+        static member inline baseTheme (spec: EditorView.baseTheme__.spec): CodemirrorState.Extension = nativeOnly
         /// <summary>
         /// Provides a Content Security Policy nonce to use when creating
         /// the style sheets for the editor. Holds the empty string when no
         /// nonce has been provided.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.cspNonce{{=$0}}""")>]
         static member inline cspNonce
             with get () : CodemirrorState.Facet<string, string> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.cspNonce"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<string, string>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.cspNonce = $0"""
+                nativeOnly
         /// <summary>
         /// Facet that provides additional DOM attributes for the editor's
         /// editable DOM element.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.contentAttributes{{=$0}}""")>]
         static member inline contentAttributes
             with get () : CodemirrorState.Facet<CodemirrorView.AttrSource, ReadonlyArray<CodemirrorView.AttrSource>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.contentAttributes"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<CodemirrorView.AttrSource, ReadonlyArray<CodemirrorView.AttrSource>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.contentAttributes = $0"""
+                nativeOnly
         /// <summary>
         /// Facet that provides DOM attributes for the editor's outer
         /// element.
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.editorAttributes{{=$0}}""")>]
         static member inline editorAttributes
             with get () : CodemirrorState.Facet<CodemirrorView.AttrSource, ReadonlyArray<CodemirrorView.AttrSource>> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.editorAttributes"""
+                nativeOnly
             and set (value: CodemirrorState.Facet<CodemirrorView.AttrSource, ReadonlyArray<CodemirrorView.AttrSource>>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.editorAttributes = $0"""
+                nativeOnly
         /// <summary>
         /// State effect used to include screen reader announcements in a
         /// transaction. These will be added to the DOM in a visually hidden
@@ -4647,23 +4516,20 @@ EditorView.editorAttributes = $0"""
         /// noticed by screen reader users (such as moving to the next
         /// search match).
         /// </summary>
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.announce{{=$0}}""")>]
         static member inline announce
             with get () : CodemirrorState.StateEffectType<string> =
-                emitJsExpr () $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.announce"""
+                nativeOnly
             and set (value: CodemirrorState.StateEffectType<string>) =
-                emitJsExpr (value) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.announce = $0"""
+                nativeOnly
         /// <summary>
         /// Retrieve an editor view instance from the view's DOM
         /// representation.
         /// </summary>
-        static member inline findFromDOM (dom: Glutinum.Web.HTMLElement): CodemirrorView.EditorView option =
-            emitJsExpr (dom) $$"""
-import { EditorView } from "@codemirror/view";
-EditorView.findFromDOM($0)"""
+        [<Emit("""import { EditorView } from "@codemirror/view";
+EditorView.findFromDOM($0)""")>]
+        static member inline findFromDOM (dom: Glutinum.Web.HTMLElement): CodemirrorView.EditorView option = nativeOnly
 
     /// <summary>
     /// Helper type that maps event names to event object types, or the
@@ -4895,10 +4761,9 @@ EditorView.findFromDOM($0)"""
         /// rectangles covering the range's content (in a bidi-aware
         /// way) for non-empty ones.
         /// </summary>
-        static member inline forRange (view: CodemirrorView.EditorView, className: string, range: CodemirrorState.SelectionRange): ReadonlyArray<CodemirrorView.RectangleMarker> =
-            emitJsExpr (view, className, range) $$"""
-import { RectangleMarker } from "@codemirror/view";
-RectangleMarker.forRange($0, $1, $2)"""
+        [<Emit("""import { RectangleMarker } from "@codemirror/view";
+RectangleMarker.forRange($0, $1, $2)""")>]
+        static member inline forRange (view: CodemirrorView.EditorView, className: string, range: CodemirrorState.SelectionRange): ReadonlyArray<CodemirrorView.RectangleMarker> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -5518,6 +5383,8 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member animationstart: EditorView.domEventHandlers__.handlers.animationstart option with get, set
                 abstract member auxclick: EditorView.domEventHandlers__.handlers.auxclick option with get, set
                 abstract member beforeinput: EditorView.domEventHandlers__.handlers.beforeinput option with get, set
+                abstract member beforematch: EditorView.domEventHandlers__.handlers.beforematch option with get, set
+                abstract member beforetoggle: EditorView.domEventHandlers__.handlers.beforetoggle option with get, set
                 abstract member blur: EditorView.domEventHandlers__.handlers.blur option with get, set
                 abstract member cancel: EditorView.domEventHandlers__.handlers.cancel option with get, set
                 abstract member canplay: EditorView.domEventHandlers__.handlers.canplay option with get, set
@@ -5525,10 +5392,13 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member change: EditorView.domEventHandlers__.handlers.change option with get, set
                 abstract member click: EditorView.domEventHandlers__.handlers.click option with get, set
                 abstract member close: EditorView.domEventHandlers__.handlers.close option with get, set
+                abstract member command: EditorView.domEventHandlers__.handlers.command option with get, set
                 abstract member compositionend: EditorView.domEventHandlers__.handlers.compositionend option with get, set
                 abstract member compositionstart: EditorView.domEventHandlers__.handlers.compositionstart option with get, set
                 abstract member compositionupdate: EditorView.domEventHandlers__.handlers.compositionupdate option with get, set
+                abstract member contextlost: EditorView.domEventHandlers__.handlers.contextlost option with get, set
                 abstract member contextmenu: EditorView.domEventHandlers__.handlers.contextmenu option with get, set
+                abstract member contextrestored: EditorView.domEventHandlers__.handlers.contextrestored option with get, set
                 abstract member copy: EditorView.domEventHandlers__.handlers.copy option with get, set
                 abstract member cuechange: EditorView.domEventHandlers__.handlers.cuechange option with get, set
                 abstract member cut: EditorView.domEventHandlers__.handlers.cut option with get, set
@@ -5577,6 +5447,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member pointermove: EditorView.domEventHandlers__.handlers.pointermove option with get, set
                 abstract member pointerout: EditorView.domEventHandlers__.handlers.pointerout option with get, set
                 abstract member pointerover: EditorView.domEventHandlers__.handlers.pointerover option with get, set
+                abstract member pointerrawupdate: EditorView.domEventHandlers__.handlers.pointerrawupdate option with get, set
                 abstract member pointerup: EditorView.domEventHandlers__.handlers.pointerup option with get, set
                 abstract member progress: EditorView.domEventHandlers__.handlers.progress option with get, set
                 abstract member ratechange: EditorView.domEventHandlers__.handlers.ratechange option with get, set
@@ -5612,7 +5483,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member webkittransitionend: EditorView.domEventHandlers__.handlers.webkittransitionend option with get, set
                 abstract member wheel: EditorView.domEventHandlers__.handlers.wheel option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (?fullscreenchange: EditorView.domEventHandlers__.handlers.fullscreenchange, ?fullscreenerror: EditorView.domEventHandlers__.handlers.fullscreenerror, ?abort: EditorView.domEventHandlers__.handlers.abort, ?animationcancel: EditorView.domEventHandlers__.handlers.animationcancel, ?animationend: EditorView.domEventHandlers__.handlers.animationend, ?animationiteration: EditorView.domEventHandlers__.handlers.animationiteration, ?animationstart: EditorView.domEventHandlers__.handlers.animationstart, ?auxclick: EditorView.domEventHandlers__.handlers.auxclick, ?beforeinput: EditorView.domEventHandlers__.handlers.beforeinput, ?blur: EditorView.domEventHandlers__.handlers.blur, ?cancel: EditorView.domEventHandlers__.handlers.cancel, ?canplay: EditorView.domEventHandlers__.handlers.canplay, ?canplaythrough: EditorView.domEventHandlers__.handlers.canplaythrough, ?change: EditorView.domEventHandlers__.handlers.change, ?click: EditorView.domEventHandlers__.handlers.click, ?close: EditorView.domEventHandlers__.handlers.close, ?compositionend: EditorView.domEventHandlers__.handlers.compositionend, ?compositionstart: EditorView.domEventHandlers__.handlers.compositionstart, ?compositionupdate: EditorView.domEventHandlers__.handlers.compositionupdate, ?contextmenu: EditorView.domEventHandlers__.handlers.contextmenu, ?copy: EditorView.domEventHandlers__.handlers.copy, ?cuechange: EditorView.domEventHandlers__.handlers.cuechange, ?cut: EditorView.domEventHandlers__.handlers.cut, ?dblclick: EditorView.domEventHandlers__.handlers.dblclick, ?drag: EditorView.domEventHandlers__.handlers.drag, ?dragend: EditorView.domEventHandlers__.handlers.dragend, ?dragenter: EditorView.domEventHandlers__.handlers.dragenter, ?dragleave: EditorView.domEventHandlers__.handlers.dragleave, ?dragover: EditorView.domEventHandlers__.handlers.dragover, ?dragstart: EditorView.domEventHandlers__.handlers.dragstart, ?drop: EditorView.domEventHandlers__.handlers.drop, ?durationchange: EditorView.domEventHandlers__.handlers.durationchange, ?emptied: EditorView.domEventHandlers__.handlers.emptied, ?ended: EditorView.domEventHandlers__.handlers.ended, ?error: EditorView.domEventHandlers__.handlers.error, ?focus: EditorView.domEventHandlers__.handlers.focus, ?focusin: EditorView.domEventHandlers__.handlers.focusin, ?focusout: EditorView.domEventHandlers__.handlers.focusout, ?formdata: EditorView.domEventHandlers__.handlers.formdata, ?gotpointercapture: EditorView.domEventHandlers__.handlers.gotpointercapture, ?input: EditorView.domEventHandlers__.handlers.input, ?invalid: EditorView.domEventHandlers__.handlers.invalid, ?keydown: EditorView.domEventHandlers__.handlers.keydown, ?keypress: EditorView.domEventHandlers__.handlers.keypress, ?keyup: EditorView.domEventHandlers__.handlers.keyup, ?load: EditorView.domEventHandlers__.handlers.load, ?loadeddata: EditorView.domEventHandlers__.handlers.loadeddata, ?loadedmetadata: EditorView.domEventHandlers__.handlers.loadedmetadata, ?loadstart: EditorView.domEventHandlers__.handlers.loadstart, ?lostpointercapture: EditorView.domEventHandlers__.handlers.lostpointercapture, ?mousedown: EditorView.domEventHandlers__.handlers.mousedown, ?mouseenter: EditorView.domEventHandlers__.handlers.mouseenter, ?mouseleave: EditorView.domEventHandlers__.handlers.mouseleave, ?mousemove: EditorView.domEventHandlers__.handlers.mousemove, ?mouseout: EditorView.domEventHandlers__.handlers.mouseout, ?mouseover: EditorView.domEventHandlers__.handlers.mouseover, ?mouseup: EditorView.domEventHandlers__.handlers.mouseup, ?paste: EditorView.domEventHandlers__.handlers.paste, ?pause: EditorView.domEventHandlers__.handlers.pause, ?play: EditorView.domEventHandlers__.handlers.play, ?playing: EditorView.domEventHandlers__.handlers.playing, ?pointercancel: EditorView.domEventHandlers__.handlers.pointercancel, ?pointerdown: EditorView.domEventHandlers__.handlers.pointerdown, ?pointerenter: EditorView.domEventHandlers__.handlers.pointerenter, ?pointerleave: EditorView.domEventHandlers__.handlers.pointerleave, ?pointermove: EditorView.domEventHandlers__.handlers.pointermove, ?pointerout: EditorView.domEventHandlers__.handlers.pointerout, ?pointerover: EditorView.domEventHandlers__.handlers.pointerover, ?pointerup: EditorView.domEventHandlers__.handlers.pointerup, ?progress: EditorView.domEventHandlers__.handlers.progress, ?ratechange: EditorView.domEventHandlers__.handlers.ratechange, ?reset: EditorView.domEventHandlers__.handlers.reset, ?resize: EditorView.domEventHandlers__.handlers.resize, ?scroll: EditorView.domEventHandlers__.handlers.scroll, ?scrollend: EditorView.domEventHandlers__.handlers.scrollend, ?securitypolicyviolation: EditorView.domEventHandlers__.handlers.securitypolicyviolation, ?seeked: EditorView.domEventHandlers__.handlers.seeked, ?seeking: EditorView.domEventHandlers__.handlers.seeking, ?select: EditorView.domEventHandlers__.handlers.select, ?selectionchange: EditorView.domEventHandlers__.handlers.selectionchange, ?selectstart: EditorView.domEventHandlers__.handlers.selectstart, ?slotchange: EditorView.domEventHandlers__.handlers.slotchange, ?stalled: EditorView.domEventHandlers__.handlers.stalled, ?submit: EditorView.domEventHandlers__.handlers.submit, ?suspend: EditorView.domEventHandlers__.handlers.suspend, ?timeupdate: EditorView.domEventHandlers__.handlers.timeupdate, ?toggle: EditorView.domEventHandlers__.handlers.toggle, ?touchcancel: EditorView.domEventHandlers__.handlers.touchcancel, ?touchend: EditorView.domEventHandlers__.handlers.touchend, ?touchmove: EditorView.domEventHandlers__.handlers.touchmove, ?touchstart: EditorView.domEventHandlers__.handlers.touchstart, ?transitioncancel: EditorView.domEventHandlers__.handlers.transitioncancel, ?transitionend: EditorView.domEventHandlers__.handlers.transitionend, ?transitionrun: EditorView.domEventHandlers__.handlers.transitionrun, ?transitionstart: EditorView.domEventHandlers__.handlers.transitionstart, ?volumechange: EditorView.domEventHandlers__.handlers.volumechange, ?waiting: EditorView.domEventHandlers__.handlers.waiting, ?webkitanimationend: EditorView.domEventHandlers__.handlers.webkitanimationend, ?webkitanimationiteration: EditorView.domEventHandlers__.handlers.webkitanimationiteration, ?webkitanimationstart: EditorView.domEventHandlers__.handlers.webkitanimationstart, ?webkittransitionend: EditorView.domEventHandlers__.handlers.webkittransitionend, ?wheel: EditorView.domEventHandlers__.handlers.wheel) : handlers = nativeOnly
+                static member Create (?fullscreenchange: EditorView.domEventHandlers__.handlers.fullscreenchange, ?fullscreenerror: EditorView.domEventHandlers__.handlers.fullscreenerror, ?abort: EditorView.domEventHandlers__.handlers.abort, ?animationcancel: EditorView.domEventHandlers__.handlers.animationcancel, ?animationend: EditorView.domEventHandlers__.handlers.animationend, ?animationiteration: EditorView.domEventHandlers__.handlers.animationiteration, ?animationstart: EditorView.domEventHandlers__.handlers.animationstart, ?auxclick: EditorView.domEventHandlers__.handlers.auxclick, ?beforeinput: EditorView.domEventHandlers__.handlers.beforeinput, ?beforematch: EditorView.domEventHandlers__.handlers.beforematch, ?beforetoggle: EditorView.domEventHandlers__.handlers.beforetoggle, ?blur: EditorView.domEventHandlers__.handlers.blur, ?cancel: EditorView.domEventHandlers__.handlers.cancel, ?canplay: EditorView.domEventHandlers__.handlers.canplay, ?canplaythrough: EditorView.domEventHandlers__.handlers.canplaythrough, ?change: EditorView.domEventHandlers__.handlers.change, ?click: EditorView.domEventHandlers__.handlers.click, ?close: EditorView.domEventHandlers__.handlers.close, ?command: EditorView.domEventHandlers__.handlers.command, ?compositionend: EditorView.domEventHandlers__.handlers.compositionend, ?compositionstart: EditorView.domEventHandlers__.handlers.compositionstart, ?compositionupdate: EditorView.domEventHandlers__.handlers.compositionupdate, ?contextlost: EditorView.domEventHandlers__.handlers.contextlost, ?contextmenu: EditorView.domEventHandlers__.handlers.contextmenu, ?contextrestored: EditorView.domEventHandlers__.handlers.contextrestored, ?copy: EditorView.domEventHandlers__.handlers.copy, ?cuechange: EditorView.domEventHandlers__.handlers.cuechange, ?cut: EditorView.domEventHandlers__.handlers.cut, ?dblclick: EditorView.domEventHandlers__.handlers.dblclick, ?drag: EditorView.domEventHandlers__.handlers.drag, ?dragend: EditorView.domEventHandlers__.handlers.dragend, ?dragenter: EditorView.domEventHandlers__.handlers.dragenter, ?dragleave: EditorView.domEventHandlers__.handlers.dragleave, ?dragover: EditorView.domEventHandlers__.handlers.dragover, ?dragstart: EditorView.domEventHandlers__.handlers.dragstart, ?drop: EditorView.domEventHandlers__.handlers.drop, ?durationchange: EditorView.domEventHandlers__.handlers.durationchange, ?emptied: EditorView.domEventHandlers__.handlers.emptied, ?ended: EditorView.domEventHandlers__.handlers.ended, ?error: EditorView.domEventHandlers__.handlers.error, ?focus: EditorView.domEventHandlers__.handlers.focus, ?focusin: EditorView.domEventHandlers__.handlers.focusin, ?focusout: EditorView.domEventHandlers__.handlers.focusout, ?formdata: EditorView.domEventHandlers__.handlers.formdata, ?gotpointercapture: EditorView.domEventHandlers__.handlers.gotpointercapture, ?input: EditorView.domEventHandlers__.handlers.input, ?invalid: EditorView.domEventHandlers__.handlers.invalid, ?keydown: EditorView.domEventHandlers__.handlers.keydown, ?keypress: EditorView.domEventHandlers__.handlers.keypress, ?keyup: EditorView.domEventHandlers__.handlers.keyup, ?load: EditorView.domEventHandlers__.handlers.load, ?loadeddata: EditorView.domEventHandlers__.handlers.loadeddata, ?loadedmetadata: EditorView.domEventHandlers__.handlers.loadedmetadata, ?loadstart: EditorView.domEventHandlers__.handlers.loadstart, ?lostpointercapture: EditorView.domEventHandlers__.handlers.lostpointercapture, ?mousedown: EditorView.domEventHandlers__.handlers.mousedown, ?mouseenter: EditorView.domEventHandlers__.handlers.mouseenter, ?mouseleave: EditorView.domEventHandlers__.handlers.mouseleave, ?mousemove: EditorView.domEventHandlers__.handlers.mousemove, ?mouseout: EditorView.domEventHandlers__.handlers.mouseout, ?mouseover: EditorView.domEventHandlers__.handlers.mouseover, ?mouseup: EditorView.domEventHandlers__.handlers.mouseup, ?paste: EditorView.domEventHandlers__.handlers.paste, ?pause: EditorView.domEventHandlers__.handlers.pause, ?play: EditorView.domEventHandlers__.handlers.play, ?playing: EditorView.domEventHandlers__.handlers.playing, ?pointercancel: EditorView.domEventHandlers__.handlers.pointercancel, ?pointerdown: EditorView.domEventHandlers__.handlers.pointerdown, ?pointerenter: EditorView.domEventHandlers__.handlers.pointerenter, ?pointerleave: EditorView.domEventHandlers__.handlers.pointerleave, ?pointermove: EditorView.domEventHandlers__.handlers.pointermove, ?pointerout: EditorView.domEventHandlers__.handlers.pointerout, ?pointerover: EditorView.domEventHandlers__.handlers.pointerover, ?pointerrawupdate: EditorView.domEventHandlers__.handlers.pointerrawupdate, ?pointerup: EditorView.domEventHandlers__.handlers.pointerup, ?progress: EditorView.domEventHandlers__.handlers.progress, ?ratechange: EditorView.domEventHandlers__.handlers.ratechange, ?reset: EditorView.domEventHandlers__.handlers.reset, ?resize: EditorView.domEventHandlers__.handlers.resize, ?scroll: EditorView.domEventHandlers__.handlers.scroll, ?scrollend: EditorView.domEventHandlers__.handlers.scrollend, ?securitypolicyviolation: EditorView.domEventHandlers__.handlers.securitypolicyviolation, ?seeked: EditorView.domEventHandlers__.handlers.seeked, ?seeking: EditorView.domEventHandlers__.handlers.seeking, ?select: EditorView.domEventHandlers__.handlers.select, ?selectionchange: EditorView.domEventHandlers__.handlers.selectionchange, ?selectstart: EditorView.domEventHandlers__.handlers.selectstart, ?slotchange: EditorView.domEventHandlers__.handlers.slotchange, ?stalled: EditorView.domEventHandlers__.handlers.stalled, ?submit: EditorView.domEventHandlers__.handlers.submit, ?suspend: EditorView.domEventHandlers__.handlers.suspend, ?timeupdate: EditorView.domEventHandlers__.handlers.timeupdate, ?toggle: EditorView.domEventHandlers__.handlers.toggle, ?touchcancel: EditorView.domEventHandlers__.handlers.touchcancel, ?touchend: EditorView.domEventHandlers__.handlers.touchend, ?touchmove: EditorView.domEventHandlers__.handlers.touchmove, ?touchstart: EditorView.domEventHandlers__.handlers.touchstart, ?transitioncancel: EditorView.domEventHandlers__.handlers.transitioncancel, ?transitionend: EditorView.domEventHandlers__.handlers.transitionend, ?transitionrun: EditorView.domEventHandlers__.handlers.transitionrun, ?transitionstart: EditorView.domEventHandlers__.handlers.transitionstart, ?volumechange: EditorView.domEventHandlers__.handlers.volumechange, ?waiting: EditorView.domEventHandlers__.handlers.waiting, ?webkitanimationend: EditorView.domEventHandlers__.handlers.webkitanimationend, ?webkitanimationiteration: EditorView.domEventHandlers__.handlers.webkitanimationiteration, ?webkitanimationstart: EditorView.domEventHandlers__.handlers.webkitanimationstart, ?webkittransitionend: EditorView.domEventHandlers__.handlers.webkittransitionend, ?wheel: EditorView.domEventHandlers__.handlers.wheel) : handlers = nativeOnly
 
             module handlers =
 
@@ -5638,10 +5509,16 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.AnimationEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type auxclick =
-                    delegate of event: Glutinum.Web.MouseEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type beforeinput =
                     delegate of event: Glutinum.Web.InputEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type beforematch =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type beforetoggle =
+                    delegate of event: Glutinum.Web.ToggleEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type blur =
                     delegate of event: Glutinum.Web.FocusEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -5659,9 +5536,12 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type click =
-                    delegate of event: Glutinum.Web.MouseEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type close =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type command =
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type compositionend =
@@ -5673,8 +5553,14 @@ RectangleMarker.forRange($0, $1, $2)"""
                 type compositionupdate =
                     delegate of event: Glutinum.Web.CompositionEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
+                type contextlost =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
                 type contextmenu =
-                    delegate of event: Glutinum.Web.MouseEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type contextrestored =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type copy =
                     delegate of event: Glutinum.Web.ClipboardEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -5737,7 +5623,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type input =
-                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.InputEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type invalid =
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -5820,6 +5706,9 @@ RectangleMarker.forRange($0, $1, $2)"""
                 type pointerover =
                     delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
+                type pointerrawupdate =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
                 type pointerup =
                     delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
@@ -5875,7 +5764,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type toggle =
-                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.ToggleEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type touchcancel =
                     delegate of event: Glutinum.Web.TouchEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -5936,6 +5825,8 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member animationstart: EditorView.domEventObservers__.observers.animationstart option with get, set
                 abstract member auxclick: EditorView.domEventObservers__.observers.auxclick option with get, set
                 abstract member beforeinput: EditorView.domEventObservers__.observers.beforeinput option with get, set
+                abstract member beforematch: EditorView.domEventObservers__.observers.beforematch option with get, set
+                abstract member beforetoggle: EditorView.domEventObservers__.observers.beforetoggle option with get, set
                 abstract member blur: EditorView.domEventObservers__.observers.blur option with get, set
                 abstract member cancel: EditorView.domEventObservers__.observers.cancel option with get, set
                 abstract member canplay: EditorView.domEventObservers__.observers.canplay option with get, set
@@ -5943,10 +5834,13 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member change: EditorView.domEventObservers__.observers.change option with get, set
                 abstract member click: EditorView.domEventObservers__.observers.click option with get, set
                 abstract member close: EditorView.domEventObservers__.observers.close option with get, set
+                abstract member command: EditorView.domEventObservers__.observers.command option with get, set
                 abstract member compositionend: EditorView.domEventObservers__.observers.compositionend option with get, set
                 abstract member compositionstart: EditorView.domEventObservers__.observers.compositionstart option with get, set
                 abstract member compositionupdate: EditorView.domEventObservers__.observers.compositionupdate option with get, set
+                abstract member contextlost: EditorView.domEventObservers__.observers.contextlost option with get, set
                 abstract member contextmenu: EditorView.domEventObservers__.observers.contextmenu option with get, set
+                abstract member contextrestored: EditorView.domEventObservers__.observers.contextrestored option with get, set
                 abstract member copy: EditorView.domEventObservers__.observers.copy option with get, set
                 abstract member cuechange: EditorView.domEventObservers__.observers.cuechange option with get, set
                 abstract member cut: EditorView.domEventObservers__.observers.cut option with get, set
@@ -5995,6 +5889,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member pointermove: EditorView.domEventObservers__.observers.pointermove option with get, set
                 abstract member pointerout: EditorView.domEventObservers__.observers.pointerout option with get, set
                 abstract member pointerover: EditorView.domEventObservers__.observers.pointerover option with get, set
+                abstract member pointerrawupdate: EditorView.domEventObservers__.observers.pointerrawupdate option with get, set
                 abstract member pointerup: EditorView.domEventObservers__.observers.pointerup option with get, set
                 abstract member progress: EditorView.domEventObservers__.observers.progress option with get, set
                 abstract member ratechange: EditorView.domEventObservers__.observers.ratechange option with get, set
@@ -6030,7 +5925,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                 abstract member webkittransitionend: EditorView.domEventObservers__.observers.webkittransitionend option with get, set
                 abstract member wheel: EditorView.domEventObservers__.observers.wheel option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (?fullscreenchange: EditorView.domEventObservers__.observers.fullscreenchange, ?fullscreenerror: EditorView.domEventObservers__.observers.fullscreenerror, ?abort: EditorView.domEventObservers__.observers.abort, ?animationcancel: EditorView.domEventObservers__.observers.animationcancel, ?animationend: EditorView.domEventObservers__.observers.animationend, ?animationiteration: EditorView.domEventObservers__.observers.animationiteration, ?animationstart: EditorView.domEventObservers__.observers.animationstart, ?auxclick: EditorView.domEventObservers__.observers.auxclick, ?beforeinput: EditorView.domEventObservers__.observers.beforeinput, ?blur: EditorView.domEventObservers__.observers.blur, ?cancel: EditorView.domEventObservers__.observers.cancel, ?canplay: EditorView.domEventObservers__.observers.canplay, ?canplaythrough: EditorView.domEventObservers__.observers.canplaythrough, ?change: EditorView.domEventObservers__.observers.change, ?click: EditorView.domEventObservers__.observers.click, ?close: EditorView.domEventObservers__.observers.close, ?compositionend: EditorView.domEventObservers__.observers.compositionend, ?compositionstart: EditorView.domEventObservers__.observers.compositionstart, ?compositionupdate: EditorView.domEventObservers__.observers.compositionupdate, ?contextmenu: EditorView.domEventObservers__.observers.contextmenu, ?copy: EditorView.domEventObservers__.observers.copy, ?cuechange: EditorView.domEventObservers__.observers.cuechange, ?cut: EditorView.domEventObservers__.observers.cut, ?dblclick: EditorView.domEventObservers__.observers.dblclick, ?drag: EditorView.domEventObservers__.observers.drag, ?dragend: EditorView.domEventObservers__.observers.dragend, ?dragenter: EditorView.domEventObservers__.observers.dragenter, ?dragleave: EditorView.domEventObservers__.observers.dragleave, ?dragover: EditorView.domEventObservers__.observers.dragover, ?dragstart: EditorView.domEventObservers__.observers.dragstart, ?drop: EditorView.domEventObservers__.observers.drop, ?durationchange: EditorView.domEventObservers__.observers.durationchange, ?emptied: EditorView.domEventObservers__.observers.emptied, ?ended: EditorView.domEventObservers__.observers.ended, ?error: EditorView.domEventObservers__.observers.error, ?focus: EditorView.domEventObservers__.observers.focus, ?focusin: EditorView.domEventObservers__.observers.focusin, ?focusout: EditorView.domEventObservers__.observers.focusout, ?formdata: EditorView.domEventObservers__.observers.formdata, ?gotpointercapture: EditorView.domEventObservers__.observers.gotpointercapture, ?input: EditorView.domEventObservers__.observers.input, ?invalid: EditorView.domEventObservers__.observers.invalid, ?keydown: EditorView.domEventObservers__.observers.keydown, ?keypress: EditorView.domEventObservers__.observers.keypress, ?keyup: EditorView.domEventObservers__.observers.keyup, ?load: EditorView.domEventObservers__.observers.load, ?loadeddata: EditorView.domEventObservers__.observers.loadeddata, ?loadedmetadata: EditorView.domEventObservers__.observers.loadedmetadata, ?loadstart: EditorView.domEventObservers__.observers.loadstart, ?lostpointercapture: EditorView.domEventObservers__.observers.lostpointercapture, ?mousedown: EditorView.domEventObservers__.observers.mousedown, ?mouseenter: EditorView.domEventObservers__.observers.mouseenter, ?mouseleave: EditorView.domEventObservers__.observers.mouseleave, ?mousemove: EditorView.domEventObservers__.observers.mousemove, ?mouseout: EditorView.domEventObservers__.observers.mouseout, ?mouseover: EditorView.domEventObservers__.observers.mouseover, ?mouseup: EditorView.domEventObservers__.observers.mouseup, ?paste: EditorView.domEventObservers__.observers.paste, ?pause: EditorView.domEventObservers__.observers.pause, ?play: EditorView.domEventObservers__.observers.play, ?playing: EditorView.domEventObservers__.observers.playing, ?pointercancel: EditorView.domEventObservers__.observers.pointercancel, ?pointerdown: EditorView.domEventObservers__.observers.pointerdown, ?pointerenter: EditorView.domEventObservers__.observers.pointerenter, ?pointerleave: EditorView.domEventObservers__.observers.pointerleave, ?pointermove: EditorView.domEventObservers__.observers.pointermove, ?pointerout: EditorView.domEventObservers__.observers.pointerout, ?pointerover: EditorView.domEventObservers__.observers.pointerover, ?pointerup: EditorView.domEventObservers__.observers.pointerup, ?progress: EditorView.domEventObservers__.observers.progress, ?ratechange: EditorView.domEventObservers__.observers.ratechange, ?reset: EditorView.domEventObservers__.observers.reset, ?resize: EditorView.domEventObservers__.observers.resize, ?scroll: EditorView.domEventObservers__.observers.scroll, ?scrollend: EditorView.domEventObservers__.observers.scrollend, ?securitypolicyviolation: EditorView.domEventObservers__.observers.securitypolicyviolation, ?seeked: EditorView.domEventObservers__.observers.seeked, ?seeking: EditorView.domEventObservers__.observers.seeking, ?select: EditorView.domEventObservers__.observers.select, ?selectionchange: EditorView.domEventObservers__.observers.selectionchange, ?selectstart: EditorView.domEventObservers__.observers.selectstart, ?slotchange: EditorView.domEventObservers__.observers.slotchange, ?stalled: EditorView.domEventObservers__.observers.stalled, ?submit: EditorView.domEventObservers__.observers.submit, ?suspend: EditorView.domEventObservers__.observers.suspend, ?timeupdate: EditorView.domEventObservers__.observers.timeupdate, ?toggle: EditorView.domEventObservers__.observers.toggle, ?touchcancel: EditorView.domEventObservers__.observers.touchcancel, ?touchend: EditorView.domEventObservers__.observers.touchend, ?touchmove: EditorView.domEventObservers__.observers.touchmove, ?touchstart: EditorView.domEventObservers__.observers.touchstart, ?transitioncancel: EditorView.domEventObservers__.observers.transitioncancel, ?transitionend: EditorView.domEventObservers__.observers.transitionend, ?transitionrun: EditorView.domEventObservers__.observers.transitionrun, ?transitionstart: EditorView.domEventObservers__.observers.transitionstart, ?volumechange: EditorView.domEventObservers__.observers.volumechange, ?waiting: EditorView.domEventObservers__.observers.waiting, ?webkitanimationend: EditorView.domEventObservers__.observers.webkitanimationend, ?webkitanimationiteration: EditorView.domEventObservers__.observers.webkitanimationiteration, ?webkitanimationstart: EditorView.domEventObservers__.observers.webkitanimationstart, ?webkittransitionend: EditorView.domEventObservers__.observers.webkittransitionend, ?wheel: EditorView.domEventObservers__.observers.wheel) : observers = nativeOnly
+                static member Create (?fullscreenchange: EditorView.domEventObservers__.observers.fullscreenchange, ?fullscreenerror: EditorView.domEventObservers__.observers.fullscreenerror, ?abort: EditorView.domEventObservers__.observers.abort, ?animationcancel: EditorView.domEventObservers__.observers.animationcancel, ?animationend: EditorView.domEventObservers__.observers.animationend, ?animationiteration: EditorView.domEventObservers__.observers.animationiteration, ?animationstart: EditorView.domEventObservers__.observers.animationstart, ?auxclick: EditorView.domEventObservers__.observers.auxclick, ?beforeinput: EditorView.domEventObservers__.observers.beforeinput, ?beforematch: EditorView.domEventObservers__.observers.beforematch, ?beforetoggle: EditorView.domEventObservers__.observers.beforetoggle, ?blur: EditorView.domEventObservers__.observers.blur, ?cancel: EditorView.domEventObservers__.observers.cancel, ?canplay: EditorView.domEventObservers__.observers.canplay, ?canplaythrough: EditorView.domEventObservers__.observers.canplaythrough, ?change: EditorView.domEventObservers__.observers.change, ?click: EditorView.domEventObservers__.observers.click, ?close: EditorView.domEventObservers__.observers.close, ?command: EditorView.domEventObservers__.observers.command, ?compositionend: EditorView.domEventObservers__.observers.compositionend, ?compositionstart: EditorView.domEventObservers__.observers.compositionstart, ?compositionupdate: EditorView.domEventObservers__.observers.compositionupdate, ?contextlost: EditorView.domEventObservers__.observers.contextlost, ?contextmenu: EditorView.domEventObservers__.observers.contextmenu, ?contextrestored: EditorView.domEventObservers__.observers.contextrestored, ?copy: EditorView.domEventObservers__.observers.copy, ?cuechange: EditorView.domEventObservers__.observers.cuechange, ?cut: EditorView.domEventObservers__.observers.cut, ?dblclick: EditorView.domEventObservers__.observers.dblclick, ?drag: EditorView.domEventObservers__.observers.drag, ?dragend: EditorView.domEventObservers__.observers.dragend, ?dragenter: EditorView.domEventObservers__.observers.dragenter, ?dragleave: EditorView.domEventObservers__.observers.dragleave, ?dragover: EditorView.domEventObservers__.observers.dragover, ?dragstart: EditorView.domEventObservers__.observers.dragstart, ?drop: EditorView.domEventObservers__.observers.drop, ?durationchange: EditorView.domEventObservers__.observers.durationchange, ?emptied: EditorView.domEventObservers__.observers.emptied, ?ended: EditorView.domEventObservers__.observers.ended, ?error: EditorView.domEventObservers__.observers.error, ?focus: EditorView.domEventObservers__.observers.focus, ?focusin: EditorView.domEventObservers__.observers.focusin, ?focusout: EditorView.domEventObservers__.observers.focusout, ?formdata: EditorView.domEventObservers__.observers.formdata, ?gotpointercapture: EditorView.domEventObservers__.observers.gotpointercapture, ?input: EditorView.domEventObservers__.observers.input, ?invalid: EditorView.domEventObservers__.observers.invalid, ?keydown: EditorView.domEventObservers__.observers.keydown, ?keypress: EditorView.domEventObservers__.observers.keypress, ?keyup: EditorView.domEventObservers__.observers.keyup, ?load: EditorView.domEventObservers__.observers.load, ?loadeddata: EditorView.domEventObservers__.observers.loadeddata, ?loadedmetadata: EditorView.domEventObservers__.observers.loadedmetadata, ?loadstart: EditorView.domEventObservers__.observers.loadstart, ?lostpointercapture: EditorView.domEventObservers__.observers.lostpointercapture, ?mousedown: EditorView.domEventObservers__.observers.mousedown, ?mouseenter: EditorView.domEventObservers__.observers.mouseenter, ?mouseleave: EditorView.domEventObservers__.observers.mouseleave, ?mousemove: EditorView.domEventObservers__.observers.mousemove, ?mouseout: EditorView.domEventObservers__.observers.mouseout, ?mouseover: EditorView.domEventObservers__.observers.mouseover, ?mouseup: EditorView.domEventObservers__.observers.mouseup, ?paste: EditorView.domEventObservers__.observers.paste, ?pause: EditorView.domEventObservers__.observers.pause, ?play: EditorView.domEventObservers__.observers.play, ?playing: EditorView.domEventObservers__.observers.playing, ?pointercancel: EditorView.domEventObservers__.observers.pointercancel, ?pointerdown: EditorView.domEventObservers__.observers.pointerdown, ?pointerenter: EditorView.domEventObservers__.observers.pointerenter, ?pointerleave: EditorView.domEventObservers__.observers.pointerleave, ?pointermove: EditorView.domEventObservers__.observers.pointermove, ?pointerout: EditorView.domEventObservers__.observers.pointerout, ?pointerover: EditorView.domEventObservers__.observers.pointerover, ?pointerrawupdate: EditorView.domEventObservers__.observers.pointerrawupdate, ?pointerup: EditorView.domEventObservers__.observers.pointerup, ?progress: EditorView.domEventObservers__.observers.progress, ?ratechange: EditorView.domEventObservers__.observers.ratechange, ?reset: EditorView.domEventObservers__.observers.reset, ?resize: EditorView.domEventObservers__.observers.resize, ?scroll: EditorView.domEventObservers__.observers.scroll, ?scrollend: EditorView.domEventObservers__.observers.scrollend, ?securitypolicyviolation: EditorView.domEventObservers__.observers.securitypolicyviolation, ?seeked: EditorView.domEventObservers__.observers.seeked, ?seeking: EditorView.domEventObservers__.observers.seeking, ?select: EditorView.domEventObservers__.observers.select, ?selectionchange: EditorView.domEventObservers__.observers.selectionchange, ?selectstart: EditorView.domEventObservers__.observers.selectstart, ?slotchange: EditorView.domEventObservers__.observers.slotchange, ?stalled: EditorView.domEventObservers__.observers.stalled, ?submit: EditorView.domEventObservers__.observers.submit, ?suspend: EditorView.domEventObservers__.observers.suspend, ?timeupdate: EditorView.domEventObservers__.observers.timeupdate, ?toggle: EditorView.domEventObservers__.observers.toggle, ?touchcancel: EditorView.domEventObservers__.observers.touchcancel, ?touchend: EditorView.domEventObservers__.observers.touchend, ?touchmove: EditorView.domEventObservers__.observers.touchmove, ?touchstart: EditorView.domEventObservers__.observers.touchstart, ?transitioncancel: EditorView.domEventObservers__.observers.transitioncancel, ?transitionend: EditorView.domEventObservers__.observers.transitionend, ?transitionrun: EditorView.domEventObservers__.observers.transitionrun, ?transitionstart: EditorView.domEventObservers__.observers.transitionstart, ?volumechange: EditorView.domEventObservers__.observers.volumechange, ?waiting: EditorView.domEventObservers__.observers.waiting, ?webkitanimationend: EditorView.domEventObservers__.observers.webkitanimationend, ?webkitanimationiteration: EditorView.domEventObservers__.observers.webkitanimationiteration, ?webkitanimationstart: EditorView.domEventObservers__.observers.webkitanimationstart, ?webkittransitionend: EditorView.domEventObservers__.observers.webkittransitionend, ?wheel: EditorView.domEventObservers__.observers.wheel) : observers = nativeOnly
 
             module observers =
 
@@ -6056,10 +5951,16 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.AnimationEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type auxclick =
-                    delegate of event: Glutinum.Web.MouseEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type beforeinput =
                     delegate of event: Glutinum.Web.InputEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type beforematch =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type beforetoggle =
+                    delegate of event: Glutinum.Web.ToggleEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type blur =
                     delegate of event: Glutinum.Web.FocusEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -6077,9 +5978,12 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type click =
-                    delegate of event: Glutinum.Web.MouseEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type close =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type command =
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type compositionend =
@@ -6091,8 +5995,14 @@ RectangleMarker.forRange($0, $1, $2)"""
                 type compositionupdate =
                     delegate of event: Glutinum.Web.CompositionEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
+                type contextlost =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
                 type contextmenu =
-                    delegate of event: Glutinum.Web.MouseEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
+
+                type contextrestored =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type copy =
                     delegate of event: Glutinum.Web.ClipboardEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -6155,7 +6065,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type input =
-                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.InputEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type invalid =
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -6238,6 +6148,9 @@ RectangleMarker.forRange($0, $1, $2)"""
                 type pointerover =
                     delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
+                type pointerrawupdate =
+                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+
                 type pointerup =
                     delegate of event: Glutinum.Web.PointerEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
@@ -6293,7 +6206,7 @@ RectangleMarker.forRange($0, $1, $2)"""
                     delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type toggle =
-                    delegate of event: Glutinum.Web.Event * view: CodemirrorView.EditorView -> U2<bool, unit>
+                    delegate of event: Glutinum.Web.ToggleEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
                 type touchcancel =
                     delegate of event: Glutinum.Web.TouchEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
@@ -6699,34 +6612,27 @@ module StyleMod =
     [<Interface>]
     type StyleModule =
         abstract member getRules: unit -> string
-        static member inline mount (root: Glutinum.Web.Document, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit =
-            emitJsExpr (root, ``module``, options) $$"""
-import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.Document, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit =
-            emitJsExpr (root, ``module``, options) $$"""
-import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit =
-            emitJsExpr (root, ``module``, options) $$"""
-import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit =
-            emitJsExpr (root, ``module``, options) $$"""
-import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit =
-            emitJsExpr (root, ``module``, options) $$"""
-import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)"""
-        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit =
-            emitJsExpr (root, ``module``, options) $$"""
-import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)"""
-        static member inline newName () : string =
-            emitJsExpr () $$"""
-import { StyleModule } from "style-mod";
-StyleModule.newName()"""
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.mount($0, $1, $2)""")>]
+        static member inline mount (root: Glutinum.Web.Document, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit = nativeOnly
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.mount($0, $1, $2)""")>]
+        static member inline mount (root: Glutinum.Web.Document, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit = nativeOnly
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.mount($0, $1, $2)""")>]
+        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit = nativeOnly
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.mount($0, $1, $2)""")>]
+        static member inline mount (root: Glutinum.Web.ShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit = nativeOnly
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.mount($0, $1, $2)""")>]
+        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: StyleMod.StyleModule, ?options: StyleModule.mount__.options): unit = nativeOnly
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.mount($0, $1, $2)""")>]
+        static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit = nativeOnly
+        [<Emit("""import { StyleModule } from "style-mod";
+StyleModule.newName()""")>]
+        static member inline newName () : string = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]

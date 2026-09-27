@@ -48,12 +48,12 @@ module Geojson =
     /// marginal benefits and the large impact of breaking change.
     ///
     /// See previous discussions on the type narrowing:
-    /// - <see href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/21590Nov">2017</see>
-    /// - <see href="https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/67773Dec">2023</see>
-    /// - <see href="https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/71441Dec">2024</see>
+    /// - <see href="https://github.com/DefinitelyTyped/DefinitelyTyped/pull/21590">Nov 2017</see>
+    /// - <see href="https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/67773">Dec 2023</see>
+    /// - <see href="https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/71441">Dec 2024</see>
     ///
     /// One can use a
-    /// <see href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicatesuser-defined">type guard that returns a type predicate</see>
+    /// <see href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">user-defined type guard that returns a type predicate</see>
     /// to determine if a position is a 2D or 3D position.
     /// </summary>
     /// <example>

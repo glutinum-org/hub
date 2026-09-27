@@ -30,7 +30,7 @@ module Webmidi =
         /// -------
         ///
         /// The <c>event</c> parameter must be a string or
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see>.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
         ///
         /// The <c>target</c> parameter is mandatory.
         ///
@@ -59,7 +59,7 @@ module Webmidi =
         /// -------
         ///
         /// The <c>event</c> parameter must be a string or
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see>.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
         ///
         /// The <c>target</c> parameter is mandatory.
         ///
@@ -289,112 +289,40 @@ module Webmidi =
             /// </summary>
             abstract member onstatechange: e: Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) * options: Glutinum.Web.AddEventListenerOptions -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
@@ -464,112 +392,40 @@ module Webmidi =
             /// </summary>
             abstract member onstatechange: e: Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) * options: Glutinum.Web.AddEventListenerOptions -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
@@ -610,169 +466,61 @@ module Webmidi =
             abstract member ``type``: string with get, set
             abstract member onmidimessage: e: Webmidi.WebMidiApi_.MIDIMessageEvent -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('midimessage',$1...)")>]
             abstract member addEventListener_midimessage: listener: (Webmidi.WebMidiApi_.MIDIMessageEvent -> unit) -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('midimessage',$1...)")>]
             abstract member addEventListener_midimessage: listener: (Webmidi.WebMidiApi_.MIDIMessageEvent -> unit) * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('midimessage',$1...)")>]
             abstract member addEventListener_midimessage: listener: (Webmidi.WebMidiApi_.MIDIMessageEvent -> unit) * options: Glutinum.Web.AddEventListenerOptions -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             [<Emit("$0.addEventListener('statechange',$1...)")>]
             abstract member addEventListener_statechange: listener: (Webmidi.WebMidiApi_.MIDIConnectionEvent -> unit) * options: Glutinum.Web.AddEventListenerOptions -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
             abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject * options: bool -> unit
             /// <summary>
-            /// Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
-            ///
-            /// The options argument sets listener-specific options. For compatibility this can be a boolean, in which case the method behaves exactly as if the value was specified as options's capture.
-            ///
-            /// When set to true, options's capture prevents callback from being invoked when the event's eventPhase attribute value is BUBBLING_PHASE. When false (or not present), callback will not be invoked when event's eventPhase attribute value is CAPTURING_PHASE. Either way, callback will be invoked if event's eventPhase attribute value is AT_TARGET.
-            ///
-            /// When set to true, options's passive indicates that the callback will not cancel the event by invoking preventDefault(). This is used to enable performance optimizations described in § 2.8 Observing event listeners.
-            ///
-            /// When set to true, options's once indicates that the callback will only be invoked once after which the event listener will be removed.
-            ///
-            /// If an AbortSignal is passed for options's signal, then the event listener will be removed when signal is aborted.
-            ///
-            /// The event listener is appended to target's event listener list and is not appended if it has the same type, callback, and capture.
+            /// The **<c>addEventListener()</c>** method of the EventTarget interface sets up a function that will be called whenever the specified event is delivered to the target.
             ///
             /// [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)
             /// </summary>
@@ -919,7 +667,7 @@ module Webmidi =
         /// -------
         ///
         /// The <c>event</c> parameter must be a string or
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see>.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
         ///
         /// The <c>callback</c> parameter must be a function.
         /// </remarks>
@@ -950,7 +698,7 @@ module Webmidi =
         /// -------
         ///
         /// The <c>event</c> parameter must be a string or
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see>.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
         ///
         /// The <c>callback</c> parameter must be a function.
         /// </remarks>
@@ -982,7 +730,7 @@ module Webmidi =
         /// -------
         ///
         /// The <c>event</c> parameter must be a string or
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see>.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
         ///
         /// The <c>callback</c> parameter must be a function.
         /// </remarks>
@@ -1014,7 +762,7 @@ module Webmidi =
         /// -------
         ///
         /// The <c>event</c> parameter must be a string or
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see>.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
         ///
         /// The <c>callback</c> parameter must be a function.
         /// </remarks>
@@ -1275,7 +1023,7 @@ module Webmidi =
         /// </summary>
         /// <param name="event">
         /// The event which is usually a string but can also be the special
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see> symbol.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
         /// </param>
         /// <returns>
         /// An integer representing the number of listeners registered for the specified
@@ -1292,7 +1040,7 @@ module Webmidi =
         /// </summary>
         /// <param name="event">
         /// The event which is usually a string but can also be the special
-        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitterANY_EVENT">EventEmitterANY_EVENT</see> symbol.
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
         /// </param>
         /// <returns>
         /// An integer representing the number of listeners registered for the specified
@@ -8913,10 +8661,9 @@ module Webmidi =
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote () : Webmidi.Note =
-            emitJsExpr () $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNote()"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNote()""")>]
+        static member inline buildNote () : Webmidi.Note = nativeOnly
         /// <summary>
         /// Converts the <c>input</c> parameter to a valid [<c>Note</c>]<see href="Note">Note</see> object. The input usually is an
         /// unsigned integer (0-127) or a note identifier (<c>"C4"</c>, <c>"G#5"</c>, etc.). If the input is a
@@ -8937,10 +8684,9 @@ Utilities.buildNote()"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote (input: float, ?options: Utilities.buildNote__.options): Webmidi.Note =
-            emitJsExpr (input, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNote($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNote($0, $1)""")>]
+        static member inline buildNote (input: float, ?options: Utilities.buildNote__.options): Webmidi.Note = nativeOnly
         /// <summary>
         /// Converts the <c>input</c> parameter to a valid [<c>Note</c>]<see href="Note">Note</see> object. The input usually is an
         /// unsigned integer (0-127) or a note identifier (<c>"C4"</c>, <c>"G#5"</c>, etc.). If the input is a
@@ -8961,10 +8707,9 @@ Utilities.buildNote($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote (input: string, ?options: Utilities.buildNote__.options): Webmidi.Note =
-            emitJsExpr (input, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNote($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNote($0, $1)""")>]
+        static member inline buildNote (input: string, ?options: Utilities.buildNote__.options): Webmidi.Note = nativeOnly
         /// <summary>
         /// Converts the <c>input</c> parameter to a valid [<c>Note</c>]<see href="Note">Note</see> object. The input usually is an
         /// unsigned integer (0-127) or a note identifier (<c>"C4"</c>, <c>"G#5"</c>, etc.). If the input is a
@@ -8985,10 +8730,9 @@ Utilities.buildNote($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNote (input: Webmidi.Note, ?options: Utilities.buildNote__.options): Webmidi.Note =
-            emitJsExpr (input, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNote($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNote($0, $1)""")>]
+        static member inline buildNote (input: Webmidi.Note, ?options: Utilities.buildNote__.options): Webmidi.Note = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9013,10 +8757,9 @@ Utilities.buildNote($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray () : ResizeArray<Webmidi.Note> =
-            emitJsExpr () $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray()"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray()""")>]
+        static member inline buildNoteArray () : ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9041,10 +8784,9 @@ Utilities.buildNoteArray()"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: float, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
-            emitJsExpr (notes, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray($0, $1)""")>]
+        static member inline buildNoteArray (notes: float, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9069,10 +8811,9 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: string, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
-            emitJsExpr (notes, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray($0, $1)""")>]
+        static member inline buildNoteArray (notes: string, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9097,10 +8838,9 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: Webmidi.Note, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
-            emitJsExpr (notes, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray($0, $1)""")>]
+        static member inline buildNoteArray (notes: Webmidi.Note, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9125,10 +8865,9 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: ResizeArray<float>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
-            emitJsExpr (notes, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray($0, $1)""")>]
+        static member inline buildNoteArray (notes: ResizeArray<float>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9153,10 +8892,9 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: ResizeArray<string>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
-            emitJsExpr (notes, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray($0, $1)""")>]
+        static member inline buildNoteArray (notes: ResizeArray<string>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
         /// [<c>Note</c>]<see href="Note">Note</see>  object or an array of the previous types, to an array of
@@ -9181,10 +8919,9 @@ Utilities.buildNoteArray($0, $1)"""
         /// <param name="options">
         ///
         /// </param>
-        static member inline buildNoteArray (notes: ResizeArray<Webmidi.Note>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> =
-            emitJsExpr (notes, options) $$"""
-import { Utilities } from "webmidi";
-Utilities.buildNoteArray($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.buildNoteArray($0, $1)""")>]
+        static member inline buildNoteArray (notes: ResizeArray<Webmidi.Note>, ?options: Utilities.buildNoteArray__.options): ResizeArray<Webmidi.Note> = nativeOnly
         /// <summary>
         /// Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
         /// bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
@@ -9199,10 +8936,9 @@ Utilities.buildNoteArray($0, $1)"""
         /// <returns>
         /// A number between 0 and 1 (inclusive)
         /// </returns>
-        static member inline from7bitToFloat (value: float): float =
-            emitJsExpr (value) $$"""
-import { Utilities } from "webmidi";
-Utilities.from7bitToFloat($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.from7bitToFloat($0)""")>]
+        static member inline from7bitToFloat (value: float): float = nativeOnly
         /// <summary>
         /// Returns an integer between 0 and 127 which is the result of multiplying the input value by
         /// 127. The input value should be a number between 0 and 1 (inclusively). The returned value is
@@ -9217,20 +8953,18 @@ Utilities.from7bitToFloat($0)"""
         /// <returns>
         /// A number between 0 and 127 (inclusive)
         /// </returns>
-        static member inline fromFloatTo7Bit (value: float): float =
-            emitJsExpr (value) $$"""
-import { Utilities } from "webmidi";
-Utilities.fromFloatTo7Bit($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.fromFloatTo7Bit($0)""")>]
+        static member inline fromFloatTo7Bit (value: float): float = nativeOnly
         /// <summary>
         /// Extracts 7bit MSB and LSB values from the supplied float.
         /// </summary>
         /// <param name="value">
         /// A float between 0 and 1
         /// </param>
-        static member inline fromFloatToMsbLsb (value: float): Utilities.fromFloatToMsbLsb__ =
-            emitJsExpr (value) $$"""
-import { Utilities } from "webmidi";
-Utilities.fromFloatToMsbLsb($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.fromFloatToMsbLsb($0)""")>]
+        static member inline fromFloatToMsbLsb (value: float): Utilities.fromFloatToMsbLsb__ = nativeOnly
         /// <summary>
         /// Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
         /// is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
@@ -9244,10 +8978,9 @@ Utilities.fromFloatToMsbLsb($0)"""
         /// <returns>
         /// A float between 0 and 1.
         /// </returns>
-        static member inline fromMsbLsbToFloat (msb: float, ?lsb: float): float =
-            emitJsExpr (msb, lsb) $$"""
-import { Utilities } from "webmidi";
-Utilities.fromMsbLsbToFloat($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.fromMsbLsbToFloat($0, $1)""")>]
+        static member inline fromMsbLsbToFloat (msb: float, ?lsb: float): float = nativeOnly
         /// <summary>
         /// Returns the name of a control change message matching the specified number (0-127). Some valid
         /// control change numbers do not have a specific name or purpose assigned in the MIDI
@@ -9261,10 +8994,9 @@ Utilities.fromMsbLsbToFloat($0, $1)"""
         /// The matching control change name or <c>undefined</c> if no match was
         /// found.
         /// </returns>
-        static member inline getCcNameByNumber (number: float): string option =
-            emitJsExpr (number) $$"""
-import { Utilities } from "webmidi";
-Utilities.getCcNameByNumber($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getCcNameByNumber($0)""")>]
+        static member inline getCcNameByNumber (number: float): string option = nativeOnly
         /// <summary>
         /// Returns the number of a control change message matching the specified name.
         /// </summary>
@@ -9275,10 +9007,9 @@ Utilities.getCcNameByNumber($0)"""
         /// The matching control change number or <c>undefined</c> if no match was
         /// found.
         /// </returns>
-        static member inline getCcNumberByName (name: string): float option =
-            emitJsExpr (name) $$"""
-import { Utilities } from "webmidi";
-Utilities.getCcNumberByName($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getCcNumberByName($0)""")>]
+        static member inline getCcNumberByName (name: string): float option = nativeOnly
         /// <summary>
         /// Returns the channel mode name matching the specified number. If no match is found, the function
         /// returns <c>false</c>.
@@ -9290,10 +9021,9 @@ Utilities.getCcNumberByName($0)"""
         /// The name of the matching channel mode or <c>false</c> if no match could be
         /// found.
         /// </returns>
-        static member inline getChannelModeByNumber (number: float): U2<string, bool> =
-            emitJsExpr (number) $$"""
-import { Utilities } from "webmidi";
-Utilities.getChannelModeByNumber($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getChannelModeByNumber($0)""")>]
+        static member inline getChannelModeByNumber (number: float): U2<string, bool> = nativeOnly
         /// <summary>
         /// Given a proper note identifier (<c>C#4</c>, <c>Gb-1</c>, etc.) or a valid MIDI note number (0-127), this
         /// method returns an object containing broken down details about the specified note (uppercase
@@ -9312,10 +9042,9 @@ Utilities.getChannelModeByNumber($0)"""
         /// A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
         /// number (0-127).
         /// </param>
-        static member inline getNoteDetails (value: string): Utilities.getNoteDetails__ =
-            emitJsExpr (value) $$"""
-import { Utilities } from "webmidi";
-Utilities.getNoteDetails($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getNoteDetails($0)""")>]
+        static member inline getNoteDetails (value: string): Utilities.getNoteDetails__ = nativeOnly
         /// <summary>
         /// Given a proper note identifier (<c>C#4</c>, <c>Gb-1</c>, etc.) or a valid MIDI note number (0-127), this
         /// method returns an object containing broken down details about the specified note (uppercase
@@ -9334,10 +9063,9 @@ Utilities.getNoteDetails($0)"""
         /// A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
         /// number (0-127).
         /// </param>
-        static member inline getNoteDetails (value: float): Utilities.getNoteDetails__ =
-            emitJsExpr (value) $$"""
-import { Utilities } from "webmidi";
-Utilities.getNoteDetails($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getNoteDetails($0)""")>]
+        static member inline getNoteDetails (value: float): Utilities.getNoteDetails__ = nativeOnly
         /// <summary>
         /// Returns the name of the first property of the supplied object whose value is equal to the one
         /// supplied. If nothing is found, <c>undefined</c> is returned.
@@ -9352,10 +9080,9 @@ Utilities.getNoteDetails($0)"""
         /// The name of the matching property or <c>undefined</c> if nothing is
         /// found.
         /// </returns>
-        static member inline getPropertyByValue (``object``: obj, value: obj): string option =
-            emitJsExpr (``object``, value) $$"""
-import { Utilities } from "webmidi";
-Utilities.getPropertyByValue($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getPropertyByValue($0, $1)""")>]
+        static member inline getPropertyByValue (``object``: obj, value: obj): string option = nativeOnly
         /// <summary>
         /// Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
         /// string containing a note identifier (<c>"C3"</c>, <c>"F#4"</c>, <c>"D-2"</c>, <c>"G8"</c>, etc.). If an integer
@@ -9376,10 +9103,9 @@ Utilities.getPropertyByValue($0, $1)"""
         /// A valid MIDI note number (0-127) or <c>false</c> if the input could not
         /// successfully be parsed to a note number.
         /// </returns>
-        static member inline guessNoteNumber (input: string, octaveOffset: float): U2<float, bool> =
-            emitJsExpr (input, octaveOffset) $$"""
-import { Utilities } from "webmidi";
-Utilities.guessNoteNumber($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.guessNoteNumber($0, $1)""")>]
+        static member inline guessNoteNumber (input: string, octaveOffset: float): U2<float, bool> = nativeOnly
         /// <summary>
         /// Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
         /// string containing a note identifier (<c>"C3"</c>, <c>"F#4"</c>, <c>"D-2"</c>, <c>"G8"</c>, etc.). If an integer
@@ -9400,10 +9126,9 @@ Utilities.guessNoteNumber($0, $1)"""
         /// A valid MIDI note number (0-127) or <c>false</c> if the input could not
         /// successfully be parsed to a note number.
         /// </returns>
-        static member inline guessNoteNumber (input: float, octaveOffset: float): U2<float, bool> =
-            emitJsExpr (input, octaveOffset) $$"""
-import { Utilities } from "webmidi";
-Utilities.guessNoteNumber($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.guessNoteNumber($0, $1)""")>]
+        static member inline guessNoteNumber (input: float, octaveOffset: float): U2<float, bool> = nativeOnly
         /// <summary>
         /// Indicates whether the execution environment is Node.js (<c>true</c>) or not (<c>false</c>)
         /// </summary>
@@ -9439,10 +9164,9 @@ Utilities.guessNoteNumber($0, $1)"""
         /// <returns>
         /// An integer between 0 and 127
         /// </returns>
-        static member inline offsetNumber (number: float, ?octaveOffset: float, ?semitoneOffset: float): float =
-            emitJsExpr (number, octaveOffset, semitoneOffset) $$"""
-import { Utilities } from "webmidi";
-Utilities.offsetNumber($0, $1, $2)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.offsetNumber($0, $1, $2)""")>]
+        static member inline offsetNumber (number: float, ?octaveOffset: float, ?semitoneOffset: float): float = nativeOnly
         /// <summary>
         /// Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
         /// single integer or an array of integers.
@@ -9458,10 +9182,9 @@ Utilities.offsetNumber($0, $1, $2)"""
         /// <returns>
         /// An array of 0 or more valid MIDI channel numbers.
         /// </returns>
-        static member inline sanitizeChannels () : ResizeArray<float> =
-            emitJsExpr () $$"""
-import { Utilities } from "webmidi";
-Utilities.sanitizeChannels()"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.sanitizeChannels()""")>]
+        static member inline sanitizeChannels () : ResizeArray<float> = nativeOnly
         /// <summary>
         /// Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
         /// single integer or an array of integers.
@@ -9477,10 +9200,9 @@ Utilities.sanitizeChannels()"""
         /// <returns>
         /// An array of 0 or more valid MIDI channel numbers.
         /// </returns>
-        static member inline sanitizeChannels (channel: float): ResizeArray<float> =
-            emitJsExpr (channel) $$"""
-import { Utilities } from "webmidi";
-Utilities.sanitizeChannels($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.sanitizeChannels($0)""")>]
+        static member inline sanitizeChannels (channel: float): ResizeArray<float> = nativeOnly
         /// <summary>
         /// Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
         /// single integer or an array of integers.
@@ -9496,10 +9218,9 @@ Utilities.sanitizeChannels($0)"""
         /// <returns>
         /// An array of 0 or more valid MIDI channel numbers.
         /// </returns>
-        static member inline sanitizeChannels (channel: ResizeArray<float>): ResizeArray<float> =
-            emitJsExpr (channel) $$"""
-import { Utilities } from "webmidi";
-Utilities.sanitizeChannels($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.sanitizeChannels($0)""")>]
+        static member inline sanitizeChannels (channel: ResizeArray<float>): ResizeArray<float> = nativeOnly
         /// <summary>
         /// Returns an identifier string representing a note name (with optional accidental) followed by an
         /// octave number. The octave can be offset by using the <c>octaveOffset</c> parameter.
@@ -9518,10 +9239,9 @@ Utilities.sanitizeChannels($0)"""
         /// <param name="octaveOffset">
         /// An offset to apply to the resulting octave
         /// </param>
-        static member inline toNoteIdentifier (number: float, octaveOffset: float): string =
-            emitJsExpr (number, octaveOffset) $$"""
-import { Utilities } from "webmidi";
-Utilities.toNoteIdentifier($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.toNoteIdentifier($0, $1)""")>]
+        static member inline toNoteIdentifier (number: float, octaveOffset: float): string = nativeOnly
         /// <summary>
         /// Returns a MIDI note number matching the identifier passed in the form of a string. The
         /// identifier must include the octave number. The identifier also optionally include a sharp (#),
@@ -9552,10 +9272,9 @@ Utilities.toNoteIdentifier($0, $1)"""
         /// <returns>
         /// The MIDI note number (an integer between 0 and 127).
         /// </returns>
-        static member inline toNoteNumber (identifier: string, ?octaveOffset: float): float =
-            emitJsExpr (identifier, octaveOffset) $$"""
-import { Utilities } from "webmidi";
-Utilities.toNoteNumber($0, $1)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.toNoteNumber($0, $1)""")>]
+        static member inline toNoteNumber (identifier: string, ?octaveOffset: float): float = nativeOnly
         /// <summary>
         /// Returns a valid timestamp, relative to the navigation start of the document, derived from the
         /// <c>time</c> parameter. If the parameter is a string starting with the "+" sign and followed by a
@@ -9569,10 +9288,9 @@ Utilities.toNoteNumber($0, $1)"""
         /// <returns>
         /// A positive number or <c>false</c> (if the time cannot be converted)
         /// </returns>
-        static member inline toTimestamp () : U2<float, bool> =
-            emitJsExpr () $$"""
-import { Utilities } from "webmidi";
-Utilities.toTimestamp()"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.toTimestamp()""")>]
+        static member inline toTimestamp () : U2<float, bool> = nativeOnly
         /// <summary>
         /// Returns a valid timestamp, relative to the navigation start of the document, derived from the
         /// <c>time</c> parameter. If the parameter is a string starting with the "+" sign and followed by a
@@ -9586,10 +9304,9 @@ Utilities.toTimestamp()"""
         /// <returns>
         /// A positive number or <c>false</c> (if the time cannot be converted)
         /// </returns>
-        static member inline toTimestamp (time: float): U2<float, bool> =
-            emitJsExpr (time) $$"""
-import { Utilities } from "webmidi";
-Utilities.toTimestamp($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.toTimestamp($0)""")>]
+        static member inline toTimestamp (time: float): U2<float, bool> = nativeOnly
         /// <summary>
         /// Returns a valid timestamp, relative to the navigation start of the document, derived from the
         /// <c>time</c> parameter. If the parameter is a string starting with the "+" sign and followed by a
@@ -9603,10 +9320,9 @@ Utilities.toTimestamp($0)"""
         /// <returns>
         /// A positive number or <c>false</c> (if the time cannot be converted)
         /// </returns>
-        static member inline toTimestamp (time: string): U2<float, bool> =
-            emitJsExpr (time) $$"""
-import { Utilities } from "webmidi";
-Utilities.toTimestamp($0)"""
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.toTimestamp($0)""")>]
+        static member inline toTimestamp (time: string): U2<float, bool> = nativeOnly
 
     /// <summary>
     /// The <c>WebMidi</c> object makes it easier to work with the low-level Web MIDI API. Basically, it

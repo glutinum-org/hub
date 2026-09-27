@@ -15,7 +15,11 @@ module Yargs =
     [<Erase>]
     type Exports =
         [<ImportDefault("yargs"); Emit("$0($1...)")>]
-        static member yargs (?args: U2<ResizeArray<string>, string>, ?cwd: string) : Yargs.yargs_.Argv<obj> = nativeOnly
+        static member yargs () : Yargs.yargs_.Argv<obj> = nativeOnly
+        [<ImportDefault("yargs"); Emit("$0($1...)")>]
+        static member yargs (args: ResizeArray<string>, ?cwd: string) : Yargs.yargs_.Argv<obj> = nativeOnly
+        [<ImportDefault("yargs"); Emit("$0($1...)")>]
+        static member yargs (args: string, ?cwd: string) : Yargs.yargs_.Argv<obj> = nativeOnly
         /// <summary>
         /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
         ///
@@ -53,7 +57,7 @@ module Yargs =
         /// </summary>
         [<ImportDefault("yargs")>]
         [<Emit("$0.argv")>]
-        static member inline argv: U2<Exports.argv__.Type.U2.Case1, JS.Promise<Exports.argv__.Type.U2.Case2>> = nativeOnly
+        static member inline argv: U2<Yargs.yargs_.Arguments<obj>, JS.Promise<Yargs.yargs_.Arguments<obj>>> = nativeOnly
         /// <summary>
         /// Tell the parser to interpret <c>key</c> as an array.
         /// If <c>.array('foo')</c> is set, <c>--foo foo bar</c> will be parsed as <c>['foo', 'bar']</c> rather than as <c>'foo'</c>.
@@ -726,22 +730,22 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
         /// Provides a useful mechanism for passing state information to commands
         /// </param>
         [<ImportDefault("yargs"); Emit("$0.parse($1...)")>]
-        static member parse () : U2<Exports.parse__.U2.Case1, JS.Promise<Exports.parse__.U2.Case2>> = nativeOnly
+        static member parse () : U2<Yargs.yargs_.Arguments<obj>, JS.Promise<Yargs.yargs_.Arguments<obj>>> = nativeOnly
         /// <summary>
         /// Parse <c>args</c> instead of <c>process.argv</c>. Returns the <c>argv</c> object. <c>args</c> may either be a pre-processed argv array, or a raw argument string.
         ///
         /// Note: Providing a callback to parse() disables the <c>exitProcess</c> setting until after the callback is invoked.
         /// </summary>
         [<ImportDefault("yargs"); Emit("$0.parse($1...)")>]
-        static member parse (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : U2<Exports.parse__.U2.Case1, JS.Promise<Exports.parse__.U2.Case2>> = nativeOnly
+        static member parse (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : U2<Yargs.yargs_.Arguments<obj>, JS.Promise<Yargs.yargs_.Arguments<obj>>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseSync($1...)")>]
-        static member parseSync () : Exports.parseSync__ = nativeOnly
+        static member parseSync () : Yargs.yargs_.Arguments<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseSync($1...)")>]
-        static member parseSync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : Exports.parseSync__ = nativeOnly
+        static member parseSync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : Yargs.yargs_.Arguments<obj> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseAsync($1...)")>]
-        static member parseAsync () : JS.Promise<Exports.parseAsync__> = nativeOnly
+        static member parseAsync () : JS.Promise<Yargs.yargs_.Arguments<obj>> = nativeOnly
         [<ImportDefault("yargs"); Emit("$0.parseAsync($1...)")>]
-        static member parseAsync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : JS.Promise<Exports.parseAsync__> = nativeOnly
+        static member parseAsync (arg: U2<string, ResizeArray<string>>, ?context: obj, ?parseCallback: Yargs.yargs_.ParseCallback<obj>) : JS.Promise<Yargs.yargs_.Arguments<obj>> = nativeOnly
         /// <summary>
         /// If the arguments have not been parsed, this property is <c>false</c>.
         ///
@@ -1206,7 +1210,7 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// it will ignore the first parameter since it expects it to be the script name. In order to override
             /// this behavior, use <c>.parse(process.argv.slice(1))</c> instead of .argv and the first parameter won't be ignored.
             /// </summary>
-            abstract member argv: U2<Argv.argv.U2.Case1, JS.Promise<Argv.argv.U2.Case2>> with get, set
+            abstract member argv: U2<Yargs.yargs_.Arguments<'T>, JS.Promise<Yargs.yargs_.Arguments<'T>>> with get, set
             /// <summary>
             /// Tell the parser to interpret <c>key</c> as an array.
             /// If <c>.array('foo')</c> is set, <c>--foo foo bar</c> will be parsed as <c>['foo', 'bar']</c> rather than as <c>'foo'</c>.
@@ -1540,14 +1544,6 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// <summary>
             /// Define the commands exposed by your application.
             /// </summary>
-            abstract member command: command: string * description: string * ``module``: Yargs.yargs_.CommandModule<'T, obj> -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Define the commands exposed by your application.
-            /// </summary>
-            abstract member command: command: ResizeArray<string> * description: string * ``module``: Yargs.yargs_.CommandModule<'T, obj> -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Define the commands exposed by your application.
-            /// </summary>
             abstract member command: command: string * showInHelp: bool -> Yargs.yargs_.Argv<'T>
             /// <summary>
             /// Define the commands exposed by your application.
@@ -1604,27 +1600,11 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// <summary>
             /// Define the commands exposed by your application.
             /// </summary>
-            abstract member command: command: string * showInHelp: bool * ``module``: Yargs.yargs_.CommandModule<'T, obj> -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Define the commands exposed by your application.
-            /// </summary>
-            abstract member command: command: ResizeArray<string> * showInHelp: bool * ``module``: Yargs.yargs_.CommandModule<'T, obj> -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Define the commands exposed by your application.
-            /// </summary>
             abstract member command<'U>: ``module``: Yargs.yargs_.CommandModule<'T, 'U> -> Yargs.yargs_.Argv<'T>
             /// <summary>
             /// Define the commands exposed by your application.
             /// </summary>
-            abstract member command: ``module``: Yargs.yargs_.CommandModule<'T, obj> -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Define the commands exposed by your application.
-            /// </summary>
             abstract member command<'U>: modules: ResizeArray<Yargs.yargs_.CommandModule<'T, 'U>> -> Yargs.yargs_.Argv<'T>
-            /// <summary>
-            /// Define the commands exposed by your application.
-            /// </summary>
-            abstract member command: modules: ResizeArray<Yargs.yargs_.CommandModule<'T, obj>> -> Yargs.yargs_.Argv<'T>
             /// <summary>
             /// Apply command modules from a directory relative to the module calling this method.
             /// </summary>
@@ -2184,25 +2164,25 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// <param name="context">
             /// Provides a useful mechanism for passing state information to commands
             /// </param>
-            abstract member parse: unit -> U2<Argv.parse.U2.Case1, JS.Promise<Argv.parse.U2.Case2>>
+            abstract member parse: unit -> U2<Yargs.yargs_.Arguments<'T>, JS.Promise<Yargs.yargs_.Arguments<'T>>>
             /// <summary>
             /// Parse <c>args</c> instead of <c>process.argv</c>. Returns the <c>argv</c> object. <c>args</c> may either be a pre-processed argv array, or a raw argument string.
             ///
             /// Note: Providing a callback to parse() disables the <c>exitProcess</c> setting until after the callback is invoked.
             /// </summary>
-            abstract member parse: arg: string * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> U2<Argv.parse.U2.Case1, JS.Promise<Argv.parse.U2.Case2>>
+            abstract member parse: arg: string * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> U2<Yargs.yargs_.Arguments<'T>, JS.Promise<Yargs.yargs_.Arguments<'T>>>
             /// <summary>
             /// Parse <c>args</c> instead of <c>process.argv</c>. Returns the <c>argv</c> object. <c>args</c> may either be a pre-processed argv array, or a raw argument string.
             ///
             /// Note: Providing a callback to parse() disables the <c>exitProcess</c> setting until after the callback is invoked.
             /// </summary>
-            abstract member parse: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> U2<Argv.parse.U2.Case1, JS.Promise<Argv.parse.U2.Case2>>
-            abstract member parseSync: unit -> Argv.parseSync
-            abstract member parseSync: arg: string * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> Argv.parseSync
-            abstract member parseSync: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> Argv.parseSync
-            abstract member parseAsync: unit -> JS.Promise<Argv.parseAsync>
-            abstract member parseAsync: arg: string * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> JS.Promise<Argv.parseAsync>
-            abstract member parseAsync: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> JS.Promise<Argv.parseAsync>
+            abstract member parse: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> U2<Yargs.yargs_.Arguments<'T>, JS.Promise<Yargs.yargs_.Arguments<'T>>>
+            abstract member parseSync: unit -> Yargs.yargs_.Arguments<'T>
+            abstract member parseSync: arg: string * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> Yargs.yargs_.Arguments<'T>
+            abstract member parseSync: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> Yargs.yargs_.Arguments<'T>
+            abstract member parseAsync: unit -> JS.Promise<Yargs.yargs_.Arguments<'T>>
+            abstract member parseAsync: arg: string * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> JS.Promise<Yargs.yargs_.Arguments<'T>>
+            abstract member parseAsync: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.yargs_.ParseCallback<'T> -> JS.Promise<Yargs.yargs_.Arguments<'T>>
             /// <summary>
             /// If the arguments have not been parsed, this property is <c>false</c>.
             ///
@@ -2544,6 +2524,8 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// The script name or node command
             /// </summary>
             abstract member ``$0``: string with get, set
+            [<EmitIndexer>]
+            abstract member Item: argName: string -> obj with get, set
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2556,6 +2538,8 @@ Use '.demandCommand()' or '.demandOption()' instead""")>]
             /// The script name or node command
             /// </summary>
             abstract member ``$0``: string with get, set
+            [<EmitIndexer>]
+            abstract member Item: argName: string -> obj with get, set
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2706,6 +2690,8 @@ Use 'demandOption' instead""")>]
             /// </summary>
             abstract member string: bool option with get, set
             abstract member ``type``: Options.``type`` option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?alias: U2<string, ReadonlyArray<string>>, ?array: bool, ?boolean: bool, ?choices: Yargs.yargs_.Choices, ?coerce: (obj -> unit), ?config: bool, ?configParser: (string -> obj), ?conflicts: U3<string, ReadonlyArray<string>, Options.conflicts.U3.Case3>, ?count: bool, ?``default``: obj, ?defaultDescription: string, ?demand: U2<bool, string>, ?deprecate: U2<bool, string>, ?deprecated: U2<bool, string>, ?demandOption: U2<bool, string>, ?desc: string, ?describe: string, ?description: string, ?``global``: bool, ?group: string, ?hidden: bool, ?implies: U3<string, ReadonlyArray<string>, Options.implies.U3.Case3>, ?nargs: float, ?normalize: bool, ?number: bool, ?require: U2<bool, string>, ?required: U2<bool, string>, ?requiresArg: bool, ?skipValidation: bool, ?string: bool, ?``type``: Options.``type``) : Options = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2759,6 +2745,8 @@ Use 'demandOption' instead""")>]
             /// </summary>
             abstract member normalize: bool option with get, set
             abstract member ``type``: Yargs.yargs_.PositionalOptionsType option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?alias: U2<string, ReadonlyArray<string>>, ?array: bool, ?choices: Yargs.yargs_.Choices, ?coerce: (obj -> unit), ?conflicts: U3<string, ReadonlyArray<string>, PositionalOptions.conflicts.U3.Case3>, ?``default``: obj, ?demandOption: U2<bool, string>, ?desc: string, ?describe: string, ?description: string, ?implies: U3<string, ReadonlyArray<string>, PositionalOptions.implies.U3.Case3>, ?normalize: bool, ?``type``: Yargs.yargs_.PositionalOptionsType) : PositionalOptions = nativeOnly
 
         /// <summary>
         /// Convert literal string types like 'foo-bar' to 'FooBar'
@@ -2981,18 +2969,6 @@ Use 'demandOption' instead""")>]
 
         module Argv =
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type parseSync =
-                [<EmitIndexer>]
-                abstract member Item: key: string -> obj with get, set
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type parseAsync =
-                [<EmitIndexer>]
-                abstract member Item: key: string -> obj with get, set
-
             module alias =
 
                 [<AllowNullLiteral>]
@@ -3000,22 +2976,6 @@ Use 'demandOption' instead""")>]
                 type aliases =
                     [<EmitIndexer>]
                     abstract member Item: shortName: string -> U2<string, ReadonlyArray<string>> with get, set
-
-            module argv =
-
-                module U2 =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: key: string -> obj with get, set
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case2 =
-                        [<EmitIndexer>]
-                        abstract member Item: key: string -> obj with get, set
 
             module check =
 
@@ -3071,22 +3031,6 @@ Use 'demandOption' instead""")>]
                 type nargs =
                     [<EmitIndexer>]
                     abstract member Item: key: string -> float with get, set
-
-            module parse =
-
-                module U2 =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: key: string -> obj with get, set
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case2 =
-                        [<EmitIndexer>]
-                        abstract member Item: key: string -> obj with get, set
 
             module parserConfiguration =
 
@@ -3339,11 +3283,26 @@ Use 'demandOption' instead""")>]
     type ToNumber<'T> =
         yargs_.ToNumber<'T>
 
+    type InferredOptionType<'O> =
+        yargs_.InferredOptionType<'O>
+
+    type Alias<'O> =
+        yargs_.Alias<'O>
+
+    type IsRequiredOrHasDefault<'O> =
+        yargs_.IsRequiredOrHasDefault<'O>
+
     type IsAny<'T> =
         yargs_.IsAny<'T>
 
     type IsUnknown<'T> =
         yargs_.IsUnknown<'T>
+
+    type InferredOptionTypePrimitive<'O> =
+        yargs_.InferredOptionTypePrimitive<'O>
+
+    type InferredOptionTypeInner<'O> =
+        yargs_.InferredOptionTypeInner<'O>
 
     type InferredOptionTypes<'O> =
         yargs_.InferredOptionTypes<'O>
@@ -3401,18 +3360,6 @@ Use 'demandOption' instead""")>]
 
     module Exports =
 
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type parseSync__ =
-            [<EmitIndexer>]
-            abstract member Item: key: string -> obj with get, set
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type parseAsync__ =
-            [<EmitIndexer>]
-            abstract member Item: key: string -> obj with get, set
-
         module alias__ =
 
             [<AllowNullLiteral>]
@@ -3420,24 +3367,6 @@ Use 'demandOption' instead""")>]
             type aliases =
                 [<EmitIndexer>]
                 abstract member Item: shortName: string -> U2<string, ReadonlyArray<string>> with get, set
-
-        module argv__ =
-
-            module Type =
-
-                module U2 =
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case1 =
-                        [<EmitIndexer>]
-                        abstract member Item: key: string -> obj with get, set
-
-                    [<AllowNullLiteral>]
-                    [<Interface>]
-                    type Case2 =
-                        [<EmitIndexer>]
-                        abstract member Item: key: string -> obj with get, set
 
         module check__ =
 
@@ -3497,22 +3426,6 @@ Use 'demandOption' instead""")>]
             type nargs =
                 [<EmitIndexer>]
                 abstract member Item: key: string -> float with get, set
-
-        module parse__ =
-
-            module U2 =
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type Case1 =
-                    [<EmitIndexer>]
-                    abstract member Item: key: string -> obj with get, set
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type Case2 =
-                    [<EmitIndexer>]
-                    abstract member Item: key: string -> obj with get, set
 
         module parserConfiguration__ =
 
@@ -3627,7 +3540,9 @@ module YargsParser =
     [<Erase>]
     type Exports =
         [<ImportDefault("yargs-parser"); Emit("$0($1...)")>]
-        static member yargsParser (argv: U2<string, ResizeArray<string>>, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.Arguments = nativeOnly
+        static member yargsParser (argv: string, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.Arguments = nativeOnly
+        [<ImportDefault("yargs-parser"); Emit("$0($1...)")>]
+        static member yargsParser (argv: ResizeArray<string>, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.Arguments = nativeOnly
         [<ImportDefault("yargs-parser"); Emit("$0.detailed($1...)")>]
         static member detailed (argv: U2<string, ResizeArray<string>>, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.DetailedArguments = nativeOnly
         [<ImportDefault("yargs-parser"); Emit("$0.camelCase($1...)")>]

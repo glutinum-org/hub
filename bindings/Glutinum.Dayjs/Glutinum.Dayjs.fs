@@ -61,8 +61,6 @@ module Dayjs =
         type Exports =
             [<Emit("$0.extend($1...)")>]
             abstract member extend<'T>: plugin: Dayjs.dayjs_.PluginFunc<'T> * ?option: 'T -> Dayjs.dayjs_.Dayjs
-            [<Emit("$0.extend($1...)")>]
-            abstract member extend: plugin: Dayjs.dayjs_.PluginFunc<obj> * ?option: obj -> Dayjs.dayjs_.Dayjs
             [<Emit("$0.locale($1...)")>]
             abstract member locale: unit -> string
             [<Emit("$0.locale($1...)")>]
