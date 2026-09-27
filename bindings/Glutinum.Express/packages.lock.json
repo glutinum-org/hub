@@ -31,21 +31,21 @@
       },
       "Glutinum.Node": {
         "type": "Direct",
-        "requested": "[0.1.0, )",
-        "resolved": "0.1.0",
-        "contentHash": "dBeHHq+nklAAHcrGyES63Tsfani5ZS5AgamopnRE5+JTP/gHuwrxerPW+c250IySXWHWB15bQsIshzMbwQ0+gA==",
+        "requested": "[1.0.0-beta.1, )",
+        "resolved": "1.0.0-beta.1",
+        "contentHash": "+G1VaumyoJ6CvcR5G0CyVa7Bq2YYnuZOzv/nmMzL8FJG/WcbR+rWMzYCGxFregJ6Gfb+B6y/qDbFuCw4ZDzE8Q==",
         "dependencies": {
           "FSharp.Core": "10.1.301",
           "Fable.Core": "5.2.0",
-          "Glutinum.Types": "0.2.0",
-          "Glutinum.Web": "0.1.0"
+          "Glutinum.Types": "1.0.0-beta.1",
+          "Glutinum.Web": "1.0.0-beta.1"
         }
       },
       "Glutinum.Types": {
         "type": "Direct",
-        "requested": "[0.2.0, )",
-        "resolved": "0.2.0",
-        "contentHash": "RUtfA3icBM4GEezjxsBKvuZ2zjEDtaUBhIsOzzqeK36NmC+RcgDC3jkQbWcx4RoREPSdwluEcdBzjKOAlbDxiw==",
+        "requested": "[1.0.0-beta.1, )",
+        "resolved": "1.0.0-beta.1",
+        "contentHash": "tDroSR5oeZnhY+U5SLoEj3dvcFv4prychKE/EBcf/5SGjPX+CQE3AIBcB1HutUsY1J++32Nu4MgXAdj8mpLcog==",
         "dependencies": {
           "FSharp.Core": "10.1.301",
           "Fable.Core": "5.2.0"
@@ -53,13 +53,13 @@
       },
       "Glutinum.Web": {
         "type": "CentralTransitive",
-        "requested": "[0.1.0, )",
-        "resolved": "0.1.0",
-        "contentHash": "EWPQV8SSp/xfJLdXr58HjfF0KLbYyPmjJufItIVfRvVyL1MiHd4SVUOsZ5DBh+KkhSo3trLdWIGpfIZ0iqGaTg==",
+        "requested": "[1.0.0-beta.1, )",
+        "resolved": "1.0.0-beta.1",
+        "contentHash": "xnxAfqcAyqZrGZ/xIH0irMjHDe80v2DOSUmdDpJDzAMIZZP6EJKwC+5mNxXesoZIHFDGT4hQ9VBEunRWs0KSUQ==",
         "dependencies": {
           "FSharp.Core": "10.1.301",
           "Fable.Core": "5.2.0",
-          "Glutinum.Types": "0.2.0"
+          "Glutinum.Types": "1.0.0-beta.1"
         }
       }
     }

@@ -31,9 +31,9 @@
       },
       "Glutinum.Types": {
         "type": "Direct",
-        "requested": "[0.2.0, )",
-        "resolved": "0.2.0",
-        "contentHash": "RUtfA3icBM4GEezjxsBKvuZ2zjEDtaUBhIsOzzqeK36NmC+RcgDC3jkQbWcx4RoREPSdwluEcdBzjKOAlbDxiw==",
+        "requested": "[1.0.0-beta.1, )",
+        "resolved": "1.0.0-beta.1",
+        "contentHash": "tDroSR5oeZnhY+U5SLoEj3dvcFv4prychKE/EBcf/5SGjPX+CQE3AIBcB1HutUsY1J++32Nu4MgXAdj8mpLcog==",
         "dependencies": {
           "FSharp.Core": "10.1.301",
           "Fable.Core": "5.2.0"
