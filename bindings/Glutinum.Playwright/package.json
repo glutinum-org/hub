@@ -3,6 +3,7 @@
     "private": true,
     "description": "The declaration package Glutinum.Playwright is generated from",
     "devDependencies": {
+        "@types/node": "26.6.1",
         "playwright": "1.63.0"
     }
 }
