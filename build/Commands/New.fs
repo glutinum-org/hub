@@ -89,6 +89,7 @@ type NewCommand() =
                         Inputs = package :: Array.toList settings.Inputs
                         Externals = externals
                         Tests = None
+                        MaxOverloads = None
                     }
             }
 

@@ -33,6 +33,8 @@ type Config =
         /// Bindings of the hub referenced instead of generated, by name
         Externals: string list
         Tests: Tests option
+        /// The overloads a signature gets at most from its union parameters, the CLI default when absent
+        MaxOverloads: int option
     }
 
 type Binding =
@@ -75,6 +77,7 @@ type ConfigDto() =
     member val inputs: string array = [||] with get, set
     member val externals: string array = [||] with get, set
     member val tests: string = null with get, set
+    member val maxOverloads: Nullable<int> = Nullable() with get, set
 
 let private jsonOptions =
     JsonSerializerOptions(
@@ -91,7 +94,8 @@ let private toDto (config: Config) =
         tests =
             (match config.Tests with
              | Some tests -> tests.Text
-             | None -> null)
+             | None -> null),
+        maxOverloads = Option.toNullable config.MaxOverloads
     )
 
 let private ofDto (dto: ConfigDto) : Config =
@@ -101,6 +105,7 @@ let private ofDto (dto: ConfigDto) : Config =
         Inputs = Array.toList dto.inputs
         Externals = Array.toList dto.externals
         Tests = dto.tests |> Option.ofObj |> Option.map Tests.Parse
+        MaxOverloads = Option.ofNullable dto.maxOverloads
     }
 
 let save (binding: Binding) =

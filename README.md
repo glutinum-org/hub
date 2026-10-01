@@ -6,7 +6,7 @@ Each binding is a folder of `bindings/`, self-contained: open it in your editor 
 
 ```text
 bindings/Glutinum.DateFns/
-├── binding.json            the package, its subpaths, the bindings it references, the kind of tests
+├── binding.json            the package, its subpaths, the bindings it references, the kind of tests, the overload cap
 ├── package.json            pins the version of the npm package the binding is generated from
 ├── Glutinum.DateFns.fsproj written by `./build.sh generate` from binding.json
 ├── Glutinum.DateFns.fs     generated, do not edit
@@ -43,6 +43,8 @@ Glutinum generates a package together with every typed package it depends on, as
 ```
 
 `Glutinum.Leaflet` then references `Glutinum.Geojson.GeometryObject` instead of embedding a copy, and the two bindings share the types. `binding.json` lists the externals, `./build.sh generate` and `./build.sh test` order the bindings accordingly.
+
+`"maxOverloads": 32` in `binding.json` passes `--max-overloads 32` to the CLI: the overloads a signature gets at most from its union parameters, 16 when absent.
 
 ## Releases
 

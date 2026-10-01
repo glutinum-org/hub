@@ -91,7 +91,6 @@ let generate (bindings: Binding list) (binding: Binding) =
         |> CmdLine.appendRaw (cli ())
         |> CmdLine.appendSeq binding.Config.Inputs
 
-    // The CLI wants `--out-file` last
     let args =
         externalsOf bindings binding
         |> List.fold
@@ -102,7 +101,14 @@ let generate (bindings: Binding list) (binding: Binding) =
                     $"{external.Config.Package}={external.ModuleName}"
             )
             args
-        |> CmdLine.appendPrefix "--out-file" (binding.Name + ".fs")
+
+    let args =
+        match binding.Config.MaxOverloads with
+        | Some maxOverloads -> args |> CmdLine.appendPrefix "--max-overloads" (string maxOverloads)
+        | None -> args
+
+    // The CLI wants `--out-file` last
+    let args = args |> CmdLine.appendPrefix "--out-file" (binding.Name + ".fs")
 
     Shell.run "node" args binding.Dir
     writeProject bindings binding
