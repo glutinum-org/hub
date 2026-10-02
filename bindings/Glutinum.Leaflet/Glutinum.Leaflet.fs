@@ -3884,6 +3884,12 @@ GeoJSON.asFeature($0)""")>]
         | center
         | Case1 of bool
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: bool) : Zoom = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: bool) : Zoom = nativeOnly
+
     [<AllowNullLiteral>]
     [<Interface>]
     type MapOptions =

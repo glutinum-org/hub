@@ -560,6 +560,16 @@ module BodyParser =
                     /// a 413 will be returned to the client. Defaults to 1000.
                     /// </summary>
                     abstract member parameterLimit: float option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (reviver: BodyParser.Invoke.options.reviver, verify: BodyParser.Invoke.options.verify, ?strict: bool, ?inflate: bool, ?limit: U2<float, string>, ?``type``: U3<string, ResizeArray<string>, (Glutinum.Node.http.IncomingMessage -> unit)>, ?defaultCharset: string, ?extended: bool, ?parameterLimit: float) : options = nativeOnly
+
+                module options =
+
+                    type reviver =
+                        delegate of key: string * value: obj -> unit
+
+                    type verify =
+                        delegate of req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
 
     type BodyParser =
         bodyParser_.BodyParser
@@ -628,6 +638,16 @@ module BodyParser =
                 /// a 413 will be returned to the client. Defaults to 1000.
                 /// </summary>
                 abstract member parameterLimit: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (reviver: Exports.bodyParser__.options.reviver, verify: Exports.bodyParser__.options.verify, ?strict: bool, ?inflate: bool, ?limit: U2<float, string>, ?``type``: U3<string, ResizeArray<string>, (Glutinum.Node.http.IncomingMessage -> unit)>, ?defaultCharset: string, ?extended: bool, ?parameterLimit: float) : options = nativeOnly
+
+            module options =
+
+                type reviver =
+                    delegate of key: string * value: obj -> unit
+
+                type verify =
+                    delegate of req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
 
 module Connect =
 
@@ -3373,6 +3393,12 @@ module ExpressServeStaticCore =
             | ``<anonymous>``
             | Case1 of string
 
+            [<Emit("$0")>]
+            static member op_Implicit(value: string) : name = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: string) : name = nativeOnly
+
         type handle =
             delegate of req: ExpressServeStaticCore.Request * res: ExpressServeStaticCore.Response * next: ExpressServeStaticCore.NextFunction -> unit
 
@@ -3385,6 +3411,12 @@ module ExpressServeStaticCore =
             | strict
             | none
             | Case1 of bool
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: bool) : sameSite = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: bool) : sameSite = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -4050,6 +4082,24 @@ module Qs =
                     abstract member throwOnLimitExceeded: bool option with get, set
                     abstract member allowDots: bool option with get, set
                     abstract member decodeDotInKeys: bool option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (depth: float, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (depth: bool, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: string, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: string, depth: float, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: string, depth: bool, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: RegExp, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: RegExp, depth: float, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: RegExp, depth: bool, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
 
                 module options =
 

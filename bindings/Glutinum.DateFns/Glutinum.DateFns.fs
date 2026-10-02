@@ -12297,7 +12297,36 @@ module DateFns =
                     abstract member s: date: Date * token: string -> string
                     abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type = nativeOnly
+                    static member Create (y: Exports.lightFormatters__.Type.y, M: Exports.lightFormatters__.Type.M, d: Exports.lightFormatters__.Type.d, a: Exports.lightFormatters__.Type.a, h: Exports.lightFormatters__.Type.h, H: Exports.lightFormatters__.Type.H, m: Exports.lightFormatters__.Type.m, s: Exports.lightFormatters__.Type.s, S: Exports.lightFormatters__.Type.S) : Type = nativeOnly
+
+                module Type =
+
+                    type y =
+                        delegate of date: Date * token: string -> string
+
+                    type M =
+                        delegate of date: Date * token: string -> string
+
+                    type d =
+                        delegate of date: Date * token: string -> string
+
+                    type a =
+                        delegate of date: Date * token: string -> string
+
+                    type h =
+                        delegate of date: Date * token: string -> string
+
+                    type H =
+                        delegate of date: Date * token: string -> string
+
+                    type m =
+                        delegate of date: Date * token: string -> string
+
+                    type s =
+                        delegate of date: Date * token: string -> string
+
+                    type S =
+                        delegate of date: Date * token: string -> string
 
     module _lib_format_longFormatters =
 
@@ -24886,7 +24915,63 @@ module DateFns =
                     abstract member s: date: Date * token: string -> string
                     abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type_1 = nativeOnly
+                    static member Create (y: Exports.lightFormatters__.Type.y_1, M: Exports.lightFormatters__.Type.M_1, d: Exports.lightFormatters__.Type.d_1, a: Exports.lightFormatters__.Type.a_1, h: Exports.lightFormatters__.Type.h_1, H: Exports.lightFormatters__.Type.H_1, m: Exports.lightFormatters__.Type.m_1, s: Exports.lightFormatters__.Type.s_1, S: Exports.lightFormatters__.Type.S_1) : Type_1 = nativeOnly
+
+                module Type =
+
+                    type y_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type M_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type d_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type a_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type h_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type H_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type m_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type s_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type S_1 =
+                        delegate of date: Date * token: string -> string
+
+                    type y_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type M_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type d_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type a_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type h_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type H_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type m_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type s_2 =
+                        delegate of date: Date * token: string -> string
+
+                    type S_2 =
+                        delegate of date: Date * token: string -> string
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -24901,7 +24986,7 @@ module DateFns =
                     abstract member s: date: Date * token: string -> string
                     abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type_2 = nativeOnly
+                    static member Create (y: Exports.lightFormatters__.Type.y_2, M: Exports.lightFormatters__.Type.M_2, d: Exports.lightFormatters__.Type.d_2, a: Exports.lightFormatters__.Type.a_2, h: Exports.lightFormatters__.Type.h_2, H: Exports.lightFormatters__.Type.H_2, m: Exports.lightFormatters__.Type.m_2, s: Exports.lightFormatters__.Type.s_2, S: Exports.lightFormatters__.Type.S_2) : Type_2 = nativeOnly
 
     module locale =
 
@@ -26476,6 +26561,8 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, float> option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, float>) : options = nativeOnly
 
             module era =
 
@@ -26495,6 +26582,8 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Era> option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Era>) : options = nativeOnly
 
             module quarter =
 
@@ -26514,6 +26603,8 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Quarter> option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Quarter>) : options = nativeOnly
 
             module month =
 
@@ -26533,6 +26624,8 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Month> option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Month>) : options = nativeOnly
 
             module day =
 
@@ -26552,6 +26645,8 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Day> option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.types.Day>) : options = nativeOnly
 
             module dayPeriod =
 
@@ -26571,6 +26666,8 @@ module DateFns =
                     /// </example>
                     [<Obsolete("Map the value manually instead.")>]
                     abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.locale_types.LocaleDayPeriod> option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, DateFns.locale_types.LocaleDayPeriod>) : options = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -26603,6 +26700,8 @@ module DateFns =
                 /// </example>
                 [<Obsolete("Map the value manually instead.")>]
                 abstract member valueCallback: DateFns.locale_types.MatchValueCallback<string, 'Result> option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?width: DateFns.locale_types.LocaleWidth, ?valueCallback: DateFns.locale_types.MatchValueCallback<string, 'Result>) : options<'Result> = nativeOnly
 
     module locale_ug =
 
@@ -27902,6 +28001,12 @@ module DateFns =
             type incompatibleTokens =
                 | [<CompiledName("*")>] _STAR_
                 | Case1 of ResizeArray<string>
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: ResizeArray<string>) : incompatibleTokens = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: ResizeArray<string>) : incompatibleTokens = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -34029,7 +34134,36 @@ module DateFns =
                 abstract member s: date: Date * token: string -> string
                 abstract member S: date: Date * token: string -> string
                 [<ParamObject; Emit("$0")>]
-                static member Create (y: string, M: string, d: string, a: string, h: string, H: string, m: string, s: string, S: string) : Type_3 = nativeOnly
+                static member Create (y: Exports.lightFormatters__.Type.y_3, M: Exports.lightFormatters__.Type.M_3, d: Exports.lightFormatters__.Type.d_3, a: Exports.lightFormatters__.Type.a_3, h: Exports.lightFormatters__.Type.h_3, H: Exports.lightFormatters__.Type.H_3, m: Exports.lightFormatters__.Type.m_3, s: Exports.lightFormatters__.Type.s_3, S: Exports.lightFormatters__.Type.S_3) : Type_3 = nativeOnly
+
+            module Type =
+
+                type y_3 =
+                    delegate of date: Date * token: string -> string
+
+                type M_3 =
+                    delegate of date: Date * token: string -> string
+
+                type d_3 =
+                    delegate of date: Date * token: string -> string
+
+                type a_3 =
+                    delegate of date: Date * token: string -> string
+
+                type h_3 =
+                    delegate of date: Date * token: string -> string
+
+                type H_3 =
+                    delegate of date: Date * token: string -> string
+
+                type m_3 =
+                    delegate of date: Date * token: string -> string
+
+                type s_3 =
+                    delegate of date: Date * token: string -> string
+
+                type S_3 =
+                    delegate of date: Date * token: string -> string
 
         module parsers__ =
 

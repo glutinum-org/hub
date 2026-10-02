@@ -778,8 +778,8 @@ module Jspdf =
         abstract member output_blob: unit -> Glutinum.Web.Blob
         abstract member output: ``type``: jsPDF.output.``type`` -> Glutinum.Web.URL
         abstract member output: ``type``: jsPDF.output.``type_1`` * ?options: jsPDF.output.options -> string
-        abstract member output: ``type``: jsPDF.output.``type_2`` * ?options: jsPDF.output.options_1 -> Glutinum.Web.Window
-        abstract member output: ``type``: jsPDF.output.``type_3`` * ?options: jsPDF.output.options_2 -> bool
+        abstract member output: ``type``: jsPDF.output.``type_2`` * ?options: jsPDF.output.options -> Glutinum.Web.Window
+        abstract member output: ``type``: jsPDF.output.``type_3`` * ?options: jsPDF.output.options -> bool
         abstract member pdfEscape: text: string * flags: obj -> string
         abstract member path: ?lines: ResizeArray<obj> * ?style: string -> Jspdf.jsPDF
         abstract member rect: x: float * y: float * w: float * h: float * ?style: string -> Jspdf.jsPDF
@@ -1249,9 +1249,9 @@ jsPDF.API{{=$0}}""")>]
             [<Emit("$0($1...)")>]
             abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_1`` * ?options: HTMLWorker.outputPdf.Invoke.options -> string
             [<Emit("$0($1...)")>]
-            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_2`` * ?options: HTMLWorker.outputPdf.Invoke.options_1 -> Glutinum.Web.Window
+            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_2`` * ?options: HTMLWorker.outputPdf.Invoke.options -> Glutinum.Web.Window
             [<Emit("$0($1...)")>]
-            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_3`` * ?options: HTMLWorker.outputPdf.Invoke.options_2 -> bool
+            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_3`` * ?options: HTMLWorker.outputPdf.Invoke.options -> bool
 
         module from =
 
@@ -1305,25 +1305,11 @@ jsPDF.API{{=$0}}""")>]
                     | pdfjsnewwindow
                     | dataurlnewwindow
 
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type options_1 =
-                    abstract member filename: string option with get, set
-                    [<ParamObject; Emit("$0")>]
-                    static member Create (?filename: string) : options_1 = nativeOnly
-
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
                 type ``type_3`` =
                     | dataurl
                     | datauri
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type options_2 =
-                    abstract member filename: string option with get, set
-                    [<ParamObject; Emit("$0")>]
-                    static member Create (?filename: string) : options_2 = nativeOnly
 
     module HTMLOptionImage =
 
@@ -1372,6 +1358,12 @@ jsPDF.API{{=$0}}""")>]
             | slice
             | text
             | Case1 of bool
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: bool) : autoPaging = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: bool) : autoPaging = nativeOnly
 
     module ViewerPreferencesInput =
 
@@ -1622,6 +1614,12 @@ jsPDF.API{{=$0}}""")>]
             | smart
             | Case1 of float
 
+            [<Emit("$0")>]
+            static member op_Implicit(value: float) : floatPrecision = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: float) : floatPrecision = nativeOnly
+
     module PubSub =
 
         [<AllowNullLiteral>]
@@ -1655,7 +1653,7 @@ jsPDF.API{{=$0}}""")>]
             abstract member pages: ResizeArray<float> with get, set
             abstract member getEncryptor: objectId: float -> (string -> string)
             [<ParamObject; Emit("$0")>]
-            static member Create (events: Jspdf.PubSub, scaleFactor: float, pageSize: jsPDF.``internal``.pageSize, pages: ResizeArray<float>, getEncryptor: (string -> string)) : ``internal`` = nativeOnly
+            static member Create (events: Jspdf.PubSub, scaleFactor: float, pageSize: jsPDF.``internal``.pageSize, pages: ResizeArray<float>, getEncryptor: (float -> (string -> string))) : ``internal`` = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1672,7 +1670,7 @@ jsPDF.API{{=$0}}""")>]
             abstract member PasswordField: unit -> Jspdf.AcroFormPasswordField
             abstract member Appearance: unit -> obj
             [<ParamObject; Emit("$0")>]
-            static member Create (ChoiceField: Jspdf.AcroFormChoiceField, ListBox: Jspdf.AcroFormListBox, ComboBox: Jspdf.AcroFormComboBox, EditBox: Jspdf.AcroFormEditBox, Button: Jspdf.AcroFormButton, PushButton: Jspdf.AcroFormPushButton, RadioButton: Jspdf.AcroFormRadioButton, CheckBox: Jspdf.AcroFormCheckBox, TextField: Jspdf.AcroFormTextField, PasswordField: Jspdf.AcroFormPasswordField, Appearance: obj) : AcroForm = nativeOnly
+            static member Create (ChoiceField: (unit -> Jspdf.AcroFormChoiceField), ListBox: (unit -> Jspdf.AcroFormListBox), ComboBox: (unit -> Jspdf.AcroFormComboBox), EditBox: (unit -> Jspdf.AcroFormEditBox), Button: (unit -> Jspdf.AcroFormButton), PushButton: (unit -> Jspdf.AcroFormPushButton), RadioButton: (unit -> Jspdf.AcroFormRadioButton), CheckBox: (unit -> Jspdf.AcroFormCheckBox), TextField: (unit -> Jspdf.AcroFormTextField), PasswordField: (unit -> Jspdf.AcroFormPasswordField), Appearance: (unit -> unit)) : AcroForm = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1683,7 +1681,7 @@ jsPDF.API{{=$0}}""")>]
             abstract member getContext: ?``type``: string -> Jspdf.Context2d
             abstract member style: obj with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (pdf: Jspdf.jsPDF, width: float, height: float, getContext: Jspdf.Context2d, style: obj) : canvas = nativeOnly
+            static member Create (pdf: Jspdf.jsPDF, width: float, height: float, getContext: (string option -> Jspdf.Context2d), style: obj) : canvas = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1741,25 +1739,11 @@ jsPDF.API{{=$0}}""")>]
                 | pdfjsnewwindow
                 | dataurlnewwindow
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member filename: string option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?filename: string) : options_1 = nativeOnly
-
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_3`` =
                 | dataurl
                 | datauri
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_2 =
-                abstract member filename: string option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?filename: string) : options_2 = nativeOnly
 
         module save =
 
@@ -1781,6 +1765,18 @@ jsPDF.API{{=$0}}""")>]
                 | original
                 | Case1 of float
                 | Case2 of string
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: float) : zoom = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: float) : zoom = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: string) : zoom = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: string) : zoom = nativeOnly
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]

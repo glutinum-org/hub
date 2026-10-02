@@ -1467,6 +1467,12 @@ module Playwright =
                     /// </code>
                     /// </summary>
                     abstract member testIdAttribute: string with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.test__.Type.mount<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.test__.Type.mount<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.test__.Type.mount<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type = nativeOnly
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -1766,6 +1772,10 @@ module Playwright =
                     /// Learn more about [recording video](https://playwright.dev/docs/test-use-options#recording-options).
                     /// </summary>
                     abstract member video: Exports.test__.Type.video with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (playwright: obj, browser: PlaywrightCore.Browser, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: Exports.test__.Type.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: Exports.test__.Type.trace, video: Exports.test__.Type.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Type_1 = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (playwright: obj, browser: PlaywrightCore.Browser, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: Exports.test__.Type.launchOptions, reuseContext: bool, screenshot: Exports.test__.Type.screenshot.U2.Case2, trace: Exports.test__.Type.trace, video: Exports.test__.Type.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Type_1 = nativeOnly
 
                 module Type =
 
@@ -1874,12 +1884,36 @@ module Playwright =
                         | Case1 of Playwright.types_test.TraceMode
                         | Case2 of Exports.test__.Type.trace.Cases.Case2
 
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Exports.test__.Type.trace.Cases.Case2) : trace = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Exports.test__.Type.trace.Cases.Case2) : trace = nativeOnly
+
                     [<RequireQualifiedAccess>]
                     [<Erase(CaseRules.None)>]
                     type video =
                         | ``retry-with-video``
                         | Case1 of Playwright.types_test.VideoMode
                         | Case2 of Exports.test__.Type.video.Cases.Case2
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Exports.test__.Type.video.Cases.Case2) : video = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Exports.test__.Type.video.Cases.Case2) : video = nativeOnly
 
                     module mount =
 
@@ -3784,7 +3818,7 @@ module Playwright =
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member selectOption: values: Exports.test__.Type.mount.ReturnType.selectOption.values option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                            abstract member selectOption: values: Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case4 option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                             /// <summary>
                             /// Selects option or options in <c><select></c>.
                             ///
@@ -3878,7 +3912,7 @@ module Playwright =
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member selectOption: values: ResizeArray<Exports.test__.Type.mount.ReturnType.selectOption.values_1> option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                            abstract member selectOption: values: ResizeArray<Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case6> option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                             /// <summary>
                             /// This method waits for [actionability](https://playwright.dev/docs/actionability) checks, then focuses the element and selects all its
                             /// text content.
@@ -4064,7 +4098,7 @@ module Playwright =
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member setInputFiles: files: Exports.test__.Type.mount.ReturnType.setInputFiles.files * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                            abstract member setInputFiles: files: Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case3 * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                             /// <summary>
                             /// Upload file or multiple files into <c><input type=file></c>. For inputs with a <c>[webkitdirectory]</c> attribute, only a
                             /// single directory path is supported.
@@ -4111,7 +4145,7 @@ module Playwright =
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member setInputFiles: files: ResizeArray<Exports.test__.Type.mount.ReturnType.setInputFiles.files_1> * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                            abstract member setInputFiles: files: ResizeArray<Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case4> * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                             /// <summary>
                             /// Perform a tap gesture on the element matching the locator. For examples of emulating other gestures by manually
                             /// dispatching touch events, see the [emulating legacy touch events](https://playwright.dev/docs/touch-events) page.
@@ -4248,8 +4282,22 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             abstract member waitFor: ?options: Exports.test__.Type.mount.ReturnType.waitFor.options -> JS.Promise<unit>
                             abstract member update: ?props: Playwright.types_test.MountProps<'Story, 'Id> -> JS.Promise<unit>
                             abstract member unmount: unit -> JS.Promise<unit>
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (evaluate: Exports.test__.Type.mount.ReturnType.evaluate<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateHandle: Exports.test__.Type.mount.ReturnType.evaluateHandle<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateAll: Exports.test__.Type.mount.ReturnType.evaluateAll<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, waitForFunction: Exports.test__.Type.mount.ReturnType.waitForFunction<obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, elementHandle: (Exports.test__.Type.mount.ReturnType.elementHandle.options option -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>>), highlight: (Exports.test__.Type.mount.ReturnType.highlight.options option -> JS.Promise<PlaywrightCore.Disposable>), toString: (unit -> string), all: (unit -> JS.Promise<ResizeArray<PlaywrightCore.Locator>>), allInnerTexts: (unit -> JS.Promise<ResizeArray<string>>), allTextContents: (unit -> JS.Promise<ResizeArray<string>>), ``and``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), ariaSnapshot: (Exports.test__.Type.mount.ReturnType.ariaSnapshot.options option -> JS.Promise<string>), ariaSnapshotJSON: (Exports.test__.Type.mount.ReturnType.ariaSnapshotJSON.options option -> JS.Promise<PlaywrightCore.types_structs.Serializable>), blur: (Exports.test__.Type.mount.ReturnType.blur.options option -> JS.Promise<unit>), boundingBox: (Exports.test__.Type.mount.ReturnType.boundingBox.options option -> JS.Promise<Exports.test__.Type.mount.ReturnType.boundingBox option>), check: (Exports.test__.Type.mount.ReturnType.check.options option -> JS.Promise<unit>), clear: (Exports.test__.Type.mount.ReturnType.clear.options option -> JS.Promise<unit>), click: (Exports.test__.Type.mount.ReturnType.click.options option -> JS.Promise<unit>), contentFrame: (unit -> PlaywrightCore.FrameLocator), count: (unit -> JS.Promise<float>), dblclick: (Exports.test__.Type.mount.ReturnType.dblclick.options option -> JS.Promise<unit>), describe: (string -> PlaywrightCore.Locator), description: (unit -> string option), dispatchEvent: Exports.test__.Type.mount.ReturnType.dispatchEvent, dragTo: Exports.test__.Type.mount.ReturnType.dragTo, drop: Exports.test__.Type.mount.ReturnType.drop, elementHandles: (unit -> JS.Promise<ResizeArray<PlaywrightCore.ElementHandle>>), fill: Exports.test__.Type.mount.ReturnType.fill, filter: (Exports.test__.Type.mount.ReturnType.filter.options option -> PlaywrightCore.Locator), first: (unit -> PlaywrightCore.Locator), focus: (Exports.test__.Type.mount.ReturnType.focus.options option -> JS.Promise<unit>), frameLocator: (string -> PlaywrightCore.FrameLocator), getAttribute: Exports.test__.Type.mount.ReturnType.getAttribute, getByAltText: Exports.test__.Type.mount.ReturnType.getByAltText, getByLabel: Exports.test__.Type.mount.ReturnType.getByLabel, getByPlaceholder: Exports.test__.Type.mount.ReturnType.getByPlaceholder, getByRole: Exports.test__.Type.mount.ReturnType.getByRole, getByTestId: (U2<string, RegExp> -> PlaywrightCore.Locator), getByText: Exports.test__.Type.mount.ReturnType.getByText, getByTitle: Exports.test__.Type.mount.ReturnType.getByTitle, hideHighlight: (unit -> JS.Promise<unit>), hover: (Exports.test__.Type.mount.ReturnType.hover.options option -> JS.Promise<unit>), innerHTML: (Exports.test__.Type.mount.ReturnType.innerHTML.options option -> JS.Promise<string>), innerText: (Exports.test__.Type.mount.ReturnType.innerText.options option -> JS.Promise<string>), inputValue: (Exports.test__.Type.mount.ReturnType.inputValue.options option -> JS.Promise<string>), isChecked: (Exports.test__.Type.mount.ReturnType.isChecked.options option -> JS.Promise<bool>), isDisabled: (Exports.test__.Type.mount.ReturnType.isDisabled.options option -> JS.Promise<bool>), isEditable: (Exports.test__.Type.mount.ReturnType.isEditable.options option -> JS.Promise<bool>), isEnabled: (Exports.test__.Type.mount.ReturnType.isEnabled.options option -> JS.Promise<bool>), isHidden: (Exports.test__.Type.mount.ReturnType.isHidden.options option -> JS.Promise<bool>), isVisible: (Exports.test__.Type.mount.ReturnType.isVisible.options option -> JS.Promise<bool>), last: (unit -> PlaywrightCore.Locator), locator: Exports.test__.Type.mount.ReturnType.locator, normalize: (unit -> JS.Promise<PlaywrightCore.Locator>), nth: (float -> PlaywrightCore.Locator), ``or``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), page: (unit -> PlaywrightCore.Page), press: Exports.test__.Type.mount.ReturnType.press, pressSequentially: Exports.test__.Type.mount.ReturnType.pressSequentially, screenshot: (PlaywrightCore.LocatorScreenshotOptions option -> JS.Promise<obj>), scrollIntoViewIfNeeded: (Exports.test__.Type.mount.ReturnType.scrollIntoViewIfNeeded.options option -> JS.Promise<unit>), selectOption: Exports.test__.Type.mount.ReturnType.selectOption, selectText: (Exports.test__.Type.mount.ReturnType.selectText.options option -> JS.Promise<unit>), setChecked: Exports.test__.Type.mount.ReturnType.setChecked, setInputFiles: Exports.test__.Type.mount.ReturnType.setInputFiles, tap: (Exports.test__.Type.mount.ReturnType.tap.options option -> JS.Promise<unit>), textContent: (Exports.test__.Type.mount.ReturnType.textContent.options option -> JS.Promise<string option>), ``type``: Exports.test__.Type.mount.ReturnType.``type``, uncheck: (Exports.test__.Type.mount.ReturnType.uncheck.options option -> JS.Promise<unit>), visible: (unit -> PlaywrightCore.Locator), waitFor: (Exports.test__.Type.mount.ReturnType.waitFor.options option -> JS.Promise<unit>), update: (Playwright.types_test.MountProps<'Story, 'Id> option -> JS.Promise<unit>), unmount: (unit -> JS.Promise<unit>)) : ReturnType<'Story, 'Id> = nativeOnly
 
                         module ReturnType =
+
+                            type evaluate<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: Exports.test__.Type.mount.ReturnType.evaluate.options -> JS.Promise<'R>
+
+                            type evaluateHandle<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: Exports.test__.Type.mount.ReturnType.evaluateHandle.options -> JS.Promise<obj>
+
+                            type evaluateAll<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<ResizeArray<'E>, 'Arg, 'R> * ?arg: 'Arg -> JS.Promise<'R>
+
+                            type waitForFunction<'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, obj> * ?arg: 'Arg * ?options: Exports.test__.Type.mount.ReturnType.waitForFunction.options -> JS.Promise<unit>
 
                             [<AllowNullLiteral>]
                             [<Interface>]
@@ -4272,6 +4320,60 @@ to press keys one by one if there is special keyboard handling on the page - in 
                                 abstract member height: float with get, set
                                 [<ParamObject; Emit("$0")>]
                                 static member Create (x: float, y: float, width: float, height: float) : boundingBox = nativeOnly
+
+                            type dispatchEvent =
+                                delegate of ``type``: string * ?eventInit: PlaywrightCore.types_structs.EvaluationArgument * ?options: Exports.test__.Type.mount.ReturnType.dispatchEvent.options -> JS.Promise<unit>
+
+                            type dragTo =
+                                delegate of target: PlaywrightCore.Locator * ?options: Exports.test__.Type.mount.ReturnType.dragTo.options -> JS.Promise<unit>
+
+                            type drop =
+                                delegate of payload: Exports.test__.Type.mount.ReturnType.drop.payload * ?options: Exports.test__.Type.mount.ReturnType.drop.options -> JS.Promise<unit>
+
+                            type fill =
+                                delegate of value: string * ?options: Exports.test__.Type.mount.ReturnType.fill.options -> JS.Promise<unit>
+
+                            type getAttribute =
+                                delegate of name: string * ?options: Exports.test__.Type.mount.ReturnType.getAttribute.options -> JS.Promise<string option>
+
+                            type getByAltText =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByAltText.options -> PlaywrightCore.Locator
+
+                            type getByLabel =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByLabel.options -> PlaywrightCore.Locator
+
+                            type getByPlaceholder =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByPlaceholder.options -> PlaywrightCore.Locator
+
+                            type getByRole =
+                                delegate of role: obj * ?options: Exports.test__.Type.mount.ReturnType.getByRole.options -> PlaywrightCore.Locator
+
+                            type getByText =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByText.options -> PlaywrightCore.Locator
+
+                            type getByTitle =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByTitle.options -> PlaywrightCore.Locator
+
+                            type locator =
+                                delegate of selectorOrLocator: U2<string, PlaywrightCore.Locator> * ?options: Exports.test__.Type.mount.ReturnType.locator.options -> PlaywrightCore.Locator
+
+                            type press =
+                                delegate of key: string * ?options: Exports.test__.Type.mount.ReturnType.press.options -> JS.Promise<unit>
+
+                            type pressSequentially =
+                                delegate of text: string * ?options: Exports.test__.Type.mount.ReturnType.pressSequentially.options -> JS.Promise<unit>
+
+                            type selectOption =
+                                delegate of values: U6<string, PlaywrightCore.ElementHandle, ResizeArray<string>, Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case4, ResizeArray<PlaywrightCore.ElementHandle>, ResizeArray<Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case6>> option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+
+                            type setChecked =
+                                delegate of ``checked``: bool * ?options: Exports.test__.Type.mount.ReturnType.setChecked.options -> JS.Promise<unit>
+
+                            type setInputFiles =
+                                delegate of files: U4<string, ResizeArray<string>, Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case3, ResizeArray<Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case4>> * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+
+                            type ``type`` =
+                                delegate of text: string * ?options: Exports.test__.Type.mount.ReturnType.``type``.options -> JS.Promise<unit>
 
                             module evaluate =
 
@@ -4300,11 +4402,6 @@ to press keys one by one if there is special keyboard handling on the page - in 
 
                                 type pageFunction<'E, 'Arg, 'R> =
                                     delegate of on: 'E * arg2: obj -> U2<'R, JS.Promise<'R>>
-
-                            module evaluateAll =
-
-                                type pageFunction<'E, 'Arg, 'R> =
-                                    delegate of on: ResizeArray<'E> * arg2: obj -> U2<'R, JS.Promise<'R>>
 
                             module waitForFunction =
 
@@ -5753,41 +5850,45 @@ the element to become visible and returns immediately.""")>]
                                     [<ParamObject; Emit("$0")>]
                                     static member Create (?force: bool, ?noWaitAfter: bool, ?signal: Glutinum.Web.AbortSignal, ?timeout: float) : options = nativeOnly
 
-                                [<AllowNullLiteral>]
-                                [<Interface>]
-                                type values =
-                                    /// <summary>
-                                    /// Matches by <c>option.value</c>. Optional.
-                                    /// </summary>
-                                    abstract member value: string option with get, set
-                                    /// <summary>
-                                    /// Matches by <c>option.label</c>. Optional.
-                                    /// </summary>
-                                    abstract member label: string option with get, set
-                                    /// <summary>
-                                    /// Matches by the index. Optional.
-                                    /// </summary>
-                                    abstract member index: float option with get, set
-                                    [<ParamObject; Emit("$0")>]
-                                    static member Create (?value: string, ?label: string, ?index: float) : values = nativeOnly
+                                module values =
 
-                                [<AllowNullLiteral>]
-                                [<Interface>]
-                                type values_1 =
-                                    /// <summary>
-                                    /// Matches by <c>option.value</c>. Optional.
-                                    /// </summary>
-                                    abstract member value: string option with get, set
-                                    /// <summary>
-                                    /// Matches by <c>option.label</c>. Optional.
-                                    /// </summary>
-                                    abstract member label: string option with get, set
-                                    /// <summary>
-                                    /// Matches by the index. Optional.
-                                    /// </summary>
-                                    abstract member index: float option with get, set
-                                    [<ParamObject; Emit("$0")>]
-                                    static member Create (?value: string, ?label: string, ?index: float) : values_1 = nativeOnly
+                                    module U6 =
+
+                                        [<AllowNullLiteral>]
+                                        [<Interface>]
+                                        type Case4 =
+                                            /// <summary>
+                                            /// Matches by <c>option.value</c>. Optional.
+                                            /// </summary>
+                                            abstract member value: string option with get, set
+                                            /// <summary>
+                                            /// Matches by <c>option.label</c>. Optional.
+                                            /// </summary>
+                                            abstract member label: string option with get, set
+                                            /// <summary>
+                                            /// Matches by the index. Optional.
+                                            /// </summary>
+                                            abstract member index: float option with get, set
+                                            [<ParamObject; Emit("$0")>]
+                                            static member Create (?value: string, ?label: string, ?index: float) : Case4 = nativeOnly
+
+                                        [<AllowNullLiteral>]
+                                        [<Interface>]
+                                        type Case6 =
+                                            /// <summary>
+                                            /// Matches by <c>option.value</c>. Optional.
+                                            /// </summary>
+                                            abstract member value: string option with get, set
+                                            /// <summary>
+                                            /// Matches by <c>option.label</c>. Optional.
+                                            /// </summary>
+                                            abstract member label: string option with get, set
+                                            /// <summary>
+                                            /// Matches by the index. Optional.
+                                            /// </summary>
+                                            abstract member index: float option with get, set
+                                            [<ParamObject; Emit("$0")>]
+                                            static member Create (?value: string, ?label: string, ?index: float) : Case6 = nativeOnly
 
                             module selectText =
 
@@ -5915,41 +6016,45 @@ the element to become visible and returns immediately.""")>]
                                     [<ParamObject; Emit("$0")>]
                                     static member Create (?noWaitAfter: bool, ?signal: Glutinum.Web.AbortSignal, ?timeout: float) : options = nativeOnly
 
-                                [<AllowNullLiteral>]
-                                [<Interface>]
-                                type files =
-                                    /// <summary>
-                                    /// File name
-                                    /// </summary>
-                                    abstract member name: string with get, set
-                                    /// <summary>
-                                    /// File type
-                                    /// </summary>
-                                    abstract member mimeType: string with get, set
-                                    /// <summary>
-                                    /// File content
-                                    /// </summary>
-                                    abstract member buffer: obj with get, set
-                                    [<ParamObject; Emit("$0")>]
-                                    static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
+                                module files =
 
-                                [<AllowNullLiteral>]
-                                [<Interface>]
-                                type files_1 =
-                                    /// <summary>
-                                    /// File name
-                                    /// </summary>
-                                    abstract member name: string with get, set
-                                    /// <summary>
-                                    /// File type
-                                    /// </summary>
-                                    abstract member mimeType: string with get, set
-                                    /// <summary>
-                                    /// File content
-                                    /// </summary>
-                                    abstract member buffer: obj with get, set
-                                    [<ParamObject; Emit("$0")>]
-                                    static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
+                                    module U4 =
+
+                                        [<AllowNullLiteral>]
+                                        [<Interface>]
+                                        type Case3 =
+                                            /// <summary>
+                                            /// File name
+                                            /// </summary>
+                                            abstract member name: string with get, set
+                                            /// <summary>
+                                            /// File type
+                                            /// </summary>
+                                            abstract member mimeType: string with get, set
+                                            /// <summary>
+                                            /// File content
+                                            /// </summary>
+                                            abstract member buffer: obj with get, set
+                                            [<ParamObject; Emit("$0")>]
+                                            static member Create (name: string, mimeType: string, buffer: obj) : Case3 = nativeOnly
+
+                                        [<AllowNullLiteral>]
+                                        [<Interface>]
+                                        type Case4 =
+                                            /// <summary>
+                                            /// File name
+                                            /// </summary>
+                                            abstract member name: string with get, set
+                                            /// <summary>
+                                            /// File type
+                                            /// </summary>
+                                            abstract member mimeType: string with get, set
+                                            /// <summary>
+                                            /// File content
+                                            /// </summary>
+                                            abstract member buffer: obj with get, set
+                                            [<ParamObject; Emit("$0")>]
+                                            static member Create (name: string, mimeType: string, buffer: obj) : Case4 = nativeOnly
 
                             module tap =
 
@@ -6206,6 +6311,11 @@ the element to become visible and returns immediately.""")>]
                                         | visible
                                         | hidden
 
+                            module evaluateAll =
+
+                                type pageFunction<'E, 'Arg, 'R> =
+                                    delegate of on: ResizeArray<'E> * arg2: obj -> U2<'R, JS.Promise<'R>>
+
                     module launchOptions =
 
                         [<AllowNullLiteral>]
@@ -6261,6 +6371,8 @@ the element to become visible and returns immediately.""")>]
                                 /// Defaults to <c>false</c>.
                                 /// </summary>
                                 abstract member omitBackground: bool option with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
                     module trace =
 
@@ -7105,6 +7217,12 @@ the element to become visible and returns immediately.""")>]
                     /// </code>
                     /// </summary>
                     abstract member testIdAttribute: string with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.default__.Type.mount<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.default__.Type.mount<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.default__.Type.mount<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type = nativeOnly
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -7404,6 +7522,10 @@ the element to become visible and returns immediately.""")>]
                     /// Learn more about [recording video](https://playwright.dev/docs/test-use-options#recording-options).
                     /// </summary>
                     abstract member video: Exports.default__.Type.video with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (playwright: obj, browser: PlaywrightCore.Browser, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: Exports.default__.Type.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: Exports.default__.Type.trace, video: Exports.default__.Type.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Type_1 = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (playwright: obj, browser: PlaywrightCore.Browser, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: Exports.default__.Type.launchOptions, reuseContext: bool, screenshot: Exports.default__.Type.screenshot.U2.Case2, trace: Exports.default__.Type.trace, video: Exports.default__.Type.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Type_1 = nativeOnly
 
                 module Type =
 
@@ -7512,12 +7634,36 @@ the element to become visible and returns immediately.""")>]
                         | Case1 of Playwright.types_test.TraceMode
                         | Case2 of Exports.test__.Type.trace.Cases.Case2
 
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Exports.test__.Type.trace.Cases.Case2) : trace = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Exports.test__.Type.trace.Cases.Case2) : trace = nativeOnly
+
                     [<RequireQualifiedAccess>]
                     [<Erase(CaseRules.None)>]
                     type video =
                         | ``retry-with-video``
                         | Case1 of Playwright.types_test.VideoMode
                         | Case2 of Exports.test__.Type.video.Cases.Case2
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Exports.test__.Type.video.Cases.Case2) : video = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Exports.test__.Type.video.Cases.Case2) : video = nativeOnly
 
                     module mount =
 
@@ -9422,7 +9568,7 @@ the element to become visible and returns immediately.""")>]
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member selectOption: values: Exports.test__.Type.mount.ReturnType.selectOption.values option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                            abstract member selectOption: values: Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case4 option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                             /// <summary>
                             /// Selects option or options in <c><select></c>.
                             ///
@@ -9516,7 +9662,7 @@ the element to become visible and returns immediately.""")>]
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member selectOption: values: ResizeArray<Exports.test__.Type.mount.ReturnType.selectOption.values_1> option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                            abstract member selectOption: values: ResizeArray<Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case6> option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                             /// <summary>
                             /// This method waits for [actionability](https://playwright.dev/docs/actionability) checks, then focuses the element and selects all its
                             /// text content.
@@ -9702,7 +9848,7 @@ the element to become visible and returns immediately.""")>]
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member setInputFiles: files: Exports.test__.Type.mount.ReturnType.setInputFiles.files * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                            abstract member setInputFiles: files: Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case3 * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                             /// <summary>
                             /// Upload file or multiple files into <c><input type=file></c>. For inputs with a <c>[webkitdirectory]</c> attribute, only a
                             /// single directory path is supported.
@@ -9749,7 +9895,7 @@ the element to become visible and returns immediately.""")>]
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member setInputFiles: files: ResizeArray<Exports.test__.Type.mount.ReturnType.setInputFiles.files_1> * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                            abstract member setInputFiles: files: ResizeArray<Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case4> * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                             /// <summary>
                             /// Perform a tap gesture on the element matching the locator. For examples of emulating other gestures by manually
                             /// dispatching touch events, see the [emulating legacy touch events](https://playwright.dev/docs/touch-events) page.
@@ -9886,8 +10032,76 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             abstract member waitFor: ?options: Exports.test__.Type.mount.ReturnType.waitFor.options -> JS.Promise<unit>
                             abstract member update: ?props: Playwright.types_test.MountProps<'Story, 'Id> -> JS.Promise<unit>
                             abstract member unmount: unit -> JS.Promise<unit>
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (evaluate: Exports.default__.Type.mount.ReturnType.evaluate<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateHandle: Exports.default__.Type.mount.ReturnType.evaluateHandle<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateAll: Exports.default__.Type.mount.ReturnType.evaluateAll<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, waitForFunction: Exports.default__.Type.mount.ReturnType.waitForFunction<obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, elementHandle: (Exports.test__.Type.mount.ReturnType.elementHandle.options option -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>>), highlight: (Exports.test__.Type.mount.ReturnType.highlight.options option -> JS.Promise<PlaywrightCore.Disposable>), toString: (unit -> string), all: (unit -> JS.Promise<ResizeArray<PlaywrightCore.Locator>>), allInnerTexts: (unit -> JS.Promise<ResizeArray<string>>), allTextContents: (unit -> JS.Promise<ResizeArray<string>>), ``and``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), ariaSnapshot: (Exports.test__.Type.mount.ReturnType.ariaSnapshot.options option -> JS.Promise<string>), ariaSnapshotJSON: (Exports.test__.Type.mount.ReturnType.ariaSnapshotJSON.options option -> JS.Promise<PlaywrightCore.types_structs.Serializable>), blur: (Exports.test__.Type.mount.ReturnType.blur.options option -> JS.Promise<unit>), boundingBox: (Exports.test__.Type.mount.ReturnType.boundingBox.options option -> JS.Promise<Exports.test__.Type.mount.ReturnType.boundingBox option>), check: (Exports.test__.Type.mount.ReturnType.check.options option -> JS.Promise<unit>), clear: (Exports.test__.Type.mount.ReturnType.clear.options option -> JS.Promise<unit>), click: (Exports.test__.Type.mount.ReturnType.click.options option -> JS.Promise<unit>), contentFrame: (unit -> PlaywrightCore.FrameLocator), count: (unit -> JS.Promise<float>), dblclick: (Exports.test__.Type.mount.ReturnType.dblclick.options option -> JS.Promise<unit>), describe: (string -> PlaywrightCore.Locator), description: (unit -> string option), dispatchEvent: Exports.default__.Type.mount.ReturnType.dispatchEvent, dragTo: Exports.default__.Type.mount.ReturnType.dragTo, drop: Exports.default__.Type.mount.ReturnType.drop, elementHandles: (unit -> JS.Promise<ResizeArray<PlaywrightCore.ElementHandle>>), fill: Exports.default__.Type.mount.ReturnType.fill, filter: (Exports.test__.Type.mount.ReturnType.filter.options option -> PlaywrightCore.Locator), first: (unit -> PlaywrightCore.Locator), focus: (Exports.test__.Type.mount.ReturnType.focus.options option -> JS.Promise<unit>), frameLocator: (string -> PlaywrightCore.FrameLocator), getAttribute: Exports.default__.Type.mount.ReturnType.getAttribute, getByAltText: Exports.default__.Type.mount.ReturnType.getByAltText, getByLabel: Exports.default__.Type.mount.ReturnType.getByLabel, getByPlaceholder: Exports.default__.Type.mount.ReturnType.getByPlaceholder, getByRole: Exports.default__.Type.mount.ReturnType.getByRole, getByTestId: (U2<string, RegExp> -> PlaywrightCore.Locator), getByText: Exports.default__.Type.mount.ReturnType.getByText, getByTitle: Exports.default__.Type.mount.ReturnType.getByTitle, hideHighlight: (unit -> JS.Promise<unit>), hover: (Exports.test__.Type.mount.ReturnType.hover.options option -> JS.Promise<unit>), innerHTML: (Exports.test__.Type.mount.ReturnType.innerHTML.options option -> JS.Promise<string>), innerText: (Exports.test__.Type.mount.ReturnType.innerText.options option -> JS.Promise<string>), inputValue: (Exports.test__.Type.mount.ReturnType.inputValue.options option -> JS.Promise<string>), isChecked: (Exports.test__.Type.mount.ReturnType.isChecked.options option -> JS.Promise<bool>), isDisabled: (Exports.test__.Type.mount.ReturnType.isDisabled.options option -> JS.Promise<bool>), isEditable: (Exports.test__.Type.mount.ReturnType.isEditable.options option -> JS.Promise<bool>), isEnabled: (Exports.test__.Type.mount.ReturnType.isEnabled.options option -> JS.Promise<bool>), isHidden: (Exports.test__.Type.mount.ReturnType.isHidden.options option -> JS.Promise<bool>), isVisible: (Exports.test__.Type.mount.ReturnType.isVisible.options option -> JS.Promise<bool>), last: (unit -> PlaywrightCore.Locator), locator: Exports.default__.Type.mount.ReturnType.locator, normalize: (unit -> JS.Promise<PlaywrightCore.Locator>), nth: (float -> PlaywrightCore.Locator), ``or``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), page: (unit -> PlaywrightCore.Page), press: Exports.default__.Type.mount.ReturnType.press, pressSequentially: Exports.default__.Type.mount.ReturnType.pressSequentially, screenshot: (PlaywrightCore.LocatorScreenshotOptions option -> JS.Promise<obj>), scrollIntoViewIfNeeded: (Exports.test__.Type.mount.ReturnType.scrollIntoViewIfNeeded.options option -> JS.Promise<unit>), selectOption: Exports.default__.Type.mount.ReturnType.selectOption, selectText: (Exports.test__.Type.mount.ReturnType.selectText.options option -> JS.Promise<unit>), setChecked: Exports.default__.Type.mount.ReturnType.setChecked, setInputFiles: Exports.default__.Type.mount.ReturnType.setInputFiles, tap: (Exports.test__.Type.mount.ReturnType.tap.options option -> JS.Promise<unit>), textContent: (Exports.test__.Type.mount.ReturnType.textContent.options option -> JS.Promise<string option>), ``type``: Exports.default__.Type.mount.ReturnType.``type``, uncheck: (Exports.test__.Type.mount.ReturnType.uncheck.options option -> JS.Promise<unit>), visible: (unit -> PlaywrightCore.Locator), waitFor: (Exports.test__.Type.mount.ReturnType.waitFor.options option -> JS.Promise<unit>), update: (Playwright.types_test.MountProps<'Story, 'Id> option -> JS.Promise<unit>), unmount: (unit -> JS.Promise<unit>)) : ReturnType<'Story, 'Id> = nativeOnly
 
                         module ReturnType =
+
+                            type evaluate<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: Exports.test__.Type.mount.ReturnType.evaluate.options -> JS.Promise<'R>
+
+                            type evaluateHandle<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: Exports.test__.Type.mount.ReturnType.evaluateHandle.options -> JS.Promise<obj>
+
+                            type evaluateAll<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<ResizeArray<'E>, 'Arg, 'R> * ?arg: 'Arg -> JS.Promise<'R>
+
+                            type waitForFunction<'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, obj> * ?arg: 'Arg * ?options: Exports.test__.Type.mount.ReturnType.waitForFunction.options -> JS.Promise<unit>
+
+                            type dispatchEvent =
+                                delegate of ``type``: string * ?eventInit: PlaywrightCore.types_structs.EvaluationArgument * ?options: Exports.test__.Type.mount.ReturnType.dispatchEvent.options -> JS.Promise<unit>
+
+                            type dragTo =
+                                delegate of target: PlaywrightCore.Locator * ?options: Exports.test__.Type.mount.ReturnType.dragTo.options -> JS.Promise<unit>
+
+                            type drop =
+                                delegate of payload: Exports.test__.Type.mount.ReturnType.drop.payload * ?options: Exports.test__.Type.mount.ReturnType.drop.options -> JS.Promise<unit>
+
+                            type fill =
+                                delegate of value: string * ?options: Exports.test__.Type.mount.ReturnType.fill.options -> JS.Promise<unit>
+
+                            type getAttribute =
+                                delegate of name: string * ?options: Exports.test__.Type.mount.ReturnType.getAttribute.options -> JS.Promise<string option>
+
+                            type getByAltText =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByAltText.options -> PlaywrightCore.Locator
+
+                            type getByLabel =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByLabel.options -> PlaywrightCore.Locator
+
+                            type getByPlaceholder =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByPlaceholder.options -> PlaywrightCore.Locator
+
+                            type getByRole =
+                                delegate of role: obj * ?options: Exports.test__.Type.mount.ReturnType.getByRole.options -> PlaywrightCore.Locator
+
+                            type getByText =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByText.options -> PlaywrightCore.Locator
+
+                            type getByTitle =
+                                delegate of text: U2<string, RegExp> * ?options: Exports.test__.Type.mount.ReturnType.getByTitle.options -> PlaywrightCore.Locator
+
+                            type locator =
+                                delegate of selectorOrLocator: U2<string, PlaywrightCore.Locator> * ?options: Exports.test__.Type.mount.ReturnType.locator.options -> PlaywrightCore.Locator
+
+                            type press =
+                                delegate of key: string * ?options: Exports.test__.Type.mount.ReturnType.press.options -> JS.Promise<unit>
+
+                            type pressSequentially =
+                                delegate of text: string * ?options: Exports.test__.Type.mount.ReturnType.pressSequentially.options -> JS.Promise<unit>
+
+                            type selectOption =
+                                delegate of values: U6<string, PlaywrightCore.ElementHandle, ResizeArray<string>, Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case4, ResizeArray<PlaywrightCore.ElementHandle>, ResizeArray<Exports.test__.Type.mount.ReturnType.selectOption.values.U6.Case6>> option * ?options: Exports.test__.Type.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+
+                            type setChecked =
+                                delegate of ``checked``: bool * ?options: Exports.test__.Type.mount.ReturnType.setChecked.options -> JS.Promise<unit>
+
+                            type setInputFiles =
+                                delegate of files: U4<string, ResizeArray<string>, Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case3, ResizeArray<Exports.test__.Type.mount.ReturnType.setInputFiles.files.U4.Case4>> * ?options: Exports.test__.Type.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+
+                            type ``type`` =
+                                delegate of text: string * ?options: Exports.test__.Type.mount.ReturnType.``type``.options -> JS.Promise<unit>
 
                             module evaluate =
 
@@ -9927,6 +10141,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                                 /// Defaults to <c>false</c>.
                                 /// </summary>
                                 abstract member omitBackground: bool option with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
     module types_test =
 
@@ -20387,6 +20603,12 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// </code>
                 /// </summary>
                 abstract member testIdAttribute: string with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : ``use`` = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : ``use`` = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : ``use`` = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -20667,6 +20889,10 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// Learn more about [recording video](https://playwright.dev/docs/test-use-options#recording-options).
                 /// </summary>
                 abstract member video: FullProject.``use``.video with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: FullProject.``use``.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: FullProject.``use``.trace, video: FullProject.``use``.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ``use_1`` = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: FullProject.``use``.launchOptions, reuseContext: bool, screenshot: FullProject.``use``.screenshot.U2.Case2, trace: FullProject.``use``.trace, video: FullProject.``use``.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ``use_1`` = nativeOnly
 
             module ``use`` =
 
@@ -20772,12 +20998,36 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     | Case1 of Playwright.types_test.TraceMode
                     | Case2 of FullProject.``use``.trace.Cases.Case2
 
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
                 type video =
                     | ``retry-with-video``
                     | Case1 of Playwright.types_test.VideoMode
                     | Case2 of FullProject.``use``.video.Cases.Case2
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
 
                 module launchOptions =
 
@@ -20834,6 +21084,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// Defaults to <c>false</c>.
                             /// </summary>
                             abstract member omitBackground: bool option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
                 module trace =
 
@@ -20958,6 +21210,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 [<Interface>]
                 type Case2 =
                     abstract member zz_IGNORE_ME: obj option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?zz_IGNORE_ME: obj) : Case2 = nativeOnly
 
         module TestConfig =
 
@@ -22521,12 +22775,36 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 | Case1 of Playwright.types_test.TraceMode
                 | Case2 of FullProject.``use``.trace.Cases.Case2
 
+                [<Emit("$0")>]
+                static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
             [<RequireQualifiedAccess>]
             [<Erase(CaseRules.None)>]
             type video =
                 | ``retry-with-video``
                 | Case1 of Playwright.types_test.VideoMode
                 | Case2 of FullProject.``use``.video.Cases.Case2
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
 
             module screenshot =
 
@@ -22546,6 +22824,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                         /// Defaults to <c>false</c>.
                         /// </summary>
                         abstract member omitBackground: bool option with get, set
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
         module PlaywrightTestArgs =
 
@@ -24455,7 +24735,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     /// <param name="options">
                     ///
                     /// </param>
-                    abstract member selectOption: values: PlaywrightTestArgs.mount.ReturnType.selectOption.values option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                    abstract member selectOption: values: PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case4 option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                     /// <summary>
                     /// Selects option or options in <c><select></c>.
                     ///
@@ -24549,7 +24829,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     /// <param name="options">
                     ///
                     /// </param>
-                    abstract member selectOption: values: ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values_1> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                    abstract member selectOption: values: ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case6> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                     /// <summary>
                     /// This method waits for [actionability](https://playwright.dev/docs/actionability) checks, then focuses the element and selects all its
                     /// text content.
@@ -24735,7 +25015,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     /// <param name="options">
                     ///
                     /// </param>
-                    abstract member setInputFiles: files: PlaywrightTestArgs.mount.ReturnType.setInputFiles.files * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                    abstract member setInputFiles: files: PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case3 * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                     /// <summary>
                     /// Upload file or multiple files into <c><input type=file></c>. For inputs with a <c>[webkitdirectory]</c> attribute, only a
                     /// single directory path is supported.
@@ -24782,7 +25062,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     /// <param name="options">
                     ///
                     /// </param>
-                    abstract member setInputFiles: files: ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files_1> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                    abstract member setInputFiles: files: ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case4> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                     /// <summary>
                     /// Perform a tap gesture on the element matching the locator. For examples of emulating other gestures by manually
                     /// dispatching touch events, see the [emulating legacy touch events](https://playwright.dev/docs/touch-events) page.
@@ -24919,8 +25199,22 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     abstract member waitFor: ?options: PlaywrightTestArgs.mount.ReturnType.waitFor.options -> JS.Promise<unit>
                     abstract member update: ?props: Playwright.types_test.MountProps<'Story, 'Id> -> JS.Promise<unit>
                     abstract member unmount: unit -> JS.Promise<unit>
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (evaluate: PlaywrightTestArgs.mount.ReturnType.evaluate<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateHandle: PlaywrightTestArgs.mount.ReturnType.evaluateHandle<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateAll: PlaywrightTestArgs.mount.ReturnType.evaluateAll<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, waitForFunction: PlaywrightTestArgs.mount.ReturnType.waitForFunction<obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, elementHandle: (PlaywrightTestArgs.mount.ReturnType.elementHandle.options option -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>>), highlight: (PlaywrightTestArgs.mount.ReturnType.highlight.options option -> JS.Promise<PlaywrightCore.Disposable>), toString: (unit -> string), all: (unit -> JS.Promise<ResizeArray<PlaywrightCore.Locator>>), allInnerTexts: (unit -> JS.Promise<ResizeArray<string>>), allTextContents: (unit -> JS.Promise<ResizeArray<string>>), ``and``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), ariaSnapshot: (PlaywrightTestArgs.mount.ReturnType.ariaSnapshot.options option -> JS.Promise<string>), ariaSnapshotJSON: (PlaywrightTestArgs.mount.ReturnType.ariaSnapshotJSON.options option -> JS.Promise<PlaywrightCore.types_structs.Serializable>), blur: (PlaywrightTestArgs.mount.ReturnType.blur.options option -> JS.Promise<unit>), boundingBox: (PlaywrightTestArgs.mount.ReturnType.boundingBox.options option -> JS.Promise<PlaywrightTestArgs.mount.ReturnType.boundingBox option>), check: (PlaywrightTestArgs.mount.ReturnType.check.options option -> JS.Promise<unit>), clear: (PlaywrightTestArgs.mount.ReturnType.clear.options option -> JS.Promise<unit>), click: (PlaywrightTestArgs.mount.ReturnType.click.options option -> JS.Promise<unit>), contentFrame: (unit -> PlaywrightCore.FrameLocator), count: (unit -> JS.Promise<float>), dblclick: (PlaywrightTestArgs.mount.ReturnType.dblclick.options option -> JS.Promise<unit>), describe: (string -> PlaywrightCore.Locator), description: (unit -> string option), dispatchEvent: PlaywrightTestArgs.mount.ReturnType.dispatchEvent, dragTo: PlaywrightTestArgs.mount.ReturnType.dragTo, drop: PlaywrightTestArgs.mount.ReturnType.drop, elementHandles: (unit -> JS.Promise<ResizeArray<PlaywrightCore.ElementHandle>>), fill: PlaywrightTestArgs.mount.ReturnType.fill, filter: (PlaywrightTestArgs.mount.ReturnType.filter.options option -> PlaywrightCore.Locator), first: (unit -> PlaywrightCore.Locator), focus: (PlaywrightTestArgs.mount.ReturnType.focus.options option -> JS.Promise<unit>), frameLocator: (string -> PlaywrightCore.FrameLocator), getAttribute: PlaywrightTestArgs.mount.ReturnType.getAttribute, getByAltText: PlaywrightTestArgs.mount.ReturnType.getByAltText, getByLabel: PlaywrightTestArgs.mount.ReturnType.getByLabel, getByPlaceholder: PlaywrightTestArgs.mount.ReturnType.getByPlaceholder, getByRole: PlaywrightTestArgs.mount.ReturnType.getByRole, getByTestId: (U2<string, RegExp> -> PlaywrightCore.Locator), getByText: PlaywrightTestArgs.mount.ReturnType.getByText, getByTitle: PlaywrightTestArgs.mount.ReturnType.getByTitle, hideHighlight: (unit -> JS.Promise<unit>), hover: (PlaywrightTestArgs.mount.ReturnType.hover.options option -> JS.Promise<unit>), innerHTML: (PlaywrightTestArgs.mount.ReturnType.innerHTML.options option -> JS.Promise<string>), innerText: (PlaywrightTestArgs.mount.ReturnType.innerText.options option -> JS.Promise<string>), inputValue: (PlaywrightTestArgs.mount.ReturnType.inputValue.options option -> JS.Promise<string>), isChecked: (PlaywrightTestArgs.mount.ReturnType.isChecked.options option -> JS.Promise<bool>), isDisabled: (PlaywrightTestArgs.mount.ReturnType.isDisabled.options option -> JS.Promise<bool>), isEditable: (PlaywrightTestArgs.mount.ReturnType.isEditable.options option -> JS.Promise<bool>), isEnabled: (PlaywrightTestArgs.mount.ReturnType.isEnabled.options option -> JS.Promise<bool>), isHidden: (PlaywrightTestArgs.mount.ReturnType.isHidden.options option -> JS.Promise<bool>), isVisible: (PlaywrightTestArgs.mount.ReturnType.isVisible.options option -> JS.Promise<bool>), last: (unit -> PlaywrightCore.Locator), locator: PlaywrightTestArgs.mount.ReturnType.locator, normalize: (unit -> JS.Promise<PlaywrightCore.Locator>), nth: (float -> PlaywrightCore.Locator), ``or``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), page: (unit -> PlaywrightCore.Page), press: PlaywrightTestArgs.mount.ReturnType.press, pressSequentially: PlaywrightTestArgs.mount.ReturnType.pressSequentially, screenshot: (PlaywrightCore.LocatorScreenshotOptions option -> JS.Promise<obj>), scrollIntoViewIfNeeded: (PlaywrightTestArgs.mount.ReturnType.scrollIntoViewIfNeeded.options option -> JS.Promise<unit>), selectOption: PlaywrightTestArgs.mount.ReturnType.selectOption, selectText: (PlaywrightTestArgs.mount.ReturnType.selectText.options option -> JS.Promise<unit>), setChecked: PlaywrightTestArgs.mount.ReturnType.setChecked, setInputFiles: PlaywrightTestArgs.mount.ReturnType.setInputFiles, tap: (PlaywrightTestArgs.mount.ReturnType.tap.options option -> JS.Promise<unit>), textContent: (PlaywrightTestArgs.mount.ReturnType.textContent.options option -> JS.Promise<string option>), ``type``: PlaywrightTestArgs.mount.ReturnType.``type``, uncheck: (PlaywrightTestArgs.mount.ReturnType.uncheck.options option -> JS.Promise<unit>), visible: (unit -> PlaywrightCore.Locator), waitFor: (PlaywrightTestArgs.mount.ReturnType.waitFor.options option -> JS.Promise<unit>), update: (Playwright.types_test.MountProps<'Story, 'Id> option -> JS.Promise<unit>), unmount: (unit -> JS.Promise<unit>)) : ReturnType<'Story, 'Id> = nativeOnly
 
                 module ReturnType =
+
+                    type evaluate<'R, 'Arg, 'E> =
+                        delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.evaluate.options -> JS.Promise<'R>
+
+                    type evaluateHandle<'R, 'Arg, 'E> =
+                        delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.evaluateHandle.options -> JS.Promise<obj>
+
+                    type evaluateAll<'R, 'Arg, 'E> =
+                        delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<ResizeArray<'E>, 'Arg, 'R> * ?arg: 'Arg -> JS.Promise<'R>
+
+                    type waitForFunction<'Arg, 'E> =
+                        delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, obj> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.waitForFunction.options -> JS.Promise<unit>
 
                     [<AllowNullLiteral>]
                     [<Interface>]
@@ -24943,6 +25237,60 @@ to press keys one by one if there is special keyboard handling on the page - in 
                         abstract member height: float with get, set
                         [<ParamObject; Emit("$0")>]
                         static member Create (x: float, y: float, width: float, height: float) : boundingBox = nativeOnly
+
+                    type dispatchEvent =
+                        delegate of ``type``: string * ?eventInit: PlaywrightCore.types_structs.EvaluationArgument * ?options: PlaywrightTestArgs.mount.ReturnType.dispatchEvent.options -> JS.Promise<unit>
+
+                    type dragTo =
+                        delegate of target: PlaywrightCore.Locator * ?options: PlaywrightTestArgs.mount.ReturnType.dragTo.options -> JS.Promise<unit>
+
+                    type drop =
+                        delegate of payload: PlaywrightTestArgs.mount.ReturnType.drop.payload * ?options: PlaywrightTestArgs.mount.ReturnType.drop.options -> JS.Promise<unit>
+
+                    type fill =
+                        delegate of value: string * ?options: PlaywrightTestArgs.mount.ReturnType.fill.options -> JS.Promise<unit>
+
+                    type getAttribute =
+                        delegate of name: string * ?options: PlaywrightTestArgs.mount.ReturnType.getAttribute.options -> JS.Promise<string option>
+
+                    type getByAltText =
+                        delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByAltText.options -> PlaywrightCore.Locator
+
+                    type getByLabel =
+                        delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByLabel.options -> PlaywrightCore.Locator
+
+                    type getByPlaceholder =
+                        delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByPlaceholder.options -> PlaywrightCore.Locator
+
+                    type getByRole =
+                        delegate of role: obj * ?options: PlaywrightTestArgs.mount.ReturnType.getByRole.options -> PlaywrightCore.Locator
+
+                    type getByText =
+                        delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByText.options -> PlaywrightCore.Locator
+
+                    type getByTitle =
+                        delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByTitle.options -> PlaywrightCore.Locator
+
+                    type locator =
+                        delegate of selectorOrLocator: U2<string, PlaywrightCore.Locator> * ?options: PlaywrightTestArgs.mount.ReturnType.locator.options -> PlaywrightCore.Locator
+
+                    type press =
+                        delegate of key: string * ?options: PlaywrightTestArgs.mount.ReturnType.press.options -> JS.Promise<unit>
+
+                    type pressSequentially =
+                        delegate of text: string * ?options: PlaywrightTestArgs.mount.ReturnType.pressSequentially.options -> JS.Promise<unit>
+
+                    type selectOption =
+                        delegate of values: U6<string, PlaywrightCore.ElementHandle, ResizeArray<string>, PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case4, ResizeArray<PlaywrightCore.ElementHandle>, ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case6>> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+
+                    type setChecked =
+                        delegate of ``checked``: bool * ?options: PlaywrightTestArgs.mount.ReturnType.setChecked.options -> JS.Promise<unit>
+
+                    type setInputFiles =
+                        delegate of files: U4<string, ResizeArray<string>, PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case3, ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case4>> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+
+                    type ``type`` =
+                        delegate of text: string * ?options: PlaywrightTestArgs.mount.ReturnType.``type``.options -> JS.Promise<unit>
 
                     module evaluate =
 
@@ -24971,11 +25319,6 @@ to press keys one by one if there is special keyboard handling on the page - in 
 
                         type pageFunction<'E, 'Arg, 'R> =
                             delegate of on: 'E * arg2: obj -> U2<'R, JS.Promise<'R>>
-
-                    module evaluateAll =
-
-                        type pageFunction<'E, 'Arg, 'R> =
-                            delegate of on: ResizeArray<'E> * arg2: obj -> U2<'R, JS.Promise<'R>>
 
                     module waitForFunction =
 
@@ -26424,41 +26767,45 @@ the element to become visible and returns immediately.""")>]
                             [<ParamObject; Emit("$0")>]
                             static member Create (?force: bool, ?noWaitAfter: bool, ?signal: Glutinum.Web.AbortSignal, ?timeout: float) : options = nativeOnly
 
-                        [<AllowNullLiteral>]
-                        [<Interface>]
-                        type values =
-                            /// <summary>
-                            /// Matches by <c>option.value</c>. Optional.
-                            /// </summary>
-                            abstract member value: string option with get, set
-                            /// <summary>
-                            /// Matches by <c>option.label</c>. Optional.
-                            /// </summary>
-                            abstract member label: string option with get, set
-                            /// <summary>
-                            /// Matches by the index. Optional.
-                            /// </summary>
-                            abstract member index: float option with get, set
-                            [<ParamObject; Emit("$0")>]
-                            static member Create (?value: string, ?label: string, ?index: float) : values = nativeOnly
+                        module values =
 
-                        [<AllowNullLiteral>]
-                        [<Interface>]
-                        type values_1 =
-                            /// <summary>
-                            /// Matches by <c>option.value</c>. Optional.
-                            /// </summary>
-                            abstract member value: string option with get, set
-                            /// <summary>
-                            /// Matches by <c>option.label</c>. Optional.
-                            /// </summary>
-                            abstract member label: string option with get, set
-                            /// <summary>
-                            /// Matches by the index. Optional.
-                            /// </summary>
-                            abstract member index: float option with get, set
-                            [<ParamObject; Emit("$0")>]
-                            static member Create (?value: string, ?label: string, ?index: float) : values_1 = nativeOnly
+                            module U6 =
+
+                                [<AllowNullLiteral>]
+                                [<Interface>]
+                                type Case4 =
+                                    /// <summary>
+                                    /// Matches by <c>option.value</c>. Optional.
+                                    /// </summary>
+                                    abstract member value: string option with get, set
+                                    /// <summary>
+                                    /// Matches by <c>option.label</c>. Optional.
+                                    /// </summary>
+                                    abstract member label: string option with get, set
+                                    /// <summary>
+                                    /// Matches by the index. Optional.
+                                    /// </summary>
+                                    abstract member index: float option with get, set
+                                    [<ParamObject; Emit("$0")>]
+                                    static member Create (?value: string, ?label: string, ?index: float) : Case4 = nativeOnly
+
+                                [<AllowNullLiteral>]
+                                [<Interface>]
+                                type Case6 =
+                                    /// <summary>
+                                    /// Matches by <c>option.value</c>. Optional.
+                                    /// </summary>
+                                    abstract member value: string option with get, set
+                                    /// <summary>
+                                    /// Matches by <c>option.label</c>. Optional.
+                                    /// </summary>
+                                    abstract member label: string option with get, set
+                                    /// <summary>
+                                    /// Matches by the index. Optional.
+                                    /// </summary>
+                                    abstract member index: float option with get, set
+                                    [<ParamObject; Emit("$0")>]
+                                    static member Create (?value: string, ?label: string, ?index: float) : Case6 = nativeOnly
 
                     module selectText =
 
@@ -26586,41 +26933,45 @@ the element to become visible and returns immediately.""")>]
                             [<ParamObject; Emit("$0")>]
                             static member Create (?noWaitAfter: bool, ?signal: Glutinum.Web.AbortSignal, ?timeout: float) : options = nativeOnly
 
-                        [<AllowNullLiteral>]
-                        [<Interface>]
-                        type files =
-                            /// <summary>
-                            /// File name
-                            /// </summary>
-                            abstract member name: string with get, set
-                            /// <summary>
-                            /// File type
-                            /// </summary>
-                            abstract member mimeType: string with get, set
-                            /// <summary>
-                            /// File content
-                            /// </summary>
-                            abstract member buffer: obj with get, set
-                            [<ParamObject; Emit("$0")>]
-                            static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
+                        module files =
 
-                        [<AllowNullLiteral>]
-                        [<Interface>]
-                        type files_1 =
-                            /// <summary>
-                            /// File name
-                            /// </summary>
-                            abstract member name: string with get, set
-                            /// <summary>
-                            /// File type
-                            /// </summary>
-                            abstract member mimeType: string with get, set
-                            /// <summary>
-                            /// File content
-                            /// </summary>
-                            abstract member buffer: obj with get, set
-                            [<ParamObject; Emit("$0")>]
-                            static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
+                            module U4 =
+
+                                [<AllowNullLiteral>]
+                                [<Interface>]
+                                type Case3 =
+                                    /// <summary>
+                                    /// File name
+                                    /// </summary>
+                                    abstract member name: string with get, set
+                                    /// <summary>
+                                    /// File type
+                                    /// </summary>
+                                    abstract member mimeType: string with get, set
+                                    /// <summary>
+                                    /// File content
+                                    /// </summary>
+                                    abstract member buffer: obj with get, set
+                                    [<ParamObject; Emit("$0")>]
+                                    static member Create (name: string, mimeType: string, buffer: obj) : Case3 = nativeOnly
+
+                                [<AllowNullLiteral>]
+                                [<Interface>]
+                                type Case4 =
+                                    /// <summary>
+                                    /// File name
+                                    /// </summary>
+                                    abstract member name: string with get, set
+                                    /// <summary>
+                                    /// File type
+                                    /// </summary>
+                                    abstract member mimeType: string with get, set
+                                    /// <summary>
+                                    /// File content
+                                    /// </summary>
+                                    abstract member buffer: obj with get, set
+                                    [<ParamObject; Emit("$0")>]
+                                    static member Create (name: string, mimeType: string, buffer: obj) : Case4 = nativeOnly
 
                     module tap =
 
@@ -26876,6 +27227,11 @@ the element to become visible and returns immediately.""")>]
                                 | detached
                                 | visible
                                 | hidden
+
+                    module evaluateAll =
+
+                        type pageFunction<'E, 'Arg, 'R> =
+                            delegate of on: ResizeArray<'E> * arg2: obj -> U2<'R, JS.Promise<'R>>
 
         module CustomProperties =
 
@@ -27900,6 +28256,18 @@ the element to become visible and returns immediately.""")>]
                 /// </code>
                 /// </summary>
                 abstract member browser: PlaywrightCore.Browser with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: CustomProperties.ExcludeProps.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: CustomProperties.ExcludeProps.trace, video: CustomProperties.ExcludeProps.video, context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: CustomProperties.ExcludeProps.mount<obj, Playwright.types_test.StoryId>, playwright: obj, browser: PlaywrightCore.Browser, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ExcludeProps = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: CustomProperties.ExcludeProps.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: CustomProperties.ExcludeProps.trace, video: CustomProperties.ExcludeProps.video, context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: CustomProperties.ExcludeProps.mount<obj, Playwright.types_test.StoryId>, playwright: obj, browser: PlaywrightCore.Browser, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ExcludeProps = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: CustomProperties.ExcludeProps.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: CustomProperties.ExcludeProps.trace, video: CustomProperties.ExcludeProps.video, context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: CustomProperties.ExcludeProps.mount<obj, Playwright.types_test.StoryId>, playwright: obj, browser: PlaywrightCore.Browser, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ExcludeProps = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: CustomProperties.ExcludeProps.launchOptions, reuseContext: bool, screenshot: CustomProperties.ExcludeProps.screenshot.U2.Case2, trace: CustomProperties.ExcludeProps.trace, video: CustomProperties.ExcludeProps.video, context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: CustomProperties.ExcludeProps.mount<obj, Playwright.types_test.StoryId>, playwright: obj, browser: PlaywrightCore.Browser, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ExcludeProps = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: CustomProperties.ExcludeProps.launchOptions, reuseContext: bool, screenshot: CustomProperties.ExcludeProps.screenshot.U2.Case2, trace: CustomProperties.ExcludeProps.trace, video: CustomProperties.ExcludeProps.video, context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: CustomProperties.ExcludeProps.mount<obj, Playwright.types_test.StoryId>, playwright: obj, browser: PlaywrightCore.Browser, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ExcludeProps = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: CustomProperties.ExcludeProps.launchOptions, reuseContext: bool, screenshot: CustomProperties.ExcludeProps.screenshot.U2.Case2, trace: CustomProperties.ExcludeProps.trace, video: CustomProperties.ExcludeProps.video, context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: CustomProperties.ExcludeProps.mount<obj, Playwright.types_test.StoryId>, playwright: obj, browser: PlaywrightCore.Browser, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : ExcludeProps = nativeOnly
 
             module ExcludeProps =
 
@@ -28005,12 +28373,36 @@ the element to become visible and returns immediately.""")>]
                     | Case1 of Playwright.types_test.TraceMode
                     | Case2 of FullProject.``use``.trace.Cases.Case2
 
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
                 type video =
                     | ``retry-with-video``
                     | Case1 of Playwright.types_test.VideoMode
                     | Case2 of FullProject.``use``.video.Cases.Case2
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
 
                 type mount<'Story, 'Id> =
                     delegate of storyId: 'Id * ?props: Playwright.types_test.MountProps<'Story, 'Id> -> JS.Promise<CustomProperties.ExcludeProps.mount.ReturnType<'Story, 'Id>>
@@ -28033,6 +28425,8 @@ the element to become visible and returns immediately.""")>]
                             /// Defaults to <c>false</c>.
                             /// </summary>
                             abstract member omitBackground: bool option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
                 module mount =
 
@@ -29937,7 +30331,7 @@ the element to become visible and returns immediately.""")>]
                         /// <param name="options">
                         ///
                         /// </param>
-                        abstract member selectOption: values: PlaywrightTestArgs.mount.ReturnType.selectOption.values option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                        abstract member selectOption: values: PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case4 option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                         /// <summary>
                         /// Selects option or options in <c><select></c>.
                         ///
@@ -30031,7 +30425,7 @@ the element to become visible and returns immediately.""")>]
                         /// <param name="options">
                         ///
                         /// </param>
-                        abstract member selectOption: values: ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values_1> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                        abstract member selectOption: values: ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case6> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                         /// <summary>
                         /// This method waits for [actionability](https://playwright.dev/docs/actionability) checks, then focuses the element and selects all its
                         /// text content.
@@ -30217,7 +30611,7 @@ the element to become visible and returns immediately.""")>]
                         /// <param name="options">
                         ///
                         /// </param>
-                        abstract member setInputFiles: files: PlaywrightTestArgs.mount.ReturnType.setInputFiles.files * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                        abstract member setInputFiles: files: PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case3 * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                         /// <summary>
                         /// Upload file or multiple files into <c><input type=file></c>. For inputs with a <c>[webkitdirectory]</c> attribute, only a
                         /// single directory path is supported.
@@ -30264,7 +30658,7 @@ the element to become visible and returns immediately.""")>]
                         /// <param name="options">
                         ///
                         /// </param>
-                        abstract member setInputFiles: files: ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files_1> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                        abstract member setInputFiles: files: ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case4> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                         /// <summary>
                         /// Perform a tap gesture on the element matching the locator. For examples of emulating other gestures by manually
                         /// dispatching touch events, see the [emulating legacy touch events](https://playwright.dev/docs/touch-events) page.
@@ -30401,8 +30795,76 @@ to press keys one by one if there is special keyboard handling on the page - in 
                         abstract member waitFor: ?options: PlaywrightTestArgs.mount.ReturnType.waitFor.options -> JS.Promise<unit>
                         abstract member update: ?props: Playwright.types_test.MountProps<'Story, 'Id> -> JS.Promise<unit>
                         abstract member unmount: unit -> JS.Promise<unit>
+                        [<ParamObject; Emit("$0")>]
+                        static member Create (evaluate: CustomProperties.ExcludeProps.mount.ReturnType.evaluate<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateHandle: CustomProperties.ExcludeProps.mount.ReturnType.evaluateHandle<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateAll: CustomProperties.ExcludeProps.mount.ReturnType.evaluateAll<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, waitForFunction: CustomProperties.ExcludeProps.mount.ReturnType.waitForFunction<obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, elementHandle: (PlaywrightTestArgs.mount.ReturnType.elementHandle.options option -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>>), highlight: (PlaywrightTestArgs.mount.ReturnType.highlight.options option -> JS.Promise<PlaywrightCore.Disposable>), toString: (unit -> string), all: (unit -> JS.Promise<ResizeArray<PlaywrightCore.Locator>>), allInnerTexts: (unit -> JS.Promise<ResizeArray<string>>), allTextContents: (unit -> JS.Promise<ResizeArray<string>>), ``and``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), ariaSnapshot: (PlaywrightTestArgs.mount.ReturnType.ariaSnapshot.options option -> JS.Promise<string>), ariaSnapshotJSON: (PlaywrightTestArgs.mount.ReturnType.ariaSnapshotJSON.options option -> JS.Promise<PlaywrightCore.types_structs.Serializable>), blur: (PlaywrightTestArgs.mount.ReturnType.blur.options option -> JS.Promise<unit>), boundingBox: (PlaywrightTestArgs.mount.ReturnType.boundingBox.options option -> JS.Promise<PlaywrightTestArgs.mount.ReturnType.boundingBox option>), check: (PlaywrightTestArgs.mount.ReturnType.check.options option -> JS.Promise<unit>), clear: (PlaywrightTestArgs.mount.ReturnType.clear.options option -> JS.Promise<unit>), click: (PlaywrightTestArgs.mount.ReturnType.click.options option -> JS.Promise<unit>), contentFrame: (unit -> PlaywrightCore.FrameLocator), count: (unit -> JS.Promise<float>), dblclick: (PlaywrightTestArgs.mount.ReturnType.dblclick.options option -> JS.Promise<unit>), describe: (string -> PlaywrightCore.Locator), description: (unit -> string option), dispatchEvent: CustomProperties.ExcludeProps.mount.ReturnType.dispatchEvent, dragTo: CustomProperties.ExcludeProps.mount.ReturnType.dragTo, drop: CustomProperties.ExcludeProps.mount.ReturnType.drop, elementHandles: (unit -> JS.Promise<ResizeArray<PlaywrightCore.ElementHandle>>), fill: CustomProperties.ExcludeProps.mount.ReturnType.fill, filter: (PlaywrightTestArgs.mount.ReturnType.filter.options option -> PlaywrightCore.Locator), first: (unit -> PlaywrightCore.Locator), focus: (PlaywrightTestArgs.mount.ReturnType.focus.options option -> JS.Promise<unit>), frameLocator: (string -> PlaywrightCore.FrameLocator), getAttribute: CustomProperties.ExcludeProps.mount.ReturnType.getAttribute, getByAltText: CustomProperties.ExcludeProps.mount.ReturnType.getByAltText, getByLabel: CustomProperties.ExcludeProps.mount.ReturnType.getByLabel, getByPlaceholder: CustomProperties.ExcludeProps.mount.ReturnType.getByPlaceholder, getByRole: CustomProperties.ExcludeProps.mount.ReturnType.getByRole, getByTestId: (U2<string, RegExp> -> PlaywrightCore.Locator), getByText: CustomProperties.ExcludeProps.mount.ReturnType.getByText, getByTitle: CustomProperties.ExcludeProps.mount.ReturnType.getByTitle, hideHighlight: (unit -> JS.Promise<unit>), hover: (PlaywrightTestArgs.mount.ReturnType.hover.options option -> JS.Promise<unit>), innerHTML: (PlaywrightTestArgs.mount.ReturnType.innerHTML.options option -> JS.Promise<string>), innerText: (PlaywrightTestArgs.mount.ReturnType.innerText.options option -> JS.Promise<string>), inputValue: (PlaywrightTestArgs.mount.ReturnType.inputValue.options option -> JS.Promise<string>), isChecked: (PlaywrightTestArgs.mount.ReturnType.isChecked.options option -> JS.Promise<bool>), isDisabled: (PlaywrightTestArgs.mount.ReturnType.isDisabled.options option -> JS.Promise<bool>), isEditable: (PlaywrightTestArgs.mount.ReturnType.isEditable.options option -> JS.Promise<bool>), isEnabled: (PlaywrightTestArgs.mount.ReturnType.isEnabled.options option -> JS.Promise<bool>), isHidden: (PlaywrightTestArgs.mount.ReturnType.isHidden.options option -> JS.Promise<bool>), isVisible: (PlaywrightTestArgs.mount.ReturnType.isVisible.options option -> JS.Promise<bool>), last: (unit -> PlaywrightCore.Locator), locator: CustomProperties.ExcludeProps.mount.ReturnType.locator, normalize: (unit -> JS.Promise<PlaywrightCore.Locator>), nth: (float -> PlaywrightCore.Locator), ``or``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), page: (unit -> PlaywrightCore.Page), press: CustomProperties.ExcludeProps.mount.ReturnType.press, pressSequentially: CustomProperties.ExcludeProps.mount.ReturnType.pressSequentially, screenshot: (PlaywrightCore.LocatorScreenshotOptions option -> JS.Promise<obj>), scrollIntoViewIfNeeded: (PlaywrightTestArgs.mount.ReturnType.scrollIntoViewIfNeeded.options option -> JS.Promise<unit>), selectOption: CustomProperties.ExcludeProps.mount.ReturnType.selectOption, selectText: (PlaywrightTestArgs.mount.ReturnType.selectText.options option -> JS.Promise<unit>), setChecked: CustomProperties.ExcludeProps.mount.ReturnType.setChecked, setInputFiles: CustomProperties.ExcludeProps.mount.ReturnType.setInputFiles, tap: (PlaywrightTestArgs.mount.ReturnType.tap.options option -> JS.Promise<unit>), textContent: (PlaywrightTestArgs.mount.ReturnType.textContent.options option -> JS.Promise<string option>), ``type``: CustomProperties.ExcludeProps.mount.ReturnType.``type``, uncheck: (PlaywrightTestArgs.mount.ReturnType.uncheck.options option -> JS.Promise<unit>), visible: (unit -> PlaywrightCore.Locator), waitFor: (PlaywrightTestArgs.mount.ReturnType.waitFor.options option -> JS.Promise<unit>), update: (Playwright.types_test.MountProps<'Story, 'Id> option -> JS.Promise<unit>), unmount: (unit -> JS.Promise<unit>)) : ReturnType<'Story, 'Id> = nativeOnly
 
                     module ReturnType =
+
+                        type evaluate<'R, 'Arg, 'E> =
+                            delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.evaluate.options -> JS.Promise<'R>
+
+                        type evaluateHandle<'R, 'Arg, 'E> =
+                            delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.evaluateHandle.options -> JS.Promise<obj>
+
+                        type evaluateAll<'R, 'Arg, 'E> =
+                            delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<ResizeArray<'E>, 'Arg, 'R> * ?arg: 'Arg -> JS.Promise<'R>
+
+                        type waitForFunction<'Arg, 'E> =
+                            delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, obj> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.waitForFunction.options -> JS.Promise<unit>
+
+                        type dispatchEvent =
+                            delegate of ``type``: string * ?eventInit: PlaywrightCore.types_structs.EvaluationArgument * ?options: PlaywrightTestArgs.mount.ReturnType.dispatchEvent.options -> JS.Promise<unit>
+
+                        type dragTo =
+                            delegate of target: PlaywrightCore.Locator * ?options: PlaywrightTestArgs.mount.ReturnType.dragTo.options -> JS.Promise<unit>
+
+                        type drop =
+                            delegate of payload: PlaywrightTestArgs.mount.ReturnType.drop.payload * ?options: PlaywrightTestArgs.mount.ReturnType.drop.options -> JS.Promise<unit>
+
+                        type fill =
+                            delegate of value: string * ?options: PlaywrightTestArgs.mount.ReturnType.fill.options -> JS.Promise<unit>
+
+                        type getAttribute =
+                            delegate of name: string * ?options: PlaywrightTestArgs.mount.ReturnType.getAttribute.options -> JS.Promise<string option>
+
+                        type getByAltText =
+                            delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByAltText.options -> PlaywrightCore.Locator
+
+                        type getByLabel =
+                            delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByLabel.options -> PlaywrightCore.Locator
+
+                        type getByPlaceholder =
+                            delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByPlaceholder.options -> PlaywrightCore.Locator
+
+                        type getByRole =
+                            delegate of role: obj * ?options: PlaywrightTestArgs.mount.ReturnType.getByRole.options -> PlaywrightCore.Locator
+
+                        type getByText =
+                            delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByText.options -> PlaywrightCore.Locator
+
+                        type getByTitle =
+                            delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByTitle.options -> PlaywrightCore.Locator
+
+                        type locator =
+                            delegate of selectorOrLocator: U2<string, PlaywrightCore.Locator> * ?options: PlaywrightTestArgs.mount.ReturnType.locator.options -> PlaywrightCore.Locator
+
+                        type press =
+                            delegate of key: string * ?options: PlaywrightTestArgs.mount.ReturnType.press.options -> JS.Promise<unit>
+
+                        type pressSequentially =
+                            delegate of text: string * ?options: PlaywrightTestArgs.mount.ReturnType.pressSequentially.options -> JS.Promise<unit>
+
+                        type selectOption =
+                            delegate of values: U6<string, PlaywrightCore.ElementHandle, ResizeArray<string>, PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case4, ResizeArray<PlaywrightCore.ElementHandle>, ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case6>> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+
+                        type setChecked =
+                            delegate of ``checked``: bool * ?options: PlaywrightTestArgs.mount.ReturnType.setChecked.options -> JS.Promise<unit>
+
+                        type setInputFiles =
+                            delegate of files: U4<string, ResizeArray<string>, PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case3, ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case4>> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+
+                        type ``type`` =
+                            delegate of text: string * ?options: PlaywrightTestArgs.mount.ReturnType.``type``.options -> JS.Promise<unit>
 
                         module evaluate =
 
@@ -31045,6 +31507,12 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// </code>
                 /// </summary>
                 abstract member testIdAttribute: string with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Project = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Project = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Project = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -31325,6 +31793,10 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// Learn more about [recording video](https://playwright.dev/docs/test-use-options#recording-options).
                 /// </summary>
                 abstract member video: PlaywrightTestProject.Project.video with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: PlaywrightTestProject.Project.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: PlaywrightTestProject.Project.trace, video: PlaywrightTestProject.Project.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Project_1 = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: PlaywrightTestProject.Project.launchOptions, reuseContext: bool, screenshot: PlaywrightTestProject.Project.screenshot.U2.Case2, trace: PlaywrightTestProject.Project.trace, video: PlaywrightTestProject.Project.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Project_1 = nativeOnly
 
             module Project =
 
@@ -31430,12 +31902,36 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     | Case1 of Playwright.types_test.TraceMode
                     | Case2 of FullProject.``use``.trace.Cases.Case2
 
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
                 type video =
                     | ``retry-with-video``
                     | Case1 of Playwright.types_test.VideoMode
                     | Case2 of FullProject.``use``.video.Cases.Case2
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
 
                 module screenshot =
 
@@ -31455,6 +31951,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// Defaults to <c>false</c>.
                             /// </summary>
                             abstract member omitBackground: bool option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
         module PlaywrightTestConfig =
 
@@ -32077,6 +32575,12 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// </code>
                 /// </summary>
                 abstract member testIdAttribute: string with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Config = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -32357,6 +32861,10 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// Learn more about [recording video](https://playwright.dev/docs/test-use-options#recording-options).
                 /// </summary>
                 abstract member video: PlaywrightTestConfig.Config.video with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: PlaywrightTestConfig.Config.launchOptions, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: PlaywrightTestConfig.Config.trace, video: PlaywrightTestConfig.Config.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Config_1 = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: PlaywrightTestConfig.Config.launchOptions, reuseContext: bool, screenshot: PlaywrightTestConfig.Config.screenshot.U2.Case2, trace: PlaywrightTestConfig.Config.trace, video: PlaywrightTestConfig.Config.video, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Config_1 = nativeOnly
 
             module Config =
 
@@ -32462,12 +32970,36 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     | Case1 of Playwright.types_test.TraceMode
                     | Case2 of FullProject.``use``.trace.Cases.Case2
 
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.trace.Cases.Case2) : trace = nativeOnly
+
                 [<RequireQualifiedAccess>]
                 [<Erase(CaseRules.None)>]
                 type video =
                     | ``retry-with-video``
                     | Case1 of Playwright.types_test.VideoMode
                     | Case2 of FullProject.``use``.video.Cases.Case2
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: FullProject.``use``.video.Cases.Case2) : video = nativeOnly
 
                 module screenshot =
 
@@ -32487,6 +33019,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// Defaults to <c>false</c>.
                             /// </summary>
                             abstract member omitBackground: bool option with get, set
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2 = nativeOnly
 
         module AsymmetricMatchers =
 
@@ -34539,6 +35073,12 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     /// </code>
                     /// </summary>
                     abstract member testIdAttribute: string with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.test__.Type.mount_1<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type_2 = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.test__.Type.mount_1<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: PlaywrightCore.HTTPCredentials, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type_2 = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (context: PlaywrightCore.BrowserContext, page: PlaywrightCore.Page, request: PlaywrightCore.APIRequestContext, mount: Exports.test__.Type.mount_1<obj, Playwright.types_test.StoryId>, acceptDownloads: bool, bypassCSP: bool, colorScheme: Playwright.types_test.ColorScheme, contrast: Playwright.types_test.Contrast, forcedColors: Playwright.types_test.ForcedColors, hasTouch: bool, ignoreHTTPSErrors: bool, isMobile: bool, javaScriptEnabled: bool, offline: bool, reducedMotion: Playwright.types_test.ReducedMotion, contextOptions: PlaywrightCore.BrowserContextOptions, actionTimeout: float, navigationTimeout: float, serviceWorkers: Playwright.types_test.ServiceWorkerPolicy, testIdAttribute: string, httpCredentials: ResizeArray<PlaywrightCore.HTTPCredentials>, ?clientCertificates: ResizeArray<Playwright.types_test.ClientCertificate>, ?deviceScaleFactor: float, ?extraHTTPHeaders: Playwright.types_test.ExtraHTTPHeaders, ?geolocation: PlaywrightCore.Geolocation, ?locale: string, ?permissions: ResizeArray<string>, ?proxy: Playwright.types_test.Proxy, ?storageState: Playwright.types_test.StorageState, ?timezoneId: string, ?userAgent: string, ?viewport: PlaywrightCore.ViewportSize, ?baseURL: string) : Type_2 = nativeOnly
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -34838,6 +35378,10 @@ to press keys one by one if there is special keyboard handling on the page - in 
                     /// Learn more about [recording video](https://playwright.dev/docs/test-use-options#recording-options).
                     /// </summary>
                     abstract member video: Exports.test__.Type.video_1 with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (playwright: obj, browser: PlaywrightCore.Browser, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: Exports.test__.Type.launchOptions_1, reuseContext: bool, screenshot: Playwright.types_test.ScreenshotMode, trace: Exports.test__.Type.trace_1, video: Exports.test__.Type.video_1, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Type_3 = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (playwright: obj, browser: PlaywrightCore.Browser, browserName: Playwright.types_test.BrowserName, defaultBrowserType: Playwright.types_test.BrowserName, headless: bool, launchOptions: Exports.test__.Type.launchOptions_1, reuseContext: bool, screenshot: Exports.test__.Type.screenshot.U2.Case2_1, trace: Exports.test__.Type.trace_1, video: Exports.test__.Type.video_1, ?channel: Playwright.types_test.BrowserChannel, ?connectOptions: Playwright.types_test.ConnectOptions) : Type_3 = nativeOnly
 
                 module Type =
 
@@ -34946,12 +35490,36 @@ to press keys one by one if there is special keyboard handling on the page - in 
                         | Case1 of Playwright.types_test.TraceMode
                         | Case2 of FullProject.``use``.trace.Cases.Case2
 
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Playwright.types_test.TraceMode) : trace_1 = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Playwright.types_test.TraceMode) : trace_1 = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: FullProject.``use``.trace.Cases.Case2) : trace_1 = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: FullProject.``use``.trace.Cases.Case2) : trace_1 = nativeOnly
+
                     [<RequireQualifiedAccess>]
                     [<Erase(CaseRules.None)>]
                     type video_1 =
                         | ``retry-with-video``
                         | Case1 of Playwright.types_test.VideoMode
                         | Case2 of FullProject.``use``.video.Cases.Case2
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: Playwright.types_test.VideoMode) : video_1 = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: Playwright.types_test.VideoMode) : video_1 = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_Implicit(value: FullProject.``use``.video.Cases.Case2) : video_1 = nativeOnly
+
+                        [<Emit("$0")>]
+                        static member op_ErasedCast(value: FullProject.``use``.video.Cases.Case2) : video_1 = nativeOnly
 
                     module mount =
 
@@ -36856,7 +37424,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member selectOption: values: PlaywrightTestArgs.mount.ReturnType.selectOption.values option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                            abstract member selectOption: values: PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case4 option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                             /// <summary>
                             /// Selects option or options in <c><select></c>.
                             ///
@@ -36950,7 +37518,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member selectOption: values: ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values_1> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+                            abstract member selectOption: values: ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case6> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
                             /// <summary>
                             /// This method waits for [actionability](https://playwright.dev/docs/actionability) checks, then focuses the element and selects all its
                             /// text content.
@@ -37136,7 +37704,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member setInputFiles: files: PlaywrightTestArgs.mount.ReturnType.setInputFiles.files * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                            abstract member setInputFiles: files: PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case3 * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                             /// <summary>
                             /// Upload file or multiple files into <c><input type=file></c>. For inputs with a <c>[webkitdirectory]</c> attribute, only a
                             /// single directory path is supported.
@@ -37183,7 +37751,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             /// <param name="options">
                             ///
                             /// </param>
-                            abstract member setInputFiles: files: ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files_1> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+                            abstract member setInputFiles: files: ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case4> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
                             /// <summary>
                             /// Perform a tap gesture on the element matching the locator. For examples of emulating other gestures by manually
                             /// dispatching touch events, see the [emulating legacy touch events](https://playwright.dev/docs/touch-events) page.
@@ -37320,8 +37888,76 @@ to press keys one by one if there is special keyboard handling on the page - in 
                             abstract member waitFor: ?options: PlaywrightTestArgs.mount.ReturnType.waitFor.options -> JS.Promise<unit>
                             abstract member update: ?props: Playwright.types_test.MountProps<'Story, 'Id> -> JS.Promise<unit>
                             abstract member unmount: unit -> JS.Promise<unit>
+                            [<ParamObject; Emit("$0")>]
+                            static member Create (evaluate: Exports.test__.Type.mount.ReturnType.evaluate_1<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateHandle: Exports.test__.Type.mount.ReturnType.evaluateHandle_1<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, evaluateAll: Exports.test__.Type.mount.ReturnType.evaluateAll_1<obj, obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, waitForFunction: Exports.test__.Type.mount.ReturnType.waitForFunction_1<obj, U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>, elementHandle: (PlaywrightTestArgs.mount.ReturnType.elementHandle.options option -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>>>), highlight: (PlaywrightTestArgs.mount.ReturnType.highlight.options option -> JS.Promise<PlaywrightCore.Disposable>), toString: (unit -> string), all: (unit -> JS.Promise<ResizeArray<PlaywrightCore.Locator>>), allInnerTexts: (unit -> JS.Promise<ResizeArray<string>>), allTextContents: (unit -> JS.Promise<ResizeArray<string>>), ``and``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), ariaSnapshot: (PlaywrightTestArgs.mount.ReturnType.ariaSnapshot.options option -> JS.Promise<string>), ariaSnapshotJSON: (PlaywrightTestArgs.mount.ReturnType.ariaSnapshotJSON.options option -> JS.Promise<PlaywrightCore.types_structs.Serializable>), blur: (PlaywrightTestArgs.mount.ReturnType.blur.options option -> JS.Promise<unit>), boundingBox: (PlaywrightTestArgs.mount.ReturnType.boundingBox.options option -> JS.Promise<PlaywrightTestArgs.mount.ReturnType.boundingBox option>), check: (PlaywrightTestArgs.mount.ReturnType.check.options option -> JS.Promise<unit>), clear: (PlaywrightTestArgs.mount.ReturnType.clear.options option -> JS.Promise<unit>), click: (PlaywrightTestArgs.mount.ReturnType.click.options option -> JS.Promise<unit>), contentFrame: (unit -> PlaywrightCore.FrameLocator), count: (unit -> JS.Promise<float>), dblclick: (PlaywrightTestArgs.mount.ReturnType.dblclick.options option -> JS.Promise<unit>), describe: (string -> PlaywrightCore.Locator), description: (unit -> string option), dispatchEvent: Exports.test__.Type.mount.ReturnType.dispatchEvent_1, dragTo: Exports.test__.Type.mount.ReturnType.dragTo_1, drop: Exports.test__.Type.mount.ReturnType.drop_1, elementHandles: (unit -> JS.Promise<ResizeArray<PlaywrightCore.ElementHandle>>), fill: Exports.test__.Type.mount.ReturnType.fill_1, filter: (PlaywrightTestArgs.mount.ReturnType.filter.options option -> PlaywrightCore.Locator), first: (unit -> PlaywrightCore.Locator), focus: (PlaywrightTestArgs.mount.ReturnType.focus.options option -> JS.Promise<unit>), frameLocator: (string -> PlaywrightCore.FrameLocator), getAttribute: Exports.test__.Type.mount.ReturnType.getAttribute_1, getByAltText: Exports.test__.Type.mount.ReturnType.getByAltText_1, getByLabel: Exports.test__.Type.mount.ReturnType.getByLabel_1, getByPlaceholder: Exports.test__.Type.mount.ReturnType.getByPlaceholder_1, getByRole: Exports.test__.Type.mount.ReturnType.getByRole_1, getByTestId: (U2<string, RegExp> -> PlaywrightCore.Locator), getByText: Exports.test__.Type.mount.ReturnType.getByText_1, getByTitle: Exports.test__.Type.mount.ReturnType.getByTitle_1, hideHighlight: (unit -> JS.Promise<unit>), hover: (PlaywrightTestArgs.mount.ReturnType.hover.options option -> JS.Promise<unit>), innerHTML: (PlaywrightTestArgs.mount.ReturnType.innerHTML.options option -> JS.Promise<string>), innerText: (PlaywrightTestArgs.mount.ReturnType.innerText.options option -> JS.Promise<string>), inputValue: (PlaywrightTestArgs.mount.ReturnType.inputValue.options option -> JS.Promise<string>), isChecked: (PlaywrightTestArgs.mount.ReturnType.isChecked.options option -> JS.Promise<bool>), isDisabled: (PlaywrightTestArgs.mount.ReturnType.isDisabled.options option -> JS.Promise<bool>), isEditable: (PlaywrightTestArgs.mount.ReturnType.isEditable.options option -> JS.Promise<bool>), isEnabled: (PlaywrightTestArgs.mount.ReturnType.isEnabled.options option -> JS.Promise<bool>), isHidden: (PlaywrightTestArgs.mount.ReturnType.isHidden.options option -> JS.Promise<bool>), isVisible: (PlaywrightTestArgs.mount.ReturnType.isVisible.options option -> JS.Promise<bool>), last: (unit -> PlaywrightCore.Locator), locator: Exports.test__.Type.mount.ReturnType.locator_1, normalize: (unit -> JS.Promise<PlaywrightCore.Locator>), nth: (float -> PlaywrightCore.Locator), ``or``: (PlaywrightCore.Locator -> PlaywrightCore.Locator), page: (unit -> PlaywrightCore.Page), press: Exports.test__.Type.mount.ReturnType.press_1, pressSequentially: Exports.test__.Type.mount.ReturnType.pressSequentially_1, screenshot: (PlaywrightCore.LocatorScreenshotOptions option -> JS.Promise<obj>), scrollIntoViewIfNeeded: (PlaywrightTestArgs.mount.ReturnType.scrollIntoViewIfNeeded.options option -> JS.Promise<unit>), selectOption: Exports.test__.Type.mount.ReturnType.selectOption_1, selectText: (PlaywrightTestArgs.mount.ReturnType.selectText.options option -> JS.Promise<unit>), setChecked: Exports.test__.Type.mount.ReturnType.setChecked_1, setInputFiles: Exports.test__.Type.mount.ReturnType.setInputFiles_1, tap: (PlaywrightTestArgs.mount.ReturnType.tap.options option -> JS.Promise<unit>), textContent: (PlaywrightTestArgs.mount.ReturnType.textContent.options option -> JS.Promise<string option>), ``type``: Exports.test__.Type.mount.ReturnType.``type_1``, uncheck: (PlaywrightTestArgs.mount.ReturnType.uncheck.options option -> JS.Promise<unit>), visible: (unit -> PlaywrightCore.Locator), waitFor: (PlaywrightTestArgs.mount.ReturnType.waitFor.options option -> JS.Promise<unit>), update: (Playwright.types_test.MountProps<'Story, 'Id> option -> JS.Promise<unit>), unmount: (unit -> JS.Promise<unit>)) : ReturnType_1<'Story, 'Id> = nativeOnly
 
                         module ReturnType =
+
+                            type evaluate_1<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.evaluate.options -> JS.Promise<'R>
+
+                            type evaluateHandle_1<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, 'R> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.evaluateHandle.options -> JS.Promise<obj>
+
+                            type evaluateAll_1<'R, 'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<ResizeArray<'E>, 'Arg, 'R> * ?arg: 'Arg -> JS.Promise<'R>
+
+                            type waitForFunction_1<'Arg, 'E> =
+                                delegate of pageFunction: PlaywrightCore.types_structs.PageFunctionOn<'E, 'Arg, obj> * ?arg: 'Arg * ?options: PlaywrightTestArgs.mount.ReturnType.waitForFunction.options -> JS.Promise<unit>
+
+                            type dispatchEvent_1 =
+                                delegate of ``type``: string * ?eventInit: PlaywrightCore.types_structs.EvaluationArgument * ?options: PlaywrightTestArgs.mount.ReturnType.dispatchEvent.options -> JS.Promise<unit>
+
+                            type dragTo_1 =
+                                delegate of target: PlaywrightCore.Locator * ?options: PlaywrightTestArgs.mount.ReturnType.dragTo.options -> JS.Promise<unit>
+
+                            type drop_1 =
+                                delegate of payload: PlaywrightTestArgs.mount.ReturnType.drop.payload * ?options: PlaywrightTestArgs.mount.ReturnType.drop.options -> JS.Promise<unit>
+
+                            type fill_1 =
+                                delegate of value: string * ?options: PlaywrightTestArgs.mount.ReturnType.fill.options -> JS.Promise<unit>
+
+                            type getAttribute_1 =
+                                delegate of name: string * ?options: PlaywrightTestArgs.mount.ReturnType.getAttribute.options -> JS.Promise<string option>
+
+                            type getByAltText_1 =
+                                delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByAltText.options -> PlaywrightCore.Locator
+
+                            type getByLabel_1 =
+                                delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByLabel.options -> PlaywrightCore.Locator
+
+                            type getByPlaceholder_1 =
+                                delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByPlaceholder.options -> PlaywrightCore.Locator
+
+                            type getByRole_1 =
+                                delegate of role: obj * ?options: PlaywrightTestArgs.mount.ReturnType.getByRole.options -> PlaywrightCore.Locator
+
+                            type getByText_1 =
+                                delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByText.options -> PlaywrightCore.Locator
+
+                            type getByTitle_1 =
+                                delegate of text: U2<string, RegExp> * ?options: PlaywrightTestArgs.mount.ReturnType.getByTitle.options -> PlaywrightCore.Locator
+
+                            type locator_1 =
+                                delegate of selectorOrLocator: U2<string, PlaywrightCore.Locator> * ?options: PlaywrightTestArgs.mount.ReturnType.locator.options -> PlaywrightCore.Locator
+
+                            type press_1 =
+                                delegate of key: string * ?options: PlaywrightTestArgs.mount.ReturnType.press.options -> JS.Promise<unit>
+
+                            type pressSequentially_1 =
+                                delegate of text: string * ?options: PlaywrightTestArgs.mount.ReturnType.pressSequentially.options -> JS.Promise<unit>
+
+                            type selectOption_1 =
+                                delegate of values: U6<string, PlaywrightCore.ElementHandle, ResizeArray<string>, PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case4, ResizeArray<PlaywrightCore.ElementHandle>, ResizeArray<PlaywrightTestArgs.mount.ReturnType.selectOption.values.U6.Case6>> option * ?options: PlaywrightTestArgs.mount.ReturnType.selectOption.options -> JS.Promise<ResizeArray<string>>
+
+                            type setChecked_1 =
+                                delegate of ``checked``: bool * ?options: PlaywrightTestArgs.mount.ReturnType.setChecked.options -> JS.Promise<unit>
+
+                            type setInputFiles_1 =
+                                delegate of files: U4<string, ResizeArray<string>, PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case3, ResizeArray<PlaywrightTestArgs.mount.ReturnType.setInputFiles.files.U4.Case4>> * ?options: PlaywrightTestArgs.mount.ReturnType.setInputFiles.options -> JS.Promise<unit>
+
+                            type ``type_1`` =
+                                delegate of text: string * ?options: PlaywrightTestArgs.mount.ReturnType.``type``.options -> JS.Promise<unit>
 
                             module evaluate =
 
@@ -37361,6 +37997,8 @@ to press keys one by one if there is special keyboard handling on the page - in 
                                 /// Defaults to <c>false</c>.
                                 /// </summary>
                                 abstract member omitBackground: bool option with get, set
+                                [<ParamObject; Emit("$0")>]
+                                static member Create (mode: Playwright.types_test.ScreenshotMode, ?fullPage: bool, ?omitBackground: bool) : Case2_1 = nativeOnly
 
                     module TestType =
 
@@ -38606,6 +39244,18 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 /// </summary>
                 abstract member workers: float with get, set
                 abstract member projects: ResizeArray<JSONReport.config.projects> with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (reporter: ResizeArray<Playwright.types_test.ReporterDescription>, argv: ResizeArray<string>, failOnFlakyTests: bool, forbidOnly: bool, fullyParallel: bool, globalTimeout: float, grep: RegExp, maxFailures: float, metadata: Playwright.types_test.Metadata, preserveOutput: JSONReport.config.preserveOutput, quiet: bool, rootDir: string, tags: ResizeArray<string>, updateSnapshots: JSONReport.config.updateSnapshots, updateSourceMethod: JSONReport.config.updateSourceMethod, version: string, workers: float, projects: ResizeArray<JSONReport.config.projects>, ?webServer: Playwright.types_test.TestConfigWebServer, ?configFile: string, ?globalSetup: string, ?globalTeardown: string, ?reportSlowTests: JSONReport.config.reportSlowTests, ?shard: JSONReport.config.shard) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (reporter: ResizeArray<Playwright.types_test.ReporterDescription>, argv: ResizeArray<string>, failOnFlakyTests: bool, forbidOnly: bool, fullyParallel: bool, globalTimeout: float, grep: RegExp, maxFailures: float, metadata: Playwright.types_test.Metadata, preserveOutput: JSONReport.config.preserveOutput, quiet: bool, rootDir: string, tags: ResizeArray<string>, updateSnapshots: JSONReport.config.updateSnapshots, updateSourceMethod: JSONReport.config.updateSourceMethod, version: string, workers: float, projects: ResizeArray<JSONReport.config.projects>, grepInvert: RegExp, ?webServer: Playwright.types_test.TestConfigWebServer, ?configFile: string, ?globalSetup: string, ?globalTeardown: string, ?reportSlowTests: JSONReport.config.reportSlowTests, ?shard: JSONReport.config.shard) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (reporter: ResizeArray<Playwright.types_test.ReporterDescription>, argv: ResizeArray<string>, failOnFlakyTests: bool, forbidOnly: bool, fullyParallel: bool, globalTimeout: float, grep: RegExp, maxFailures: float, metadata: Playwright.types_test.Metadata, preserveOutput: JSONReport.config.preserveOutput, quiet: bool, rootDir: string, tags: ResizeArray<string>, updateSnapshots: JSONReport.config.updateSnapshots, updateSourceMethod: JSONReport.config.updateSourceMethod, version: string, workers: float, projects: ResizeArray<JSONReport.config.projects>, grepInvert: ResizeArray<RegExp>, ?webServer: Playwright.types_test.TestConfigWebServer, ?configFile: string, ?globalSetup: string, ?globalTeardown: string, ?reportSlowTests: JSONReport.config.reportSlowTests, ?shard: JSONReport.config.shard) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (reporter: ResizeArray<Playwright.types_test.ReporterDescription>, argv: ResizeArray<string>, failOnFlakyTests: bool, forbidOnly: bool, fullyParallel: bool, globalTimeout: float, grep: ResizeArray<RegExp>, maxFailures: float, metadata: Playwright.types_test.Metadata, preserveOutput: JSONReport.config.preserveOutput, quiet: bool, rootDir: string, tags: ResizeArray<string>, updateSnapshots: JSONReport.config.updateSnapshots, updateSourceMethod: JSONReport.config.updateSourceMethod, version: string, workers: float, projects: ResizeArray<JSONReport.config.projects>, ?webServer: Playwright.types_test.TestConfigWebServer, ?configFile: string, ?globalSetup: string, ?globalTeardown: string, ?reportSlowTests: JSONReport.config.reportSlowTests, ?shard: JSONReport.config.shard) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (reporter: ResizeArray<Playwright.types_test.ReporterDescription>, argv: ResizeArray<string>, failOnFlakyTests: bool, forbidOnly: bool, fullyParallel: bool, globalTimeout: float, grep: ResizeArray<RegExp>, maxFailures: float, metadata: Playwright.types_test.Metadata, preserveOutput: JSONReport.config.preserveOutput, quiet: bool, rootDir: string, tags: ResizeArray<string>, updateSnapshots: JSONReport.config.updateSnapshots, updateSourceMethod: JSONReport.config.updateSourceMethod, version: string, workers: float, projects: ResizeArray<JSONReport.config.projects>, grepInvert: RegExp, ?webServer: Playwright.types_test.TestConfigWebServer, ?configFile: string, ?globalSetup: string, ?globalTeardown: string, ?reportSlowTests: JSONReport.config.reportSlowTests, ?shard: JSONReport.config.shard) : config = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (reporter: ResizeArray<Playwright.types_test.ReporterDescription>, argv: ResizeArray<string>, failOnFlakyTests: bool, forbidOnly: bool, fullyParallel: bool, globalTimeout: float, grep: ResizeArray<RegExp>, maxFailures: float, metadata: Playwright.types_test.Metadata, preserveOutput: JSONReport.config.preserveOutput, quiet: bool, rootDir: string, tags: ResizeArray<string>, updateSnapshots: JSONReport.config.updateSnapshots, updateSourceMethod: JSONReport.config.updateSourceMethod, version: string, workers: float, projects: ResizeArray<JSONReport.config.projects>, grepInvert: ResizeArray<RegExp>, ?webServer: Playwright.types_test.TestConfigWebServer, ?configFile: string, ?globalSetup: string, ?globalTeardown: string, ?reportSlowTests: JSONReport.config.reportSlowTests, ?shard: JSONReport.config.shard) : config = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -39087,7 +39737,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluate<'R, 'Arg>: pageFunction: string * arg: 'Arg * ?options: Page.evaluate.options -> JS.Promise<'R>
+        abstract member evaluate<'R>: pageFunction: string * ?arg: obj * ?options: Page.evaluate.options -> JS.Promise<'R>
         /// <summary>
         /// Returns the value of the
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression) invocation.
@@ -39145,123 +39795,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluate<'R, 'Arg>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * arg: 'Arg * ?options: Page.evaluate.options -> JS.Promise<'R>
-        /// <summary>
-        /// Returns the value of the
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression) invocation.
-        ///
-        /// If the function passed to the
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) returns a
-        /// [Promise], then
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) would wait
-        /// for the promise to resolve and return its value.
-        ///
-        /// If the function passed to the
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) returns a
-        /// non-[Serializable] value, then
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) resolves to
-        /// <c>undefined</c>. Playwright also supports transferring some additional values that are not serializable by <c>JSON</c>:
-        /// <c>-0</c>, <c>NaN</c>, <c>Infinity</c>, <c>-Infinity</c>.
-        ///
-        /// **Usage**
-        ///
-        /// Passing argument to [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression):
-        ///
-        /// <code lang="js">
-        /// const result = await page.evaluate(([x, y]) => {
-        ///   return Promise.resolve(x * y);
-        /// }, [7, 8]);
-        /// console.log(result); // prints "56"
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function:
-        ///
-        /// <c></c><c>js
-        /// console.log(await page.evaluate('1 + 2')); // prints "3"
-        /// const x = 10;
-        /// console.log(await page.evaluate(</c>1 + ${x}<c>)); // prints "11"
-        /// <code>
-        ///
-        /// [ElementHandle](https://playwright.dev/docs/api/class-elementhandle) instances can be passed as an argument to the
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate):
-        ///
-        /// </code>js
-        /// const bodyHandle = await page.evaluateHandle('document.body');
-        /// const html = await page.evaluate<string, HTMLElement>(([body, suffix]) =>
-        ///   body.innerHTML + suffix, [bodyHandle, 'hello']
-        /// );
-        /// await bodyHandle.dispose();
-        /// </c><c></c>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluate<'R>: pageFunction: string * ?arg: obj * ?options: Page.evaluate.options_1 -> JS.Promise<'R>
-        /// <summary>
-        /// Returns the value of the
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression) invocation.
-        ///
-        /// If the function passed to the
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) returns a
-        /// [Promise], then
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) would wait
-        /// for the promise to resolve and return its value.
-        ///
-        /// If the function passed to the
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) returns a
-        /// non-[Serializable] value, then
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) resolves to
-        /// <c>undefined</c>. Playwright also supports transferring some additional values that are not serializable by <c>JSON</c>:
-        /// <c>-0</c>, <c>NaN</c>, <c>Infinity</c>, <c>-Infinity</c>.
-        ///
-        /// **Usage**
-        ///
-        /// Passing argument to [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression):
-        ///
-        /// <code lang="js">
-        /// const result = await page.evaluate(([x, y]) => {
-        ///   return Promise.resolve(x * y);
-        /// }, [7, 8]);
-        /// console.log(result); // prints "56"
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function:
-        ///
-        /// <c></c><c>js
-        /// console.log(await page.evaluate('1 + 2')); // prints "3"
-        /// const x = 10;
-        /// console.log(await page.evaluate(</c>1 + ${x}<c>)); // prints "11"
-        /// <code>
-        ///
-        /// [ElementHandle](https://playwright.dev/docs/api/class-elementhandle) instances can be passed as an argument to the
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate):
-        ///
-        /// </code>js
-        /// const bodyHandle = await page.evaluateHandle('document.body');
-        /// const html = await page.evaluate<string, HTMLElement>(([body, suffix]) =>
-        ///   body.innerHTML + suffix, [bodyHandle, 'hello']
-        /// );
-        /// await bodyHandle.dispose();
-        /// </c><c></c>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluate<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Page.evaluate.options_1 -> JS.Promise<'R>
+        abstract member evaluate<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Page.evaluate.options -> JS.Promise<'R>
         /// <summary>
         /// Returns the value of the
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-handle-option-expression) invocation as a
@@ -39313,7 +39847,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluateHandle<'Arg>: pageFunction: string * arg: 'Arg * ?options: Page.evaluateHandle.options -> JS.Promise<obj>
+        abstract member evaluateHandle: pageFunction: string * ?arg: obj * ?options: Page.evaluateHandle.options -> JS.Promise<obj>
         /// <summary>
         /// Returns the value of the
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-handle-option-expression) invocation as a
@@ -39365,111 +39899,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluateHandle<'R, 'Arg>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * arg: 'Arg * ?options: Page.evaluateHandle.options -> JS.Promise<obj>
-        /// <summary>
-        /// Returns the value of the
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-handle-option-expression) invocation as a
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// The only difference between
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) and
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// is that
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// returns [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// If the function passed to the
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// returns a [Promise], then
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// would wait for the promise to resolve and return its value.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// // Handle for the window object.
-        /// const aWindowHandle = await page.evaluateHandle(() => Promise.resolve(window));
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function:
-        ///
-        /// <code lang="js">
-        /// const aHandle = await page.evaluateHandle('document'); // Handle for the 'document'
-        /// </code>
-        ///
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle) instances can be passed as an argument to the
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle):
-        ///
-        /// <code lang="js">
-        /// const aHandle = await page.evaluateHandle(() => document.body);
-        /// const resultHandle = await page.evaluateHandle(body => body.innerHTML, aHandle);
-        /// console.log(await resultHandle.jsonValue());
-        /// await resultHandle.dispose();
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-handle-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluateHandle: pageFunction: string * ?arg: obj * ?options: Page.evaluateHandle.options_1 -> JS.Promise<obj>
-        /// <summary>
-        /// Returns the value of the
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-handle-option-expression) invocation as a
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// The only difference between
-        /// [page.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate) and
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// is that
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// returns [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// If the function passed to the
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// returns a [Promise], then
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// would wait for the promise to resolve and return its value.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// // Handle for the window object.
-        /// const aWindowHandle = await page.evaluateHandle(() => Promise.resolve(window));
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function:
-        ///
-        /// <code lang="js">
-        /// const aHandle = await page.evaluateHandle('document'); // Handle for the 'document'
-        /// </code>
-        ///
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle) instances can be passed as an argument to the
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle):
-        ///
-        /// <code lang="js">
-        /// const aHandle = await page.evaluateHandle(() => document.body);
-        /// const resultHandle = await page.evaluateHandle(body => body.innerHTML, aHandle);
-        /// console.log(await resultHandle.jsonValue());
-        /// await resultHandle.dispose();
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-page#page-evaluate-handle-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluateHandle<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Page.evaluateHandle.options_1 -> JS.Promise<obj>
+        abstract member evaluateHandle<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Page.evaluateHandle.options -> JS.Promise<obj>
         /// <summary>
         /// Adds a script which would be evaluated in one of the following scenarios:
         /// - Whenever the page is navigated.
@@ -39637,7 +40067,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member ``$``: selector: string * ?options: Page._DOLLAR_.options_1 -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>> option>
+        abstract member ``$``: selector: string * ?options: Page._DOLLAR_.options -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>> option>
         /// <summary>
         /// **NOTE** Use locator-based [page.locator(selector[, options])](https://playwright.dev/docs/api/class-page#page-locator)
         /// instead. Read more about [locators](https://playwright.dev/docs/locators).
@@ -50868,7 +51298,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member selectOption: selector: string * values: ResizeArray<Page.selectOption.values_1> option * ?options: Page.selectOption.options -> JS.Promise<ResizeArray<string>>
+        abstract member selectOption: selector: string * values: ResizeArray<Page.selectOption.values> option * ?options: Page.selectOption.options -> JS.Promise<ResizeArray<string>>
         /// <summary>
         /// **NOTE** Use locator-based
         /// [locator.setChecked(checked[, options])](https://playwright.dev/docs/api/class-locator#locator-set-checked)
@@ -51061,7 +51491,7 @@ module PlaywrightCore =
         /// <param name="options">
         ///
         /// </param>
-        abstract member setInputFiles: selector: string * files: ResizeArray<Page.setInputFiles.files_1> * ?options: Page.setInputFiles.options -> JS.Promise<unit>
+        abstract member setInputFiles: selector: string * files: ResizeArray<Page.setInputFiles.files> * ?options: Page.setInputFiles.options -> JS.Promise<unit>
         /// <summary>
         /// In the case of multiple pages in a single browser, each page can have its own viewport size. However,
         /// [browser.newContext([options])](https://playwright.dev/docs/api/class-browser#browser-new-context) allows to set
@@ -59676,7 +60106,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluate<'R, 'Arg>: pageFunction: string * arg: 'Arg * ?options: Frame.evaluate.options -> JS.Promise<'R>
+        abstract member evaluate<'R>: pageFunction: string * ?arg: obj * ?options: Frame.evaluate.options -> JS.Promise<'R>
         /// <summary>
         /// Returns the return value of
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-option-expression).
@@ -59730,115 +60160,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluate<'R, 'Arg>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * arg: 'Arg * ?options: Frame.evaluate.options -> JS.Promise<'R>
-        /// <summary>
-        /// Returns the return value of
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-option-expression).
-        ///
-        /// If the function passed to the
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) returns
-        /// a [Promise], then
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) would
-        /// wait for the promise to resolve and return its value.
-        ///
-        /// If the function passed to the
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) returns
-        /// a non-[Serializable] value, then
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) returns
-        /// <c>undefined</c>. Playwright also supports transferring some additional values that are not serializable by <c>JSON</c>:
-        /// <c>-0</c>, <c>NaN</c>, <c>Infinity</c>, <c>-Infinity</c>.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// const result = await frame.evaluate(([x, y]) => {
-        ///   return Promise.resolve(x * y);
-        /// }, [7, 8]);
-        /// console.log(result); // prints "56"
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function.
-        ///
-        /// <code lang="js">
-        /// console.log(await frame.evaluate('1 + 2')); // prints "3"
-        /// </code>
-        ///
-        /// [ElementHandle](https://playwright.dev/docs/api/class-elementhandle) instances can be passed as an argument to the
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate):
-        ///
-        /// <code lang="js">
-        /// const bodyHandle = await frame.evaluateHandle('document.body');
-        /// const html = await frame.evaluate(([body, suffix]) =>
-        ///   body.innerHTML + suffix, [bodyHandle, 'hello'],
-        /// );
-        /// await bodyHandle.dispose();
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluate<'R>: pageFunction: string * ?arg: obj * ?options: Frame.evaluate.options_1 -> JS.Promise<'R>
-        /// <summary>
-        /// Returns the return value of
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-option-expression).
-        ///
-        /// If the function passed to the
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) returns
-        /// a [Promise], then
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) would
-        /// wait for the promise to resolve and return its value.
-        ///
-        /// If the function passed to the
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) returns
-        /// a non-[Serializable] value, then
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) returns
-        /// <c>undefined</c>. Playwright also supports transferring some additional values that are not serializable by <c>JSON</c>:
-        /// <c>-0</c>, <c>NaN</c>, <c>Infinity</c>, <c>-Infinity</c>.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// const result = await frame.evaluate(([x, y]) => {
-        ///   return Promise.resolve(x * y);
-        /// }, [7, 8]);
-        /// console.log(result); // prints "56"
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function.
-        ///
-        /// <code lang="js">
-        /// console.log(await frame.evaluate('1 + 2')); // prints "3"
-        /// </code>
-        ///
-        /// [ElementHandle](https://playwright.dev/docs/api/class-elementhandle) instances can be passed as an argument to the
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate):
-        ///
-        /// <code lang="js">
-        /// const bodyHandle = await frame.evaluateHandle('document.body');
-        /// const html = await frame.evaluate(([body, suffix]) =>
-        ///   body.innerHTML + suffix, [bodyHandle, 'hello'],
-        /// );
-        /// await bodyHandle.dispose();
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluate<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Frame.evaluate.options_1 -> JS.Promise<'R>
+        abstract member evaluate<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Frame.evaluate.options -> JS.Promise<'R>
         /// <summary>
         /// Returns the return value of
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle-option-expression) as a
@@ -59892,7 +60214,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluateHandle<'Arg>: pageFunction: string * arg: 'Arg * ?options: Frame.evaluateHandle.options -> JS.Promise<obj>
+        abstract member evaluateHandle: pageFunction: string * ?arg: obj * ?options: Frame.evaluateHandle.options -> JS.Promise<obj>
         /// <summary>
         /// Returns the return value of
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle-option-expression) as a
@@ -59946,115 +60268,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluateHandle<'R, 'Arg>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * arg: 'Arg * ?options: Frame.evaluateHandle.options -> JS.Promise<obj>
-        /// <summary>
-        /// Returns the return value of
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle-option-expression) as a
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// The only difference between
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) and
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle)
-        /// is that
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle)
-        /// returns [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// If the function, passed to the
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle),
-        /// returns a [Promise], then
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle)
-        /// would wait for the promise to resolve and return its value.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// // Handle for the window object
-        /// const aWindowHandle = await frame.evaluateHandle(() => Promise.resolve(window));
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function.
-        ///
-        /// <code lang="js">
-        /// const aHandle = await frame.evaluateHandle('document'); // Handle for the 'document'.
-        /// </code>
-        ///
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle) instances can be passed as an argument to the
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle):
-        ///
-        /// <code lang="js">
-        /// const aHandle = await frame.evaluateHandle(() => document.body);
-        /// const resultHandle = await frame.evaluateHandle(([body, suffix]) =>
-        ///   body.innerHTML + suffix, [aHandle, 'hello'],
-        /// );
-        /// console.log(await resultHandle.jsonValue());
-        /// await resultHandle.dispose();
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluateHandle: pageFunction: string * ?arg: obj * ?options: Frame.evaluateHandle.options_1 -> JS.Promise<obj>
-        /// <summary>
-        /// Returns the return value of
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle-option-expression) as a
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// The only difference between
-        /// [frame.evaluate(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate) and
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle)
-        /// is that
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle)
-        /// returns [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// If the function, passed to the
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle),
-        /// returns a [Promise], then
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle)
-        /// would wait for the promise to resolve and return its value.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// // Handle for the window object
-        /// const aWindowHandle = await frame.evaluateHandle(() => Promise.resolve(window));
-        /// </code>
-        ///
-        /// A string can also be passed in instead of a function.
-        ///
-        /// <code lang="js">
-        /// const aHandle = await frame.evaluateHandle('document'); // Handle for the 'document'.
-        /// </code>
-        ///
-        /// [JSHandle](https://playwright.dev/docs/api/class-jshandle) instances can be passed as an argument to the
-        /// [frame.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle):
-        ///
-        /// <code lang="js">
-        /// const aHandle = await frame.evaluateHandle(() => document.body);
-        /// const resultHandle = await frame.evaluateHandle(([body, suffix]) =>
-        ///   body.innerHTML + suffix, [aHandle, 'hello'],
-        /// );
-        /// console.log(await resultHandle.jsonValue());
-        /// await resultHandle.dispose();
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-frame#frame-evaluate-handle-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluateHandle<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Frame.evaluateHandle.options_1 -> JS.Promise<obj>
+        abstract member evaluateHandle<'R>: pageFunction: (obj -> U2<'R, JS.Promise<'R>>) * ?arg: obj * ?options: Frame.evaluateHandle.options -> JS.Promise<obj>
         /// <summary>
         /// **NOTE** Use locator-based [frame.locator(selector[, options])](https://playwright.dev/docs/api/class-frame#frame-locator)
         /// instead. Read more about [locators](https://playwright.dev/docs/locators).
@@ -60092,7 +60306,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member ``$``: selector: string * ?options: Frame._DOLLAR_.options_1 -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>> option>
+        abstract member ``$``: selector: string * ?options: Frame._DOLLAR_.options -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>> option>
         /// <summary>
         /// **NOTE** Use locator-based [frame.locator(selector[, options])](https://playwright.dev/docs/api/class-frame#frame-locator)
         /// instead. Read more about [locators](https://playwright.dev/docs/locators).
@@ -62076,7 +62290,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member selectOption: selector: string * values: ResizeArray<Frame.selectOption.values_1> option * ?options: Frame.selectOption.options -> JS.Promise<ResizeArray<string>>
+        abstract member selectOption: selector: string * values: ResizeArray<Frame.selectOption.values> option * ?options: Frame.selectOption.options -> JS.Promise<ResizeArray<string>>
         /// <summary>
         /// **NOTE** Use locator-based
         /// [locator.setChecked(checked[, options])](https://playwright.dev/docs/api/class-locator#locator-set-checked)
@@ -62219,7 +62433,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member setInputFiles: selector: string * files: ResizeArray<Frame.setInputFiles.files_1> * ?options: Frame.setInputFiles.options -> JS.Promise<unit>
+        abstract member setInputFiles: selector: string * files: ResizeArray<Frame.setInputFiles.files> * ?options: Frame.setInputFiles.options -> JS.Promise<unit>
         /// <summary>
         /// **NOTE** Use locator-based [locator.tap([options])](https://playwright.dev/docs/api/class-locator#locator-tap) instead. Read
         /// more about [locators](https://playwright.dev/docs/locators).
@@ -69965,7 +70179,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// Pass an array to use different credentials for different origins. The first entry that matches the request origin
         /// is used, and entries with no origin match any request.
         /// </param>
-        abstract member setHTTPCredentials: httpCredentials: ResizeArray<BrowserContext.setHTTPCredentials.httpCredentials_1> option -> JS.Promise<unit>
+        abstract member setHTTPCredentials: httpCredentials: ResizeArray<BrowserContext.setHTTPCredentials.httpCredentials> option -> JS.Promise<unit>
         /// <param name="offline">
         /// Whether to emulate network being offline for the browser context.
         /// </param>
@@ -76996,7 +77210,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluate<'R, 'Arg>: pageFunction: string * arg: 'Arg * ?options: JSHandle.evaluate.options -> JS.Promise<'R>
+        abstract member evaluate<'R>: pageFunction: string * ?arg: obj * ?options: JSHandle.evaluate.options -> JS.Promise<'R>
         /// <summary>
         /// Returns the return value of
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-option-expression).
@@ -77052,35 +77266,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluate<'R>: pageFunction: string * ?arg: obj * ?options: JSHandle.evaluate.options_1 -> JS.Promise<'R>
-        /// <summary>
-        /// Returns the return value of
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-option-expression).
-        ///
-        /// This method passes this handle as the first argument to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-option-expression).
-        ///
-        /// If [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-option-expression)
-        /// returns a [Promise], then <c>handle.evaluate</c> would wait for the promise to resolve and return its value.
-        ///
-        /// **Usage**
-        ///
-        /// <code lang="js">
-        /// const tweetHandle = await page.$('.tweet .retweets');
-        /// expect(await tweetHandle.evaluate(node => node.innerText)).toBe('10 retweets');
-        /// </code>
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluate<'R, 'O>: pageFunction: JSHandle.evaluate.pageFunction_1<'O, 'R> * ?arg: obj * ?options: JSHandle.evaluate.options_1 -> JS.Promise<'R>
+        abstract member evaluate<'R, 'O>: pageFunction: JSHandle.evaluate.pageFunction_1<'O, 'R> * ?arg: obj * ?options: JSHandle.evaluate.options -> JS.Promise<'R>
         /// <summary>
         /// Returns the return value of
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-handle-option-expression)
@@ -77109,7 +77295,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluateHandle<'Arg>: pageFunction: string * arg: 'Arg * ?options: JSHandle.evaluateHandle.options -> JS.Promise<obj>
+        abstract member evaluateHandle: pageFunction: string * ?arg: obj * ?options: JSHandle.evaluateHandle.options -> JS.Promise<obj>
         /// <summary>
         /// Returns the return value of
         /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-handle-option-expression)
@@ -77167,36 +77353,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member evaluateHandle: pageFunction: string * ?arg: obj * ?options: JSHandle.evaluateHandle.options_1 -> JS.Promise<obj>
-        /// <summary>
-        /// Returns the return value of
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-handle-option-expression)
-        /// as a [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// This method passes this handle as the first argument to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-handle-option-expression).
-        ///
-        /// The only difference between <c>jsHandle.evaluate</c> and <c>jsHandle.evaluateHandle</c> is that <c>jsHandle.evaluateHandle</c>
-        /// returns [JSHandle](https://playwright.dev/docs/api/class-jshandle).
-        ///
-        /// If the function passed to the <c>jsHandle.evaluateHandle</c> returns a [Promise], then <c>jsHandle.evaluateHandle</c> would
-        /// wait for the promise to resolve and return its value.
-        ///
-        /// See
-        /// [page.evaluateHandle(pageFunction[, arg, options])](https://playwright.dev/docs/api/class-page#page-evaluate-handle)
-        /// for more details.
-        /// </summary>
-        /// <param name="pageFunction">
-        /// Function to be evaluated in the page context.
-        /// </param>
-        /// <param name="arg">
-        /// Optional argument to pass to
-        /// [<c>pageFunction</c>](https://playwright.dev/docs/api/class-elementhandle#element-handle-evaluate-handle-option-expression).
-        /// </param>
-        /// <param name="options">
-        ///
-        /// </param>
-        abstract member evaluateHandle<'R, 'O>: pageFunction: JSHandle.evaluateHandle.pageFunction_1<'O, 'R> * ?arg: obj * ?options: JSHandle.evaluateHandle.options_1 -> JS.Promise<obj>
+        abstract member evaluateHandle<'R, 'O>: pageFunction: JSHandle.evaluateHandle.pageFunction_1<'O, 'R> * ?arg: obj * ?options: JSHandle.evaluateHandle.options -> JS.Promise<obj>
         /// <summary>
         /// Returns a JSON representation of the object. If the object has a <c>toJSON</c> function, it **will not be called**.
         ///
@@ -77377,7 +77534,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="selector">
         /// A selector to query for.
         /// </param>
-        abstract member ``$``: selector: string * ?options: ElementHandle._DOLLAR_.options_1 -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>> option>
+        abstract member ``$``: selector: string * ?options: ElementHandle._DOLLAR_.options -> JS.Promise<PlaywrightCore.ElementHandle<U2<Glutinum.Web.SVGElement, Glutinum.Web.HTMLElement>> option>
         /// <summary>
         /// **NOTE** Use locator-based [page.locator(selector[, options])](https://playwright.dev/docs/api/class-page#page-locator)
         /// instead. Read more about [locators](https://playwright.dev/docs/locators).
@@ -78664,7 +78821,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member selectOption: values: ResizeArray<ElementHandle.selectOption.values_1> option * ?options: ElementHandle.selectOption.options -> JS.Promise<ResizeArray<string>>
+        abstract member selectOption: values: ResizeArray<ElementHandle.selectOption.values> option * ?options: ElementHandle.selectOption.options -> JS.Promise<ResizeArray<string>>
         /// <summary>
         /// **NOTE** Use locator-based
         /// [locator.selectText([options])](https://playwright.dev/docs/api/class-locator#locator-select-text) instead. Read
@@ -78792,7 +78949,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member setInputFiles: files: ResizeArray<ElementHandle.setInputFiles.files_1> * ?options: ElementHandle.setInputFiles.options -> JS.Promise<unit>
+        abstract member setInputFiles: files: ResizeArray<ElementHandle.setInputFiles.files> * ?options: ElementHandle.setInputFiles.options -> JS.Promise<unit>
         /// <summary>
         /// **NOTE** Use locator-based [locator.tap([options])](https://playwright.dev/docs/api/class-locator#locator-tap) instead. Read
         /// more about [locators](https://playwright.dev/docs/locators).
@@ -80901,7 +81058,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member selectOption: values: ResizeArray<Locator.selectOption.values_1> option * ?options: Locator.selectOption.options -> JS.Promise<ResizeArray<string>>
+        abstract member selectOption: values: ResizeArray<Locator.selectOption.values> option * ?options: Locator.selectOption.options -> JS.Promise<ResizeArray<string>>
         /// <summary>
         /// This method waits for [actionability](https://playwright.dev/docs/actionability) checks, then focuses the element and selects all its
         /// text content.
@@ -81134,7 +81291,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member setInputFiles: files: ResizeArray<Locator.setInputFiles.files_1> * ?options: Locator.setInputFiles.options -> JS.Promise<unit>
+        abstract member setInputFiles: files: ResizeArray<Locator.setInputFiles.files> * ?options: Locator.setInputFiles.options -> JS.Promise<unit>
         /// <summary>
         /// Perform a tap gesture on the element matching the locator. For examples of emulating other gestures by manually
         /// dispatching touch events, see the [emulating legacy touch events](https://playwright.dev/docs/touch-events) page.
@@ -82049,6 +82206,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// </summary>
         [<AllowNullLiteral>]
         [<AbstractClass>]
+        [<Import("TimeoutError", "playwright-core")>]
         type TimeoutError =
             inherit Exception
 
@@ -84350,7 +84508,7 @@ to press keys one by one if there is special keyboard handling on the page - in 
         /// <param name="options">
         ///
         /// </param>
-        abstract member setFiles: files: ResizeArray<FileChooser.setFiles.files_1> * ?options: FileChooser.setFiles.options -> JS.Promise<unit>
+        abstract member setFiles: files: ResizeArray<FileChooser.setFiles.files> * ?options: FileChooser.setFiles.options -> JS.Promise<unit>
 
     /// <summary>
     /// FrameLocator represents a view to the <c>iframe</c> on the page. It captures the logic sufficient to retrieve the
@@ -118464,13 +118622,6 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 [<ParamObject; Emit("$0")>]
                 static member Create (?exposeFunctions: bool) : options = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member exposeFunctions: bool option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?exposeFunctions: bool) : options_1 = nativeOnly
-
         module evaluateHandle =
 
             [<AllowNullLiteral>]
@@ -118479,13 +118630,6 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 abstract member exposeFunctions: bool option with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (?exposeFunctions: bool) : options = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member exposeFunctions: bool option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?exposeFunctions: bool) : options_1 = nativeOnly
 
         module addInitScript =
 
@@ -118512,13 +118656,6 @@ to press keys one by one if there is special keyboard handling on the page - in 
                 abstract member strict: bool with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (strict: bool) : options = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member strict: bool with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (strict: bool) : options_1 = nativeOnly
 
         module _DOLLAR_eval =
 
@@ -120382,24 +120519,6 @@ the element to become visible and returns immediately.""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (?value: string, ?label: string, ?index: float) : values = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type values_1 =
-                /// <summary>
-                /// Matches by <c>option.value</c>. Optional.
-                /// </summary>
-                abstract member value: string option with get, set
-                /// <summary>
-                /// Matches by <c>option.label</c>. Optional.
-                /// </summary>
-                abstract member label: string option with get, set
-                /// <summary>
-                /// Matches by the index. Optional.
-                /// </summary>
-                abstract member index: float option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?value: string, ?label: string, ?index: float) : values_1 = nativeOnly
-
         module setChecked =
 
             [<AllowNullLiteral>]
@@ -120579,24 +120698,6 @@ the element to become visible and returns immediately.""")>]
                 abstract member buffer: obj with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type files_1 =
-                /// <summary>
-                /// File name
-                /// </summary>
-                abstract member name: string with get, set
-                /// <summary>
-                /// File type
-                /// </summary>
-                abstract member mimeType: string with get, set
-                /// <summary>
-                /// File content
-                /// </summary>
-                abstract member buffer: obj with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
 
         module setViewportSize =
 
@@ -121292,13 +121393,6 @@ the element to become visible and returns immediately.""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (?exposeFunctions: bool) : options = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member exposeFunctions: bool option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?exposeFunctions: bool) : options_1 = nativeOnly
-
         module evaluateHandle =
 
             [<AllowNullLiteral>]
@@ -121308,13 +121402,6 @@ the element to become visible and returns immediately.""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (?exposeFunctions: bool) : options = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member exposeFunctions: bool option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?exposeFunctions: bool) : options_1 = nativeOnly
-
         module _DOLLAR_ =
 
             [<AllowNullLiteral>]
@@ -121323,13 +121410,6 @@ the element to become visible and returns immediately.""")>]
                 abstract member strict: bool with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (strict: bool) : options = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member strict: bool with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (strict: bool) : options_1 = nativeOnly
 
         module _DOLLAR_eval =
 
@@ -122575,24 +122655,6 @@ for the element to become visible and returns immediately.""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (?value: string, ?label: string, ?index: float) : values = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type values_1 =
-                /// <summary>
-                /// Matches by <c>option.value</c>. Optional.
-                /// </summary>
-                abstract member value: string option with get, set
-                /// <summary>
-                /// Matches by <c>option.label</c>. Optional.
-                /// </summary>
-                abstract member label: string option with get, set
-                /// <summary>
-                /// Matches by the index. Optional.
-                /// </summary>
-                abstract member index: float option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?value: string, ?label: string, ?index: float) : values_1 = nativeOnly
-
         module setChecked =
 
             [<AllowNullLiteral>]
@@ -122764,24 +122826,6 @@ for the element to become visible and returns immediately.""")>]
                 abstract member buffer: obj with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type files_1 =
-                /// <summary>
-                /// File name
-                /// </summary>
-                abstract member name: string with get, set
-                /// <summary>
-                /// File type
-                /// </summary>
-                abstract member mimeType: string with get, set
-                /// <summary>
-                /// File content
-                /// </summary>
-                abstract member buffer: obj with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
 
         module tap =
 
@@ -123424,18 +123468,6 @@ for the element to become visible and returns immediately.""")>]
                 abstract member origin: string option with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (username: string, password: string, ?origin: string) : httpCredentials = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type httpCredentials_1 =
-                abstract member username: string with get, set
-                abstract member password: string with get, set
-                /// <summary>
-                /// Restrain sending http credentials on specific origin (scheme://host:port).
-                /// </summary>
-                abstract member origin: string option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (username: string, password: string, ?origin: string) : httpCredentials_1 = nativeOnly
 
         module setStorageState =
 
@@ -124586,13 +124618,6 @@ for the element to become visible and returns immediately.""")>]
             type pageFunction<'O, 'Arg, 'R> =
                 delegate of on: 'O * arg2: obj -> U2<'R, JS.Promise<'R>>
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member exposeFunctions: bool option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?exposeFunctions: bool) : options_1 = nativeOnly
-
             type pageFunction_1<'O, 'R> =
                 delegate of on: 'O * arg2: obj -> U2<'R, JS.Promise<'R>>
 
@@ -124607,13 +124632,6 @@ for the element to become visible and returns immediately.""")>]
 
             type pageFunction<'O, 'Arg, 'R> =
                 delegate of on: 'O * arg2: obj -> U2<'R, JS.Promise<'R>>
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member exposeFunctions: bool option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?exposeFunctions: bool) : options_1 = nativeOnly
 
             type pageFunction_1<'O, 'R> =
                 delegate of on: 'O * arg2: obj -> U2<'R, JS.Promise<'R>>
@@ -124762,13 +124780,6 @@ for the element to become visible and returns immediately.""")>]
                 abstract member strict: bool with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (strict: bool) : options = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member strict: bool with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (strict: bool) : options_1 = nativeOnly
 
         module _DOLLAR_eval =
 
@@ -125428,24 +125439,6 @@ for the element to become visible and returns immediately.""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (?value: string, ?label: string, ?index: float) : values = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type values_1 =
-                /// <summary>
-                /// Matches by <c>option.value</c>. Optional.
-                /// </summary>
-                abstract member value: string option with get, set
-                /// <summary>
-                /// Matches by <c>option.label</c>. Optional.
-                /// </summary>
-                abstract member label: string option with get, set
-                /// <summary>
-                /// Matches by the index. Optional.
-                /// </summary>
-                abstract member index: float option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?value: string, ?label: string, ?index: float) : values_1 = nativeOnly
-
         module selectText =
 
             [<AllowNullLiteral>]
@@ -125589,24 +125582,6 @@ for the element to become visible and returns immediately.""")>]
                 abstract member buffer: obj with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type files_1 =
-                /// <summary>
-                /// File name
-                /// </summary>
-                abstract member name: string with get, set
-                /// <summary>
-                /// File type
-                /// </summary>
-                abstract member mimeType: string with get, set
-                /// <summary>
-                /// File content
-                /// </summary>
-                abstract member buffer: obj with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
 
         module tap =
 
@@ -127348,24 +127323,6 @@ the element to become visible and returns immediately.""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (?value: string, ?label: string, ?index: float) : values = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type values_1 =
-                /// <summary>
-                /// Matches by <c>option.value</c>. Optional.
-                /// </summary>
-                abstract member value: string option with get, set
-                /// <summary>
-                /// Matches by <c>option.label</c>. Optional.
-                /// </summary>
-                abstract member label: string option with get, set
-                /// <summary>
-                /// Matches by the index. Optional.
-                /// </summary>
-                abstract member index: float option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?value: string, ?label: string, ?index: float) : values_1 = nativeOnly
-
         module selectText =
 
             [<AllowNullLiteral>]
@@ -127509,24 +127466,6 @@ the element to become visible and returns immediately.""")>]
                 abstract member buffer: obj with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type files_1 =
-                /// <summary>
-                /// File name
-                /// </summary>
-                abstract member name: string with get, set
-                /// <summary>
-                /// File type
-                /// </summary>
-                abstract member mimeType: string with get, set
-                /// <summary>
-                /// File content
-                /// </summary>
-                abstract member buffer: obj with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
 
         module tap =
 
@@ -127830,6 +127769,8 @@ the element to become visible and returns immediately.""")>]
                 /// </summary>
                 abstract member timeout: float option with get, set
                 abstract member wsEndpoint: string option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?artifactsDir: string, ?endpointURL: string, ?headers: BrowserType.connectOverCDP.options.headers, ?isLocal: bool, ?noDefaults: bool, ?slowMo: float, ?timeout: float, ?wsEndpoint: string) : options = nativeOnly
 
             module options =
 
@@ -127874,6 +127815,8 @@ the element to become visible and returns immediately.""")>]
                 /// </summary>
                 abstract member timeout: float option with get, set
                 abstract member wsEndpoint: string option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?exposeNetwork: string, ?headers: BrowserType.connect.options.headers, ?slowMo: float, ?timeout: float, ?wsEndpoint: string) : options = nativeOnly
 
             module options =
 
@@ -130662,24 +130605,6 @@ the element to become visible and returns immediately.""")>]
                 abstract member buffer: obj with get, set
                 [<ParamObject; Emit("$0")>]
                 static member Create (name: string, mimeType: string, buffer: obj) : files = nativeOnly
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type files_1 =
-                /// <summary>
-                /// File name
-                /// </summary>
-                abstract member name: string with get, set
-                /// <summary>
-                /// File type
-                /// </summary>
-                abstract member mimeType: string with get, set
-                /// <summary>
-                /// File content
-                /// </summary>
-                abstract member buffer: obj with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (name: string, mimeType: string, buffer: obj) : files_1 = nativeOnly
 
     module FrameLocator =
 
@@ -133703,6 +133628,12 @@ the element to become visible and returns immediately.""")>]
         type polling =
             | raf
             | Case1 of float
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: float) : polling = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: float) : polling = nativeOnly
 
     module PageScreenshotOptions =
 

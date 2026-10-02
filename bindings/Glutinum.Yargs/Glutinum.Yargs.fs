@@ -3123,6 +3123,12 @@ Use 'demandOption' instead""")>]
                     | log
                     | Case1 of (string -> unit)
 
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: (string -> unit)) : level = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: (string -> unit)) : level = nativeOnly
+
             module updateLocale =
 
                 [<AllowNullLiteral>]
@@ -3517,6 +3523,12 @@ Use 'demandOption' instead""")>]
                 | error
                 | log
                 | Case1 of (string -> unit)
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: (string -> unit)) : level = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: (string -> unit)) : level = nativeOnly
 
         module updateLocale__ =
 
