@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@glutinum/cli':
-        specifier: 1.0.0-beta.1
-        version: 1.0.0-beta.1
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2
       playwright:
         specifier: ^1.63.0
         version: 1.63.0
@@ -276,8 +276,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@glutinum/cli@1.0.0-beta.1':
-    resolution: {integrity: sha512-rv0B1xkgUCsUGSBhNcul4zPbDoIzh4v8CjWJtlu3tmQMw3BOPxRZuncb4kpJe3FjPcoosfJWZRKPm8sLvKN7rQ==}
+  '@glutinum/cli@1.0.0-beta.2':
+    resolution: {integrity: sha512-CluW9O4G5csLHt7Ic84mdd3xjuP2VEGrQtFVmSSrzLskVYJfDLixvEtQljFvfpQJ6WZiDJTi07K1kW3YH6kJvg==}
     engines: {node: '>=16', pnpm: '11'}
     hasBin: true
 
@@ -563,6 +563,10 @@ packages:
 
   codemirror@6.0.2:
     resolution: {integrity: sha512-VhydHotNW5w1UGK0Qj96BwSk/Zqbp9WbnyK2W/eVMv4QyF41INRGpjUhFJY7/uDNuudSc33a/PKr4iDqRduvHw==}
+
+  commander@15.0.0:
+    resolution: {integrity: sha512-z67u4ZhzCL/Tydu1lJARtEZYWbWaN7oYLHbsuzocr6y4N6WZAagG3RQ4FW61V1/0+jImpj293XfrcYnd1qxtPg==}
+    engines: {node: '>=22.12.0'}
 
   content-disposition@1.1.0:
     resolution: {integrity: sha512-5jRCH9Z/+DRP7rkvY83B+yGIGX96OYdJmzngqnw2SBSxqCFPd0w2km3s5iawpGX8krnwSGmF0FW5Nhr0Hfai3g==}
@@ -1157,10 +1161,11 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@glutinum/cli@1.0.0-beta.1':
+  '@glutinum/cli@1.0.0-beta.2':
     dependencies:
       '@ts-morph/bootstrap': 0.29.0
       chalk: 5.6.2
+      commander: 15.0.0
 
   '@kurkle/color@0.3.4': {}
 
@@ -1406,6 +1411,8 @@ snapshots:
       '@codemirror/search': 6.7.2
       '@codemirror/state': 6.7.5
       '@codemirror/view': 6.43.12
+
+  commander@15.0.0: {}
 
   content-disposition@1.1.0: {}
 

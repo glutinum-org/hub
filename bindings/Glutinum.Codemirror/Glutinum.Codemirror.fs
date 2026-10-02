@@ -857,6 +857,18 @@ Facet.define($0)""")>]
         | Case1 of Slot.Cases.Case1<'T>
         | Case2 of CodemirrorState.StateField<'T>
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: Slot.Cases.Case1<'T>) : Slot<'T> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Slot.Cases.Case1<'T>) : Slot<'T> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: CodemirrorState.StateField<'T>) : Slot<'T> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: CodemirrorState.StateField<'T>) : Slot<'T> = nativeOnly
+
     [<AllowNullLiteral>]
     [<Interface>]
     type StateFieldSpec<'Value> =
@@ -1691,9 +1703,9 @@ EditorState.transactionFilter{{=$0}}""")>]
         [<Emit("""import { EditorState } from "@codemirror/state";
 EditorState.transactionExtender{{=$0}}""")>]
         static member inline transactionExtender
-            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender___1 option)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option)>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender___1 option)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option)>>) =
                 nativeOnly
 
     /// <summary>
@@ -2026,6 +2038,12 @@ RangeSet.empty{{=$0}}""")>]
             | cover
             | Case1 of bool
 
+            [<Emit("$0")>]
+            static member op_Implicit(value: bool) : touchesRange = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: bool) : touchesRange = nativeOnly
+
         module iterGaps =
 
             type f =
@@ -2334,39 +2352,6 @@ RangeSet.empty{{=$0}}""")>]
             static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
             static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type transactionExtender___1 =
-            /// <summary>
-            /// Attach [state effects](https://codemirror.net/6/docs/ref/#state.StateEffect) to this transaction.
-            /// Again, when they contain positions and this same spec makes
-            /// changes, those positions should refer to positions in the
-            /// updated document.
-            /// </summary>
-            abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
-            /// <summary>
-            /// Set [annotations](https://codemirror.net/6/docs/ref/#state.Annotation) for this transaction.
-            /// </summary>
-            abstract member annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>> option with get, set
-            [<ParamObject; Emit("$0")>]
-            static member Create () : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (annotations: CodemirrorState.Annotation<obj>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (effects: CodemirrorState.StateEffect<obj>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender___1 = nativeOnly
-            [<ParamObject; Emit("$0")>]
-            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender___1 = nativeOnly
 
         module changeByRange =
 
@@ -3952,7 +3937,7 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// argument, in which case it'll return an estimated position that
         /// would be near the coordinates if it were rendered.
         /// </summary>
-        abstract member posAtCoords: coords: EditorView.posAtCoords.coords_1 -> float option
+        abstract member posAtCoords: coords: EditorView.posAtCoords.coords -> float option
         /// <summary>
         /// Like [<c>posAtCoords</c>](https://codemirror.net/6/docs/ref/#view.EditorView.posAtCoords), but also
         /// returns which side of the position the coordinates are closest
@@ -3970,7 +3955,7 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// returned, with <c>assoc</c> 1, whereas on the right side, you'd get
         /// the position after the character, with <c>assoc</c> -1.
         /// </summary>
-        abstract member posAndSideAtCoords: coords: EditorView.posAndSideAtCoords.coords_1 -> EditorView.posAndSideAtCoords_1 option
+        abstract member posAndSideAtCoords: coords: EditorView.posAndSideAtCoords.coords -> EditorView.posAndSideAtCoords option
         /// <summary>
         /// Get the screen coordinates at the given document position.
         /// <c>side</c> determines whether the coordinates are based on the
@@ -4208,9 +4193,9 @@ EditorView.clipboardOutputFilter{{=$0}}""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.scrollHandler{{=$0}}""")>]
         static member inline scrollHandler
-            with get () : CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler___1>> =
+            with get () : CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler__>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler___1>>) =
+            and set (value: CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler__>>) =
                 nativeOnly
         /// <summary>
         /// This facet can be used to provide functions that create effects
@@ -5238,14 +5223,6 @@ RectangleMarker.forRange($0, $1, $2)""")>]
             [<ParamObject; Emit("$0")>]
             static member Create (pos: float, assoc: EditorView.posAndSideAtCoords.assoc) : posAndSideAtCoords = nativeOnly
 
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type posAndSideAtCoords_1 =
-            abstract member pos: float with get, set
-            abstract member assoc: EditorView.posAndSideAtCoords.assoc with get, set
-            [<ParamObject; Emit("$0")>]
-            static member Create (pos: float, assoc: EditorView.posAndSideAtCoords.assoc) : posAndSideAtCoords_1 = nativeOnly
-
         type inputHandler__ =
             delegate of view: CodemirrorView.EditorView * from: float * ``to``: float * text: string * insert: (unit -> CodemirrorState.Transaction) -> bool
 
@@ -5257,9 +5234,6 @@ RectangleMarker.forRange($0, $1, $2)""")>]
 
         type scrollHandler__ =
             delegate of view: CodemirrorView.EditorView * range: CodemirrorState.SelectionRange * options: EditorView.scrollHandler__.options -> bool
-
-        type scrollHandler___1 =
-            delegate of view: CodemirrorView.EditorView * range: CodemirrorState.SelectionRange * options: EditorView.scrollHandler__.options_1 -> bool
 
         type focusChangeEffect__ =
             delegate of state: CodemirrorState.EditorState * focusing: bool -> CodemirrorState.StateEffect<obj> option
@@ -5297,14 +5271,6 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (x: float, y: float) : coords = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type coords_1 =
-                abstract member x: float with get, set
-                abstract member y: float with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (x: float, y: float) : coords_1 = nativeOnly
-
         module posAndSideAtCoords =
 
             [<AllowNullLiteral>]
@@ -5319,14 +5285,6 @@ RectangleMarker.forRange($0, $1, $2)""")>]
             type assoc =
                 | _MINUS_1 = -1
                 | ``1`` = 1
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type coords_1 =
-                abstract member x: float with get, set
-                abstract member y: float with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (x: float, y: float) : coords_1 = nativeOnly
 
         module coordsAtPos =
 
@@ -6265,16 +6223,6 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (x: CodemirrorView.ScrollStrategy, y: CodemirrorView.ScrollStrategy, xMargin: float, yMargin: float) : options = nativeOnly
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member x: CodemirrorView.ScrollStrategy with get, set
-                abstract member y: CodemirrorView.ScrollStrategy with get, set
-                abstract member xMargin: float with get, set
-                abstract member yMargin: float with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (x: CodemirrorView.ScrollStrategy, y: CodemirrorView.ScrollStrategy, xMargin: float, yMargin: float) : options_1 = nativeOnly
-
         module cursorScrollMargin__ =
 
             module U2 =
@@ -6500,6 +6448,12 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                     | touch
                     | Case1 of bool
 
+                    [<Emit("$0")>]
+                    static member op_Implicit(value: bool) : hideOnChange = nativeOnly
+
+                    [<Emit("$0")>]
+                    static member op_ErasedCast(value: bool) : hideOnChange = nativeOnly
+
         module activateHover__ =
 
             [<RequireQualifiedAccess>]
@@ -6666,4 +6620,4 @@ StyleModule.newName()""")>]
             type options =
                 abstract member finish: sel: string -> string
                 [<ParamObject; Emit("$0")>]
-                static member Create (finish: string) : options = nativeOnly
+                static member Create (finish: (string -> string)) : options = nativeOnly
