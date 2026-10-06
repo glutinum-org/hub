@@ -37,6 +37,22 @@ jobs:
           node-version-file: package.json
       - uses: pnpm/action-setup@v6
 
+      # The registry exposes a version a couple of minutes after `pnpm publish` returns
+      - name: Wait for the release on npm
+        if: github.event.client_payload.version != '' || inputs.glutinum-version != ''
+        env:
+          VERSION: ${{ github.event.client_payload.version || inputs.glutinum-version }}
+        run: |
+          for attempt in $(seq 1 30); do
+            if [ -n "$(npm view "@glutinum/cli@$VERSION" version 2>/dev/null)" ]; then
+              exit 0
+            fi
+            echo "@glutinum/cli@$VERSION is not on npm yet, attempt $attempt"
+            sleep 20
+          done
+          echo "@glutinum/cli@$VERSION did not appear on npm within 10 minutes" >&2
+          exit 1
+
       - name: Pin the Glutinum release
         if: github.event.client_payload.version != '' || inputs.glutinum-version != ''
         run: pnpm add --save-dev --workspace-root --save-exact @glutinum/cli@${{ github.event.client_payload.version || inputs.glutinum-version }}
