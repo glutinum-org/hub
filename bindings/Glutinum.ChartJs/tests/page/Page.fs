@@ -19,24 +19,24 @@ document.body.appendChild canvas |> ignore
 
 // The configuration and the datasets are typed
 let config =
-    jsOptions<ChartJs.ChartConfiguration<string, ResizeArray<float>, string>> (fun config ->
-        config.``type`` <- "bar"
-
-        config.data <-
-            jsOptions<ChartJs.ChartData<string, ResizeArray<float>, string>> (fun data ->
-                data.labels <- Some(ResizeArray [ "a"; "b"; "c" ])
-
-                data.datasets <-
-                    ResizeArray
-                        [
-                            jsOptions<ChartJs.ChartDataset<string, ResizeArray<float>>> (fun
-                                                                                             dataset ->
-                                dataset.label <- Some "demo"
-                                dataset.data <- ResizeArray [ 1.0; 2.0; 3.0 ]
-                            )
-                        ]
-            )
-    )
+    ChartJs.ChartConfiguration<string, ResizeArray<float>, string>
+        .Create(
+            ``type`` = "bar",
+            data =
+                ChartJs.ChartData<string, ResizeArray<float>, string>
+                    .Create(
+                        labels = ResizeArray [ "a"; "b"; "c" ],
+                        datasets =
+                            ResizeArray
+                                [
+                                    jsOptions<ChartJs.ChartDataset<string, ResizeArray<float>>> (fun
+                                                                                                     dataset ->
+                                        dataset.label <- Some "demo"
+                                        dataset.data <- ResizeArray [ 1.0; 2.0; 3.0 ]
+                                    )
+                                ]
+                    )
+        )
 
 // `chart.js/auto` registers every controller, scale and element
 let chart = ChartJs.auto.Exports.Chart(canvas.getContext_2d().Value, config)
@@ -73,23 +73,23 @@ document.body.appendChild lineCanvas |> ignore
 let line =
     ChartJs.auto.Exports.Chart(
         lineCanvas,
-        jsOptions<ChartJs.ChartConfiguration<string, ResizeArray<float>, string>> (fun config ->
-            config.``type`` <- "line"
-
-            config.data <-
-                jsOptions<ChartJs.ChartData<string, ResizeArray<float>, string>> (fun data ->
-                    data.labels <- Some(ResizeArray [ "x"; "y" ])
-
-                    data.datasets <-
-                        ResizeArray
-                            [
-                                jsOptions<ChartJs.ChartDataset<string, ResizeArray<float>>> (fun
-                                                                                                 dataset ->
-                                    dataset.data <- ResizeArray [ 5.0; 6.0 ]
-                                )
-                            ]
-                )
-        )
+        ChartJs.ChartConfiguration<string, ResizeArray<float>, string>
+            .Create(
+                ``type`` = "line",
+                data =
+                    ChartJs.ChartData<string, ResizeArray<float>, string>
+                        .Create(
+                            labels = ResizeArray [ "x"; "y" ],
+                            datasets =
+                                ResizeArray
+                                    [
+                                        jsOptions<ChartJs.ChartDataset<string, ResizeArray<float>>> (fun
+                                                                                                         dataset ->
+                                            dataset.data <- ResizeArray [ 5.0; 6.0 ]
+                                        )
+                                    ]
+                        )
+            )
     )
 
 line.destroy ()

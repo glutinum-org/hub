@@ -39,7 +39,7 @@ let main _ =
                                 jsOptions<Geojson.Feature<Geojson.Point, obj>> (fun feature ->
                                     feature.``type`` <- "Feature"
                                     feature.geometry <- point 2.35 48.85
-                                    feature.properties <- createObj [ "name" ==> "Paris" ]
+                                    feature.properties <- {| name = "Paris" |}
                                 )
 
                             assertThat feature.geometry.coordinates.[1] (isEqualTo 48.85)
@@ -61,7 +61,7 @@ let main _ =
                                                                                                     feature ->
                                                     feature.``type`` <- "Feature"
                                                     feature.geometry <- point 0 0
-                                                    feature.properties <- createObj []
+                                                    feature.properties <- obj ()
                                                 )
                                             ]
                                 )

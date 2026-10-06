@@ -38,7 +38,7 @@ let parisFeature =
                 point.coordinates <- ResizeArray [ 2.35; 48.85 ]
             )
 
-        feature.properties <- createObj [ "name" ==> "Paris" ]
+        feature.properties <- {| name = "Paris" |}
     )
 
 let layer = L.geoJSON parisFeature
@@ -55,11 +55,7 @@ let bounds = L.latLngBounds (L.latLng (48.0, 2.0), L.latLng (49.0, 3.0))
 report "bounds" $"paris: {bounds.contains paris}, london: {bounds.contains london}"
 
 // A circle marker with a popup
-let marker =
-    L.circleMarker (
-        paris,
-        jsOptions<Leaflet.CircleMarkerOptions> (fun options -> options.radius <- Some 12)
-    )
+let marker = L.circleMarker (paris, Leaflet.CircleMarkerOptions.Create(radius = 12))
 
 marker.bindPopup("Paris").addTo map |> ignore
 let wasOpen = marker.isPopupOpen ()

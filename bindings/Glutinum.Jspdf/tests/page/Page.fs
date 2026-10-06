@@ -14,7 +14,7 @@ let private report (id: string) (text: string) =
     document.body.appendChild element |> ignore
 
 // `jsPDF ()` is ambiguous between the overloads with optional parameters only
-let doc = Jspdf.Exports.jsPDF (jsOptions<Jspdf.jsPDFOptions> ignore)
+let doc = Jspdf.Exports.jsPDF (Jspdf.jsPDFOptions.Create())
 
 doc.text ("Hello from Fable", 10, 10) |> ignore
 doc.addPage () |> ignore
@@ -37,9 +37,7 @@ let fonts = doc.getFontList ()
 let hasHelvetica = fonts.["helvetica"].Count > 0
 report "fonts" $"helvetica: {hasHelvetica}"
 
-doc.setProperties (
-    jsOptions<Jspdf.DocumentProperties> (fun properties -> properties.title <- Some "Fable report")
-)
+doc.setProperties (Jspdf.DocumentProperties.Create(title = "Fable report"))
 |> ignore
 
 let hasTitle = doc.output().Contains "Fable report"

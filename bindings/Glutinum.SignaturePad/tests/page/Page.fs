@@ -41,12 +41,7 @@ let stroke =
             ResizeArray
                 [
                     for (x, y, time) in [ 10.0, 10.0, 0.0; 100.0, 60.0, 50.0 ] do
-                        jsOptions<SignaturePad.BasicPoint> (fun point ->
-                            point.x <- x
-                            point.y <- y
-                            point.pressure <- 0.5
-                            point.time <- time
-                        )
+                        SignaturePad.BasicPoint.Create(x = x, y = y, pressure = 0.5, time = time)
                 ]
     )
 

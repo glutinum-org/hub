@@ -25,18 +25,20 @@ type private TestServer() =
         member _.Dispose() = server.close () |> ignore
 
 let private get (server: TestServer) (path: string) =
-    Async.AwaitPromise(fetch (server.Url path) (createObj []))
+    Async.AwaitPromise(fetch (server.Url path) (obj ()))
 
 let private post (server: TestServer) (path: string) (body: obj) =
     Async.AwaitPromise(
         fetch
             (server.Url path)
-            (createObj
-                [
-                    "method" ==> "POST"
-                    "headers" ==> createObj [ "content-type" ==> "application/json" ]
-                    "body" ==> JS.JSON.stringify body
-                ])
+            {|
+                method = "POST"
+                headers =
+                    {|
+                        ``content-type`` = "application/json"
+                    |}
+                body = JS.JSON.stringify body
+            |}
     )
 
 [<EntryPoint>]
@@ -107,8 +109,7 @@ let main _ =
                             async {
                                 use server = new TestServer()
 
-                                let! response =
-                                    post server "/users" (createObj [ "name" ==> "Linus" ])
+                                let! response = post server "/users" {| name = "Linus" |}
 
                                 assertThat response.status (isEqualTo 201)
                                 assertThat response.text (isEqualTo """{"id":3,"name":"Linus"}""")

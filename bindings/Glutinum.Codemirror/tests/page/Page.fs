@@ -55,9 +55,9 @@ report
 // A state can be created without a view
 let state =
     CodemirrorState.EditorState.create (
-        jsOptions<CodemirrorState.EditorStateConfig> (fun config ->
-            config.doc <- Some(U2.Case1 "abc\ndef")
-            config.extensions <- Some Codemirror.Exports.minimalSetup
+        CodemirrorState.EditorStateConfig.Create(
+            doc = "abc\ndef",
+            extensions = Codemirror.Exports.minimalSetup
         )
     )
 
