@@ -43,7 +43,7 @@ module Jspdf =
         [<ImportDefault("jspdf"); EmitConstructor>]
         static member jsPDF () : jsPDF = nativeOnly
         [<ImportDefault("jspdf"); EmitConstructor>]
-        static member jsPDF (?orientation: Exports.jsPDF.orientation, ?unit: Exports.jsPDF.unit, ?format: U2<string, ResizeArray<float>>, ?compressPdf: bool) : jsPDF = nativeOnly
+        static member jsPDF (orientation: Exports.jsPDF.orientation, ?unit: Exports.jsPDF.unit, ?format: U2<string, ResizeArray<float>>, ?compressPdf: bool) : jsPDF = nativeOnly
         [<Import("GState", "jspdf"); EmitConstructor>]
         static member GState (parameters: Jspdf.GState) : GState = nativeOnly
         [<Import("ShadingPattern", "jspdf"); EmitConstructor>]
@@ -179,6 +179,8 @@ module Jspdf =
         /// Window height to use when rendering Element, which may affect things like Media queries
         /// </summary>
         abstract member windowHeight: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?async: bool, ?allowTaint: bool, ?backgroundColor: string, ?canvas: obj, ?foreignObjectRendering: bool, ?ignoreElements: (Glutinum.Web.HTMLElement -> bool), ?imageTimeout: float, ?letterRendering: bool, ?logging: bool, ?onclone: Html2CanvasOptions.onclone, ?proxy: string, ?removeContainer: bool, ?scale: float, ?svgRendering: bool, ?taintTest: bool, ?useCORS: bool, ?width: float, ?height: float, ?x: float, ?y: float, ?scrollX: float, ?scrollY: float, ?windowWidth: float, ?windowHeight: float) : Html2CanvasOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -194,6 +196,7 @@ module Jspdf =
     type HTMLWorker =
         abstract member from: src: Glutinum.Web.HTMLElement * ``type``: HTMLWorker.from.``type`` -> Jspdf.HTMLWorker
         abstract member from: src: string * ``type``: HTMLWorker.from.``type`` -> Jspdf.HTMLWorker
+        abstract member from: src: U2<Glutinum.Web.HTMLElement, string> * ``type``: HTMLWorker.from.``type`` -> Jspdf.HTMLWorker
         abstract member progress: Jspdf.HTMLWorkerProgress with get, set
         abstract member error: msg: string -> unit
         abstract member save: filename: string -> JS.Promise<unit>
@@ -211,6 +214,8 @@ module Jspdf =
     type HTMLOptionImage =
         abstract member ``type``: HTMLOptionImage.``type`` with get, set
         abstract member quality: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: HTMLOptionImage.``type``, quality: float) : HTMLOptionImage = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -218,8 +223,10 @@ module Jspdf =
         abstract member family: string with get, set
         abstract member style: HTMLFontFace.style option with get, set
         abstract member stretch: HTMLFontFace.stretch option with get, set
-        abstract member weight: obj option with get, set
+        abstract member weight: HTMLFontFace.weight option with get, set
         abstract member src: ResizeArray<HTMLFontFace.src> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (family: string, src: ResizeArray<HTMLFontFace.src>, ?style: HTMLFontFace.style, ?stretch: HTMLFontFace.stretch, ?weight: HTMLFontFace.weight) : HTMLFontFace = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -561,6 +568,12 @@ module Jspdf =
         abstract member isInputRtl: bool option with get, set
         abstract member isOutputRtl: bool option with get, set
         abstract member isSymmetricSwapping: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?align: TextOptionsLight.align, ?baseline: TextOptionsLight.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptionsLight.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptionsLight.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptionsLight = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (angle: float, ?align: TextOptionsLight.align, ?baseline: TextOptionsLight.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptionsLight.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptionsLight.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptionsLight = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (angle: Jspdf.Matrix, ?align: TextOptionsLight.align, ?baseline: TextOptionsLight.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptionsLight.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptionsLight.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptionsLight = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -613,7 +626,9 @@ module Jspdf =
     type EncryptionOptions =
         abstract member userPassword: string option with get, set
         abstract member ownerPassword: string option with get, set
-        abstract member userPermissions: ResizeArray<EncryptionOptions.userPermissions> option with get, set
+        abstract member userPermissions: ResizeArray<EncryptionOptions.userPermissions.Item> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?userPassword: string, ?ownerPassword: string, ?userPermissions: ResizeArray<EncryptionOptions.userPermissions.Item>) : EncryptionOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -641,6 +656,8 @@ module Jspdf =
     type Point =
         abstract member x: float with get, set
         abstract member y: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (x: float, y: float) : Point = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -648,6 +665,8 @@ module Jspdf =
         inherit Jspdf.Point
         abstract member w: float with get, set
         abstract member h: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (x: float, y: float, w: float, h: float) : Rectangle = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -778,8 +797,8 @@ module Jspdf =
         abstract member output_blob: unit -> Glutinum.Web.Blob
         abstract member output: ``type``: jsPDF.output.``type`` -> Glutinum.Web.URL
         abstract member output: ``type``: jsPDF.output.``type_1`` * ?options: jsPDF.output.options -> string
-        abstract member output: ``type``: jsPDF.output.``type_2`` * ?options: jsPDF.output.options_1 -> Glutinum.Web.Window
-        abstract member output: ``type``: jsPDF.output.``type_3`` * ?options: jsPDF.output.options_2 -> bool
+        abstract member output: ``type``: jsPDF.output.``type_2`` * ?options: jsPDF.output.options -> Glutinum.Web.Window
+        abstract member output: ``type``: jsPDF.output.``type_3`` * ?options: jsPDF.output.options -> bool
         abstract member pdfEscape: text: string * flags: obj -> string
         abstract member path: ?lines: ResizeArray<obj> * ?style: string -> Jspdf.jsPDF
         abstract member rect: x: float * y: float * w: float * h: float * ?style: string -> Jspdf.jsPDF
@@ -807,10 +826,12 @@ module Jspdf =
         abstract member setGState: gState: obj -> Jspdf.jsPDF
         abstract member setLineCap: style: string -> Jspdf.jsPDF
         abstract member setLineCap: style: float -> Jspdf.jsPDF
+        abstract member setLineCap: style: U2<string, float> -> Jspdf.jsPDF
         abstract member setLineDashPattern: dashArray: ResizeArray<float> * dashPhase: float -> Jspdf.jsPDF
         abstract member setLineHeightFactor: value: float -> Jspdf.jsPDF
         abstract member setLineJoin: style: string -> Jspdf.jsPDF
         abstract member setLineJoin: style: float -> Jspdf.jsPDF
+        abstract member setLineJoin: style: U2<string, float> -> Jspdf.jsPDF
         abstract member setLineMiterLimit: length: float -> Jspdf.jsPDF
         abstract member setLineWidth: width: float -> Jspdf.jsPDF
         abstract member setPage: pageNumber: float -> Jspdf.jsPDF
@@ -820,6 +841,7 @@ module Jspdf =
         abstract member setTextColor: ch1: float * ch2: float * ch3: float * ?ch4: float -> Jspdf.jsPDF
         abstract member text: text: string * x: float * y: float * ?options: Jspdf.TextOptionsLight * ?transform: U2<float, obj> -> Jspdf.jsPDF
         abstract member text: text: ResizeArray<string> * x: float * y: float * ?options: Jspdf.TextOptionsLight * ?transform: U2<float, obj> -> Jspdf.jsPDF
+        abstract member text: text: U2<string, ResizeArray<string>> * x: float * y: float * ?options: Jspdf.TextOptionsLight * ?transform: U2<float, obj> -> Jspdf.jsPDF
         abstract member triangle: x1: float * y1: float * x2: float * y2: float * x3: float * y3: float * ?style: string -> Jspdf.jsPDF
         abstract member getHorizontalCoordinateString: value: float -> float
         abstract member getVerticalCoordinateString: value: float -> float
@@ -949,6 +971,27 @@ module Jspdf =
         ///  - vfs
         ///  - xmp_metadata
         /// </summary>
+        abstract member addImage: imageData: U5<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array, Jspdf.RGBAData> * format: string * x: float * y: float * w: float * h: float * ?alias: string * ?compression: Jspdf.ImageCompression * ?rotation: float -> Jspdf.jsPDF
+        /// <summary>
+        /// jsPDF plugins below:
+        ///
+        ///  - AcroForm
+        ///  - AddImage
+        ///  - Annotations
+        ///  - AutoPrint
+        ///  - Canvas
+        ///  - Cell
+        ///  - Context2D
+        ///  - fileloading
+        ///  - html
+        ///  - JavaScript
+        ///  - split_text_to_size
+        ///  - SVG
+        ///  - total_pages
+        ///  - utf8
+        ///  - vfs
+        ///  - xmp_metadata
+        /// </summary>
         abstract member addImage: imageData: string * x: float * y: float * w: float * h: float * ?alias: string * ?compression: Jspdf.ImageCompression * ?rotation: float -> Jspdf.jsPDF
         /// <summary>
         /// jsPDF plugins below:
@@ -1054,11 +1097,33 @@ module Jspdf =
         ///  - vfs
         ///  - xmp_metadata
         /// </summary>
+        abstract member addImage: imageData: U5<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array, Jspdf.RGBAData> * x: float * y: float * w: float * h: float * ?alias: string * ?compression: Jspdf.ImageCompression * ?rotation: float -> Jspdf.jsPDF
+        /// <summary>
+        /// jsPDF plugins below:
+        ///
+        ///  - AcroForm
+        ///  - AddImage
+        ///  - Annotations
+        ///  - AutoPrint
+        ///  - Canvas
+        ///  - Cell
+        ///  - Context2D
+        ///  - fileloading
+        ///  - html
+        ///  - JavaScript
+        ///  - split_text_to_size
+        ///  - SVG
+        ///  - total_pages
+        ///  - utf8
+        ///  - vfs
+        ///  - xmp_metadata
+        /// </summary>
         abstract member addImage: options: Jspdf.ImageOptions -> Jspdf.jsPDF
         abstract member getImageProperties: imageData: string -> Jspdf.ImageProperties
         abstract member getImageProperties: imageData: Glutinum.Web.HTMLImageElement -> Jspdf.ImageProperties
         abstract member getImageProperties: imageData: Glutinum.Web.HTMLCanvasElement -> Jspdf.ImageProperties
         abstract member getImageProperties: imageData: JS.Uint8Array -> Jspdf.ImageProperties
+        abstract member getImageProperties: imageData: U4<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array> -> Jspdf.ImageProperties
         abstract member processArabic: text: string -> string
         abstract member createAnnotation: options: Jspdf.Annotation -> unit
         abstract member link: x: float * y: float * w: float * h: float * options: obj -> unit
@@ -1072,8 +1137,9 @@ module Jspdf =
         abstract member getTextDimensions: text: string * ?options: jsPDF.getTextDimensions.options -> jsPDF.getTextDimensions
         abstract member cellAddPage: unit -> Jspdf.jsPDF
         abstract member cell: x: float * y: float * w: float * h: float * txt: string * ln: float * align: string -> Jspdf.jsPDF
-        abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data> * headers: ResizeArray<string> * config: Jspdf.TableConfig -> Jspdf.jsPDF
-        abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data> * headers: ResizeArray<Jspdf.CellConfig> * config: Jspdf.TableConfig -> Jspdf.jsPDF
+        abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data.Item> * headers: ResizeArray<string> * config: Jspdf.TableConfig -> Jspdf.jsPDF
+        abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data.Item> * headers: ResizeArray<Jspdf.CellConfig> * config: Jspdf.TableConfig -> Jspdf.jsPDF
+        abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data.Item> * headers: U2<ResizeArray<string>, ResizeArray<Jspdf.CellConfig>> * config: Jspdf.TableConfig -> Jspdf.jsPDF
         abstract member calculateLineHeight: headerNames: ResizeArray<string> * columnWidths: ResizeArray<float> * model: ResizeArray<obj> -> float
         abstract member setTableHeaderRow: config: ResizeArray<Jspdf.CellConfig> -> unit
         abstract member printHeaderRow: lineNumber: float * ?new_page: bool -> unit
@@ -1084,12 +1150,13 @@ module Jspdf =
         abstract member allowFsRead: ResizeArray<string> option with get, set
         abstract member html: src: string * ?options: Jspdf.HTMLOptions -> Jspdf.HTMLWorker
         abstract member html: src: Glutinum.Web.HTMLElement * ?options: Jspdf.HTMLOptions -> Jspdf.HTMLWorker
+        abstract member html: src: U2<string, Glutinum.Web.HTMLElement> * ?options: Jspdf.HTMLOptions -> Jspdf.HTMLWorker
         abstract member addJS: javascript: string -> Jspdf.jsPDF
         abstract member getCharWidthsArray: text: string * ?options: obj -> ResizeArray<obj>
         abstract member getStringUnitWidth: text: string * ?options: obj -> float
         abstract member splitTextToSize: text: string * maxlen: float * ?options: obj -> obj
         abstract member addSvgAsImage: svg: string * x: float * y: float * w: float * h: float * ?alias: string * ?compression: bool * ?rotation: float -> Jspdf.jsPDF
-        abstract member setLanguage: langCode: obj -> Jspdf.jsPDF
+        abstract member setLanguage: langCode: jsPDF.setLanguage.langCode -> Jspdf.jsPDF
         abstract member putTotalPages: pageExpression: string -> Jspdf.jsPDF
         abstract member viewerPreferences: options: Jspdf.ViewerPreferencesInput * ?doReset: bool -> Jspdf.jsPDF
         [<Emit("$0.viewerPreferences('reset')")>]
@@ -1104,7 +1171,7 @@ module Jspdf =
         /// <summary>
         /// WARNING: Passing raw XML is potentially insecure! Always sanitize user input before passing it to this function!
         /// </summary>
-        abstract member addMetadata: metadata: string * ?rawXml: bool -> Jspdf.jsPDF
+        abstract member addMetadata: metadata: string * rawXml: bool -> Jspdf.jsPDF
         abstract member Matrix: a: float * b: float * c: float * d: float * e: float * f: float -> Jspdf.Matrix
         abstract member matrixMult: m1: Jspdf.Matrix * m2: Jspdf.Matrix -> Jspdf.Matrix
         abstract member unitMatrix: Jspdf.Matrix with get, set
@@ -1127,6 +1194,8 @@ jsPDF.API{{=$0}}""")>]
     type GState =
         abstract member opacity: float option with get, set
         abstract member ``stroke-opacity``: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?opacity: float, ?``stroke-opacity``: float) : GState = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1163,6 +1232,8 @@ jsPDF.API{{=$0}}""")>]
     type ShadingPatterStop =
         abstract member offset: float with get, set
         abstract member color: ResizeArray<float> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (offset: float, color: ResizeArray<float>) : ShadingPatterStop = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -1176,6 +1247,8 @@ jsPDF.API{{=$0}}""")>]
         inherit Jspdf.Pattern
         abstract member coords: ResizeArray<float> with get, set
         abstract member colors: ResizeArray<Jspdf.ShadingPatterStop> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (coords: ResizeArray<float>, colors: ResizeArray<Jspdf.ShadingPatterStop>, ?gState: Jspdf.GState, ?matrix: Jspdf.Matrix) : ShadingPattern = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1184,6 +1257,8 @@ jsPDF.API{{=$0}}""")>]
         abstract member boundingBox: ResizeArray<float> with get, set
         abstract member xStep: float with get, set
         abstract member yStep: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (boundingBox: ResizeArray<float>, xStep: float, yStep: float, ?gState: Jspdf.GState, ?matrix: Jspdf.Matrix) : TilingPattern = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1249,9 +1324,9 @@ jsPDF.API{{=$0}}""")>]
             [<Emit("$0($1...)")>]
             abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_1`` * ?options: HTMLWorker.outputPdf.Invoke.options -> string
             [<Emit("$0($1...)")>]
-            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_2`` * ?options: HTMLWorker.outputPdf.Invoke.options_1 -> Glutinum.Web.Window
+            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_2`` * ?options: HTMLWorker.outputPdf.Invoke.options -> Glutinum.Web.Window
             [<Emit("$0($1...)")>]
-            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_3`` * ?options: HTMLWorker.outputPdf.Invoke.options_2 -> bool
+            abstract member Invoke: ``type``: HTMLWorker.outputPdf.Invoke.``type_3`` * ?options: HTMLWorker.outputPdf.Invoke.options -> bool
 
         module from =
 
@@ -1305,25 +1380,11 @@ jsPDF.API{{=$0}}""")>]
                     | pdfjsnewwindow
                     | dataurlnewwindow
 
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type options_1 =
-                    abstract member filename: string option with get, set
-                    [<ParamObject; Emit("$0")>]
-                    static member Create (?filename: string) : options_1 = nativeOnly
-
                 [<RequireQualifiedAccess>]
                 [<StringEnum(CaseRules.None)>]
                 type ``type_3`` =
                     | dataurl
                     | datauri
-
-                [<AllowNullLiteral>]
-                [<Interface>]
-                type options_2 =
-                    abstract member filename: string option with get, set
-                    [<ParamObject; Emit("$0")>]
-                    static member Create (?filename: string) : options_2 = nativeOnly
 
     module HTMLOptionImage =
 
@@ -1356,6 +1417,30 @@ jsPDF.API{{=$0}}""")>]
             | ``extra-expanded``
             | ``ultra-expanded``
 
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type weight =
+            | normal
+            | bold
+            | [<CompiledValue(100)>] ``100``
+            | [<CompiledValue(200)>] ``200``
+            | [<CompiledValue(300)>] ``300``
+            | [<CompiledValue(400)>] ``400``
+            | [<CompiledValue(500)>] ``500``
+            | [<CompiledValue(600)>] ``600``
+            | [<CompiledValue(700)>] ``700``
+            | [<CompiledValue(800)>] ``800``
+            | [<CompiledValue(900)>] ``900``
+            | [<CompiledName("100")>] ``100_1``
+            | [<CompiledName("200")>] ``200_1``
+            | [<CompiledName("300")>] ``300_1``
+            | [<CompiledName("400")>] ``400_1``
+            | [<CompiledName("500")>] ``500_1``
+            | [<CompiledName("600")>] ``600_1``
+            | [<CompiledName("700")>] ``700_1``
+            | [<CompiledName("800")>] ``800_1``
+            | [<CompiledName("900")>] ``900_1``
+
         [<AllowNullLiteral>]
         [<Interface>]
         type src =
@@ -1367,11 +1452,12 @@ jsPDF.API{{=$0}}""")>]
     module HTMLOptions =
 
         [<RequireQualifiedAccess>]
-        [<Erase(CaseRules.None)>]
+        [<StringEnum(CaseRules.None)>]
         type autoPaging =
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
             | slice
             | text
-            | Case1 of bool
 
     module ViewerPreferencesInput =
 
@@ -1586,13 +1672,15 @@ jsPDF.API{{=$0}}""")>]
 
     module EncryptionOptions =
 
-        [<RequireQualifiedAccess>]
-        [<StringEnum(CaseRules.None)>]
-        type userPermissions =
-            | print
-            | modify
-            | copy
-            | ``annot-forms``
+        module userPermissions =
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type Item =
+                | print
+                | modify
+                | copy
+                | ``annot-forms``
 
     module jsPDFOptions =
 
@@ -1621,6 +1709,12 @@ jsPDF.API{{=$0}}""")>]
         type floatPrecision =
             | smart
             | Case1 of float
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: float) : floatPrecision = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: float) : floatPrecision = nativeOnly
 
     module PubSub =
 
@@ -1655,7 +1749,7 @@ jsPDF.API{{=$0}}""")>]
             abstract member pages: ResizeArray<float> with get, set
             abstract member getEncryptor: objectId: float -> (string -> string)
             [<ParamObject; Emit("$0")>]
-            static member Create (events: Jspdf.PubSub, scaleFactor: float, pageSize: jsPDF.``internal``.pageSize, pages: ResizeArray<float>, getEncryptor: (string -> string)) : ``internal`` = nativeOnly
+            static member Create (events: Jspdf.PubSub, scaleFactor: float, pageSize: jsPDF.``internal``.pageSize, pages: ResizeArray<float>, getEncryptor: (float -> (string -> string))) : ``internal`` = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1672,7 +1766,7 @@ jsPDF.API{{=$0}}""")>]
             abstract member PasswordField: unit -> Jspdf.AcroFormPasswordField
             abstract member Appearance: unit -> obj
             [<ParamObject; Emit("$0")>]
-            static member Create (ChoiceField: Jspdf.AcroFormChoiceField, ListBox: Jspdf.AcroFormListBox, ComboBox: Jspdf.AcroFormComboBox, EditBox: Jspdf.AcroFormEditBox, Button: Jspdf.AcroFormButton, PushButton: Jspdf.AcroFormPushButton, RadioButton: Jspdf.AcroFormRadioButton, CheckBox: Jspdf.AcroFormCheckBox, TextField: Jspdf.AcroFormTextField, PasswordField: Jspdf.AcroFormPasswordField, Appearance: obj) : AcroForm = nativeOnly
+            static member Create (ChoiceField: (unit -> Jspdf.AcroFormChoiceField), ListBox: (unit -> Jspdf.AcroFormListBox), ComboBox: (unit -> Jspdf.AcroFormComboBox), EditBox: (unit -> Jspdf.AcroFormEditBox), Button: (unit -> Jspdf.AcroFormButton), PushButton: (unit -> Jspdf.AcroFormPushButton), RadioButton: (unit -> Jspdf.AcroFormRadioButton), CheckBox: (unit -> Jspdf.AcroFormCheckBox), TextField: (unit -> Jspdf.AcroFormTextField), PasswordField: (unit -> Jspdf.AcroFormPasswordField), Appearance: (unit -> unit)) : AcroForm = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1683,7 +1777,7 @@ jsPDF.API{{=$0}}""")>]
             abstract member getContext: ?``type``: string -> Jspdf.Context2d
             abstract member style: obj with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (pdf: Jspdf.jsPDF, width: float, height: float, getContext: Jspdf.Context2d, style: obj) : canvas = nativeOnly
+            static member Create (pdf: Jspdf.jsPDF, width: float, height: float, getContext: (string option -> Jspdf.Context2d), style: obj) : canvas = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1741,25 +1835,11 @@ jsPDF.API{{=$0}}""")>]
                 | pdfjsnewwindow
                 | dataurlnewwindow
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_1 =
-                abstract member filename: string option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?filename: string) : options_1 = nativeOnly
-
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_3`` =
                 | dataurl
                 | datauri
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type options_2 =
-                abstract member filename: string option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?filename: string) : options_2 = nativeOnly
 
         module save =
 
@@ -1781,6 +1861,18 @@ jsPDF.API{{=$0}}""")>]
                 | original
                 | Case1 of float
                 | Case2 of string
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: float) : zoom = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: float) : zoom = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: string) : zoom = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: string) : zoom = nativeOnly
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
@@ -1829,11 +1921,215 @@ jsPDF.API{{=$0}}""")>]
 
         module table =
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type data =
-                [<EmitIndexer>]
-                abstract member Item: key: string -> string with get, set
+            module data =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Item =
+                    [<EmitIndexer>]
+                    abstract member Item: key: string -> string with get, set
+
+        module setLanguage =
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type langCode =
+                | af
+                | sq
+                | ar
+                | ``ar-DZ``
+                | ``ar-BH``
+                | ``ar-EG``
+                | ``ar-IQ``
+                | ``ar-JO``
+                | ``ar-KW``
+                | ``ar-LB``
+                | ``ar-LY``
+                | ``ar-MA``
+                | ``ar-OM``
+                | ``ar-QA``
+                | ``ar-SA``
+                | ``ar-SY``
+                | ``ar-TN``
+                | ``ar-AE``
+                | ``ar-YE``
+                | an
+                | hy
+                | ``as``
+                | ast
+                | az
+                | eu
+                | be
+                | bn
+                | bs
+                | br
+                | bg
+                | my
+                | ca
+                | ch
+                | ce
+                | zh
+                | ``zh-HK``
+                | ``zh-CN``
+                | ``zh-SG``
+                | ``zh-TW``
+                | cv
+                | co
+                | cr
+                | hr
+                | cs
+                | da
+                | nl
+                | ``nl-BE``
+                | en
+                | ``en-AU``
+                | ``en-BZ``
+                | ``en-CA``
+                | ``en-IE``
+                | ``en-JM``
+                | ``en-NZ``
+                | ``en-PH``
+                | ``en-ZA``
+                | ``en-TT``
+                | ``en-GB``
+                | ``en-US``
+                | ``en-ZW``
+                | eo
+                | et
+                | fo
+                | fj
+                | fi
+                | fr
+                | ``fr-BE``
+                | ``fr-CA``
+                | ``fr-FR``
+                | ``fr-LU``
+                | ``fr-MC``
+                | ``fr-CH``
+                | fy
+                | fur
+                | gd
+                | ``gd-IE``
+                | gl
+                | ka
+                | de
+                | ``de-AT``
+                | ``de-DE``
+                | ``de-LI``
+                | ``de-LU``
+                | ``de-CH``
+                | el
+                | gu
+                | ht
+                | he
+                | hi
+                | hu
+                | is
+                | id
+                | iu
+                | ga
+                | it
+                | ``it-CH``
+                | ja
+                | kn
+                | ks
+                | kk
+                | km
+                | ky
+                | tlh
+                | ko
+                | ``ko-KP``
+                | ``ko-KR``
+                | la
+                | lv
+                | lt
+                | lb
+                | mk
+                | ms
+                | ml
+                | mt
+                | mi
+                | mr
+                | mo
+                | nv
+                | ng
+                | ne
+                | no
+                | nb
+                | nn
+                | oc
+                | ``or``
+                | om
+                | fa
+                | ``fa-IR``
+                | pl
+                | pt
+                | ``pt-BR``
+                | pa
+                | ``pa-IN``
+                | ``pa-PK``
+                | qu
+                | rm
+                | ro
+                | ``ro-MO``
+                | ru
+                | ``ru-MO``
+                | sz
+                | sg
+                | sa
+                | sc
+                | sd
+                | si
+                | sr
+                | sk
+                | sl
+                | so
+                | sb
+                | es
+                | ``es-AR``
+                | ``es-BO``
+                | ``es-CL``
+                | ``es-CO``
+                | ``es-CR``
+                | ``es-DO``
+                | ``es-EC``
+                | ``es-SV``
+                | ``es-GT``
+                | ``es-HN``
+                | ``es-MX``
+                | ``es-NI``
+                | ``es-PA``
+                | ``es-PY``
+                | ``es-PE``
+                | ``es-PR``
+                | ``es-ES``
+                | ``es-UY``
+                | ``es-VE``
+                | sx
+                | sw
+                | sv
+                | ``sv-FI``
+                | ``sv-SV``
+                | ta
+                | tt
+                | te
+                | th
+                | tig
+                | ts
+                | tn
+                | tr
+                | tk
+                | uk
+                | hsb
+                | ur
+                | ve
+                | vi
+                | vo
+                | wa
+                | cy
+                | xh
+                | ji
+                | zu
 
     module Matrix =
 

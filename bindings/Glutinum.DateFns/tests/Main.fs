@@ -35,10 +35,7 @@ let main _ =
                     test (
                         "format with a locale of date-fns/locale",
                         fun _ ->
-                            let options =
-                                jsOptions<DateFns.format.FormatOptions> (fun options ->
-                                    options.locale <- Some(box Locales.fr)
-                                )
+                            let options = DateFns.FormatOptions.Create(locale = box Locales.fr)
 
                             assertThat
                                 (DateFns.format (today, "PPPP", options))
@@ -83,7 +80,10 @@ let main _ =
                         "eachDayOfInterval lists the days",
                         fun _ ->
                             let interval =
-                                createObj [ "start" ==> today; "end" ==> Date.Create(2026, 8, 20) ]
+                                {|
+                                    start = today
+                                    ``end`` = Date.Create(2026, 8, 20)
+                                |}
 
                             let days = DateFns.eachDayOfInterval interval
                             assertThat days.Count (isEqualTo 4)
@@ -97,9 +97,7 @@ let main _ =
                         "formatDistance in German",
                         fun _ ->
                             let options =
-                                jsOptions<DateFns.formatDistance.FormatDistanceOptions> (fun options ->
-                                    options.locale <- Some(box DateFns.locale_de.Exports.de)
-                                )
+                                DateFns.FormatDistanceOptions.Create(locale = box Locales.de)
 
                             let inTenDays: Date = DateFns.addDays (today, 10)
 

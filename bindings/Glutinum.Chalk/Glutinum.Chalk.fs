@@ -18,58 +18,50 @@ module Chalk =
         [<Import("Chalk", "chalk")>]
         static member inline Chalk: Exports.Chalk__.Type = nativeOnly
         [<Import("supportsColor", "chalk")>]
-        static member inline supportsColor: Chalk.source_vendor_supports_color.ColorInfo = nativeOnly
+        static member inline supportsColor: Chalk.ColorInfo = nativeOnly
         [<Import("chalkStderr", "chalk")>]
         static member inline chalkStderr: ChalkInstance = nativeOnly
         [<Import("supportsColorStderr", "chalk")>]
         static member inline supportsColorStderr: obj = nativeOnly
+        [<Import("modifiers", "chalk")>]
+        [<Obsolete("Use `modifierNames` instead.\n\nBasic modifier names.")>]
+        static member inline modifiers: ReadonlyArray<Chalk.ModifierName> = nativeOnly
+        [<Import("foregroundColors", "chalk")>]
+        [<Obsolete("Use `foregroundColorNames` instead.\n\nBasic foreground color names.")>]
+        static member inline foregroundColors: ReadonlyArray<Chalk.ForegroundColorName> = nativeOnly
+        [<Import("backgroundColors", "chalk")>]
+        [<Obsolete("Use `backgroundColorNames` instead.\n\nBasic background color names.")>]
+        static member inline backgroundColors: ReadonlyArray<Chalk.BackgroundColorName> = nativeOnly
+        [<Import("colors", "chalk")>]
+        [<Obsolete("Use `colorNames` instead.\n\nBasic color names. The combination of foreground and background color names.")>]
+        static member inline colors: ReadonlyArray<Chalk.ColorName> = nativeOnly
+        [<ImportDefault("chalk")>]
+        static member inline chalk: Chalk.ChalkInstance = nativeOnly
         /// <summary>
         /// Basic modifier names.
         /// </summary>
         [<Import("modifierNames", "chalk")>]
-        static member inline modifierNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.ModifierName> = nativeOnly
+        static member inline modifierNames: ReadonlyArray<Chalk.ModifierName> = nativeOnly
         /// <summary>
         /// Basic foreground color names.
         /// </summary>
         [<Import("foregroundColorNames", "chalk")>]
-        static member inline foregroundColorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.ForegroundColorName> = nativeOnly
+        static member inline foregroundColorNames: ReadonlyArray<Chalk.ForegroundColorName> = nativeOnly
         /// <summary>
         /// Basic background color names.
         /// </summary>
         [<Import("backgroundColorNames", "chalk")>]
-        static member inline backgroundColorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.BackgroundColorName> = nativeOnly
+        static member inline backgroundColorNames: ReadonlyArray<Chalk.BackgroundColorName> = nativeOnly
         /// <summary>
         /// Basic underline color names.
         /// </summary>
         [<Import("underlineColorNames", "chalk")>]
-        static member inline underlineColorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.UnderlineColorName> = nativeOnly
+        static member inline underlineColorNames: ReadonlyArray<Chalk.UnderlineColorName> = nativeOnly
         /// <summary>
         /// Basic color names. The combination of foreground and background color names.
         /// </summary>
         [<Import("colorNames", "chalk")>]
-        static member inline colorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.ColorName> = nativeOnly
-        [<Import("modifiers", "chalk")>]
-        [<Obsolete("""Use `modifierNames` instead.
-
-Basic modifier names.""")>]
-        static member inline modifiers: ReadonlyArray<Chalk.source_vendor_ansi_styles.ModifierName> = nativeOnly
-        [<Import("foregroundColors", "chalk")>]
-        [<Obsolete("""Use `foregroundColorNames` instead.
-
-Basic foreground color names.""")>]
-        static member inline foregroundColors: ReadonlyArray<Chalk.source_vendor_ansi_styles.ForegroundColorName> = nativeOnly
-        [<Import("backgroundColors", "chalk")>]
-        [<Obsolete("""Use `backgroundColorNames` instead.
-
-Basic background color names.""")>]
-        static member inline backgroundColors: ReadonlyArray<Chalk.source_vendor_ansi_styles.BackgroundColorName> = nativeOnly
-        [<Import("colors", "chalk")>]
-        [<Obsolete("""Use `colorNames` instead.
-
-Basic color names. The combination of foreground and background color names.""")>]
-        static member inline colors: ReadonlyArray<Chalk.source_vendor_ansi_styles.ColorName> = nativeOnly
-        [<ImportDefault("chalk")>]
-        static member inline chalk: ChalkInstance = nativeOnly
+        static member inline colorNames: ReadonlyArray<Chalk.ColorName> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -93,9 +85,9 @@ Basic color names. The combination of foreground and background color names.""")
         ///
         /// If the value is neither <c>undefined</c> nor an integer from 0 to 3.
         /// </remarks>
-        abstract member level: Chalk.source_vendor_supports_color.ColorSupportLevel option with get
+        abstract member level: Chalk.ColorSupportLevel option with get
         [<ParamObject; Emit("$0")>]
-        static member Create (?level: Chalk.source_vendor_supports_color.ColorSupportLevel) : Options = nativeOnly
+        static member Create (?level: Chalk.ColorSupportLevel) : Options = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -119,7 +111,7 @@ Basic color names. The combination of foreground and background color names.""")
         ///
         /// If the assigned value is not an integer from 0 to 3.
         /// </remarks>
-        abstract member level: Chalk.source_vendor_supports_color.ColorSupportLevel with get, set
+        abstract member level: Chalk.ColorSupportLevel with get, set
         /// <summary>
         /// Use RGB values to set text color.
         /// </summary>
@@ -371,466 +363,383 @@ Basic color names. The combination of foreground and background color names.""")
         abstract member underlineCyanBright: ChalkInstance with get
         abstract member underlineWhiteBright: ChalkInstance with get
 
+    [<Obsolete("Use `ModifierName` instead.\n\nBasic modifier names.")>]
+    type Modifiers =
+        Chalk.ModifierName
+
+    [<Obsolete("Use `ForegroundColorName` instead.\n\nBasic foreground color names.\n\n[More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)")>]
+    type ForegroundColor =
+        Chalk.ForegroundColorName
+
+    [<Obsolete("Use `BackgroundColorName` instead.\n\nBasic background color names.\n\n[More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)")>]
+    type BackgroundColor =
+        Chalk.BackgroundColorName
+
+    [<Obsolete("Use `ColorName` instead.\n\nBasic color names. The combination of foreground and background color names.\n\n[More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)")>]
+    type Color =
+        Chalk.ColorName
+
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type CSPair =
+        /// <summary>
+        /// The ANSI terminal control sequence for starting this style.
+        /// </summary>
+        abstract member ``open``: string with get
+        /// <summary>
+        /// The ANSI terminal control sequence for ending this style.
+        /// </summary>
+        abstract member close: string with get
+
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type ColorBase =
+        /// <summary>
+        /// The ANSI terminal control sequence for ending this color.
+        /// </summary>
+        abstract member close: string with get
+        abstract member ansi: code: float -> string
+        abstract member ansi256: code: float -> string
+        abstract member ansi16m: red: float * green: float * blue: float -> string
+
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type Modifier =
+        /// <summary>
+        /// Resets the current color chain.
+        /// </summary>
+        abstract member reset: Chalk.CSPair with get
+        /// <summary>
+        /// Make text bold.
+        /// </summary>
+        abstract member bold: Chalk.CSPair with get
+        /// <summary>
+        /// Emitting only a small amount of light.
+        /// </summary>
+        abstract member dim: Chalk.CSPair with get
+        /// <summary>
+        /// Make text italic. (Not widely supported)
+        /// </summary>
+        abstract member italic: Chalk.CSPair with get
+        /// <summary>
+        /// Put a horizontal line below the text. (Not widely supported)
+        /// </summary>
+        abstract member underline: Chalk.CSPair with get
+        /// <summary>
+        /// Put a double horizontal line below the text. (Not widely supported)
+        /// </summary>
+        abstract member underlineDouble: Chalk.CSPair with get
+        /// <summary>
+        /// Put a curly horizontal line below the text. (Not widely supported)
+        /// </summary>
+        abstract member underlineCurly: Chalk.CSPair with get
+        /// <summary>
+        /// Put a dotted horizontal line below the text. (Not widely supported)
+        /// </summary>
+        abstract member underlineDotted: Chalk.CSPair with get
+        /// <summary>
+        /// Put a dashed horizontal line below the text. (Not widely supported)
+        /// </summary>
+        abstract member underlineDashed: Chalk.CSPair with get
+        /// <summary>
+        /// Put a horizontal line above the text.
+        ///
+        /// Supported on VTE-based terminals, the GNOME terminal, mintty, and Git Bash.
+        /// </summary>
+        abstract member overline: Chalk.CSPair with get
+        /// <summary>
+        /// Inverse background and foreground colors.
+        /// </summary>
+        abstract member inverse: Chalk.CSPair with get
+        /// <summary>
+        /// Prints the text, but makes it invisible.
+        /// </summary>
+        abstract member hidden: Chalk.CSPair with get
+        /// <summary>
+        /// Puts a horizontal line through the center of the text. (Not widely supported)
+        /// </summary>
+        abstract member strikethrough: Chalk.CSPair with get
+
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type UnderlineColor =
+        abstract member underlineBlack: Chalk.CSPair with get
+        abstract member underlineRed: Chalk.CSPair with get
+        abstract member underlineGreen: Chalk.CSPair with get
+        abstract member underlineYellow: Chalk.CSPair with get
+        abstract member underlineBlue: Chalk.CSPair with get
+        abstract member underlineCyan: Chalk.CSPair with get
+        abstract member underlineMagenta: Chalk.CSPair with get
+        abstract member underlineWhite: Chalk.CSPair with get
+        /// <summary>
+        /// Alias for <c>underlineBlackBright</c>.
+        /// </summary>
+        abstract member underlineGray: Chalk.CSPair with get
+        /// <summary>
+        /// Alias for <c>underlineBlackBright</c>.
+        /// </summary>
+        abstract member underlineGrey: Chalk.CSPair with get
+        abstract member underlineBlackBright: Chalk.CSPair with get
+        abstract member underlineRedBright: Chalk.CSPair with get
+        abstract member underlineGreenBright: Chalk.CSPair with get
+        abstract member underlineYellowBright: Chalk.CSPair with get
+        abstract member underlineBlueBright: Chalk.CSPair with get
+        abstract member underlineCyanBright: Chalk.CSPair with get
+        abstract member underlineMagentaBright: Chalk.CSPair with get
+        abstract member underlineWhiteBright: Chalk.CSPair with get
+
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type ConvertColor =
+        /// <summary>
+        /// Convert from the RGB color space to the ANSI 256 color space.
+        /// </summary>
+        /// <param name="red">
+        /// (<c>0...255</c>)
+        /// </param>
+        /// <param name="green">
+        /// (<c>0...255</c>)
+        /// </param>
+        /// <param name="blue">
+        /// (<c>0...255</c>)
+        /// </param>
+        abstract member rgbToAnsi256: red: float * green: float * blue: float -> float
+        /// <summary>
+        /// Convert from the RGB HEX color space to the RGB color space.
+        /// </summary>
+        /// <param name="hex">
+        /// A hexadecimal string containing RGB data.
+        /// </param>
+        abstract member hexToRgb: hex: string -> float * float * float
+        /// <summary>
+        /// Convert from the RGB HEX color space to the ANSI 256 color space.
+        /// </summary>
+        /// <param name="hex">
+        /// A hexadecimal string containing RGB data.
+        /// </param>
+        abstract member hexToAnsi256: hex: string -> float
+        /// <summary>
+        /// Convert from the ANSI 256 color space to the ANSI 16 color space.
+        /// </summary>
+        /// <param name="code">
+        /// A number representing the ANSI 256 color.
+        /// </param>
+        abstract member ansi256ToAnsi: code: float -> float
+        /// <summary>
+        /// Convert from the RGB color space to the ANSI 16 color space.
+        /// </summary>
+        /// <param name="red">
+        /// (<c>0...255</c>)
+        /// </param>
+        /// <param name="green">
+        /// (<c>0...255</c>)
+        /// </param>
+        /// <param name="blue">
+        /// (<c>0...255</c>)
+        /// </param>
+        abstract member rgbToAnsi: red: float * green: float * blue: float -> float
+        /// <summary>
+        /// Convert from the RGB HEX color space to the ANSI 16 color space.
+        /// </summary>
+        /// <param name="hex">
+        /// A hexadecimal string containing RGB data.
+        /// </param>
+        abstract member hexToAnsi: hex: string -> float
+
+    [<RequireQualifiedAccess>]
+    [<StringEnum(CaseRules.None)>]
     type ModifierName =
-        Chalk.source_vendor_ansi_styles.ModifierName
+        | reset
+        | bold
+        | dim
+        | italic
+        | underline
+        | underlineDouble
+        | underlineCurly
+        | underlineDotted
+        | underlineDashed
+        | overline
+        | inverse
+        | hidden
+        | strikethrough
 
+    [<RequireQualifiedAccess>]
+    [<StringEnum(CaseRules.None)>]
     type ForegroundColorName =
-        Chalk.source_vendor_ansi_styles.ForegroundColorName
+        | black
+        | red
+        | green
+        | yellow
+        | blue
+        | cyan
+        | magenta
+        | white
+        | gray
+        | grey
+        | blackBright
+        | redBright
+        | greenBright
+        | yellowBright
+        | blueBright
+        | cyanBright
+        | magentaBright
+        | whiteBright
 
+    [<RequireQualifiedAccess>]
+    [<StringEnum(CaseRules.None)>]
     type BackgroundColorName =
-        Chalk.source_vendor_ansi_styles.BackgroundColorName
+        | bgBlack
+        | bgRed
+        | bgGreen
+        | bgYellow
+        | bgBlue
+        | bgCyan
+        | bgMagenta
+        | bgWhite
+        | bgGray
+        | bgGrey
+        | bgBlackBright
+        | bgRedBright
+        | bgGreenBright
+        | bgYellowBright
+        | bgBlueBright
+        | bgCyanBright
+        | bgMagentaBright
+        | bgWhiteBright
 
+    [<RequireQualifiedAccess>]
+    [<StringEnum(CaseRules.None)>]
     type UnderlineColorName =
-        Chalk.source_vendor_ansi_styles.UnderlineColorName
+        | underlineBlack
+        | underlineRed
+        | underlineGreen
+        | underlineYellow
+        | underlineBlue
+        | underlineCyan
+        | underlineMagenta
+        | underlineWhite
+        | underlineGray
+        | underlineGrey
+        | underlineBlackBright
+        | underlineRedBright
+        | underlineGreenBright
+        | underlineYellowBright
+        | underlineBlueBright
+        | underlineCyanBright
+        | underlineMagentaBright
+        | underlineWhiteBright
 
+    /// <summary>
+    /// Basic color names. The combination of foreground and background color names.
+    ///
+    /// [More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)
+    /// </summary>
     type ColorName =
-        Chalk.source_vendor_ansi_styles.ColorName
+        U2<Chalk.ForegroundColorName, Chalk.BackgroundColorName>
+
+    [<RequireQualifiedAccess>]
+    type ColorSupportLevel =
+        | ``0`` = 0
+        | ``1`` = 1
+        | ``2`` = 2
+        | ``3`` = 3
+
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type ColorSupport =
+        /// <summary>
+        /// The color level.
+        /// </summary>
+        abstract member level: Chalk.ColorSupportLevel with get, set
+        /// <summary>
+        /// Whether basic 16 colors are supported.
+        /// </summary>
+        abstract member hasBasic: bool with get, set
+        /// <summary>
+        /// Whether ANSI 256 colors are supported.
+        /// </summary>
+        abstract member has256: bool with get, set
+        /// <summary>
+        /// Whether Truecolor 16 million colors are supported.
+        /// </summary>
+        abstract member has16m: bool with get, set
 
     type ColorInfo =
-        Chalk.source_vendor_supports_color.ColorInfo
+        U2<Chalk.ColorSupport, bool>
 
-    type ColorSupport =
-        Chalk.source_vendor_supports_color.ColorSupport
+    module source =
 
-    type ColorSupportLevel =
-        Chalk.source_vendor_supports_color.ColorSupportLevel
+        module vendor =
 
-    [<Obsolete("""Use `ModifierName` instead.
-
-Basic modifier names.""")>]
-    type Modifiers =
-        Chalk.source_vendor_ansi_styles.ModifierName
-
-    [<Obsolete("""Use `ForegroundColorName` instead.
-
-Basic foreground color names.
-
-[More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)""")>]
-    type ForegroundColor =
-        Chalk.source_vendor_ansi_styles.ForegroundColorName
-
-    [<Obsolete("""Use `BackgroundColorName` instead.
-
-Basic background color names.
-
-[More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)""")>]
-    type BackgroundColor =
-        Chalk.source_vendor_ansi_styles.BackgroundColorName
-
-    [<Obsolete("""Use `ColorName` instead.
-
-Basic color names. The combination of foreground and background color names.
-
-[More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)""")>]
-    type Color =
-        Chalk.source_vendor_ansi_styles.ColorName
-
-    module source_vendor_ansi_styles =
-
-        [<AbstractClass>]
-        [<Erase>]
-        type Exports =
-            /// <summary>
-            /// Basic modifier names.
-            /// </summary>
-            [<Import("modifierNames", "chalk/source/vendor/ansi-styles/index.js")>]
-            static member inline modifierNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.ModifierName> = nativeOnly
-            /// <summary>
-            /// Basic foreground color names.
-            /// </summary>
-            [<Import("foregroundColorNames", "chalk/source/vendor/ansi-styles/index.js")>]
-            static member inline foregroundColorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.ForegroundColorName> = nativeOnly
-            /// <summary>
-            /// Basic background color names.
-            /// </summary>
-            [<Import("backgroundColorNames", "chalk/source/vendor/ansi-styles/index.js")>]
-            static member inline backgroundColorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.BackgroundColorName> = nativeOnly
-            /// <summary>
-            /// Basic underline color names.
-            /// </summary>
-            [<Import("underlineColorNames", "chalk/source/vendor/ansi-styles/index.js")>]
-            static member inline underlineColorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.UnderlineColorName> = nativeOnly
-            /// <summary>
-            /// Basic color names. The combination of foreground and background color names.
-            /// </summary>
-            [<Import("colorNames", "chalk/source/vendor/ansi-styles/index.js")>]
-            static member inline colorNames: ReadonlyArray<Chalk.source_vendor_ansi_styles.ColorName> = nativeOnly
-            [<ImportDefault("chalk/source/vendor/ansi-styles/index.js")>]
-            static member inline ansiStyles: obj = nativeOnly
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type CSPair =
-            /// <summary>
-            /// The ANSI terminal control sequence for starting this style.
-            /// </summary>
-            abstract member ``open``: string with get
-            /// <summary>
-            /// The ANSI terminal control sequence for ending this style.
-            /// </summary>
-            abstract member close: string with get
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type ColorBase =
-            /// <summary>
-            /// The ANSI terminal control sequence for ending this color.
-            /// </summary>
-            abstract member close: string with get
-            abstract member ansi: code: float -> string
-            abstract member ansi256: code: float -> string
-            abstract member ansi16m: red: float * green: float * blue: float -> string
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type Modifier =
-            /// <summary>
-            /// Resets the current color chain.
-            /// </summary>
-            abstract member reset: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Make text bold.
-            /// </summary>
-            abstract member bold: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Emitting only a small amount of light.
-            /// </summary>
-            abstract member dim: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Make text italic. (Not widely supported)
-            /// </summary>
-            abstract member italic: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Put a horizontal line below the text. (Not widely supported)
-            /// </summary>
-            abstract member underline: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Put a double horizontal line below the text. (Not widely supported)
-            /// </summary>
-            abstract member underlineDouble: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Put a curly horizontal line below the text. (Not widely supported)
-            /// </summary>
-            abstract member underlineCurly: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Put a dotted horizontal line below the text. (Not widely supported)
-            /// </summary>
-            abstract member underlineDotted: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Put a dashed horizontal line below the text. (Not widely supported)
-            /// </summary>
-            abstract member underlineDashed: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Put a horizontal line above the text.
-            ///
-            /// Supported on VTE-based terminals, the GNOME terminal, mintty, and Git Bash.
-            /// </summary>
-            abstract member overline: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Inverse background and foreground colors.
-            /// </summary>
-            abstract member inverse: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Prints the text, but makes it invisible.
-            /// </summary>
-            abstract member hidden: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Puts a horizontal line through the center of the text. (Not widely supported)
-            /// </summary>
-            abstract member strikethrough: Chalk.source_vendor_ansi_styles.CSPair with get
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type ForegroundColor =
-            abstract member black: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member red: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member green: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member yellow: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member blue: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member cyan: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member magenta: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member white: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Alias for <c>blackBright</c>.
-            /// </summary>
-            abstract member gray: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Alias for <c>blackBright</c>.
-            /// </summary>
-            abstract member grey: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member blackBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member redBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member greenBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member yellowBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member blueBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member cyanBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member magentaBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member whiteBright: Chalk.source_vendor_ansi_styles.CSPair with get
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type BackgroundColor =
-            abstract member bgBlack: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgRed: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgGreen: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgYellow: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgBlue: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgCyan: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgMagenta: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgWhite: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Alias for <c>bgBlackBright</c>.
-            /// </summary>
-            abstract member bgGray: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Alias for <c>bgBlackBright</c>.
-            /// </summary>
-            abstract member bgGrey: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgBlackBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgRedBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgGreenBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgYellowBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgBlueBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgCyanBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgMagentaBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member bgWhiteBright: Chalk.source_vendor_ansi_styles.CSPair with get
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type UnderlineColor =
-            abstract member underlineBlack: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineRed: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineGreen: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineYellow: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineBlue: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineCyan: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineMagenta: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineWhite: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Alias for <c>underlineBlackBright</c>.
-            /// </summary>
-            abstract member underlineGray: Chalk.source_vendor_ansi_styles.CSPair with get
-            /// <summary>
-            /// Alias for <c>underlineBlackBright</c>.
-            /// </summary>
-            abstract member underlineGrey: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineBlackBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineRedBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineGreenBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineYellowBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineBlueBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineCyanBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineMagentaBright: Chalk.source_vendor_ansi_styles.CSPair with get
-            abstract member underlineWhiteBright: Chalk.source_vendor_ansi_styles.CSPair with get
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type ConvertColor =
-            /// <summary>
-            /// Convert from the RGB color space to the ANSI 256 color space.
-            /// </summary>
-            /// <param name="red">
-            /// (<c>0...255</c>)
-            /// </param>
-            /// <param name="green">
-            /// (<c>0...255</c>)
-            /// </param>
-            /// <param name="blue">
-            /// (<c>0...255</c>)
-            /// </param>
-            abstract member rgbToAnsi256: red: float * green: float * blue: float -> float
-            /// <summary>
-            /// Convert from the RGB HEX color space to the RGB color space.
-            /// </summary>
-            /// <param name="hex">
-            /// A hexadecimal string containing RGB data.
-            /// </param>
-            abstract member hexToRgb: hex: string -> float * float * float
-            /// <summary>
-            /// Convert from the RGB HEX color space to the ANSI 256 color space.
-            /// </summary>
-            /// <param name="hex">
-            /// A hexadecimal string containing RGB data.
-            /// </param>
-            abstract member hexToAnsi256: hex: string -> float
-            /// <summary>
-            /// Convert from the ANSI 256 color space to the ANSI 16 color space.
-            /// </summary>
-            /// <param name="code">
-            /// A number representing the ANSI 256 color.
-            /// </param>
-            abstract member ansi256ToAnsi: code: float -> float
-            /// <summary>
-            /// Convert from the RGB color space to the ANSI 16 color space.
-            /// </summary>
-            /// <param name="red">
-            /// (<c>0...255</c>)
-            /// </param>
-            /// <param name="green">
-            /// (<c>0...255</c>)
-            /// </param>
-            /// <param name="blue">
-            /// (<c>0...255</c>)
-            /// </param>
-            abstract member rgbToAnsi: red: float * green: float * blue: float -> float
-            /// <summary>
-            /// Convert from the RGB HEX color space to the ANSI 16 color space.
-            /// </summary>
-            /// <param name="hex">
-            /// A hexadecimal string containing RGB data.
-            /// </param>
-            abstract member hexToAnsi: hex: string -> float
-
-        [<RequireQualifiedAccess>]
-        [<StringEnum(CaseRules.None)>]
-        type ModifierName =
-            | reset
-            | bold
-            | dim
-            | italic
-            | underline
-            | underlineDouble
-            | underlineCurly
-            | underlineDotted
-            | underlineDashed
-            | overline
-            | inverse
-            | hidden
-            | strikethrough
-
-        [<RequireQualifiedAccess>]
-        [<StringEnum(CaseRules.None)>]
-        type ForegroundColorName =
-            | black
-            | red
-            | green
-            | yellow
-            | blue
-            | cyan
-            | magenta
-            | white
-            | gray
-            | grey
-            | blackBright
-            | redBright
-            | greenBright
-            | yellowBright
-            | blueBright
-            | cyanBright
-            | magentaBright
-            | whiteBright
-
-        [<RequireQualifiedAccess>]
-        [<StringEnum(CaseRules.None)>]
-        type BackgroundColorName =
-            | bgBlack
-            | bgRed
-            | bgGreen
-            | bgYellow
-            | bgBlue
-            | bgCyan
-            | bgMagenta
-            | bgWhite
-            | bgGray
-            | bgGrey
-            | bgBlackBright
-            | bgRedBright
-            | bgGreenBright
-            | bgYellowBright
-            | bgBlueBright
-            | bgCyanBright
-            | bgMagentaBright
-            | bgWhiteBright
-
-        [<RequireQualifiedAccess>]
-        [<StringEnum(CaseRules.None)>]
-        type UnderlineColorName =
-            | underlineBlack
-            | underlineRed
-            | underlineGreen
-            | underlineYellow
-            | underlineBlue
-            | underlineCyan
-            | underlineMagenta
-            | underlineWhite
-            | underlineGray
-            | underlineGrey
-            | underlineBlackBright
-            | underlineRedBright
-            | underlineGreenBright
-            | underlineYellowBright
-            | underlineBlueBright
-            | underlineCyanBright
-            | underlineMagentaBright
-            | underlineWhiteBright
-
-        /// <summary>
-        /// Basic color names. The combination of foreground and background color names.
-        ///
-        /// [More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)
-        /// </summary>
-        type ColorName =
-            U2<Chalk.source_vendor_ansi_styles.ForegroundColorName, Chalk.source_vendor_ansi_styles.BackgroundColorName>
-
-    module source_vendor_supports_color =
-
-        [<AbstractClass>]
-        [<Erase>]
-        type Exports =
-            [<Import("createSupportsColor", "chalk/source/vendor/supports-color/index.js")>]
-            static member createSupportsColor (?stream: obj, ?options: Chalk.source_vendor_supports_color.Options) : Chalk.source_vendor_supports_color.ColorInfo = nativeOnly
-            [<ImportDefault("chalk/source/vendor/supports-color/index.js")>]
-            static member inline supportsColor: Exports.supportsColor__.Type = nativeOnly
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type Options =
-            /// <summary>
-            /// Whether <c>process.argv</c> should be sniffed for <c>--color</c> and <c>--no-color</c> flags.
-            /// </summary>
-            abstract member sniffFlags: bool option with get
-
-        [<RequireQualifiedAccess>]
-        type ColorSupportLevel =
-            | ``0`` = 0
-            | ``1`` = 1
-            | ``2`` = 2
-            | ``3`` = 3
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type ColorSupport =
-            /// <summary>
-            /// The color level.
-            /// </summary>
-            abstract member level: Chalk.source_vendor_supports_color.ColorSupportLevel with get, set
-            /// <summary>
-            /// Whether basic 16 colors are supported.
-            /// </summary>
-            abstract member hasBasic: bool with get, set
-            /// <summary>
-            /// Whether ANSI 256 colors are supported.
-            /// </summary>
-            abstract member has256: bool with get, set
-            /// <summary>
-            /// Whether Truecolor 16 million colors are supported.
-            /// </summary>
-            abstract member has16m: bool with get, set
-
-        type ColorInfo =
-            U2<Chalk.source_vendor_supports_color.ColorSupport, bool>
-
-        module Exports =
-
-            module supportsColor__ =
+            module ansi_styles =
 
                 [<AllowNullLiteral>]
                 [<Interface>]
-                type Type =
-                    abstract member stdout: Chalk.source_vendor_supports_color.ColorInfo with get, set
-                    abstract member stderr: Chalk.source_vendor_supports_color.ColorInfo with get, set
+                type ForegroundColor =
+                    abstract member black: Chalk.CSPair with get
+                    abstract member red: Chalk.CSPair with get
+                    abstract member green: Chalk.CSPair with get
+                    abstract member yellow: Chalk.CSPair with get
+                    abstract member blue: Chalk.CSPair with get
+                    abstract member cyan: Chalk.CSPair with get
+                    abstract member magenta: Chalk.CSPair with get
+                    abstract member white: Chalk.CSPair with get
+                    /// <summary>
+                    /// Alias for <c>blackBright</c>.
+                    /// </summary>
+                    abstract member gray: Chalk.CSPair with get
+                    /// <summary>
+                    /// Alias for <c>blackBright</c>.
+                    /// </summary>
+                    abstract member grey: Chalk.CSPair with get
+                    abstract member blackBright: Chalk.CSPair with get
+                    abstract member redBright: Chalk.CSPair with get
+                    abstract member greenBright: Chalk.CSPair with get
+                    abstract member yellowBright: Chalk.CSPair with get
+                    abstract member blueBright: Chalk.CSPair with get
+                    abstract member cyanBright: Chalk.CSPair with get
+                    abstract member magentaBright: Chalk.CSPair with get
+                    abstract member whiteBright: Chalk.CSPair with get
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type BackgroundColor =
+                    abstract member bgBlack: Chalk.CSPair with get
+                    abstract member bgRed: Chalk.CSPair with get
+                    abstract member bgGreen: Chalk.CSPair with get
+                    abstract member bgYellow: Chalk.CSPair with get
+                    abstract member bgBlue: Chalk.CSPair with get
+                    abstract member bgCyan: Chalk.CSPair with get
+                    abstract member bgMagenta: Chalk.CSPair with get
+                    abstract member bgWhite: Chalk.CSPair with get
+                    /// <summary>
+                    /// Alias for <c>bgBlackBright</c>.
+                    /// </summary>
+                    abstract member bgGray: Chalk.CSPair with get
+                    /// <summary>
+                    /// Alias for <c>bgBlackBright</c>.
+                    /// </summary>
+                    abstract member bgGrey: Chalk.CSPair with get
+                    abstract member bgBlackBright: Chalk.CSPair with get
+                    abstract member bgRedBright: Chalk.CSPair with get
+                    abstract member bgGreenBright: Chalk.CSPair with get
+                    abstract member bgYellowBright: Chalk.CSPair with get
+                    abstract member bgBlueBright: Chalk.CSPair with get
+                    abstract member bgCyanBright: Chalk.CSPair with get
+                    abstract member bgMagentaBright: Chalk.CSPair with get
+                    abstract member bgWhiteBright: Chalk.CSPair with get
+
+            module supports_color =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Options =
+                    /// <summary>
+                    /// Whether <c>process.argv</c> should be sniffed for <c>--color</c> and <c>--no-color</c> flags.
+                    /// </summary>
+                    abstract member sniffFlags: bool option with get
                     [<ParamObject; Emit("$0")>]
-                    static member Create (stdout: Chalk.source_vendor_supports_color.ColorInfo, stderr: Chalk.source_vendor_supports_color.ColorInfo) : Type = nativeOnly
+                    static member Create (?sniffFlags: bool) : Options = nativeOnly
 
     module ChalkInstance =
 
@@ -854,21 +763,6 @@ Basic color names. The combination of foreground and background color names.
                 abstract member Create: ?options: Chalk.Options -> Chalk.ChalkInstance
 
         module chalkStderr__ =
-
-            module Type =
-
-                module ChalkInstance =
-
-                    type rgb =
-                        delegate of red: float * green: float * blue: float -> ChalkInstance
-
-                    type bgRgb =
-                        delegate of red: float * green: float * blue: float -> ChalkInstance
-
-                    type underlineRgb =
-                        delegate of red: float * green: float * blue: float -> ChalkInstance
-
-        module chalk__ =
 
             module Type =
 

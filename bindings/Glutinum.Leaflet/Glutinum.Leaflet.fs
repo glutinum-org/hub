@@ -41,6 +41,8 @@ module Leaflet =
         static member latLng (coords: Leaflet.LatLngLiteral) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
         static member latLng (coords: Exports.latLng__.coords) : Leaflet.LatLng = nativeOnly
+        [<Import("latLng", "leaflet")>]
+        static member latLng (coords: U4<Leaflet.LatLngTuple, float * float * float, Leaflet.LatLngLiteral, Exports.latLng__.coords>) : Leaflet.LatLng = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (southWest: Leaflet.LatLng, northEast: Leaflet.LatLng) : Leaflet.LatLngBounds = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
@@ -60,6 +62,8 @@ module Leaflet =
         [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (southWest: Leaflet.LatLngTuple, northEast: Leaflet.LatLngTuple) : Leaflet.LatLngBounds = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
+        static member latLngBounds (southWest: Leaflet.LatLngExpression, northEast: Leaflet.LatLngExpression) : Leaflet.LatLngBounds = nativeOnly
+        [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (latlngs: ResizeArray<Leaflet.LatLngExpression>) : Leaflet.LatLngBounds = nativeOnly
         [<Import("point", "leaflet")>]
         static member point (x: float, y: float, ?round: bool) : Leaflet.Point = nativeOnly
@@ -67,6 +71,8 @@ module Leaflet =
         static member point (coords: Leaflet.PointTuple) : Leaflet.Point = nativeOnly
         [<Import("point", "leaflet")>]
         static member point (coords: Exports.point__.coords) : Leaflet.Point = nativeOnly
+        [<Import("point", "leaflet")>]
+        static member point (coords: U2<Leaflet.PointTuple, Exports.point__.coords>) : Leaflet.Point = nativeOnly
         [<Import("bounds", "leaflet")>]
         static member bounds (topLeft: Leaflet.Point, bottomRight: Leaflet.Point) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
@@ -76,9 +82,13 @@ module Leaflet =
         [<Import("bounds", "leaflet")>]
         static member bounds (topLeft: Leaflet.PointTuple, bottomRight: Leaflet.PointTuple) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
+        static member bounds (topLeft: Leaflet.PointExpression, bottomRight: Leaflet.PointExpression) : Leaflet.Bounds = nativeOnly
+        [<Import("bounds", "leaflet")>]
         static member bounds (points: ResizeArray<Leaflet.Point>) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
         static member bounds (points: Leaflet.BoundsLiteral) : Leaflet.Bounds = nativeOnly
+        [<Import("bounds", "leaflet")>]
+        static member bounds (points: U2<ResizeArray<Leaflet.Point>, Leaflet.BoundsLiteral>) : Leaflet.Bounds = nativeOnly
         [<Import("Mixin", "leaflet")>]
         static member inline Mixin: Leaflet.MixinType = nativeOnly
         [<Import("gridLayer", "leaflet")>]
@@ -89,6 +99,8 @@ module Leaflet =
         static member imageOverlay (imageUrl: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : Leaflet.ImageOverlay = nativeOnly
         [<Import("imageOverlay", "leaflet")>]
         static member imageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : Leaflet.ImageOverlay = nativeOnly
+        [<Import("imageOverlay", "leaflet")>]
+        static member imageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : Leaflet.ImageOverlay = nativeOnly
         [<Import("svgOverlay", "leaflet")>]
         static member svgOverlay (svgImage: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
         [<Import("svgOverlay", "leaflet")>]
@@ -97,6 +109,8 @@ module Leaflet =
         static member svgOverlay (svgImage: Glutinum.Web.SVGElement, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
         [<Import("svgOverlay", "leaflet")>]
         static member svgOverlay (svgImage: Glutinum.Web.SVGElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
+        [<Import("svgOverlay", "leaflet")>]
+        static member svgOverlay (svgImage: U2<string, Glutinum.Web.SVGElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
         [<Import("videoOverlay", "leaflet")>]
         static member videoOverlay (video: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
         [<Import("videoOverlay", "leaflet")>]
@@ -109,14 +123,20 @@ module Leaflet =
         static member videoOverlay (video: Glutinum.Web.HTMLVideoElement, bounds: Leaflet.LatLngBounds, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
         [<Import("videoOverlay", "leaflet")>]
         static member videoOverlay (video: Glutinum.Web.HTMLVideoElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
+        [<Import("videoOverlay", "leaflet")>]
+        static member videoOverlay (video: U3<string, ResizeArray<string>, Glutinum.Web.HTMLVideoElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
         [<Import("polyline", "leaflet")>]
         static member polyline<'T, 'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<'T, 'P> = nativeOnly
         [<Import("polyline", "leaflet")>]
         static member polyline<'T, 'P> (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<'T, 'P> = nativeOnly
         [<Import("polyline", "leaflet")>]
+        static member polyline<'T, 'P> (latlngs: U2<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<'T, 'P> = nativeOnly
+        [<Import("polyline", "leaflet")>]
         static member polyline (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<U2<Glutinum.Geojson.LineString, Glutinum.Geojson.MultiLineString>, obj> = nativeOnly
         [<Import("polyline", "leaflet")>]
         static member polyline (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<U2<Glutinum.Geojson.LineString, Glutinum.Geojson.MultiLineString>, obj> = nativeOnly
+        [<Import("polyline", "leaflet")>]
+        static member polyline (latlngs: U2<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<U2<Glutinum.Geojson.LineString, Glutinum.Geojson.MultiLineString>, obj> = nativeOnly
         [<Import("polygon", "leaflet")>]
         static member polygon<'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<'P> = nativeOnly
         [<Import("polygon", "leaflet")>]
@@ -124,19 +144,27 @@ module Leaflet =
         [<Import("polygon", "leaflet")>]
         static member polygon<'P> (latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<'P> = nativeOnly
         [<Import("polygon", "leaflet")>]
+        static member polygon<'P> (latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<'P> = nativeOnly
+        [<Import("polygon", "leaflet")>]
         static member polygon (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
         [<Import("polygon", "leaflet")>]
         static member polygon (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
         [<Import("polygon", "leaflet")>]
         static member polygon (latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
+        [<Import("polygon", "leaflet")>]
+        static member polygon (latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
         [<Import("rectangle", "leaflet")>]
         static member rectangle<'P> (latLngBounds: Leaflet.LatLngBounds, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<'P> = nativeOnly
         [<Import("rectangle", "leaflet")>]
         static member rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<'P> = nativeOnly
         [<Import("rectangle", "leaflet")>]
+        static member rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<'P> = nativeOnly
+        [<Import("rectangle", "leaflet")>]
         static member rectangle (latLngBounds: Leaflet.LatLngBounds, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<obj> = nativeOnly
         [<Import("rectangle", "leaflet")>]
         static member rectangle (latLngBounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<obj> = nativeOnly
+        [<Import("rectangle", "leaflet")>]
+        static member rectangle (latLngBounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<obj> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker<'P> (latlng: Leaflet.LatLng, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<'P> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
@@ -144,11 +172,15 @@ module Leaflet =
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker<'P> (latlng: Leaflet.LatLngTuple, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<'P> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
+        static member circleMarker<'P> (latlng: Leaflet.LatLngExpression, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<'P> = nativeOnly
+        [<Import("circleMarker", "leaflet")>]
         static member circleMarker (latlng: Leaflet.LatLng, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker (latlng: Leaflet.LatLngTuple, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
+        [<Import("circleMarker", "leaflet")>]
+        static member circleMarker (latlng: Leaflet.LatLngExpression, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
         [<Import("circle", "leaflet")>]
         static member circle<'P> (latlng: Leaflet.LatLng, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet")>]
@@ -156,11 +188,15 @@ module Leaflet =
         [<Import("circle", "leaflet")>]
         static member circle<'P> (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet")>]
+        static member circle<'P> (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
+        [<Import("circle", "leaflet")>]
         static member circle (latlng: Leaflet.LatLng, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet")>]
         static member circle (latlng: Leaflet.LatLngLiteral, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet")>]
         static member circle (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
+        [<Import("circle", "leaflet")>]
+        static member circle (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle<'P> (latlng: Leaflet.LatLng, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
@@ -168,11 +204,15 @@ module Leaflet =
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle<'P> (latlng: Leaflet.LatLngTuple, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
+        static member circle<'P> (latlng: Leaflet.LatLngExpression, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
+        [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle (latlng: Leaflet.LatLng, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle (latlng: Leaflet.LatLngLiteral, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle (latlng: Leaflet.LatLngTuple, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
+        [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
+        static member circle (latlng: Leaflet.LatLngExpression, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("svg", "leaflet")>]
         static member svg (?options: Leaflet.RendererOptions) : Leaflet.SVG = nativeOnly
         [<Import("canvas", "leaflet")>]
@@ -280,6 +320,8 @@ module Leaflet =
         [<Import("popup", "leaflet")>]
         static member popup (latlng: Leaflet.LatLngTuple, ?options: Leaflet.PopupOptions) : Leaflet.Popup = nativeOnly
         [<Import("popup", "leaflet")>]
+        static member popup (latlng: Leaflet.LatLngExpression, ?options: Leaflet.PopupOptions) : Leaflet.Popup = nativeOnly
+        [<Import("popup", "leaflet")>]
         static member popup (?options: Leaflet.PopupOptions, ?source: Leaflet.Layer) : Leaflet.Popup = nativeOnly
         [<Import("tooltip", "leaflet")>]
         static member tooltip (latlng: Leaflet.LatLng, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
@@ -287,6 +329,8 @@ module Leaflet =
         static member tooltip (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
         [<Import("tooltip", "leaflet")>]
         static member tooltip (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
+        [<Import("tooltip", "leaflet")>]
+        static member tooltip (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
         [<Import("tooltip", "leaflet")>]
         static member tooltip (?options: Leaflet.TooltipOptions, ?source: Leaflet.Layer) : Leaflet.Tooltip = nativeOnly
         /// <summary>
@@ -299,6 +343,11 @@ module Leaflet =
         /// </summary>
         [<Import("map", "leaflet")>]
         static member map (element: Glutinum.Web.HTMLElement, ?options: Leaflet.MapOptions) : Leaflet.Map = nativeOnly
+        /// <summary>
+        /// ID of a HTML-Element as string or the HTML-ELement itself
+        /// </summary>
+        [<Import("map", "leaflet")>]
+        static member map (element: U2<string, Glutinum.Web.HTMLElement>, ?options: Leaflet.MapOptions) : Leaflet.Map = nativeOnly
         [<Import("icon", "leaflet")>]
         static member icon (options: Leaflet.IconOptions) : Leaflet.Icon = nativeOnly
         [<Import("divIcon", "leaflet")>]
@@ -310,11 +359,15 @@ module Leaflet =
         [<Import("marker", "leaflet")>]
         static member marker<'P> (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<'P> = nativeOnly
         [<Import("marker", "leaflet")>]
+        static member marker<'P> (latlng: Leaflet.LatLngExpression, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<'P> = nativeOnly
+        [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLng, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
+        [<Import("marker", "leaflet")>]
+        static member marker (latlng: Leaflet.LatLngExpression, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("extend", "leaflet")>]
         static member inline extend: Exports.extend__.Type = nativeOnly
         [<Import("bind", "leaflet")>]
@@ -352,6 +405,8 @@ module Leaflet =
         [<Import("LatLngBounds", "leaflet"); EmitConstructor>]
         static member LatLngBounds (southWest: Leaflet.LatLngTuple, northEast: Leaflet.LatLngTuple) : LatLngBounds = nativeOnly
         [<Import("LatLngBounds", "leaflet"); EmitConstructor>]
+        static member LatLngBounds (southWest: Leaflet.LatLngExpression, northEast: Leaflet.LatLngExpression) : LatLngBounds = nativeOnly
+        [<Import("LatLngBounds", "leaflet"); EmitConstructor>]
         static member LatLngBounds (latlngs: ResizeArray<Leaflet.LatLngExpression>) : LatLngBounds = nativeOnly
         [<Import("Point", "leaflet"); EmitConstructor>]
         static member Point (x: float, y: float, ?round: bool) : Point = nativeOnly
@@ -363,6 +418,8 @@ module Leaflet =
         static member Bounds (topLeft: Leaflet.PointTuple, bottomRight: Leaflet.Point) : Bounds = nativeOnly
         [<Import("Bounds", "leaflet"); EmitConstructor>]
         static member Bounds (topLeft: Leaflet.PointTuple, bottomRight: Leaflet.PointTuple) : Bounds = nativeOnly
+        [<Import("Bounds", "leaflet"); EmitConstructor>]
+        static member Bounds (topLeft: Leaflet.PointExpression, bottomRight: Leaflet.PointExpression) : Bounds = nativeOnly
         [<Import("Bounds", "leaflet"); EmitConstructor>]
         static member Bounds () : Bounds = nativeOnly
         [<Import("Bounds", "leaflet"); EmitConstructor>]
@@ -383,6 +440,8 @@ module Leaflet =
         static member ImageOverlay (imageUrl: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : ImageOverlay = nativeOnly
         [<Import("ImageOverlay", "leaflet"); EmitConstructor>]
         static member ImageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : ImageOverlay = nativeOnly
+        [<Import("ImageOverlay", "leaflet"); EmitConstructor>]
+        static member ImageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : ImageOverlay = nativeOnly
         /// <summary>
         /// SVGOverlay doesn't extend ImageOverlay because SVGOverlay.getElement returns SVGElement
         /// </summary>
@@ -403,6 +462,11 @@ module Leaflet =
         /// </summary>
         [<Import("SVGOverlay", "leaflet"); EmitConstructor>]
         static member SVGOverlay (svgImage: Glutinum.Web.SVGElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : SVGOverlay = nativeOnly
+        /// <summary>
+        /// SVGOverlay doesn't extend ImageOverlay because SVGOverlay.getElement returns SVGElement
+        /// </summary>
+        [<Import("SVGOverlay", "leaflet"); EmitConstructor>]
+        static member SVGOverlay (svgImage: U2<string, Glutinum.Web.SVGElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : SVGOverlay = nativeOnly
         /// <summary>
         /// VideoOverlay doesn't extend ImageOverlay because VideoOverlay.getElement returns HTMLImageElement
         /// </summary>
@@ -433,28 +497,41 @@ module Leaflet =
         /// </summary>
         [<Import("VideoOverlay", "leaflet"); EmitConstructor>]
         static member VideoOverlay (video: Glutinum.Web.HTMLVideoElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.VideoOverlayOptions) : VideoOverlay = nativeOnly
+        /// <summary>
+        /// VideoOverlay doesn't extend ImageOverlay because VideoOverlay.getElement returns HTMLImageElement
+        /// </summary>
+        [<Import("VideoOverlay", "leaflet"); EmitConstructor>]
+        static member VideoOverlay (video: U3<string, ResizeArray<string>, Glutinum.Web.HTMLVideoElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.VideoOverlayOptions) : VideoOverlay = nativeOnly
         [<Import("Path", "leaflet"); EmitConstructor>]
         static member Path () : Path = nativeOnly
         [<Import("Polyline", "leaflet"); EmitConstructor>]
         static member Polyline<'T, 'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Polyline<'T, 'P> = nativeOnly
         [<Import("Polyline", "leaflet"); EmitConstructor>]
         static member Polyline<'T, 'P> (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Polyline<'T, 'P> = nativeOnly
+        [<Import("Polyline", "leaflet"); EmitConstructor>]
+        static member Polyline<'T, 'P> (latlngs: U2<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Polyline<'T, 'P> = nativeOnly
         [<Import("Polygon", "leaflet"); EmitConstructor>]
         static member Polygon<'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
         [<Import("Polygon", "leaflet"); EmitConstructor>]
         static member Polygon<'P> (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
         [<Import("Polygon", "leaflet"); EmitConstructor>]
         static member Polygon<'P> (latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
+        [<Import("Polygon", "leaflet"); EmitConstructor>]
+        static member Polygon<'P> (latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
         [<Import("Rectangle", "leaflet"); EmitConstructor>]
         static member Rectangle<'P> (latLngBounds: Leaflet.LatLngBounds, ?options: Leaflet.PolylineOptions) : Rectangle<'P> = nativeOnly
         [<Import("Rectangle", "leaflet"); EmitConstructor>]
         static member Rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.PolylineOptions) : Rectangle<'P> = nativeOnly
+        [<Import("Rectangle", "leaflet"); EmitConstructor>]
+        static member Rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.PolylineOptions) : Rectangle<'P> = nativeOnly
         [<Import("CircleMarker", "leaflet"); EmitConstructor>]
         static member CircleMarker<'P> (latlng: Leaflet.LatLng, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
         [<Import("CircleMarker", "leaflet"); EmitConstructor>]
         static member CircleMarker<'P> (latlng: Leaflet.LatLngLiteral, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
         [<Import("CircleMarker", "leaflet"); EmitConstructor>]
         static member CircleMarker<'P> (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
+        [<Import("CircleMarker", "leaflet"); EmitConstructor>]
+        static member CircleMarker<'P> (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLng, options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
@@ -462,11 +539,15 @@ module Leaflet =
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
+        static member Circle<'P> (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
+        [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLng, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLngLiteral, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLngTuple, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
+        [<Import("Circle", "leaflet"); EmitConstructor>]
+        static member Circle<'P> (latlng: Leaflet.LatLngExpression, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Renderer", "leaflet"); EmitConstructor>]
         static member Renderer (?options: Leaflet.RendererOptions) : Renderer = nativeOnly
         [<Import("SVG", "leaflet"); EmitConstructor>]
@@ -488,6 +569,8 @@ module Leaflet =
         [<Import("DivOverlay", "leaflet"); EmitConstructor>]
         static member DivOverlay (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : DivOverlay = nativeOnly
         [<Import("DivOverlay", "leaflet"); EmitConstructor>]
+        static member DivOverlay (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : DivOverlay = nativeOnly
+        [<Import("DivOverlay", "leaflet"); EmitConstructor>]
         static member DivOverlay (?options: Leaflet.DivOverlayOptions, ?source: Leaflet.Layer) : DivOverlay = nativeOnly
         [<Import("Popup", "leaflet"); EmitConstructor>]
         static member Popup (latlng: Leaflet.LatLng, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
@@ -495,6 +578,8 @@ module Leaflet =
         static member Popup (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
         [<Import("Popup", "leaflet"); EmitConstructor>]
         static member Popup (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
+        [<Import("Popup", "leaflet"); EmitConstructor>]
+        static member Popup (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
         [<Import("Popup", "leaflet"); EmitConstructor>]
         static member Popup (?options: Leaflet.PopupOptions, ?source: Leaflet.Layer) : Popup = nativeOnly
         [<Import("Tooltip", "leaflet"); EmitConstructor>]
@@ -504,6 +589,8 @@ module Leaflet =
         [<Import("Tooltip", "leaflet"); EmitConstructor>]
         static member Tooltip (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : Tooltip = nativeOnly
         [<Import("Tooltip", "leaflet"); EmitConstructor>]
+        static member Tooltip (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : Tooltip = nativeOnly
+        [<Import("Tooltip", "leaflet"); EmitConstructor>]
         static member Tooltip (?options: Leaflet.TooltipOptions, ?source: Leaflet.Layer) : Tooltip = nativeOnly
         [<Import("Handler", "leaflet"); EmitConstructor>]
         static member Handler (map: Leaflet.Map) : Handler = nativeOnly
@@ -511,6 +598,8 @@ module Leaflet =
         static member Map (element: string, ?options: Leaflet.MapOptions) : Map = nativeOnly
         [<Import("Map", "leaflet"); EmitConstructor>]
         static member Map (element: Glutinum.Web.HTMLElement, ?options: Leaflet.MapOptions) : Map = nativeOnly
+        [<Import("Map", "leaflet"); EmitConstructor>]
+        static member Map (element: U2<string, Glutinum.Web.HTMLElement>, ?options: Leaflet.MapOptions) : Map = nativeOnly
         [<Import("Icon", "leaflet"); EmitConstructor>]
         static member Icon<'T> (options: 'T) : Icon<'T> = nativeOnly
         [<Import("DivIcon", "leaflet"); EmitConstructor>]
@@ -521,6 +610,8 @@ module Leaflet =
         static member Marker<'P> (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.MarkerOptions) : Marker<'P> = nativeOnly
         [<Import("Marker", "leaflet"); EmitConstructor>]
         static member Marker<'P> (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Marker<'P> = nativeOnly
+        [<Import("Marker", "leaflet"); EmitConstructor>]
+        static member Marker<'P> (latlng: Leaflet.LatLngExpression, ?options: Leaflet.MarkerOptions) : Marker<'P> = nativeOnly
         [<ImportAll("leaflet")>]
         static member inline LineUtil
             with get () : LineUtil_.Exports =
@@ -633,6 +724,8 @@ Class.callInitHooks()""")>]
             abstract member clipPolygon: points: ResizeArray<Leaflet.Point> * bounds: Leaflet.Bounds * ?round: bool -> ResizeArray<Leaflet.Point>
             [<Emit("$0.clipPolygon($1...)")>]
             abstract member clipPolygon: points: ResizeArray<Leaflet.Point> * bounds: Leaflet.BoundsLiteral * ?round: bool -> ResizeArray<Leaflet.Point>
+            [<Emit("$0.clipPolygon($1...)")>]
+            abstract member clipPolygon: points: ResizeArray<Leaflet.Point> * bounds: Leaflet.BoundsExpression * ?round: bool -> ResizeArray<Leaflet.Point>
             [<Emit("$0.polygonCenter($1...)")>]
             abstract member polygonCenter: latlngs: ResizeArray<Leaflet.LatLngExpression> * crs: Leaflet.CRS -> Leaflet.LatLng
 
@@ -651,6 +744,11 @@ Class.callInitHooks()""")>]
             /// </summary>
             [<Emit("$0.get($1...)")>]
             abstract member get: element: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement option
+            /// <summary>
+            /// Get Element by its ID or with the given HTML-Element
+            /// </summary>
+            [<Emit("$0.get($1...)")>]
+            abstract member get: element: U2<string, Glutinum.Web.HTMLElement> -> Glutinum.Web.HTMLElement option
             [<Emit("$0.getStyle($1...)")>]
             abstract member getStyle: el: Glutinum.Web.HTMLElement * styleAttrib: string -> string option
             /// <summary>
@@ -744,12 +842,16 @@ Class.callInitHooks()""")>]
         abstract member latLngToPoint: latlng: Leaflet.LatLng * zoom: float -> Leaflet.Point
         abstract member latLngToPoint: latlng: Leaflet.LatLngLiteral * zoom: float -> Leaflet.Point
         abstract member latLngToPoint: latlng: Leaflet.LatLngTuple * zoom: float -> Leaflet.Point
+        abstract member latLngToPoint: latlng: Leaflet.LatLngExpression * zoom: float -> Leaflet.Point
         abstract member pointToLatLng: point: Leaflet.Point * zoom: float -> Leaflet.LatLng
         abstract member pointToLatLng: point: Leaflet.PointTuple * zoom: float -> Leaflet.LatLng
+        abstract member pointToLatLng: point: Leaflet.PointExpression * zoom: float -> Leaflet.LatLng
         abstract member project: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
+        abstract member project: latlng: U2<Leaflet.LatLng, Leaflet.LatLngLiteral> -> Leaflet.Point
         abstract member unproject: point: Leaflet.Point -> Leaflet.LatLng
         abstract member unproject: point: Leaflet.PointTuple -> Leaflet.LatLng
+        abstract member unproject: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member scale: zoom: float -> float
         abstract member zoom: scale: float -> float
         abstract member getProjectedBounds: zoom: float -> Leaflet.Bounds
@@ -762,8 +864,10 @@ Class.callInitHooks()""")>]
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLng -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngLiteral -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngTuple -> float
+        abstract member distance: latlng1: Leaflet.LatLngExpression * latlng2: Leaflet.LatLngExpression -> float
         abstract member wrapLatLng: latlng: Leaflet.LatLng -> Leaflet.LatLng
         abstract member wrapLatLng: latlng: Leaflet.LatLngLiteral -> Leaflet.LatLng
+        abstract member wrapLatLng: latlng: U2<Leaflet.LatLng, Leaflet.LatLngLiteral> -> Leaflet.LatLng
         abstract member code: string option with get, set
         abstract member wrapLng: float * float option with get, set
         abstract member wrapLat: float * float option with get, set
@@ -792,8 +896,10 @@ Class.callInitHooks()""")>]
     type Projection =
         abstract member project: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
+        abstract member project: latlng: U2<Leaflet.LatLng, Leaflet.LatLngLiteral> -> Leaflet.Point
         abstract member unproject: point: Leaflet.Point -> Leaflet.LatLng
         abstract member unproject: point: Leaflet.PointTuple -> Leaflet.LatLng
+        abstract member unproject: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member bounds: Leaflet.Bounds with get, set
 
     module Projection_ =
@@ -814,10 +920,12 @@ Class.callInitHooks()""")>]
         abstract member equals: otherLatLng: Leaflet.LatLng * ?maxMargin: float -> bool
         abstract member equals: otherLatLng: Leaflet.LatLngLiteral * ?maxMargin: float -> bool
         abstract member equals: otherLatLng: Leaflet.LatLngTuple * ?maxMargin: float -> bool
+        abstract member equals: otherLatLng: Leaflet.LatLngExpression * ?maxMargin: float -> bool
         abstract member toString: unit -> string
         abstract member distanceTo: otherLatLng: Leaflet.LatLng -> float
         abstract member distanceTo: otherLatLng: Leaflet.LatLngLiteral -> float
         abstract member distanceTo: otherLatLng: Leaflet.LatLngTuple -> float
+        abstract member distanceTo: otherLatLng: Leaflet.LatLngExpression -> float
         abstract member wrap: unit -> Leaflet.LatLng
         abstract member toBounds: sizeInMeters: float -> Leaflet.LatLngBounds
         abstract member clone: unit -> Leaflet.LatLng
@@ -848,6 +956,7 @@ Class.callInitHooks()""")>]
         abstract member extend: latlngOrBounds: Leaflet.LatLngTuple -> LatLngBounds
         abstract member extend: latlngOrBounds: Leaflet.LatLngBounds -> LatLngBounds
         abstract member extend: latlngOrBounds: Leaflet.LatLngBoundsLiteral -> LatLngBounds
+        abstract member extend: latlngOrBounds: U2<Leaflet.LatLngExpression, Leaflet.LatLngBoundsExpression> -> LatLngBounds
         abstract member pad: bufferRatio: float -> Leaflet.LatLngBounds
         abstract member getCenter: unit -> Leaflet.LatLng
         abstract member getSouthWest: unit -> Leaflet.LatLng
@@ -863,13 +972,17 @@ Class.callInitHooks()""")>]
         abstract member contains: otherBoundsOrLatLng: Leaflet.LatLng -> bool
         abstract member contains: otherBoundsOrLatLng: Leaflet.LatLngLiteral -> bool
         abstract member contains: otherBoundsOrLatLng: Leaflet.LatLngTuple -> bool
+        abstract member contains: otherBoundsOrLatLng: U2<Leaflet.LatLngBoundsExpression, Leaflet.LatLngExpression> -> bool
         abstract member intersects: otherBounds: Leaflet.LatLngBounds -> bool
         abstract member intersects: otherBounds: Leaflet.LatLngBoundsLiteral -> bool
+        abstract member intersects: otherBounds: Leaflet.LatLngBoundsExpression -> bool
         abstract member overlaps: otherBounds: Leaflet.LatLngBounds -> bool
         abstract member overlaps: otherBounds: Leaflet.LatLngBoundsLiteral -> bool
+        abstract member overlaps: otherBounds: Leaflet.LatLngBoundsExpression -> bool
         abstract member toBBoxString: unit -> string
         abstract member equals: otherBounds: Leaflet.LatLngBounds * ?maxMargin: float -> bool
         abstract member equals: otherBounds: Leaflet.LatLngBoundsLiteral * ?maxMargin: float -> bool
+        abstract member equals: otherBounds: Leaflet.LatLngBoundsExpression * ?maxMargin: float -> bool
         abstract member isValid: unit -> bool
 
     type LatLngBoundsLiteral =
@@ -887,24 +1000,31 @@ Class.callInitHooks()""")>]
         abstract member clone: unit -> Leaflet.Point
         abstract member add: otherPoint: Leaflet.Point -> Leaflet.Point
         abstract member add: otherPoint: Leaflet.PointTuple -> Leaflet.Point
+        abstract member add: otherPoint: Leaflet.PointExpression -> Leaflet.Point
         abstract member subtract: otherPoint: Leaflet.Point -> Leaflet.Point
         abstract member subtract: otherPoint: Leaflet.PointTuple -> Leaflet.Point
+        abstract member subtract: otherPoint: Leaflet.PointExpression -> Leaflet.Point
         abstract member divideBy: num: float -> Leaflet.Point
         abstract member multiplyBy: num: float -> Leaflet.Point
         abstract member scaleBy: scale: Leaflet.Point -> Leaflet.Point
         abstract member scaleBy: scale: Leaflet.PointTuple -> Leaflet.Point
+        abstract member scaleBy: scale: Leaflet.PointExpression -> Leaflet.Point
         abstract member unscaleBy: scale: Leaflet.Point -> Leaflet.Point
         abstract member unscaleBy: scale: Leaflet.PointTuple -> Leaflet.Point
+        abstract member unscaleBy: scale: Leaflet.PointExpression -> Leaflet.Point
         abstract member round: unit -> Leaflet.Point
         abstract member floor: unit -> Leaflet.Point
         abstract member ceil: unit -> Leaflet.Point
         abstract member trunc: unit -> Leaflet.Point
         abstract member distanceTo: otherPoint: Leaflet.Point -> float
         abstract member distanceTo: otherPoint: Leaflet.PointTuple -> float
+        abstract member distanceTo: otherPoint: Leaflet.PointExpression -> float
         abstract member equals: otherPoint: Leaflet.Point -> bool
         abstract member equals: otherPoint: Leaflet.PointTuple -> bool
+        abstract member equals: otherPoint: Leaflet.PointExpression -> bool
         abstract member contains: otherPoint: Leaflet.Point -> bool
         abstract member contains: otherPoint: Leaflet.PointTuple -> bool
+        abstract member contains: otherPoint: Leaflet.PointExpression -> bool
         abstract member toString: unit -> string
         abstract member x: float with get, set
         abstract member y: float with get, set
@@ -926,8 +1046,10 @@ Class.callInitHooks()""")>]
     type Bounds =
         abstract member extend: point: Leaflet.Point -> Bounds
         abstract member extend: point: Leaflet.PointTuple -> Bounds
+        abstract member extend: point: Leaflet.PointExpression -> Bounds
         abstract member extend: otherBounds: Leaflet.Bounds -> Bounds
         abstract member extend: otherBounds: Leaflet.BoundsLiteral -> Bounds
+        abstract member extend: otherBounds: Leaflet.BoundsExpression -> Bounds
         abstract member getCenter: ?round: bool -> Leaflet.Point
         abstract member getBottomLeft: unit -> Leaflet.Point
         abstract member getBottomRight: unit -> Leaflet.Point
@@ -938,14 +1060,18 @@ Class.callInitHooks()""")>]
         abstract member contains: pointOrBounds: Leaflet.BoundsLiteral -> bool
         abstract member contains: pointOrBounds: Leaflet.Point -> bool
         abstract member contains: pointOrBounds: Leaflet.PointTuple -> bool
+        abstract member contains: pointOrBounds: U2<Leaflet.BoundsExpression, Leaflet.PointExpression> -> bool
         abstract member intersects: otherBounds: Leaflet.Bounds -> bool
         abstract member intersects: otherBounds: Leaflet.BoundsLiteral -> bool
+        abstract member intersects: otherBounds: Leaflet.BoundsExpression -> bool
         abstract member overlaps: otherBounds: Leaflet.Bounds -> bool
         abstract member overlaps: otherBounds: Leaflet.BoundsLiteral -> bool
+        abstract member overlaps: otherBounds: Leaflet.BoundsExpression -> bool
         abstract member isValid: unit -> bool
         abstract member pad: bufferRatio: float -> Leaflet.Bounds
         abstract member equals: otherBounds: Leaflet.Bounds -> bool
         abstract member equals: otherBounds: Leaflet.BoundsLiteral -> bool
+        abstract member equals: otherBounds: Leaflet.BoundsExpression -> bool
         abstract member min: Leaflet.Point option with get, set
         abstract member max: Leaflet.Point option with get, set
 
@@ -1083,7 +1209,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
+        abstract member on: ``type``: Events.on.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -1100,7 +1226,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Events.on.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
+        abstract member on: ``type``: Events.on.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -1108,7 +1234,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Events.on.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
+        abstract member on: ``type``: Events.on.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -1134,7 +1260,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Events.on.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
+        abstract member on: ``type``: Events.on.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -1142,7 +1268,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Events.on.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
+        abstract member on: ``type``: Events.on.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -1168,7 +1294,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Events.on.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
+        abstract member on: ``type``: Events.on.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -1220,7 +1346,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: obj * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
+        abstract member off: ``type``: Events.off.``type_2`` * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -1239,7 +1365,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Events.off.``type_2`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
+        abstract member off: ``type``: Events.off.``type_3`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -1248,7 +1374,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Events.off.``type_3`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
+        abstract member off: ``type``: Events.off.``type_4`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -1277,7 +1403,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Events.off.``type_4`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
+        abstract member off: ``type``: Events.off.``type_5`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -1286,7 +1412,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Events.off.``type_5`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
+        abstract member off: ``type``: Events.off.``type_6`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -1315,7 +1441,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Events.off.``type_6`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
+        abstract member off: ``type``: Events.off.``type_7`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -1362,19 +1488,19 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type`` * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type`` * fn: Leaflet.LayersControlEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_1`` * fn: Leaflet.LayersControlEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type_1`` * fn: Leaflet.LayerEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_2`` * fn: Leaflet.LayerEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_3`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -1383,11 +1509,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_4`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_5`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -1401,11 +1527,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_6`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_7`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -1419,7 +1545,7 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Events.listens.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Events.listens.``type_8`` * fn: Leaflet.TileEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -1440,7 +1566,7 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
+        abstract member once: ``type``: Events.once.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -1449,11 +1575,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Events.once.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
+        abstract member once: ``type``: Events.once.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Events.once.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
+        abstract member once: ``type``: Events.once.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -1467,11 +1593,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Events.once.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
+        abstract member once: ``type``: Events.once.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Events.once.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
+        abstract member once: ``type``: Events.once.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -1485,7 +1611,7 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Events.once.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
+        abstract member once: ``type``: Events.once.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -1542,7 +1668,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
+        abstract member addEventListener: ``type``: Events.addEventListener.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for on(...)
         ///
@@ -1567,7 +1693,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Events.addEventListener.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
+        abstract member addEventListener: ``type``: Events.addEventListener.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for on(...)
         ///
@@ -1579,7 +1705,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Events.addEventListener.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
+        abstract member addEventListener: ``type``: Events.addEventListener.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for on(...)
         ///
@@ -1617,7 +1743,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Events.addEventListener.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
+        abstract member addEventListener: ``type``: Events.addEventListener.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for on(...)
         ///
@@ -1629,7 +1755,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Events.addEventListener.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
+        abstract member addEventListener: ``type``: Events.addEventListener.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for on(...)
         ///
@@ -1667,7 +1793,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Events.addEventListener.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
+        abstract member addEventListener: ``type``: Events.addEventListener.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for on(...)
         ///
@@ -1740,7 +1866,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: obj * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
+        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_2`` * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for off(...)
         ///
@@ -1765,7 +1891,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_2`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
+        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_3`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for off(...)
         ///
@@ -1777,7 +1903,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_3`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
+        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_4`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for off(...)
         ///
@@ -1815,7 +1941,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_4`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
+        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_5`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for off(...)
         ///
@@ -1827,7 +1953,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_5`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
+        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_6`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for off(...)
         ///
@@ -1865,7 +1991,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_6`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
+        abstract member removeEventListener: ``type``: Events.removeEventListener.``type_7`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for off(...)
         ///
@@ -1926,7 +2052,7 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
+        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for once(...)
         ///
@@ -1939,13 +2065,13 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
+        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for once(...)
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
+        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for once(...)
         ///
@@ -1965,13 +2091,13 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
+        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for once(...)
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
+        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for once(...)
         ///
@@ -1991,7 +2117,7 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
+        abstract member addOneTimeEventListener: ``type``: Events.addOneTimeEventListener.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Events
         /// <summary>
         /// Alias for once(...)
         ///
@@ -2061,7 +2187,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
+        abstract member on: ``type``: Evented.on.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -2078,7 +2204,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Evented.on.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
+        abstract member on: ``type``: Evented.on.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -2086,7 +2212,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Evented.on.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
+        abstract member on: ``type``: Evented.on.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -2112,7 +2238,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Evented.on.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
+        abstract member on: ``type``: Evented.on.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -2120,7 +2246,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Evented.on.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
+        abstract member on: ``type``: Evented.on.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -2146,7 +2272,7 @@ Class.callInitHooks()""")>]
         /// (e.g. 'click dblclick').
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member on: ``type``: Evented.on.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
+        abstract member on: ``type``: Evented.on.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Adds a listener function (fn) to a particular event type of the object.
         /// You can optionally specify the context of the listener (object the this
@@ -2198,7 +2324,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: obj * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
+        abstract member off: ``type``: Evented.off.``type_2`` * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -2217,7 +2343,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Evented.off.``type_2`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
+        abstract member off: ``type``: Evented.off.``type_3`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -2226,7 +2352,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Evented.off.``type_3`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
+        abstract member off: ``type``: Evented.off.``type_4`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -2255,7 +2381,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Evented.off.``type_4`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
+        abstract member off: ``type``: Evented.off.``type_5`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -2264,7 +2390,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Evented.off.``type_5`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
+        abstract member off: ``type``: Evented.off.``type_6`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -2293,7 +2419,7 @@ Class.callInitHooks()""")>]
         /// Removes a set of type/listener pairs.
         /// Removes all listeners to all events on the object.
         /// </summary>
-        abstract member off: ``type``: Evented.off.``type_6`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
+        abstract member off: ``type``: Evented.off.``type_7`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Removes a previously added listener function. If no function is specified,
         /// it will remove all the listeners of that particular event from the object.
@@ -2340,19 +2466,19 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type`` * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type`` * fn: Leaflet.LayersControlEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_1`` * fn: Leaflet.LayersControlEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type_1`` * fn: Leaflet.LayerEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_2`` * fn: Leaflet.LayerEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_3`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -2361,11 +2487,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_4`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_5`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -2379,11 +2505,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_6`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_7`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -2397,7 +2523,7 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
-        abstract member listens: ``type``: Evented.listens.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj * ?propagate: bool -> bool
+        abstract member listens: ``type``: Evented.listens.``type_8`` * fn: Leaflet.TileEventHandlerFn * ?context: obj * ?propagate: bool -> bool
         /// <summary>
         /// Returns true if a particular event type has any listeners attached to it.
         /// </summary>
@@ -2418,7 +2544,7 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
+        abstract member once: ``type``: Evented.once.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -2427,11 +2553,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Evented.once.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
+        abstract member once: ``type``: Evented.once.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Evented.once.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
+        abstract member once: ``type``: Evented.once.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -2445,11 +2571,11 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Evented.once.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
+        abstract member once: ``type``: Evented.once.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Evented.once.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
+        abstract member once: ``type``: Evented.once.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -2463,7 +2589,7 @@ Class.callInitHooks()""")>]
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member once: ``type``: Evented.once.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
+        abstract member once: ``type``: Evented.once.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
@@ -2520,7 +2646,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
+        abstract member addEventListener: ``type``: Evented.addEventListener.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for on(...)
         ///
@@ -2545,7 +2671,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Evented.addEventListener.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
+        abstract member addEventListener: ``type``: Evented.addEventListener.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for on(...)
         ///
@@ -2557,7 +2683,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Evented.addEventListener.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
+        abstract member addEventListener: ``type``: Evented.addEventListener.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for on(...)
         ///
@@ -2595,7 +2721,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Evented.addEventListener.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
+        abstract member addEventListener: ``type``: Evented.addEventListener.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for on(...)
         ///
@@ -2607,7 +2733,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Evented.addEventListener.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
+        abstract member addEventListener: ``type``: Evented.addEventListener.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for on(...)
         ///
@@ -2645,7 +2771,7 @@ Class.callInitHooks()""")>]
         ///
         /// Adds a set of type/listener pairs, e.g. {click: onClick, mousemove: onMouseMove}
         /// </summary>
-        abstract member addEventListener: ``type``: Evented.addEventListener.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
+        abstract member addEventListener: ``type``: Evented.addEventListener.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for on(...)
         ///
@@ -2718,7 +2844,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: obj * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
+        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_2`` * ?fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for off(...)
         ///
@@ -2743,7 +2869,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_2`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
+        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_3`` * ?fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for off(...)
         ///
@@ -2755,7 +2881,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_3`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
+        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_4`` * ?fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for off(...)
         ///
@@ -2793,7 +2919,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_4`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
+        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_5`` * ?fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for off(...)
         ///
@@ -2805,7 +2931,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_5`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
+        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_6`` * ?fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for off(...)
         ///
@@ -2843,7 +2969,7 @@ Class.callInitHooks()""")>]
         ///
         /// Removes a set of type/listener pairs.
         /// </summary>
-        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_6`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
+        abstract member removeEventListener: ``type``: Evented.removeEventListener.``type_7`` * ?fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for off(...)
         ///
@@ -2904,7 +3030,7 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: obj * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
+        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_2`` * fn: Leaflet.LeafletEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for once(...)
         ///
@@ -2917,13 +3043,13 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_2`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
+        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_3`` * fn: Leaflet.PopupEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for once(...)
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_3`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
+        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_4`` * fn: Leaflet.TooltipEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for once(...)
         ///
@@ -2943,13 +3069,13 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_4`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
+        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_5`` * fn: Leaflet.LeafletMouseEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for once(...)
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_5`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
+        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_6`` * fn: Leaflet.LeafletKeyboardEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for once(...)
         ///
@@ -2969,7 +3095,7 @@ Class.callInitHooks()""")>]
         ///
         /// Behaves as on(...), except the listener will only get fired once and then removed.
         /// </summary>
-        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_6`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
+        abstract member addOneTimeEventListener: ``type``: Evented.addOneTimeEventListener.``type_7`` * fn: Leaflet.TileEventHandlerFn * ?context: obj -> Evented
         /// <summary>
         /// Alias for once(...)
         ///
@@ -3033,6 +3159,8 @@ Class.callInitHooks()""")>]
     type LayerOptions =
         abstract member pane: string option with get, set
         abstract member attribution: string option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string) : LayerOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3047,6 +3175,7 @@ Class.callInitHooks()""")>]
         inherit Leaflet.Evented
         abstract member addTo: map: Leaflet.Map -> Layer
         abstract member addTo: map: Leaflet.LayerGroup -> Layer
+        abstract member addTo: map: U2<Leaflet.Map, Leaflet.LayerGroup> -> Layer
         abstract member remove: unit -> Layer
         abstract member removeFrom: map: Leaflet.Map -> Layer
         abstract member getPane: ?name: string -> Glutinum.Web.HTMLElement option
@@ -3056,6 +3185,7 @@ Class.callInitHooks()""")>]
         abstract member bindPopup: content: string * ?options: Leaflet.PopupOptions -> Layer
         abstract member bindPopup: content: Glutinum.Web.HTMLElement * ?options: Leaflet.PopupOptions -> Layer
         abstract member bindPopup: content: Leaflet.Popup * ?options: Leaflet.PopupOptions -> Layer
+        abstract member bindPopup: content: U3<(Leaflet.Layer -> Leaflet.Content), Leaflet.Content, Leaflet.Popup> * ?options: Leaflet.PopupOptions -> Layer
         abstract member unbindPopup: unit -> Layer
         abstract member openPopup: unit -> Layer
         abstract member openPopup: latlng: Leaflet.LatLng -> Layer
@@ -3067,11 +3197,13 @@ Class.callInitHooks()""")>]
         abstract member setPopupContent: content: string -> Layer
         abstract member setPopupContent: content: Glutinum.Web.HTMLElement -> Layer
         abstract member setPopupContent: content: Leaflet.Popup -> Layer
+        abstract member setPopupContent: content: U2<Leaflet.Content, Leaflet.Popup> -> Layer
         abstract member getPopup: unit -> Leaflet.Popup option
         abstract member bindTooltip: content: (Leaflet.Layer -> Leaflet.Content) * ?options: Leaflet.TooltipOptions -> Layer
         abstract member bindTooltip: content: Leaflet.Tooltip * ?options: Leaflet.TooltipOptions -> Layer
         abstract member bindTooltip: content: string * ?options: Leaflet.TooltipOptions -> Layer
         abstract member bindTooltip: content: Glutinum.Web.HTMLElement * ?options: Leaflet.TooltipOptions -> Layer
+        abstract member bindTooltip: content: U3<(Leaflet.Layer -> Leaflet.Content), Leaflet.Tooltip, Leaflet.Content> * ?options: Leaflet.TooltipOptions -> Layer
         abstract member unbindTooltip: unit -> Layer
         abstract member openTooltip: unit -> Layer
         abstract member openTooltip: latlng: Leaflet.LatLng -> Layer
@@ -3083,13 +3215,13 @@ Class.callInitHooks()""")>]
         abstract member setTooltipContent: content: string -> Layer
         abstract member setTooltipContent: content: Glutinum.Web.HTMLElement -> Layer
         abstract member setTooltipContent: content: Leaflet.Tooltip -> Layer
+        abstract member setTooltipContent: content: U2<Leaflet.Content, Leaflet.Tooltip> -> Layer
         abstract member getTooltip: unit -> Leaflet.Tooltip option
         abstract member onAdd: map: Leaflet.Map -> Layer
         abstract member onRemove: map: Leaflet.Map -> Layer
         abstract member getEvents: unit -> Layer.getEvents
         abstract member getAttribution: unit -> string option
         abstract member beforeAdd: map: Leaflet.Map -> Layer
-        abstract member _map: Leaflet.Map with get, set
         abstract member options: Leaflet.LayerOptions with get, set
 
     [<AllowNullLiteral>]
@@ -3119,6 +3251,12 @@ Class.callInitHooks()""")>]
         abstract member pane: string option with get, set
         abstract member className: string option with get, set
         abstract member keepBuffer: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float) : GridLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float) : GridLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float) : GridLayerOptions = nativeOnly
 
     type DoneCallback =
         delegate of ?error: Exception * ?tile: Glutinum.Web.HTMLElement -> unit
@@ -3141,11 +3279,6 @@ Class.callInitHooks()""")>]
         abstract member isLoading: unit -> bool
         abstract member redraw: unit -> GridLayer
         abstract member getTileSize: unit -> Leaflet.Point
-        abstract member createTile: coords: Leaflet.Coords * ``done``: Leaflet.DoneCallback -> Glutinum.Web.HTMLElement
-        abstract member _tileCoordsToKey: coords: Leaflet.Coords -> string
-        abstract member _wrapCoords: parameter: Leaflet.Coords -> Leaflet.Coords
-        abstract member _tiles: Leaflet.InternalTiles with get, set
-        abstract member _tileZoom: float option with get, set
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3158,8 +3291,26 @@ Class.callInitHooks()""")>]
         abstract member tms: bool option with get, set
         abstract member zoomReverse: bool option with get, set
         abstract member detectRetina: bool option with get, set
-        abstract member crossOrigin: U2<Leaflet.CrossOrigin, bool> option with get, set
-        abstract member referrerPolicy: U2<Leaflet.ReferrerPolicy, bool> option with get, set
+        abstract member crossOrigin: TileLayerOptions.crossOrigin option with get, set
+        abstract member referrerPolicy: TileLayerOptions.referrerPolicy option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (subdomains: string, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (subdomains: ResizeArray<string>, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, subdomains: string, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, subdomains: ResizeArray<string>, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, subdomains: string, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, subdomains: ResizeArray<string>, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: TileLayerOptions.crossOrigin, ?referrerPolicy: TileLayerOptions.referrerPolicy) : TileLayerOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3167,10 +3318,6 @@ Class.callInitHooks()""")>]
         inherit Leaflet.GridLayer
         abstract member setUrl: url: string * ?noRedraw: bool -> TileLayer
         abstract member getTileUrl: coords: Leaflet.Coords -> string
-        abstract member _tileOnLoad: ``done``: Leaflet.DoneCallback * tile: Glutinum.Web.HTMLElement -> unit
-        abstract member _tileOnError: ``done``: Leaflet.DoneCallback * tile: Glutinum.Web.HTMLElement * e: Exception -> unit
-        abstract member _abortLoading: unit -> unit
-        abstract member _getZoomForUrl: unit -> float
 
     module TileLayer_ =
 
@@ -3198,6 +3345,24 @@ Class.callInitHooks()""")>]
         abstract member version: string option with get, set
         abstract member crs: Leaflet.CRS option with get, set
         abstract member uppercase: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (subdomains: string, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (subdomains: ResizeArray<string>, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, subdomains: string, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: float, subdomains: ResizeArray<string>, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, subdomains: string, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (tileSize: Leaflet.Point, subdomains: ResizeArray<string>, ?attribution: string, ?opacity: float, ?updateWhenIdle: bool, ?updateWhenZooming: bool, ?updateInterval: float, ?zIndex: float, ?bounds: Leaflet.LatLngBoundsExpression, ?minZoom: float, ?maxZoom: float, ?maxNativeZoom: float, ?minNativeZoom: float, ?noWrap: bool, ?pane: string, ?className: string, ?keepBuffer: float, ?id: string, ?errorTileUrl: string, ?zoomOffset: float, ?tms: bool, ?zoomReverse: bool, ?detectRetina: bool, ?crossOrigin: WMSOptions.crossOrigin, ?referrerPolicy: WMSOptions.referrerPolicy, ?layers: string, ?styles: string, ?format: string, ?transparent: bool, ?version: string, ?crs: Leaflet.CRS, ?uppercase: bool) : WMSOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3211,6 +3376,8 @@ Class.callInitHooks()""")>]
         abstract member transparent: bool option with get, set
         abstract member width: float option with get, set
         abstract member height: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (layers: string, ?format: string, ?request: string, ?service: string, ?styles: string, ?version: string, ?transparent: bool, ?width: float, ?height: float) : WMSParams = nativeOnly
 
     module tileLayer_ =
 
@@ -3246,10 +3413,12 @@ Class.callInitHooks()""")>]
         abstract member opacity: float option with get, set
         abstract member alt: string option with get, set
         abstract member interactive: bool option with get, set
-        abstract member crossOrigin: U2<Leaflet.CrossOrigin, bool> option with get, set
+        abstract member crossOrigin: ImageOverlayOptions.crossOrigin option with get, set
         abstract member errorOverlayUrl: string option with get, set
         abstract member zIndex: float option with get, set
         abstract member className: string option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?bubblingMouseEvents: bool, ?opacity: float, ?alt: string, ?interactive: bool, ?crossOrigin: ImageOverlayOptions.crossOrigin, ?errorOverlayUrl: string, ?zIndex: float, ?className: string) : ImageOverlayOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3257,6 +3426,8 @@ Class.callInitHooks()""")>]
         abstract member opacity: float option with get, set
         [<EmitIndexer>]
         abstract member Item: name: string -> obj with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?opacity: float) : ImageOverlayStyleOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3355,6 +3526,8 @@ Class.callInitHooks()""")>]
         /// </summary>
         abstract member muted: bool option with get, set
         abstract member playsInline: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?bubblingMouseEvents: bool, ?opacity: float, ?alt: string, ?interactive: bool, ?crossOrigin: VideoOverlayOptions.crossOrigin, ?errorOverlayUrl: string, ?zIndex: float, ?className: string, ?autoplay: bool, ?loop: bool, ?keepAspectRatio: bool, ?muted: bool, ?playsInline: bool) : VideoOverlayOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3433,6 +3606,12 @@ Class.callInitHooks()""")>]
         abstract member fillRule: Leaflet.FillRule option with get, set
         abstract member renderer: Leaflet.Renderer option with get, set
         abstract member className: string option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string) : PathOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (dashArray: string, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string) : PathOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (dashArray: ResizeArray<float>, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string) : PathOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3450,6 +3629,12 @@ Class.callInitHooks()""")>]
         inherit Leaflet.PathOptions
         abstract member smoothFactor: float option with get, set
         abstract member noClip: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string, ?smoothFactor: float, ?noClip: bool) : PolylineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (dashArray: string, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string, ?smoothFactor: float, ?noClip: bool) : PolylineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (dashArray: ResizeArray<float>, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string, ?smoothFactor: float, ?noClip: bool) : PolylineOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3460,6 +3645,7 @@ Class.callInitHooks()""")>]
         abstract member setLatLngs: latlngs: ResizeArray<Leaflet.LatLngExpression> -> Polyline<'T, 'P>
         abstract member setLatLngs: latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>> -> Polyline<'T, 'P>
         abstract member setLatLngs: latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>> -> Polyline<'T, 'P>
+        abstract member setLatLngs: latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>> -> Polyline<'T, 'P>
         abstract member isEmpty: unit -> bool
         abstract member getCenter: unit -> Leaflet.LatLng
         abstract member getBounds: unit -> Leaflet.LatLngBounds
@@ -3467,6 +3653,7 @@ Class.callInitHooks()""")>]
         abstract member addLatLng: latlng: Leaflet.LatLngLiteral * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
         abstract member addLatLng: latlng: Leaflet.LatLngTuple * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
         abstract member addLatLng: latlng: ResizeArray<Leaflet.LatLngExpression> * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
+        abstract member addLatLng: latlng: U2<Leaflet.LatLngExpression, ResizeArray<Leaflet.LatLngExpression>> * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
         abstract member closestLayerPoint: p: Leaflet.Point -> Leaflet.Point
         abstract member feature: Glutinum.Geojson.Feature<'T, 'P> option with get, set
 
@@ -3490,6 +3677,7 @@ Class.callInitHooks()""")>]
         inherit Leaflet.Polygon<'P>
         abstract member setBounds: latLngBounds: Leaflet.LatLngBounds -> Rectangle<'P>
         abstract member setBounds: latLngBounds: Leaflet.LatLngBoundsLiteral -> Rectangle<'P>
+        abstract member setBounds: latLngBounds: Leaflet.LatLngBoundsExpression -> Rectangle<'P>
 
     type Rectangle =
         Rectangle<obj>
@@ -3499,6 +3687,12 @@ Class.callInitHooks()""")>]
     type CircleMarkerOptions =
         inherit Leaflet.PathOptions
         abstract member radius: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string, ?radius: float) : CircleMarkerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (dashArray: string, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string, ?radius: float) : CircleMarkerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (dashArray: ResizeArray<float>, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?stroke: bool, ?color: string, ?weight: float, ?opacity: float, ?lineCap: Leaflet.LineCapShape, ?lineJoin: Leaflet.LineJoinShape, ?dashOffset: string, ?fill: bool, ?fillColor: string, ?fillOpacity: float, ?fillRule: Leaflet.FillRule, ?renderer: Leaflet.Renderer, ?className: string, ?radius: float) : CircleMarkerOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3508,6 +3702,7 @@ Class.callInitHooks()""")>]
         abstract member setLatLng: latLng: Leaflet.LatLng -> CircleMarker<'P>
         abstract member setLatLng: latLng: Leaflet.LatLngLiteral -> CircleMarker<'P>
         abstract member setLatLng: latLng: Leaflet.LatLngTuple -> CircleMarker<'P>
+        abstract member setLatLng: latLng: Leaflet.LatLngExpression -> CircleMarker<'P>
         abstract member getLatLng: unit -> Leaflet.LatLng
         abstract member setRadius: radius: float -> CircleMarker<'P>
         abstract member getRadius: unit -> float
@@ -3539,6 +3734,8 @@ Class.callInitHooks()""")>]
         inherit Leaflet.LayerOptions
         abstract member padding: float option with get, set
         abstract member tolerance: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?padding: float, ?tolerance: float) : RendererOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3593,6 +3790,10 @@ Class.callInitHooks()""")>]
         /// Removes the layer with the given internal ID or the given layer from the group.
         /// </summary>
         abstract member removeLayer: layer: Leaflet.Layer -> LayerGroup<'P>
+        /// <summary>
+        /// Removes the layer with the given internal ID or the given layer from the group.
+        /// </summary>
+        abstract member removeLayer: layer: U2<float, Leaflet.Layer> -> LayerGroup<'P>
         /// <summary>
         /// Returns true if the given layer is currently added to the group.
         /// </summary>
@@ -3653,6 +3854,10 @@ Class.callInitHooks()""")>]
         /// </summary>
         abstract member removeLayer: layer: Leaflet.Layer -> FeatureGroup<'P>
         /// <summary>
+        /// Removes the layer with the given internal ID or the given layer from the group.
+        /// </summary>
+        abstract member removeLayer: layer: U2<float, Leaflet.Layer> -> FeatureGroup<'P>
+        /// <summary>
         /// Sets the given path options to each layer of the group that has a setStyle method.
         /// </summary>
         abstract member setStyle: style: Leaflet.PathOptions -> FeatureGroup<'P>
@@ -3693,7 +3898,7 @@ Class.callInitHooks()""")>]
         /// }
         /// </code>
         /// </summary>
-        abstract member pointToLayer: geoJsonPoint: Glutinum.Geojson.Feature<Glutinum.Geojson.Point, 'P> * latlng: Leaflet.LatLng -> Leaflet.Layer
+        abstract member pointToLayer: GeoJSONOptions.pointToLayer option with get, set
         /// <summary>
         /// PathOptions or a Function defining the Path options for styling GeoJSON lines and polygons,
         /// called internally when data is added.
@@ -3717,7 +3922,7 @@ Class.callInitHooks()""")>]
         /// function (feature, layer) {}
         /// </code>
         /// </summary>
-        abstract member onEachFeature: feature: Glutinum.Geojson.Feature<'G, 'P> * layer: Leaflet.Layer -> unit
+        abstract member onEachFeature: GeoJSONOptions.onEachFeature option with get, set
         /// <summary>
         /// A Function that will be used to decide whether to show a feature or not.
         ///
@@ -3729,17 +3934,12 @@ Class.callInitHooks()""")>]
         /// }
         /// </code>
         /// </summary>
-        abstract member filter: geoJsonFeature: Glutinum.Geojson.Feature<'G, 'P> -> bool
+        abstract member filter: (Glutinum.Geojson.Feature<'G, 'P> -> bool) option with get, set
         /// <summary>
         /// A Function that will be used for converting GeoJSON coordinates to LatLngs.
         /// The default is the coordsToLatLng static method.
         /// </summary>
-        abstract member coordsToLatLng: coords: (float * float) -> Leaflet.LatLng
-        /// <summary>
-        /// A Function that will be used for converting GeoJSON coordinates to LatLngs.
-        /// The default is the coordsToLatLng static method.
-        /// </summary>
-        abstract member coordsToLatLng: coords: (float * float * float) -> Leaflet.LatLng
+        abstract member coordsToLatLng: (float * float -> Leaflet.LatLng) option with get, set
         /// <summary>
         /// Whether default Markers for "Point" type Features inherit from group options.
         /// </summary>
@@ -3770,6 +3970,12 @@ GeoJSON.getFeature($0, $1)""")>]
         /// </summary>
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.getFeature($0, $1)""")>]
+        static member inline getFeature (layer: Leaflet.Layer, newGeometry: U2<Glutinum.Geojson.Feature<'G, 'P>, 'G>): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
+        /// <summary>
+        /// Convert layer into GeoJSON feature
+        /// </summary>
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.getFeature($0, $1)""")>]
         static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Convert layer into GeoJSON feature
@@ -3777,6 +3983,12 @@ GeoJSON.getFeature($0, $1)""")>]
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.getFeature($0, $1)""")>]
         static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
+        /// <summary>
+        /// Convert layer into GeoJSON feature
+        /// </summary>
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.getFeature($0, $1)""")>]
+        static member inline getFeature (layer: Leaflet.Layer, newGeometry: U2<Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>, Glutinum.Geojson.GeometryObject>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Creates a Layer from a given GeoJSON feature. Can use a custom pointToLayer
         /// and/or coordsToLatLng functions if provided as options.
@@ -3805,6 +4017,13 @@ GeoJSON.coordsToLatLng($0)""")>]
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.coordsToLatLng($0)""")>]
         static member inline coordsToLatLng (coords: (float * float * float)): Leaflet.LatLng = nativeOnly
+        /// <summary>
+        /// Creates a LatLng object from an array of 2 numbers (longitude, latitude) or
+        /// 3 numbers (longitude, latitude, altitude) used in GeoJSON for points.
+        /// </summary>
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.coordsToLatLng($0)""")>]
+        static member inline coordsToLatLng (coords: U2<float * float, float * float * float>): Leaflet.LatLng = nativeOnly
         /// <summary>
         /// Creates a multidimensional array of LatLngs from a GeoJSON coordinates array.
         /// levelsDeep specifies the nesting level (0 is for an array of points, 1 for an array of
@@ -3845,6 +4064,12 @@ GeoJSON.asFeature($0)""")>]
         /// </summary>
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.asFeature($0)""")>]
+        static member inline asFeature (geojson: U2<Glutinum.Geojson.Feature<'G, 'P>, 'G>): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
+        /// <summary>
+        /// Normalize GeoJSON geometries/features into GeoJSON features.
+        /// </summary>
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.asFeature($0)""")>]
         static member inline asFeature (geojson: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Normalize GeoJSON geometries/features into GeoJSON features.
@@ -3852,6 +4077,12 @@ GeoJSON.asFeature($0)""")>]
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.asFeature($0)""")>]
         static member inline asFeature (geojson: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
+        /// <summary>
+        /// Normalize GeoJSON geometries/features into GeoJSON features.
+        /// </summary>
+        [<Emit("""import { GeoJSON } from "leaflet";
+GeoJSON.asFeature($0)""")>]
+        static member inline asFeature (geojson: U2<Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>, Glutinum.Geojson.GeometryObject>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Adds a GeoJSON object to the layer.
         /// </summary>
@@ -3871,6 +4102,11 @@ GeoJSON.asFeature($0)""")>]
         /// allowed here to set the style according to the feature.
         /// </summary>
         abstract member setStyle: style: Leaflet.StyleFunction<'P> -> GeoJSON<'P, 'G>
+        /// <summary>
+        /// Same as FeatureGroup's setStyle method, but style-functions are also
+        /// allowed here to set the style according to the feature.
+        /// </summary>
+        abstract member setStyle: style: U2<Leaflet.PathOptions, Leaflet.StyleFunction<'P>> -> GeoJSON<'P, 'G>
 
     type GeoJSON<'P> =
         GeoJSON<'P, Glutinum.Geojson.GeometryObject>
@@ -3879,10 +4115,11 @@ GeoJSON.asFeature($0)""")>]
         GeoJSON<obj, Glutinum.Geojson.GeometryObject>
 
     [<RequireQualifiedAccess>]
-    [<Erase(CaseRules.None)>]
+    [<StringEnum(CaseRules.None)>]
     type Zoom =
+        | [<CompiledValue(true)>] True
+        | [<CompiledValue(false)>] False
         | center
-        | Case1 of bool
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3925,6 +4162,8 @@ GeoJSON.asFeature($0)""")>]
         abstract member tapTolerance: float option with get, set
         abstract member touchZoom: Leaflet.Zoom option with get, set
         abstract member bounceAtZoomLimits: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?preferCanvas: bool, ?attributionControl: bool, ?zoomControl: bool, ?closePopupOnClick: bool, ?zoomSnap: float, ?zoomDelta: float, ?trackResize: bool, ?boxZoom: bool, ?doubleClickZoom: Leaflet.Zoom, ?dragging: bool, ?crs: Leaflet.CRS, ?center: Leaflet.LatLngExpression, ?zoom: float, ?minZoom: float, ?maxZoom: float, ?layers: ResizeArray<Leaflet.Layer>, ?maxBounds: Leaflet.LatLngBoundsExpression, ?renderer: Leaflet.Renderer, ?fadeAnimation: bool, ?markerZoomAnimation: bool, ?transform3DLimit: float, ?zoomAnimation: bool, ?zoomAnimationThreshold: float, ?inertia: bool, ?inertiaDeceleration: float, ?inertiaMaxSpeed: float, ?easeLinearity: float, ?worldCopyJump: bool, ?maxBoundsViscosity: float, ?keyboard: bool, ?keyboardPanDelta: float, ?scrollWheelZoom: Leaflet.Zoom, ?wheelDebounceTime: float, ?wheelPxPerZoomLevel: float, ?tapHold: bool, ?tapTolerance: float, ?touchZoom: Leaflet.Zoom, ?bounceAtZoomLimits: bool) : MapOptions = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -3980,6 +4219,8 @@ Control.extend($0)""")>]
             abstract member zoomInTitle: string option with get, set
             abstract member zoomOutText: string option with get, set
             abstract member zoomOutTitle: string option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?position: Leaflet.ControlPosition, ?zoomInText: string, ?zoomInTitle: string, ?zoomOutText: string, ?zoomOutTitle: string) : ZoomOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -3991,6 +4232,12 @@ Control.extend($0)""")>]
         type AttributionOptions =
             inherit Leaflet.ControlOptions
             abstract member prefix: U2<string, bool> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?position: Leaflet.ControlPosition) : AttributionOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (prefix: string, ?position: Leaflet.ControlPosition) : AttributionOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (prefix: bool, ?position: Leaflet.ControlPosition) : AttributionOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4018,6 +4265,8 @@ Control.extend($0)""")>]
             /// <c>sortFunction(layerA, layerB, nameA, nameB)</c>. By default, it sorts layers alphabetically by their name.
             /// </summary>
             abstract member sortFunction: LayersOptions.sortFunction option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?position: Leaflet.ControlPosition, ?collapsed: bool, ?autoZIndex: bool, ?hideSingleBase: bool, ?sortLayers: bool, ?sortFunction: LayersOptions.sortFunction) : LayersOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4043,6 +4292,8 @@ Control.extend($0)""")>]
             abstract member metric: bool option with get, set
             abstract member imperial: bool option with get, set
             abstract member updateWhenIdle: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?position: Leaflet.ControlPosition, ?maxWidth: float, ?metric: bool, ?imperial: bool, ?updateWhenIdle: bool) : ScaleOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4076,6 +4327,16 @@ Control.extend($0)""")>]
         abstract member pane: string option with get, set
         abstract member interactive: bool option with get, set
         abstract member content: U4<string, Glutinum.Web.HTMLElement, (Leaflet.Layer -> string), (Leaflet.Layer -> Glutinum.Web.HTMLElement)> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool) : DivOverlayOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: string, ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool) : DivOverlayOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: Glutinum.Web.HTMLElement, ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool) : DivOverlayOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: (Leaflet.Layer -> string), ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool) : DivOverlayOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: (Leaflet.Layer -> Glutinum.Web.HTMLElement), ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool) : DivOverlayOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4085,10 +4346,12 @@ Control.extend($0)""")>]
         abstract member setLatLng: latlng: Leaflet.LatLng -> DivOverlay
         abstract member setLatLng: latlng: Leaflet.LatLngLiteral -> DivOverlay
         abstract member setLatLng: latlng: Leaflet.LatLngTuple -> DivOverlay
+        abstract member setLatLng: latlng: Leaflet.LatLngExpression -> DivOverlay
         abstract member getContent: unit -> U2<Leaflet.Content, (Leaflet.Layer -> Leaflet.Content)> option
         abstract member setContent: htmlContent: (Leaflet.Layer -> Leaflet.Content) -> DivOverlay
         abstract member setContent: htmlContent: string -> DivOverlay
         abstract member setContent: htmlContent: Glutinum.Web.HTMLElement -> DivOverlay
+        abstract member setContent: htmlContent: U2<(Leaflet.Layer -> Leaflet.Content), Leaflet.Content> -> DivOverlay
         abstract member getElement: unit -> Glutinum.Web.HTMLElement option
         abstract member update: unit -> unit
         abstract member isOpen: unit -> bool
@@ -4114,6 +4377,16 @@ Control.extend($0)""")>]
         abstract member autoClose: bool option with get, set
         abstract member closeOnClick: bool option with get, set
         abstract member closeOnEscapeKey: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool, ?maxWidth: float, ?minWidth: float, ?maxHeight: float, ?keepInView: bool, ?closeButton: bool, ?autoPan: bool, ?autoPanPaddingTopLeft: Leaflet.PointExpression, ?autoPanPaddingBottomRight: Leaflet.PointExpression, ?autoPanPadding: Leaflet.PointExpression, ?autoClose: bool, ?closeOnClick: bool, ?closeOnEscapeKey: bool) : PopupOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: string, ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool, ?maxWidth: float, ?minWidth: float, ?maxHeight: float, ?keepInView: bool, ?closeButton: bool, ?autoPan: bool, ?autoPanPaddingTopLeft: Leaflet.PointExpression, ?autoPanPaddingBottomRight: Leaflet.PointExpression, ?autoPanPadding: Leaflet.PointExpression, ?autoClose: bool, ?closeOnClick: bool, ?closeOnEscapeKey: bool) : PopupOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: Glutinum.Web.HTMLElement, ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool, ?maxWidth: float, ?minWidth: float, ?maxHeight: float, ?keepInView: bool, ?closeButton: bool, ?autoPan: bool, ?autoPanPaddingTopLeft: Leaflet.PointExpression, ?autoPanPaddingBottomRight: Leaflet.PointExpression, ?autoPanPadding: Leaflet.PointExpression, ?autoClose: bool, ?closeOnClick: bool, ?closeOnEscapeKey: bool) : PopupOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: (Leaflet.Layer -> string), ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool, ?maxWidth: float, ?minWidth: float, ?maxHeight: float, ?keepInView: bool, ?closeButton: bool, ?autoPan: bool, ?autoPanPaddingTopLeft: Leaflet.PointExpression, ?autoPanPaddingBottomRight: Leaflet.PointExpression, ?autoPanPadding: Leaflet.PointExpression, ?autoClose: bool, ?closeOnClick: bool, ?closeOnEscapeKey: bool) : PopupOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: (Leaflet.Layer -> Glutinum.Web.HTMLElement), ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool, ?maxWidth: float, ?minWidth: float, ?maxHeight: float, ?keepInView: bool, ?closeButton: bool, ?autoPan: bool, ?autoPanPaddingTopLeft: Leaflet.PointExpression, ?autoPanPaddingBottomRight: Leaflet.PointExpression, ?autoPanPadding: Leaflet.PointExpression, ?autoClose: bool, ?closeOnClick: bool, ?closeOnEscapeKey: bool) : PopupOptions = nativeOnly
 
     type Content =
         U2<string, Glutinum.Web.HTMLElement>
@@ -4144,6 +4417,16 @@ Control.extend($0)""")>]
         abstract member permanent: bool option with get, set
         abstract member sticky: bool option with get, set
         abstract member opacity: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?className: string, ?interactive: bool, ?pane: string, ?offset: Leaflet.PointExpression, ?direction: Leaflet.Direction, ?permanent: bool, ?sticky: bool, ?opacity: float) : TooltipOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: string, ?className: string, ?interactive: bool, ?pane: string, ?offset: Leaflet.PointExpression, ?direction: Leaflet.Direction, ?permanent: bool, ?sticky: bool, ?opacity: float) : TooltipOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: Glutinum.Web.HTMLElement, ?className: string, ?interactive: bool, ?pane: string, ?offset: Leaflet.PointExpression, ?direction: Leaflet.Direction, ?permanent: bool, ?sticky: bool, ?opacity: float) : TooltipOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: (Leaflet.Layer -> string), ?className: string, ?interactive: bool, ?pane: string, ?offset: Leaflet.PointExpression, ?direction: Leaflet.Direction, ?permanent: bool, ?sticky: bool, ?opacity: float) : TooltipOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (content: (Leaflet.Layer -> Glutinum.Web.HTMLElement), ?className: string, ?interactive: bool, ?pane: string, ?offset: Leaflet.PointExpression, ?direction: Leaflet.Direction, ?permanent: bool, ?sticky: bool, ?opacity: float) : TooltipOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4155,6 +4438,8 @@ Control.extend($0)""")>]
     [<Interface>]
     type ZoomOptions =
         abstract member animate: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?animate: bool) : ZoomOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4163,12 +4448,16 @@ Control.extend($0)""")>]
         abstract member duration: float option with get, set
         abstract member easeLinearity: float option with get, set
         abstract member noMoveStart: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?animate: bool, ?duration: float, ?easeLinearity: float, ?noMoveStart: bool) : PanOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type ZoomPanOptions =
         inherit Leaflet.ZoomOptions
         inherit Leaflet.PanOptions
+        [<ParamObject; Emit("$0")>]
+        static member Create (?animate: bool, ?duration: float, ?easeLinearity: float, ?noMoveStart: bool) : ZoomPanOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4233,6 +4522,8 @@ Control.extend($0)""")>]
         abstract member propagatedFrom: obj with get, set
         [<Obsolete("The same as {@link LeafletEvent.propagatedFrom propagatedFrom}.")>]
         abstract member layer: obj with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj) : LeafletEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4282,6 +4573,8 @@ Control.extend($0)""")>]
     type LayerEvent =
         inherit Leaflet.LeafletEvent
         abstract member layer: Leaflet.Layer with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: Leaflet.Layer) : LayerEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4297,6 +4590,8 @@ Control.extend($0)""")>]
         inherit Leaflet.LeafletEvent
         abstract member tile: Glutinum.Web.HTMLImageElement with get, set
         abstract member coords: Leaflet.Coords with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: obj, tile: Glutinum.Web.HTMLImageElement, coords: Leaflet.Coords) : TileEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4381,6 +4676,8 @@ Control.extend($0)""")>]
             abstract member stopPropagation: ev: Leaflet.LeafletEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
             abstract member stopPropagation: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
+            [<Emit("$0.stopPropagation($1...)")>]
+            abstract member stopPropagation: ev: Leaflet.DomEvent_.PropagableEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.disableScrollPropagation($1...)")>]
             abstract member disableScrollPropagation: el: Glutinum.Web.HTMLElement -> Leaflet.DomEvent_.Exports
             [<Emit("$0.disableClickPropagation($1...)")>]
@@ -4395,6 +4692,8 @@ Control.extend($0)""")>]
             abstract member stop: ev: Leaflet.LeafletEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stop($1...)")>]
             abstract member stop: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
+            [<Emit("$0.stop($1...)")>]
+            abstract member stop: ev: Leaflet.DomEvent_.PropagableEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.getMousePosition($1...)")>]
             abstract member getMousePosition: ev: Glutinum.Web.MouseEvent * ?container: Glutinum.Web.HTMLElement -> Leaflet.Point
             [<Emit("$0.getWheelDelta($1...)")>]
@@ -4479,6 +4778,7 @@ Control.extend($0)""")>]
         abstract member openPopup: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLng * ?options: Leaflet.PopupOptions -> Map
         abstract member openPopup: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngLiteral * ?options: Leaflet.PopupOptions -> Map
         abstract member openPopup: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngTuple * ?options: Leaflet.PopupOptions -> Map
+        abstract member openPopup: content: Leaflet.Content * latlng: Leaflet.LatLngExpression * ?options: Leaflet.PopupOptions -> Map
         abstract member closePopup: ?popup: Leaflet.Popup -> Map
         abstract member openTooltip: tooltip: Leaflet.Tooltip -> Map
         abstract member openTooltip: content: string * latlng: Leaflet.LatLng * ?options: Leaflet.TooltipOptions -> Map
@@ -4487,10 +4787,12 @@ Control.extend($0)""")>]
         abstract member openTooltip: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLng * ?options: Leaflet.TooltipOptions -> Map
         abstract member openTooltip: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngLiteral * ?options: Leaflet.TooltipOptions -> Map
         abstract member openTooltip: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngTuple * ?options: Leaflet.TooltipOptions -> Map
+        abstract member openTooltip: content: Leaflet.Content * latlng: Leaflet.LatLngExpression * ?options: Leaflet.TooltipOptions -> Map
         abstract member closeTooltip: ?tooltip: Leaflet.Tooltip -> Map
         abstract member setView: center: Leaflet.LatLng * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member setView: center: Leaflet.LatLngLiteral * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member setView: center: Leaflet.LatLngTuple * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
+        abstract member setView: center: Leaflet.LatLngExpression * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member setZoom: zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member zoomIn: ?delta: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member zoomOut: ?delta: float * ?options: Leaflet.ZoomOptions -> Map
@@ -4498,14 +4800,18 @@ Control.extend($0)""")>]
         abstract member setZoomAround: position: Leaflet.LatLng * zoom: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member setZoomAround: position: Leaflet.LatLngLiteral * zoom: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member setZoomAround: position: Leaflet.LatLngTuple * zoom: float * ?options: Leaflet.ZoomOptions -> Map
+        abstract member setZoomAround: position: U2<Leaflet.Point, Leaflet.LatLngExpression> * zoom: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member fitBounds: bounds: Leaflet.LatLngBounds * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member fitBounds: bounds: Leaflet.LatLngBoundsLiteral * ?options: Leaflet.FitBoundsOptions -> Map
+        abstract member fitBounds: bounds: Leaflet.LatLngBoundsExpression * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member fitWorld: ?options: Leaflet.FitBoundsOptions -> Map
         abstract member panTo: latlng: Leaflet.LatLng * ?options: Leaflet.PanOptions -> Map
         abstract member panTo: latlng: Leaflet.LatLngLiteral * ?options: Leaflet.PanOptions -> Map
         abstract member panTo: latlng: Leaflet.LatLngTuple * ?options: Leaflet.PanOptions -> Map
+        abstract member panTo: latlng: Leaflet.LatLngExpression * ?options: Leaflet.PanOptions -> Map
         abstract member panBy: offset: Leaflet.Point * ?options: Leaflet.PanOptions -> Map
         abstract member panBy: offset: Leaflet.PointTuple * ?options: Leaflet.PanOptions -> Map
+        abstract member panBy: offset: Leaflet.PointExpression * ?options: Leaflet.PanOptions -> Map
         abstract member setMaxBounds: unit -> Map
         abstract member setMaxBounds: bounds: Leaflet.LatLngBounds -> Map
         abstract member setMaxBounds: bounds: Leaflet.LatLngBoundsLiteral -> Map
@@ -4514,8 +4820,10 @@ Control.extend($0)""")>]
         abstract member panInside: latLng: Leaflet.LatLng * ?options: Leaflet.PanInsideOptions -> Map
         abstract member panInside: latLng: Leaflet.LatLngLiteral * ?options: Leaflet.PanInsideOptions -> Map
         abstract member panInside: latLng: Leaflet.LatLngTuple * ?options: Leaflet.PanInsideOptions -> Map
+        abstract member panInside: latLng: Leaflet.LatLngExpression * ?options: Leaflet.PanInsideOptions -> Map
         abstract member panInsideBounds: bounds: Leaflet.LatLngBounds * ?options: Leaflet.PanOptions -> Map
         abstract member panInsideBounds: bounds: Leaflet.LatLngBoundsLiteral * ?options: Leaflet.PanOptions -> Map
+        abstract member panInsideBounds: bounds: Leaflet.LatLngBoundsExpression * ?options: Leaflet.PanOptions -> Map
         /// <summary>
         /// Boolean for animate or advanced ZoomPanOptions
         /// </summary>
@@ -4532,8 +4840,10 @@ Control.extend($0)""")>]
         abstract member flyTo: latlng: Leaflet.LatLng * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member flyTo: latlng: Leaflet.LatLngLiteral * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member flyTo: latlng: Leaflet.LatLngTuple * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
+        abstract member flyTo: latlng: Leaflet.LatLngExpression * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member flyToBounds: bounds: Leaflet.LatLngBounds * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member flyToBounds: bounds: Leaflet.LatLngBoundsLiteral * ?options: Leaflet.FitBoundsOptions -> Map
+        abstract member flyToBounds: bounds: Leaflet.LatLngBoundsExpression * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member addHandler: name: string * HandlerClass: Leaflet.Handler -> Map
         abstract member remove: unit -> Map
         abstract member createPane: name: string * ?container: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement
@@ -4545,6 +4855,10 @@ Control.extend($0)""")>]
         /// Name of the pane or the pane as HTML-Element
         /// </summary>
         abstract member getPane: pane: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement option
+        /// <summary>
+        /// Name of the pane or the pane as HTML-Element
+        /// </summary>
+        abstract member getPane: pane: U2<string, Glutinum.Web.HTMLElement> -> Glutinum.Web.HTMLElement option
         abstract member getPanes: unit -> Map.getPanes
         abstract member getContainer: unit -> Glutinum.Web.HTMLElement
         abstract member whenReady: fn: (Map.whenReady.fn.event -> unit) * ?context: obj -> Map
@@ -4555,6 +4869,7 @@ Control.extend($0)""")>]
         abstract member getMaxZoom: unit -> float
         abstract member getBoundsZoom: bounds: Leaflet.LatLngBounds * ?inside: bool * ?padding: Leaflet.Point -> float
         abstract member getBoundsZoom: bounds: Leaflet.LatLngBoundsLiteral * ?inside: bool * ?padding: Leaflet.Point -> float
+        abstract member getBoundsZoom: bounds: Leaflet.LatLngBoundsExpression * ?inside: bool * ?padding: Leaflet.Point -> float
         abstract member getSize: unit -> Leaflet.Point
         abstract member getPixelBounds: unit -> Leaflet.Bounds
         abstract member getPixelOrigin: unit -> Leaflet.Point
@@ -4564,16 +4879,21 @@ Control.extend($0)""")>]
         abstract member project: latlng: Leaflet.LatLng * ?zoom: float -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngLiteral * ?zoom: float -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngTuple * ?zoom: float -> Leaflet.Point
+        abstract member project: latlng: Leaflet.LatLngExpression * ?zoom: float -> Leaflet.Point
         abstract member unproject: point: Leaflet.Point * ?zoom: float -> Leaflet.LatLng
         abstract member unproject: point: Leaflet.PointTuple * ?zoom: float -> Leaflet.LatLng
+        abstract member unproject: point: Leaflet.PointExpression * ?zoom: float -> Leaflet.LatLng
         abstract member layerPointToLatLng: point: Leaflet.Point -> Leaflet.LatLng
         abstract member layerPointToLatLng: point: Leaflet.PointTuple -> Leaflet.LatLng
+        abstract member layerPointToLatLng: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member latLngToLayerPoint: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member latLngToLayerPoint: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
         abstract member latLngToLayerPoint: latlng: Leaflet.LatLngTuple -> Leaflet.Point
+        abstract member latLngToLayerPoint: latlng: Leaflet.LatLngExpression -> Leaflet.Point
         abstract member wrapLatLng: latlng: Leaflet.LatLng -> Leaflet.LatLng
         abstract member wrapLatLng: latlng: Leaflet.LatLngLiteral -> Leaflet.LatLng
         abstract member wrapLatLng: latlng: Leaflet.LatLngTuple -> Leaflet.LatLng
+        abstract member wrapLatLng: latlng: Leaflet.LatLngExpression -> Leaflet.LatLng
         abstract member wrapLatLngBounds: bounds: Leaflet.LatLngBounds -> Leaflet.LatLngBounds
         abstract member distance: latlng1: Leaflet.LatLng * latlng2: Leaflet.LatLng -> float
         abstract member distance: latlng1: Leaflet.LatLng * latlng2: Leaflet.LatLngLiteral -> float
@@ -4584,15 +4904,20 @@ Control.extend($0)""")>]
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLng -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngLiteral -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngTuple -> float
+        abstract member distance: latlng1: Leaflet.LatLngExpression * latlng2: Leaflet.LatLngExpression -> float
         abstract member containerPointToLayerPoint: point: Leaflet.Point -> Leaflet.Point
         abstract member containerPointToLayerPoint: point: Leaflet.PointTuple -> Leaflet.Point
+        abstract member containerPointToLayerPoint: point: Leaflet.PointExpression -> Leaflet.Point
         abstract member containerPointToLatLng: point: Leaflet.Point -> Leaflet.LatLng
         abstract member containerPointToLatLng: point: Leaflet.PointTuple -> Leaflet.LatLng
+        abstract member containerPointToLatLng: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member layerPointToContainerPoint: point: Leaflet.Point -> Leaflet.Point
         abstract member layerPointToContainerPoint: point: Leaflet.PointTuple -> Leaflet.Point
+        abstract member layerPointToContainerPoint: point: Leaflet.PointExpression -> Leaflet.Point
         abstract member latLngToContainerPoint: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member latLngToContainerPoint: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
         abstract member latLngToContainerPoint: latlng: Leaflet.LatLngTuple -> Leaflet.Point
+        abstract member latLngToContainerPoint: latlng: Leaflet.LatLngExpression -> Leaflet.Point
         abstract member mouseEventToContainerPoint: ev: Glutinum.Web.MouseEvent -> Leaflet.Point
         abstract member mouseEventToLayerPoint: ev: Glutinum.Web.MouseEvent -> Leaflet.Point
         abstract member mouseEventToLatLng: ev: Glutinum.Web.MouseEvent -> Leaflet.LatLng
@@ -4630,13 +4955,9 @@ Control.extend($0)""")>]
     type IconOptions =
         inherit Leaflet.BaseIconOptions
         abstract member iconUrl: string with get, set
-        abstract member crossOrigin: U2<Leaflet.CrossOrigin, bool> option with get, set
+        abstract member crossOrigin: IconOptions.crossOrigin option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (iconUrl: string, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : IconOptions = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (iconUrl: string, crossOrigin: Leaflet.CrossOrigin, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : IconOptions = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (iconUrl: string, crossOrigin: bool, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : IconOptions = nativeOnly
+        static member Create (iconUrl: string, ?pane: string, ?attribution: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string, ?crossOrigin: IconOptions.crossOrigin) : IconOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4754,6 +5075,12 @@ Default.imagePath{{=$0}}""")>]
         /// </summary>
         abstract member autoPanSpeed: float option with get, set
         abstract member autoPanOnFocus: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?draggable: bool, ?keyboard: bool, ?title: string, ?alt: string, ?zIndexOffset: float, ?opacity: float, ?riseOnHover: bool, ?riseOffset: float, ?shadowPane: string, ?autoPan: bool, ?autoPanPadding: Leaflet.PointExpression, ?autoPanSpeed: float, ?autoPanOnFocus: bool) : MarkerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (icon: Leaflet.Icon, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?draggable: bool, ?keyboard: bool, ?title: string, ?alt: string, ?zIndexOffset: float, ?opacity: float, ?riseOnHover: bool, ?riseOffset: float, ?shadowPane: string, ?autoPan: bool, ?autoPanPadding: Leaflet.PointExpression, ?autoPanSpeed: float, ?autoPanOnFocus: bool) : MarkerOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (icon: Leaflet.DivIcon, ?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool, ?draggable: bool, ?keyboard: bool, ?title: string, ?alt: string, ?zIndexOffset: float, ?opacity: float, ?riseOnHover: bool, ?riseOffset: float, ?shadowPane: string, ?autoPan: bool, ?autoPanPadding: Leaflet.PointExpression, ?autoPanSpeed: float, ?autoPanOnFocus: bool) : MarkerOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4764,15 +5091,16 @@ Default.imagePath{{=$0}}""")>]
         abstract member setLatLng: latlng: Leaflet.LatLng -> Marker<'P>
         abstract member setLatLng: latlng: Leaflet.LatLngLiteral -> Marker<'P>
         abstract member setLatLng: latlng: Leaflet.LatLngTuple -> Marker<'P>
+        abstract member setLatLng: latlng: Leaflet.LatLngExpression -> Marker<'P>
         abstract member setZIndexOffset: offset: float -> Marker<'P>
         abstract member getIcon: unit -> U2<Leaflet.Icon, Leaflet.DivIcon>
         abstract member setIcon: icon: Leaflet.Icon -> Marker<'P>
         abstract member setIcon: icon: Leaflet.DivIcon -> Marker<'P>
+        abstract member setIcon: icon: U2<Leaflet.Icon, Leaflet.DivIcon> -> Marker<'P>
         abstract member setOpacity: opacity: float -> Marker<'P>
         abstract member getElement: unit -> Glutinum.Web.HTMLElement option
         abstract member dragging: Leaflet.Handler option with get, set
         abstract member feature: Glutinum.Geojson.Feature<Glutinum.Geojson.Point, 'P> option with get, set
-        abstract member _shadow: Glutinum.Web.HTMLElement option with get, set
 
     type Marker =
         Marker<obj>
@@ -4918,18 +5246,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -4942,14 +5294,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -4973,18 +5325,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -4997,14 +5373,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5018,28 +5394,106 @@ Default.imagePath{{=$0}}""")>]
                 | baselayerchange
                 | overlayadd
                 | overlayremove
+                | layeradd
+                | layerremove
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+                | resize
+                | popupopen
+                | tooltipopen
+                | tooltipclose
+                | locationerror
+                | locationfound
+                | click
+                | dblclick
+                | mousedown
+                | mouseup
+                | mouseover
+                | mouseout
+                | mousemove
+                | contextmenu
+                | preclick
+                | keypress
+                | keydown
+                | keyup
+                | zoomanim
+                | dragend
+                | tileunload
+                | tileloadstart
+                | tileload
+                | tileabort
+                | tileerror
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_1`` =
+                | baselayerchange
+                | overlayadd
+                | overlayremove
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_2`` =
                 | layeradd
                 | layerremove
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_2`` =
+            type ``type_3`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_4`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_5`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_6`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5052,14 +5506,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_7`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_8`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5083,18 +5537,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5107,14 +5585,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5138,18 +5616,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5162,14 +5664,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5193,18 +5695,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5217,14 +5743,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5248,18 +5774,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5272,14 +5822,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5305,18 +5855,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5329,14 +5903,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5360,18 +5934,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5384,14 +5982,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5405,28 +6003,106 @@ Default.imagePath{{=$0}}""")>]
                 | baselayerchange
                 | overlayadd
                 | overlayremove
+                | layeradd
+                | layerremove
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+                | resize
+                | popupopen
+                | tooltipopen
+                | tooltipclose
+                | locationerror
+                | locationfound
+                | click
+                | dblclick
+                | mousedown
+                | mouseup
+                | mouseover
+                | mouseout
+                | mousemove
+                | contextmenu
+                | preclick
+                | keypress
+                | keydown
+                | keyup
+                | zoomanim
+                | dragend
+                | tileunload
+                | tileloadstart
+                | tileload
+                | tileabort
+                | tileerror
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_1`` =
+                | baselayerchange
+                | overlayadd
+                | overlayremove
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_2`` =
                 | layeradd
                 | layerremove
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_2`` =
+            type ``type_3`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_4`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_5`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_6`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5439,14 +6115,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_7`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_8`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5470,18 +6146,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5494,14 +6194,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5525,18 +6225,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5549,14 +6273,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5580,18 +6304,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5604,14 +6352,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5635,18 +6383,42 @@ Default.imagePath{{=$0}}""")>]
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
             type ``type_2`` =
+                | zoomlevelschange
+                | unload
+                | viewreset
+                | load
+                | zoomstart
+                | movestart
+                | zoom
+                | move
+                | zoomend
+                | moveend
+                | autopanstart
+                | dragstart
+                | drag
+                | add
+                | remove
+                | loading
+                | error
+                | update
+                | down
+                | predrag
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type ``type_3`` =
                 | popupopen
                 | popupclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_3`` =
+            type ``type_4`` =
                 | tooltipopen
                 | tooltipclose
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_4`` =
+            type ``type_5`` =
                 | click
                 | dblclick
                 | mousedown
@@ -5659,14 +6431,14 @@ Default.imagePath{{=$0}}""")>]
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_5`` =
+            type ``type_6`` =
                 | keypress
                 | keydown
                 | keyup
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]
-            type ``type_6`` =
+            type ``type_7`` =
                 | tileunload
                 | tileloadstart
                 | tileload
@@ -5693,6 +6465,78 @@ Default.imagePath{{=$0}}""")>]
             abstract member retain: bool option with get, set
             [<ParamObject; Emit("$0")>]
             static member Create (coords: Leaflet.Coords, current: bool, el: Glutinum.Web.HTMLElement, ?active: bool, ?loaded: Date, ?retain: bool) : Item = nativeOnly
+
+    module TileLayerOptions =
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type crossOrigin =
+            | anonymous
+            | ``use-credentials``
+            | [<CompiledName("")>] _EMPTY_
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type referrerPolicy =
+            | ``no-referrer``
+            | ``no-referrer-when-downgrade``
+            | origin
+            | ``origin-when-cross-origin``
+            | ``same-origin``
+            | ``strict-origin``
+            | ``strict-origin-when-cross-origin``
+            | ``unsafe-url``
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
+
+    module WMSOptions =
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type crossOrigin =
+            | anonymous
+            | ``use-credentials``
+            | [<CompiledName("")>] _EMPTY_
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type referrerPolicy =
+            | ``no-referrer``
+            | ``no-referrer-when-downgrade``
+            | origin
+            | ``origin-when-cross-origin``
+            | ``same-origin``
+            | ``strict-origin``
+            | ``strict-origin-when-cross-origin``
+            | ``unsafe-url``
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
+
+    module ImageOverlayOptions =
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type crossOrigin =
+            | anonymous
+            | ``use-credentials``
+            | [<CompiledName("")>] _EMPTY_
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
+
+    module VideoOverlayOptions =
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type crossOrigin =
+            | anonymous
+            | ``use-credentials``
+            | [<CompiledName("")>] _EMPTY_
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
 
     module CircleMarker =
 
@@ -5721,6 +6565,14 @@ Default.imagePath{{=$0}}""")>]
                 abstract member pane: string option with get, set
                 abstract member attribution: string option with get, set
 
+    module GeoJSONOptions =
+
+        type pointToLayer =
+            delegate of geoJsonPoint: Glutinum.Geojson.Feature<Glutinum.Geojson.Point, obj> * latlng: Leaflet.LatLng -> Leaflet.Layer
+
+        type onEachFeature =
+            delegate of feature: Glutinum.Geojson.Feature<obj, obj> * layer: Leaflet.Layer -> unit
+
     module Map =
 
         [<AllowNullLiteral>]
@@ -5746,6 +6598,17 @@ Default.imagePath{{=$0}}""")>]
                     abstract member target: Leaflet.Map with get, set
                     [<ParamObject; Emit("$0")>]
                     static member Create (target: Leaflet.Map) : event = nativeOnly
+
+    module IconOptions =
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type crossOrigin =
+            | anonymous
+            | ``use-credentials``
+            | [<CompiledName("")>] _EMPTY_
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
 
     module Exports =
 

@@ -465,7 +465,7 @@ module BodyParser =
             /// The verify option, if supplied, is called as verify(req, res, buf, encoding),
             /// where buf is a Buffer of the raw request body and encoding is the encoding of the request.
             /// </summary>
-            abstract member verify: req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
+            abstract member verify: Options.verify option with get, set
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -474,7 +474,7 @@ module BodyParser =
             /// <summary>
             /// The reviver option is passed directly to JSON.parse as the second argument.
             /// </summary>
-            abstract member reviver: key: string * value: obj -> obj
+            abstract member reviver: OptionsJson.reviver option with get, set
             /// <summary>
             /// When set to <c>true</c>, will only accept arrays and objects;
             /// when <c>false</c> will accept anything JSON.parse accepts. Defaults to <c>true</c>.
@@ -518,7 +518,7 @@ module BodyParser =
                     /// <summary>
                     /// The reviver option is passed directly to JSON.parse as the second argument.
                     /// </summary>
-                    abstract member reviver: key: string * value: obj -> obj
+                    abstract member reviver: BodyParser.Invoke.options.reviver option with get, set
                     /// <summary>
                     /// When set to <c>true</c>, will only accept arrays and objects;
                     /// when <c>false</c> will accept anything JSON.parse accepts. Defaults to <c>true</c>.
@@ -542,7 +542,7 @@ module BodyParser =
                     /// The verify option, if supplied, is called as verify(req, res, buf, encoding),
                     /// where buf is a Buffer of the raw request body and encoding is the encoding of the request.
                     /// </summary>
-                    abstract member verify: req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
+                    abstract member verify: BodyParser.Invoke.options.verify option with get, set
                     /// <summary>
                     /// Specify the default character set for the text content if the charset
                     /// is not specified in the Content-Type header of the request.
@@ -560,6 +560,26 @@ module BodyParser =
                     /// a 413 will be returned to the client. Defaults to 1000.
                     /// </summary>
                     abstract member parameterLimit: float option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?reviver: BodyParser.Invoke.options.reviver, ?strict: bool, ?inflate: bool, ?limit: U2<float, string>, ?``type``: U3<string, ResizeArray<string>, (Glutinum.Node.http.IncomingMessage -> unit)>, ?verify: BodyParser.Invoke.options.verify, ?defaultCharset: string, ?extended: bool, ?parameterLimit: float) : options = nativeOnly
+
+                module options =
+
+                    type reviver =
+                        delegate of key: string * value: obj -> unit
+
+                    type verify =
+                        delegate of req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
+
+        module Options =
+
+            type verify =
+                delegate of req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
+
+        module OptionsJson =
+
+            type reviver =
+                delegate of key: string * value: obj -> unit
 
     type BodyParser =
         bodyParser_.BodyParser
@@ -586,7 +606,7 @@ module BodyParser =
                 /// <summary>
                 /// The reviver option is passed directly to JSON.parse as the second argument.
                 /// </summary>
-                abstract member reviver: key: string * value: obj -> obj
+                abstract member reviver: Exports.bodyParser__.options.reviver option with get, set
                 /// <summary>
                 /// When set to <c>true</c>, will only accept arrays and objects;
                 /// when <c>false</c> will accept anything JSON.parse accepts. Defaults to <c>true</c>.
@@ -610,7 +630,7 @@ module BodyParser =
                 /// The verify option, if supplied, is called as verify(req, res, buf, encoding),
                 /// where buf is a Buffer of the raw request body and encoding is the encoding of the request.
                 /// </summary>
-                abstract member verify: req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
+                abstract member verify: Exports.bodyParser__.options.verify option with get, set
                 /// <summary>
                 /// Specify the default character set for the text content if the charset
                 /// is not specified in the Content-Type header of the request.
@@ -628,6 +648,16 @@ module BodyParser =
                 /// a 413 will be returned to the client. Defaults to 1000.
                 /// </summary>
                 abstract member parameterLimit: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (?reviver: Exports.bodyParser__.options.reviver, ?strict: bool, ?inflate: bool, ?limit: U2<float, string>, ?``type``: U3<string, ResizeArray<string>, (Glutinum.Node.http.IncomingMessage -> unit)>, ?verify: Exports.bodyParser__.options.verify, ?defaultCharset: string, ?extended: bool, ?parameterLimit: float) : options = nativeOnly
+
+            module options =
+
+                type reviver =
+                    delegate of key: string * value: obj -> unit
+
+                type verify =
+                    delegate of req: Glutinum.Node.http.IncomingMessage * res: Glutinum.Node.http.ServerResponse * buf: Glutinum.Node.Buffer * encoding: string -> unit
 
 module Connect =
 
@@ -744,6 +774,18 @@ module Connect =
             /// be invoked on _/admin_, and _/admin/settings_, however it would
             /// not be invoked for _/_, or _/posts_.
             /// </summary>
+            abstract member ``use``: fn: Connect.createServer_.HandleFunction -> Connect.createServer_.Server
+            /// <summary>
+            /// Utilize the given middleware <c>handle</c> to the given <c>route</c>,
+            /// defaulting to _/_. This "route" is the mount-point for the
+            /// middleware, when given a value other than _/_ the middleware
+            /// is only effective when that segment is present in the request's
+            /// pathname.
+            ///
+            /// For example if we were to mount a function at _/admin_, it would
+            /// be invoked on _/admin_, and _/admin/settings_, however it would
+            /// not be invoked for _/_, or _/posts_.
+            /// </summary>
             abstract member ``use``: route: string * fn: Connect.createServer_.NextHandleFunction -> Connect.createServer_.Server
             /// <summary>
             /// Utilize the given middleware <c>handle</c> to the given <c>route</c>,
@@ -769,6 +811,18 @@ module Connect =
             /// not be invoked for _/_, or _/posts_.
             /// </summary>
             abstract member ``use``: route: string * fn: Connect.createServer_.ErrorHandleFunction -> Connect.createServer_.Server
+            /// <summary>
+            /// Utilize the given middleware <c>handle</c> to the given <c>route</c>,
+            /// defaulting to _/_. This "route" is the mount-point for the
+            /// middleware, when given a value other than _/_ the middleware
+            /// is only effective when that segment is present in the request's
+            /// pathname.
+            ///
+            /// For example if we were to mount a function at _/admin_, it would
+            /// be invoked on _/admin_, and _/admin/settings_, however it would
+            /// not be invoked for _/_, or _/posts_.
+            /// </summary>
+            abstract member ``use``: route: string * fn: Connect.createServer_.HandleFunction -> Connect.createServer_.Server
             /// <summary>
             /// Handle server requests, punting them down
             /// the middleware stack.
@@ -819,7 +873,7 @@ module Connect =
             ///      http.createServer(app).listen(80);
             ///      https.createServer(options, app).listen(443);
             /// </summary>
-            abstract member listen: port: float * ?hostname: string * ?callback: Action -> Glutinum.Node.http.Server
+            abstract member listen: port: float * hostname: string * ?callback: Action -> Glutinum.Node.http.Server
             /// <summary>
             /// Listen for connections.
             ///
@@ -982,9 +1036,9 @@ module ExpressServeStaticCore =
     [<Interface>]
     type IRouterHandler<'T, 'Route> =
         [<Emit("$0($1...)")>]
-        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> 'T
+        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> 'T
         [<Emit("$0($1...)")>]
-        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> 'T
+        abstract member Invoke: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> 'T
         [<Emit("$0($1...)")>]
         abstract member Invoke<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> 'T
         [<Emit("$0($1...)")>]
@@ -1049,6 +1103,11 @@ module ExpressServeStaticCore =
         /// Special-cased "all" method, applying the given route <c>path</c>,
         /// middleware, and callback to _every_ HTTP method.
         /// </summary>
+        abstract member all<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        /// <summary>
+        /// Special-cased "all" method, applying the given route <c>path</c>,
+        /// middleware, and callback to _every_ HTTP method.
+        /// </summary>
         abstract member all: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         /// <summary>
         /// Special-cased "all" method, applying the given route <c>path</c>,
@@ -1060,6 +1119,11 @@ module ExpressServeStaticCore =
         /// middleware, and callback to _every_ HTTP method.
         /// </summary>
         abstract member all: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        /// <summary>
+        /// Special-cased "all" method, applying the given route <c>path</c>,
+        /// middleware, and callback to _every_ HTTP method.
+        /// </summary>
+        abstract member all: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         /// <summary>
         /// Special-cased "all" method, applying the given route <c>path</c>,
         /// middleware, and callback to _every_ HTTP method.
@@ -1079,6 +1143,11 @@ module ExpressServeStaticCore =
         /// Special-cased "all" method, applying the given route <c>path</c>,
         /// middleware, and callback to _every_ HTTP method.
         /// </summary>
+        abstract member all<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        /// <summary>
+        /// Special-cased "all" method, applying the given route <c>path</c>,
+        /// middleware, and callback to _every_ HTTP method.
+        /// </summary>
         abstract member all: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         /// <summary>
         /// Special-cased "all" method, applying the given route <c>path</c>,
@@ -1094,6 +1163,11 @@ module ExpressServeStaticCore =
         /// Special-cased "all" method, applying the given route <c>path</c>,
         /// middleware, and callback to _every_ HTTP method.
         /// </summary>
+        abstract member all: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        /// <summary>
+        /// Special-cased "all" method, applying the given route <c>path</c>,
+        /// middleware, and callback to _every_ HTTP method.
+        /// </summary>
         abstract member all: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         /// <summary>
         /// Special-cased "all" method, applying the given route <c>path</c>,
@@ -1105,125 +1179,165 @@ module ExpressServeStaticCore =
         /// middleware, and callback to _every_ HTTP method.
         /// </summary>
         abstract member all: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        /// <summary>
+        /// Special-cased "all" method, applying the given route <c>path</c>,
+        /// middleware, and callback to _every_ HTTP method.
+        /// </summary>
+        abstract member all: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member get: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member get: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member get: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member get: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member post: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member post: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member post: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member post: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member put: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member put: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member put: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member put: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member delete: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member delete: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member delete: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member delete: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member patch: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member patch: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member patch: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member patch: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member options: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member options: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member options: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member options: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member head: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member head: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         abstract member head: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
+        abstract member head: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter, string>
         /// <summary>
         /// Requires Node.js >=20.19.3 <21 || >=22.2.0
         /// </summary>
@@ -1233,358 +1347,463 @@ module ExpressServeStaticCore =
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member checkout: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member checkout: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member checkout: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member checkout: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member connect: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member connect<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member connect: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member connect: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member connect: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member copy: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member copy: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member copy: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member copy: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member lock: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member lock: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member lock: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member lock: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member merge: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member merge: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member merge: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member merge: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkactivity: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkactivity: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkactivity: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkactivity: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkcol: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkcol: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member mkcol: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member mkcol: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member move: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member move: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member move: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member move: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member ``m-search``: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member ``m-search``: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``m-search``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member ``m-search``: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member notify: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member notify: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member notify: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member notify: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member propfind: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member propfind<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member propfind: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member propfind: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member propfind: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member proppatch: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member proppatch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member proppatch: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member proppatch: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member proppatch: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member purge: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member purge: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member purge: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member purge: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member report: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member report: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member report: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member report: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member search: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member search: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member search: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member search: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member subscribe: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member subscribe: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member subscribe: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member subscribe: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member trace: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member trace: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member trace: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member trace: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlock: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlock: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlock: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlock: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unsubscribe: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unsubscribe: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unsubscribe: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unsubscribe: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member link: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member link<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member link: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member link: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member link: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'Route, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Route * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'Path, 'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: 'Path * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlink: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlink<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlink: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member unlink: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
+        abstract member unlink: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.IRouterMatcher<IRouter>
         abstract member ``use``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
@@ -1594,22 +1813,28 @@ module ExpressServeStaticCore =
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
+        abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member ``use``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
+        abstract member ``use``: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
+        abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member ``use``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
+        abstract member ``use``: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member ``use``: path: string * subApplication: ExpressServeStaticCore.Application -> obj
         abstract member ``use``: path: RegExp * subApplication: ExpressServeStaticCore.Application -> obj
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> obj
+        abstract member ``use``: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> obj
         abstract member route<'T>: prefix: 'T -> ExpressServeStaticCore.IRoute<'T>
         abstract member route: prefix: string -> ExpressServeStaticCore.IRoute
         abstract member route: prefix: RegExp -> ExpressServeStaticCore.IRoute
         abstract member route: prefix: ResizeArray<U2<string, RegExp>> -> ExpressServeStaticCore.IRoute
+        abstract member route: prefix: ExpressServeStaticCore.PathParams -> ExpressServeStaticCore.IRoute
         /// <summary>
         /// Stack of configured routes
         /// </summary>
@@ -1634,150 +1859,102 @@ module ExpressServeStaticCore =
     type IRoute<'Route> =
         abstract member path: string with get, set
         abstract member stack: ResizeArray<ExpressServeStaticCore.ILayer> with get, set
-        abstract member all: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member all: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member all: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member all: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member all<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member all<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member all: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member all: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member get: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member get: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member get: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member get: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member get: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member get: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member post: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member post: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member post: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member post: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member post<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member post: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member post: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member put: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member put: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member put: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member put: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member put<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member put: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member put: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member delete: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member delete: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member delete: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member delete: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member delete<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member delete: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member delete: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member patch: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member patch: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member patch: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member patch: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member patch<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member patch: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member patch: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member options: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member options: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member options: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member options: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member options<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member options: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member options: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member head: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member head: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member head: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member head: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member head<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member head: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member head: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member checkout: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member checkout: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member checkout: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member checkout: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member checkout<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member checkout: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member checkout: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member copy: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member copy: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member copy: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member copy: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member copy<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member copy: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member copy: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member lock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member lock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member lock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member lock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member lock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member lock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member lock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member merge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member merge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member merge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member merge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member merge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member merge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member merge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkactivity: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkactivity: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member mkactivity: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member mkactivity: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member mkactivity<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkactivity: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkactivity: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkcol: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkcol: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member mkcol: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member mkcol: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member mkcol<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkcol: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member mkcol: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member move: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member move: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member move: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member move: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member move<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member move: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member move: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member ``m-search``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member ``m-search``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member ``m-search``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member ``m-search``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member ``m-search``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member ``m-search``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member ``m-search``: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member notify: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member notify: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member notify: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member notify: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member notify<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member notify: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member notify: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member purge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member purge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member purge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member purge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member purge<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member purge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member purge: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member report: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member report: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member report: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member report: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member report<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member report: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member report: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member search: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member search: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member search: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member search: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member search<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member search: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member search: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member subscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member subscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member subscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member subscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member subscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member subscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member subscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member trace: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member trace: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member trace: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member trace: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member trace<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member trace: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member trace: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unlock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unlock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member unlock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member unlock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member unlock<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unlock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unlock: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
-        abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1837,6 +2014,8 @@ module ExpressServeStaticCore =
         /// Marks the cookie to use partioned storage.
         /// </summary>
         abstract member partitioned: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?maxAge: float, ?signed: bool, ?expires: Date, ?httpOnly: bool, ?path: string, ?domain: string, ?secure: bool, ?encode: (string -> string), ?sameSite: CookieOptions.sameSite, ?priority: CookieOptions.priority, ?partitioned: bool) : CookieOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2160,6 +2339,28 @@ module ExpressServeStaticCore =
         ///      // => false
         /// </summary>
         abstract member is: ``type``: ResizeArray<string> -> U2<string, bool> option
+        /// <summary>
+        /// Check if the incoming request contains the "Content-Type"
+        /// header field, and it contains the give mime <c>type</c>.
+        ///
+        /// Examples:
+        ///
+        ///      // With Content-Type: text/html; charset=utf-8
+        ///      req.is('html');
+        ///      req.is('text/html');
+        ///      req.is('text/*');
+        ///      // => true
+        ///
+        ///      // When Content-Type is application/json
+        ///      req.is('json');
+        ///      req.is('application/json');
+        ///      req.is('application/*');
+        ///      // => true
+        ///
+        ///      req.is('html');
+        ///      // => false
+        /// </summary>
+        abstract member is: ``type``: U2<string, ResizeArray<string>> -> U2<string, bool> option
         /// <summary>
         /// Return the protocol string "http" or "https"
         /// when requested with TLS. When the "trust proxy"
@@ -2792,7 +2993,7 @@ module ExpressServeStaticCore =
         ///  - <c>cache</c>     boolean hinting to the engine it should cache
         ///  - <c>filename</c>  filename of the view being rendered
         /// </summary>
-        abstract member render: view: string * ?callback: Response.render.callback -> unit
+        abstract member render: view: string * callback: Response.render.callback -> unit
         abstract member locals: obj with get, set
         abstract member charset: string with get, set
         /// <summary>
@@ -2929,18 +3130,23 @@ module ExpressServeStaticCore =
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
+        abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member get: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
+        abstract member get: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
+        abstract member get<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> obj
         abstract member get: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
+        abstract member get: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> obj
         abstract member get: path: string * subApplication: ExpressServeStaticCore.Application -> obj
         abstract member get: path: RegExp * subApplication: ExpressServeStaticCore.Application -> obj
         abstract member get: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> obj
+        abstract member get: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> obj
         /// <summary>
         /// Map the given param placeholder <c>name</c>(s) to the given callback(s).
         ///
@@ -2995,6 +3201,33 @@ module ExpressServeStaticCore =
         ///      });
         /// </summary>
         abstract member param: name: ResizeArray<string> * handler: ExpressServeStaticCore.RequestParamHandler -> Application<'LocalsObj>
+        /// <summary>
+        /// Map the given param placeholder <c>name</c>(s) to the given callback(s).
+        ///
+        /// Parameter mapping is used to provide pre-conditions to routes
+        /// which use normalized placeholders. For example a _:user_id_ parameter
+        /// could automatically load a user's information from the database without
+        /// any additional code,
+        ///
+        /// The callback uses the samesignature as middleware, the only differencing
+        /// being that the value of the placeholder is passed, in this case the _id_
+        /// of the user. Once the <c>next()</c> function is invoked, just like middleware
+        /// it will continue on to execute the route, or subsequent parameter functions.
+        ///
+        ///      app.param('user_id', function(req, res, next, id){
+        ///        User.find(id, function(err, user){
+        ///          if (err) {
+        ///            next(err);
+        ///          } else if (user) {
+        ///            req.user = user;
+        ///            next();
+        ///          } else {
+        ///            next(new Error('failed to load user'));
+        ///          }
+        ///        });
+        ///      });
+        /// </summary>
+        abstract member param: name: U2<string, ResizeArray<string>> * handler: ExpressServeStaticCore.RequestParamHandler -> Application<'LocalsObj>
         /// <summary>
         /// Return the app's absolute pathname
         /// based on the parent(s) that have
@@ -3195,18 +3428,23 @@ module ExpressServeStaticCore =
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: string * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: RegExp * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``: path: ExpressServeStaticCore.PathParams * [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary, obj, obj, Qs.QueryString_.ParsedQs, obj> [] -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: string * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: RegExp * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         abstract member ``use``: path: ResizeArray<U2<string, RegExp>> * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
+        abstract member ``use``: path: ExpressServeStaticCore.PathParams * subApplication: ExpressServeStaticCore.Application -> ExpressServeStaticCore.ApplicationRequestHandler<Application<'LocalsObj>>
         /// <summary>
         /// The mount event is fired on a sub-app, when it is mounted on a parent app.
         /// The parent app is passed to the callback function.
@@ -3373,18 +3611,25 @@ module ExpressServeStaticCore =
             | ``<anonymous>``
             | Case1 of string
 
+            [<Emit("$0")>]
+            static member op_Implicit(value: string) : name = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: string) : name = nativeOnly
+
         type handle =
             delegate of req: ExpressServeStaticCore.Request * res: ExpressServeStaticCore.Response * next: ExpressServeStaticCore.NextFunction -> unit
 
     module CookieOptions =
 
         [<RequireQualifiedAccess>]
-        [<Erase(CaseRules.None)>]
+        [<StringEnum(CaseRules.None)>]
         type sameSite =
+            | [<CompiledValue(true)>] True
+            | [<CompiledValue(false)>] False
             | lax
             | strict
             | none
-            | Case1 of bool
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -3748,9 +3993,11 @@ module Qs =
             [<Emit("$0.parse($1...)")>]
             abstract member parse: str: string * ?options: Exports.parse.options -> Qs.QueryString_.ParsedQs
             [<Emit("$0.parse($1...)")>]
-            abstract member parse: str: string * ?options: Qs.QueryString_.IParseOptions<Qs.QueryString_.BooleanOptional> -> Exports.parse
+            abstract member parse: str: string * options: Qs.QueryString_.IParseOptions<Qs.QueryString_.BooleanOptional> -> Exports.parse
             [<Emit("$0.parse($1...)")>]
             abstract member parse: str: Exports.parse.str * ?options: Qs.QueryString_.IParseOptions<Qs.QueryString_.BooleanOptional> -> Exports.parse
+            [<Emit("$0.parse($1...)")>]
+            abstract member parse: str: U2<string, Exports.parse.str.U2.Case2> * ?options: Qs.QueryString_.IParseOptions<Qs.QueryString_.BooleanOptional> -> Exports.parse
 
         type defaultEncoder =
             delegate of str: obj * ?defaultEncoder: obj * ?charset: string -> string
@@ -4050,6 +4297,24 @@ module Qs =
                     abstract member throwOnLimitExceeded: bool option with get, set
                     abstract member allowDots: bool option with get, set
                     abstract member decodeDotInKeys: bool option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (depth: float, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (depth: bool, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: string, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: string, depth: float, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: string, depth: bool, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: RegExp, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: RegExp, depth: float, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (delimiter: RegExp, depth: bool, ?comma: bool, ?decoder: obj, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: Exports.parse.options.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: Exports.parse.options.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool, ?allowDots: bool, ?decodeDotInKeys: bool) : options = nativeOnly
 
                 module options =
 
@@ -4071,6 +4336,16 @@ module Qs =
                 type str =
                     [<EmitIndexer>]
                     abstract member Item: key: string -> string with get, set
+
+                module str =
+
+                    module U2 =
+
+                        [<AllowNullLiteral>]
+                        [<Interface>]
+                        type Case2 =
+                            [<EmitIndexer>]
+                            abstract member Item: key: string -> string with get, set
 
 module RangeParser =
 
@@ -4222,6 +4497,8 @@ module Send =
             /// The start is inclusive, meaning start: 2 will include the 3rd byte in the stream.
             /// </summary>
             abstract member start: float option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?acceptRanges: bool, ?cacheControl: bool, ?dotfiles: SendOptions.dotfiles, ?``end``: float, ?etag: bool, ?extensions: U3<ResizeArray<string>, string, bool>, ?immutable: bool, ?index: U3<ResizeArray<string>, string, bool>, ?lastModified: bool, ?maxAge: U2<string, float>, ?root: string, ?start: float) : SendOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4410,6 +4687,8 @@ module ServeStatic =
             /// stat the stat object of the file that is being sent
             /// </summary>
             abstract member setHeaders: ServeStaticOptions.setHeaders<'R> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?acceptRanges: bool, ?cacheControl: bool, ?dotfiles: string, ?etag: bool, ?extensions: U2<ResizeArray<string>, bool>, ?fallthrough: bool, ?immutable: bool, ?index: U3<bool, string, ResizeArray<string>>, ?lastModified: bool, ?maxAge: U2<float, string>, ?redirect: bool, ?setHeaders: ServeStaticOptions.setHeaders<'R>) : ServeStaticOptions<'R> = nativeOnly
 
         type RequestHandler<'R> =
             delegate of request: Glutinum.Node.http.IncomingMessage * response: 'R * next: (HttpErrors.createHttpError_.HttpError option -> unit) -> unit

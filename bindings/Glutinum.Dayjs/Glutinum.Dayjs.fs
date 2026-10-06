@@ -23,21 +23,21 @@ module Dayjs =
         [<ImportDefault("dayjs")>]
         static member dayjs (date: Dayjs.dayjs_.Dayjs) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: string, ?format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: string, format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: float, ?format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: float, format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: Date, ?format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: Date, format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: Dayjs.dayjs_.Dayjs, ?format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: Dayjs.dayjs_.Dayjs, format: Dayjs.dayjs_.OptionType, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: string, ?format: Dayjs.dayjs_.OptionType, ?locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: string, format: Dayjs.dayjs_.OptionType, locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: float, ?format: Dayjs.dayjs_.OptionType, ?locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: float, format: Dayjs.dayjs_.OptionType, locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: Date, ?format: Dayjs.dayjs_.OptionType, ?locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: Date, format: Dayjs.dayjs_.OptionType, locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
-        static member dayjs (date: Dayjs.dayjs_.Dayjs, ?format: Dayjs.dayjs_.OptionType, ?locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
+        static member dayjs (date: Dayjs.dayjs_.Dayjs, format: Dayjs.dayjs_.OptionType, locale: string, ?strict: bool) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportAll("dayjs")>]
         static member inline dayjs_
             with get () : dayjs_.Exports =
@@ -572,6 +572,22 @@ module Dayjs =
             /// </summary>
             abstract member set: unit: Dayjs.dayjs_.UnitTypeShort * value: float -> Dayjs.dayjs_.Dayjs
             /// <summary>
+            /// Generic setter, accepting unit as first argument, and value as second, returns a new instance with the applied changes.
+            ///
+            /// In general:
+            /// <code>
+            /// dayjs().set(unit, value) === dayjs()[unit](value)
+            /// </code>
+            /// Units are case insensitive, and support plural and short forms.
+            /// <code>
+            /// dayjs().set('date', 1)
+            /// dayjs().set('month', 3) // April
+            /// dayjs().set('second', 30)
+            /// </code>
+            /// Docs: https://day.js.org/docs/en/get-set/set
+            /// </summary>
+            abstract member set: unit: Dayjs.dayjs_.UnitType * value: float -> Dayjs.dayjs_.Dayjs
+            /// <summary>
             /// String getter, returns the corresponding information getting from Day.js object.
             ///
             /// In general:
@@ -619,6 +635,22 @@ module Dayjs =
             /// Docs: https://day.js.org/docs/en/get-set/get
             /// </summary>
             abstract member get: unit: Dayjs.dayjs_.UnitTypeShort -> float
+            /// <summary>
+            /// String getter, returns the corresponding information getting from Day.js object.
+            ///
+            /// In general:
+            /// <code>
+            /// dayjs().get(unit) === dayjs()[unit]()
+            /// </code>
+            /// Units are case insensitive, and support plural and short forms.
+            /// <code>
+            /// dayjs().get('year')
+            /// dayjs().get('month') // start 0
+            /// dayjs().get('date')
+            /// </code>
+            /// Docs: https://day.js.org/docs/en/get-set/get
+            /// </summary>
+            abstract member get: unit: Dayjs.dayjs_.UnitType -> float
             /// <summary>
             /// Returns a cloned Day.js object with a specified amount of time added.
             /// <code>
@@ -1215,6 +1247,7 @@ module Dayjs =
             abstract member locale: unit -> string
             abstract member locale: preset: string * ?``object``: Dayjs.locale.``object`` -> Dayjs.dayjs_.Dayjs
             abstract member locale: preset: Dayjs.ILocale * ?``object``: Dayjs.locale.``object`` -> Dayjs.dayjs_.Dayjs
+            abstract member locale: preset: U2<string, Dayjs.ILocale> * ?``object``: Dayjs.locale.``object`` -> Dayjs.dayjs_.Dayjs
 
         type PluginFunc<'T> =
             delegate of option: 'T * c: Dayjs.dayjs_.Dayjs * d: (Dayjs.dayjs_.ConfigType option -> Dayjs.dayjs_.Dayjs) -> unit
@@ -1351,6 +1384,8 @@ module Dayjs =
         abstract member ordinal: (float -> U2<float, string>) option with get, set
         abstract member formats: ILocale.formats with get, set
         abstract member relativeTime: ILocale.relativeTime with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (name: string, formats: ILocale.formats, relativeTime: ILocale.relativeTime, ?weekdays: ResizeArray<string>, ?months: ResizeArray<string>, ?weekStart: float, ?weekdaysShort: ResizeArray<string>, ?monthsShort: ResizeArray<string>, ?weekdaysMin: ResizeArray<string>, ?ordinal: (float -> U2<float, string>)) : ILocale = nativeOnly
 
     module ILocale =
 

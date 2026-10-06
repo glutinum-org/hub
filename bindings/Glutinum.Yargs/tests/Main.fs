@@ -34,10 +34,10 @@ let main _ =
                                 (parser [ "-n"; "Ada" ])
                                     .option(
                                         "name",
-                                        jsOptions<Yargs.yargs_.Options> (fun options ->
-                                            options.alias <- Some(U2.Case1 "n")
-                                            options.string <- Some true
-                                            options.describe <- Some "Who to greet"
+                                        Yargs.Options.Create(
+                                            alias = U2.Case1 "n",
+                                            string = true,
+                                            describe = "Who to greet"
                                         )
                                     )
                                     .parseSync ()
@@ -86,11 +86,10 @@ let main _ =
                             let mutable greeted = ""
 
                             // The builder and the handler are typed, so that the overload taking an options object is not a candidate
-                            let builder: Yargs.yargs_.Argv<obj> -> unit = fun _ -> ()
+                            let builder: Yargs.Argv<obj> -> unit = fun _ -> ()
 
                             // The positional of the command is a key of the arguments
-                            let handler
-                                : Yargs.yargs_.ArgumentsCamelCase<obj> -> U2<unit, JS.Promise<unit>> =
+                            let handler: Yargs.ArgumentsCamelCase<obj> -> U2<unit, JS.Promise<unit>> =
                                 fun args ->
                                     greeted <- args?who
                                     U2.Case1()
@@ -197,7 +196,7 @@ let main _ =
                                 (parser [ "-n"; "Ada" ])
                                     .option(
                                         "name",
-                                        Yargs.yargs_.Options.Create(
+                                        Yargs.Options.Create(
                                             alias = U2.Case1 "n",
                                             string = true,
                                             describe = "Who to greet"

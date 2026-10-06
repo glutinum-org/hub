@@ -23,6 +23,7 @@
         <PackageReference Include="EasyBuild.PackageReleaseNotes.Tasks" />
         <PackageReference Include="Fable.Core" />
         <PackageReference Include="Fable.Package.SDK" />
+        <PackageReference Include="Glutinum.Node" />
         <PackageReference Include="Glutinum.Types" />
         <PackageReference Include="Glutinum.Web" />
     </ItemGroup>

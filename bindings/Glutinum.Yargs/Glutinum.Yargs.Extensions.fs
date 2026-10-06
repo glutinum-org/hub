@@ -8,7 +8,7 @@ open Glutinum.Yargs
 [<AutoOpen>]
 module YargsExtensions =
 
-    type yargs_.Arguments<'T> with
+    type index.yargs_.Arguments<'T> with
 
         /// The value of a declared option, `parseSync` only types `_` and `$0`
         member inline this.Get<'V>(key: string) : 'V = unbox<'V> this.[key]
@@ -22,18 +22,18 @@ module YargsExtensions =
             else
                 Some(unbox<'V> value)
 
-    type yargs_.Argv<'T> with
+    type index.yargs_.Argv<'T> with
 
         /// A command with a handler and no builder
         member inline this.Command
-            (command: string, description: string, handler: yargs_.ArgumentsCamelCase<'T> -> unit)
-            : yargs_.Argv<'T>
+            (command: string, description: string, handler: index.yargs_.ArgumentsCamelCase<'T> -> unit)
+            : index.yargs_.Argv<'T>
             =
             this.command (
                 command,
                 description,
-                (fun (_: yargs_.Argv<'T>) -> ()),
-                (fun (arguments: yargs_.ArgumentsCamelCase<'T>) ->
+                (fun (_: index.yargs_.Argv<'T>) -> ()),
+                (fun (arguments: index.yargs_.ArgumentsCamelCase<'T>) ->
                     handler arguments
                     U2.Case1())
             )

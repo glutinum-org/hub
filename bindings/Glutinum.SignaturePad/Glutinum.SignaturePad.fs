@@ -14,9 +14,6 @@ module SignaturePad =
         [<ImportDefault("signature_pad"); EmitConstructor>]
         static member SignaturePad (canvas: Glutinum.Web.HTMLCanvasElement, ?options: SignaturePad.Options) : SignaturePad = nativeOnly
 
-    type BasicPoint =
-        SignaturePad.dist_types_point.BasicPoint
-
     [<AllowNullLiteral>]
     [<Interface>]
     type SignatureEvent =
@@ -90,12 +87,12 @@ module SignaturePad =
     [<Interface>]
     type PointGroup =
         inherit SignaturePad.PointGroupOptions
-        abstract member points: ResizeArray<SignaturePad.dist_types_point.BasicPoint> with get, set
+        abstract member points: ResizeArray<SignaturePad.BasicPoint> with get, set
 
     [<AllowNullLiteral>]
     [<Interface>]
     type SignaturePad =
-        inherit SignaturePad.dist_types_signature_event_target.SignatureEventTarget
+        inherit SignaturePad.SignatureEventTarget
         abstract member dotSize: float with get, set
         abstract member minWidth: float with get, set
         abstract member maxWidth: float with get, set
@@ -119,49 +116,35 @@ module SignaturePad =
         abstract member toData: unit -> ResizeArray<SignaturePad.PointGroup>
         abstract member toSVG: ?arg0: SignaturePad.ToSVGOptions -> string
 
-    module dist_types_point =
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type BasicPoint =
+        abstract member x: float with get, set
+        abstract member y: float with get, set
+        abstract member pressure: float with get, set
+        abstract member time: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (x: float, y: float, pressure: float, time: float) : BasicPoint = nativeOnly
 
-        [<AbstractClass>]
-        [<Erase>]
-        type Exports =
-            [<Import("Point", "signature_pad/dist/types/point.js"); EmitConstructor>]
-            static member Point (x: float, y: float, ?pressure: float, ?time: float) : Point = nativeOnly
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type Point =
+        inherit SignaturePad.BasicPoint
+        abstract member x: float with get, set
+        abstract member y: float with get, set
+        abstract member pressure: float with get, set
+        abstract member time: float with get, set
+        abstract member distanceTo: start: SignaturePad.BasicPoint -> float
+        abstract member equals: other: SignaturePad.BasicPoint -> bool
+        abstract member velocityFrom: start: SignaturePad.BasicPoint -> float
 
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type BasicPoint =
-            abstract member x: float with get, set
-            abstract member y: float with get, set
-            abstract member pressure: float with get, set
-            abstract member time: float with get, set
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type Point =
-            inherit SignaturePad.dist_types_point.BasicPoint
-            abstract member x: float with get, set
-            abstract member y: float with get, set
-            abstract member pressure: float with get, set
-            abstract member time: float with get, set
-            abstract member distanceTo: start: SignaturePad.dist_types_point.BasicPoint -> float
-            abstract member equals: other: SignaturePad.dist_types_point.BasicPoint -> bool
-            abstract member velocityFrom: start: SignaturePad.dist_types_point.BasicPoint -> float
-
-    module dist_types_signature_event_target =
-
-        [<AbstractClass>]
-        [<Erase>]
-        type Exports =
-            [<Import("SignatureEventTarget", "signature_pad/dist/types/signature_event_target.js"); EmitConstructor>]
-            static member SignatureEventTarget () : SignatureEventTarget = nativeOnly
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type SignatureEventTarget =
-            abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject option -> unit
-            abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject option * options: bool -> unit
-            abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject option * options: Glutinum.Web.AddEventListenerOptions -> unit
-            abstract member dispatchEvent: event: Glutinum.Web.Event -> bool
-            abstract member removeEventListener: ``type``: string * callback: Glutinum.Web.EventListenerOrEventListenerObject option -> unit
-            abstract member removeEventListener: ``type``: string * callback: Glutinum.Web.EventListenerOrEventListenerObject option * options: bool -> unit
-            abstract member removeEventListener: ``type``: string * callback: Glutinum.Web.EventListenerOrEventListenerObject option * options: Glutinum.Web.EventListenerOptions -> unit
+    [<AllowNullLiteral>]
+    [<Interface>]
+    type SignatureEventTarget =
+        abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject option -> unit
+        abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject option * options: bool -> unit
+        abstract member addEventListener: ``type``: string * listener: Glutinum.Web.EventListenerOrEventListenerObject option * options: Glutinum.Web.AddEventListenerOptions -> unit
+        abstract member dispatchEvent: event: Glutinum.Web.Event -> bool
+        abstract member removeEventListener: ``type``: string * callback: Glutinum.Web.EventListenerOrEventListenerObject option -> unit
+        abstract member removeEventListener: ``type``: string * callback: Glutinum.Web.EventListenerOrEventListenerObject option * options: bool -> unit
+        abstract member removeEventListener: ``type``: string * callback: Glutinum.Web.EventListenerOrEventListenerObject option * options: Glutinum.Web.EventListenerOptions -> unit

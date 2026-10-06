@@ -80,6 +80,35 @@ module Webmidi =
         /// </param>
         [<Import("Listener", "webmidi"); EmitConstructor>]
         static member Listener (event: obj, target: Webmidi.EventEmitter, callback: Webmidi.EventEmitterCallback, options: Exports.Listener.options, [<ParamArray>] args: obj []) : Listener = nativeOnly
+        /// <summary>
+        /// Creates a new <c>Listener</c> object
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
+        ///
+        /// The <c>target</c> parameter is mandatory.
+        ///
+        /// The <c>callback</c> must be a function.
+        /// </remarks>
+        /// <param name="event">
+        /// The event being listened to
+        /// </param>
+        /// <param name="target">
+        /// The [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see> object that the listener
+        /// is attached to.
+        /// </param>
+        /// <param name="callback">
+        /// The function to call when the listener is triggered
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        [<Import("Listener", "webmidi"); EmitConstructor>]
+        static member Listener (event: U2<string, obj>, target: Webmidi.EventEmitter, callback: Webmidi.EventEmitterCallback, options: Exports.Listener.options, [<ParamArray>] args: obj []) : Listener = nativeOnly
         [<Import("Enumerations", "webmidi"); EmitConstructor>]
         static member Enumerations () : Enumerations = nativeOnly
         /// <summary>
@@ -212,6 +241,38 @@ module Webmidi =
         /// </param>
         [<Import("Note", "webmidi"); EmitConstructor>]
         static member Note (value: float, ?options: Exports.Note.options) : Note = nativeOnly
+        /// <summary>
+        /// Creates a <c>Note</c> object.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// Invalid note identifier
+        ///
+        /// Invalid name value
+        ///
+        /// Invalid accidental value
+        ///
+        /// Invalid octave value
+        ///
+        /// Invalid duration value
+        ///
+        /// Invalid attack value
+        ///
+        /// Invalid release value
+        /// </remarks>
+        /// <param name="value">
+        /// The value used to create the note. If an identifier string is used,
+        /// it must start with the note letter, optionally followed by an accidental and followed by the
+        /// octave number (<c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>, etc.). If a number is used, it must be an
+        /// integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        [<Import("Note", "webmidi"); EmitConstructor>]
+        static member Note (value: U2<string, float>, ?options: Exports.Note.options) : Note = nativeOnly
         /// <summary>
         /// Creates an <c>Output</c> object.
         /// </summary>
@@ -560,6 +621,18 @@ module Webmidi =
             /// </param>
             abstract member send: data: JS.Uint8Array * ?timestamp: float -> unit
             /// <summary>
+            /// Enqueues the message to be sent to the corresponding MIDI port.
+            /// </summary>
+            /// <param name="data">
+            /// The data to be enqueued, with each sequence entry representing a single byte of data.
+            /// </param>
+            /// <param name="timestamp">
+            /// The time at which to begin sending the data to the port. If timestamp is set
+            /// to zero (or another time in the past), the data is to be sent as soon as
+            /// possible.
+            /// </param>
+            abstract member send: data: U2<ResizeArray<float>, JS.Uint8Array> * ?timestamp: float -> unit
+            /// <summary>
             /// Clears any pending send data that has not yet been sent from the MIDIOutput 's
             /// queue. The implementation will need to ensure the MIDI stream is left in a good
             /// state, so if the output port is in the middle of a sysex message, a sysex
@@ -717,6 +790,37 @@ module Webmidi =
         /// </returns>
         abstract member addListener: event: obj * callback: Webmidi.EventEmitterCallback * ?options: EventEmitter.addListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
         /// <summary>
+        /// Adds a listener for the specified event. It returns the [<c>Listener</c>]<see href="Listener">Listener</see> object
+        /// that was created and attached to the event.
+        ///
+        /// To attach a global listener that will be triggered for any events, use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="#ANY_EVENT">#ANY_EVENT</see> as the first parameter. Note that a global
+        /// listener will also be triggered by non-registered events.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
+        ///
+        /// The <c>callback</c> parameter must be a function.
+        /// </remarks>
+        /// <param name="event">
+        /// The event to listen to.
+        /// </param>
+        /// <param name="callback">
+        /// The callback function to execute when the event occurs.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The newly created [<c>Listener</c>]<see href="Listener">Listener</see> object (typical) or an array
+        /// of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member addListener: event: U2<string, obj> * callback: Webmidi.EventEmitterCallback * ?options: EventEmitter.addListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
+        /// <summary>
         /// Adds a one-time listener for the specified event. The listener will be executed once and then
         /// destroyed. It returns the [<c>Listener</c>]<see href="Listener">Listener</see> object that was created and attached
         /// to the event.
@@ -780,6 +884,38 @@ module Webmidi =
         /// of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
         /// </returns>
         abstract member addOneTimeListener: event: obj * callback: Webmidi.EventEmitterCallback * ?options: EventEmitter.addOneTimeListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
+        /// <summary>
+        /// Adds a one-time listener for the specified event. The listener will be executed once and then
+        /// destroyed. It returns the [<c>Listener</c>]<see href="Listener">Listener</see> object that was created and attached
+        /// to the event.
+        ///
+        /// To attach a global listener that will be triggered for any events, use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the first parameter. Note that a
+        /// global listener will also be triggered by non-registered events.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>.
+        ///
+        /// The <c>callback</c> parameter must be a function.
+        /// </remarks>
+        /// <param name="event">
+        /// The event to listen to
+        /// </param>
+        /// <param name="callback">
+        /// The callback function to execute when the event occurs
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The newly created [<c>Listener</c>]<see href="Listener">Listener</see> object (typical) or an array
+        /// of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member addOneTimeListener: event: U2<string, obj> * callback: Webmidi.EventEmitterCallback * ?options: EventEmitter.addOneTimeListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
         /// <summary>
         /// Returns <c>true</c> if the specified event has at least one registered listener. If no event is
         /// specified, the method returns <c>true</c> if any event has at least one listener registered (this
@@ -948,6 +1084,22 @@ module Webmidi =
         /// </returns>
         abstract member getListeners: event: obj -> ResizeArray<Webmidi.Listener>
         /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: U2<string, obj> -> ResizeArray<Webmidi.Listener>
+        /// <summary>
         /// Suspends execution of all callbacks functions registered for the specified event type.
         ///
         /// You can suspend execution of callbacks registered with
@@ -982,6 +1134,23 @@ module Webmidi =
         /// </param>
         abstract member suspendEvent: event: obj -> unit
         /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
         /// Resumes execution of all suspended callback functions registered for the specified event type.
         ///
         /// You can resume execution of callbacks registered with
@@ -1013,6 +1182,22 @@ module Webmidi =
         /// execution of all callback functions.
         /// </param>
         abstract member unsuspendEvent: event: obj -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: U2<string, obj> -> unit
         /// <summary>
         /// Returns the number of listeners registered for a specific event.
         ///
@@ -1047,6 +1232,23 @@ module Webmidi =
         /// event.
         /// </returns>
         abstract member getListenerCount: event: obj -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: U2<string, obj> -> float
         /// <summary>
         /// Executes the callback function of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered for
         /// a given event. The callback functions are passed the additional arguments passed to <c>emit()</c>
@@ -1175,6 +1377,24 @@ module Webmidi =
         ///
         /// </param>
         abstract member waitFor: event: obj * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: U2<string, obj> * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
         /// <summary>
         /// The number of unique events that have registered listeners.
         ///
@@ -1567,7 +1787,6 @@ module Webmidi =
     [<AllowNullLiteral>]
     [<Interface>]
     type Input =
-        inherit Webmidi.EventEmitter
         /// <summary>
         /// Array containing the 16 [<c>InputChannel</c>](InputChannel) objects available for this <c>Input</c>. The
         /// channels are numbered 1 through 16.
@@ -1624,6 +1843,23 @@ module Webmidi =
         /// is useful if you wish to manipulate or remove the [<c>Forwarder</c>](Forwarder) later on.
         /// </returns>
         abstract member addForwarder: output: Webmidi.Forwarder * ?options: Input.addForwarder.options -> Webmidi.Forwarder
+        /// <summary>
+        /// Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+        /// specified [<c>Output</c>](Output) destination(s). This is akin to the hardware MIDI THRU port, with
+        /// the added benefit of being able to filter which data is forwarded.
+        /// </summary>
+        /// <param name="output">
+        /// An [<c>Output</c>](Output) object, a [<c>Forwarder</c>](Forwarder)
+        /// object or an array of such objects, to forward messages to.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The [<c>Forwarder</c>](Forwarder) object created to handle the forwarding. This
+        /// is useful if you wish to manipulate or remove the [<c>Forwarder</c>](Forwarder) later on.
+        /// </returns>
+        abstract member addForwarder: output: U3<Webmidi.Output, ResizeArray<Webmidi.Output>, Webmidi.Forwarder> * ?options: Input.addForwarder.options -> Webmidi.Forwarder
         /// <summary>
         /// Adds an event listener that will trigger a function callback when the specified event is
         /// dispatched. The event usually is **input-wide** but can also be **channel-specific**.
@@ -1895,6 +2131,141 @@ module Webmidi =
         /// </returns>
         abstract member addListener<'T>: e: Webmidi.InputEventMap.Key<'T> * listener: 'T * ?options: Input.addListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
         /// <summary>
+        /// Adds an event listener that will trigger a function callback when the specified event is
+        /// dispatched. The event usually is **input-wide** but can also be **channel-specific**.
+        ///
+        /// Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+        /// at the <c>Input</c> level and not at the [<c>InputChannel</c>](InputChannel) level. Channel-specific
+        /// events target a specific channel. Usually, in this case, you would add the listener to the
+        /// [<c>InputChannel</c>](InputChannel) object. However, as a convenience, you can also listen to
+        /// channel-specific events directly on an <c>Input</c>. This allows you to react to a channel-specific
+        /// event no matter which channel it actually came through.
+        ///
+        /// When listening for an event, you simply need to specify the event name and the function to
+        /// execute:
+        ///
+        /// <code lang="javascript">
+        /// const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+        ///   console.log(e);
+        /// });
+        /// </code>
+        ///
+        /// Calling the function with an input-wide event (such as
+        /// [<c>"midimessage"</c>]<see href="#event:midimessage">#event:midimessage</see>), will return the [<c>Listener</c>](Listener) object
+        /// that was created.
+        ///
+        /// If you call the function with a channel-specific event (such as
+        /// [<c>"noteon"</c>]<see href="InputChannel#event">:noteon</see>), it will return an array of all
+        /// [<c>Listener</c>](Listener) objects that were created (one for each channel):
+        ///
+        /// <code lang="javascript">
+        /// const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
+        /// </code>
+        ///
+        /// You can also specify which channels you want to add the listener to:
+        ///
+        /// <code lang="javascript">
+        /// const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+        /// </code>
+        ///
+        /// In this case, <c>listeners</c> is an array containing 3 [<c>Listener</c>](Listener) objects.
+        ///
+        /// Note that, when adding channel-specific listeners, it is the [<c>InputChannel</c>](InputChannel)
+        /// instance that actually gets a listener added and not the <c>Input</c> instance. You can check that
+        /// by calling [<c>InputChannel.hasListener()</c>](InputChannel#hasListener()).
+        ///
+        /// There are 8 families of events you can listen to:
+        ///
+        /// 1. **MIDI System Common** Events (input-wide)
+        ///
+        ///    * [<c>songposition</c>]<see href="Input#event">:songposition</see>
+        ///    * [<c>songselect</c>]<see href="Input#event">:songselect</see>
+        ///    * [<c>sysex</c>]<see href="Input#event">:sysex</see>
+        ///    * [<c>timecode</c>]<see href="Input#event">:timecode</see>
+        ///    * [<c>tunerequest</c>]<see href="Input#event">:tunerequest</see>
+        ///
+        /// 2. **MIDI System Real-Time** Events (input-wide)
+        ///
+        ///    * [<c>clock</c>]<see href="Input#event">:clock</see>
+        ///    * [<c>start</c>]<see href="Input#event">:start</see>
+        ///    * [<c>continue</c>]<see href="Input#event">:continue</see>
+        ///    * [<c>stop</c>]<see href="Input#event">:stop</see>
+        ///    * [<c>activesensing</c>]<see href="Input#event">:activesensing</see>
+        ///    * [<c>reset</c>]<see href="Input#event">:reset</see>
+        ///
+        /// 3. **State Change** Events (input-wide)
+        ///
+        ///    * [<c>opened</c>]<see href="Input#event">:opened</see>
+        ///    * [<c>closed</c>]<see href="Input#event">:closed</see>
+        ///    * [<c>disconnected</c>]<see href="Input#event">:disconnected</see>
+        ///
+        /// 4. **Catch-All** Events (input-wide)
+        ///
+        ///    * [<c>midimessage</c>]<see href="Input#event">:midimessage</see>
+        ///    * [<c>unknownmidimessage</c>]<see href="Input#event">:unknownmidimessage</see>
+        ///
+        /// 5. **Channel Voice** Events (channel-specific)
+        ///
+        ///    * [<c>channelaftertouch</c>]<see href="InputChannel#event">:channelaftertouch</see>
+        ///    * [<c>controlchange</c>]<see href="InputChannel#event">:controlchange</see>
+        ///      * [<c>controlchange-controller0</c>]<see href="InputChannel#event">:controlchange-controller0</see>
+        ///      * [<c>controlchange-controller1</c>]<see href="InputChannel#event">:controlchange-controller1</see>
+        ///      * [<c>controlchange-controller2</c>]<see href="InputChannel#event">:controlchange-controller2</see>
+        ///      * (...)
+        ///      * [<c>controlchange-controller127</c>]<see href="InputChannel#event">:controlchange-controller127</see>
+        ///    * [<c>keyaftertouch</c>]<see href="InputChannel#event">:keyaftertouch</see>
+        ///    * [<c>noteoff</c>]<see href="InputChannel#event">:noteoff</see>
+        ///    * [<c>noteon</c>]<see href="InputChannel#event">:noteon</see>
+        ///    * [<c>pitchbend</c>]<see href="InputChannel#event">:pitchbend</see>
+        ///    * [<c>programchange</c>]<see href="InputChannel#event">:programchange</see>
+        ///
+        ///    Note: you can listen for a specific control change message by using an event name like this:
+        ///    <c>controlchange-controller23</c>, <c>controlchange-controller99</c>, <c>controlchange-controller122</c>,
+        ///    etc.
+        ///
+        /// 6. **Channel Mode** Events (channel-specific)
+        ///
+        ///    * [<c>allnotesoff</c>]<see href="InputChannel#event">:allnotesoff</see>
+        ///    * [<c>allsoundoff</c>]<see href="InputChannel#event">:allsoundoff</see>
+        ///    * [<c>localcontrol</c>]<see href="InputChannel#event">:localcontrol</see>
+        ///    * [<c>monomode</c>]<see href="InputChannel#event">:monomode</see>
+        ///    * [<c>omnimode</c>]<see href="InputChannel#event">:omnimode</see>
+        ///    * [<c>resetallcontrollers</c>]<see href="InputChannel#event">:resetallcontrollers</see>
+        ///
+        /// 7. **NRPN** Events (channel-specific)
+        ///
+        ///    * [<c>nrpn</c>]<see href="InputChannel#event">:nrpn</see>
+        ///    * [<c>nrpn-dataentrycoarse</c>]<see href="InputChannel#event">:nrpn-dataentrycoarse</see>
+        ///    * [<c>nrpn-dataentryfine</c>]<see href="InputChannel#event">:nrpn-dataentryfine</see>
+        ///    * [<c>nrpn-dataincrement</c>]<see href="InputChannel#event">:nrpn-dataincrement</see>
+        ///    * [<c>nrpn-datadecrement</c>]<see href="InputChannel#event">:nrpn-datadecrement</see>
+        ///
+        /// 8. **RPN** Events (channel-specific)
+        ///
+        ///    * [<c>rpn</c>]<see href="InputChannel#event">:rpn</see>
+        ///    * [<c>rpn-dataentrycoarse</c>]<see href="InputChannel#event">:rpn-dataentrycoarse</see>
+        ///    * [<c>rpn-dataentryfine</c>]<see href="InputChannel#event">:rpn-dataentryfine</see>
+        ///    * [<c>rpn-dataincrement</c>]<see href="InputChannel#event">:rpn-dataincrement</see>
+        ///    * [<c>rpn-datadecrement</c>]<see href="InputChannel#event">:rpn-datadecrement</see>
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event is detected.
+        /// This function will receive an event parameter object. For details on this object's properties,
+        /// check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// If the event is input-wide, a single [<c>Listener</c>](Listener)
+        /// object is returned. If the event is channel-specific, an array of all the
+        /// [<c>Listener</c>](Listener) objects is returned (one for each channel).
+        /// </returns>
+        abstract member addListener<'T>: e: U2<obj, Webmidi.InputEventMap.Key<'T>> * listener: 'T * ?options: Input.addListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
+        /// <summary>
         /// Adds a one-time event listener that will trigger a function callback when the specified event
         /// happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
         /// dispatched by [<c>InputChannel</c>]<see href="InputChannel">InputChannel</see> objects and are tied to a specific MIDI
@@ -2147,6 +2518,132 @@ module Webmidi =
         /// </returns>
         abstract member addOneTimeListener<'T>: e: Webmidi.InputEventMap.Key<'T> * listener: 'T * ?options: Input.addOneTimeListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
         /// <summary>
+        /// Adds a one-time event listener that will trigger a function callback when the specified event
+        /// happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
+        /// dispatched by [<c>InputChannel</c>]<see href="InputChannel">InputChannel</see> objects and are tied to a specific MIDI
+        /// channel while input-wide events are dispatched by the <c>Input</c> object itself and are not tied
+        /// to a specific channel.
+        ///
+        /// Calling the function with an input-wide event (such as
+        /// [<c>"midimessage"</c>]<see href="#event:midimessage">#event:midimessage</see>), will return the [<c>Listener</c>](Listener) object
+        /// that was created.
+        ///
+        /// If you call the function with a channel-specific event (such as
+        /// [<c>"noteon"</c>]<see href="InputChannel#event">:noteon</see>), it will return an array of all
+        /// [<c>Listener</c>](Listener) objects that were created (one for each channel):
+        ///
+        /// <code lang="javascript">
+        /// const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
+        /// </code>
+        ///
+        /// You can also specify which channels you want to add the listener to:
+        ///
+        /// <code lang="javascript">
+        /// const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
+        /// </code>
+        ///
+        /// In this case, the <c>listeners</c> variable contains an array of 3 [<c>Listener</c>](Listener) objects.
+        ///
+        /// The code above will add a listener for the <c>"noteon"</c> event and call <c>someFunction</c> when the
+        /// event is triggered on MIDI channels <c>1</c>, <c>2</c> or <c>3</c>.
+        ///
+        /// Note that, when adding events to channels, it is the [<c>InputChannel</c>](InputChannel) instance
+        /// that actually gets a listener added and not the <c>Input</c> instance.
+        ///
+        /// Note: if you want to add a listener to a single MIDI channel you should probably do so directly
+        /// on the [<c>InputChannel</c>](InputChannel) object itself.
+        ///
+        /// There are 8 families of events you can listen to:
+        ///
+        /// 1. **MIDI System Common** Events (input-wide)
+        ///
+        ///    * [<c>songposition</c>]<see href="Input#event">:songposition</see>
+        ///    * [<c>songselect</c>]<see href="Input#event">:songselect</see>
+        ///    * [<c>sysex</c>]<see href="Input#event">:sysex</see>
+        ///    * [<c>timecode</c>]<see href="Input#event">:timecode</see>
+        ///    * [<c>tunerequest</c>]<see href="Input#event">:tunerequest</see>
+        ///
+        /// 2. **MIDI System Real-Time** Events (input-wide)
+        ///
+        ///    * [<c>clock</c>]<see href="Input#event">:clock</see>
+        ///    * [<c>start</c>]<see href="Input#event">:start</see>
+        ///    * [<c>continue</c>]<see href="Input#event">:continue</see>
+        ///    * [<c>stop</c>]<see href="Input#event">:stop</see>
+        ///    * [<c>activesensing</c>]<see href="Input#event">:activesensing</see>
+        ///    * [<c>reset</c>]<see href="Input#event">:reset</see>
+        ///
+        /// 3. **State Change** Events (input-wide)
+        ///
+        ///    * [<c>opened</c>]<see href="Input#event">:opened</see>
+        ///    * [<c>closed</c>]<see href="Input#event">:closed</see>
+        ///    * [<c>disconnected</c>]<see href="Input#event">:disconnected</see>
+        ///
+        /// 4. **Catch-All** Events (input-wide)
+        ///
+        ///    * [<c>midimessage</c>]<see href="Input#event">:midimessage</see>
+        ///    * [<c>unknownmidimessage</c>]<see href="Input#event">:unknownmidimessage</see>
+        ///
+        /// 5. **Channel Voice** Events (channel-specific)
+        ///
+        ///    * [<c>channelaftertouch</c>]<see href="InputChannel#event">:channelaftertouch</see>
+        ///    * [<c>controlchange</c>]<see href="InputChannel#event">:controlchange</see>
+        ///      * [<c>controlchange-controller0</c>]<see href="InputChannel#event">:controlchange-controller0</see>
+        ///      * [<c>controlchange-controller1</c>]<see href="InputChannel#event">:controlchange-controller1</see>
+        ///      * [<c>controlchange-controller2</c>]<see href="InputChannel#event">:controlchange-controller2</see>
+        ///      * (...)
+        ///      * [<c>controlchange-controller127</c>]<see href="InputChannel#event">:controlchange-controller127</see>
+        ///    * [<c>keyaftertouch</c>]<see href="InputChannel#event">:keyaftertouch</see>
+        ///    * [<c>noteoff</c>]<see href="InputChannel#event">:noteoff</see>
+        ///    * [<c>noteon</c>]<see href="InputChannel#event">:noteon</see>
+        ///    * [<c>pitchbend</c>]<see href="InputChannel#event">:pitchbend</see>
+        ///    * [<c>programchange</c>]<see href="InputChannel#event">:programchange</see>
+        ///
+        ///    Note: you can listen for a specific control change message by using an event name like this:
+        ///    <c>controlchange-controller23</c>, <c>controlchange-controller99</c>, <c>controlchange-controller122</c>,
+        ///    etc.
+        ///
+        /// 6. **Channel Mode** Events (channel-specific)
+        ///
+        ///    * [<c>allnotesoff</c>]<see href="InputChannel#event">:allnotesoff</see>
+        ///    * [<c>allsoundoff</c>]<see href="InputChannel#event">:allsoundoff</see>
+        ///    * [<c>localcontrol</c>]<see href="InputChannel#event">:localcontrol</see>
+        ///    * [<c>monomode</c>]<see href="InputChannel#event">:monomode</see>
+        ///    * [<c>omnimode</c>]<see href="InputChannel#event">:omnimode</see>
+        ///    * [<c>resetallcontrollers</c>]<see href="InputChannel#event">:resetallcontrollers</see>
+        ///
+        /// 7. **NRPN** Events (channel-specific)
+        ///
+        ///    * [<c>nrpn</c>]<see href="InputChannel#event">:nrpn</see>
+        ///    * [<c>nrpn-dataentrycoarse</c>]<see href="InputChannel#event">:nrpn-dataentrycoarse</see>
+        ///    * [<c>nrpn-dataentryfine</c>]<see href="InputChannel#event">:nrpn-dataentryfine</see>
+        ///    * [<c>nrpn-dataincrement</c>]<see href="InputChannel#event">:nrpn-dataincrement</see>
+        ///    * [<c>nrpn-datadecrement</c>]<see href="InputChannel#event">:nrpn-datadecrement</see>
+        ///
+        /// 8. **RPN** Events (channel-specific)
+        ///
+        ///    * [<c>rpn</c>]<see href="InputChannel#event">:rpn</see>
+        ///    * [<c>rpn-dataentrycoarse</c>]<see href="InputChannel#event">:rpn-dataentrycoarse</see>
+        ///    * [<c>rpn-dataentryfine</c>]<see href="InputChannel#event">:rpn-dataentryfine</see>
+        ///    * [<c>rpn-dataincrement</c>]<see href="InputChannel#event">:rpn-dataincrement</see>
+        ///    * [<c>rpn-datadecrement</c>]<see href="InputChannel#event">:rpn-datadecrement</see>
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// An array of all [<c>Listener</c>](Listener) objects that were
+        /// created.
+        /// </returns>
+        abstract member addOneTimeListener<'T>: e: U2<obj, Webmidi.InputEventMap.Key<'T>> * listener: 'T * ?options: Input.addOneTimeListener.options -> U2<Webmidi.Listener, ResizeArray<Webmidi.Listener>>
+        /// <summary>
         /// Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
         /// the input is opened again by calling [<c>Input.open()</c>](Input#open).
         ///
@@ -2209,6 +2706,25 @@ module Webmidi =
         /// already has this listener defined.
         /// </returns>
         abstract member hasListener<'T>: e: Webmidi.InputEventMap.Key<'T> * listener: 'T * ?options: Input.hasListener.options -> bool
+        /// <summary>
+        /// Checks if the specified event type is already defined to trigger the specified callback
+        /// function. For channel-specific events, the function will return <c>true</c> only if all channels
+        /// have the listener defined.
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// The callback function to check for.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Boolean value indicating whether or not the <c>Input</c> or <c>InputChannel</c>
+        /// already has this listener defined.
+        /// </returns>
+        abstract member hasListener<'T>: e: U2<obj, Webmidi.InputEventMap.Key<'T>> * listener: 'T * ?options: Input.hasListener.options -> bool
         /// <summary>
         /// Opens the input for usage. This is usually unnecessary as the port is opened automatically when
         /// WebMidi is enabled.
@@ -2319,6 +2835,324 @@ module Webmidi =
         /// The port type. In the case of the <c>Input</c> object, this is always: <c>input</c>.
         /// </summary>
         abstract member ``type``: Webmidi.WebMidiApi_.MIDIPortType with get
+        /// <summary>
+        /// Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
+        /// events occur.
+        /// </summary>
+        static member inline ANY_EVENT
+            with get () : obj =
+                nativeOnly
+        /// <summary>
+        /// An object containing a property for each event with at least one registered listener. Each
+        /// event property contains an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered
+        /// for the event.
+        /// </summary>
+        abstract member eventMap: obj with get, set
+        /// <summary>
+        /// Whether or not the execution of callbacks is currently suspended for this emitter.
+        /// </summary>
+        abstract member eventsSuspended: bool with get, set
+        /// <summary>
+        /// An array of all the unique event names for which the emitter has at least one registered
+        /// listener.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventNames: ResizeArray<string> with get
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: string -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: obj -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: U2<string, obj> -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: string -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: obj -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: string -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: obj -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: string -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: obj -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: U2<string, obj> -> float
+        /// <summary>
+        /// Executes the callback function of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered for
+        /// a given event. The callback functions are passed the additional arguments passed to <c>emit()</c>
+        /// (if any) followed by the arguments present in the [<c>arguments</c>](Listener#arguments) property of
+        /// the [<c>Listener</c>](Listener) object (if any).
+        ///
+        /// If the [<c>eventsSuspended</c>]<see href="#eventsSuspended">#eventsSuspended</see> property is <c>true</c> or the
+        /// [<c>Listener.suspended</c>]<see href="Listener#suspended">Listener#suspended</see> property is <c>true</c>, the callback functions
+        /// will not be executed.
+        ///
+        /// This function returns an array containing the return values of each of the callbacks.
+        ///
+        /// It should be noted that the regular listeners are triggered first followed by the global
+        /// listeners (those added with [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>).
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string.
+        /// </remarks>
+        /// <param name="event">
+        /// The event
+        /// </param>
+        /// <param name="args">
+        /// Arbitrary number of arguments to pass along to the callback functions
+        /// </param>
+        /// <returns>
+        /// An array containing the return value of each of the executed listener
+        /// functions.
+        /// </returns>
+        abstract member emit: event: string * [<ParamArray>] args: obj [] -> ResizeArray<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: string * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: obj * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: U2<string, obj> * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The number of unique events that have registered listeners.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventCount: float with get
 
     /// <summary>
     /// The <c>InputChannel</c> class represents a single MIDI input channel (1-16) from a single input
@@ -2331,7 +3165,6 @@ module Webmidi =
     [<AllowNullLiteral>]
     [<Interface>]
     type InputChannel =
-        inherit Webmidi.EventEmitter
         /// <summary>
         /// Contains the current playing state of all MIDI notes of this channel (0-127). The state is
         /// <c>true</c> for a currently playing note and <c>false</c> otherwise.
@@ -2479,6 +3312,71 @@ module Webmidi =
         /// </returns>
         abstract member addListener<'T>: e: Webmidi.InputChannelEventMap.Key<'T> * listener: 'T * ?options: InputChannel.addListener.options -> Webmidi.Listener
         /// <summary>
+        /// Adds an event listener that will trigger a function callback when the specified event is
+        /// dispatched.
+        ///
+        /// Here are the events you can listen to:
+        ///
+        /// **Channel Voice** Events
+        ///
+        ///    * [<c>channelaftertouch</c>]<see href="InputChannel#event">:channelaftertouch</see>
+        ///    * [<c>controlchange</c>]<see href="InputChannel#event">:controlchange</see>
+        ///      * [<c>controlchange-controller0</c>]<see href="InputChannel#event">:controlchange-controller0</see>
+        ///      * [<c>controlchange-controller1</c>]<see href="InputChannel#event">:controlchange-controller1</see>
+        ///      * [<c>controlchange-controller2</c>]<see href="InputChannel#event">:controlchange-controller2</see>
+        ///      * (...)
+        ///      * [<c>controlchange-controller127</c>]<see href="InputChannel#event">:controlchange-controller127</see>
+        ///    * [<c>keyaftertouch</c>]<see href="InputChannel#event">:keyaftertouch</see>
+        ///    * [<c>noteoff</c>]<see href="InputChannel#event">:noteoff</see>
+        ///    * [<c>noteon</c>]<see href="InputChannel#event">:noteon</see>
+        ///    * [<c>pitchbend</c>]<see href="InputChannel#event">:pitchbend</see>
+        ///    * [<c>programchange</c>]<see href="InputChannel#event">:programchange</see>
+        ///
+        ///    Note: you can listen for a specific control change message by using an event name like this:
+        ///    <c>controlchange-controller23</c>, <c>controlchange-controller99</c>, <c>controlchange-controller122</c>,
+        ///    etc.
+        ///
+        /// **Channel Mode** Events
+        ///
+        ///    * [<c>allnotesoff</c>]<see href="InputChannel#event">:allnotesoff</see>
+        ///    * [<c>allsoundoff</c>]<see href="InputChannel#event">:allsoundoff</see>
+        ///    * [<c>localcontrol</c>]<see href="InputChannel#event">:localcontrol</see>
+        ///    * [<c>monomode</c>]<see href="InputChannel#event">:monomode</see>
+        ///    * [<c>omnimode</c>]<see href="InputChannel#event">:omnimode</see>
+        ///    * [<c>resetallcontrollers</c>]<see href="InputChannel#event">:resetallcontrollers</see>
+        ///
+        /// **NRPN** Events
+        ///
+        ///    * [<c>nrpn</c>]<see href="InputChannel#event">:nrpn</see>
+        ///    * [<c>nrpn-dataentrycoarse</c>]<see href="InputChannel#event">:nrpn-dataentrycoarse</see>
+        ///    * [<c>nrpn-dataentryfine</c>]<see href="InputChannel#event">:nrpn-dataentryfine</see>
+        ///    * [<c>nrpn-dataincrement</c>]<see href="InputChannel#event">:nrpn-dataincrement</see>
+        ///    * [<c>nrpn-datadecrement</c>]<see href="InputChannel#event">:nrpn-datadecrement</see>
+        ///
+        /// **RPN** Events
+        ///
+        ///    * [<c>rpn</c>]<see href="InputChannel#event">:rpn</see>
+        ///    * [<c>rpn-dataentrycoarse</c>]<see href="InputChannel#event">:rpn-dataentrycoarse</see>
+        ///    * [<c>rpn-dataentryfine</c>]<see href="InputChannel#event">:rpn-dataentryfine</see>
+        ///    * [<c>rpn-dataincrement</c>]<see href="InputChannel#event">:rpn-dataincrement</see>
+        ///    * [<c>rpn-datadecrement</c>]<see href="InputChannel#event">:rpn-datadecrement</see>
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The listener object that was created
+        /// </returns>
+        abstract member addListener<'T>: e: U2<obj, Webmidi.InputChannelEventMap.Key<'T>> * listener: 'T * ?options: InputChannel.addListener.options -> Webmidi.Listener
+        /// <summary>
         /// Adds a one-time event listener that will trigger a function callback when the specified event
         /// is dispatched.
         ///
@@ -2609,6 +3507,71 @@ module Webmidi =
         /// </returns>
         abstract member addOneTimeListener<'T>: e: Webmidi.InputChannelEventMap.Key<'T> * listener: 'T * ?options: InputChannel.addOneTimeListener.options -> Webmidi.Listener
         /// <summary>
+        /// Adds a one-time event listener that will trigger a function callback when the specified event
+        /// is dispatched.
+        ///
+        /// Here are the events you can listen to:
+        ///
+        /// **Channel Voice** Events
+        ///
+        ///    * [<c>channelaftertouch</c>]<see href="InputChannel#event">:channelaftertouch</see>
+        ///    * [<c>controlchange</c>]<see href="InputChannel#event">:controlchange</see>
+        ///      * [<c>controlchange-controller0</c>]<see href="InputChannel#event">:controlchange-controller0</see>
+        ///      * [<c>controlchange-controller1</c>]<see href="InputChannel#event">:controlchange-controller1</see>
+        ///      * [<c>controlchange-controller2</c>]<see href="InputChannel#event">:controlchange-controller2</see>
+        ///      * (...)
+        ///      * [<c>controlchange-controller127</c>]<see href="InputChannel#event">:controlchange-controller127</see>
+        ///    * [<c>keyaftertouch</c>]<see href="InputChannel#event">:keyaftertouch</see>
+        ///    * [<c>noteoff</c>]<see href="InputChannel#event">:noteoff</see>
+        ///    * [<c>noteon</c>]<see href="InputChannel#event">:noteon</see>
+        ///    * [<c>pitchbend</c>]<see href="InputChannel#event">:pitchbend</see>
+        ///    * [<c>programchange</c>]<see href="InputChannel#event">:programchange</see>
+        ///
+        ///    Note: you can listen for a specific control change message by using an event name like this:
+        ///    <c>controlchange-controller23</c>, <c>controlchange-controller99</c>, <c>controlchange-controller122</c>,
+        ///    etc.
+        ///
+        /// **Channel Mode** Events
+        ///
+        ///    * [<c>allnotesoff</c>]<see href="InputChannel#event">:allnotesoff</see>
+        ///    * [<c>allsoundoff</c>]<see href="InputChannel#event">:allsoundoff</see>
+        ///    * [<c>localcontrol</c>]<see href="InputChannel#event">:localcontrol</see>
+        ///    * [<c>monomode</c>]<see href="InputChannel#event">:monomode</see>
+        ///    * [<c>omnimode</c>]<see href="InputChannel#event">:omnimode</see>
+        ///    * [<c>resetallcontrollers</c>]<see href="InputChannel#event">:resetallcontrollers</see>
+        ///
+        /// **NRPN** Events
+        ///
+        ///    * [<c>nrpn</c>]<see href="InputChannel#event">:nrpn</see>
+        ///    * [<c>nrpn-dataentrycoarse</c>]<see href="InputChannel#event">:nrpn-dataentrycoarse</see>
+        ///    * [<c>nrpn-dataentryfine</c>]<see href="InputChannel#event">:nrpn-dataentryfine</see>
+        ///    * [<c>nrpn-dataincrement</c>]<see href="InputChannel#event">:nrpn-dataincrement</see>
+        ///    * [<c>nrpn-datadecrement</c>]<see href="InputChannel#event">:nrpn-datadecrement</see>
+        ///
+        /// **RPN** Events
+        ///
+        ///    * [<c>rpn</c>]<see href="InputChannel#event">:rpn</see>
+        ///    * [<c>rpn-dataentrycoarse</c>]<see href="InputChannel#event">:rpn-dataentrycoarse</see>
+        ///    * [<c>rpn-dataentryfine</c>]<see href="InputChannel#event">:rpn-dataentryfine</see>
+        ///    * [<c>rpn-dataincrement</c>]<see href="InputChannel#event">:rpn-dataincrement</see>
+        ///    * [<c>rpn-datadecrement</c>]<see href="InputChannel#event">:rpn-datadecrement</see>
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The listener object that was created
+        /// </returns>
+        abstract member addOneTimeListener<'T>: e: U2<obj, Webmidi.InputChannelEventMap.Key<'T>> * listener: 'T * ?options: InputChannel.addOneTimeListener.options -> Webmidi.Listener
+        /// <summary>
         /// Destroys the <c>InputChannel</c> by removing all listeners and severing the link with the MIDI
         /// subsystem's input.
         /// </summary>
@@ -2653,6 +3616,19 @@ module Webmidi =
         /// </param>
         abstract member getNoteState: note: Webmidi.Note -> bool
         /// <summary>
+        /// Returns the playing status of the specified note (<c>true</c> if the note is currently playing,
+        /// <c>false</c> if it is not). The <c>note</c> parameter can be an unsigned integer (0-127), a note
+        /// identifier (<c>"C4"</c>, <c>"G#5"</c>, etc.) or a [<c>Note</c>]<see href="Note">Note</see> object.
+        ///
+        /// IF the note is specified using an integer (0-127), no octave offset will be applied.
+        /// </summary>
+        /// <param name="note">
+        /// The note to get the state for. The
+        /// [<c>octaveOffset</c>](#octaveOffset) (channel, input and global) will be factored in for note
+        /// identifiers and [<c>Note</c>]<see href="Note">Note</see> objects.
+        /// </param>
+        abstract member getNoteState: note: U3<float, string, Webmidi.Note> -> bool
+        /// <summary>
         /// Checks if the specified event type is already defined to trigger the specified callback
         /// function.
         /// </summary>
@@ -2688,6 +3664,24 @@ module Webmidi =
         /// already has this listener defined.
         /// </returns>
         abstract member hasListener<'T>: e: Webmidi.InputChannelEventMap.Key<'T> * listener: 'T -> bool
+        /// <summary>
+        /// Checks if the specified event type is already defined to trigger the specified callback
+        /// function.
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// The callback function to check for.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Boolean value indicating whether or not the <c>Input</c> or <c>InputChannel</c>
+        /// already has this listener defined.
+        /// </returns>
+        abstract member hasListener<'T>: e: U2<obj, Webmidi.InputChannelEventMap.Key<'T>> * listener: 'T -> bool
         /// <summary>
         /// Removes the specified listener for the specified event. If no listener is specified, all
         /// listeners for the specified event will be removed. If no event is specified, all listeners
@@ -2754,6 +3748,324 @@ module Webmidi =
         /// input object with [<c>Input.octaveOffset</c>](Input#octaveOffset).
         /// </summary>
         abstract member octaveOffset: float with get, set
+        /// <summary>
+        /// Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
+        /// events occur.
+        /// </summary>
+        static member inline ANY_EVENT
+            with get () : obj =
+                nativeOnly
+        /// <summary>
+        /// An object containing a property for each event with at least one registered listener. Each
+        /// event property contains an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered
+        /// for the event.
+        /// </summary>
+        abstract member eventMap: obj with get, set
+        /// <summary>
+        /// Whether or not the execution of callbacks is currently suspended for this emitter.
+        /// </summary>
+        abstract member eventsSuspended: bool with get, set
+        /// <summary>
+        /// An array of all the unique event names for which the emitter has at least one registered
+        /// listener.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventNames: ResizeArray<string> with get
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: string -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: obj -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: U2<string, obj> -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: string -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: obj -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: string -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: obj -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: string -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: obj -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: U2<string, obj> -> float
+        /// <summary>
+        /// Executes the callback function of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered for
+        /// a given event. The callback functions are passed the additional arguments passed to <c>emit()</c>
+        /// (if any) followed by the arguments present in the [<c>arguments</c>](Listener#arguments) property of
+        /// the [<c>Listener</c>](Listener) object (if any).
+        ///
+        /// If the [<c>eventsSuspended</c>]<see href="#eventsSuspended">#eventsSuspended</see> property is <c>true</c> or the
+        /// [<c>Listener.suspended</c>]<see href="Listener#suspended">Listener#suspended</see> property is <c>true</c>, the callback functions
+        /// will not be executed.
+        ///
+        /// This function returns an array containing the return values of each of the callbacks.
+        ///
+        /// It should be noted that the regular listeners are triggered first followed by the global
+        /// listeners (those added with [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>).
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string.
+        /// </remarks>
+        /// <param name="event">
+        /// The event
+        /// </param>
+        /// <param name="args">
+        /// Arbitrary number of arguments to pass along to the callback functions
+        /// </param>
+        /// <returns>
+        /// An array containing the return value of each of the executed listener
+        /// functions.
+        /// </returns>
+        abstract member emit: event: string * [<ParamArray>] args: obj [] -> ResizeArray<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: string * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: obj * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: U2<string, obj> * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The number of unique events that have registered listeners.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventCount: float with get
 
     /// <summary>
     /// The <c>Message</c> class represents a single MIDI message. It has several properties that make it
@@ -2924,7 +4236,6 @@ module Webmidi =
     [<AllowNullLiteral>]
     [<Interface>]
     type Output =
-        inherit Webmidi.EventEmitter
         /// <summary>
         /// Array containing the 16 [<c>OutputChannel</c>]<see href="OutputChannel">OutputChannel</see> objects available provided by
         /// this <c>Output</c>. The channels are numbered 1 through 16.
@@ -2973,6 +4284,27 @@ module Webmidi =
         /// </returns>
         abstract member addListener<'T>: e: Webmidi.PortEventMap.Key<'T> * listener: 'T * ?options: Output.addListener.options -> Webmidi.Listener
         /// <summary>
+        /// Adds an event listener that will trigger a function callback when the specified event is
+        /// dispatched.
+        ///
+        /// Here are the events you can listen to: closed, disconnected, open.
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The listener object that was created
+        /// </returns>
+        abstract member addListener<'T>: e: U2<obj, Webmidi.PortEventMap.Key<'T>> * listener: 'T * ?options: Output.addListener.options -> Webmidi.Listener
+        /// <summary>
         /// Adds a one-time event listener that will trigger a function callback when the specified event
         /// is dispatched.
         ///
@@ -3014,6 +4346,27 @@ module Webmidi =
         /// The listener object that was created
         /// </returns>
         abstract member addOneTimeListener<'T>: e: Webmidi.PortEventMap.Key<'T> * listener: 'T * ?options: Output.addOneTimeListener.options -> Webmidi.Listener
+        /// <summary>
+        /// Adds a one-time event listener that will trigger a function callback when the specified event
+        /// is dispatched.
+        ///
+        /// Here are the events you can listen to: closed, disconnected, open.
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The listener object that was created
+        /// </returns>
+        abstract member addOneTimeListener<'T>: e: U2<obj, Webmidi.PortEventMap.Key<'T>> * listener: 'T * ?options: Output.addOneTimeListener.options -> Webmidi.Listener
         /// <summary>
         /// Clears all messages that have been queued but not yet delivered.
         ///
@@ -3074,6 +4427,24 @@ module Webmidi =
         /// already has this listener defined.
         /// </returns>
         abstract member hasListener<'T>: e: Webmidi.PortEventMap.Key<'T> * listener: 'T -> bool
+        /// <summary>
+        /// Checks if the specified event type is already defined to trigger the specified callback
+        /// function.
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// The callback function to check for.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Boolean value indicating whether or not the <c>Input</c> or <c>InputChannel</c>
+        /// already has this listener defined.
+        /// </returns>
+        abstract member hasListener<'T>: e: U2<obj, Webmidi.PortEventMap.Key<'T>> * listener: 'T -> bool
         /// <summary>
         /// Opens the output for usage. When the library is enabled, all ports are automatically opened.
         /// This method is only useful for ports that have been manually closed.
@@ -3341,6 +4712,49 @@ module Webmidi =
         /// </returns>
         abstract member playNote: note: ResizeArray<Webmidi.Note> * ?options: Output.playNote.options -> Webmidi.Output
         /// <summary>
+        /// Plays a note or an array of notes on one or more channels of this output. If you intend to play
+        /// notes on a single channel, you should probably use
+        /// [<c>OutputChannel.playNote()</c>](OutputChannel#playNote) instead.
+        ///
+        /// The first parameter is the note to play. It can be a single value or an array of the following
+        /// valid values:
+        ///
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note identifier (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///  - A [<c>Note</c>]<see href="Note">Note</see> object
+        ///
+        /// The <c>playNote()</c> method sends a **note on** MIDI message for all specified notes on all
+        /// specified channels. If no channel is specified, it will send to all channels. If a <c>duration</c>
+        /// is set in the <c>options</c> parameter or in the [<c>Note</c>]<see href="Note">Note</see> object's
+        /// [<c>duration</c>]<see href="Note#duration">Note#duration</see> property, it will also schedule a **note off** message to end
+        /// the note after said duration. If no <c>duration</c> is set, the note will simply play until a
+        /// matching **note off** message is sent with [<c>stopNote()</c>]<see href="#stopNote">#stopNote</see>.
+        ///
+        /// The execution of the **note on** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        ///
+        /// When using [<c>Note</c>]<see href="Note">Note</see> objects, the durations and velocities defined in the
+        /// [<c>Note</c>]<see href="Note">Note</see> objects have precedence over the ones specified via the method's <c>options</c>
+        /// parameter.
+        ///
+        /// **Note**: As per the MIDI standard, a **note on** message with an attack velocity of <c>0</c> is
+        /// functionally equivalent to a **note off** message.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to play. The notes can be
+        /// specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+        /// [<c>Note</c>]<see href="Note">Note</see> object or an array of the previous types. When using a note identifier,
+        /// octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number <c>0</c>) and the
+        /// highest note is G9 (MIDI note number <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member playNote: note: U6<float, string, Webmidi.Note, ResizeArray<float>, ResizeArray<string>, ResizeArray<Webmidi.Note>> * ?options: Output.playNote.options -> Webmidi.Output
+        /// <summary>
         /// Removes the specified listener for the specified event. If no listener is specified, all
         /// listeners for the specified event will be removed.
         /// </summary>
@@ -3475,6 +4889,37 @@ module Webmidi =
         /// Returns the <c>Output</c> object so methods can be chained.
         /// </returns>
         abstract member send: message: Webmidi.Message * ?options: Output.send.options * ?legacy: float -> Webmidi.Output
+        /// <summary>
+        /// Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+        /// sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
+        /// [<c>Uint8Array</c>]<see href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array</see>
+        /// object or a [<c>Message</c>](Message) object.
+        ///
+        /// It is usually not necessary to use this method directly as you can use one of the simpler
+        /// helper methods such as [<c>playNote()</c>](#playNote), [<c>stopNote()</c>](#stopNote),
+        /// [<c>sendControlChange()</c>](#sendControlChange), etc.
+        ///
+        /// Details on the format of MIDI messages are available in the summary of
+        /// [MIDI messages]<see href="https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message">https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message</see>
+        /// from the MIDI Manufacturers Association.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The first byte (status) must be an integer between 128 and 255.
+        /// </remarks>
+        /// <param name="message">
+        /// An array of 8bit unsigned integers, a <c>Uint8Array</c>
+        /// object (not available in Node.js) containing the message bytes or a <c>Message</c> object.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member send: message: U3<ResizeArray<float>, JS.Uint8Array, Webmidi.Message> * ?options: Output.send.options * ?legacy: float -> Webmidi.Output
         /// <summary>
         /// Sends a MIDI [**system exclusive**]<see href="*">https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages</see>
         /// (*sysex*) message. There are two categories of system exclusive messages: manufacturer-specific
@@ -4395,6 +5840,31 @@ module Webmidi =
         /// </returns>
         abstract member sendKeyAftertouch: note: ResizeArray<string> * ?pressure: float * ?options: Output.sendKeyAftertouch.options -> Webmidi.Output
         /// <summary>
+        /// Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
+        /// is a key-specific aftertouch. For a channel-wide aftertouch message, use
+        /// [<c>setChannelAftertouch()</c>]<see href="#setChannelAftertouch">#setChannelAftertouch</see>.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) for which you are sending
+        /// an aftertouch value. The notes can be specified by using a MIDI note number (<c>0</c> - <c>127</c>), a
+        /// [<c>Note</c>](Note) object, a note identifier (e.g. <c>C3</c>, <c>G#4</c>, <c>F-1</c>, <c>Db7</c>) or an array of the
+        /// previous types. When using a note identifier, octave range must be between <c>-1</c> and <c>9</c>. The
+        /// lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest note is <c>G9</c> (MIDI note number
+        /// <c>127</c>).
+        /// </param>
+        /// <param name="pressure">
+        /// The pressure level (between 0 and 1). An invalid pressure value
+        /// will silently trigger the default behaviour. If the <c>rawValue</c> option is set to <c>true</c>, the
+        /// pressure can be defined by using an integer between 0 and 127.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendKeyAftertouch: note: U6<float, Webmidi.Note, string, ResizeArray<float>, ResizeArray<Webmidi.Note>, ResizeArray<string>> * ?pressure: float * ?options: Output.sendKeyAftertouch.options -> Webmidi.Output
+        /// <summary>
         /// Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
         /// control change message to send can be specified numerically (0-127) or by using one of the
         /// following common names:
@@ -4602,6 +6072,110 @@ module Webmidi =
         /// Returns the <c>Output</c> object so methods can be chained.
         /// </returns>
         abstract member sendControlChange: controller: string * ?value: float * ?options: Output.sendControlChange.options -> Webmidi.Output
+        /// <summary>
+        /// Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
+        /// control change message to send can be specified numerically (0-127) or by using one of the
+        /// following common names:
+        ///
+        /// | Number | Name                          |
+        /// |--------|-------------------------------|
+        /// | 0      |<c>bankselectcoarse</c>             |
+        /// | 1      |<c>modulationwheelcoarse</c>        |
+        /// | 2      |<c>breathcontrollercoarse</c>       |
+        /// | 4      |<c>footcontrollercoarse</c>         |
+        /// | 5      |<c>portamentotimecoarse</c>         |
+        /// | 6      |<c>dataentrycoarse</c>              |
+        /// | 7      |<c>volumecoarse</c>                 |
+        /// | 8      |<c>balancecoarse</c>                |
+        /// | 10     |<c>pancoarse</c>                    |
+        /// | 11     |<c>expressioncoarse</c>             |
+        /// | 12     |<c>effectcontrol1coarse</c>         |
+        /// | 13     |<c>effectcontrol2coarse</c>         |
+        /// | 18     |<c>generalpurposeslider3</c>        |
+        /// | 19     |<c>generalpurposeslider4</c>        |
+        /// | 32     |<c>bankselectfine</c>               |
+        /// | 33     |<c>modulationwheelfine</c>          |
+        /// | 34     |<c>breathcontrollerfine</c>         |
+        /// | 36     |<c>footcontrollerfine</c>           |
+        /// | 37     |<c>portamentotimefine</c>           |
+        /// | 38     |<c>dataentryfine</c>                |
+        /// | 39     |<c>volumefine</c>                   |
+        /// | 40     |<c>balancefine</c>                  |
+        /// | 42     |<c>panfine</c>                      |
+        /// | 43     |<c>expressionfine</c>               |
+        /// | 44     |<c>effectcontrol1fine</c>           |
+        /// | 45     |<c>effectcontrol2fine</c>           |
+        /// | 64     |<c>holdpedal</c>                    |
+        /// | 65     |<c>portamento</c>                   |
+        /// | 66     |<c>sustenutopedal</c>               |
+        /// | 67     |<c>softpedal</c>                    |
+        /// | 68     |<c>legatopedal</c>                  |
+        /// | 69     |<c>hold2pedal</c>                   |
+        /// | 70     |<c>soundvariation</c>               |
+        /// | 71     |<c>resonance</c>                    |
+        /// | 72     |<c>soundreleasetime</c>             |
+        /// | 73     |<c>soundattacktime</c>              |
+        /// | 74     |<c>brightness</c>                   |
+        /// | 75     |<c>soundcontrol6</c>                |
+        /// | 76     |<c>soundcontrol7</c>                |
+        /// | 77     |<c>soundcontrol8</c>                |
+        /// | 78     |<c>soundcontrol9</c>                |
+        /// | 79     |<c>soundcontrol10</c>               |
+        /// | 80     |<c>generalpurposebutton1</c>        |
+        /// | 81     |<c>generalpurposebutton2</c>        |
+        /// | 82     |<c>generalpurposebutton3</c>        |
+        /// | 83     |<c>generalpurposebutton4</c>        |
+        /// | 91     |<c>reverblevel</c>                  |
+        /// | 92     |<c>tremololevel</c>                 |
+        /// | 93     |<c>choruslevel</c>                  |
+        /// | 94     |<c>celestelevel</c>                 |
+        /// | 95     |<c>phaserlevel</c>                  |
+        /// | 96     |<c>dataincrement</c>          |
+        /// | 97     |<c>datadecrement</c>          |
+        /// | 98     |<c>nonregisteredparametercoarse</c> |
+        /// | 99     |<c>nonregisteredparameterfine</c>   |
+        /// | 100    |<c>registeredparametercoarse</c>    |
+        /// | 101    |<c>registeredparameterfine</c>      |
+        /// | 120    |<c>allsoundoff</c>                  |
+        /// | 121    |<c>resetallcontrollers</c>          |
+        /// | 122    |<c>localcontrol</c>                 |
+        /// | 123    |<c>allnotesoff</c>                  |
+        /// | 124    |<c>omnimodeoff</c>                  |
+        /// | 125    |<c>omnimodeon</c>                   |
+        /// | 126    |<c>monomodeon</c>                   |
+        /// | 127    |<c>polymodeon</c>                   |
+        ///
+        /// Note: as you can see above, not all control change message have a matching name. This does not
+        /// mean you cannot use the others. It simply means you will need to use their number (<c>0</c> - <c>127</c>)
+        /// instead of their name. While you can still use them, numbers <c>120</c> to <c>127</c> are usually
+        /// reserved for *channel mode* messages. See [<c>sendChannelMode()</c>]<see href="#sendChannelMode">#sendChannelMode</see> method
+        /// for more info.
+        ///
+        /// To view a list of all available **control change** messages, please consult [Table 3 - Control
+        /// Change Messages](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+        /// from the MIDI specification.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// Controller numbers must be between 0 and 127.
+        ///
+        /// Invalid controller name.
+        /// </remarks>
+        /// <param name="controller">
+        /// The MIDI controller name or number (0-127).
+        /// </param>
+        /// <param name="value">
+        /// The value to send (0-127).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendControlChange: controller: U2<float, string> * ?value: float * ?options: Output.sendControlChange.options -> Webmidi.Output
         /// <summary>
         /// Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so that
         /// they adjust the range used by their pitch bend lever. The range is specified by using the
@@ -4975,6 +6549,31 @@ module Webmidi =
         /// </returns>
         abstract member sendPitchBend: value: ResizeArray<float> * ?options: Output.sendPitchBend.options -> Webmidi.Output
         /// <summary>
+        /// Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
+        ///
+        /// The resulting bend is relative to the pitch bend range that has been defined. The range can be
+        /// set with [<c>sendPitchBendRange()</c>]<see href="#sendPitchBendRange">#sendPitchBendRange</see>. So, for example, if the pitch
+        /// bend range has been set to 12 semitones, using a bend value of <c>-1</c> will bend the note 1 octave
+        /// below its nominal value.
+        /// </summary>
+        /// <param name="value">
+        /// The intensity of the bend (between <c>-1.0</c> and <c>1.0</c>). A value of
+        /// <c>0</c> means no bend. If an invalid value is specified, the nearest valid value will be used
+        /// instead. If the <c>rawValue</c> option is set to <c>true</c>, the intensity of the bend can be defined by
+        /// either using a single integer between <c>0</c> and <c>127</c> (MSB) or an array of two integers between
+        /// <c>0</c> and <c>127</c> representing, respectively, the MSB (most significant byte) and the LSB (least
+        /// significant byte). The MSB is expressed in semitones with <c>64</c> meaning no bend. A value lower
+        /// than <c>64</c> bends downwards while a value higher than <c>64</c> bends upwards. The LSB is expressed
+        /// in cents (1/100 of a semitone). An LSB of <c>64</c> also means no bend.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendPitchBend: value: U2<float, ResizeArray<float>> * ?options: Output.sendPitchBend.options -> Webmidi.Output
+        /// <summary>
         /// Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
         /// </summary>
         /// <remarks>
@@ -5179,6 +6778,52 @@ module Webmidi =
         /// Returns the <c>Output</c> object so methods can be chained.
         /// </returns>
         abstract member sendChannelMode: command: string * ?value: float * ?options: Output.sendChannelMode.options -> Webmidi.Output
+        /// <summary>
+        /// Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
+        /// send can be specified numerically or by using one of the following common names:
+        ///
+        /// |  Type                |Number| Shortcut Method                                               |
+        /// | ---------------------|------|-------------------------------------------------------------- |
+        /// | <c>allsoundoff</c>        | 120  | [<c>sendAllSoundOff()</c>]<see href="#sendAllSoundOff">#sendAllSoundOff</see>                 |
+        /// | <c>resetallcontrollers</c>| 121  | [<c>sendResetAllControllers()</c>]<see href="#sendResetAllControllers">#sendResetAllControllers</see> |
+        /// | <c>localcontrol</c>       | 122  | [<c>sendLocalControl()</c>]<see href="#sendLocalControl">#sendLocalControl</see>               |
+        /// | <c>allnotesoff</c>        | 123  | [<c>sendAllNotesOff()</c>]<see href="#sendAllNotesOff">#sendAllNotesOff</see>                 |
+        /// | <c>omnimodeoff</c>        | 124  | [<c>sendOmniMode(false)</c>]<see href="#sendOmniMode">#sendOmniMode</see>                  |
+        /// | <c>omnimodeon</c>         | 125  | [<c>sendOmniMode(true)</c>]<see href="#sendOmniMode">#sendOmniMode</see>                   |
+        /// | <c>monomodeon</c>         | 126  | [<c>sendPolyphonicMode("mono")</c>]<see href="#sendPolyphonicMode">#sendPolyphonicMode</see>     |
+        /// | <c>polymodeon</c>         | 127  | [<c>sendPolyphonicMode("poly")</c>]<see href="#sendPolyphonicMode">#sendPolyphonicMode</see>     |
+        ///
+        /// Note: as you can see above, to make it easier, all channel mode messages also have a matching
+        /// helper method.
+        ///
+        /// It should also be noted that, per the MIDI specification, only <c>localcontrol</c> and <c>monomodeon</c>
+        /// may require a value that's not zero. For that reason, the <c>value</c> parameter is optional and
+        /// defaults to 0.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// Invalid channel mode message name.
+        ///
+        /// Channel mode controller numbers must be between 120 and 127.
+        ///
+        /// Value must be an integer between 0 and 127.
+        /// </remarks>
+        /// <param name="command">
+        /// The numerical identifier of the channel mode message (integer
+        /// between 120-127) or its name as a string.
+        /// </param>
+        /// <param name="value">
+        /// The value to send (integer between 0-127).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendChannelMode: command: U2<float, string> * ?value: float * ?options: Output.sendChannelMode.options -> Webmidi.Output
         /// <summary>
         /// Sends an **all sound off** channel mode message. This will silence all sounds playing on that
         /// channel but will not prevent new sounds from being triggered.
@@ -5491,6 +7136,38 @@ module Webmidi =
         /// </returns>
         abstract member sendRpnIncrement: parameter: ResizeArray<float> * ?options: Output.sendRpnIncrement.options -> Webmidi.Output
         /// <summary>
+        /// Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
+        /// names that can be used with this method:
+        ///
+        ///  * Pitchbend Range (0x00, 0x00): <c>"pitchbendrange"</c>
+        ///  * Channel Fine Tuning (0x00, 0x01): <c>"channelfinetuning"</c>
+        ///  * Channel Coarse Tuning (0x00, 0x02): <c>"channelcoarsetuning"</c>
+        ///  * Tuning Program (0x00, 0x03): <c>"tuningprogram"</c>
+        ///  * Tuning Bank (0x00, 0x04): <c>"tuningbank"</c>
+        ///  * Modulation Range (0x00, 0x05): <c>"modulationrange"</c>
+        ///  * Azimuth Angle (0x3D, 0x00): <c>"azimuthangle"</c>
+        ///  * Elevation Angle (0x3D, 0x01): <c>"elevationangle"</c>
+        ///  * Gain (0x3D, 0x02): <c>"gain"</c>
+        ///  * Distance Ratio (0x3D, 0x03): <c>"distanceratio"</c>
+        ///  * Maximum Distance (0x3D, 0x04): <c>"maximumdistance"</c>
+        ///  * Maximum Distance Gain (0x3D, 0x05): <c>"maximumdistancegain"</c>
+        ///  * Reference Distance Ratio (0x3D, 0x06): <c>"referencedistanceratio"</c>
+        ///  * Pan Spread Angle (0x3D, 0x07): <c>"panspreadangle"</c>
+        ///  * Roll Angle (0x3D, 0x08): <c>"rollangle"</c>
+        /// </summary>
+        /// <param name="parameter">
+        /// A string identifying the parameter's name (see above) or a
+        /// two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+        /// parameter.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendRpnIncrement: parameter: U2<string, ResizeArray<float>> * ?options: Output.sendRpnIncrement.options -> Webmidi.Output
+        /// <summary>
         /// Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
         /// names that can be used with this method:
         ///
@@ -5566,6 +7243,44 @@ module Webmidi =
         /// Returns the <c>Output</c> object so methods can be chained.
         /// </returns>
         abstract member sendRpnDecrement: parameter: ResizeArray<float> * ?options: Output.sendRpnDecrement.options -> Webmidi.Output
+        /// <summary>
+        /// Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
+        /// names that can be used with this method:
+        ///
+        ///  * Pitchbend Range (0x00, 0x00): <c>"pitchbendrange"</c>
+        ///  * Channel Fine Tuning (0x00, 0x01): <c>"channelfinetuning"</c>
+        ///  * Channel Coarse Tuning (0x00, 0x02): <c>"channelcoarsetuning"</c>
+        ///  * Tuning Program (0x00, 0x03): <c>"tuningprogram"</c>
+        ///  * Tuning Bank (0x00, 0x04): <c>"tuningbank"</c>
+        ///  * Modulation Range (0x00, 0x05): <c>"modulationrange"</c>
+        ///  * Azimuth Angle (0x3D, 0x00): <c>"azimuthangle"</c>
+        ///  * Elevation Angle (0x3D, 0x01): <c>"elevationangle"</c>
+        ///  * Gain (0x3D, 0x02): <c>"gain"</c>
+        ///  * Distance Ratio (0x3D, 0x03): <c>"distanceratio"</c>
+        ///  * Maximum Distance (0x3D, 0x04): <c>"maximumdistance"</c>
+        ///  * Maximum Distance Gain (0x3D, 0x05): <c>"maximumdistancegain"</c>
+        ///  * Reference Distance Ratio (0x3D, 0x06): <c>"referencedistanceratio"</c>
+        ///  * Pan Spread Angle (0x3D, 0x07): <c>"panspreadangle"</c>
+        ///  * Roll Angle (0x3D, 0x08): <c>"rollangle"</c>
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// TypeError The specified parameter is not available.
+        /// </remarks>
+        /// <param name="parameter">
+        /// A string identifying the parameter's name (see above) or a
+        /// two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+        /// parameter.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendRpnDecrement: parameter: U2<string, ResizeArray<float>> * ?options: Output.sendRpnDecrement.options -> Webmidi.Output
         /// <summary>
         /// Sends a **note off** message for the specified MIDI note number on the specified channel(s).
         /// The first parameter is the note to stop. It can be a single value or an array of the following
@@ -5736,6 +7451,32 @@ module Webmidi =
         /// </summary>
         /// <param name="note">
         /// The note(s) to stop. The notes can be
+        /// specified by using a MIDI note number (<c>0</c> - <c>127</c>), a note identifier (e.g. <c>C3</c>, <c>G#4</c>,
+        /// <c>F-1</c>, <c>Db7</c>) or an array of the previous types. When using a note identifier, octave range
+        /// must be between <c>-1</c> and <c>9</c>. The lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest
+        /// note is <c>G9</c> (MIDI note number <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendNoteOff: note: U6<float, Webmidi.Note, string, ResizeArray<float>, ResizeArray<Webmidi.Note>, ResizeArray<string>> * ?options: Output.sendNoteOff.options -> Webmidi.Output
+        /// <summary>
+        /// Sends a **note off** message for the specified MIDI note number on the specified channel(s).
+        /// The first parameter is the note to stop. It can be a single value or an array of the following
+        /// valid values:
+        ///
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note identifier (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///  - A [<c>Note</c>](Note) object
+        ///
+        /// The execution of the **note off** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to stop. The notes can be
         /// specified by using a MIDI note number (<c>0</c> - <c>127</c>), a note identifier (e.g. <c>C3</c>, <c>G#4</c>, <c>F-1</c>,
         /// <c>Db7</c>) or an array of the previous types. When using a note identifier, octave range must be
         /// between <c>-1</c> and <c>9</c>. The lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest note is
@@ -5878,6 +7619,32 @@ module Webmidi =
         /// Returns the <c>Output</c> object so methods can be chained.
         /// </returns>
         abstract member stopNote: note: ResizeArray<string> * ?options: Output.stopNote.options -> Webmidi.Output
+        /// <summary>
+        /// Sends a **note off** message for the specified MIDI note number on the specified channel(s).
+        /// The first parameter is the note to stop. It can be a single value or an array of the following
+        /// valid values:
+        ///
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note identifier (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///  - A [<c>Note</c>](Note) object
+        ///
+        /// The execution of the **note off** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to stop. The notes can be
+        /// specified by using a MIDI note number (<c>0</c> - <c>127</c>), a note identifier (e.g. <c>C3</c>, <c>G#4</c>, <c>F-1</c>,
+        /// <c>Db7</c>) or an array of the previous types. When using a note identifier, octave range must be
+        /// between <c>-1</c> and <c>9</c>. The lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest note is
+        /// <c>G9</c> (MIDI note number <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member stopNote: note: U6<float, Webmidi.Note, string, ResizeArray<float>, ResizeArray<Webmidi.Note>, ResizeArray<string>> * ?options: Output.stopNote.options -> Webmidi.Output
         /// <summary>
         /// Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
         /// first parameter is the number. It can be a single value or an array of the following valid
@@ -6053,6 +7820,35 @@ module Webmidi =
         /// </returns>
         abstract member sendNoteOn: note: ResizeArray<string> * ?options: Output.sendNoteOn.options -> Webmidi.Output
         /// <summary>
+        /// Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
+        /// first parameter is the number. It can be a single value or an array of the following valid
+        /// values:
+        ///
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note identifier (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///  - A [<c>Note</c>](Note) object
+        ///
+        ///  The execution of the **note on** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        ///
+        /// **Note**: As per the MIDI standard, a **note on** message with an attack velocity of <c>0</c> is
+        /// functionally equivalent to a **note off** message.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to stop. The notes can be
+        /// specified by using a MIDI note number (<c>0</c> - <c>127</c>), a note identifier (e.g. <c>C3</c>, <c>G#4</c>, <c>F-1</c>,
+        /// <c>Db7</c>) or an array of the previous types. When using a note identifier, octave range must be
+        /// between <c>-1</c> and <c>9</c>. The lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest note is
+        /// <c>G9</c> (MIDI note number <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendNoteOn: note: U6<float, Webmidi.Note, string, ResizeArray<float>, ResizeArray<Webmidi.Note>, ResizeArray<string>> * ?options: Output.sendNoteOn.options -> Webmidi.Output
+        /// <summary>
         /// Output port's connection state: <c>pending</c>, <c>open</c> or <c>closed</c>.
         /// </summary>
         abstract member connection: Webmidi.WebMidiApi_.MIDIPortConnectionState with get
@@ -6086,6 +7882,324 @@ module Webmidi =
         /// Type of the output port (it will always be: <c>output</c>).
         /// </summary>
         abstract member ``type``: Webmidi.WebMidiApi_.MIDIPortType with get
+        /// <summary>
+        /// Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
+        /// events occur.
+        /// </summary>
+        static member inline ANY_EVENT
+            with get () : obj =
+                nativeOnly
+        /// <summary>
+        /// An object containing a property for each event with at least one registered listener. Each
+        /// event property contains an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered
+        /// for the event.
+        /// </summary>
+        abstract member eventMap: obj with get, set
+        /// <summary>
+        /// Whether or not the execution of callbacks is currently suspended for this emitter.
+        /// </summary>
+        abstract member eventsSuspended: bool with get, set
+        /// <summary>
+        /// An array of all the unique event names for which the emitter has at least one registered
+        /// listener.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventNames: ResizeArray<string> with get
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: string -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: obj -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: U2<string, obj> -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: string -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: obj -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: string -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: obj -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: string -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: obj -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: U2<string, obj> -> float
+        /// <summary>
+        /// Executes the callback function of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered for
+        /// a given event. The callback functions are passed the additional arguments passed to <c>emit()</c>
+        /// (if any) followed by the arguments present in the [<c>arguments</c>](Listener#arguments) property of
+        /// the [<c>Listener</c>](Listener) object (if any).
+        ///
+        /// If the [<c>eventsSuspended</c>]<see href="#eventsSuspended">#eventsSuspended</see> property is <c>true</c> or the
+        /// [<c>Listener.suspended</c>]<see href="Listener#suspended">Listener#suspended</see> property is <c>true</c>, the callback functions
+        /// will not be executed.
+        ///
+        /// This function returns an array containing the return values of each of the callbacks.
+        ///
+        /// It should be noted that the regular listeners are triggered first followed by the global
+        /// listeners (those added with [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>).
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string.
+        /// </remarks>
+        /// <param name="event">
+        /// The event
+        /// </param>
+        /// <param name="args">
+        /// Arbitrary number of arguments to pass along to the callback functions
+        /// </param>
+        /// <returns>
+        /// An array containing the return value of each of the executed listener
+        /// functions.
+        /// </returns>
+        abstract member emit: event: string * [<ParamArray>] args: obj [] -> ResizeArray<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: string * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: obj * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: U2<string, obj> * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The number of unique events that have registered listeners.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventCount: float with get
 
     /// <summary>
     /// The <c>OutputChannel</c> class represents a single output MIDI channel. <c>OutputChannel</c> objects are
@@ -6208,6 +8322,40 @@ module Webmidi =
         /// Returns the <c>OutputChannel</c> object so methods can be chained.
         /// </returns>
         abstract member send: message: Webmidi.Message * ?options: OutputChannel.send.options -> Webmidi.OutputChannel
+        /// <summary>
+        /// Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
+        /// sent immediately. The message should be an array of 8-bit unsigned integers (<c>0</c> - <c>225</c>),
+        /// a
+        /// [<c>Uint8Array</c>]<see href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array</see>
+        /// object or a [<c>Message</c>](Message) object.
+        ///
+        /// It is usually not necessary to use this method directly as you can use one of the simpler
+        /// helper methods such as [<c>playNote()</c>](#playNote), [<c>stopNote()</c>](#stopNote),
+        /// [<c>sendControlChange()</c>](#sendControlChange), etc.
+        ///
+        /// Details on the format of MIDI messages are available in the summary of
+        /// [MIDI messages]<see href="https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message">https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message</see>
+        /// from the MIDI Manufacturers Association.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The first byte (status) must be an integer between 128 and 255.
+        ///
+        /// Data bytes must be integers between 0 and 255.
+        /// </remarks>
+        /// <param name="message">
+        /// A <c>Message</c> object, an array of 8-bit unsigned
+        /// integers or a <c>Uint8Array</c> object (not available in Node.js) containing the message bytes.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member send: message: U3<ResizeArray<float>, JS.Uint8Array, Webmidi.Message> * ?options: OutputChannel.send.options -> Webmidi.OutputChannel
         /// <summary>
         /// Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
         /// aftertouch. For a channel-wide aftertouch message, use
@@ -6424,6 +8572,42 @@ module Webmidi =
         /// Returns the <c>OutputChannel</c> object so methods can be chained.
         /// </returns>
         abstract member sendKeyAftertouch: target: ResizeArray<string> * ?pressure: float * ?options: OutputChannel.sendKeyAftertouch.options -> Webmidi.OutputChannel
+        /// <summary>
+        /// Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
+        /// aftertouch. For a channel-wide aftertouch message, use
+        /// [<c>sendChannelAftertouch()</c>]<see href="#sendChannelAftertouch">#sendChannelAftertouch</see>.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// RangeError Invalid key aftertouch value.
+        /// </remarks>
+        /// <param name="target">
+        /// The note(s) for which you are sending
+        /// an aftertouch value. The notes can be specified by using a MIDI note number (<c>0</c> - <c>127</c>), a
+        /// [<c>Note</c>](Note) object, a note identifier (e.g. <c>C3</c>, <c>G#4</c>, <c>F-1</c>, <c>Db7</c>) or an array of the
+        /// previous types. When using a note identifier, octave range must be between <c>-1</c> and <c>9</c>. The
+        /// lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest note is <c>G9</c> (MIDI note number
+        /// <c>127</c>).
+        ///
+        /// When using a note identifier, the octave value will be offset by the local
+        /// [<c>octaveOffset</c>](#octaveOffset) and by
+        /// [<c>Output.octaveOffset</c>](Output#octaveOffset) and [<c>WebMidi.octaveOffset</c>](WebMidi#octaveOffset)
+        /// (if those values are not <c>0</c>). When using a key number, <c>octaveOffset</c> values are ignored.
+        /// </param>
+        /// <param name="pressure">
+        /// The pressure level (between <c>0</c> and <c>1</c>). An invalid pressure
+        /// value will silently trigger the default behaviour. If the <c>rawValue</c> option is set to <c>true</c>,
+        /// the pressure is defined by using an integer between <c>0</c> and <c>127</c>.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendKeyAftertouch: target: U6<float, Webmidi.Note, string, ResizeArray<float>, ResizeArray<Webmidi.Note>, ResizeArray<string>> * ?pressure: float * ?options: OutputChannel.sendKeyAftertouch.options -> Webmidi.OutputChannel
         /// <summary>
         /// Sends a MIDI **control change** message to the channel at the scheduled time. The control
         /// change message to send can be specified numerically (<c>0</c> to <c>127</c>) or by using one of the
@@ -6889,6 +9073,122 @@ module Webmidi =
         /// </returns>
         abstract member sendControlChange: controller: string * value: ResizeArray<float> * ?options: OutputChannel.sendControlChange.options -> Webmidi.OutputChannel
         /// <summary>
+        /// Sends a MIDI **control change** message to the channel at the scheduled time. The control
+        /// change message to send can be specified numerically (<c>0</c> to <c>127</c>) or by using one of the
+        /// following common names:
+        ///
+        /// | Number | Name                          |
+        /// |--------|-------------------------------|
+        /// | 0      |<c>bankselectcoarse</c>             |
+        /// | 1      |<c>modulationwheelcoarse</c>        |
+        /// | 2      |<c>breathcontrollercoarse</c>       |
+        /// | 4      |<c>footcontrollercoarse</c>         |
+        /// | 5      |<c>portamentotimecoarse</c>         |
+        /// | 6      |<c>dataentrycoarse</c>              |
+        /// | 7      |<c>volumecoarse</c>                 |
+        /// | 8      |<c>balancecoarse</c>                |
+        /// | 10     |<c>pancoarse</c>                    |
+        /// | 11     |<c>expressioncoarse</c>             |
+        /// | 12     |<c>effectcontrol1coarse</c>         |
+        /// | 13     |<c>effectcontrol2coarse</c>         |
+        /// | 18     |<c>generalpurposeslider3</c>        |
+        /// | 19     |<c>generalpurposeslider4</c>        |
+        /// | 32     |<c>bankselectfine</c>               |
+        /// | 33     |<c>modulationwheelfine</c>          |
+        /// | 34     |<c>breathcontrollerfine</c>         |
+        /// | 36     |<c>footcontrollerfine</c>           |
+        /// | 37     |<c>portamentotimefine</c>           |
+        /// | 38     |<c>dataentryfine</c>                |
+        /// | 39     |<c>volumefine</c>                   |
+        /// | 40     |<c>balancefine</c>                  |
+        /// | 42     |<c>panfine</c>                      |
+        /// | 43     |<c>expressionfine</c>               |
+        /// | 44     |<c>effectcontrol1fine</c>           |
+        /// | 45     |<c>effectcontrol2fine</c>           |
+        /// | 64     |<c>holdpedal</c>                    |
+        /// | 65     |<c>portamento</c>                   |
+        /// | 66     |<c>sustenutopedal</c>               |
+        /// | 67     |<c>softpedal</c>                    |
+        /// | 68     |<c>legatopedal</c>                  |
+        /// | 69     |<c>hold2pedal</c>                   |
+        /// | 70     |<c>soundvariation</c>               |
+        /// | 71     |<c>resonance</c>                    |
+        /// | 72     |<c>soundreleasetime</c>             |
+        /// | 73     |<c>soundattacktime</c>              |
+        /// | 74     |<c>brightness</c>                   |
+        /// | 75     |<c>soundcontrol6</c>                |
+        /// | 76     |<c>soundcontrol7</c>                |
+        /// | 77     |<c>soundcontrol8</c>                |
+        /// | 78     |<c>soundcontrol9</c>                |
+        /// | 79     |<c>soundcontrol10</c>               |
+        /// | 80     |<c>generalpurposebutton1</c>        |
+        /// | 81     |<c>generalpurposebutton2</c>        |
+        /// | 82     |<c>generalpurposebutton3</c>        |
+        /// | 83     |<c>generalpurposebutton4</c>        |
+        /// | 91     |<c>reverblevel</c>                  |
+        /// | 92     |<c>tremololevel</c>                 |
+        /// | 93     |<c>choruslevel</c>                  |
+        /// | 94     |<c>celestelevel</c>                 |
+        /// | 95     |<c>phaserlevel</c>                  |
+        /// | 96     |<c>dataincrement</c>          |
+        /// | 97     |<c>datadecrement</c>          |
+        /// | 98     |<c>nonregisteredparametercoarse</c> |
+        /// | 99     |<c>nonregisteredparameterfine</c>   |
+        /// | 100    |<c>registeredparametercoarse</c>    |
+        /// | 101    |<c>registeredparameterfine</c>      |
+        /// | 120    |<c>allsoundoff</c>                  |
+        /// | 121    |<c>resetallcontrollers</c>          |
+        /// | 122    |<c>localcontrol</c>                 |
+        /// | 123    |<c>allnotesoff</c>                  |
+        /// | 124    |<c>omnimodeoff</c>                  |
+        /// | 125    |<c>omnimodeon</c>                   |
+        /// | 126    |<c>monomodeon</c>                   |
+        /// | 127    |<c>polymodeon</c>                   |
+        ///
+        /// As you can see above, not all control change message have a matching name. This does not mean
+        /// you cannot use the others. It simply means you will need to use their number
+        /// (<c>0</c> to <c>127</c>) instead of their name. While you can still use them, numbers <c>120</c> to <c>127</c> are
+        /// usually reserved for *channel mode* messages. See
+        /// [<c>sendChannelMode()</c>]<see href="OutputChannel#sendChannelMode">OutputChannel#sendChannelMode</see> method for more info.
+        ///
+        /// To view a detailed list of all available **control change** messages, please consult "Table 3 -
+        /// Control Change Messages" from the [MIDI Messages](
+        /// https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
+        /// specification.
+        ///
+        /// **Note**: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
+        /// (<c>modulationwheelcoarse</c>) can be accompanied by a second control change message for
+        /// <c>modulationwheelfine</c> to achieve a greater level of precision. if you want to specify both MSB
+        /// and LSB for messages between <c>0</c> and <c>31</c>, you can do so by passing a 2-value array as the
+        /// second parameter.
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// Controller numbers must be between 0 and 127.
+        ///
+        /// Invalid controller name.
+        ///
+        /// The value array must have a length of 2.
+        /// </remarks>
+        /// <param name="controller">
+        /// The MIDI controller name or number (<c>0</c> - <c>127</c>).
+        /// </param>
+        /// <param name="value">
+        /// The value to send (0-127). You can also use a two-position array
+        /// for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second
+        /// value will be sent to the matching LSB controller (which is obtained by adding 32 to the first
+        /// controller)
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendControlChange: controller: U2<float, string> * value: U2<float, ResizeArray<float>> * ?options: OutputChannel.sendControlChange.options -> Webmidi.OutputChannel
+        /// <summary>
         /// Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
         /// names that can be used with this function:
         ///
@@ -6965,6 +9265,44 @@ module Webmidi =
         /// </returns>
         abstract member sendRpnDecrement: parameter: ResizeArray<float> * ?options: OutputChannel.sendRpnDecrement.options -> Webmidi.OutputChannel
         /// <summary>
+        /// Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
+        /// names that can be used with this function:
+        ///
+        ///  * Pitchbend Range (0x00, 0x00): <c>"pitchbendrange"</c>
+        ///  * Channel Fine Tuning (0x00, 0x01): <c>"channelfinetuning"</c>
+        ///  * Channel Coarse Tuning (0x00, 0x02): <c>"channelcoarsetuning"</c>
+        ///  * Tuning Program (0x00, 0x03): <c>"tuningprogram"</c>
+        ///  * Tuning Bank (0x00, 0x04): <c>"tuningbank"</c>
+        ///  * Modulation Range (0x00, 0x05): <c>"modulationrange"</c>
+        ///  * Azimuth Angle (0x3D, 0x00): <c>"azimuthangle"</c>
+        ///  * Elevation Angle (0x3D, 0x01): <c>"elevationangle"</c>
+        ///  * Gain (0x3D, 0x02): <c>"gain"</c>
+        ///  * Distance Ratio (0x3D, 0x03): <c>"distanceratio"</c>
+        ///  * Maximum Distance (0x3D, 0x04): <c>"maximumdistance"</c>
+        ///  * Maximum Distance Gain (0x3D, 0x05): <c>"maximumdistancegain"</c>
+        ///  * Reference Distance Ratio (0x3D, 0x06): <c>"referencedistanceratio"</c>
+        ///  * Pan Spread Angle (0x3D, 0x07): <c>"panspreadangle"</c>
+        ///  * Roll Angle (0x3D, 0x08): <c>"rollangle"</c>
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// TypeError The specified registered parameter is invalid.
+        /// </remarks>
+        /// <param name="parameter">
+        /// A string identifying the parameter's name (see above) or a
+        /// two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+        /// parameter.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendRpnDecrement: parameter: U2<string, ResizeArray<float>> * ?options: OutputChannel.sendRpnDecrement.options -> Webmidi.OutputChannel
+        /// <summary>
         /// Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
         /// names that can be used with this function:
         ///
@@ -7040,6 +9378,44 @@ module Webmidi =
         /// Returns the <c>OutputChannel</c> object so methods can be chained.
         /// </returns>
         abstract member sendRpnIncrement: parameter: ResizeArray<float> * ?options: OutputChannel.sendRpnIncrement.options -> Webmidi.OutputChannel
+        /// <summary>
+        /// Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
+        /// names that can be used with this function:
+        ///
+        ///  * Pitchbend Range (0x00, 0x00): <c>"pitchbendrange"</c>
+        ///  * Channel Fine Tuning (0x00, 0x01): <c>"channelfinetuning"</c>
+        ///  * Channel Coarse Tuning (0x00, 0x02): <c>"channelcoarsetuning"</c>
+        ///  * Tuning Program (0x00, 0x03): <c>"tuningprogram"</c>
+        ///  * Tuning Bank (0x00, 0x04): <c>"tuningbank"</c>
+        ///  * Modulation Range (0x00, 0x05): <c>"modulationrange"</c>
+        ///  * Azimuth Angle (0x3D, 0x00): <c>"azimuthangle"</c>
+        ///  * Elevation Angle (0x3D, 0x01): <c>"elevationangle"</c>
+        ///  * Gain (0x3D, 0x02): <c>"gain"</c>
+        ///  * Distance Ratio (0x3D, 0x03): <c>"distanceratio"</c>
+        ///  * Maximum Distance (0x3D, 0x04): <c>"maximumdistance"</c>
+        ///  * Maximum Distance Gain (0x3D, 0x05): <c>"maximumdistancegain"</c>
+        ///  * Reference Distance Ratio (0x3D, 0x06): <c>"referencedistanceratio"</c>
+        ///  * Pan Spread Angle (0x3D, 0x07): <c>"panspreadangle"</c>
+        ///  * Roll Angle (0x3D, 0x08): <c>"rollangle"</c>
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// TypeError The specified registered parameter is invalid.
+        /// </remarks>
+        /// <param name="parameter">
+        /// A string identifying the parameter's name (see above) or a
+        /// two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+        /// parameter.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendRpnIncrement: parameter: U2<string, ResizeArray<float>> * ?options: OutputChannel.sendRpnIncrement.options -> Webmidi.OutputChannel
         /// <summary>
         /// Plays a note or an array of notes on the channel. The first parameter is the note to play. It
         /// can be a single value or an array of the following valid values:
@@ -7275,6 +9651,45 @@ module Webmidi =
         /// </returns>
         abstract member playNote: note: ResizeArray<Webmidi.Note> * ?options: OutputChannel.playNote.options -> Webmidi.OutputChannel
         /// <summary>
+        /// Plays a note or an array of notes on the channel. The first parameter is the note to play. It
+        /// can be a single value or an array of the following valid values:
+        ///
+        ///  - A [<c>Note</c>]<see href="Note">Note</see> object
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note name, followed by the octave (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///
+        /// The <c>playNote()</c> method sends a **note on** MIDI message for all specified notes. If a
+        /// <c>duration</c> is set in the <c>options</c> parameter or in the [<c>Note</c>]<see href="Note">Note</see> object's
+        /// [<c>duration</c>]<see href="Note#duration">Note#duration</see> property, it will also schedule a **note off** message
+        /// to end the note after said duration. If no <c>duration</c> is set, the note will simply play until
+        /// a matching **note off** message is sent with [<c>stopNote()</c>]<see href="OutputChannel#stopNote">OutputChannel#stopNote</see> or
+        /// [<c>sendNoteOff()</c>]<see href="OutputChannel#sendNoteOff">OutputChannel#sendNoteOff</see>.
+        ///
+        ///  The execution of the **note on** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        ///
+        /// When using [<c>Note</c>]<see href="Note">Note</see> objects, the durations and velocities defined in the
+        /// [<c>Note</c>]<see href="Note">Note</see> objects have precedence over the ones specified via the method's <c>options</c>
+        /// parameter.
+        ///
+        /// **Note**: per the MIDI standard, a **note on** message with an attack velocity of <c>0</c> is
+        /// functionally equivalent to a **note off** message.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to play. The notes can be
+        /// specified by using a MIDI note number (<c>0</c> - <c>127</c>), a note identifier (e.g. <c>C3</c>, <c>G#4</c>,
+        /// <c>F-1</c>, <c>Db7</c>), a [<c>Note</c>]<see href="Note">Note</see> object or an array of the previous types. When using a
+        /// note identifier, the octave range must be between <c>-1</c> and <c>9</c>. The lowest note is <c>C-1</c> (MIDI
+        /// note number <c>0</c>) and the highest note is <c>G9</c> (MIDI note number <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member playNote: note: U6<float, string, Webmidi.Note, ResizeArray<float>, ResizeArray<string>, ResizeArray<Webmidi.Note>> * ?options: OutputChannel.playNote.options -> Webmidi.OutputChannel
+        /// <summary>
         /// Sends a **note off** message for the specified notes on the channel. The first parameter is the
         /// note. It can be a single value or an array of the following valid values:
         ///
@@ -7449,6 +9864,35 @@ module Webmidi =
         /// </returns>
         abstract member sendNoteOff: note: ResizeArray<Webmidi.Note> * ?options: OutputChannel.sendNoteOff.options -> Webmidi.OutputChannel
         /// <summary>
+        /// Sends a **note off** message for the specified notes on the channel. The first parameter is the
+        /// note. It can be a single value or an array of the following valid values:
+        ///
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note name, followed by the octave (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///  - A [<c>Note</c>]<see href="Note">Note</see> object
+        ///
+        /// The execution of the **note off** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        ///
+        /// When using [<c>Note</c>]<see href="Note">Note</see> objects, the release velocity defined in the
+        /// [<c>Note</c>]<see href="Note">Note</see> objects has precedence over the one specified via the method's <c>options</c>
+        /// parameter.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to stop. The notes can be
+        /// specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+        /// [<c>Note</c>]<see href="Note">Note</see> object or an array of the previous types. When using a note name, octave
+        /// range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+        /// note is G9 (MIDI note number 127).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendNoteOff: note: U6<float, string, Webmidi.Note, ResizeArray<float>, ResizeArray<string>, ResizeArray<Webmidi.Note>> * ?options: OutputChannel.sendNoteOff.options -> Webmidi.OutputChannel
+        /// <summary>
         /// Sends a **note off** message for the specified MIDI note number. The first parameter is the
         /// note to stop. It can be a single value or an array of the following valid values:
         ///
@@ -7598,6 +10042,31 @@ module Webmidi =
         /// Returns the <c>Output</c> object so methods can be chained.
         /// </returns>
         abstract member stopNote: note: ResizeArray<string> * ?options: OutputChannel.stopNote.options -> Webmidi.Output
+        /// <summary>
+        /// Sends a **note off** message for the specified MIDI note number. The first parameter is the
+        /// note to stop. It can be a single value or an array of the following valid values:
+        ///
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note identifier (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///  - A [<c>Note</c>](Note) object
+        ///
+        /// The execution of the **note off** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to stop. The notes can be
+        /// specified by using a MIDI note number (<c>0</c> - <c>127</c>), a note identifier (e.g. <c>C3</c>, <c>G#4</c>, <c>F-1</c>,
+        /// <c>Db7</c>) or an array of the previous types. When using a note identifier, octave range must be
+        /// between <c>-1</c> and <c>9</c>. The lowest note is <c>C-1</c> (MIDI note number <c>0</c>) and the highest note is
+        /// <c>G9</c> (MIDI note number <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>Output</c> object so methods can be chained.
+        /// </returns>
+        abstract member stopNote: note: U6<float, Webmidi.Note, string, ResizeArray<float>, ResizeArray<Webmidi.Note>, ResizeArray<string>> * ?options: OutputChannel.stopNote.options -> Webmidi.Output
         /// <summary>
         /// Sends a **note on** message for the specified note(s) on the channel. The first parameter is
         /// the note. It can be a single value or an array of the following valid values:
@@ -7809,6 +10278,41 @@ module Webmidi =
         /// </returns>
         abstract member sendNoteOn: note: ResizeArray<Webmidi.Note> * ?options: OutputChannel.sendNoteOn.options -> Webmidi.OutputChannel
         /// <summary>
+        /// Sends a **note on** message for the specified note(s) on the channel. The first parameter is
+        /// the note. It can be a single value or an array of the following valid values:
+        ///
+        ///  - A [<c>Note</c>]<see href="Note">Note</see> object
+        ///  - A MIDI note number (integer between <c>0</c> and <c>127</c>)
+        ///  - A note identifier (e.g. <c>"C3"</c>, <c>"G#4"</c>, <c>"F-1"</c>, <c>"Db7"</c>)
+        ///
+        ///  When passing a [<c>Note</c>]<see href="Note">Note</see>object or a note name, the <c>octaveOffset</c> will be applied.
+        ///  This is not the case when using a note number. In this case, we assume you know exactly which
+        ///  MIDI note number should be sent out.
+        ///
+        /// The execution of the **note on** command can be delayed by using the <c>time</c> property of the
+        /// <c>options</c> parameter.
+        ///
+        /// When using [<c>Note</c>]<see href="Note">Note</see> objects, the attack velocity defined in the
+        /// [<c>Note</c>]<see href="Note">Note</see> objects has precedence over the one specified via the method's <c>options</c>
+        /// parameter. Also, the <c>duration</c> is ignored. If you want to also send a **note off** message,
+        /// use the [<c>playNote()</c>]<see href="#playNote">#playNote</see> method instead.
+        ///
+        /// **Note**: As per the MIDI standard, a **note on** message with an attack velocity of <c>0</c> is
+        /// functionally equivalent to a **note off** message.
+        /// </summary>
+        /// <param name="note">
+        /// The note(s) to play. The notes can be
+        /// specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+        /// [<c>Note</c>]<see href="Note">Note</see> object or an array of the previous types.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendNoteOn: note: U6<float, string, Webmidi.Note, ResizeArray<float>, ResizeArray<string>, ResizeArray<Webmidi.Note>> * ?options: OutputChannel.sendNoteOn.options -> Webmidi.OutputChannel
+        /// <summary>
         /// Sends a MIDI **channel mode** message. The channel mode message to send can be specified
         /// numerically or by using one of the following common names:
         ///
@@ -7880,6 +10384,42 @@ module Webmidi =
         /// Returns the <c>OutputChannel</c> object so methods can be chained.
         /// </returns>
         abstract member sendChannelMode: command: string * ?value: float * ?options: OutputChannel.sendChannelMode.options -> Webmidi.OutputChannel
+        /// <summary>
+        /// Sends a MIDI **channel mode** message. The channel mode message to send can be specified
+        /// numerically or by using one of the following common names:
+        ///
+        /// |  Type                |Number| Shortcut Method                                               |
+        /// | ---------------------|------|-------------------------------------------------------------- |
+        /// | <c>allsoundoff</c>        | 120  | [<c>sendAllSoundOff()</c>]<see href="#sendAllSoundOff">#sendAllSoundOff</see>                 |
+        /// | <c>resetallcontrollers</c>| 121  | [<c>sendResetAllControllers()</c>]<see href="#sendResetAllControllers">#sendResetAllControllers</see> |
+        /// | <c>localcontrol</c>       | 122  | [<c>sendLocalControl()</c>]<see href="#sendLocalControl">#sendLocalControl</see>               |
+        /// | <c>allnotesoff</c>        | 123  | [<c>sendAllNotesOff()</c>]<see href="#sendAllNotesOff">#sendAllNotesOff</see>                 |
+        /// | <c>omnimodeoff</c>        | 124  | [<c>sendOmniMode(false)</c>]<see href="#sendOmniMode">#sendOmniMode</see>                  |
+        /// | <c>omnimodeon</c>         | 125  | [<c>sendOmniMode(true)</c>]<see href="#sendOmniMode">#sendOmniMode</see>                   |
+        /// | <c>monomodeon</c>         | 126  | [<c>sendPolyphonicMode("mono")</c>]<see href="#sendPolyphonicMode">#sendPolyphonicMode</see>     |
+        /// | <c>polymodeon</c>         | 127  | [<c>sendPolyphonicMode("poly")</c>]<see href="#sendPolyphonicMode">#sendPolyphonicMode</see>     |
+        ///
+        /// **Note**: as you can see above, to make it easier, all channel mode messages also have a matching
+        /// helper method.
+        ///
+        /// It should be noted that, per the MIDI specification, only <c>localcontrol</c> and <c>monomodeon</c> may
+        /// require a value that's not zero. For that reason, the <c>value</c> parameter is optional and
+        /// defaults to 0.
+        /// </summary>
+        /// <param name="command">
+        /// The numerical identifier of the channel mode message (integer
+        /// between <c>120</c> and <c>127</c>) or its name as a string.
+        /// </param>
+        /// <param name="value">
+        /// The value to send (integer between <c>0</c> - <c>127</c>).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Returns the <c>OutputChannel</c> object so methods can be chained.
+        /// </returns>
+        abstract member sendChannelMode: command: U2<float, string> * ?value: float * ?options: OutputChannel.sendChannelMode.options -> Webmidi.OutputChannel
         /// <summary>
         /// Sets OMNI mode to <c>"on"</c> or <c>"off"</c>. MIDI's OMNI mode causes the instrument to respond to
         /// messages from all channels.
@@ -9067,6 +11607,27 @@ Utilities.getNoteDetails($0)""")>]
 Utilities.getNoteDetails($0)""")>]
         static member inline getNoteDetails (value: float): Utilities.getNoteDetails__ = nativeOnly
         /// <summary>
+        /// Given a proper note identifier (<c>C#4</c>, <c>Gb-1</c>, etc.) or a valid MIDI note number (0-127), this
+        /// method returns an object containing broken down details about the specified note (uppercase
+        /// letter, accidental and octave).
+        ///
+        /// When a number is specified, the translation to note is done using a value of 60 for middle C
+        /// (C4 = middle C).
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// TypeError Invalid note identifier
+        /// </remarks>
+        /// <param name="value">
+        /// A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
+        /// number (0-127).
+        /// </param>
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.getNoteDetails($0)""")>]
+        static member inline getNoteDetails (value: U2<string, float>): Utilities.getNoteDetails__ = nativeOnly
+        /// <summary>
         /// Returns the name of the first property of the supplied object whose value is equal to the one
         /// supplied. If nothing is found, <c>undefined</c> is returned.
         /// </summary>
@@ -9129,6 +11690,29 @@ Utilities.guessNoteNumber($0, $1)""")>]
         [<Emit("""import { Utilities } from "webmidi";
 Utilities.guessNoteNumber($0, $1)""")>]
         static member inline guessNoteNumber (input: float, octaveOffset: float): U2<float, bool> = nativeOnly
+        /// <summary>
+        /// Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
+        /// string containing a note identifier (<c>"C3"</c>, <c>"F#4"</c>, <c>"D-2"</c>, <c>"G8"</c>, etc.). If an integer
+        /// between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings
+        /// will be parsed for integer value, if possible.
+        ///
+        /// If the input is an identifier, the resulting note number is offset by the <c>octaveOffset</c>
+        /// parameter. For example, if you pass in "C4" (note number 60) and the <c>octaveOffset</c> value is
+        /// -2, the resulting MIDI note number will be 36.
+        /// </summary>
+        /// <param name="input">
+        /// A string or number to extract the MIDI note number from.
+        /// </param>
+        /// <param name="octaveOffset">
+        /// An integer to offset the octave by
+        /// </param>
+        /// <returns>
+        /// A valid MIDI note number (0-127) or <c>false</c> if the input could not
+        /// successfully be parsed to a note number.
+        /// </returns>
+        [<Emit("""import { Utilities } from "webmidi";
+Utilities.guessNoteNumber($0, $1)""")>]
+        static member inline guessNoteNumber (input: U2<string, float>, octaveOffset: float): U2<float, bool> = nativeOnly
         /// <summary>
         /// Indicates whether the execution environment is Node.js (<c>true</c>) or not (<c>false</c>)
         /// </summary>
@@ -9336,7 +11920,6 @@ Utilities.toTimestamp($0)""")>]
     [<AllowNullLiteral>]
     [<Interface>]
     type WebMidi =
-        inherit Webmidi.EventEmitter
         /// <summary>
         /// Object containing system-wide default values that can be changed to customize how the library
         /// works.
@@ -9402,6 +11985,28 @@ Utilities.toTimestamp($0)""")>]
         /// </returns>
         abstract member addListener<'T>: e: Webmidi.WebMidiEventMap.Key<'T> * listener: 'T * ?options: WebMidi.addListener.options -> Webmidi.Listener
         /// <summary>
+        /// Adds an event listener that will trigger a function callback when the specified event is
+        /// dispatched.
+        ///
+        /// Here are the events you can listen to:   connected, disabled, disconnected, enabled,
+        /// midiaccessgranted, portschanged, error
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The listener object that was created
+        /// </returns>
+        abstract member addListener<'T>: e: U2<obj, Webmidi.WebMidiEventMap.Key<'T>> * listener: 'T * ?options: WebMidi.addListener.options -> Webmidi.Listener
+        /// <summary>
         /// Adds a one-time event listener that will trigger a function callback when the specified event
         /// is dispatched.
         ///
@@ -9445,6 +12050,28 @@ Utilities.toTimestamp($0)""")>]
         /// The listener object that was created
         /// </returns>
         abstract member addOneTimeListener<'T>: e: Webmidi.WebMidiEventMap.Key<'T> * listener: 'T * ?options: WebMidi.addOneTimeListener.options -> Webmidi.Listener
+        /// <summary>
+        /// Adds a one-time event listener that will trigger a function callback when the specified event
+        /// is dispatched.
+        ///
+        /// Here are the events you can listen to:   connected, disabled, disconnected, enabled,
+        /// midiaccessgranted, portschanged, error
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// A callback function to execute when the specified event
+        /// is detected. This function will receive an event parameter object. For details on this object's
+        /// properties, check out the documentation for the various events (links above).
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// The listener object that was created
+        /// </returns>
+        abstract member addOneTimeListener<'T>: e: U2<obj, Webmidi.WebMidiEventMap.Key<'T>> * listener: 'T * ?options: WebMidi.addOneTimeListener.options -> Webmidi.Listener
         /// <summary>
         /// Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
         /// [<c>Input</c>](Input) and [<c>Output</c>](Output) objects that may have been opened. This also means that
@@ -9655,6 +12282,24 @@ Utilities.toTimestamp($0)""")>]
         /// </returns>
         abstract member hasListener<'T>: e: Webmidi.WebMidiEventMap.Key<'T> * listener: 'T -> bool
         /// <summary>
+        /// Checks if the specified event type is already defined to trigger the specified callback
+        /// function.
+        /// </summary>
+        /// <param name="event">
+        /// The type of the event.
+        /// </param>
+        /// <param name="listener">
+        /// The callback function to check for.
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        /// <returns>
+        /// Boolean value indicating whether or not the <c>Input</c> or <c>InputChannel</c>
+        /// already has this listener defined.
+        /// </returns>
+        abstract member hasListener<'T>: e: U2<obj, Webmidi.WebMidiEventMap.Key<'T>> * listener: 'T -> bool
+        /// <summary>
         /// Removes the specified listener for the specified event. If no listener is specified, all
         /// listeners for the specified event will be removed.
         /// </summary>
@@ -9760,6 +12405,324 @@ Utilities.toTimestamp($0)""")>]
         /// * <c>iife</c>: Immediately-Invoked Function Expression
         /// </summary>
         abstract member flavour: string with get
+        /// <summary>
+        /// Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
+        /// events occur.
+        /// </summary>
+        static member inline ANY_EVENT
+            with get () : obj =
+                nativeOnly
+        /// <summary>
+        /// An object containing a property for each event with at least one registered listener. Each
+        /// event property contains an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered
+        /// for the event.
+        /// </summary>
+        abstract member eventMap: obj with get, set
+        /// <summary>
+        /// Whether or not the execution of callbacks is currently suspended for this emitter.
+        /// </summary>
+        abstract member eventsSuspended: bool with get, set
+        /// <summary>
+        /// An array of all the unique event names for which the emitter has at least one registered
+        /// listener.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventNames: ResizeArray<string> with get
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: string -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: obj -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Returns an array of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects that have been registered for
+        /// a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) are not returned for "regular"
+        /// events. To get the list of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event to get listeners for.
+        /// </param>
+        /// <returns>
+        /// An array of [<c>Listener</c>]<see href="Listener">Listener</see> objects.
+        /// </returns>
+        abstract member getListeners: event: U2<string, obj> -> ResizeArray<Webmidi.Listener>
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: string -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: obj -> unit
+        /// <summary>
+        /// Suspends execution of all callbacks functions registered for the specified event type.
+        ///
+        /// You can suspend execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>suspendEvent()</c>. Beware that this
+        /// will not suspend all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem counter-intuitive
+        /// at first glance, it allows the selective suspension of global listeners while leaving other
+        /// listeners alone. If you truly want to suspends all callbacks for a specific
+        /// [<c>EventEmitter</c>]<see href="EventEmitter">EventEmitter</see>, simply set its <c>eventsSuspended</c> property to <c>true</c>.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to suspend
+        /// execution of all callback functions.
+        /// </param>
+        abstract member suspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: string -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: obj -> unit
+        /// <summary>
+        /// Resumes execution of all suspended callback functions registered for the specified event type.
+        ///
+        /// You can resume execution of callbacks registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> by passing
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> to <c>unsuspendEvent()</c>. Beware that
+        /// this will not resume all callbacks but only those registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>. While this may seem
+        /// counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+        /// callbacks alone.
+        /// </summary>
+        /// <param name="event">
+        /// The event name (or <c>EventEmitter.ANY_EVENT</c>) for which to resume
+        /// execution of all callback functions.
+        /// </param>
+        abstract member unsuspendEvent: event: U2<string, obj> -> unit
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: string -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: obj -> float
+        /// <summary>
+        /// Returns the number of listeners registered for a specific event.
+        ///
+        /// Please note that global events (those added with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>) do not count towards the remaining
+        /// number for a "regular" event. To get the number of global listeners, specifically use
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> as the parameter.
+        /// </summary>
+        /// <param name="event">
+        /// The event which is usually a string but can also be the special
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> symbol.
+        /// </param>
+        /// <returns>
+        /// An integer representing the number of listeners registered for the specified
+        /// event.
+        /// </returns>
+        abstract member getListenerCount: event: U2<string, obj> -> float
+        /// <summary>
+        /// Executes the callback function of all the [<c>Listener</c>]<see href="Listener">Listener</see> objects registered for
+        /// a given event. The callback functions are passed the additional arguments passed to <c>emit()</c>
+        /// (if any) followed by the arguments present in the [<c>arguments</c>](Listener#arguments) property of
+        /// the [<c>Listener</c>](Listener) object (if any).
+        ///
+        /// If the [<c>eventsSuspended</c>]<see href="#eventsSuspended">#eventsSuspended</see> property is <c>true</c> or the
+        /// [<c>Listener.suspended</c>]<see href="Listener#suspended">Listener#suspended</see> property is <c>true</c>, the callback functions
+        /// will not be executed.
+        ///
+        /// This function returns an array containing the return values of each of the callbacks.
+        ///
+        /// It should be noted that the regular listeners are triggered first followed by the global
+        /// listeners (those added with [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see>).
+        /// </summary>
+        /// <remarks>
+        /// Throws:
+        /// -------
+        ///
+        /// The <c>event</c> parameter must be a string.
+        /// </remarks>
+        /// <param name="event">
+        /// The event
+        /// </param>
+        /// <param name="args">
+        /// Arbitrary number of arguments to pass along to the callback functions
+        /// </param>
+        /// <returns>
+        /// An array containing the return value of each of the executed listener
+        /// functions.
+        /// </returns>
+        abstract member emit: event: string * [<ParamArray>] args: obj [] -> ResizeArray<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: string * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: obj * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The <c>waitFor()</c> method is an async function which returns a promise. The promise is fulfilled
+        /// when the specified event occurs. The event can be a regular event or
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> (if you want to resolve as soon as any
+        /// event is emitted).
+        ///
+        /// If the <c>duration</c> option is set, the promise will only be fulfilled if the event is emitted
+        /// within the specified duration. If the event has not been fulfilled after the specified
+        /// duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+        /// after a certain time if the event is not triggered.
+        /// </summary>
+        /// <param name="event">
+        /// The event to wait for
+        /// </param>
+        /// <param name="options">
+        ///
+        /// </param>
+        abstract member waitFor: event: U2<string, obj> * ?options: EventEmitter.waitFor.options -> JS.Promise<obj>
+        /// <summary>
+        /// The number of unique events that have registered listeners.
+        ///
+        /// Note: this excludes global events registered with
+        /// [<c>EventEmitter.ANY_EVENT</c>]<see href="EventEmitter#ANY_EVENT">EventEmitter#ANY_EVENT</see> because they are not tied to a
+        /// specific event.
+        /// </summary>
+        abstract member eventCount: float with get
 
     type EventEmitterCallback =
         delegate of [<ParamArray>] args: obj [] -> unit
