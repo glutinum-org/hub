@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-animejs",
+    "private": true,
+    "description": "The declaration package Glutinum.Animejs is generated from",
+    "devDependencies": {
+        "animejs": "4.5.0"
+    }
+}
