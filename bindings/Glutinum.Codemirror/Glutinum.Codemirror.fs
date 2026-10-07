@@ -774,6 +774,12 @@ EditorSelection.undirectionalRange($0, $1)""")>]
         /// situation.)
         /// </summary>
         abstract member enables: U2<CodemirrorState.Extension, (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension)> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?combine: (ResizeArray<'Input> -> 'Output), ?compare: FacetConfig.compare<'Output>, ?compareInput: FacetConfig.compareInput<'Input>, ?``static``: bool) : FacetConfig<'Input, 'Output> = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (enables: CodemirrorState.Extension, ?combine: (ResizeArray<'Input> -> 'Output), ?compare: FacetConfig.compare<'Output>, ?compareInput: FacetConfig.compareInput<'Input>, ?``static``: bool) : FacetConfig<'Input, 'Output> = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (enables: (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension), ?combine: (ResizeArray<'Input> -> 'Output), ?compare: FacetConfig.compare<'Output>, ?compareInput: FacetConfig.compareInput<'Input>, ?``static``: bool) : FacetConfig<'Input, 'Output> = nativeOnly
 
     /// <summary>
     /// A facet is a labeled value that is associated with an editor
@@ -855,6 +861,8 @@ Facet.define($0)""")>]
         /// object.
         /// </summary>
         abstract member tag: 'Output with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (tag: 'Output) : FacetReader<'Output> = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<Erase(CaseRules.None)>]
@@ -915,6 +923,8 @@ Facet.define($0)""")>]
         /// field's content.
         /// </summary>
         abstract member fromJSON: StateFieldSpec.fromJSON<'Value> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (create: (CodemirrorState.EditorState -> 'Value), update: StateFieldSpec.update<'Value>, ?compare: StateFieldSpec.compare<'Value>, ?provide: (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension), ?toJSON: StateFieldSpec.toJSON<'Value>, ?fromJSON: StateFieldSpec.fromJSON<'Value>) : StateFieldSpec<'Value> = nativeOnly
 
     /// <summary>
     /// Fields can store additional information in an editor state, and
@@ -1206,6 +1216,8 @@ StateEffect.appendConfig{{=$0}}""")>]
         /// document created by the specs before it instead.
         /// </summary>
         abstract member sequential: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?changes: CodemirrorState.ChangeSpec, ?selection: U2<CodemirrorState.EditorSelection, TransactionSpec.selection.U2.Case2>, ?effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>>, ?annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>>, ?userEvent: string, ?scrollIntoView: bool, ?filter: bool, ?sequential: bool) : TransactionSpec = nativeOnly
 
     /// <summary>
     /// Changes to the editor state are grouped into transactions.
@@ -1936,6 +1948,8 @@ EditorState.transactionExtender{{=$0}}""")>]
         /// The end position to apply the filter to.
         /// </summary>
         abstract member filterTo: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?add: ReadonlyArray<CodemirrorState.Range<'T>>, ?sort: bool, ?filter: RangeSetUpdate.filter<'T>, ?filterFrom: float, ?filterTo: float) : RangeSetUpdate<'T> = nativeOnly
 
     /// <summary>
     /// A range set stores a collection of [ranges](https://codemirror.net/6/docs/ref/#state.Range) in a
@@ -3628,6 +3642,8 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// trigger <c>update</c>, which schedules another <c>get</c> in response).
         /// </summary>
         abstract member update: (CodemirrorView.ViewUpdate -> U2<bool, unit>) with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (get: MouseSelectionStyle.get, update: (CodemirrorView.ViewUpdate -> U2<bool, unit>)) : MouseSelectionStyle = nativeOnly
 
     type MakeSelectionStyle =
         delegate of view: CodemirrorView.EditorView * event: Glutinum.Web.MouseEvent -> CodemirrorView.MouseSelectionStyle option
@@ -4716,6 +4732,8 @@ EditorView.findFromDOM($0)""")>]
         /// [<c>preventDefault</c>](https://codemirror.net/6/docs/ref/#view.KeyBinding.preventDefault)).
         /// </summary>
         abstract member stopPropagation: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?key: string, ?mac: string, ?win: string, ?linux: string, ?run: CodemirrorView.Command, ?shift: CodemirrorView.Command, ?any: KeyBinding.any, ?scope: string, ?preventDefault: bool, ?stopPropagation: bool) : KeyBinding = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]

@@ -148,6 +148,8 @@ module Express =
         [<Interface>]
         type CookieOptions =
             inherit ExpressServeStaticCore.CookieOptions
+            [<ParamObject; Emit("$0")>]
+            static member Create (?maxAge: float, ?signed: bool, ?expires: Date, ?httpOnly: bool, ?path: string, ?domain: string, ?secure: bool, ?encode: (string -> string), ?sameSite: CookieOptions.sameSite, ?priority: CookieOptions.priority, ?partitioned: bool) : CookieOptions = nativeOnly
 
         type Errback =
             ExpressServeStaticCore.Errback
@@ -167,6 +169,8 @@ module Express =
         [<Interface>]
         type IRoute =
             inherit ExpressServeStaticCore.IRoute
+            [<ParamObject; Emit("$0")>]
+            static member Create (path: string, stack: ResizeArray<ExpressServeStaticCore.ILayer>, all: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, get: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, post: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, put: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, delete: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, patch: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, options: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, head: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, checkout: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, copy: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, lock: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, merge: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, mkactivity: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, mkcol: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, move: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, ``m-search``: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, notify: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, purge: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, report: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, search: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, subscribe: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, trace: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, unlock: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>, unsubscribe: ExpressServeStaticCore.IRouterHandler<ExpressServeStaticCore.IRoute<string>, string>) : IRoute = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -187,6 +191,8 @@ module Express =
         [<Interface>]
         type MediaType =
             inherit ExpressServeStaticCore.MediaType
+            [<ParamObject; Emit("$0")>]
+            static member Create (value: string, quality: float, ``type``: string, subtype: string) : MediaType = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -272,6 +278,24 @@ module Express =
 
         type Response =
             Response<obj, obj>
+
+        module CookieOptions =
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type sameSite =
+                | [<CompiledValue(true)>] True
+                | [<CompiledValue(false)>] False
+                | lax
+                | strict
+                | none
+
+            [<RequireQualifiedAccess>]
+            [<StringEnum(CaseRules.None)>]
+            type priority =
+                | low
+                | medium
+                | high
 
     type RouterOptions =
         e_.RouterOptions
@@ -718,6 +742,8 @@ module Connect =
         type ServerStackItem =
             abstract member route: string with get, set
             abstract member handle: Connect.createServer_.ServerHandle with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (route: string, handle: Connect.createServer_.ServerHandle) : ServerStackItem = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -1853,6 +1879,8 @@ module ExpressServeStaticCore =
         abstract member ``method``: string with get, set
         abstract member regexp: RegExp with get, set
         abstract member handle: ILayer.handle with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (name: ILayer.name, keys: ResizeArray<string>, ``method``: string, regexp: RegExp, handle: ILayer.handle, ?route: ExpressServeStaticCore.IRoute, ?``params``: obj, ?path: string) : ILayer = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1955,6 +1983,8 @@ module ExpressServeStaticCore =
         abstract member unsubscribe: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<ExpressServeStaticCore.ParamsDictionary> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandler<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
         abstract member unsubscribe<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj>: [<ParamArray>] handlers: ExpressServeStaticCore.RequestHandlerParams<'P, 'ResBody, 'ReqBody, 'ReqQuery, 'LocalsObj> [] -> ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>
+        [<ParamObject; Emit("$0")>]
+        static member Create (path: string, stack: ResizeArray<ExpressServeStaticCore.ILayer>, all: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, get: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, post: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, put: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, delete: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, patch: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, options: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, head: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, checkout: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, copy: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, lock: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, merge: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, mkactivity: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, mkcol: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, move: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, ``m-search``: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, notify: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, purge: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, report: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, search: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, subscribe: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, trace: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, unlock: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>, unsubscribe: ExpressServeStaticCore.IRouterHandler<IRoute<'Route>, 'Route>) : IRoute<'Route> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2022,6 +2052,8 @@ module ExpressServeStaticCore =
     type ByteRange =
         abstract member start: float with get, set
         abstract member ``end``: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (start: float, ``end``: float) : ByteRange = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2505,6 +2537,8 @@ module ExpressServeStaticCore =
         abstract member quality: float with get, set
         abstract member ``type``: string with get, set
         abstract member subtype: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (value: string, quality: float, ``type``: string, subtype: string) : MediaType = nativeOnly
 
     type Send<'ResBody, 'T> =
         delegate of ?body: 'ResBody -> 'T
@@ -4028,6 +4062,12 @@ module Qs =
             abstract member charsetSentinel: bool option with get, set
             abstract member allowEmptyArrays: bool option with get, set
             abstract member commaRoundTrip: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?delimiter: string, ?strictNullHandling: bool, ?skipNulls: bool, ?encode: bool, ?encoder: IStringifyBaseOptions.encoder, ?arrayFormat: IStringifyBaseOptions.arrayFormat, ?indices: bool, ?sort: IStringifyBaseOptions.sort, ?serializeDate: (Date -> string), ?format: IStringifyBaseOptions.format, ?encodeValuesOnly: bool, ?addQueryPrefix: bool, ?charset: IStringifyBaseOptions.charset, ?charsetSentinel: bool, ?allowEmptyArrays: bool, ?commaRoundTrip: bool) : IStringifyBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (filter: ResizeArray<U2<string, float>>, ?delimiter: string, ?strictNullHandling: bool, ?skipNulls: bool, ?encode: bool, ?encoder: IStringifyBaseOptions.encoder, ?arrayFormat: IStringifyBaseOptions.arrayFormat, ?indices: bool, ?sort: IStringifyBaseOptions.sort, ?serializeDate: (Date -> string), ?format: IStringifyBaseOptions.format, ?encodeValuesOnly: bool, ?addQueryPrefix: bool, ?charset: IStringifyBaseOptions.charset, ?charsetSentinel: bool, ?allowEmptyArrays: bool, ?commaRoundTrip: bool) : IStringifyBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (filter: IStringifyBaseOptions.filter.U2.Case2, ?delimiter: string, ?strictNullHandling: bool, ?skipNulls: bool, ?encode: bool, ?encoder: IStringifyBaseOptions.encoder, ?arrayFormat: IStringifyBaseOptions.arrayFormat, ?indices: bool, ?sort: IStringifyBaseOptions.sort, ?serializeDate: (Date -> string), ?format: IStringifyBaseOptions.format, ?encodeValuesOnly: bool, ?addQueryPrefix: bool, ?charset: IStringifyBaseOptions.charset, ?charsetSentinel: bool, ?allowEmptyArrays: bool, ?commaRoundTrip: bool) : IStringifyBaseOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4080,6 +4120,24 @@ module Qs =
             abstract member strictDepth: bool option with get, set
             abstract member strictMerge: bool option with get, set
             abstract member throwOnLimitExceeded: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (depth: float, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (depth: bool, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (delimiter: string, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (delimiter: string, depth: float, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (delimiter: string, depth: bool, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (delimiter: RegExp, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (delimiter: RegExp, depth: float, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (delimiter: RegExp, depth: bool, ?comma: bool, ?decoder: IParseBaseOptions.decoder, ?arrayLimit: float, ?parseArrays: bool, ?plainObjects: bool, ?allowPrototypes: bool, ?allowSparse: bool, ?parameterLimit: float, ?strictNullHandling: bool, ?ignoreQueryPrefix: bool, ?charset: IParseBaseOptions.charset, ?charsetSentinel: bool, ?interpretNumericEntities: bool, ?allowEmptyArrays: bool, ?duplicates: IParseBaseOptions.duplicates, ?strictDepth: bool, ?strictMerge: bool, ?throwOnLimitExceeded: bool) : IParseBaseOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4375,6 +4433,8 @@ module RangeParser =
         type Range =
             abstract member start: float with get, set
             abstract member ``end``: float with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (start: float, ``end``: float) : Range = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]

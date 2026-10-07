@@ -553,6 +553,8 @@ Element.defaultRoutes{{=$0}}""")>]
         abstract member innerRadius: float with get, set
         abstract member outerRadius: float with get, set
         abstract member circumference: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (startAngle: float, endAngle: float, innerRadius: float, outerRadius: float, circumference: float, ?x: float, ?y: float) : ArcProps = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -709,6 +711,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member common: bool with get, set
         abstract member size: float with get, set
         abstract member steps: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (common: bool, size: float, ?steps: float) : Interval = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -717,6 +721,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member numSteps: float with get, set
         abstract member initial: bool with get, set
         abstract member currentStep: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (chart: ChartJs.dist.types.Chart, numSteps: float, initial: bool, currentStep: float) : AnimationEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -790,6 +796,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member w: float with get, set
         abstract member h: float with get, set
         abstract member radius: ChartJs.CornerRadius option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (x: float, y: float, w: float, h: float, ?radius: ChartJs.CornerRadius) : RoundedRect = nativeOnly
 
     type Padding =
         U3<Padding.U3.Case1, float, ChartJs.Point>
@@ -819,6 +827,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member mode: string with get, set
         abstract member parsed: obj with get, set
         abstract member raw: obj with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (active: bool, chart: ChartJs.dist.types.Chart, dataIndex: float, dataset: obj, datasetIndex: float, ``type``: string, mode: string, parsed: obj, raw: obj) : ScriptableContext<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -829,6 +839,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member p0DataIndex: float with get, set
         abstract member p1DataIndex: float with get, set
         abstract member datasetIndex: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, p0: ChartJs.PointElement, p1: ChartJs.PointElement, p0DataIndex: float, p1DataIndex: float, datasetIndex: float) : ScriptableLineSegmentContext = nativeOnly
 
     type Scriptable<'T, 'TContext> =
         U2<'T, Scriptable.U2.Case2<'T, 'TContext>>
@@ -862,6 +874,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Chart.js is fastest if you provide data with indices that are unique, sorted, and consistent across datasets and provide the normalized: true option to let Chart.js know that you have done so.
         /// </summary>
         abstract member normalized: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: ParsingOptions.parsing.U2.Case1, normalized: bool) : ParsingOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: bool, normalized: bool) : ParsingOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -891,6 +907,18 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Configures the visibility state of the dataset. Set it to true, to hide the dataset from the chart.
         /// </summary>
         abstract member hidden: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: ParsingOptions.parsing.U2.Case1, normalized: bool, indexAxis: ControllerDatasetOptions.indexAxis, clip: float, label: string, order: float, stack: string, hidden: bool) : ControllerDatasetOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: ParsingOptions.parsing.U2.Case1, normalized: bool, indexAxis: ControllerDatasetOptions.indexAxis, clip: ChartJs.ChartArea, label: string, order: float, stack: string, hidden: bool) : ControllerDatasetOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: ParsingOptions.parsing.U2.Case1, normalized: bool, indexAxis: ControllerDatasetOptions.indexAxis, clip: bool, label: string, order: float, stack: string, hidden: bool) : ControllerDatasetOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: bool, normalized: bool, indexAxis: ControllerDatasetOptions.indexAxis, clip: float, label: string, order: float, stack: string, hidden: bool) : ControllerDatasetOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: bool, normalized: bool, indexAxis: ControllerDatasetOptions.indexAxis, clip: ChartJs.ChartArea, label: string, order: float, stack: string, hidden: bool) : ControllerDatasetOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parsing: bool, normalized: bool, indexAxis: ControllerDatasetOptions.indexAxis, clip: bool, label: string, order: float, stack: string, hidden: bool) : ControllerDatasetOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -943,6 +971,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Should null or undefined values be omitted from drawing
         /// </summary>
         abstract member skipNull: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?skipNull: bool) : BarControllerChartOptions = nativeOnly
 
     type BarController =
         ChartJs.DatasetController
@@ -970,6 +1000,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Bubble radius in pixels (not scaled).
         /// </summary>
         abstract member r: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?x: float, ?y: float, ?r: float) : BubbleDataPoint = nativeOnly
 
     type BubbleController =
         ChartJs.DatasetController
@@ -1010,6 +1042,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// If false, the lines between points are not drawn.
         /// </summary>
         abstract member showLine: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (spanGaps: bool, showLine: bool) : LineControllerChartOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (spanGaps: float, showLine: bool) : LineControllerChartOptions = nativeOnly
 
     type LineController =
         ChartJs.DatasetController
@@ -1097,6 +1133,14 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// </summary>
         abstract member spacing: float with get, set
         abstract member animation: U2<bool, ChartJs.DoughnutAnimationOptions> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (circumference: float, cutout: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, offset: float, radius: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, rotation: float, spacing: float, animation: bool) : DoughnutControllerChartOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (circumference: float, cutout: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, offset: float, radius: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, rotation: float, spacing: float, animation: ChartJs.DoughnutAnimationOptions) : DoughnutControllerChartOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (circumference: float, cutout: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, offset: ResizeArray<float>, radius: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, rotation: float, spacing: float, animation: bool) : DoughnutControllerChartOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (circumference: float, cutout: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, offset: ResizeArray<float>, radius: ChartJs.Scriptable<U2<float, string>, ChartJs.ScriptableContext<string>>, rotation: float, spacing: float, animation: ChartJs.DoughnutAnimationOptions) : DoughnutControllerChartOptions = nativeOnly
 
     type DoughnutDataPoint =
         float
@@ -1116,6 +1160,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
     [<Interface>]
     type DoughnutMetaExtensions =
         abstract member total: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (total: float) : DoughnutMetaExtensions = nativeOnly
 
     type PieControllerDatasetOptions =
         ChartJs.DoughnutControllerDatasetOptions
@@ -1155,6 +1201,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// </summary>
         abstract member startAngle: float with get, set
         abstract member animation: U2<bool, ChartJs.PolarAreaAnimationOptions> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (startAngle: float, animation: bool) : PolarAreaControllerChartOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (startAngle: float, animation: ChartJs.PolarAreaAnimationOptions) : PolarAreaControllerChartOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1202,12 +1252,16 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type ActiveDataPoint =
         abstract member datasetIndex: float with get, set
         abstract member index: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (datasetIndex: float, index: float) : ActiveDataPoint = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type ActiveElement =
         inherit ChartJs.ActiveDataPoint
         abstract member element: ChartJs.Element with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (datasetIndex: float, index: float, element: ChartJs.Element) : ActiveElement = nativeOnly
 
     type ChartItem =
         U5<string, Glutinum.Web.CanvasRenderingContext2D, Glutinum.Web.HTMLCanvasElement, ChartItem.U5.Case4, obj>
@@ -1339,6 +1393,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member element: ChartJs.Element with get, set
         abstract member datasetIndex: float with get, set
         abstract member index: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (element: ChartJs.Element, datasetIndex: float, index: float) : InteractionItem = nativeOnly
 
     type InteractionModeFunction =
         delegate of chart: ChartJs.dist.types.Chart * e: ChartJs.ChartEvent * options: ChartJs.InteractionOptions * ?useFinalPosition: bool -> ResizeArray<ChartJs.InteractionItem>
@@ -1373,6 +1429,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// y mode returns the elements that hit-test at the current y coordinate
         /// </summary>
         abstract member y: chart: ChartJs.dist.types.Chart * e: ChartJs.ChartEvent * options: ChartJs.InteractionOptions * ?useFinalPosition: bool -> ResizeArray<ChartJs.InteractionItem>
+        [<ParamObject; Emit("$0")>]
+        static member Create (index: ChartJs.InteractionModeFunction, dataset: ChartJs.InteractionModeFunction, point: ChartJs.InteractionModeFunction, nearest: ChartJs.InteractionModeFunction, x: ChartJs.InteractionModeFunction, y: ChartJs.InteractionModeFunction) : InteractionModeMap = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -2027,6 +2085,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member index: float with get, set
         abstract member label: string with get, set
         abstract member ``type``: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (chart: ChartJs.dist.types.Chart, scale: ChartJs.Scale, index: float, label: string, ``type``: string) : ScriptableScalePointLabelContext = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2121,6 +2181,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member font: ChartJs.CanvasFontSpec with get, set
         abstract member textOffset: float with get, set
         abstract member options: ChartJs.RenderTextOpts with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (label: string, font: ChartJs.CanvasFontSpec, textOffset: float, options: ChartJs.RenderTextOpts) : LabelItem = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (label: ResizeArray<string>, font: ChartJs.CanvasFontSpec, textOffset: float, options: ChartJs.RenderTextOpts) : LabelItem = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2183,6 +2247,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// if true, the invisible points that are outside of the chart area will also be included when evaluating interactions.
         /// </summary>
         abstract member includeInvisible: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (mode: ChartJs.InteractionMode, intersect: bool, axis: ChartJs.InteractionAxis, includeInvisible: bool) : CoreInteractionOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2285,6 +2351,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// If set to true, the animations loop endlessly.
         /// </summary>
         abstract member loop: ChartJs.Scriptable<bool, ChartJs.ScriptableContext<'TType>> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?duration: ChartJs.Scriptable<float, ChartJs.ScriptableContext<'TType>>, ?easing: ChartJs.Scriptable<ChartJs.EasingFunction, ChartJs.ScriptableContext<'TType>>, ?delay: ChartJs.Scriptable<float, ChartJs.ScriptableContext<'TType>>, ?loop: ChartJs.Scriptable<bool, ChartJs.ScriptableContext<'TType>>) : AnimationSpec<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2297,6 +2365,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type TransitionSpec<'TType> =
         abstract member animation: TransitionSpec.animation<'TType> with get, set
         abstract member animations: ChartJs.AnimationsSpec<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (animation: TransitionSpec.animation<'TType>, animations: ChartJs.AnimationsSpec<'TType>) : TransitionSpec<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2310,6 +2380,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member animation: U2<bool, AnimationOptions.animation.U2.Case2<'TType>> with get, set
         abstract member animations: ChartJs.AnimationsSpec<'TType> with get, set
         abstract member transitions: ChartJs.TransitionsSpec<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (animation: bool, animations: ChartJs.AnimationsSpec<'TType>, transitions: ChartJs.TransitionsSpec<'TType>) : AnimationOptions<'TType> = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (animation: AnimationOptions.animation.U2.Case2<'TType>, animations: ChartJs.AnimationsSpec<'TType>, transitions: ChartJs.TransitionsSpec<'TType>) : AnimationOptions<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2379,6 +2453,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member borderWidth: float with get, set
         abstract member borderColor: ChartJs.Color with get, set
         abstract member backgroundColor: ChartJs.Color with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color) : CommonElementOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2386,6 +2462,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member hoverBorderWidth: float with get, set
         abstract member hoverBorderColor: ChartJs.Color with get, set
         abstract member hoverBackgroundColor: ChartJs.Color with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (hoverBorderWidth: float, hoverBorderColor: ChartJs.Color, hoverBackgroundColor: ChartJs.Color) : CommonHoverOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2403,6 +2481,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member outerEnd: float with get, set
         abstract member innerStart: float with get, set
         abstract member innerEnd: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (outerStart: float, outerEnd: float, innerStart: float, innerEnd: float) : ArcBorderRadius = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2444,6 +2524,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Spacing between arcs
         /// </summary>
         abstract member spacing: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, selfJoin: bool, borderAlign: ArcOptions.borderAlign, borderDash: ResizeArray<float>, borderDashOffset: float, borderJoinStyle: Glutinum.Web.CanvasLineJoin, borderRadius: float, offset: float, circular: bool, spacing: float) : ArcOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, selfJoin: bool, borderAlign: ArcOptions.borderAlign, borderDash: ResizeArray<float>, borderDashOffset: float, borderJoinStyle: Glutinum.Web.CanvasLineJoin, borderRadius: ChartJs.ArcBorderRadius, offset: float, circular: bool, spacing: float) : ArcOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2452,11 +2536,15 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member hoverBorderDash: ResizeArray<float> with get, set
         abstract member hoverBorderDashOffset: float with get, set
         abstract member hoverOffset: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (hoverBorderWidth: float, hoverBorderColor: ChartJs.Color, hoverBackgroundColor: ChartJs.Color, hoverBorderDash: ResizeArray<float>, hoverBorderDashOffset: float, hoverOffset: float) : ArcHoverOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type LineProps =
         abstract member points: ResizeArray<ChartJs.Point> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (points: ResizeArray<ChartJs.Point>) : LineProps = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2503,6 +2591,14 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// </summary>
         abstract member spanGaps: U2<bool, float> with get, set
         abstract member segment: LineControllerDatasetOptions.Extends.segment with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, borderCapStyle: Glutinum.Web.CanvasLineCap, borderDash: ResizeArray<float>, borderDashOffset: float, borderJoinStyle: Glutinum.Web.CanvasLineJoin, capBezierPoints: bool, cubicInterpolationMode: LineOptions.cubicInterpolationMode, tension: float, stepped: LineOptions.stepped, fill: ChartJs.FillTarget, spanGaps: bool, segment: LineControllerDatasetOptions.Extends.segment) : LineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, borderCapStyle: Glutinum.Web.CanvasLineCap, borderDash: ResizeArray<float>, borderDashOffset: float, borderJoinStyle: Glutinum.Web.CanvasLineJoin, capBezierPoints: bool, cubicInterpolationMode: LineOptions.cubicInterpolationMode, tension: float, stepped: LineOptions.stepped, fill: ChartJs.FillTarget, spanGaps: float, segment: LineControllerDatasetOptions.Extends.segment) : LineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, borderCapStyle: Glutinum.Web.CanvasLineCap, borderDash: ResizeArray<float>, borderDashOffset: float, borderJoinStyle: Glutinum.Web.CanvasLineJoin, capBezierPoints: bool, cubicInterpolationMode: LineOptions.cubicInterpolationMode, tension: float, stepped: LineOptions.stepped, fill: ChartJs.ComplexFillTarget, spanGaps: bool, segment: LineControllerDatasetOptions.Extends.segment) : LineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, borderCapStyle: Glutinum.Web.CanvasLineCap, borderDash: ResizeArray<float>, borderDashOffset: float, borderJoinStyle: Glutinum.Web.CanvasLineJoin, capBezierPoints: bool, cubicInterpolationMode: LineOptions.cubicInterpolationMode, tension: float, stepped: LineOptions.stepped, fill: ChartJs.ComplexFillTarget, spanGaps: float, segment: LineControllerDatasetOptions.Extends.segment) : LineOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2512,6 +2608,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member hoverBorderDash: ResizeArray<float> with get, set
         abstract member hoverBorderDashOffset: float with get, set
         abstract member hoverBorderJoinStyle: Glutinum.Web.CanvasLineJoin with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (hoverBorderWidth: float, hoverBorderColor: ChartJs.Color, hoverBackgroundColor: ChartJs.Color, hoverBorderCapStyle: Glutinum.Web.CanvasLineCap, hoverBorderDash: ResizeArray<float>, hoverBorderDashOffset: float, hoverBorderJoinStyle: Glutinum.Web.CanvasLineJoin) : LineHoverOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2580,6 +2678,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Draw the active elements over the other elements of the dataset,
         /// </summary>
         abstract member drawActiveElementsOnTop: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderWidth: float, borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, radius: float, hitRadius: float, pointStyle: ChartJs.PointStyle, rotation: float, drawActiveElementsOnTop: bool) : PointOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2589,6 +2689,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Point radius when hovered.
         /// </summary>
         abstract member hoverRadius: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (hoverBorderWidth: float, hoverBorderColor: ChartJs.Color, hoverBackgroundColor: ChartJs.Color, hoverRadius: float) : PointHoverOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2621,6 +2723,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Style of the point.
         /// </summary>
         abstract member pointStyle: ChartJs.PointStyle with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (pointBackgroundColor: ChartJs.Color, pointBorderColor: ChartJs.Color, pointBorderWidth: float, pointHitRadius: float, pointRadius: float, pointRotation: float, pointStyle: ChartJs.PointStyle) : PointPrefixedOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2641,6 +2745,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// The radius of the point when hovered.
         /// </summary>
         abstract member pointHoverRadius: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (pointHoverBackgroundColor: ChartJs.Color, pointHoverBorderColor: ChartJs.Color, pointHoverBorderWidth: float, pointHoverRadius: float) : PointPrefixedHoverOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2650,6 +2756,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member horizontal: bool with get, set
         abstract member width: float with get, set
         abstract member height: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``base``: float, horizontal: bool, width: float, height: float, ?x: float, ?y: float) : BarProps = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2677,6 +2785,14 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member borderWidth: U2<float, BarOptions.borderWidth.U2.Case2> with get, set
         abstract member borderColor: ChartJs.Color with get, set
         abstract member backgroundColor: ChartJs.Color with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, ``base``: float, borderSkipped: BarOptions.borderSkipped, borderRadius: float, inflateAmount: BarOptions.inflateAmount, borderWidth: float) : BarOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, ``base``: float, borderSkipped: BarOptions.borderSkipped, borderRadius: float, inflateAmount: BarOptions.inflateAmount, borderWidth: BarOptions.borderWidth.U2.Case2) : BarOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, ``base``: float, borderSkipped: BarOptions.borderSkipped, borderRadius: ChartJs.BorderRadius, inflateAmount: BarOptions.inflateAmount, borderWidth: float) : BarOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, ``base``: float, borderSkipped: BarOptions.borderSkipped, borderRadius: ChartJs.BorderRadius, inflateAmount: BarOptions.inflateAmount, borderWidth: BarOptions.borderWidth.U2.Case2) : BarOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2693,6 +2809,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type BarHoverOptions =
         inherit ChartJs.CommonHoverOptions
         abstract member hoverBorderRadius: U2<float, ChartJs.BorderRadius> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (hoverBorderWidth: float, hoverBorderColor: ChartJs.Color, hoverBackgroundColor: ChartJs.Color, hoverBorderRadius: float) : BarHoverOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (hoverBorderWidth: float, hoverBorderColor: ChartJs.Color, hoverBackgroundColor: ChartJs.Color, hoverBorderRadius: ChartJs.BorderRadius) : BarHoverOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2707,11 +2827,15 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member bar: ElementOptionsByType.bar<'TType> with get, set
         abstract member line: ElementOptionsByType.line<'TType> with get, set
         abstract member point: ElementOptionsByType.point<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (arc: ElementOptionsByType.arc<'TType>, bar: ElementOptionsByType.bar<'TType>, line: ElementOptionsByType.line<'TType>, point: ElementOptionsByType.point<'TType>) : ElementOptionsByType<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type ElementChartOptions<'TType> =
         abstract member elements: ChartJs.ElementOptionsByType<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (elements: ChartJs.ElementOptionsByType<'TType>) : ElementChartOptions<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2838,6 +2962,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type FillerOptions =
         abstract member drawTime: FillerOptions.drawTime with get, set
         abstract member propagate: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (drawTime: FillerOptions.drawTime, propagate: bool) : FillerOptions = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<Erase(CaseRules.None)>]
@@ -2891,6 +3017,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Same as the above.
         /// </summary>
         abstract member below: ChartJs.Color with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (target: ChartJs.FillTarget, above: ChartJs.Color, below: ChartJs.Color) : ComplexFillTarget = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2899,6 +3027,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Both line and radar charts support a fill option on the dataset object which can be used to create area between two datasets or a dataset and a boundary, i.e. the scale origin, start or end
         /// </summary>
         abstract member fill: U2<ChartJs.FillTarget, ChartJs.ComplexFillTarget> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (fill: ChartJs.FillTarget) : FillerControllerDatasetOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (fill: ChartJs.ComplexFillTarget) : FillerControllerDatasetOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3073,6 +3205,14 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// Title text to display. If specified as an array, text is rendered on multiple lines.
         /// </summary>
         abstract member text: U2<string, ResizeArray<string>> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (align: ChartJs.Align, display: bool, position: TitleOptions.position, color: ChartJs.Color, font: ChartJs.ScriptableAndScriptableOptions<TitleOptions.font, ChartJs.ScriptableChartContext>, fullSize: bool, padding: float, text: string) : TitleOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (align: ChartJs.Align, display: bool, position: TitleOptions.position, color: ChartJs.Color, font: ChartJs.ScriptableAndScriptableOptions<TitleOptions.font, ChartJs.ScriptableChartContext>, fullSize: bool, padding: float, text: ResizeArray<string>) : TitleOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (align: ChartJs.Align, display: bool, position: TitleOptions.position, color: ChartJs.Color, font: ChartJs.ScriptableAndScriptableOptions<TitleOptions.font, ChartJs.ScriptableChartContext>, fullSize: bool, padding: TitleOptions.padding.U2.Case2, text: string) : TitleOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (align: ChartJs.Align, display: bool, position: TitleOptions.position, color: ChartJs.Color, font: ChartJs.ScriptableAndScriptableOptions<TitleOptions.font, ChartJs.ScriptableChartContext>, fullSize: bool, padding: TitleOptions.padding.U2.Case2, text: ResizeArray<string>) : TitleOptions = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -3109,6 +3249,12 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// borderRadius
         /// </summary>
         abstract member borderRadius: U2<float, ChartJs.BorderRadius> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, ?borderWidth: float, ?borderDash: (float * float), ?borderDashOffset: float) : TooltipLabelStyle = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, borderRadius: float, ?borderWidth: float, ?borderDash: (float * float), ?borderDashOffset: float) : TooltipLabelStyle = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (borderColor: ChartJs.Color, backgroundColor: ChartJs.Color, borderRadius: ChartJs.BorderRadius, ?borderWidth: float, ?borderDash: (float * float), ?borderDashOffset: float) : TooltipLabelStyle = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3143,6 +3289,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         inherit ChartJs.Point
         abstract member xAlign: ChartJs.TooltipXAlignment option with get, set
         abstract member yAlign: ChartJs.TooltipYAlignment option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?x: float, ?y: float, ?xAlign: ChartJs.TooltipXAlignment, ?yAlign: ChartJs.TooltipYAlignment) : TooltipPosition = nativeOnly
 
     type TooltipPositionerFunction<'TType> =
         delegate of items: ResizeArray<ChartJs.ActiveElement> * eventPosition: ChartJs.Point -> U2<ChartJs.TooltipPosition, bool>
@@ -3152,6 +3300,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type TooltipPositionerMap =
         abstract member average: items: ResizeArray<ChartJs.ActiveElement> * eventPosition: ChartJs.Point -> U2<ChartJs.TooltipPosition, bool>
         abstract member nearest: items: ResizeArray<ChartJs.ActiveElement> * eventPosition: ChartJs.Point -> U2<ChartJs.TooltipPosition, bool>
+        [<ParamObject; Emit("$0")>]
+        static member Create (average: ChartJs.TooltipPositionerFunction<ChartJs.ChartType>, nearest: ChartJs.TooltipPositionerFunction<ChartJs.ChartType>) : TooltipPositionerMap = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -3227,6 +3377,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member chart: ChartJs.dist.types.Chart<'TType, ResizeArray<obj>, obj> with get, set
         abstract member tooltip: ChartJs.TooltipModel<'TType> with get, set
         abstract member tooltipItems: ResizeArray<ChartJs.TooltipItem<'TType>> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (chart: ChartJs.dist.types.Chart<'TType, obj, obj>, tooltip: ChartJs.TooltipModel<'TType>, tooltipItems: ResizeArray<ChartJs.TooltipItem<'TType>>) : ScriptableTooltipContext<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3378,6 +3530,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
     [<Interface>]
     type TooltipDatasetOptions<'TType> =
         abstract member callbacks: ChartJs.TooltipDatasetCallbacks<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (callbacks: ChartJs.TooltipDatasetCallbacks<'TType>) : TooltipDatasetOptions<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3418,11 +3572,15 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// The chart element (point, arc, bar, etc.) for this tooltip item
         /// </summary>
         abstract member element: ChartJs.Element with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (chart: ChartJs.dist.types.Chart, label: string, parsed: obj, raw: obj, formattedValue: string, dataset: obj, datasetIndex: float, dataIndex: float, element: ChartJs.Element) : TooltipItem<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type PluginDatasetOptionsByType<'TType> =
         abstract member tooltip: ChartJs.TooltipDatasetOptions<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (tooltip: ChartJs.TooltipDatasetOptions<'TType>) : PluginDatasetOptionsByType<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3434,11 +3592,15 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member subtitle: ChartJs.TitleOptions with get, set
         abstract member title: ChartJs.TitleOptions with get, set
         abstract member tooltip: ChartJs.TooltipOptions<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (colors: ChartJs.ColorsPluginOptions, decimation: ChartJs.DecimationOptions, filler: ChartJs.FillerOptions, legend: ChartJs.LegendOptions<'TType>, subtitle: ChartJs.TitleOptions, title: ChartJs.TitleOptions, tooltip: ChartJs.TooltipOptions<'TType>) : PluginOptionsByType<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type PluginChartOptions<'TType> =
         abstract member plugins: ChartJs.PluginOptionsByType<'TType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (plugins: ChartJs.PluginOptionsByType<'TType>) : PluginChartOptions<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3449,6 +3611,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member color: ChartJs.Color with get, set
         abstract member width: float with get, set
         abstract member z: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (display: bool, dash: ChartJs.Scriptable<ResizeArray<float>, ChartJs.ScriptableScaleContext>, dashOffset: ChartJs.Scriptable<float, ChartJs.ScriptableScaleContext>, color: ChartJs.Color, width: float, z: float) : BorderOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3466,6 +3630,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member tickWidth: float with get, set
         abstract member offset: bool with get, set
         abstract member z: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (display: bool, circular: bool, color: ChartJs.ScriptableAndArray<ChartJs.Color, ChartJs.ScriptableScaleContext>, lineWidth: ChartJs.ScriptableAndArray<float, ChartJs.ScriptableScaleContext>, drawOnChartArea: bool, drawTicks: bool, tickBorderDash: ChartJs.Scriptable<ResizeArray<float>, ChartJs.ScriptableScaleContext>, tickBorderDashOffset: ChartJs.Scriptable<float, ChartJs.ScriptableScaleContext>, tickColor: ChartJs.ScriptableAndArray<ChartJs.Color, ChartJs.ScriptableScaleContext>, tickLength: float, tickWidth: float, offset: bool, z: float) : GridLineOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3515,6 +3681,10 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// </summary>
         abstract member z: float with get, set
         abstract member major: TickOptions.major with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (backdropColor: ChartJs.Scriptable<ChartJs.Color, ChartJs.ScriptableScaleContext>, backdropPadding: float, callback: TickOptions.callback, display: bool, color: ChartJs.ScriptableAndArray<ChartJs.Color, ChartJs.ScriptableScaleContext>, font: ChartJs.ScriptableAndScriptableOptions<TickOptions.font, ChartJs.ScriptableScaleContext>, padding: float, showLabelBackdrop: ChartJs.Scriptable<bool, ChartJs.ScriptableScaleContext>, textStrokeColor: ChartJs.Scriptable<ChartJs.Color, ChartJs.ScriptableScaleContext>, textStrokeWidth: ChartJs.Scriptable<float, ChartJs.ScriptableScaleContext>, z: float, major: TickOptions.major) : TickOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (backdropColor: ChartJs.Scriptable<ChartJs.Color, ChartJs.ScriptableScaleContext>, backdropPadding: ChartJs.ChartArea, callback: TickOptions.callback, display: bool, color: ChartJs.ScriptableAndArray<ChartJs.Color, ChartJs.ScriptableScaleContext>, font: ChartJs.ScriptableAndScriptableOptions<TickOptions.font, ChartJs.ScriptableScaleContext>, padding: float, showLabelBackdrop: ChartJs.Scriptable<bool, ChartJs.ScriptableScaleContext>, textStrokeColor: ChartJs.Scriptable<ChartJs.Color, ChartJs.ScriptableScaleContext>, textStrokeWidth: ChartJs.Scriptable<float, ChartJs.ScriptableScaleContext>, z: float, major: TickOptions.major) : TickOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3612,12 +3782,16 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type ScriptableCartesianScaleContext =
         abstract member scale: ScriptableCartesianScaleContext.scale with get, set
         abstract member ``type``: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (scale: ScriptableCartesianScaleContext.scale, ``type``: string) : ScriptableCartesianScaleContext = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type ScriptableChartContext =
         abstract member chart: ChartJs.dist.types.Chart with get, set
         abstract member ``type``: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (chart: ChartJs.dist.types.Chart, ``type``: string) : ScriptableChartContext = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4112,6 +4286,14 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// The minimum display format to be used for a time unit.
         /// </summary>
         abstract member minUnit: ChartJs.TimeUnit with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (parser: string, round: TimeScaleTimeOptions.round, isoWeekday: bool, displayFormats: TimeScaleTimeOptions.displayFormats, tooltipFormat: string, unit: TimeScaleTimeOptions.unit, minUnit: ChartJs.TimeUnit) : TimeScaleTimeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parser: string, round: TimeScaleTimeOptions.round, isoWeekday: float, displayFormats: TimeScaleTimeOptions.displayFormats, tooltipFormat: string, unit: TimeScaleTimeOptions.unit, minUnit: ChartJs.TimeUnit) : TimeScaleTimeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parser: (obj -> float), round: TimeScaleTimeOptions.round, isoWeekday: bool, displayFormats: TimeScaleTimeOptions.displayFormats, tooltipFormat: string, unit: TimeScaleTimeOptions.unit, minUnit: ChartJs.TimeUnit) : TimeScaleTimeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (parser: (obj -> float), round: TimeScaleTimeOptions.round, isoWeekday: float, displayFormats: TimeScaleTimeOptions.displayFormats, tooltipFormat: string, unit: TimeScaleTimeOptions.unit, minUnit: ChartJs.TimeUnit) : TimeScaleTimeOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4127,6 +4309,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         /// The number of units between grid lines.
         /// </summary>
         abstract member stepSize: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (source: TimeScaleTickOptions.source, stepSize: float) : TimeScaleTickOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4460,17 +4644,23 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member category: CartesianScaleTypeRegistry.category with get, set
         abstract member time: CartesianScaleTypeRegistry.time with get, set
         abstract member timeseries: CartesianScaleTypeRegistry.timeseries with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (linear: CartesianScaleTypeRegistry.linear, logarithmic: CartesianScaleTypeRegistry.logarithmic, category: CartesianScaleTypeRegistry.category, time: CartesianScaleTypeRegistry.time, timeseries: CartesianScaleTypeRegistry.timeseries) : CartesianScaleTypeRegistry = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type RadialScaleTypeRegistry =
         abstract member radialLinear: RadialScaleTypeRegistry.radialLinear with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (radialLinear: RadialScaleTypeRegistry.radialLinear) : RadialScaleTypeRegistry = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type ScaleTypeRegistry =
         inherit ChartJs.CartesianScaleTypeRegistry
         inherit ChartJs.RadialScaleTypeRegistry
+        [<ParamObject; Emit("$0")>]
+        static member Create (linear: CartesianScaleTypeRegistry.linear, logarithmic: CartesianScaleTypeRegistry.logarithmic, category: CartesianScaleTypeRegistry.category, time: CartesianScaleTypeRegistry.time, timeseries: CartesianScaleTypeRegistry.timeseries, radialLinear: RadialScaleTypeRegistry.radialLinear) : ScaleTypeRegistry = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -4487,23 +4677,31 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type CartesianParsedData =
         inherit ChartJs.Point
         abstract member _stacks: CartesianParsedData._stacks option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?x: float, ?y: float, ?_stacks: CartesianParsedData._stacks) : CartesianParsedData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type BarParsedData =
         inherit ChartJs.CartesianParsedData
         abstract member _custom: BarParsedData._custom option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?x: float, ?y: float, ?_stacks: CartesianParsedData._stacks, ?_custom: BarParsedData._custom) : BarParsedData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type BubbleParsedData =
         inherit ChartJs.CartesianParsedData
         abstract member _custom: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (_custom: float, ?x: float, ?y: float, ?_stacks: CartesianParsedData._stacks) : BubbleParsedData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type RadialParsedData =
         abstract member r: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (r: float) : RadialParsedData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4516,6 +4714,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
         abstract member doughnut: ChartTypeRegistry.doughnut with get, set
         abstract member polarArea: ChartTypeRegistry.polarArea with get, set
         abstract member radar: ChartTypeRegistry.radar with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (bar: ChartTypeRegistry.bar, line: ChartTypeRegistry.line, scatter: ChartTypeRegistry.scatter, bubble: ChartTypeRegistry.bubble, pie: ChartTypeRegistry.pie, doughnut: ChartTypeRegistry.doughnut, polarArea: ChartTypeRegistry.polarArea, radar: ChartTypeRegistry.radar) : ChartTypeRegistry = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -4549,6 +4749,8 @@ PointElement.defaultRoutes{{=$0}}""")>]
     [<Interface>]
     type ScaleChartOptions<'TType> =
         abstract member scales: ScaleChartOptions.scales with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (scales: ScaleChartOptions.scales) : ScaleChartOptions<'TType> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4570,12 +4772,16 @@ PointElement.defaultRoutes{{=$0}}""")>]
     type ChartDatasetProperties<'TType, 'TData> =
         abstract member ``type``: 'TType option with get, set
         abstract member data: 'TData with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (data: 'TData, ?``type``: 'TType) : ChartDatasetProperties<'TType, 'TData> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type ChartDatasetPropertiesCustomTypesPerDataset<'TType, 'TData> =
         abstract member ``type``: 'TType with get, set
         abstract member data: 'TData with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: 'TType, data: 'TData) : ChartDatasetPropertiesCustomTypesPerDataset<'TType, 'TData> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -7117,6 +7323,8 @@ DatasetController.dataElementType{{=$0}}""")>]
                     abstract member datasetIndex: float with get, set
                     abstract member index: float with get, set
                     abstract member element: ChartJs.Element with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (datasetIndex: float, index: float, element: ChartJs.Element) : InteractionItem = nativeOnly
 
                 type Point =
                     obj
@@ -7467,6 +7675,10 @@ DatasetController.dataElementType{{=$0}}""")>]
                     abstract member label: string option with get, set
                     abstract member major: bool option with get, set
                     abstract member ``$context``: obj option with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (value: float, ?label: string, ?major: bool, ?``$context``: obj) : Tick = nativeOnly
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (value: string, ?label: string, ?major: bool, ?``$context``: obj) : Tick = nativeOnly
 
                 module Scale =
 
@@ -7590,6 +7802,8 @@ BarElement.defaults{{=$0}}""")>]
                     abstract member horizontal: bool with get, set
                     abstract member width: float with get, set
                     abstract member height: float with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (x: float, y: float, ``base``: float, horizontal: bool, width: float, height: float) : BarProps = nativeOnly
 
                 module BarElement =
 
@@ -10813,6 +11027,8 @@ TimeScale.defaults{{=$0}}""")>]
                 abstract member right: U2<float, bool> with get, set
                 abstract member bottom: U2<float, bool> with get, set
                 abstract member disabled: bool with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (left: U2<float, bool>, top: U2<float, bool>, right: U2<float, bool>, bottom: U2<float, bool>, disabled: bool) : ChartMetaClip = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -10842,6 +11058,8 @@ TimeScale.defaults{{=$0}}""")>]
                 abstract member _stacked: ChartMetaCommon._stacked with get, set
                 abstract member _parsed: ResizeArray<obj> with get, set
                 abstract member _clip: ChartJs.dist.types.ChartMetaClip with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (``type``: string, controller: ChartJs.DatasetController, order: float, label: string, index: float, visible: bool, stack: float, indexAxis: ChartMetaCommon.indexAxis, data: ResizeArray<'TElement>, hidden: bool, iAxisID: string, vAxisID: string, _sorted: bool, _stacked: ChartMetaCommon._stacked, _parsed: ResizeArray<obj>, _clip: ChartJs.dist.types.ChartMetaClip, ?dataset: 'TDatasetElement, ?xAxisID: string, ?yAxisID: string, ?rAxisID: string, ?xScale: ChartJs.Scale, ?yScale: ChartJs.Scale, ?rScale: ChartJs.Scale, ?iScale: ChartJs.Scale, ?vScale: ChartJs.Scale) : ChartMetaCommon<'TElement, 'TDatasetElement> = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -10954,6 +11172,8 @@ Chart.unregister($0)""")>]
             type BaseDecimationOptions =
                 abstract member enabled: bool with get, set
                 abstract member threshold: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (enabled: bool, ?threshold: float) : BaseDecimationOptions = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -10961,12 +11181,16 @@ Chart.unregister($0)""")>]
                 inherit ChartJs.dist.types.BaseDecimationOptions
                 abstract member algorithm: LttbDecimationOptions.algorithm with get, set
                 abstract member samples: float option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (enabled: bool, algorithm: LttbDecimationOptions.algorithm, ?threshold: float, ?samples: float) : LttbDecimationOptions = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
             type MinMaxDecimationOptions =
                 inherit ChartJs.dist.types.BaseDecimationOptions
                 abstract member algorithm: MinMaxDecimationOptions.algorithm with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (enabled: bool, algorithm: MinMaxDecimationOptions.algorithm, ?threshold: float) : MinMaxDecimationOptions = nativeOnly
 
             module animation =
 
@@ -12407,6 +12631,8 @@ Chart.unregister($0)""")>]
             abstract member ``end``: float with get, set
             abstract member loop: bool with get, set
             abstract member style: obj option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (start: float, ``end``: float, loop: bool, ?style: obj) : Segment = nativeOnly
 
         type ResolverCache<'T> =
             ResolverCache<'T, 'T>

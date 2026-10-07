@@ -33,6 +33,8 @@ module Yargs =
     type MainType =
         abstract member filename: string with get, set
         abstract member children: ResizeArray<Yargs.MainType> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (filename: string, children: ResizeArray<Yargs.MainType>) : MainType = nativeOnly
 
     type Arguments<'T> =
         Yargs.index.yargs_.Arguments<'T>
@@ -2587,6 +2589,8 @@ module YargsParser =
             abstract member ``--``: ResizeArray<U2<string, float>> option with get, set
             [<EmitIndexer>]
             abstract member Item: argName: string -> obj with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (``_``: ResizeArray<U2<string, float>>, ?``--``: ResizeArray<U2<string, float>>) : Arguments = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2611,6 +2615,8 @@ module YargsParser =
             /// The configuration loaded from the yargs stanza in package.json.
             /// </summary>
             abstract member configuration: YargsParser.yargsParser_.Configuration with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (argv: YargsParser.yargsParser_.Arguments, aliases: DetailedArguments.aliases, newAliases: DetailedArguments.newAliases, configuration: YargsParser.yargsParser_.Configuration, ?error: Exception) : DetailedArguments = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2687,6 +2693,8 @@ module YargsParser =
             /// Should unknown options be treated like regular arguments? An unknown option is one that is not configured in opts. Default is <c>false</c>
             /// </summary>
             abstract member ``unknown-options-as-args``: bool with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (``boolean-negation``: bool, ``camel-case-expansion``: bool, ``combine-arrays``: bool, ``dot-notation``: bool, ``duplicate-arguments-array``: bool, ``flatten-duplicate-arrays``: bool, ``greedy-arrays``: bool, ``nargs-eats-options``: bool, ``halt-at-non-option``: bool, ``negation-prefix``: string, ``parse-numbers``: bool, ``parse-positional-numbers``: bool, ``populate--``: bool, ``set-placeholder-key``: bool, ``short-option-groups``: bool, ``strip-aliased``: bool, ``strip-dashed``: bool, ``unknown-options-as-args``: bool) : Configuration = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]

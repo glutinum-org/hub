@@ -1043,6 +1043,8 @@ module Animejs =
         abstract member resolveStagger: Action with get, set
         abstract member _head: obj option with get, set
         abstract member _tail: obj option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (showPanel: bool, addAnimation: Action, addSet: Action, addTimeline: Action, addTimelineChild: Action, addTimelineLabel: Action, addTimelineCall: Action, addTimelineSync: Action, resolveStagger: Action, ?_head: obj, ?_tail: obj) : EditorGlobals = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1272,6 +1274,8 @@ module Animejs =
         abstract member outElastic: Animejs.ElasticEasing with get, set
         abstract member inOutElastic: Animejs.ElasticEasing with get, set
         abstract member outInElastic: Animejs.ElasticEasing with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (linear: Animejs.EasingFunction, none: Animejs.EasingFunction, ``in``: Animejs.PowerEasing, out: Animejs.PowerEasing, inOut: Animejs.PowerEasing, outIn: Animejs.PowerEasing, inQuad: Animejs.EasingFunction, outQuad: Animejs.EasingFunction, inOutQuad: Animejs.EasingFunction, outInQuad: Animejs.EasingFunction, inCubic: Animejs.EasingFunction, outCubic: Animejs.EasingFunction, inOutCubic: Animejs.EasingFunction, outInCubic: Animejs.EasingFunction, inQuart: Animejs.EasingFunction, outQuart: Animejs.EasingFunction, inOutQuart: Animejs.EasingFunction, outInQuart: Animejs.EasingFunction, inQuint: Animejs.EasingFunction, outQuint: Animejs.EasingFunction, inOutQuint: Animejs.EasingFunction, outInQuint: Animejs.EasingFunction, inSine: Animejs.EasingFunction, outSine: Animejs.EasingFunction, inOutSine: Animejs.EasingFunction, outInSine: Animejs.EasingFunction, inCirc: Animejs.EasingFunction, outCirc: Animejs.EasingFunction, inOutCirc: Animejs.EasingFunction, outInCirc: Animejs.EasingFunction, inExpo: Animejs.EasingFunction, outExpo: Animejs.EasingFunction, inOutExpo: Animejs.EasingFunction, outInExpo: Animejs.EasingFunction, inBounce: Animejs.EasingFunction, outBounce: Animejs.EasingFunction, inOutBounce: Animejs.EasingFunction, outInBounce: Animejs.EasingFunction, inBack: Animejs.BackEasing, outBack: Animejs.BackEasing, inOutBack: Animejs.BackEasing, outInBack: Animejs.BackEasing, inElastic: Animejs.ElasticEasing, outElastic: Animejs.ElasticEasing, inOutElastic: Animejs.ElasticEasing, outInElastic: Animejs.ElasticEasing) : EasesFunctions = nativeOnly
 
     [<AutoOpen>]
     module EasesFunctionsExtensions =
@@ -1473,6 +1477,8 @@ module Animejs =
         abstract member delay: U2<float, Animejs.FunctionValue> option with get, set
         abstract member duration: U2<float, Animejs.FunctionValue> option with get, set
         abstract member ease: U2<Animejs.EasingParam, Animejs.FunctionValue> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?delay: U2<float, Animejs.FunctionValue>, ?duration: U2<float, Animejs.FunctionValue>, ?ease: U2<Animejs.EasingParam, Animejs.FunctionValue>) : LayoutAnimationTimingsParams = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1498,6 +1504,8 @@ module Animejs =
         abstract member swapAt: Animejs.LayoutStateParams option with get, set
         abstract member enterFrom: Animejs.LayoutStateParams option with get, set
         abstract member leaveTo: Animejs.LayoutStateParams option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?id: U2<float, string>, ?delay: U2<float, Animejs.FunctionValue>, ?duration: U2<float, Animejs.FunctionValue>, ?ease: U2<Animejs.EasingParam, Animejs.FunctionValue>, ?playbackEase: Animejs.EasingParam, ?swapAt: Animejs.LayoutStateParams, ?enterFrom: Animejs.LayoutStateParams, ?leaveTo: Animejs.LayoutStateParams) : LayoutSpecificAnimationParams = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1531,6 +1539,8 @@ module Animejs =
     type LayoutOptions =
         abstract member children: Animejs.LayoutChildrenParam option with get, set
         abstract member properties: ResizeArray<string> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?children: Animejs.LayoutChildrenParam, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1687,6 +1697,8 @@ module Animejs =
         abstract member delay: float with get, set
         abstract member ease: string with get, set
         abstract member modifier: (float -> string) with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (from: float, ``to``: float, duration: float, delay: float, ease: string, modifier: (float -> string)) : ScrambleTextTween = nativeOnly
 
     /// <summary>
     /// A class that splits text into words and wraps them in span elements while preserving the original HTML structure.
@@ -1739,11 +1751,15 @@ module Animejs =
     type Segment =
         abstract member segment: string with get, set
         abstract member isWordLike: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (segment: string, ?isWordLike: bool) : Segment = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type Segmenter =
         abstract member segment: (string -> Iterable<Animejs.Segment>) with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (segment: (string -> Iterable<Animejs.Segment>)) : Segmenter = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2219,6 +2235,8 @@ module Animejs =
         abstract member onPause: Animejs.Callback<Animejs.Tickable> option with get, set
         abstract member onComplete: Animejs.Callback<Animejs.Tickable> option with get, set
         abstract member onRender: Animejs.Callback<Animejs.Renderable> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?id: U2<float, string>, ?keyframes: U2<Animejs.PercentageKeyframes, Animejs.DurationKeyframes>, ?playbackEase: Animejs.EasingParam, ?playbackRate: float, ?frameRate: float, ?loop: U2<float, bool>, ?reversed: bool, ?alternate: bool, ?persist: bool, ?autoplay: U2<bool, Animejs.ScrollObserver>, ?duration: U2<float, Animejs.FunctionValue>, ?delay: U2<float, Animejs.FunctionValue>, ?loopDelay: float, ?ease: U2<Animejs.EasingParam, Animejs.FunctionValue>, ?composition: DefaultsParams.composition, ?modifier: (obj -> unit), ?onBegin: Animejs.Callback<Animejs.Tickable>, ?onBeforeUpdate: Animejs.Callback<Animejs.Tickable>, ?onUpdate: Animejs.Callback<Animejs.Tickable>, ?onLoop: Animejs.Callback<Animejs.Tickable>, ?onPause: Animejs.Callback<Animejs.Tickable>, ?onComplete: Animejs.Callback<Animejs.Tickable>, ?onRender: Animejs.Callback<Animejs.Renderable>) : DefaultsParams = nativeOnly
 
     type Renderable =
         U2<Animejs.JSAnimation, Animejs.Timeline>
@@ -2439,11 +2457,15 @@ module Animejs =
         abstract member onLoop: Animejs.Callback<'T> option with get, set
         abstract member onPause: Animejs.Callback<'T> option with get, set
         abstract member onComplete: Animejs.Callback<'T> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?onBegin: Animejs.Callback<'T>, ?onBeforeUpdate: Animejs.Callback<'T>, ?onUpdate: Animejs.Callback<'T>, ?onLoop: Animejs.Callback<'T>, ?onPause: Animejs.Callback<'T>, ?onComplete: Animejs.Callback<'T>) : TickableCallbacks<'T> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type RenderableCallbacks<'T> =
         abstract member onRender: Animejs.Callback<'T> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?onRender: Animejs.Callback<'T>) : RenderableCallbacks<'T> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2459,6 +2481,8 @@ module Animejs =
         abstract member frameRate: float option with get, set
         abstract member playbackRate: float option with get, set
         abstract member priority: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?id: U2<float, string>, ?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?loopDelay: float, ?reversed: bool, ?alternate: bool, ?loop: U2<bool, float>, ?autoplay: U2<bool, Animejs.ScrollObserver>, ?frameRate: float, ?playbackRate: float, ?priority: float) : TimerOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2579,12 +2603,16 @@ module Animejs =
         /// - Strings (complex value type)
         /// </summary>
         abstract member s: ResizeArray<string> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (t: float, n: float, u: string, o: string, d: ResizeArray<float>, s: ResizeArray<string>) : TweenDecomposedValue = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type TweenPropertySiblings =
         abstract member _head: Animejs.Tween option with get, set
         abstract member _tail: Animejs.Tween option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?_head: Animejs.Tween, ?_tail: Animejs.Tween) : TweenPropertySiblings = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2633,6 +2661,12 @@ module Animejs =
         abstract member ease: U2<Animejs.EasingParam, Animejs.FunctionValue> option with get, set
         abstract member modifier: Animejs.TweenModifier option with get, set
         abstract member composition: Animejs.TweenComposition option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: Animejs.EasingParam, ?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: Animejs.FunctionValue, ?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2640,6 +2674,8 @@ module Animejs =
         abstract member from: Animejs.TweenParamValue option with get, set
         abstract member ``to``: Animejs.TweenPropValue option with get, set
         abstract member fromTo: Animejs.TweenPropValue option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?from: Animejs.TweenParamValue, ?``to``: Animejs.TweenPropValue, ?fromTo: Animejs.TweenPropValue) : TweenValues = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2670,6 +2706,8 @@ module Animejs =
     [<Interface>]
     type PercentageKeyframeOptions =
         abstract member ease: Animejs.EasingParam option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?ease: Animejs.EasingParam) : PercentageKeyframeOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2691,6 +2729,12 @@ module Animejs =
     type AnimationOptions =
         abstract member keyframes: U2<Animejs.PercentageKeyframes, Animejs.DurationKeyframes> option with get, set
         abstract member playbackEase: Animejs.EasingParam option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (keyframes: Animejs.PercentageKeyframes, ?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (keyframes: Animejs.DurationKeyframes, ?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2765,6 +2809,8 @@ module Animejs =
         abstract member defaults: Animejs.DefaultsParams option with get, set
         abstract member playbackEase: Animejs.EasingParam option with get, set
         abstract member composition: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?defaults: Animejs.DefaultsParams, ?playbackEase: Animejs.EasingParam, ?composition: bool) : TimelineOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2809,6 +2855,8 @@ module Animejs =
         abstract member delay: U2<float, Animejs.WAAPIFunctionValue> option with get, set
         abstract member ease: Animejs.WAAPIEasingParam option with get, set
         abstract member composition: Glutinum.Web.CompositeOperation option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?``to``: Animejs.WAAPIKeyframeValue, ?from: Animejs.WAAPIKeyframeValue, ?duration: U2<float, Animejs.WAAPIFunctionValue>, ?delay: U2<float, Animejs.WAAPIFunctionValue>, ?ease: Animejs.WAAPIEasingParam, ?composition: Glutinum.Web.CompositeOperation) : WAAPITweenOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2824,6 +2872,8 @@ module Animejs =
         abstract member composition: Glutinum.Web.CompositeOperation option with get, set
         abstract member persist: bool option with get, set
         abstract member onComplete: Animejs.Callback<Animejs.WAAPIAnimation> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?loop: U2<float, bool>, ?Reversed: bool, ?Alternate: bool, ?autoplay: U2<bool, Animejs.ScrollObserver>, ?playbackRate: float, ?duration: U2<float, Animejs.WAAPIFunctionValue>, ?delay: U2<float, Animejs.WAAPIFunctionValue>, ?ease: U2<Animejs.WAAPIEasingParam, Animejs.WAAPIFunctionValue>, ?composition: Glutinum.Web.CompositeOperation, ?persist: bool, ?onComplete: Animejs.Callback<Animejs.WAAPIAnimation>) : WAAPIAnimationOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2865,6 +2915,8 @@ module Animejs =
         abstract member ease: Animejs.EasingParam option with get, set
         abstract member modifier: Animejs.TweenModifier option with get, set
         abstract member composition: Animejs.TweenComposition option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?unit: string, ?duration: Animejs.TweenParamValue, ?ease: Animejs.EasingParam, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : AnimatablePropertyParamsOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2886,11 +2938,23 @@ module Animejs =
     [<Interface>]
     type ReactRef =
         abstract member current: U2<Glutinum.Web.HTMLElement, Glutinum.Web.SVGElement> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create () : ReactRef = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (current: Glutinum.Web.HTMLElement) : ReactRef = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (current: Glutinum.Web.SVGElement) : ReactRef = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type AngularRef =
         abstract member nativeElement: U2<Glutinum.Web.HTMLElement, Glutinum.Web.SVGElement> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create () : AngularRef = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (nativeElement: Glutinum.Web.HTMLElement) : AngularRef = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (nativeElement: Glutinum.Web.SVGElement) : AngularRef = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2927,6 +2991,8 @@ module Animejs =
     type ScrollThresholdParam =
         abstract member target: Animejs.ScrollThresholdValue option with get, set
         abstract member container: Animejs.ScrollThresholdValue option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?target: Animejs.ScrollThresholdValue, ?container: Animejs.ScrollThresholdValue) : ScrollThresholdParam = nativeOnly
 
     type ScrollObserverAxisCallback =
         delegate of self: Animejs.ScrollObserver -> ScrollObserverAxisCallback.ReturnType
@@ -2965,18 +3031,30 @@ module Animejs =
         abstract member modifier: Animejs.TweenModifier option with get, set
         abstract member composition: Animejs.TweenComposition option with get, set
         abstract member snap: U3<float, ResizeArray<float>, (Animejs.Draggable -> U2<float, ResizeArray<float>>)> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?mapTo: string, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : DraggableAxisParam = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (snap: float, ?mapTo: string, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : DraggableAxisParam = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (snap: ResizeArray<float>, ?mapTo: string, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : DraggableAxisParam = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (snap: (Animejs.Draggable -> U2<float, ResizeArray<float>>), ?mapTo: string, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : DraggableAxisParam = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type DraggableCursorParams =
         abstract member onHover: string option with get, set
         abstract member onGrab: string option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?onHover: string, ?onGrab: string) : DraggableCursorParams = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type DraggableDragThresholdParams =
         abstract member mouse: float option with get, set
         abstract member touch: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?mouse: float, ?touch: float) : DraggableDragThresholdParams = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3019,6 +3097,12 @@ module Animejs =
         abstract member ``class``: U2<bool, string> option with get, set
         abstract member wrap: SplitTemplateParams.wrap option with get, set
         abstract member clone: SplitTemplateParams.clone option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?wrap: SplitTemplateParams.wrap, ?clone: SplitTemplateParams.clone) : SplitTemplateParams = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (``class``: bool, ?wrap: SplitTemplateParams.wrap, ?clone: SplitTemplateParams.clone) : SplitTemplateParams = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (``class``: string, ?wrap: SplitTemplateParams.wrap, ?clone: SplitTemplateParams.clone) : SplitTemplateParams = nativeOnly
 
     type SplitValue =
         U2<bool, string>
@@ -3129,6 +3213,8 @@ module Animejs =
         abstract member padEnd: Animejs.ChainedPadEnd with get, set
         abstract member degToRad: Animejs.ChainedDegToRad with get, set
         abstract member radToDeg: Animejs.ChainedRadToDeg with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (clamp: Animejs.ChainedClamp, round: Animejs.ChainedRound, snap: Animejs.ChainedSnap, wrap: Animejs.ChainedWrap, lerp: Animejs.ChainedLerp, damp: Animejs.ChainedDamp, mapRange: Animejs.ChainedMapRange, roundPad: Animejs.ChainedRoundPad, padStart: Animejs.ChainedPadStart, padEnd: Animejs.ChainedPadEnd, degToRad: Animejs.ChainedDegToRad, radToDeg: Animejs.ChainedRadToDeg) : ChainablesMap = nativeOnly
 
     [<AutoOpen>]
     module ChainablesMapExtensions =
@@ -3329,6 +3415,8 @@ module Animejs =
             abstract member get: (obj -> unit) with get, set
             abstract member set: TargetAdapterEntry.set with get, set
             abstract member gate: (obj -> bool) option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (get: (obj -> unit), set: TargetAdapterEntry.set, ?gate: (obj -> bool)) : TargetAdapterEntry = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]

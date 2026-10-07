@@ -3168,6 +3168,8 @@ Class.callInitHooks()""")>]
         inherit Leaflet.LayerOptions
         abstract member interactive: bool option with get, set
         abstract member bubblingMouseEvents: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?interactive: bool, ?bubblingMouseEvents: bool) : InteractiveLayerOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4177,6 +4179,8 @@ GeoJSON.asFeature($0)""")>]
     [<Interface>]
     type ControlOptions =
         abstract member position: Leaflet.ControlPosition option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?position: Leaflet.ControlPosition) : ControlOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4618,6 +4622,8 @@ Control.extend($0)""")>]
         abstract member properties: obj with get, set
         abstract member geometryType: string with get, set
         abstract member id: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, popup: obj, target: obj, sourceTarget: obj, propagatedFrom: obj, layer: Leaflet.Layer, properties: obj, geometryType: string, id: string) : GeoJSONEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4759,6 +4765,8 @@ Control.extend($0)""")>]
         abstract member markerPane: Glutinum.Web.HTMLElement with get, set
         abstract member tooltipPane: Glutinum.Web.HTMLElement with get, set
         abstract member popupPane: Glutinum.Web.HTMLElement with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (mapPane: Glutinum.Web.HTMLElement, tilePane: Glutinum.Web.HTMLElement, overlayPane: Glutinum.Web.HTMLElement, shadowPane: Glutinum.Web.HTMLElement, markerPane: Glutinum.Web.HTMLElement, tooltipPane: Glutinum.Web.HTMLElement, popupPane: Glutinum.Web.HTMLElement) : DefaultMapPanes = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4949,6 +4957,8 @@ Control.extend($0)""")>]
         abstract member shadowSize: Leaflet.PointExpression option with get, set
         abstract member shadowAnchor: Leaflet.PointExpression option with get, set
         abstract member className: string option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pane: string, ?attribution: string, ?iconUrl: string, ?iconRetinaUrl: string, ?iconSize: Leaflet.PointExpression, ?iconAnchor: Leaflet.PointExpression, ?popupAnchor: Leaflet.PointExpression, ?tooltipAnchor: Leaflet.PointExpression, ?shadowUrl: string, ?shadowRetinaUrl: string, ?shadowSize: Leaflet.PointExpression, ?shadowAnchor: Leaflet.PointExpression, ?className: string) : BaseIconOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]

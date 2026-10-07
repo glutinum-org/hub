@@ -88,6 +88,16 @@ module Dayjs =
         [<Interface>]
         type ConfigTypeMap =
             abstract member ``default``: U4<string, float, Date, Dayjs.dayjs_.Dayjs> option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create () : ConfigTypeMap = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (``default``: string) : ConfigTypeMap = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (``default``: float) : ConfigTypeMap = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (``default``: Date) : ConfigTypeMap = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (``default``: Dayjs.dayjs_.Dayjs) : ConfigTypeMap = nativeOnly
 
         type ConfigType =
             U4<string, float, Date, Dayjs.dayjs_.Dayjs> option
@@ -98,6 +108,8 @@ module Dayjs =
             abstract member locale: string option with get, set
             abstract member format: string option with get, set
             abstract member utc: bool option with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (?locale: string, ?format: string, ?utc: bool) : FormatObject = nativeOnly
 
         type OptionType =
             U3<Dayjs.dayjs_.FormatObject, string, ResizeArray<string>>
@@ -1430,6 +1442,37 @@ module Dayjs =
             [<Interface>]
             type Locale =
                 inherit Dayjs.ILocale
+                [<ParamObject; Emit("$0")>]
+                static member Create (name: string, formats: Locale.formats, relativeTime: Locale.relativeTime, ?weekdays: ResizeArray<string>, ?months: ResizeArray<string>, ?weekStart: float, ?weekdaysShort: ResizeArray<string>, ?monthsShort: ResizeArray<string>, ?weekdaysMin: ResizeArray<string>, ?ordinal: (float -> U2<float, string>)) : Locale = nativeOnly
+
+            module Locale =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type formats =
+                    abstract member LT: string option with get, set
+                    abstract member LTS: string option with get, set
+                    abstract member L: string option with get, set
+                    abstract member LL: string option with get, set
+                    abstract member LLL: string option with get, set
+                    abstract member LLLL: string option with get, set
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type relativeTime =
+                    abstract member future: string option with get, set
+                    abstract member past: string option with get, set
+                    abstract member s: string option with get, set
+                    abstract member m: string option with get, set
+                    abstract member mm: string option with get, set
+                    abstract member h: string option with get, set
+                    abstract member hh: string option with get, set
+                    abstract member d: string option with get, set
+                    abstract member dd: string option with get, set
+                    abstract member M: string option with get, set
+                    abstract member MM: string option with get, set
+                    abstract member y: string option with get, set
+                    abstract member yy: string option with get, set
 
         type Locale =
             locale_.Locale

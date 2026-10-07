@@ -390,6 +390,8 @@ module Chalk =
         /// The ANSI terminal control sequence for ending this style.
         /// </summary>
         abstract member close: string with get
+        [<ParamObject; Emit("$0")>]
+        static member Create (``open``: string, close: string) : CSPair = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -459,6 +461,8 @@ module Chalk =
         /// Puts a horizontal line through the center of the text. (Not widely supported)
         /// </summary>
         abstract member strikethrough: Chalk.CSPair with get
+        [<ParamObject; Emit("$0")>]
+        static member Create (reset: Chalk.CSPair, bold: Chalk.CSPair, dim: Chalk.CSPair, italic: Chalk.CSPair, underline: Chalk.CSPair, underlineDouble: Chalk.CSPair, underlineCurly: Chalk.CSPair, underlineDotted: Chalk.CSPair, underlineDashed: Chalk.CSPair, overline: Chalk.CSPair, inverse: Chalk.CSPair, hidden: Chalk.CSPair, strikethrough: Chalk.CSPair) : Modifier = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -487,6 +491,8 @@ module Chalk =
         abstract member underlineCyanBright: Chalk.CSPair with get
         abstract member underlineMagentaBright: Chalk.CSPair with get
         abstract member underlineWhiteBright: Chalk.CSPair with get
+        [<ParamObject; Emit("$0")>]
+        static member Create (underlineBlack: Chalk.CSPair, underlineRed: Chalk.CSPair, underlineGreen: Chalk.CSPair, underlineYellow: Chalk.CSPair, underlineBlue: Chalk.CSPair, underlineCyan: Chalk.CSPair, underlineMagenta: Chalk.CSPair, underlineWhite: Chalk.CSPair, underlineGray: Chalk.CSPair, underlineGrey: Chalk.CSPair, underlineBlackBright: Chalk.CSPair, underlineRedBright: Chalk.CSPair, underlineGreenBright: Chalk.CSPair, underlineYellowBright: Chalk.CSPair, underlineBlueBright: Chalk.CSPair, underlineCyanBright: Chalk.CSPair, underlineMagentaBright: Chalk.CSPair, underlineWhiteBright: Chalk.CSPair) : UnderlineColor = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -663,6 +669,8 @@ module Chalk =
         /// Whether Truecolor 16 million colors are supported.
         /// </summary>
         abstract member has16m: bool with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (level: Chalk.ColorSupportLevel, hasBasic: bool, has256: bool, has16m: bool) : ColorSupport = nativeOnly
 
     type ColorInfo =
         U2<Chalk.ColorSupport, bool>
@@ -700,6 +708,8 @@ module Chalk =
                     abstract member cyanBright: Chalk.CSPair with get
                     abstract member magentaBright: Chalk.CSPair with get
                     abstract member whiteBright: Chalk.CSPair with get
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (black: Chalk.CSPair, red: Chalk.CSPair, green: Chalk.CSPair, yellow: Chalk.CSPair, blue: Chalk.CSPair, cyan: Chalk.CSPair, magenta: Chalk.CSPair, white: Chalk.CSPair, gray: Chalk.CSPair, grey: Chalk.CSPair, blackBright: Chalk.CSPair, redBright: Chalk.CSPair, greenBright: Chalk.CSPair, yellowBright: Chalk.CSPair, blueBright: Chalk.CSPair, cyanBright: Chalk.CSPair, magentaBright: Chalk.CSPair, whiteBright: Chalk.CSPair) : ForegroundColor = nativeOnly
 
                 [<AllowNullLiteral>]
                 [<Interface>]
@@ -728,6 +738,8 @@ module Chalk =
                     abstract member bgCyanBright: Chalk.CSPair with get
                     abstract member bgMagentaBright: Chalk.CSPair with get
                     abstract member bgWhiteBright: Chalk.CSPair with get
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (bgBlack: Chalk.CSPair, bgRed: Chalk.CSPair, bgGreen: Chalk.CSPair, bgYellow: Chalk.CSPair, bgBlue: Chalk.CSPair, bgCyan: Chalk.CSPair, bgMagenta: Chalk.CSPair, bgWhite: Chalk.CSPair, bgGray: Chalk.CSPair, bgGrey: Chalk.CSPair, bgBlackBright: Chalk.CSPair, bgRedBright: Chalk.CSPair, bgGreenBright: Chalk.CSPair, bgYellowBright: Chalk.CSPair, bgBlueBright: Chalk.CSPair, bgCyanBright: Chalk.CSPair, bgMagentaBright: Chalk.CSPair, bgWhiteBright: Chalk.CSPair) : BackgroundColor = nativeOnly
 
             module supports_color =
 

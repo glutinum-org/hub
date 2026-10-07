@@ -105,6 +105,8 @@ module Geojson =
         /// https://tools.ietf.org/html/rfc7946#section-5
         /// </summary>
         abstract member bbox: Geojson.BBox option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: Geojson.GeoJsonTypes, ?bbox: Geojson.BBox) : GeoJsonObject = nativeOnly
 
     /// <summary>
     /// Union of GeoJSON objects.
@@ -135,6 +137,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member coordinates: Geojson.Position with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, coordinates: Geojson.Position, ?bbox: Geojson.BBox) : Point = nativeOnly
 
     /// <summary>
     /// MultiPoint geometry object.
@@ -149,6 +153,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member coordinates: ResizeArray<Geojson.Position> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, coordinates: ResizeArray<Geojson.Position>, ?bbox: Geojson.BBox) : MultiPoint = nativeOnly
 
     /// <summary>
     /// LineString geometry object.
@@ -163,6 +169,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member coordinates: ResizeArray<Geojson.Position> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, coordinates: ResizeArray<Geojson.Position>, ?bbox: Geojson.BBox) : LineString = nativeOnly
 
     /// <summary>
     /// MultiLineString geometry object.
@@ -177,6 +185,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member coordinates: ResizeArray<ResizeArray<Geojson.Position>> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, coordinates: ResizeArray<ResizeArray<Geojson.Position>>, ?bbox: Geojson.BBox) : MultiLineString = nativeOnly
 
     /// <summary>
     /// Polygon geometry object.
@@ -191,6 +201,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member coordinates: ResizeArray<ResizeArray<Geojson.Position>> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, coordinates: ResizeArray<ResizeArray<Geojson.Position>>, ?bbox: Geojson.BBox) : Polygon = nativeOnly
 
     /// <summary>
     /// MultiPolygon geometry object.
@@ -205,6 +217,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member coordinates: ResizeArray<ResizeArray<ResizeArray<Geojson.Position>>> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, coordinates: ResizeArray<ResizeArray<ResizeArray<Geojson.Position>>>, ?bbox: Geojson.BBox) : MultiPolygon = nativeOnly
 
     /// <summary>
     /// Geometry Collection
@@ -219,6 +233,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member geometries: ResizeArray<'G> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, geometries: ResizeArray<'G>, ?bbox: Geojson.BBox) : GeometryCollection<'G> = nativeOnly
 
     type GeoJsonProperties =
         GeoJsonProperties.Value option
@@ -248,6 +264,12 @@ module Geojson =
         /// Properties associated with this feature.
         /// </summary>
         abstract member properties: 'P with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, geometry: 'G, properties: 'P, ?bbox: Geojson.BBox) : Feature<'G, 'P> = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, geometry: 'G, properties: 'P, id: string, ?bbox: Geojson.BBox) : Feature<'G, 'P> = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, geometry: 'G, properties: 'P, id: float, ?bbox: Geojson.BBox) : Feature<'G, 'P> = nativeOnly
 
     /// <summary>
     /// A collection of feature objects.
@@ -262,6 +284,8 @@ module Geojson =
         /// </summary>
         abstract member ``type``: string with get, set
         abstract member features: ResizeArray<Geojson.Feature<'G, 'P>> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (``type``: string, features: ResizeArray<Geojson.Feature<'G, 'P>>, ?bbox: Geojson.BBox) : FeatureCollection<'G, 'P> = nativeOnly
 
     type GeoJSON<'G> =
         GeoJSON<'G, Geojson.GeoJsonProperties>

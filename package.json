@@ -8,7 +8,7 @@
         "pnpm": "11"
     },
     "devDependencies": {
-        "@glutinum/cli": "1.0.0-beta.3",
+        "@glutinum/cli": "1.0.0-beta.4",
         "playwright": "^1.63.0",
         "vite": "^5.2.9"
     }

@@ -22,6 +22,12 @@ module SignaturePad =
         abstract member x: float with get, set
         abstract member y: float with get, set
         abstract member pressure: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (event: Glutinum.Web.MouseEvent, ``type``: string, x: float, y: float, pressure: float) : SignatureEvent = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (event: Glutinum.Web.TouchEvent, ``type``: string, x: float, y: float, pressure: float) : SignatureEvent = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (event: Glutinum.Web.PointerEvent, ``type``: string, x: float, y: float, pressure: float) : SignatureEvent = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -62,6 +68,8 @@ module SignaturePad =
         /// *default: 'source-over'*
         /// </summary>
         abstract member compositeOperation: Glutinum.Web.GlobalCompositeOperation with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (dotSize: float, minWidth: float, maxWidth: float, penColor: string, velocityFilterWeight: float, compositeOperation: Glutinum.Web.GlobalCompositeOperation) : PointGroupOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -88,6 +96,8 @@ module SignaturePad =
     type PointGroup =
         inherit SignaturePad.PointGroupOptions
         abstract member points: ResizeArray<SignaturePad.BasicPoint> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (dotSize: float, minWidth: float, maxWidth: float, penColor: string, velocityFilterWeight: float, compositeOperation: Glutinum.Web.GlobalCompositeOperation, points: ResizeArray<SignaturePad.BasicPoint>) : PointGroup = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]

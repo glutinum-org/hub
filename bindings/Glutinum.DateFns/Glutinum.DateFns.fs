@@ -1627,7 +1627,7 @@ module DateFns =
         /// The date bounded by the start and the end of the interval
         /// </returns>
         [<Import("clamp", "date-fns")>]
-        static member clamp<'DateType, 'IntervalType> (date: 'DateType, interval: 'IntervalType, ?options: DateFns.ClampOptions option) : Date = nativeOnly
+        static member clamp<'DateType, 'IntervalType> (date: 'DateType, interval: 'IntervalType, ?options: DateFns.ClampOptions) : Date = nativeOnly
         /// <example>
         /// // Which date is closer to 6 September 2015?
         /// const dateToCompare = new Date(2015, 8, 6)
@@ -1744,7 +1744,7 @@ module DateFns =
         /// The date from the array closest to the given date or undefined if no valid value is given
         /// </returns>
         [<Import("closestTo", "date-fns")>]
-        static member closestTo<'DateToCompare, 'DatesType> (dateToCompare: 'DateToCompare, dates: 'DatesType, ?options: DateFns.ClosestToOptions option) : Date option = nativeOnly
+        static member closestTo<'DateToCompare, 'DatesType> (dateToCompare: 'DateToCompare, dates: 'DatesType, ?options: DateFns.ClosestToOptions) : Date option = nativeOnly
         /// <example>
         /// // Compare 11 February 1987 and 10 July 1989:
         /// const result = compareAsc(new Date(1987, 1, 11), new Date(1989, 6, 10))
@@ -7559,7 +7559,7 @@ module DateFns =
         /// The array with starts of days from the day of the interval start to the day of the interval end
         /// </returns>
         [<Import("eachDayOfInterval", "date-fns")>]
-        static member eachDayOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachDayOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachDayOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachDayOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Each hour between 6 October 2014, 12:00 and 6 October 2014, 15:00
         /// const result = eachHourOfInterval({
@@ -7589,7 +7589,7 @@ module DateFns =
         /// The array with starts of hours from the hour of the interval start to the hour of the interval end
         /// </returns>
         [<Import("eachHourOfInterval", "date-fns")>]
-        static member eachHourOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachHourOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachHourOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachHourOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Each minute between 14 October 2020, 13:00 and 14 October 2020, 13:03
         /// const result = eachMinuteOfInterval({
@@ -7619,7 +7619,7 @@ module DateFns =
         /// The array with starts of minutes from the minute of the interval start to the minute of the interval end
         /// </returns>
         [<Import("eachMinuteOfInterval", "date-fns")>]
-        static member eachMinuteOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachMinuteOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachMinuteOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachMinuteOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Each month between 6 February 2014 and 10 August 2014:
         /// const result = eachMonthOfInterval({
@@ -7652,7 +7652,7 @@ module DateFns =
         /// The array with starts of months from the month of the interval start to the month of the interval end
         /// </returns>
         [<Import("eachMonthOfInterval", "date-fns")>]
-        static member eachMonthOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachMonthOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachMonthOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachMonthOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Each quarter within interval 6 February 2014 - 10 August 2014:
         /// const result = eachQuarterOfInterval({
@@ -7681,7 +7681,7 @@ module DateFns =
         /// The array with starts of quarters from the quarter of the interval start to the quarter of the interval end
         /// </returns>
         [<Import("eachQuarterOfInterval", "date-fns")>]
-        static member eachQuarterOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachQuarterOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachQuarterOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachQuarterOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Each week within interval 6 October 2014 - 23 November 2014:
         /// const result = eachWeekOfInterval({
@@ -7709,7 +7709,7 @@ module DateFns =
         /// The array with starts of weeks from the week of the interval start to the week of the interval end
         /// </returns>
         [<Import("eachWeekOfInterval", "date-fns")>]
-        static member eachWeekOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachWeekOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachWeekOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachWeekOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Lists all Saturdays and Sundays in the given date interval
         /// const result = eachWeekendOfInterval({
@@ -7739,7 +7739,7 @@ module DateFns =
         /// An array containing all the Saturdays and Sundays
         /// </returns>
         [<Import("eachWeekendOfInterval", "date-fns")>]
-        static member eachWeekendOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachWeekendOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachWeekendOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachWeekendOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // Lists all Saturdays and Sundays in the given month
         /// const result = eachWeekendOfMonth(new Date(2022, 1, 1))
@@ -8005,7 +8005,7 @@ module DateFns =
         /// The array with starts of yearly timestamps from the month of the interval start to the month of the interval end
         /// </returns>
         [<Import("eachYearOfInterval", "date-fns")>]
-        static member eachYearOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachYearOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+        static member eachYearOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.EachYearOfIntervalOptions) : ResizeArray<Date> = nativeOnly
         /// <example>
         /// // The end of a day for 2 September 2014 11:55:00:
         /// const result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
@@ -13601,7 +13601,7 @@ module DateFns =
         /// The normalized and validated interval object.
         /// </returns>
         [<Import("interval", "date-fns")>]
-        static member interval<'StartDate, 'EndDate> (start: 'StartDate, ``end``: 'EndDate, ?options: DateFns.IntervalOptions option) : DateFns.NormalizedInterval<Date> = nativeOnly
+        static member interval<'StartDate, 'EndDate> (start: 'StartDate, ``end``: 'EndDate, ?options: DateFns.IntervalOptions) : DateFns.NormalizedInterval<Date> = nativeOnly
         /// <example>
         /// // Get the duration between January 15, 1929 and April 4, 1968.
         /// intervalToDuration({
@@ -27474,7 +27474,7 @@ module DateFns =
         /// </summary>
         abstract member inclusive: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>, ?inclusive: bool) : AreIntervalsOverlappingOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>, ?inclusive: bool) : AreIntervalsOverlappingOptions = nativeOnly
 
     /// <summary>
     /// The <see href="clamp">clamp</see> function options.
@@ -27484,7 +27484,7 @@ module DateFns =
     type ClampOptions<'ContextDate> =
         inherit DateFns.ContextOptions<'ContextDate>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : ClampOptions<'ContextDate> = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<'ContextDate>) : ClampOptions<'ContextDate> = nativeOnly
 
     /// <summary>
     /// The <see href="clamp">clamp</see> function result type. It resolves the proper data type.
@@ -27504,6 +27504,8 @@ module DateFns =
     [<Interface>]
     type ClosestToOptions<'DateType> =
         inherit DateFns.ContextOptions<'DateType>
+        [<ParamObject; Emit("$0")>]
+        static member Create (?``in``: DateFns.ContextFn<'DateType>) : ClosestToOptions<'DateType> = nativeOnly
 
     /// <summary>
     /// The <see href="closestTo">closestTo</see> function result type. It resolves the proper data type.
@@ -27524,7 +27526,7 @@ module DateFns =
     type DifferenceInBusinessDaysOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInBusinessDaysOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInBusinessDaysOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarDays">differenceInCalendarDays</see> function options.
@@ -27534,7 +27536,7 @@ module DateFns =
     type DifferenceInCalendarDaysOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarDaysOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarDaysOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarISOWeekYears">differenceInCalendarISOWeekYears</see> function options.
@@ -27544,7 +27546,7 @@ module DateFns =
     type DifferenceInCalendarISOWeekYearsOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarISOWeekYearsOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarISOWeekYearsOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarISOWeeks">differenceInCalendarISOWeeks</see> function options.
@@ -27554,7 +27556,7 @@ module DateFns =
     type DifferenceInCalendarISOWeeksOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarISOWeeksOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarISOWeeksOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarMonths">differenceInCalendarMonths</see> function options.
@@ -27564,7 +27566,7 @@ module DateFns =
     type DifferenceInCalendarMonthsOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarMonthsOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarMonthsOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarQuarters">differenceInCalendarQuarters</see> function options.
@@ -27574,7 +27576,7 @@ module DateFns =
     type DifferenceInCalendarQuartersOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarQuartersOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarQuartersOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarWeeks">differenceInCalendarWeeks</see> function options.
@@ -27586,7 +27588,7 @@ module DateFns =
         inherit DateFns.WeekOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarWeeksOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarWeeksOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInCalendarYears">differenceInCalendarYears</see> function options.
@@ -27596,7 +27598,7 @@ module DateFns =
     type DifferenceInCalendarYearsOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarYearsOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarYearsOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInDays">differenceInDays</see> function options.
@@ -27606,7 +27608,7 @@ module DateFns =
     type DifferenceInDaysOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInDaysOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInDaysOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInHours">differenceInHours</see> function options.
@@ -27617,7 +27619,7 @@ module DateFns =
         inherit DateFns.RoundingOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInHoursOptions = nativeOnly
+        static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>) : DifferenceInHoursOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInISOWeekYears">differenceInISOWeekYears</see> function options.
@@ -27627,7 +27629,7 @@ module DateFns =
     type DifferenceInISOWeekYearsOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInISOWeekYearsOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInISOWeekYearsOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInMinutes">differenceInMinutes</see> function options.
@@ -27647,7 +27649,7 @@ module DateFns =
     type DifferenceInMonthsOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInMonthsOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInMonthsOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInQuarters">differenceInQuarters</see> function options.
@@ -27658,7 +27660,7 @@ module DateFns =
         inherit DateFns.RoundingOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInQuartersOptions = nativeOnly
+        static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>) : DifferenceInQuartersOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInSeconds">differenceInSeconds</see> function options.
@@ -27679,7 +27681,7 @@ module DateFns =
         inherit DateFns.RoundingOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInWeeksOptions = nativeOnly
+        static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>) : DifferenceInWeeksOptions = nativeOnly
 
     /// <summary>
     /// The <see href="differenceInYears">differenceInYears</see> function options.
@@ -27689,7 +27691,7 @@ module DateFns =
     type DifferenceInYearsOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInYearsOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInYearsOptions = nativeOnly
 
     /// <summary>
     /// The <see href="eachDayOfInterval">eachDayOfInterval</see> function options.
@@ -28033,7 +28035,7 @@ module DateFns =
         inherit DateFns.AdditionalTokensOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?useAdditionalWeekYearTokens: bool, ?useAdditionalDayOfYearTokens: bool, ?``in``: DateFns.ContextFn<'DateType>) : FormatOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?useAdditionalWeekYearTokens: bool, ?useAdditionalDayOfYearTokens: bool, ?``in``: DateFns.ContextFn<Date>) : FormatOptions = nativeOnly
 
     /// <summary>
     /// The <see href="formatDistance">formatDistance</see> function options.
@@ -28052,7 +28054,7 @@ module DateFns =
         /// </summary>
         abstract member addSuffix: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?``in``: DateFns.ContextFn<'DateType>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceOptions = nativeOnly
+        static member Create (?locale: obj, ?``in``: DateFns.ContextFn<Date>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceOptions = nativeOnly
 
     /// <summary>
     /// The <see href="formatDistanceStrict">formatDistanceStrict</see> function options.
@@ -28091,7 +28093,7 @@ module DateFns =
         inherit DateFns.FormatDistanceOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?``in``: DateFns.ContextFn<'DateType>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceToNowOptions = nativeOnly
+        static member Create (?locale: obj, ?``in``: DateFns.ContextFn<Date>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceToNowOptions = nativeOnly
 
     /// <summary>
     /// The <see href="formatDistanceToNowStrict">formatDistanceToNowStrict</see> function options.
@@ -28102,7 +28104,7 @@ module DateFns =
         inherit DateFns.FormatDistanceStrictOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>, ?addSuffix: bool, ?unit: DateFns.FormatDistanceStrictUnit) : FormatDistanceToNowStrictOptions = nativeOnly
+        static member Create (?locale: obj, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>, ?addSuffix: bool, ?unit: DateFns.FormatDistanceStrictUnit) : FormatDistanceToNowStrictOptions = nativeOnly
 
     /// <summary>
     /// The <see href="formatDuration">formatDuration</see> function options.
@@ -28135,7 +28137,7 @@ module DateFns =
         inherit DateFns.ISOFormatOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<'DateType>) : FormatISOOptions = nativeOnly
+        static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<Date>) : FormatISOOptions = nativeOnly
 
     /// <summary>
     /// The <see href="formatISO9075">formatISO9075</see> function options.
@@ -28146,7 +28148,7 @@ module DateFns =
         inherit DateFns.ISOFormatOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<'DateType>) : FormatISO9075Options = nativeOnly
+        static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<Date>) : FormatISO9075Options = nativeOnly
 
     /// <summary>
     /// The <see href="formatRFC3339">formatRFC3339</see> function options.
@@ -28160,7 +28162,7 @@ module DateFns =
         /// </summary>
         abstract member fractionDigits: FormatRFC3339Options.fractionDigits option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>, ?fractionDigits: FormatRFC3339Options.fractionDigits) : FormatRFC3339Options = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>, ?fractionDigits: FormatRFC3339Options.fractionDigits) : FormatRFC3339Options = nativeOnly
 
     /// <summary>
     /// The <see href="formatRelative">formatRelative</see> function options.
@@ -28172,7 +28174,7 @@ module DateFns =
         inherit DateFns.WeekOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : FormatRelativeOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : FormatRelativeOptions = nativeOnly
 
     /// <summary>
     /// The type of a function that can be converted to FP.
@@ -28270,7 +28272,7 @@ module DateFns =
     type GetDateOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDateOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetDateOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getDay">getDay</see> function options.
@@ -28280,7 +28282,7 @@ module DateFns =
     type GetDayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetDayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getDayOfYear">getDayOfYear</see> function options.
@@ -28290,7 +28292,7 @@ module DateFns =
     type GetDayOfYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDayOfYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetDayOfYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getDaysInMonth">getDaysInMonth</see> function options.
@@ -28300,7 +28302,7 @@ module DateFns =
     type GetDaysInMonthOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDaysInMonthOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetDaysInMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getDaysInYear">getDaysInYear</see> function options.
@@ -28310,7 +28312,7 @@ module DateFns =
     type GetDaysInYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDaysInYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetDaysInYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getDecade">getDecade</see> function options.
@@ -28320,7 +28322,7 @@ module DateFns =
     type GetDecadeOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDecadeOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetDecadeOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getHours">getHours</see> function options.
@@ -28330,7 +28332,7 @@ module DateFns =
     type GetHoursOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetHoursOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetHoursOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getISODay">getISODay</see> function options.
@@ -28340,7 +28342,7 @@ module DateFns =
     type GetISODayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISODayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetISODayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getISOWeek">getISOWeek</see> function options.
@@ -28350,7 +28352,7 @@ module DateFns =
     type GetISOWeekOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISOWeekOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetISOWeekOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getISOWeekYear">getISOWeekYear</see> function options.
@@ -28360,7 +28362,7 @@ module DateFns =
     type GetISOWeekYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISOWeekYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetISOWeekYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getISOWeeksInYear">getISOWeeksInYear</see> function options.
@@ -28370,7 +28372,7 @@ module DateFns =
     type GetISOWeeksInYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISOWeeksInYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetISOWeeksInYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getMinutes">getMinutes</see> function options.
@@ -28380,7 +28382,7 @@ module DateFns =
     type GetMinutesOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetMinutesOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetMinutesOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getMonth">getMonth</see> function options.
@@ -28390,7 +28392,7 @@ module DateFns =
     type GetMonthOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetMonthOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getQuarter">getQuarter</see> function options.
@@ -28400,7 +28402,7 @@ module DateFns =
     type GetQuarterOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetQuarterOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetQuarterOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getWeek">getWeek</see> function options.
@@ -28413,7 +28415,7 @@ module DateFns =
         inherit DateFns.FirstWeekContainsDateOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<'DateType>) : GetWeekOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<Date>) : GetWeekOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getWeekOfMonth">getWeekOfMonth</see> function options.
@@ -28425,7 +28427,7 @@ module DateFns =
         inherit DateFns.WeekOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : GetWeekOfMonthOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : GetWeekOfMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getWeekYear">getWeekYear</see> function options.
@@ -28438,7 +28440,7 @@ module DateFns =
         inherit DateFns.FirstWeekContainsDateOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<'DateType>) : GetWeekYearOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<Date>) : GetWeekYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getWeeksInMonth">getWeeksInMonth</see> function options.
@@ -28450,7 +28452,7 @@ module DateFns =
         inherit DateFns.WeekOptions
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : GetWeeksInMonthOptions = nativeOnly
+        static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : GetWeeksInMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="getYear">getYear</see> function options.
@@ -28460,7 +28462,7 @@ module DateFns =
     type GetYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : GetYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="interval">interval</see> function options.
@@ -28474,7 +28476,7 @@ module DateFns =
         /// </summary>
         abstract member assertPositive: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>, ?assertPositive: bool) : IntervalOptions<'ContextDate> = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<'ContextDate>, ?assertPositive: bool) : IntervalOptions<'ContextDate> = nativeOnly
 
     /// <summary>
     /// The <see href="interval">interval</see> function result type. It resolves the proper data type.
@@ -28495,7 +28497,7 @@ module DateFns =
     type IntervalToDurationOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IntervalToDurationOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IntervalToDurationOptions = nativeOnly
 
     /// <summary>
     /// The locale string (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
@@ -28559,7 +28561,7 @@ module DateFns =
     type IsFirstDayOfMonthOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsFirstDayOfMonthOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsFirstDayOfMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isFriday">isFriday</see> function options.
@@ -28569,21 +28571,21 @@ module DateFns =
     type IsFridayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsFridayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsFridayOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type IsLastDayOfMonthOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsLastDayOfMonthOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsLastDayOfMonthOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type IsLeapYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsLeapYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsLeapYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isMatch">isMatch</see> function options.
@@ -28606,7 +28608,7 @@ module DateFns =
     type IsMondayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsMondayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsMondayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameDay">isSameDay</see> function options.
@@ -28616,7 +28618,7 @@ module DateFns =
     type IsSameDayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameDayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameDayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameHour">isSameHour</see> function options.
@@ -28626,7 +28628,7 @@ module DateFns =
     type IsSameHourOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameHourOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameHourOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameISOWeek">isSameISOWeek</see> function options.
@@ -28636,7 +28638,7 @@ module DateFns =
     type IsSameISOWeekOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameISOWeekOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameISOWeekOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameISOWeekYear">isSameISOWeekYear</see> function options.
@@ -28646,7 +28648,7 @@ module DateFns =
     type IsSameISOWeekYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameISOWeekYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameISOWeekYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameMonth">isSameMonth</see> function options.
@@ -28656,7 +28658,7 @@ module DateFns =
     type IsSameMonthOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameMonthOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameQuarter">isSameQuarter</see> function options.
@@ -28666,7 +28668,7 @@ module DateFns =
     type IsSameQuarterOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameQuarterOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameQuarterOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameWeek">isSameWeek</see> function options.
@@ -28678,7 +28680,7 @@ module DateFns =
         inherit DateFns.LocalizedOptions<string>
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<'DateType>) : IsSameWeekOptions = nativeOnly
+        static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<Date>) : IsSameWeekOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSameYear">isSameYear</see> function options.
@@ -28688,7 +28690,7 @@ module DateFns =
     type IsSameYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSaturday">isSaturday</see> function options.
@@ -28698,7 +28700,7 @@ module DateFns =
     type IsSaturdayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSaturdayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSaturdayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isSunday">isSunday</see> function options.
@@ -28708,7 +28710,7 @@ module DateFns =
     type IsSundayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSundayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsSundayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThisHour">isThisHour</see> function options.
@@ -28718,7 +28720,7 @@ module DateFns =
     type IsThisHourOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisHourOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisHourOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThisISOWeek">isThisISOWeek</see> function options.
@@ -28728,7 +28730,7 @@ module DateFns =
     type IsThisISOWeekOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisISOWeekOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisISOWeekOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThisMonth">isThisMonth</see> function options.
@@ -28738,7 +28740,7 @@ module DateFns =
     type IsThisMonthOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisMonthOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisMonthOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThisQuarter">isThisQuarter</see> function options.
@@ -28748,7 +28750,7 @@ module DateFns =
     type IsThisQuarterOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisQuarterOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisQuarterOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThisWeek">isThisWeek</see> function options.
@@ -28760,7 +28762,7 @@ module DateFns =
         inherit DateFns.LocalizedOptions<string>
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<'DateType>) : IsThisWeekOptions = nativeOnly
+        static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<Date>) : IsThisWeekOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThisYear">isThisYear</see> function options.
@@ -28770,7 +28772,7 @@ module DateFns =
     type IsThisYearOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisYearOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisYearOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isThursday">isThursday</see> function options.
@@ -28780,7 +28782,7 @@ module DateFns =
     type IsThursdayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThursdayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsThursdayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isToday">isToday</see> function options.
@@ -28790,7 +28792,7 @@ module DateFns =
     type IsTodayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsTodayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsTodayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isTomorrow">isTomorrow</see> function options.
@@ -28800,7 +28802,7 @@ module DateFns =
     type IsTomorrowOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsTomorrowOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsTomorrowOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isTuesday">isTuesday</see> function options.
@@ -28810,7 +28812,7 @@ module DateFns =
     type IsTuesdayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsTuesdayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsTuesdayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isWednesday">isWednesday</see> function options.
@@ -28820,7 +28822,7 @@ module DateFns =
     type IsWednesdayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsWednesdayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsWednesdayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isWeekend">isWeekend</see> function options.
@@ -28830,7 +28832,7 @@ module DateFns =
     type IsWeekendOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsWeekendOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsWeekendOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isWithinInterval">isWithinInterval</see> function options.
@@ -28840,7 +28842,7 @@ module DateFns =
     type IsWithinIntervalOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsWithinIntervalOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsWithinIntervalOptions = nativeOnly
 
     /// <summary>
     /// The <see href="isYesterday">isYesterday</see> function options.
@@ -28850,7 +28852,7 @@ module DateFns =
     type IsYesterdayOptions =
         inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
-        static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsYesterdayOptions = nativeOnly
+        static member Create (?``in``: DateFns.ContextFn<Date>) : IsYesterdayOptions = nativeOnly
 
     /// <summary>
     /// The <see href="lastDayOfDecade">lastDayOfDecade</see> function options.
@@ -28959,6 +28961,8 @@ module DateFns =
         /// An object with locale options
         /// </summary>
         abstract member options: DateFns.LocaleOptions option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (code: string, formatDistance: DateFns.FormatDistanceFn, formatRelative: DateFns.FormatRelativeFn<obj>, localize: DateFns.Localize, formatLong: DateFns.FormatLong, ``match``: DateFns.Match, ?options: DateFns.LocaleOptions) : Locale = nativeOnly
 
     /// <summary>
     /// The locale options.
@@ -28968,6 +28972,8 @@ module DateFns =
     type LocaleOptions =
         inherit DateFns.WeekOptions
         inherit DateFns.FirstWeekContainsDateOptions
+        [<ParamObject; Emit("$0")>]
+        static member Create (?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate) : LocaleOptions = nativeOnly
 
     /// <summary>
     /// The function that takes a token (i.e. halfAMinute) passed by <c>formatDistance</c>
@@ -29141,6 +29147,8 @@ module DateFns =
         /// The format part value (i.e. <c>"do"</c>).
         /// </summary>
         abstract member value: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (isToken: bool, value: string) : FormatPart = nativeOnly
 
     /// <summary>
     /// The object with functions used to localize various values. Part of the public
@@ -29299,6 +29307,8 @@ module DateFns =
         /// </example>
         [<Obsolete("Map the value manually instead.")>]
         abstract member valueCallback: DateFns.MatchValueCallback<string, 'Result> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?width: DateFns.LocaleWidth, ?valueCallback: DateFns.MatchValueCallback<string, 'Result>) : MatchFnOptions<'Result> = nativeOnly
 
     /// <summary>
     /// The function that allows to map the matched value to the actual type.
@@ -29335,6 +29345,8 @@ module DateFns =
         /// The remaining string after parsing
         /// </summary>
         abstract member rest: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (value: 'Result, rest: string) : MatchFnResult<'Result> = nativeOnly
 
     /// <summary>
     /// The object with functions that return localized formats. Long stands for
@@ -29742,7 +29754,7 @@ module DateFns =
         inherit DateFns.RoundingOptions
         inherit DateFns.ContextOptions<'DateType>
         [<ParamObject; Emit("$0")>]
-        static member Create (?nearestTo: 'Unit, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestHoursOptions<'DateType> = nativeOnly
+        static member Create (?nearestTo: DateFns.NearestHours, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestHoursOptions<'DateType> = nativeOnly
 
     /// <summary>
     /// The <see href="roundToNearestMinutes">roundToNearestMinutes</see> function options.
@@ -29754,7 +29766,7 @@ module DateFns =
         inherit DateFns.RoundingOptions
         inherit DateFns.ContextOptions<'DateType>
         [<ParamObject; Emit("$0")>]
-        static member Create (?nearestTo: 'Unit, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestMinutesOptions<'DateType> = nativeOnly
+        static member Create (?nearestTo: DateFns.NearestMinutes, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestMinutesOptions<'DateType> = nativeOnly
 
     /// <summary>
     /// The <see href="set">set</see> function options.
@@ -29991,6 +30003,8 @@ module DateFns =
     [<Interface>]
     type StartOfMonthOptions<'ResultDate> =
         inherit DateFns.ContextOptions<'ResultDate>
+        [<ParamObject; Emit("$0")>]
+        static member Create (?``in``: DateFns.ContextFn<'ResultDate>) : StartOfMonthOptions<'ResultDate> = nativeOnly
 
     /// <summary>
     /// The <see href="startOfQuarter">startOfQuarter</see> function options.
@@ -30424,6 +30438,8 @@ module DateFns =
         /// The step to use when iterating
         /// </summary>
         abstract member step: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?step: float) : StepOptions = nativeOnly
 
     /// <summary>
     /// The week function options. Used to build function options.
@@ -30435,6 +30451,8 @@ module DateFns =
         /// Which day the week starts on.
         /// </summary>
         abstract member weekStartsOn: DateFns.Day option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?weekStartsOn: DateFns.Day) : WeekOptions = nativeOnly
 
     /// <summary>
     /// The first week contains date options. Used to build function options.
@@ -30446,6 +30464,8 @@ module DateFns =
         /// See <see href="FirstWeekContainsDate">FirstWeekContainsDate</see> for more details.
         /// </summary>
         abstract member firstWeekContainsDate: DateFns.FirstWeekContainsDate option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?firstWeekContainsDate: DateFns.FirstWeekContainsDate) : FirstWeekContainsDateOptions = nativeOnly
 
     /// <summary>
     /// The localized function options. Used to build function options.
@@ -30477,6 +30497,8 @@ module DateFns =
         /// or both (complete)
         /// </summary>
         abstract member representation: DateFns.ISOStringRepresentation option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation) : ISOFormatOptions = nativeOnly
 
     /// <summary>
     /// The rounding options. Used to build function options.
@@ -30488,6 +30510,8 @@ module DateFns =
         /// The rounding method to use
         /// </summary>
         abstract member roundingMethod: DateFns.RoundingMethod option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?roundingMethod: DateFns.RoundingMethod) : RoundingOptions = nativeOnly
 
     /// <summary>
     /// Additional tokens options. Used to build function options.
@@ -30505,6 +30529,8 @@ module DateFns =
         /// See: https://date-fns.org/docs/Unicode-Tokens
         /// </summary>
         abstract member useAdditionalDayOfYearTokens: bool option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?useAdditionalWeekYearTokens: bool, ?useAdditionalDayOfYearTokens: bool) : AdditionalTokensOptions = nativeOnly
 
     [<RequireQualifiedAccess>]
     type NearestMinutes =
@@ -30572,6 +30598,8 @@ module DateFns =
         /// hours.
         /// </summary>
         abstract member nearestTo: 'Unit option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?nearestTo: 'Unit) : NearestToUnitOptions<'Unit> = nativeOnly
 
     /// <summary>
     /// The context options. Used to build function options.
@@ -30584,6 +30612,8 @@ module DateFns =
         /// to a specific date instance, which is useful for extensions like [<c>TZDate</c>](https://github.com/date-fns/tz).
         /// </summary>
         abstract member ``in``: DateFns.ContextFn<'DateType> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?``in``: DateFns.ContextFn<'DateType>) : ContextOptions<'DateType> = nativeOnly
 
     /// <summary>
     /// /**
@@ -32277,7 +32307,7 @@ module DateFns =
             /// </summary>
             abstract member inclusive: bool option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>, ?inclusive: bool) : AreIntervalsOverlappingOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>, ?inclusive: bool) : AreIntervalsOverlappingOptions = nativeOnly
 
     module clamp =
 
@@ -32314,7 +32344,7 @@ module DateFns =
             /// The date bounded by the start and the end of the interval
             /// </returns>
             [<Import("clamp", "date-fns")>]
-            static member clamp<'DateType, 'IntervalType> (date: 'DateType, interval: 'IntervalType, ?options: DateFns.clamp.ClampOptions option) : Date = nativeOnly
+            static member clamp<'DateType, 'IntervalType> (date: 'DateType, interval: 'IntervalType, ?options: DateFns.clamp.ClampOptions) : Date = nativeOnly
 
         /// <summary>
         /// The <see href="clamp">clamp</see> function options.
@@ -32324,7 +32354,7 @@ module DateFns =
         type ClampOptions<'ContextDate> =
             inherit DateFns.ContextOptions<'ContextDate>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : ClampOptions<'ContextDate> = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<'ContextDate>) : ClampOptions<'ContextDate> = nativeOnly
 
         /// <summary>
         /// The <see href="clamp">clamp</see> function result type. It resolves the proper data type.
@@ -32470,7 +32500,7 @@ module DateFns =
             /// The date from the array closest to the given date or undefined if no valid value is given
             /// </returns>
             [<Import("closestTo", "date-fns")>]
-            static member closestTo<'DateToCompare, 'DatesType> (dateToCompare: 'DateToCompare, dates: 'DatesType, ?options: DateFns.closestTo.ClosestToOptions option) : Date option = nativeOnly
+            static member closestTo<'DateToCompare, 'DatesType> (dateToCompare: 'DateToCompare, dates: 'DatesType, ?options: DateFns.closestTo.ClosestToOptions) : Date option = nativeOnly
 
         /// <summary>
         /// The <see href="closestTo">closestTo</see> function options.
@@ -32479,6 +32509,8 @@ module DateFns =
         [<Interface>]
         type ClosestToOptions<'DateType> =
             inherit DateFns.ContextOptions<'DateType>
+            [<ParamObject; Emit("$0")>]
+            static member Create (?``in``: DateFns.ContextFn<'DateType>) : ClosestToOptions<'DateType> = nativeOnly
 
         /// <summary>
         /// The <see href="closestTo">closestTo</see> function result type. It resolves the proper data type.
@@ -34101,7 +34133,7 @@ module DateFns =
         type DifferenceInBusinessDaysOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInBusinessDaysOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInBusinessDaysOptions = nativeOnly
 
     module differenceInCalendarDays =
 
@@ -34417,7 +34449,7 @@ module DateFns =
         type DifferenceInCalendarDaysOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarDaysOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarDaysOptions = nativeOnly
 
     module differenceInCalendarISOWeekYears =
 
@@ -34653,7 +34685,7 @@ module DateFns =
         type DifferenceInCalendarISOWeekYearsOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarISOWeekYearsOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarISOWeekYearsOptions = nativeOnly
 
     module differenceInCalendarISOWeeks =
 
@@ -34889,7 +34921,7 @@ module DateFns =
         type DifferenceInCalendarISOWeeksOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarISOWeeksOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarISOWeeksOptions = nativeOnly
 
     module differenceInCalendarMonths =
 
@@ -35125,7 +35157,7 @@ module DateFns =
         type DifferenceInCalendarMonthsOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarMonthsOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarMonthsOptions = nativeOnly
 
     module differenceInCalendarQuarters =
 
@@ -35361,7 +35393,7 @@ module DateFns =
         type DifferenceInCalendarQuartersOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarQuartersOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarQuartersOptions = nativeOnly
 
     module differenceInCalendarWeeks =
 
@@ -35699,7 +35731,7 @@ module DateFns =
             inherit DateFns.WeekOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarWeeksOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarWeeksOptions = nativeOnly
 
     module differenceInCalendarYears =
 
@@ -35935,7 +35967,7 @@ module DateFns =
         type DifferenceInCalendarYearsOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInCalendarYearsOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInCalendarYearsOptions = nativeOnly
 
     module differenceInDays =
 
@@ -36401,7 +36433,7 @@ module DateFns =
         type DifferenceInDaysOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInDaysOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInDaysOptions = nativeOnly
 
     module differenceInHours =
 
@@ -36638,7 +36670,7 @@ module DateFns =
             inherit DateFns.RoundingOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInHoursOptions = nativeOnly
+            static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>) : DifferenceInHoursOptions = nativeOnly
 
     module differenceInISOWeekYears =
 
@@ -36874,7 +36906,7 @@ module DateFns =
         type DifferenceInISOWeekYearsOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInISOWeekYearsOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInISOWeekYearsOptions = nativeOnly
 
     module differenceInMilliseconds =
 
@@ -37602,7 +37634,7 @@ module DateFns =
         type DifferenceInMonthsOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInMonthsOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInMonthsOptions = nativeOnly
 
     module differenceInQuarters =
 
@@ -37809,7 +37841,7 @@ module DateFns =
             inherit DateFns.RoundingOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInQuartersOptions = nativeOnly
+            static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>) : DifferenceInQuartersOptions = nativeOnly
 
     module differenceInSeconds =
 
@@ -38392,7 +38424,7 @@ module DateFns =
             inherit DateFns.RoundingOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : DifferenceInWeeksOptions = nativeOnly
+            static member Create (?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>) : DifferenceInWeeksOptions = nativeOnly
 
     module differenceInYears =
 
@@ -38598,7 +38630,7 @@ module DateFns =
         type DifferenceInYearsOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : DifferenceInYearsOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : DifferenceInYearsOptions = nativeOnly
 
     module eachDayOfInterval =
 
@@ -38635,7 +38667,7 @@ module DateFns =
             /// The array with starts of days from the day of the interval start to the day of the interval end
             /// </returns>
             [<Import("eachDayOfInterval", "date-fns")>]
-            static member eachDayOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachDayOfInterval.EachDayOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachDayOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachDayOfInterval.EachDayOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachDayOfInterval">eachDayOfInterval</see> function options.
@@ -38699,7 +38731,7 @@ module DateFns =
             /// The array with starts of hours from the hour of the interval start to the hour of the interval end
             /// </returns>
             [<Import("eachHourOfInterval", "date-fns")>]
-            static member eachHourOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachHourOfInterval.EachHourOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachHourOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachHourOfInterval.EachHourOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachHourOfInterval">eachHourOfInterval</see> function options.
@@ -38761,7 +38793,7 @@ module DateFns =
             /// The array with starts of minutes from the minute of the interval start to the minute of the interval end
             /// </returns>
             [<Import("eachMinuteOfInterval", "date-fns")>]
-            static member eachMinuteOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachMinuteOfInterval.EachMinuteOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachMinuteOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachMinuteOfInterval.EachMinuteOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachMinuteOfInterval">eachMinuteOfInterval</see> function options.
@@ -38828,7 +38860,7 @@ module DateFns =
             /// The array with starts of months from the month of the interval start to the month of the interval end
             /// </returns>
             [<Import("eachMonthOfInterval", "date-fns")>]
-            static member eachMonthOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachMonthOfInterval.EachMonthOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachMonthOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachMonthOfInterval.EachMonthOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachMonthOfInterval">eachMonthOfInterval</see> function options.
@@ -38888,7 +38920,7 @@ module DateFns =
             /// The array with starts of quarters from the quarter of the interval start to the quarter of the interval end
             /// </returns>
             [<Import("eachQuarterOfInterval", "date-fns")>]
-            static member eachQuarterOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachQuarterOfInterval.EachQuarterOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachQuarterOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachQuarterOfInterval.EachQuarterOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachQuarterOfInterval">eachQuarterOfInterval</see> function options.
@@ -38950,7 +38982,7 @@ module DateFns =
             /// The array with starts of weeks from the week of the interval start to the week of the interval end
             /// </returns>
             [<Import("eachWeekOfInterval", "date-fns")>]
-            static member eachWeekOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachWeekOfInterval.EachWeekOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachWeekOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachWeekOfInterval.EachWeekOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachWeekOfInterval">eachWeekOfInterval</see> function options.
@@ -39015,7 +39047,7 @@ module DateFns =
             /// An array containing all the Saturdays and Sundays
             /// </returns>
             [<Import("eachWeekendOfInterval", "date-fns")>]
-            static member eachWeekendOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachWeekendOfInterval.EachWeekendOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachWeekendOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachWeekendOfInterval.EachWeekendOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachWeekendOfInterval">eachWeekendOfInterval</see> function options.
@@ -39349,7 +39381,7 @@ module DateFns =
             /// The array with starts of yearly timestamps from the month of the interval start to the month of the interval end
             /// </returns>
             [<Import("eachYearOfInterval", "date-fns")>]
-            static member eachYearOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachYearOfInterval.EachYearOfIntervalOptions option) : ResizeArray<Date> = nativeOnly
+            static member eachYearOfInterval<'IntervalType> (interval: 'IntervalType, ?options: DateFns.eachYearOfInterval.EachYearOfIntervalOptions) : ResizeArray<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="eachYearOfInterval">eachYearOfInterval</see> function options.
@@ -40957,7 +40989,7 @@ module DateFns =
             inherit DateFns.AdditionalTokensOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?useAdditionalWeekYearTokens: bool, ?useAdditionalDayOfYearTokens: bool, ?``in``: DateFns.ContextFn<'DateType>) : FormatOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?useAdditionalWeekYearTokens: bool, ?useAdditionalDayOfYearTokens: bool, ?``in``: DateFns.ContextFn<Date>) : FormatOptions = nativeOnly
 
         module FormatOptions =
 
@@ -41559,7 +41591,7 @@ module DateFns =
             /// </summary>
             abstract member addSuffix: bool option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?``in``: DateFns.ContextFn<'DateType>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceOptions = nativeOnly
+            static member Create (?locale: obj, ?``in``: DateFns.ContextFn<Date>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceOptions = nativeOnly
 
     module formatDistanceStrict =
 
@@ -42556,7 +42588,7 @@ module DateFns =
             inherit DateFns.FormatDistanceOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?``in``: DateFns.ContextFn<'DateType>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceToNowOptions = nativeOnly
+            static member Create (?locale: obj, ?``in``: DateFns.ContextFn<Date>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceToNowOptions = nativeOnly
 
     module formatDistanceToNowStrict =
 
@@ -42821,7 +42853,7 @@ module DateFns =
             inherit DateFns.FormatDistanceStrictOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>, ?addSuffix: bool, ?unit: DateFns.FormatDistanceStrictUnit) : FormatDistanceToNowStrictOptions = nativeOnly
+            static member Create (?locale: obj, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>, ?addSuffix: bool, ?unit: DateFns.FormatDistanceStrictUnit) : FormatDistanceToNowStrictOptions = nativeOnly
 
     module formatDuration =
 
@@ -43070,7 +43102,7 @@ module DateFns =
             inherit DateFns.ISOFormatOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<'DateType>) : FormatISOOptions = nativeOnly
+            static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<Date>) : FormatISOOptions = nativeOnly
 
     module formatISO9075 =
 
@@ -43235,7 +43267,7 @@ module DateFns =
             inherit DateFns.ISOFormatOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<'DateType>) : FormatISO9075Options = nativeOnly
+            static member Create (?format: DateFns.ISOStringFormat, ?representation: DateFns.ISOStringRepresentation, ?``in``: DateFns.ContextFn<Date>) : FormatISO9075Options = nativeOnly
 
     module formatISODuration =
 
@@ -43397,7 +43429,7 @@ module DateFns =
             /// </summary>
             abstract member fractionDigits: FormatRFC3339Options.fractionDigits option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>, ?fractionDigits: FormatRFC3339Options.fractionDigits) : FormatRFC3339Options = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>, ?fractionDigits: FormatRFC3339Options.fractionDigits) : FormatRFC3339Options = nativeOnly
 
         module FormatRFC3339Options =
 
@@ -43836,7 +43868,7 @@ module DateFns =
             inherit DateFns.WeekOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : FormatRelativeOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : FormatRelativeOptions = nativeOnly
 
         module FormatRelativeOptions =
 
@@ -48167,7 +48199,7 @@ module DateFns =
         type GetDateOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDateOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetDateOptions = nativeOnly
 
     module getDay =
 
@@ -48247,7 +48279,7 @@ module DateFns =
         type GetDayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetDayOptions = nativeOnly
 
     module getDayOfYear =
 
@@ -48327,7 +48359,7 @@ module DateFns =
         type GetDayOfYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDayOfYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetDayOfYearOptions = nativeOnly
 
     module getDaysInMonth =
 
@@ -48407,7 +48439,7 @@ module DateFns =
         type GetDaysInMonthOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDaysInMonthOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetDaysInMonthOptions = nativeOnly
 
     module getDaysInYear =
 
@@ -48487,7 +48519,7 @@ module DateFns =
         type GetDaysInYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDaysInYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetDaysInYearOptions = nativeOnly
 
     module getDecade =
 
@@ -48567,7 +48599,7 @@ module DateFns =
         type GetDecadeOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetDecadeOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetDecadeOptions = nativeOnly
 
     module getDefaultOptions =
 
@@ -48667,7 +48699,7 @@ module DateFns =
         type GetHoursOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetHoursOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetHoursOptions = nativeOnly
 
     module getISODay =
 
@@ -48747,7 +48779,7 @@ module DateFns =
         type GetISODayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISODayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetISODayOptions = nativeOnly
 
     module getISOWeek =
 
@@ -48827,7 +48859,7 @@ module DateFns =
         type GetISOWeekOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISOWeekOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetISOWeekOptions = nativeOnly
 
     module getISOWeekYear =
 
@@ -48895,7 +48927,7 @@ module DateFns =
         type GetISOWeekYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISOWeekYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetISOWeekYearOptions = nativeOnly
 
     module getISOWeeksInYear =
 
@@ -48975,7 +49007,7 @@ module DateFns =
         type GetISOWeeksInYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetISOWeeksInYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetISOWeeksInYearOptions = nativeOnly
 
     module getMilliseconds =
 
@@ -49113,7 +49145,7 @@ module DateFns =
         type GetMinutesOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetMinutesOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetMinutesOptions = nativeOnly
 
     module getMonth =
 
@@ -49193,7 +49225,7 @@ module DateFns =
         type GetMonthOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetMonthOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetMonthOptions = nativeOnly
 
     module getOverlappingDaysInIntervals =
 
@@ -49309,7 +49341,7 @@ module DateFns =
         type GetQuarterOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetQuarterOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetQuarterOptions = nativeOnly
 
     module getSeconds =
 
@@ -49606,7 +49638,7 @@ module DateFns =
             inherit DateFns.FirstWeekContainsDateOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<'DateType>) : GetWeekOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<Date>) : GetWeekOptions = nativeOnly
 
     module getWeekOfMonth =
 
@@ -49688,7 +49720,7 @@ module DateFns =
             inherit DateFns.WeekOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : GetWeekOfMonthOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : GetWeekOfMonthOptions = nativeOnly
 
     module getWeekYear =
 
@@ -49811,7 +49843,7 @@ module DateFns =
             inherit DateFns.FirstWeekContainsDateOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<'DateType>) : GetWeekYearOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate, ?``in``: DateFns.ContextFn<Date>) : GetWeekYearOptions = nativeOnly
 
     module getWeeksInMonth =
 
@@ -49917,7 +49949,7 @@ module DateFns =
             inherit DateFns.WeekOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<'DateType>) : GetWeeksInMonthOptions = nativeOnly
+            static member Create (?locale: obj, ?weekStartsOn: DateFns.Day, ?``in``: DateFns.ContextFn<Date>) : GetWeeksInMonthOptions = nativeOnly
 
     module getYear =
 
@@ -49997,7 +50029,7 @@ module DateFns =
         type GetYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : GetYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : GetYearOptions = nativeOnly
 
     module hoursToMilliseconds =
 
@@ -50093,7 +50125,7 @@ module DateFns =
             /// The normalized and validated interval object.
             /// </returns>
             [<Import("interval", "date-fns")>]
-            static member interval<'StartDate, 'EndDate> (start: 'StartDate, ``end``: 'EndDate, ?options: DateFns.interval.IntervalOptions option) : DateFns.NormalizedInterval<Date> = nativeOnly
+            static member interval<'StartDate, 'EndDate> (start: 'StartDate, ``end``: 'EndDate, ?options: DateFns.interval.IntervalOptions) : DateFns.NormalizedInterval<Date> = nativeOnly
 
         /// <summary>
         /// The <see href="interval">interval</see> function options.
@@ -50107,7 +50139,7 @@ module DateFns =
             /// </summary>
             abstract member assertPositive: bool option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>, ?assertPositive: bool) : IntervalOptions<'ContextDate> = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<'ContextDate>, ?assertPositive: bool) : IntervalOptions<'ContextDate> = nativeOnly
 
         /// <summary>
         /// The <see href="interval">interval</see> function result type. It resolves the proper data type.
@@ -50159,7 +50191,7 @@ module DateFns =
         type IntervalToDurationOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IntervalToDurationOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IntervalToDurationOptions = nativeOnly
 
     module intlFormat =
 
@@ -52167,7 +52199,7 @@ module DateFns =
         type IsFirstDayOfMonthOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsFirstDayOfMonthOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsFirstDayOfMonthOptions = nativeOnly
 
     module isFriday =
 
@@ -52247,7 +52279,7 @@ module DateFns =
         type IsFridayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsFridayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsFridayOptions = nativeOnly
 
     module isFuture =
 
@@ -52382,7 +52414,7 @@ module DateFns =
         type IsLastDayOfMonthOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsLastDayOfMonthOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsLastDayOfMonthOptions = nativeOnly
 
     module isLeapYear =
 
@@ -52459,7 +52491,7 @@ module DateFns =
         type IsLeapYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsLeapYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsLeapYearOptions = nativeOnly
 
     module isMatch =
 
@@ -52612,7 +52644,7 @@ module DateFns =
         type IsMondayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsMondayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsMondayOptions = nativeOnly
 
     module isPast =
 
@@ -52976,7 +53008,7 @@ module DateFns =
         type IsSameDayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameDayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameDayOptions = nativeOnly
 
     module isSameHour =
 
@@ -53232,7 +53264,7 @@ module DateFns =
         type IsSameHourOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameHourOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameHourOptions = nativeOnly
 
     module isSameISOWeek =
 
@@ -53488,7 +53520,7 @@ module DateFns =
         type IsSameISOWeekOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameISOWeekOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameISOWeekOptions = nativeOnly
 
     module isSameISOWeekYear =
 
@@ -53694,7 +53726,7 @@ module DateFns =
         type IsSameISOWeekYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameISOWeekYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameISOWeekYearOptions = nativeOnly
 
     module isSameMinute =
 
@@ -54226,7 +54258,7 @@ module DateFns =
         type IsSameMonthOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameMonthOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameMonthOptions = nativeOnly
 
     module isSameQuarter =
 
@@ -54482,7 +54514,7 @@ module DateFns =
         type IsSameQuarterOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameQuarterOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameQuarterOptions = nativeOnly
 
     module isSameSecond =
 
@@ -55176,7 +55208,7 @@ module DateFns =
             inherit DateFns.LocalizedOptions<string>
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<'DateType>) : IsSameWeekOptions = nativeOnly
+            static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<Date>) : IsSameWeekOptions = nativeOnly
 
     module isSameYear =
 
@@ -55382,7 +55414,7 @@ module DateFns =
         type IsSameYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSameYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSameYearOptions = nativeOnly
 
     module isSaturday =
 
@@ -55462,7 +55494,7 @@ module DateFns =
         type IsSaturdayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSaturdayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSaturdayOptions = nativeOnly
 
     module isSunday =
 
@@ -55542,7 +55574,7 @@ module DateFns =
         type IsSundayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsSundayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsSundayOptions = nativeOnly
 
     module isThisHour =
 
@@ -55626,7 +55658,7 @@ module DateFns =
         type IsThisHourOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisHourOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisHourOptions = nativeOnly
 
     module isThisISOWeek =
 
@@ -55706,7 +55738,7 @@ module DateFns =
         type IsThisISOWeekOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisISOWeekOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisISOWeekOptions = nativeOnly
 
     module isThisMinute =
 
@@ -55848,7 +55880,7 @@ module DateFns =
         type IsThisMonthOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisMonthOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisMonthOptions = nativeOnly
 
     module isThisQuarter =
 
@@ -55928,7 +55960,7 @@ module DateFns =
         type IsThisQuarterOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisQuarterOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisQuarterOptions = nativeOnly
 
     module isThisSecond =
 
@@ -56096,7 +56128,7 @@ module DateFns =
             inherit DateFns.LocalizedOptions<string>
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<'DateType>) : IsThisWeekOptions = nativeOnly
+            static member Create (?weekStartsOn: DateFns.Day, ?locale: obj, ?``in``: DateFns.ContextFn<Date>) : IsThisWeekOptions = nativeOnly
 
     module isThisYear =
 
@@ -56176,7 +56208,7 @@ module DateFns =
         type IsThisYearOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThisYearOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsThisYearOptions = nativeOnly
 
     module isThursday =
 
@@ -56256,7 +56288,7 @@ module DateFns =
         type IsThursdayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsThursdayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsThursdayOptions = nativeOnly
 
     module isToday =
 
@@ -56336,7 +56368,7 @@ module DateFns =
         type IsTodayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsTodayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsTodayOptions = nativeOnly
 
     module isTomorrow =
 
@@ -56416,7 +56448,7 @@ module DateFns =
         type IsTomorrowOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsTomorrowOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsTomorrowOptions = nativeOnly
 
     module isTuesday =
 
@@ -56496,7 +56528,7 @@ module DateFns =
         type IsTuesdayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsTuesdayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsTuesdayOptions = nativeOnly
 
     module isValid =
 
@@ -56605,7 +56637,7 @@ module DateFns =
         type IsWednesdayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsWednesdayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsWednesdayOptions = nativeOnly
 
     module isWeekend =
 
@@ -56685,7 +56717,7 @@ module DateFns =
         type IsWeekendOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsWeekendOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsWeekendOptions = nativeOnly
 
     module isWithinInterval =
 
@@ -56861,7 +56893,7 @@ module DateFns =
         type IsWithinIntervalOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsWithinIntervalOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsWithinIntervalOptions = nativeOnly
 
     module isYesterday =
 
@@ -56941,7 +56973,7 @@ module DateFns =
         type IsYesterdayOptions =
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>) : IsYesterdayOptions = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>) : IsYesterdayOptions = nativeOnly
 
     module lastDayOfDecade =
 
@@ -61595,7 +61627,7 @@ module DateFns =
             inherit DateFns.RoundingOptions
             inherit DateFns.ContextOptions<'DateType>
             [<ParamObject; Emit("$0")>]
-            static member Create (?nearestTo: 'Unit, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestHoursOptions<'DateType> = nativeOnly
+            static member Create (?nearestTo: DateFns.NearestHours, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestHoursOptions<'DateType> = nativeOnly
 
         type RoundToNearestHoursOptions =
             RoundToNearestHoursOptions<Date>
@@ -61764,7 +61796,7 @@ module DateFns =
             inherit DateFns.RoundingOptions
             inherit DateFns.ContextOptions<'DateType>
             [<ParamObject; Emit("$0")>]
-            static member Create (?nearestTo: 'Unit, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestMinutesOptions<'DateType> = nativeOnly
+            static member Create (?nearestTo: DateFns.NearestMinutes, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<'DateType>) : RoundToNearestMinutesOptions<'DateType> = nativeOnly
 
         type RoundToNearestMinutesOptions =
             RoundToNearestMinutesOptions<Date>
@@ -64662,6 +64694,8 @@ module DateFns =
         [<Interface>]
         type StartOfMonthOptions<'ResultDate> =
             inherit DateFns.ContextOptions<'ResultDate>
+            [<ParamObject; Emit("$0")>]
+            static member Create (?``in``: DateFns.ContextFn<'ResultDate>) : StartOfMonthOptions<'ResultDate> = nativeOnly
 
     module startOfQuarter =
 

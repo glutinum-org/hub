@@ -72,6 +72,8 @@ module Jspdf =
         abstract member pageNumber: float option with get, set
         abstract member magFactor: TextWithLinkOptions.magFactor option with get, set
         abstract member zoom: float option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?pageNumber: float, ?magFactor: TextWithLinkOptions.magFactor, ?zoom: float) : TextWithLinkOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -284,6 +286,8 @@ module Jspdf =
         abstract member title: string with get, set
         abstract member options: obj with get, set
         abstract member children: ResizeArray<obj> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (title: string, options: obj, children: ResizeArray<obj>) : OutlineItem = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -549,6 +553,8 @@ module Jspdf =
         abstract member index: float with get, set
         abstract member data: string with get, set
         abstract member fileType: Jspdf.ImageFormat with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (alias: float, width: float, height: float, colorSpace: Jspdf.ColorSpace, bitsPerComponent: float, filter: string, index: float, data: string, fileType: Jspdf.ImageFormat, ?decodeParameters: string, ?transparency: obj, ?palette: obj, ?sMask: obj, ?predictor: float) : ImageProperties = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -582,12 +588,26 @@ module Jspdf =
         abstract member text: U2<string, ResizeArray<string>> with get, set
         abstract member x: float with get, set
         abstract member y: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (text: string, x: float, y: float, ?align: TextOptions.align, ?baseline: TextOptions.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptions.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptions.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (text: string, x: float, y: float, angle: float, ?align: TextOptions.align, ?baseline: TextOptions.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptions.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptions.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (text: string, x: float, y: float, angle: Jspdf.Matrix, ?align: TextOptions.align, ?baseline: TextOptions.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptions.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptions.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (text: ResizeArray<string>, x: float, y: float, ?align: TextOptions.align, ?baseline: TextOptions.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptions.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptions.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (text: ResizeArray<string>, x: float, y: float, angle: float, ?align: TextOptions.align, ?baseline: TextOptions.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptions.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptions.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (text: ResizeArray<string>, x: float, y: float, angle: Jspdf.Matrix, ?align: TextOptions.align, ?baseline: TextOptions.baseline, ?flags: TextOptionsLight.flags, ?rotationDirection: TextOptions.rotationDirection, ?charSpace: float, ?horizontalScale: float, ?lineHeightFactor: float, ?maxWidth: float, ?renderingMode: TextOptions.renderingMode, ?isInputVisual: bool, ?isOutputVisual: bool, ?isInputRtl: bool, ?isOutputRtl: bool, ?isSymmetricSwapping: bool) : TextOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
     type TableRowData =
         abstract member row: float option with get, set
         abstract member data: ResizeArray<obj> option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?row: float, ?data: ResizeArray<obj>) : TableRowData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -595,6 +615,8 @@ module Jspdf =
         abstract member row: float option with get, set
         abstract member col: float option with get, set
         abstract member data: obj option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?row: float, ?col: float, ?data: obj) : TableCellData = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -620,6 +642,8 @@ module Jspdf =
         abstract member align: CellConfig.align with get, set
         abstract member padding: float with get, set
         abstract member width: float with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (name: string, prompt: string, align: CellConfig.align, padding: float, width: float) : CellConfig = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -674,6 +698,8 @@ module Jspdf =
         abstract member objId: float with get, set
         abstract member pageNumber: float with get, set
         abstract member pageContext: obj with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (objId: float, pageNumber: float, pageContext: obj) : PageInfo = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -686,6 +712,8 @@ module Jspdf =
         abstract member metadata: obj with get, set
         abstract member objectNumber: float with get, set
         abstract member postScriptName: string with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, encoding: string, fontName: string, fontStyle: string, isStandardFont: bool, metadata: obj, objectNumber: float, postScriptName: string) : Font = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1226,6 +1254,8 @@ jsPDF.API{{=$0}}""")>]
     type Pattern =
         abstract member gState: Jspdf.GState option with get, set
         abstract member matrix: Jspdf.Matrix option with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (?gState: Jspdf.GState, ?matrix: Jspdf.Matrix) : Pattern = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1264,6 +1294,8 @@ jsPDF.API{{=$0}}""")>]
     [<Interface>]
     type jsPDFAPI =
         abstract member events: ResizeArray<obj> with get, set
+        [<ParamObject; Emit("$0")>]
+        static member Create (events: ResizeArray<obj>) : jsPDFAPI = nativeOnly
 
     module Annotation =
 
@@ -1618,6 +1650,43 @@ jsPDF.API{{=$0}}""")>]
             abstract member autoencode: bool with get, set
             [<ParamObject; Emit("$0")>]
             static member Create (noBOM: bool, autoencode: bool) : flags = nativeOnly
+
+        [<RequireQualifiedAccess>]
+        type rotationDirection =
+            | ``0`` = 0
+            | ``1`` = 1
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type renderingMode =
+            | fill
+            | stroke
+            | fillThenStroke
+            | invisible
+            | fillAndAddForClipping
+            | strokeAndAddPathForClipping
+            | fillThenStrokeAndAddToPathForClipping
+            | addToPathForClipping
+
+    module TextOptions =
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type align =
+            | left
+            | center
+            | right
+            | justify
+
+        [<RequireQualifiedAccess>]
+        [<StringEnum(CaseRules.None)>]
+        type baseline =
+            | alphabetic
+            | ideographic
+            | bottom
+            | top
+            | middle
+            | hanging
 
         [<RequireQualifiedAccess>]
         type rotationDirection =
