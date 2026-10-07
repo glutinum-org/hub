@@ -14,9 +14,9 @@
     </PackageVersion>
     <PackageVersion Include="Fable.Promise" Version="3.2.0" />
     <PackageVersion Include="FSharp.Core" Version="10.1.301" />
-    <PackageVersion Include="Glutinum.Node" Version="1.0.0-beta.1" />
-    <PackageVersion Include="Glutinum.Types" Version="1.0.0-beta.1" />
-    <PackageVersion Include="Glutinum.Web" Version="1.0.0-beta.1" />
+    <PackageVersion Include="Glutinum.Node" Version="1.0.0-beta.3" />
+    <PackageVersion Include="Glutinum.Types" Version="1.0.0-beta.4" />
+    <PackageVersion Include="Glutinum.Web" Version="1.0.0-beta.3" />
     <PackageVersion Include="Scriptorium.Nib" Version="0.4.1" />
     <PackageVersion Include="Scriptorium.Nib.Browser" Version="0.3.1" />
     <PackageVersion Include="Scriptorium.Quill" Version="0.7.1" />
