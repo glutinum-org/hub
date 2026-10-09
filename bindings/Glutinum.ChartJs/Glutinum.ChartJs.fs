@@ -280,6 +280,7 @@ module ChartJs =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Animator", "chart.js")>]
     type Animator =
         abstract member _request: obj with get, set
         abstract member _charts: obj with get, set
@@ -337,6 +338,7 @@ module ChartJs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("chart.js")>]
     type Config =
         abstract member _config: obj with get, set
         abstract member _scopeCache: obj with get, set
@@ -458,6 +460,7 @@ module ChartJs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("chart.js")>]
     type Element<'T, 'O> =
         [<Emit("""import { Element } from "chart.js";
 Element.defaults{{=$0}}""")>]
@@ -503,6 +506,7 @@ Element.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("chart.js")>]
     type PluginService =
         abstract member _init: ResizeArray<PluginService._init.Item> with get, set
         /// <summary>
@@ -558,6 +562,7 @@ Element.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("chart.js")>]
     type ArcElement =
         inherit ChartJs.Element<ChartJs.ArcProps, ChartJs.ArcOptions>
         [<Emit("""import { ArcElement } from "chart.js";
@@ -605,6 +610,7 @@ ArcElement.descriptors{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("chart.js")>]
     type PointElement =
         inherit ChartJs.Element<ChartJs.PointProps, PointElement.Extends>
         [<Emit("""import { PointElement } from "chart.js";
@@ -684,6 +690,7 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("chart.js")>]
     type LinearScaleBase =
         inherit ChartJs.dist.core.core_scale.Scale
         abstract member start: float with get, set
@@ -726,6 +733,7 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Animations", "chart.js")>]
     type Animations =
         abstract member configure: animations: ChartJs.AnyObject -> unit
         abstract member update: target: ChartJs.AnyObject * values: ChartJs.AnyObject -> bool option
@@ -1290,6 +1298,7 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("DatasetController", "chart.js")>]
     type DatasetController<'TType, 'TElement, 'TDatasetElement, 'TParsedData> =
         abstract member chart: ChartJs.dist.types.Chart with get
         abstract member index: float with get
@@ -1959,6 +1968,7 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Scale", "chart.js")>]
     type Scale<'O> =
         inherit ChartJs.Element<obj, 'O>
         inherit ChartJs.LayoutItem
@@ -2839,6 +2849,7 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("BasePlatform", "chart.js")>]
     type BasePlatform =
         /// <summary>
         /// Called at chart construction time, returns a context2d instance implementing
@@ -2940,11 +2951,13 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("BasicPlatform", "chart.js")>]
     type BasicPlatform =
         inherit ChartJs.BasePlatform
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("DomPlatform", "chart.js")>]
     type DomPlatform =
         inherit ChartJs.BasePlatform
 
@@ -6387,6 +6400,7 @@ PointElement.defaultRoutes{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type BarController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { BarController } from "chart.js/dist/controllers/controller.bar.js";
@@ -6418,6 +6432,7 @@ BarController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type BubbleController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { BubbleController } from "chart.js/dist/controllers/controller.bubble.js";
@@ -6446,6 +6461,7 @@ BubbleController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type DoughnutController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { DoughnutController } from "chart.js/dist/controllers/controller.doughnut.js";
@@ -6527,6 +6543,7 @@ DoughnutController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type LineController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { LineController } from "chart.js/dist/controllers/controller.line.js";
@@ -6555,6 +6572,7 @@ LineController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type PieController =
                     inherit ChartJs.dist.controllers.controller_doughnut.DoughnutController
 
@@ -6568,6 +6586,7 @@ LineController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type PolarAreaController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { PolarAreaController } from "chart.js/dist/controllers/controller.polarArea.js";
@@ -6623,6 +6642,7 @@ PolarAreaController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type RadarController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { RadarController } from "chart.js/dist/controllers/controller.radar.js";
@@ -6666,6 +6686,7 @@ RadarController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type ScatterController =
                     inherit ChartJs.dist.core.core_datasetController.DatasetController
                     [<Emit("""import { ScatterController } from "chart.js/dist/controllers/controller.scatter.js";
@@ -6740,6 +6761,7 @@ ScatterController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type Animation =
                     abstract member _active: bool with get, set
                     abstract member _fn: obj with get, set
@@ -6770,6 +6792,7 @@ ScatterController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type Animations =
                     abstract member _chart: obj with get, set
                     abstract member _properties: obj with get, set
@@ -6804,6 +6827,7 @@ ScatterController.overrides{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Chart", "chart.js")>]
                 type Chart =
                     [<Emit("""import { Chart } from "chart.js/dist/core/core.controller.js";
 Chart.defaults{{=$0}}""")>]
@@ -7045,6 +7069,7 @@ Chart.unregister($0)""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type DatasetController =
                     [<Emit("""import { DatasetController } from "chart.js/dist/core/core.datasetController.js";
 DatasetController.defaults{{=$0}}""")>]
@@ -7169,6 +7194,7 @@ DatasetController.dataElementType{{=$0}}""")>]
                 /// </summary>
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Defaults", "chart.js")>]
                 type Defaults =
                     abstract member animation: obj with get, set
                     abstract member backgroundColor: string with get, set
@@ -7418,6 +7444,7 @@ DatasetController.dataElementType{{=$0}}""")>]
                 /// </summary>
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Registry", "chart.js")>]
                 type Registry =
                     abstract member controllers: ChartJs.dist.core.core_typedRegistry.TypedRegistry with get, set
                     abstract member elements: ChartJs.dist.core.core_typedRegistry.TypedRegistry with get, set
@@ -7488,6 +7515,7 @@ DatasetController.dataElementType{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type Scale =
                     inherit ChartJs.Element<ChartJs.AnyObject, ChartJs.AnyObject>
                     abstract member id: string with get, set
@@ -7730,6 +7758,7 @@ DatasetController.dataElementType{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type TypedRegistry =
                     abstract member ``type``: obj with get, set
                     abstract member scope: obj with get, set
@@ -7764,6 +7793,7 @@ DatasetController.dataElementType{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type BarElement =
                     inherit ChartJs.Element<ChartJs.AnyObject, ChartJs.AnyObject>
                     [<Emit("""import { BarElement } from "chart.js/dist/elements/element.bar.js";
@@ -7825,6 +7855,7 @@ BarElement.defaults{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type LineElement =
                     inherit ChartJs.Element<ChartJs.AnyObject, ChartJs.AnyObject>
                     [<Emit("""import { LineElement } from "chart.js/dist/elements/element.line.js";
@@ -9982,6 +10013,7 @@ LineElement.descriptors{{=$0}}""")>]
                 /// </summary>
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type BasePlatform =
                     /// <summary>
                     /// Called at chart construction time, returns a context2d instance implementing
@@ -10094,6 +10126,7 @@ LineElement.descriptors{{=$0}}""")>]
                 /// </summary>
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type BasicPlatform =
                     inherit ChartJs.dist.platform.platform_base.BasePlatform
                     /// <summary>
@@ -10119,6 +10152,7 @@ LineElement.descriptors{{=$0}}""")>]
                 /// </summary>
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type DomPlatform =
                     inherit ChartJs.dist.platform.platform_base.BasePlatform
                     /// <summary>
@@ -10172,6 +10206,7 @@ LineElement.descriptors{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Legend", "chart.js")>]
                 type Legend =
                     inherit ChartJs.Element<ChartJs.AnyObject, ChartJs.AnyObject>
                     abstract member _added: bool with get, set
@@ -10240,6 +10275,7 @@ LineElement.descriptors{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Title", "chart.js")>]
                 type Title =
                     inherit ChartJs.Element<ChartJs.AnyObject, ChartJs.AnyObject>
                     abstract member chart: obj with get, set
@@ -10295,6 +10331,7 @@ LineElement.descriptors{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Tooltip", "chart.js")>]
                 type Tooltip =
                     inherit ChartJs.Element<ChartJs.AnyObject, ChartJs.AnyObject>
                     [<Emit("""import { Tooltip } from "chart.js/dist/plugins/plugin.tooltip.js";
@@ -10547,6 +10584,7 @@ Tooltip.positioners{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type CategoryScale =
                     inherit ChartJs.dist.core.core_scale.Scale
                     [<Emit("""import { CategoryScale } from "chart.js/dist/scales/scale.category.js";
@@ -10613,6 +10651,7 @@ CategoryScale.defaults{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type LinearScale =
                     inherit ChartJs.LinearScaleBase
                     [<Emit("""import { LinearScale } from "chart.js/dist/scales/scale.linear.js";
@@ -10650,6 +10689,7 @@ LinearScale.defaults{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type LogarithmicScale =
                     inherit ChartJs.dist.core.core_scale.Scale
                     [<Emit("""import { LogarithmicScale } from "chart.js/dist/scales/scale.logarithmic.js";
@@ -10704,6 +10744,7 @@ LogarithmicScale.defaults{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type RadialLinearScale =
                     inherit ChartJs.LinearScaleBase
                     [<Emit("""import { RadialLinearScale } from "chart.js/dist/scales/scale.radialLinear.js";
@@ -10831,6 +10872,7 @@ RadialLinearScale.descriptors{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<ImportDefault("chart.js")>]
                 type TimeScale =
                     inherit ChartJs.dist.core.core_scale.Scale
                     [<Emit("""import { TimeScale } from "chart.js/dist/scales/scale.time.js";
@@ -10940,6 +10982,7 @@ TimeScale.defaults{{=$0}}""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("TimeSeriesScale", "chart.js")>]
                 type TimeSeriesScale =
                     inherit ChartJs.dist.scales.scale_time.TimeScale
                     abstract member _table: ResizeArray<obj> with get, set
@@ -11063,6 +11106,7 @@ TimeScale.defaults{{=$0}}""")>]
 
             [<AllowNullLiteral>]
             [<Interface>]
+            [<Import("Chart", "chart.js")>]
             type Chart<'TType, 'TData, 'TLabel> =
                 abstract member platform: ChartJs.BasePlatform with get
                 abstract member id: string with get
@@ -11204,6 +11248,7 @@ Chart.unregister($0)""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Animation", "chart.js")>]
                 type Animation =
                     abstract member active: unit -> bool
                     abstract member update: cfg: ChartJs.AnyObject * ``to``: obj * date: float -> unit
@@ -11213,6 +11258,7 @@ Chart.unregister($0)""")>]
 
                 [<AllowNullLiteral>]
                 [<Interface>]
+                [<Import("Animator", "chart.js")>]
                 type Animator =
                     abstract member listen: chart: ChartJs.dist.types.Chart * event: Animator.listen.event * cb: (ChartJs.AnimationEvent -> unit) -> unit
                     abstract member add: chart: ChartJs.dist.types.Chart * items: ResizeArray<ChartJs.dist.types.animation.Animation> -> unit
@@ -19178,6 +19224,7 @@ module KurkleColor =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Color", "@kurkle/color")>]
     type Color =
         abstract member _rgb: KurkleColor.RGBA with get, set
         abstract member _valid: bool with get, set

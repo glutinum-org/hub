@@ -968,6 +968,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Animatable", "animejs")>]
     type Animatable =
         abstract member targets: ResizeArray<U3<Glutinum.Web.HTMLElement, Glutinum.Web.SVGElement, Animejs.JSTarget>> with get, set
         abstract member animations: Animatable.animations with get, set
@@ -976,6 +977,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("JSAnimation", "animejs")>]
     type JSAnimation =
         inherit Animejs.Timer
         abstract member targets: Animejs.TargetsArray with get, set
@@ -1048,6 +1050,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Draggable", "animejs")>]
     type Draggable =
         abstract member containerArray: ResizeArray<float> with get, set
         abstract member ``$container``: Glutinum.Web.HTMLElement with get, set
@@ -1223,7 +1226,7 @@ module Animejs =
         abstract member handleEvent: e: Glutinum.Web.Event -> unit
 
     type EaseType =
-        delegate of Ease: Animejs.EasingFunction -> Animejs.EasingFunction
+        Animejs.EasingFunction -> Animejs.EasingFunction
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1277,81 +1280,9 @@ module Animejs =
         [<ParamObject; Emit("$0")>]
         static member Create (linear: Animejs.EasingFunction, none: Animejs.EasingFunction, ``in``: Animejs.PowerEasing, out: Animejs.PowerEasing, inOut: Animejs.PowerEasing, outIn: Animejs.PowerEasing, inQuad: Animejs.EasingFunction, outQuad: Animejs.EasingFunction, inOutQuad: Animejs.EasingFunction, outInQuad: Animejs.EasingFunction, inCubic: Animejs.EasingFunction, outCubic: Animejs.EasingFunction, inOutCubic: Animejs.EasingFunction, outInCubic: Animejs.EasingFunction, inQuart: Animejs.EasingFunction, outQuart: Animejs.EasingFunction, inOutQuart: Animejs.EasingFunction, outInQuart: Animejs.EasingFunction, inQuint: Animejs.EasingFunction, outQuint: Animejs.EasingFunction, inOutQuint: Animejs.EasingFunction, outInQuint: Animejs.EasingFunction, inSine: Animejs.EasingFunction, outSine: Animejs.EasingFunction, inOutSine: Animejs.EasingFunction, outInSine: Animejs.EasingFunction, inCirc: Animejs.EasingFunction, outCirc: Animejs.EasingFunction, inOutCirc: Animejs.EasingFunction, outInCirc: Animejs.EasingFunction, inExpo: Animejs.EasingFunction, outExpo: Animejs.EasingFunction, inOutExpo: Animejs.EasingFunction, outInExpo: Animejs.EasingFunction, inBounce: Animejs.EasingFunction, outBounce: Animejs.EasingFunction, inOutBounce: Animejs.EasingFunction, outInBounce: Animejs.EasingFunction, inBack: Animejs.BackEasing, outBack: Animejs.BackEasing, inOutBack: Animejs.BackEasing, outInBack: Animejs.BackEasing, inElastic: Animejs.ElasticEasing, outElastic: Animejs.ElasticEasing, inOutElastic: Animejs.ElasticEasing, outInElastic: Animejs.ElasticEasing) : EasesFunctions = nativeOnly
 
-    [<AutoOpen>]
-    module EasesFunctionsExtensions =
-
-        type EasesFunctions with
-            member inline this.linear(time: float) : float =
-                this.linear.Invoke(time)
-            member inline this.none(time: float) : float =
-                this.none.Invoke(time)
-            member inline this.inQuad(time: float) : float =
-                this.inQuad.Invoke(time)
-            member inline this.outQuad(time: float) : float =
-                this.outQuad.Invoke(time)
-            member inline this.inOutQuad(time: float) : float =
-                this.inOutQuad.Invoke(time)
-            member inline this.outInQuad(time: float) : float =
-                this.outInQuad.Invoke(time)
-            member inline this.inCubic(time: float) : float =
-                this.inCubic.Invoke(time)
-            member inline this.outCubic(time: float) : float =
-                this.outCubic.Invoke(time)
-            member inline this.inOutCubic(time: float) : float =
-                this.inOutCubic.Invoke(time)
-            member inline this.outInCubic(time: float) : float =
-                this.outInCubic.Invoke(time)
-            member inline this.inQuart(time: float) : float =
-                this.inQuart.Invoke(time)
-            member inline this.outQuart(time: float) : float =
-                this.outQuart.Invoke(time)
-            member inline this.inOutQuart(time: float) : float =
-                this.inOutQuart.Invoke(time)
-            member inline this.outInQuart(time: float) : float =
-                this.outInQuart.Invoke(time)
-            member inline this.inQuint(time: float) : float =
-                this.inQuint.Invoke(time)
-            member inline this.outQuint(time: float) : float =
-                this.outQuint.Invoke(time)
-            member inline this.inOutQuint(time: float) : float =
-                this.inOutQuint.Invoke(time)
-            member inline this.outInQuint(time: float) : float =
-                this.outInQuint.Invoke(time)
-            member inline this.inSine(time: float) : float =
-                this.inSine.Invoke(time)
-            member inline this.outSine(time: float) : float =
-                this.outSine.Invoke(time)
-            member inline this.inOutSine(time: float) : float =
-                this.inOutSine.Invoke(time)
-            member inline this.outInSine(time: float) : float =
-                this.outInSine.Invoke(time)
-            member inline this.inCirc(time: float) : float =
-                this.inCirc.Invoke(time)
-            member inline this.outCirc(time: float) : float =
-                this.outCirc.Invoke(time)
-            member inline this.inOutCirc(time: float) : float =
-                this.inOutCirc.Invoke(time)
-            member inline this.outInCirc(time: float) : float =
-                this.outInCirc.Invoke(time)
-            member inline this.inExpo(time: float) : float =
-                this.inExpo.Invoke(time)
-            member inline this.outExpo(time: float) : float =
-                this.outExpo.Invoke(time)
-            member inline this.inOutExpo(time: float) : float =
-                this.inOutExpo.Invoke(time)
-            member inline this.outInExpo(time: float) : float =
-                this.outInExpo.Invoke(time)
-            member inline this.inBounce(time: float) : float =
-                this.inBounce.Invoke(time)
-            member inline this.outBounce(time: float) : float =
-                this.outBounce.Invoke(time)
-            member inline this.inOutBounce(time: float) : float =
-                this.inOutBounce.Invoke(time)
-            member inline this.outInBounce(time: float) : float =
-                this.outInBounce.Invoke(time)
-
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ScrollObserver", "animejs")>]
     type ScrollObserver =
         abstract member index: float with get, set
         abstract member id: U2<string, float> with get, set
@@ -1433,6 +1364,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AutoLayout", "animejs")>]
     type AutoLayout =
         abstract member ``params``: Animejs.AutoLayoutParams with get, set
         abstract member root: Animejs.DOMTarget with get, set
@@ -1636,6 +1568,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Scope", "animejs")>]
     type Scope =
         abstract member defaults: Animejs.DefaultsParams with get, set
         abstract member root: U2<Glutinum.Web.Document, Animejs.DOMTarget> with get, set
@@ -1705,6 +1638,7 @@ module Animejs =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("TextSplitter", "animejs")>]
     type TextSplitter =
         abstract member debug: bool with get, set
         abstract member includeSpaces: bool with get, set
@@ -1763,6 +1697,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Timeline", "animejs")>]
     type Timeline =
         inherit Animejs.Timer
         abstract member labels: Timeline.labels with get, set
@@ -2047,6 +1982,7 @@ module Animejs =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Timer", "animejs")>]
     type Timer =
         inherit Animejs.Clock
         abstract member id: U2<string, float> with get, set
@@ -2330,7 +2266,7 @@ module Animejs =
         ResizeArray<Animejs.Target>
 
     type EasingFunction =
-        delegate of time: float -> float
+        float -> float
 
     [<RequireQualifiedAccess>]
     [<StringEnum(CaseRules.None)>]
@@ -2394,10 +2330,10 @@ module Animejs =
         | [<CompiledName("cubic-bezier(0.42, 0, 1, 1)")>] ``cubic-bezier(0_42, 0, 1, 1)``
 
     type PowerEasing =
-        delegate of ?power: U2<float, string> -> Animejs.EasingFunction
+        U2<float, string> option -> Animejs.EasingFunction
 
     type BackEasing =
-        delegate of ?overshoot: U2<float, string> -> Animejs.EasingFunction
+        U2<float, string> option -> Animejs.EasingFunction
 
     type ElasticEasing =
         delegate of ?amplitude: U2<float, string> * ?period: U2<float, string> -> Animejs.EasingFunction
@@ -2446,7 +2382,7 @@ module Animejs =
         static member Create (?mass: float, ?stiffness: float, ?damping: float, ?velocity: float, ?bounce: float, ?duration: float, ?onComplete: Animejs.Callback<Animejs.JSAnimation>) : SpringParams = nativeOnly
 
     type Callback<'T> =
-        delegate of self: 'T -> unit
+        'T -> unit
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2512,7 +2448,7 @@ module Animejs =
         delegate of ?target: Animejs.Target * ?index: float * ?targets: Animejs.TargetsArray * ?prevTween: Animejs.Tween -> 'T
 
     type TweenModifier =
-        delegate of value: float -> U2<float, string>
+        float -> U2<float, string>
 
     type ColorArray =
         float * float * float * float
@@ -2566,15 +2502,6 @@ module Animejs =
         static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.Target, _value: float, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
         [<ParamObject; Emit("$0")>]
         static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.Target, _value: obj, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
-
-    [<AutoOpen>]
-    module TweenExtensions =
-
-        type Tween with
-            member inline this._ease(time: float) : float =
-                this._ease.Invoke(time)
-            member inline this._modifier(value: float) : U2<float, string> =
-                this._modifier.Invoke(value)
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2894,7 +2821,7 @@ module Animejs =
         delegate of ``to``: U2<float, ResizeArray<float>> * ?duration: float * ?ease: Animejs.EasingParam -> Animejs.AnimatableObject
 
     type AnimatablePropertyGetter =
-        delegate of unit -> U2<float, ResizeArray<float>>
+        unit -> U2<float, ResizeArray<float>>
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2972,13 +2899,13 @@ module Animejs =
         static member Create (root: Animejs.AngularRef, ?defaults: Animejs.DefaultsParams, ?mediaQueries: ScopeParams.mediaQueries) : ScopeParams = nativeOnly
 
     type ScopedCallback<'T> =
-        delegate of scope: Animejs.Scope -> 'T
+        Animejs.Scope -> 'T
 
     type ScopeCleanupCallback =
-        delegate of ?scope: Animejs.Scope -> unit
+        Animejs.Scope option -> unit
 
     type ScopeConstructorCallback =
-        delegate of ?scope: Animejs.Scope -> U2<Animejs.ScopeCleanupCallback, unit>
+        Animejs.Scope option -> U2<Animejs.ScopeCleanupCallback, unit>
 
     type ScopeMethod =
         delegate of [<ParamArray>] args: obj [] -> unit
@@ -2995,10 +2922,10 @@ module Animejs =
         static member Create (?target: Animejs.ScrollThresholdValue, ?container: Animejs.ScrollThresholdValue) : ScrollThresholdParam = nativeOnly
 
     type ScrollObserverAxisCallback =
-        delegate of self: Animejs.ScrollObserver -> ScrollObserverAxisCallback.ReturnType
+        Animejs.ScrollObserver -> ScrollObserverAxisCallback.ReturnType
 
     type ScrollThresholdCallback =
-        delegate of self: Animejs.ScrollObserver -> U2<Animejs.ScrollThresholdValue, Animejs.ScrollThresholdParam>
+        Animejs.ScrollObserver -> U2<Animejs.ScrollThresholdValue, Animejs.ScrollThresholdParam>
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3108,7 +3035,7 @@ module Animejs =
         U2<bool, string>
 
     type SplitFunctionValue =
-        delegate of ?value: U2<Glutinum.Web.Node, Glutinum.Web.HTMLElement> -> unit
+        U2<Glutinum.Web.Node, Glutinum.Web.HTMLElement> option -> unit
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3222,10 +3149,6 @@ module Animejs =
         type ChainablesMap with
             member inline this.clamp(min: float, max: float) : Animejs.ChainableUtil =
                 this.clamp.Invoke(min, max)
-            member inline this.round(decimalLength: float) : Animejs.ChainableUtil =
-                this.round.Invoke(decimalLength)
-            member inline this.snap(increment: U2<float, ResizeArray<float>>) : Animejs.ChainableUtil =
-                this.snap.Invoke(increment)
             member inline this.wrap(min: float, max: float) : Animejs.ChainableUtil =
                 this.wrap.Invoke(min, max)
             member inline this.lerp(start: float, ``end``: float) : Animejs.ChainableUtil =
@@ -3234,19 +3157,13 @@ module Animejs =
                 this.damp.Invoke(start, ``end``, deltaTime)
             member inline this.mapRange(inLow: float, inHigh: float, outLow: float, outHigh: float) : Animejs.ChainableUtil =
                 this.mapRange.Invoke(inLow, inHigh, outLow, outHigh)
-            member inline this.roundPad(decimalLength: float) : Animejs.ChainableUtil =
-                this.roundPad.Invoke(decimalLength)
             member inline this.padStart(totalLength: float, padString: string) : Animejs.ChainableUtil =
                 this.padStart.Invoke(totalLength, padString)
             member inline this.padEnd(totalLength: float, padString: string) : Animejs.ChainableUtil =
                 this.padEnd.Invoke(totalLength, padString)
-            member inline this.degToRad() : Animejs.ChainableUtil =
-                this.degToRad.Invoke()
-            member inline this.radToDeg() : Animejs.ChainableUtil =
-                this.radToDeg.Invoke()
 
     type ChainedUtilsResult =
-        delegate of value: float -> float
+        float -> float
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3272,10 +3189,6 @@ module Animejs =
         type ChainableUtil with
             member inline this.clamp(min: float, max: float) : Animejs.ChainableUtil =
                 this.clamp.Invoke(min, max)
-            member inline this.round(decimalLength: float) : Animejs.ChainableUtil =
-                this.round.Invoke(decimalLength)
-            member inline this.snap(increment: U2<float, ResizeArray<float>>) : Animejs.ChainableUtil =
-                this.snap.Invoke(increment)
             member inline this.wrap(min: float, max: float) : Animejs.ChainableUtil =
                 this.wrap.Invoke(min, max)
             member inline this.lerp(start: float, ``end``: float) : Animejs.ChainableUtil =
@@ -3284,19 +3197,13 @@ module Animejs =
                 this.damp.Invoke(start, ``end``, deltaTime)
             member inline this.mapRange(inLow: float, inHigh: float, outLow: float, outHigh: float) : Animejs.ChainableUtil =
                 this.mapRange.Invoke(inLow, inHigh, outLow, outHigh)
-            member inline this.roundPad(decimalLength: float) : Animejs.ChainableUtil =
-                this.roundPad.Invoke(decimalLength)
             member inline this.padStart(totalLength: float, padString: string) : Animejs.ChainableUtil =
                 this.padStart.Invoke(totalLength, padString)
             member inline this.padEnd(totalLength: float, padString: string) : Animejs.ChainableUtil =
                 this.padEnd.Invoke(totalLength, padString)
-            member inline this.degToRad() : Animejs.ChainableUtil =
-                this.degToRad.Invoke()
-            member inline this.radToDeg() : Animejs.ChainableUtil =
-                this.radToDeg.Invoke()
 
     type ChainedRoundPad =
-        delegate of decimalLength: float -> Animejs.ChainableUtil
+        float -> Animejs.ChainableUtil
 
     type ChainedPadStart =
         delegate of totalLength: float * padString: string -> Animejs.ChainableUtil
@@ -3311,19 +3218,19 @@ module Animejs =
         delegate of inLow: float * inHigh: float * outLow: float * outHigh: float -> Animejs.ChainableUtil
 
     type ChainedDegToRad =
-        delegate of unit -> Animejs.ChainableUtil
+        unit -> Animejs.ChainableUtil
 
     type ChainedRadToDeg =
-        delegate of unit -> Animejs.ChainableUtil
+        unit -> Animejs.ChainableUtil
 
     type ChainedSnap =
-        delegate of increment: U2<float, ResizeArray<float>> -> Animejs.ChainableUtil
+        U2<float, ResizeArray<float>> -> Animejs.ChainableUtil
 
     type ChainedClamp =
         delegate of min: float * max: float -> Animejs.ChainableUtil
 
     type ChainedRound =
-        delegate of decimalLength: float -> Animejs.ChainableUtil
+        float -> Animejs.ChainableUtil
 
     type ChainedLerp =
         delegate of start: float * ``end``: float -> Animejs.ChainableUtil
@@ -3339,6 +3246,7 @@ module Animejs =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("WAAPIAnimation", "animejs")>]
     type WAAPIAnimation =
         abstract member targets: Animejs.DOMTargetsArray with get, set
         abstract member animations: ResizeArray<Glutinum.Web.Animation> with get, set
@@ -3911,79 +3819,6 @@ module Animejs =
                                 abstract member inOutElastic: Animejs.ElasticEasing
                                 [<Emit("$0.outInElastic")>]
                                 abstract member outInElastic: Animejs.ElasticEasing
-
-                            [<AutoOpen>]
-                            module ExportsExtensions =
-
-                                type Exports with
-                                    member inline this.linear(time: float) : float =
-                                        this.linear.Invoke(time)
-                                    member inline this.none(time: float) : float =
-                                        this.none.Invoke(time)
-                                    member inline this.inQuad(time: float) : float =
-                                        this.inQuad.Invoke(time)
-                                    member inline this.outQuad(time: float) : float =
-                                        this.outQuad.Invoke(time)
-                                    member inline this.inOutQuad(time: float) : float =
-                                        this.inOutQuad.Invoke(time)
-                                    member inline this.outInQuad(time: float) : float =
-                                        this.outInQuad.Invoke(time)
-                                    member inline this.inCubic(time: float) : float =
-                                        this.inCubic.Invoke(time)
-                                    member inline this.outCubic(time: float) : float =
-                                        this.outCubic.Invoke(time)
-                                    member inline this.inOutCubic(time: float) : float =
-                                        this.inOutCubic.Invoke(time)
-                                    member inline this.outInCubic(time: float) : float =
-                                        this.outInCubic.Invoke(time)
-                                    member inline this.inQuart(time: float) : float =
-                                        this.inQuart.Invoke(time)
-                                    member inline this.outQuart(time: float) : float =
-                                        this.outQuart.Invoke(time)
-                                    member inline this.inOutQuart(time: float) : float =
-                                        this.inOutQuart.Invoke(time)
-                                    member inline this.outInQuart(time: float) : float =
-                                        this.outInQuart.Invoke(time)
-                                    member inline this.inQuint(time: float) : float =
-                                        this.inQuint.Invoke(time)
-                                    member inline this.outQuint(time: float) : float =
-                                        this.outQuint.Invoke(time)
-                                    member inline this.inOutQuint(time: float) : float =
-                                        this.inOutQuint.Invoke(time)
-                                    member inline this.outInQuint(time: float) : float =
-                                        this.outInQuint.Invoke(time)
-                                    member inline this.inSine(time: float) : float =
-                                        this.inSine.Invoke(time)
-                                    member inline this.outSine(time: float) : float =
-                                        this.outSine.Invoke(time)
-                                    member inline this.inOutSine(time: float) : float =
-                                        this.inOutSine.Invoke(time)
-                                    member inline this.outInSine(time: float) : float =
-                                        this.outInSine.Invoke(time)
-                                    member inline this.inCirc(time: float) : float =
-                                        this.inCirc.Invoke(time)
-                                    member inline this.outCirc(time: float) : float =
-                                        this.outCirc.Invoke(time)
-                                    member inline this.inOutCirc(time: float) : float =
-                                        this.inOutCirc.Invoke(time)
-                                    member inline this.outInCirc(time: float) : float =
-                                        this.outInCirc.Invoke(time)
-                                    member inline this.inExpo(time: float) : float =
-                                        this.inExpo.Invoke(time)
-                                    member inline this.outExpo(time: float) : float =
-                                        this.outExpo.Invoke(time)
-                                    member inline this.inOutExpo(time: float) : float =
-                                        this.inOutExpo.Invoke(time)
-                                    member inline this.outInExpo(time: float) : float =
-                                        this.outInExpo.Invoke(time)
-                                    member inline this.inBounce(time: float) : float =
-                                        this.inBounce.Invoke(time)
-                                    member inline this.outBounce(time: float) : float =
-                                        this.outBounce.Invoke(time)
-                                    member inline this.inOutBounce(time: float) : float =
-                                        this.inOutBounce.Invoke(time)
-                                    member inline this.outInBounce(time: float) : float =
-                                        this.outInBounce.Invoke(time)
 
                     module Exports =
 
@@ -4810,6 +4645,7 @@ module Animejs =
 
             [<AllowNullLiteral>]
             [<Interface>]
+            [<Import("Spring", "animejs/easings/spring")>]
             type Spring =
                 abstract member timeStep: float with get, set
                 abstract member restThreshold: float with get, set

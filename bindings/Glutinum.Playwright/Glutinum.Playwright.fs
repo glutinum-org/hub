@@ -13817,7 +13817,7 @@ module Playwright =
                 delegate of args: 'TestArgs * testInfo: Playwright.types.test.TestInfo -> U2<JS.Promise<obj>, obj>
 
             type ConditionBody<'TestArgs> =
-                delegate of args: 'TestArgs -> bool
+                'TestArgs -> bool
 
             /// <summary>
             /// Playwright Test provides a <c>test</c> function to declare tests and <c>expect</c> function to write assertions.
@@ -18424,7 +18424,7 @@ module Playwright =
                 abstract member Item: key: string -> obj with get, set
 
             type MatcherHintColor =
-                delegate of arg: string -> string
+                string -> string
 
             [<AllowNullLiteral>]
             [<Interface>]

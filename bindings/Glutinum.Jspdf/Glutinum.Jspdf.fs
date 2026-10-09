@@ -298,6 +298,7 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormField", "jspdf")>]
     type AcroFormField =
         abstract member ``constructor``: unit -> Jspdf.AcroFormField
         abstract member showWhenPrinted: bool with get, set
@@ -321,6 +322,7 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormChoiceField", "jspdf")>]
     type AcroFormChoiceField =
         inherit Jspdf.AcroFormField
         abstract member topIndex: float with get, set
@@ -337,21 +339,25 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormListBox", "jspdf")>]
     type AcroFormListBox =
         inherit Jspdf.AcroFormChoiceField
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormComboBox", "jspdf")>]
     type AcroFormComboBox =
         inherit Jspdf.AcroFormListBox
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormEditBox", "jspdf")>]
     type AcroFormEditBox =
         inherit Jspdf.AcroFormComboBox
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormButton", "jspdf")>]
     type AcroFormButton =
         inherit Jspdf.AcroFormField
         abstract member noToggleToOff: bool with get, set
@@ -363,11 +369,13 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormPushButton", "jspdf")>]
     type AcroFormPushButton =
         inherit Jspdf.AcroFormButton
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormChildClass", "jspdf")>]
     type AcroFormChildClass =
         inherit Jspdf.AcroFormField
         abstract member Parent: obj with get, set
@@ -377,6 +385,7 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormRadioButton", "jspdf")>]
     type AcroFormRadioButton =
         inherit Jspdf.AcroFormButton
         abstract member setAppearance: appearance: string -> unit
@@ -384,12 +393,14 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormCheckBox", "jspdf")>]
     type AcroFormCheckBox =
         inherit Jspdf.AcroFormButton
         abstract member appearanceState: AcroFormCheckBox.appearanceState with get, set
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormTextField", "jspdf")>]
     type AcroFormTextField =
         inherit Jspdf.AcroFormField
         abstract member multiline: bool with get, set
@@ -403,6 +414,7 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AcroFormPasswordField", "jspdf")>]
     type AcroFormPasswordField =
         inherit Jspdf.AcroFormTextField
 
@@ -759,6 +771,7 @@ module Jspdf =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("jspdf")>]
     type jsPDF =
         abstract member CapJoinStyles: obj with get, set
         abstract member version: string with get, set
@@ -1219,6 +1232,7 @@ jsPDF.API{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("GState", "jspdf")>]
     type GState =
         abstract member opacity: float option with get, set
         abstract member ``stroke-opacity``: float option with get, set
@@ -1273,6 +1287,7 @@ jsPDF.API{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ShadingPattern", "jspdf")>]
     type ShadingPattern =
         inherit Jspdf.Pattern
         abstract member coords: ResizeArray<float> with get, set
@@ -1282,6 +1297,7 @@ jsPDF.API{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("TilingPattern", "jspdf")>]
     type TilingPattern =
         inherit Jspdf.Pattern
         abstract member boundingBox: ResizeArray<float> with get, set

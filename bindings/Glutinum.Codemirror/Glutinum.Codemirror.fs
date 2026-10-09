@@ -227,6 +227,7 @@ module CodemirrorState =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Text", "@codemirror/state")>]
     type Text =
         inherit Iterable<string>
         /// <summary>
@@ -322,6 +323,7 @@ Text.empty{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Line", "@codemirror/state")>]
     type Line =
         /// <summary>
         /// The position of the start of the line.
@@ -359,6 +361,7 @@ Text.empty{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ChangeDesc", "@codemirror/state")>]
     type ChangeDesc =
         /// <summary>
         /// The length of the document before the change.
@@ -459,6 +462,7 @@ ChangeDesc.fromJSON($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ChangeSet", "@codemirror/state")>]
     type ChangeSet =
         inherit CodemirrorState.ChangeDesc
         /// <summary>
@@ -570,6 +574,7 @@ ChangeSet.fromJSON($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("SelectionRange", "@codemirror/state")>]
     type SelectionRange =
         /// <summary>
         /// The lower boundary of the range.
@@ -650,6 +655,7 @@ SelectionRange.fromJSON($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("EditorSelection", "@codemirror/state")>]
     type EditorSelection =
         /// <summary>
         /// The ranges in the selection, sorted by position. Ranges cannot
@@ -796,6 +802,7 @@ EditorSelection.undirectionalRange($0, $1)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Facet", "@codemirror/state")>]
     type Facet<'Input, 'Output> =
         inherit CodemirrorState.FacetReader<'Output>
         /// <summary>
@@ -932,6 +939,7 @@ Facet.define($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("StateField", "@codemirror/state")>]
     type StateField<'Value> =
         /// <summary>
         /// Define a state field.
@@ -974,6 +982,7 @@ StateField.define($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Compartment", "@codemirror/state")>]
     type Compartment =
         /// <summary>
         /// Create an instance of this compartment to add to your [state
@@ -1022,6 +1031,7 @@ StateField.define($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Annotation", "@codemirror/state")>]
     type Annotation<'T> =
         /// <summary>
         /// The annotation type.
@@ -1043,6 +1053,7 @@ Annotation.define()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("AnnotationType", "@codemirror/state")>]
     type AnnotationType<'T> =
         /// <summary>
         /// Create an instance of this annotation.
@@ -1068,6 +1079,7 @@ Annotation.define()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("StateEffectType", "@codemirror/state")>]
     type StateEffectType<'Value> =
         abstract member map: StateEffectType.map with get
         /// <summary>
@@ -1085,6 +1097,7 @@ Annotation.define()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("StateEffect", "@codemirror/state")>]
     type StateEffect<'Value> =
         /// <summary>
         /// The value of this effect.
@@ -1230,6 +1243,7 @@ StateEffect.appendConfig{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Transaction", "@codemirror/state")>]
     type Transaction =
         /// <summary>
         /// The state from which the transaction starts.
@@ -1429,6 +1443,7 @@ Transaction.remote{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("EditorState", "@codemirror/state")>]
     type EditorState =
         /// <summary>
         /// The current document.
@@ -1768,7 +1783,7 @@ EditorState.transactionExtender{{=$0}}""")>]
     /// can be run and tested outside of a browser environment.
     /// </summary>
     type StateCommand =
-        delegate of target: StateCommand.target -> bool
+        StateCommand.target -> bool
 
     /// <summary>
     /// Each range is associated with a value, which must inherit from
@@ -1776,6 +1791,7 @@ EditorState.transactionExtender{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("RangeValue", "@codemirror/state")>]
     type RangeValue =
         /// <summary>
         /// Compare this value with another value. Used when comparing
@@ -1819,6 +1835,7 @@ EditorState.transactionExtender{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Range", "@codemirror/state")>]
     type Range<'T> =
         /// <summary>
         /// The range's start position.
@@ -1959,6 +1976,7 @@ EditorState.transactionExtender{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("RangeSet", "@codemirror/state")>]
     type RangeSet<'T> =
         /// <summary>
         /// The number of ranges in the set.
@@ -2075,6 +2093,7 @@ RangeSet.empty{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("RangeSetBuilder", "@codemirror/state")>]
     type RangeSetBuilder<'T> =
         /// <summary>
         /// Add a range. Ranges should be added in sorted (by <c>from</c> and
@@ -2971,6 +2990,7 @@ module CodemirrorView =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("BidiSpan", "@codemirror/view")>]
     type BidiSpan =
         /// <summary>
         /// The start of the span (relative to the start of the line).
@@ -3169,6 +3189,7 @@ module CodemirrorView =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("WidgetType", "@codemirror/view")>]
     type WidgetType =
         /// <summary>
         /// Build the DOM structure for this widget instance.
@@ -3248,6 +3269,7 @@ module CodemirrorView =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Decoration", "@codemirror/view")>]
     type Decoration =
         inherit CodemirrorState.RangeValue
         /// <summary>
@@ -3361,6 +3383,7 @@ Decoration.none{{=$0}}""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("BlockWrapper", "@codemirror/view")>]
     type BlockWrapper =
         inherit CodemirrorState.RangeValue
         /// <summary>
@@ -3405,7 +3428,7 @@ BlockWrapper.set($0, $1)""")>]
     /// transaction) and return <c>true</c>.
     /// </summary>
     type Command =
-        delegate of target: CodemirrorView.EditorView -> bool
+        CodemirrorView.EditorView -> bool
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3495,6 +3518,7 @@ BlockWrapper.set($0, $1)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ViewPlugin", "@codemirror/view")>]
     type ViewPlugin<'V, 'Arg> =
         /// <summary>
         /// When <c>Arg</c> is undefined, instances of this class act as
@@ -3552,6 +3576,7 @@ ViewPlugin.fromClass($0, $1)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ViewUpdate", "@codemirror/view")>]
     type ViewUpdate =
         /// <summary>
         /// The editor view that the update is associated with.
@@ -3654,6 +3679,7 @@ ViewPlugin.fromClass($0, $1)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("BlockInfo", "@codemirror/view")>]
     type BlockInfo =
         /// <summary>
         /// The start of the element in the document.
@@ -3756,6 +3782,7 @@ ViewPlugin.fromClass($0, $1)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("EditorView", "@codemirror/view")>]
     type EditorView =
         /// <summary>
         /// The current editor state.
@@ -4822,6 +4849,7 @@ EditorView.findFromDOM($0)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("RectangleMarker", "@codemirror/view")>]
     type RectangleMarker =
         inherit CodemirrorView.LayerMarker
         /// <summary>
@@ -4909,6 +4937,7 @@ RectangleMarker.forRange($0, $1, $2)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("MatchDecorator", "@codemirror/view")>]
     type MatchDecorator =
         /// <summary>
         /// Compute the full set of decorations for matches in the given
@@ -5086,7 +5115,7 @@ RectangleMarker.forRange($0, $1, $2)""")>]
     /// [<c>showPanel</c>](https://codemirror.net/6/docs/ref/#view.showPanel).
     /// </summary>
     type PanelConstructor =
-        delegate of view: CodemirrorView.EditorView -> CodemirrorView.Panel
+        CodemirrorView.EditorView -> CodemirrorView.Panel
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -5144,6 +5173,7 @@ RectangleMarker.forRange($0, $1, $2)""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("GutterMarker", "@codemirror/view")>]
     type GutterMarker =
         inherit CodemirrorState.RangeValue
         /// <summary>
@@ -6699,6 +6729,7 @@ module StyleMod =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("StyleModule", "style-mod")>]
     type StyleModule =
         abstract member getRules: unit -> string
         [<Emit("""import { StyleModule } from "style-mod";

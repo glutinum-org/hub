@@ -671,6 +671,7 @@ module Leaflet =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Class", "leaflet")>]
     type Class =
         [<Emit("""import { Class } from "leaflet";
 Class.extend($0)""")>]
@@ -693,6 +694,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Transformation", "leaflet")>]
     type Transformation =
         abstract member transform: point: Leaflet.Point * ?scale: float -> Leaflet.Point
         abstract member untransform: point: Leaflet.Point * ?scale: float -> Leaflet.Point
@@ -831,6 +833,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("PosAnimation", "leaflet")>]
     type PosAnimation =
         inherit Leaflet.Evented
         abstract member run: el: Glutinum.Web.HTMLElement * newPos: Leaflet.Point * ?duration: float * ?easeLinearity: float -> unit
@@ -916,6 +919,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("LatLng", "leaflet")>]
     type LatLng =
         abstract member equals: otherLatLng: Leaflet.LatLng * ?maxMargin: float -> bool
         abstract member equals: otherLatLng: Leaflet.LatLngLiteral * ?maxMargin: float -> bool
@@ -950,6 +954,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("LatLngBounds", "leaflet")>]
     type LatLngBounds =
         abstract member extend: latlngOrBounds: Leaflet.LatLng -> LatLngBounds
         abstract member extend: latlngOrBounds: Leaflet.LatLngLiteral -> LatLngBounds
@@ -996,6 +1001,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Point", "leaflet")>]
     type Point =
         abstract member clone: unit -> Leaflet.Point
         abstract member add: otherPoint: Leaflet.Point -> Leaflet.Point
@@ -1043,6 +1049,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Bounds", "leaflet")>]
     type Bounds =
         abstract member extend: point: Leaflet.Point -> Bounds
         abstract member extend: point: Leaflet.PointTuple -> Bounds
@@ -1079,46 +1086,46 @@ Class.callInitHooks()""")>]
         U2<Leaflet.Bounds, Leaflet.BoundsLiteral>
 
     type LeafletEventHandlerFn =
-        delegate of event: Leaflet.LeafletEvent -> unit
+        Leaflet.LeafletEvent -> unit
 
     type LayersControlEventHandlerFn =
-        delegate of event: Leaflet.LayersControlEvent -> unit
+        Leaflet.LayersControlEvent -> unit
 
     type LayerEventHandlerFn =
-        delegate of event: Leaflet.LayerEvent -> unit
+        Leaflet.LayerEvent -> unit
 
     type ResizeEventHandlerFn =
-        delegate of event: Leaflet.ResizeEvent -> unit
+        Leaflet.ResizeEvent -> unit
 
     type PopupEventHandlerFn =
-        delegate of event: Leaflet.PopupEvent -> unit
+        Leaflet.PopupEvent -> unit
 
     type TooltipEventHandlerFn =
-        delegate of event: Leaflet.TooltipEvent -> unit
+        Leaflet.TooltipEvent -> unit
 
     type ErrorEventHandlerFn =
-        delegate of event: Leaflet.ErrorEvent -> unit
+        Leaflet.ErrorEvent -> unit
 
     type LocationEventHandlerFn =
-        delegate of event: Leaflet.LocationEvent -> unit
+        Leaflet.LocationEvent -> unit
 
     type LeafletMouseEventHandlerFn =
-        delegate of event: Leaflet.LeafletMouseEvent -> unit
+        Leaflet.LeafletMouseEvent -> unit
 
     type LeafletKeyboardEventHandlerFn =
-        delegate of event: Leaflet.LeafletKeyboardEvent -> unit
+        Leaflet.LeafletKeyboardEvent -> unit
 
     type ZoomAnimEventHandlerFn =
-        delegate of event: Leaflet.ZoomAnimEvent -> unit
+        Leaflet.ZoomAnimEvent -> unit
 
     type DragEndEventHandlerFn =
-        delegate of event: Leaflet.DragEndEvent -> unit
+        Leaflet.DragEndEvent -> unit
 
     type TileEventHandlerFn =
-        delegate of event: Leaflet.TileEvent -> unit
+        Leaflet.TileEvent -> unit
 
     type TileErrorEventHandlerFn =
-        delegate of event: Leaflet.TileErrorEvent -> unit
+        Leaflet.TileErrorEvent -> unit
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2162,6 +2169,7 @@ Class.callInitHooks()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Evented", "leaflet")>]
     type Evented =
         inherit Leaflet.Class
         /// <summary>
@@ -3148,6 +3156,7 @@ Class.callInitHooks()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Draggable", "leaflet")>]
     type Draggable =
         inherit Leaflet.Evented
         abstract member enable: unit -> unit
@@ -3173,6 +3182,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Layer", "leaflet")>]
     type Layer =
         inherit Leaflet.Evented
         abstract member addTo: map: Leaflet.Map -> Layer
@@ -3271,6 +3281,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("GridLayer", "leaflet")>]
     type GridLayer =
         inherit Leaflet.Layer
         abstract member bringToFront: unit -> GridLayer
@@ -3316,6 +3327,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("TileLayer", "leaflet")>]
     type TileLayer =
         inherit Leaflet.GridLayer
         abstract member setUrl: url: string * ?noRedraw: bool -> TileLayer
@@ -3433,6 +3445,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("ImageOverlay", "leaflet")>]
     type ImageOverlay =
         inherit Leaflet.Layer
         abstract member bringToFront: unit -> ImageOverlay
@@ -3472,6 +3485,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("SVGOverlay", "leaflet")>]
     type SVGOverlay =
         inherit Leaflet.Layer
         abstract member bringToFront: unit -> SVGOverlay
@@ -3533,6 +3547,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("VideoOverlay", "leaflet")>]
     type VideoOverlay =
         inherit Leaflet.Layer
         abstract member bringToFront: unit -> VideoOverlay
@@ -3617,6 +3632,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Path", "leaflet")>]
     type Path =
         inherit Leaflet.Layer
         abstract member redraw: unit -> Path
@@ -3640,6 +3656,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Polyline", "leaflet")>]
     type Polyline<'T, 'P> =
         inherit Leaflet.Path
         abstract member toGeoJSON: ?precision: U2<float, bool> -> Glutinum.Geojson.Feature<'T, 'P>
@@ -3667,6 +3684,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Polygon", "leaflet")>]
     type Polygon<'P> =
         inherit Leaflet.Polyline<U2<Glutinum.Geojson.Polygon, Glutinum.Geojson.MultiPolygon>, 'P>
 
@@ -3675,6 +3693,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Rectangle", "leaflet")>]
     type Rectangle<'P> =
         inherit Leaflet.Polygon<'P>
         abstract member setBounds: latLngBounds: Leaflet.LatLngBounds -> Rectangle<'P>
@@ -3698,6 +3717,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("CircleMarker", "leaflet")>]
     type CircleMarker<'P> =
         inherit Leaflet.Path
         abstract member toGeoJSON: ?precision: U2<float, bool> -> Glutinum.Geojson.Feature<Glutinum.Geojson.Point, 'P>
@@ -3719,6 +3739,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Circle", "leaflet")>]
     type Circle<'P> =
         inherit Leaflet.CircleMarker<'P>
         abstract member toGeoJSON: ?precision: U2<float, bool> -> obj
@@ -3741,11 +3762,13 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Renderer", "leaflet")>]
     type Renderer =
         inherit Leaflet.Layer
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("SVG", "leaflet")>]
     type SVG =
         inherit Leaflet.Renderer
 
@@ -3763,6 +3786,7 @@ Class.callInitHooks()""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Canvas", "leaflet")>]
     type Canvas =
         inherit Leaflet.Renderer
 
@@ -3773,6 +3797,7 @@ Class.callInitHooks()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("LayerGroup", "leaflet")>]
     type LayerGroup<'P> =
         inherit Leaflet.Layer
         abstract member toMultiPoint: ?precision: float -> Glutinum.Geojson.Feature<Glutinum.Geojson.MultiPoint, 'P>
@@ -3841,6 +3866,7 @@ Class.callInitHooks()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("FeatureGroup", "leaflet")>]
     type FeatureGroup<'P> =
         inherit Leaflet.LayerGroup<'P>
         /// <summary>
@@ -3881,7 +3907,7 @@ Class.callInitHooks()""")>]
         FeatureGroup<obj>
 
     type StyleFunction<'P> =
-        delegate of ?feature: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, 'P> -> Leaflet.PathOptions
+        Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, 'P> option -> Leaflet.PathOptions
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3953,6 +3979,7 @@ Class.callInitHooks()""")>]
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("GeoJSON", "leaflet")>]
     type GeoJSON<'P, 'G> =
         inherit Leaflet.FeatureGroup<'P>
         /// <summary>
@@ -4184,6 +4211,7 @@ GeoJSON.asFeature($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Control", "leaflet")>]
     type Control<'Options> =
         inherit Leaflet.Class
         [<Emit("""import { Control } from "leaflet";
@@ -4344,6 +4372,7 @@ Control.extend($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("DivOverlay", "leaflet")>]
     type DivOverlay =
         inherit Leaflet.Layer
         abstract member getLatLng: unit -> Leaflet.LatLng option
@@ -4397,6 +4426,7 @@ Control.extend($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Popup", "leaflet")>]
     type Popup =
         inherit Leaflet.DivOverlay
         abstract member openOn: map: Leaflet.Map -> Popup
@@ -4434,6 +4464,7 @@ Control.extend($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Tooltip", "leaflet")>]
     type Tooltip =
         inherit Leaflet.DivOverlay
         abstract member setOpacity: ``val``: float -> unit
@@ -4508,6 +4539,7 @@ Control.extend($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Handler", "leaflet")>]
     type Handler =
         inherit Leaflet.Class
         abstract member enable: unit -> Handler
@@ -4716,7 +4748,7 @@ Control.extend($0)""")>]
             abstract member getPropagationPath: ev: Glutinum.Web.Event -> ResizeArray<Glutinum.Web.HTMLElement>
 
         type EventHandlerFn =
-            delegate of event: Glutinum.Web.Event -> unit
+            Glutinum.Web.Event -> unit
 
         type PropagableEvent =
             U4<Leaflet.LeafletMouseEvent, Leaflet.LeafletKeyboardEvent, Leaflet.LeafletEvent, Glutinum.Web.Event>
@@ -4770,6 +4802,7 @@ Control.extend($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Map", "leaflet")>]
     type Map =
         inherit Leaflet.Evented
         abstract member getRenderer: layer: Leaflet.Path -> Leaflet.Renderer
@@ -4971,6 +5004,7 @@ Control.extend($0)""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Icon", "leaflet")>]
     type Icon<'T> =
         inherit Leaflet.Layer
         abstract member createIcon: ?oldIcon: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement
@@ -5028,6 +5062,7 @@ Default.imagePath{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("DivIcon", "leaflet")>]
     type DivIcon =
         inherit Leaflet.Icon<Leaflet.DivIconOptions>
 
@@ -5094,6 +5129,7 @@ Default.imagePath{{=$0}}""")>]
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Marker", "leaflet")>]
     type Marker<'P> =
         inherit Leaflet.Layer
         abstract member toGeoJSON: ?precision: U2<float, bool> -> Glutinum.Geojson.Feature<Glutinum.Geojson.Point, 'P>

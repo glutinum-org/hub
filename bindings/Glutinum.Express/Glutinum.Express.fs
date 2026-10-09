@@ -723,7 +723,7 @@ module Connect =
             inherit Glutinum.Node.http.IncomingMessage
 
         type NextFunction =
-            delegate of ?err: obj -> unit
+            obj option -> unit
 
         type SimpleHandleFunction =
             delegate of req: Connect.createServer_.IncomingMessage * res: Glutinum.Node.http.ServerResponse -> unit
@@ -2061,7 +2061,7 @@ module ExpressServeStaticCore =
         inherit RangeParser.RangeParser_.Ranges
 
     type Errback =
-        delegate of ?err: Exception -> unit
+        Exception option -> unit
 
     /// <example>
     ///     app.get('/user/:id', (req, res) => res.send(req.params.id)); // implicitly <c>ParamsDictionary</c>, parameter is string
@@ -2541,7 +2541,7 @@ module ExpressServeStaticCore =
         static member Create (value: string, quality: float, ``type``: string, subtype: string) : MediaType = nativeOnly
 
     type Send<'ResBody, 'T> =
-        delegate of ?body: 'ResBody -> 'T
+        'ResBody option -> 'T
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3769,7 +3769,7 @@ module HttpErrors =
             abstract member Invoke: [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError
 
         type IsHttpError =
-            delegate of error: obj -> bool
+            obj -> bool
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -3999,13 +3999,6 @@ module HttpErrors =
             abstract member Invoke<'N>: arg: 'N * [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError<'N>
             [<Emit("$0($1...)")>]
             abstract member Invoke: [<ParamArray>] rest: HttpErrors.createHttpError_.UnknownError [] -> HttpErrors.createHttpError_.HttpError
-
-        [<AutoOpen>]
-        module createHttpError__Extensions =
-
-            type createHttpError__ with
-                member inline this.isHttpError(error: obj) : bool =
-                    this.isHttpError.Invoke(error)
 
 module Qs =
 
