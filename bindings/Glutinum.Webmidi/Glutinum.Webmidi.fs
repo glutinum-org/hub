@@ -713,6 +713,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("EventEmitter", "webmidi")>]
     type EventEmitter =
         /// <summary>
         /// Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
@@ -1415,6 +1416,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Listener", "webmidi")>]
     type Listener =
         /// <summary>
         /// An array of arguments to pass to the callback function upon execution.
@@ -1461,6 +1463,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Enumerations", "webmidi")>]
     type Enumerations =
         /// <summary>
         /// Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
@@ -1741,6 +1744,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Forwarder", "webmidi")>]
     type Forwarder =
         /// <summary>
         /// An array of [<c>Output</c>](Output) objects to forward the message to.
@@ -1790,6 +1794,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Input", "webmidi")>]
     type Input =
         /// <summary>
         /// Array containing the 16 [<c>InputChannel</c>](InputChannel) objects available for this <c>Input</c>. The
@@ -3168,6 +3173,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("InputChannel", "webmidi")>]
     type InputChannel =
         /// <summary>
         /// Contains the current playing state of all MIDI notes of this channel (0-127). The state is
@@ -4077,6 +4083,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Message", "webmidi")>]
     type Message =
         /// <summary>
         /// The MIDI channel number (<c>1</c> - <c>16</c>) that the message is targeting. This is only for
@@ -4163,6 +4170,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Note", "webmidi")>]
     type Note =
         /// <summary>
         /// Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
@@ -4239,6 +4247,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Output", "webmidi")>]
     type Output =
         /// <summary>
         /// Array containing the 16 [<c>OutputChannel</c>]<see href="OutputChannel">OutputChannel</see> objects available provided by
@@ -8222,6 +8231,7 @@ module Webmidi =
     /// </param>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("OutputChannel", "webmidi")>]
     type OutputChannel =
         inherit Webmidi.EventEmitter
         /// <summary>
@@ -11184,6 +11194,7 @@ module Webmidi =
     /// </summary>
     [<AllowNullLiteral>]
     [<Interface>]
+    [<Import("Utilities", "webmidi")>]
     type Utilities =
         /// <summary>
         /// Converts the <c>input</c> parameter to a valid [<c>Note</c>]<see href="Note">Note</see> object. The input usually is an

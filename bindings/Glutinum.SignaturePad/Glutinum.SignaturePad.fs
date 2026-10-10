@@ -101,6 +101,7 @@ module SignaturePad =
 
     [<AllowNullLiteral>]
     [<Interface>]
+    [<ImportDefault("signature_pad")>]
     type SignaturePad =
         inherit SignaturePad.SignatureEventTarget
         abstract member dotSize: float with get, set

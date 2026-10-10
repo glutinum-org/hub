@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@glutinum/cli':
-        specifier: 1.0.0-beta.4
-        version: 1.0.0-beta.4
+        specifier: 1.0.0-beta.6
+        version: 1.0.0-beta.6
       playwright:
         specifier: ^1.63.0
         version: 1.63.0
@@ -285,8 +285,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@glutinum/cli@1.0.0-beta.4':
-    resolution: {integrity: sha512-X1K1Q3yiO6ZgV/Rs279rJuHoo0SNQQaxhXs33EWnUD077eAkj6DuZ36W35jQQE4u7b+gWjOqT1SQIsLfZF4SWw==}
+  '@glutinum/cli@1.0.0-beta.6':
+    resolution: {integrity: sha512-rYBgV6E64ZqG8UqtJBq3bhnjxM63RqL2EA1VPh2UA5AMvxwbD+s2kwrItrOTVVABZrgzPgYFKL6F60QLb1PazA==}
     engines: {node: '>=16', pnpm: '11'}
     hasBin: true
 
@@ -1181,7 +1181,7 @@ snapshots:
   '@esbuild/win32-x64@0.21.5':
     optional: true
 
-  '@glutinum/cli@1.0.0-beta.4':
+  '@glutinum/cli@1.0.0-beta.6':
     dependencies:
       '@ts-morph/bootstrap': 0.29.0
       chalk: 5.6.2

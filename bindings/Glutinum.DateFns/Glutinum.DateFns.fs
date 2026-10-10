@@ -29326,7 +29326,7 @@ module DateFns =
     /// The matched value
     /// </returns>
     type MatchValueCallback<'Arg, 'Result> =
-        delegate of value: 'Arg -> 'Result
+        'Arg -> 'Result
 
     /// <summary>
     /// The <see href="MatchFn">MatchFn</see> function result.
@@ -29381,7 +29381,7 @@ module DateFns =
     /// The localized string
     /// </returns>
     type FormatLongFn =
-        delegate of options: DateFns.FormatLongFnOptions -> string
+        DateFns.FormatLongFnOptions -> string
 
     /// <summary>
     /// The <see href="FormatLongFn">FormatLongFn</see> function options.
@@ -30621,7 +30621,7 @@ module DateFns =
     ///   a specific date instance, which is useful for extensions like [<c>TZDate</c>](https://github.com/date-fns/tz).
     /// </summary>
     type ContextFn<'DateType> =
-        delegate of value: DateFns.DateArg<Date> -> 'DateType
+        DateFns.DateArg<Date> -> 'DateType
 
     /// <summary>
     /// Resolves passed type or array of types.

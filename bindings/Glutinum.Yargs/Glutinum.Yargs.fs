@@ -2215,7 +2215,7 @@ module Yargs =
                 delegate of current: string * argv: obj * completionFilter: (Yargs.index.yargs_.CompletionCallback option -> unit) * ``done``: (ResizeArray<string> -> unit) -> unit
 
             type MiddlewareFunction<'T> =
-                delegate of args: Yargs.index.yargs_.ArgumentsCamelCase<'T> -> U2<unit, JS.Promise<unit>>
+                Yargs.index.yargs_.ArgumentsCamelCase<'T> -> U2<unit, JS.Promise<unit>>
 
             type Choices =
                 ReadonlyArray<U3<string, float, bool> option>
