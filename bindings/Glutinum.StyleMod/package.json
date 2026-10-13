@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-stylemod",
+    "private": true,
+    "description": "The declaration package Glutinum.StyleMod is generated from",
+    "devDependencies": {
+        "style-mod": "4.1.4"
+    }
+}
