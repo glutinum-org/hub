@@ -1,0 +1,9 @@
+{
+    "name": "glutinum-hub-codemirrorcommands",
+    "private": true,
+    "description": "The declaration package Glutinum.CodemirrorCommands is generated from",
+    "devDependencies": {
+        "@codemirror/commands": "6.11.1",
+        "@codemirror/state": "6.7.6"
+    }
+}

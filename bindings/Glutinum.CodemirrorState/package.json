@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-codemirrorstate",
+    "private": true,
+    "description": "The declaration package Glutinum.CodemirrorState is generated from",
+    "devDependencies": {
+        "@codemirror/state": "6.7.6"
+    }
+}
