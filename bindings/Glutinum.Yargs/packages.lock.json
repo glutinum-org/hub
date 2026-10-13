@@ -10,9 +10,9 @@
       },
       "Fable.Core": {
         "type": "Direct",
-        "requested": "[5.2.0, )",
-        "resolved": "5.2.0",
-        "contentHash": "3+HVoyYMjPGeKJEhMzRti0coDS6AkLVOWXmGwSvqokeTuwdZLyiKMoNgQrE6ZeJ0cSy9qHBB4VBpw5RAfb6zmQ==",
+        "requested": "[5.4.0, )",
+        "resolved": "5.4.0",
+        "contentHash": "sgEru1HWNkNXX1CgLps59xOhe+Xw+IbfveQb8S3XyH3VESfAMVXAi43711at+gwoOSjEwPJhG7fwHkXdTTeVYQ==",
         "dependencies": {
           "FSharp.Core": "4.7.2"
         }
@@ -31,12 +31,12 @@
       },
       "Glutinum.Types": {
         "type": "Direct",
-        "requested": "[1.0.0-beta.4, )",
-        "resolved": "1.0.0-beta.4",
-        "contentHash": "EgyktmIcqldwUD3qMFja26i1jwcCMm98C6Ecnbqlq2C8udcJX4SE/5VVJQtig2agq/BG0YUWWqp2O6VsUeRl1w==",
+        "requested": "[1.0.0-beta.10, )",
+        "resolved": "1.0.0-beta.10",
+        "contentHash": "y+NWgTBK7WuoFhyvXE+zIqpsUV80OM+dVniRrJeetry7uQm4lAt9rT6eUa34S9fUYAqsN+iS/puOfnF8wgxcbg==",
         "dependencies": {
           "FSharp.Core": "10.1.301",
-          "Fable.Core": "5.2.0"
+          "Fable.Core": "5.4.0"
         }
       }
     }

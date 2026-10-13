@@ -16,7 +16,7 @@ let private report (id: string) (text: string) =
 // `jsPDF ()` is ambiguous between the overloads with optional parameters only
 let doc = Jspdf.Exports.jsPDF (Jspdf.jsPDFOptions.Create())
 
-doc.text ("Hello from Fable", 10, 10) |> ignore
+doc.text ("Hello from Fable", 10., 10.) |> ignore
 doc.addPage () |> ignore
 
 report "pages" $"{doc.getNumberOfPages ()} pages"

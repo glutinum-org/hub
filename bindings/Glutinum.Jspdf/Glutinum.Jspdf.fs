@@ -198,7 +198,6 @@ module Jspdf =
     type HTMLWorker =
         abstract member from: src: Glutinum.Web.HTMLElement * ``type``: HTMLWorker.from.``type`` -> Jspdf.HTMLWorker
         abstract member from: src: string * ``type``: HTMLWorker.from.``type`` -> Jspdf.HTMLWorker
-        abstract member from: src: U2<Glutinum.Web.HTMLElement, string> * ``type``: HTMLWorker.from.``type`` -> Jspdf.HTMLWorker
         abstract member progress: Jspdf.HTMLWorkerProgress with get, set
         abstract member error: msg: string -> unit
         abstract member save: filename: string -> JS.Promise<unit>
@@ -867,12 +866,10 @@ module Jspdf =
         abstract member setGState: gState: obj -> Jspdf.jsPDF
         abstract member setLineCap: style: string -> Jspdf.jsPDF
         abstract member setLineCap: style: float -> Jspdf.jsPDF
-        abstract member setLineCap: style: U2<string, float> -> Jspdf.jsPDF
         abstract member setLineDashPattern: dashArray: ResizeArray<float> * dashPhase: float -> Jspdf.jsPDF
         abstract member setLineHeightFactor: value: float -> Jspdf.jsPDF
         abstract member setLineJoin: style: string -> Jspdf.jsPDF
         abstract member setLineJoin: style: float -> Jspdf.jsPDF
-        abstract member setLineJoin: style: U2<string, float> -> Jspdf.jsPDF
         abstract member setLineMiterLimit: length: float -> Jspdf.jsPDF
         abstract member setLineWidth: width: float -> Jspdf.jsPDF
         abstract member setPage: pageNumber: float -> Jspdf.jsPDF
@@ -882,7 +879,6 @@ module Jspdf =
         abstract member setTextColor: ch1: float * ch2: float * ch3: float * ?ch4: float -> Jspdf.jsPDF
         abstract member text: text: string * x: float * y: float * ?options: Jspdf.TextOptionsLight * ?transform: U2<float, obj> -> Jspdf.jsPDF
         abstract member text: text: ResizeArray<string> * x: float * y: float * ?options: Jspdf.TextOptionsLight * ?transform: U2<float, obj> -> Jspdf.jsPDF
-        abstract member text: text: U2<string, ResizeArray<string>> * x: float * y: float * ?options: Jspdf.TextOptionsLight * ?transform: U2<float, obj> -> Jspdf.jsPDF
         abstract member triangle: x1: float * y1: float * x2: float * y2: float * x3: float * y3: float * ?style: string -> Jspdf.jsPDF
         abstract member getHorizontalCoordinateString: value: float -> float
         abstract member getVerticalCoordinateString: value: float -> float
@@ -1012,27 +1008,6 @@ module Jspdf =
         ///  - vfs
         ///  - xmp_metadata
         /// </summary>
-        abstract member addImage: imageData: U5<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array, Jspdf.RGBAData> * format: string * x: float * y: float * w: float * h: float * ?alias: string * ?compression: Jspdf.ImageCompression * ?rotation: float -> Jspdf.jsPDF
-        /// <summary>
-        /// jsPDF plugins below:
-        ///
-        ///  - AcroForm
-        ///  - AddImage
-        ///  - Annotations
-        ///  - AutoPrint
-        ///  - Canvas
-        ///  - Cell
-        ///  - Context2D
-        ///  - fileloading
-        ///  - html
-        ///  - JavaScript
-        ///  - split_text_to_size
-        ///  - SVG
-        ///  - total_pages
-        ///  - utf8
-        ///  - vfs
-        ///  - xmp_metadata
-        /// </summary>
         abstract member addImage: imageData: string * x: float * y: float * w: float * h: float * ?alias: string * ?compression: Jspdf.ImageCompression * ?rotation: float -> Jspdf.jsPDF
         /// <summary>
         /// jsPDF plugins below:
@@ -1138,33 +1113,11 @@ module Jspdf =
         ///  - vfs
         ///  - xmp_metadata
         /// </summary>
-        abstract member addImage: imageData: U5<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array, Jspdf.RGBAData> * x: float * y: float * w: float * h: float * ?alias: string * ?compression: Jspdf.ImageCompression * ?rotation: float -> Jspdf.jsPDF
-        /// <summary>
-        /// jsPDF plugins below:
-        ///
-        ///  - AcroForm
-        ///  - AddImage
-        ///  - Annotations
-        ///  - AutoPrint
-        ///  - Canvas
-        ///  - Cell
-        ///  - Context2D
-        ///  - fileloading
-        ///  - html
-        ///  - JavaScript
-        ///  - split_text_to_size
-        ///  - SVG
-        ///  - total_pages
-        ///  - utf8
-        ///  - vfs
-        ///  - xmp_metadata
-        /// </summary>
         abstract member addImage: options: Jspdf.ImageOptions -> Jspdf.jsPDF
         abstract member getImageProperties: imageData: string -> Jspdf.ImageProperties
         abstract member getImageProperties: imageData: Glutinum.Web.HTMLImageElement -> Jspdf.ImageProperties
         abstract member getImageProperties: imageData: Glutinum.Web.HTMLCanvasElement -> Jspdf.ImageProperties
         abstract member getImageProperties: imageData: JS.Uint8Array -> Jspdf.ImageProperties
-        abstract member getImageProperties: imageData: U4<string, Glutinum.Web.HTMLImageElement, Glutinum.Web.HTMLCanvasElement, JS.Uint8Array> -> Jspdf.ImageProperties
         abstract member processArabic: text: string -> string
         abstract member createAnnotation: options: Jspdf.Annotation -> unit
         abstract member link: x: float * y: float * w: float * h: float * options: obj -> unit
@@ -1180,7 +1133,6 @@ module Jspdf =
         abstract member cell: x: float * y: float * w: float * h: float * txt: string * ln: float * align: string -> Jspdf.jsPDF
         abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data.Item> * headers: ResizeArray<string> * config: Jspdf.TableConfig -> Jspdf.jsPDF
         abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data.Item> * headers: ResizeArray<Jspdf.CellConfig> * config: Jspdf.TableConfig -> Jspdf.jsPDF
-        abstract member table: x: float * y: float * data: ResizeArray<jsPDF.table.data.Item> * headers: U2<ResizeArray<string>, ResizeArray<Jspdf.CellConfig>> * config: Jspdf.TableConfig -> Jspdf.jsPDF
         abstract member calculateLineHeight: headerNames: ResizeArray<string> * columnWidths: ResizeArray<float> * model: ResizeArray<obj> -> float
         abstract member setTableHeaderRow: config: ResizeArray<Jspdf.CellConfig> -> unit
         abstract member printHeaderRow: lineNumber: float * ?new_page: bool -> unit
@@ -1191,7 +1143,6 @@ module Jspdf =
         abstract member allowFsRead: ResizeArray<string> option with get, set
         abstract member html: src: string * ?options: Jspdf.HTMLOptions -> Jspdf.HTMLWorker
         abstract member html: src: Glutinum.Web.HTMLElement * ?options: Jspdf.HTMLOptions -> Jspdf.HTMLWorker
-        abstract member html: src: U2<string, Glutinum.Web.HTMLElement> * ?options: Jspdf.HTMLOptions -> Jspdf.HTMLWorker
         abstract member addJS: javascript: string -> Jspdf.jsPDF
         abstract member getCharWidthsArray: text: string * ?options: obj -> ResizeArray<obj>
         abstract member getStringUnitWidth: text: string * ?options: obj -> float
@@ -1801,6 +1752,10 @@ jsPDF.API{{=$0}}""")>]
             [<Emit("$0")>]
             static member op_ErasedCast(value: float) : floatPrecision = nativeOnly
 
+            /// Unchecked, the value as <c>Case1</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase1: float = nativeOnly
+
     module PubSub =
 
         [<AllowNullLiteral>]
@@ -1958,6 +1913,14 @@ jsPDF.API{{=$0}}""")>]
 
                 [<Emit("$0")>]
                 static member op_ErasedCast(value: string) : zoom = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: float = nativeOnly
+
+                /// Unchecked, the value as <c>Case2</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase2: string = nativeOnly
 
             [<RequireQualifiedAccess>]
             [<StringEnum(CaseRules.None)>]

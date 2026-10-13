@@ -53,7 +53,7 @@ let main _ =
                     test (
                         "the factory of an object literal type alias builds the parameters",
                         fun _ ->
-                            let parameters = StaggerParams.Create(start = !^ 100., total = 3.)
+                            let parameters = StaggerParams.Create(start = 100., total = 3.)
 
                             assertThat (parameters?start) (isEqualTo 100.)
                             assertThat (parameters?total) (isEqualTo 3.)

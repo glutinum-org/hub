@@ -22,7 +22,7 @@ container.style.height <- "300px"
 document.body.appendChild container |> ignore
 
 let paris = L.latLng (48.85, 2.35)
-let map = L.map(container).setView (paris, 13)
+let map = L.map(container).setView (paris, 13.)
 
 report "container" (map.getContainer().className)
 report "center" $"{map.getCenter().lat} {map.getCenter().lng} zoom {map.getZoom ()}"

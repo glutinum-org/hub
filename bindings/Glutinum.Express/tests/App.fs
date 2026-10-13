@@ -5,6 +5,7 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Glutinum
 open Glutinum.Express
+open Glutinum.Types.UnionCases
 
 type User = { id: int; name: string }
 
@@ -48,7 +49,7 @@ let create () =
     app.get (
         "/users/:id",
         ExpressAdapter.RequestHandler(fun request response ->
-            let id = int (unbox<string> request.``params``.["id"])
+            let id = int request.``params``.["id"].AsCase1
 
             match users |> Seq.tryFind (fun user -> user.id = id) with
             | Some user -> response.json user |> ignore
@@ -61,7 +62,7 @@ let create () =
     app.get (
         "/search",
         ExpressAdapter.RequestHandler(fun request response ->
-            let term = unbox<string> request.query.["q"]
+            let term = request.query.["q"].Value.AsCase1
 
             let names =
                 users

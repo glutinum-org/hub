@@ -42,8 +42,8 @@ let main _ =
                         "the color names are listed",
                         fun _ ->
                             assertThat
-                                (unbox<string[]> Chalk.Exports.foregroundColorNames
-                                 |> Array.contains "red")
+                                (Chalk.Exports.foregroundColorNames.includes
+                                    Chalk.ForegroundColorName.red)
                                 (isTrue)
                     )
 

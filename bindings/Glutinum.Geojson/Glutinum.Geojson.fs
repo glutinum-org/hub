@@ -30,12 +30,31 @@ module Geojson =
         | Feature
         | FeatureCollection
 
-    /// <summary>
-    /// Bounding box
-    /// https://tools.ietf.org/html/rfc7946#section-5
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type BBox =
-        U2<float * float * float * float, float * float * float * float * float * float>
+        | Case1 of float * float * float * float
+        | Case2 of float * float * float * float * float * float
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: float * float * float * float) : BBox = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float * float * float * float) : BBox = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: float * float * float * float * float * float) : BBox = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float * float * float * float * float * float) : BBox = nativeOnly
+
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: float * float * float * float = nativeOnly
+
+        /// Unchecked, the value as <c>Case2</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase2: float * float * float * float * float * float = nativeOnly
 
     /// <summary>
     /// A Position is an array of coordinates.
@@ -108,18 +127,123 @@ module Geojson =
         [<ParamObject; Emit("$0")>]
         static member Create (``type``: Geojson.GeoJsonTypes, ?bbox: Geojson.BBox) : GeoJsonObject = nativeOnly
 
-    /// <summary>
-    /// Union of GeoJSON objects.
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type GeoJSON<'G, 'P> =
-        U3<'G, Geojson.Feature<'G, 'P>, Geojson.FeatureCollection<'G, 'P>>
+        | G of 'G
+        | Feature of Geojson.Feature<'G, 'P>
+        | FeatureCollection of Geojson.FeatureCollection<'G, 'P>
 
-    /// <summary>
-    /// Geometry object.
-    /// https://tools.ietf.org/html/rfc7946#section-3
-    /// </summary>
+        [<Emit("$0")>]
+        static member op_Implicit(value: 'G) : GeoJSON<'G, 'P> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: 'G) : GeoJSON<'G, 'P> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.Feature<'G, 'P>) : GeoJSON<'G, 'P> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.Feature<'G, 'P>) : GeoJSON<'G, 'P> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.FeatureCollection<'G, 'P>) : GeoJSON<'G, 'P> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.FeatureCollection<'G, 'P>) : GeoJSON<'G, 'P> = nativeOnly
+
+        /// Unchecked, the value as <c>G</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsG: 'G = nativeOnly
+
+        /// Unchecked, the value as <c>Feature</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsFeature: Geojson.Feature<'G, 'P> = nativeOnly
+
+        /// Unchecked, the value as <c>FeatureCollection</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsFeatureCollection: Geojson.FeatureCollection<'G, 'P> = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Geometry =
-        U7<Geojson.Point, Geojson.MultiPoint, Geojson.LineString, Geojson.MultiLineString, Geojson.Polygon, Geojson.MultiPolygon, Geojson.GeometryCollection>
+        | Point of Geojson.Point
+        | MultiPoint of Geojson.MultiPoint
+        | LineString of Geojson.LineString
+        | MultiLineString of Geojson.MultiLineString
+        | Polygon of Geojson.Polygon
+        | MultiPolygon of Geojson.MultiPolygon
+        | GeometryCollection of Geojson.GeometryCollection
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.Point) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.Point) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.MultiPoint) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.MultiPoint) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.LineString) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.LineString) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.MultiLineString) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.MultiLineString) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.Polygon) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.Polygon) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.MultiPolygon) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.MultiPolygon) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Geojson.GeometryCollection) : Geometry = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Geojson.GeometryCollection) : Geometry = nativeOnly
+
+        /// Unchecked, the value as <c>Point</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsPoint: Geojson.Point = nativeOnly
+
+        /// Unchecked, the value as <c>MultiPoint</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsMultiPoint: Geojson.MultiPoint = nativeOnly
+
+        /// Unchecked, the value as <c>LineString</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsLineString: Geojson.LineString = nativeOnly
+
+        /// Unchecked, the value as <c>MultiLineString</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsMultiLineString: Geojson.MultiLineString = nativeOnly
+
+        /// Unchecked, the value as <c>Polygon</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsPolygon: Geojson.Polygon = nativeOnly
+
+        /// Unchecked, the value as <c>MultiPolygon</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsMultiPolygon: Geojson.MultiPolygon = nativeOnly
+
+        /// Unchecked, the value as <c>GeometryCollection</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsGeometryCollection: Geojson.GeometryCollection = nativeOnly
 
     type GeometryObject =
         Geojson.Geometry
@@ -294,7 +418,7 @@ module Geojson =
         GeoJSON<Geojson.Geometry, Geojson.GeoJsonProperties>
 
     type GeometryCollection =
-        GeometryCollection<obj>
+        GeometryCollection<Geojson.Geometry>
 
     type Feature<'G> =
         Feature<'G, Geojson.GeoJsonProperties>

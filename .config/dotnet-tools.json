@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "fable": {
-      "version": "5.17.2",
+      "version": "5.21.0",
       "commands": [
         "fable"
       ],
@@ -34,6 +34,13 @@
       "version": "3.1.0",
       "commands": [
         "shipit"
+      ],
+      "rollForward": false
+    },
+    "dotnet-outdated-tool": {
+      "version": "4.8.1",
+      "commands": [
+        "dotnet-outdated"
       ],
       "rollForward": false
     }

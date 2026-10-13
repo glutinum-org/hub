@@ -54,11 +54,6 @@ module Animejs =
         ///
         /// </param>
         [<Import("$", "animejs")>]
-        static member ``$`` (targets: Animejs.DOMTargetsParam) : Animejs.DOMTargetsArray = nativeOnly
-        /// <param name="targets">
-        ///
-        /// </param>
-        [<Import("$", "animejs")>]
         static member ``$`` (targets: ResizeArray<Animejs.JSTarget>) : Animejs.JSTargetsArray = nativeOnly
         /// <param name="targets">
         ///
@@ -69,17 +64,7 @@ module Animejs =
         ///
         /// </param>
         [<Import("$", "animejs")>]
-        static member ``$`` (targets: Animejs.JSTargetsParam) : Animejs.JSTargetsArray = nativeOnly
-        /// <param name="targets">
-        ///
-        /// </param>
-        [<Import("$", "animejs")>]
         static member ``$`` (targets: ResizeArray<Animejs.TargetSelector>) : Animejs.TargetsArray = nativeOnly
-        /// <param name="targets">
-        ///
-        /// </param>
-        [<Import("$", "animejs")>]
-        static member ``$`` (targets: Animejs.TargetsParam) : Animejs.TargetsArray = nativeOnly
         [<Import("createAnimatable", "animejs")>]
         static member createAnimatable (targets: ResizeArray<Animejs.TargetSelector>, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
         [<Import("createAnimatable", "animejs")>]
@@ -92,8 +77,6 @@ module Animejs =
         static member createAnimatable (targets: Glutinum.Web.NodeList, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
         [<Import("createAnimatable", "animejs")>]
         static member createAnimatable (targets: string, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
-        [<Import("createAnimatable", "animejs")>]
-        static member createAnimatable (targets: Animejs.TargetsParam, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
         [<Import("animate", "animejs")>]
         static member animate (targets: ResizeArray<Animejs.TargetSelector>, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
         [<Import("animate", "animejs")>]
@@ -106,8 +89,6 @@ module Animejs =
         static member animate (targets: Glutinum.Web.NodeList, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
         [<Import("animate", "animejs")>]
         static member animate (targets: string, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
-        [<Import("animate", "animejs")>]
-        static member animate (targets: Animejs.TargetsParam, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
         [<Import("clamp", "animejs")>]
         static member clamp (v: float, min: float, max: float) : float = nativeOnly
         [<Import("round", "animejs")>]
@@ -116,8 +97,6 @@ module Animejs =
         static member snap (v: float, increment: float) : float = nativeOnly
         [<Import("snap", "animejs")>]
         static member snap (v: float, increment: ResizeArray<float>) : float = nativeOnly
-        [<Import("snap", "animejs")>]
-        static member snap (v: float, increment: U2<float, ResizeArray<float>>) : float = nativeOnly
         [<Import("lerp", "animejs")>]
         static member lerp (start: float, ``end``: float, factor: float) : float = nativeOnly
         [<Import("forEachChildren", "animejs")>]
@@ -140,8 +119,6 @@ module Animejs =
         static member createDraggable (target: Glutinum.Web.NodeList, ?parameters: Animejs.DraggableParams) : Animejs.Draggable = nativeOnly
         [<Import("createDraggable", "animejs")>]
         static member createDraggable (target: string, ?parameters: Animejs.DraggableParams) : Animejs.Draggable = nativeOnly
-        [<Import("createDraggable", "animejs")>]
-        static member createDraggable (target: Animejs.TargetsParam, ?parameters: Animejs.DraggableParams) : Animejs.Draggable = nativeOnly
         [<Import("engine", "animejs")>]
         static member inline engine: Animejs.dist.modules.engine.engine.Engine = nativeOnly
         [<Import("scrollContainers", "animejs")>]
@@ -156,8 +133,6 @@ module Animejs =
         static member createLayout (root: Glutinum.Web.NodeList, ?``params``: Animejs.AutoLayoutParams) : Animejs.AutoLayout = nativeOnly
         [<Import("createLayout", "animejs")>]
         static member createLayout (root: string, ?``params``: Animejs.AutoLayoutParams) : Animejs.AutoLayout = nativeOnly
-        [<Import("createLayout", "animejs")>]
-        static member createLayout (root: Animejs.DOMTargetSelector, ?``params``: Animejs.AutoLayoutParams) : Animejs.AutoLayout = nativeOnly
         [<Import("createScope", "animejs")>]
         static member createScope (?``params``: Animejs.ScopeParams) : Animejs.Scope = nativeOnly
         [<Import("createDrawable", "animejs")>]
@@ -172,8 +147,6 @@ module Animejs =
         static member createDrawable (selector: Glutinum.Web.NodeList, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
         [<Import("createDrawable", "animejs")>]
         static member createDrawable (selector: string, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
-        [<Import("createDrawable", "animejs")>]
-        static member createDrawable (selector: Animejs.TargetsParam, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
         [<Import("morphTo", "animejs")>]
         static member morphTo (path2: ResizeArray<Animejs.TargetSelector>, ?precision: float) : Animejs.FunctionValue = nativeOnly
         [<Import("morphTo", "animejs")>]
@@ -186,22 +159,18 @@ module Animejs =
         static member morphTo (path2: Glutinum.Web.NodeList, ?precision: float) : Animejs.FunctionValue = nativeOnly
         [<Import("morphTo", "animejs")>]
         static member morphTo (path2: string, ?precision: float) : Animejs.FunctionValue = nativeOnly
-        [<Import("morphTo", "animejs")>]
-        static member morphTo (path2: Animejs.TargetsParam, ?precision: float) : Animejs.FunctionValue = nativeOnly
         [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: ResizeArray<Animejs.TargetSelector>, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+        static member createMotionPath (path: ResizeArray<Animejs.TargetSelector>, ?offset: float) : Animejs.Exports.createMotionPath__ = nativeOnly
         [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: Glutinum.Web.HTMLElement, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+        static member createMotionPath (path: Glutinum.Web.HTMLElement, ?offset: float) : Animejs.Exports.createMotionPath__ = nativeOnly
         [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: Glutinum.Web.SVGElement, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+        static member createMotionPath (path: Glutinum.Web.SVGElement, ?offset: float) : Animejs.Exports.createMotionPath__ = nativeOnly
         [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: Animejs.JSTarget, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+        static member createMotionPath (path: Animejs.JSTarget, ?offset: float) : Animejs.Exports.createMotionPath__ = nativeOnly
         [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: Glutinum.Web.NodeList, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+        static member createMotionPath (path: Glutinum.Web.NodeList, ?offset: float) : Animejs.Exports.createMotionPath__ = nativeOnly
         [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: string, ?offset: float) : Exports.createMotionPath__ = nativeOnly
-        [<Import("createMotionPath", "animejs")>]
-        static member createMotionPath (path: Animejs.TargetsParam, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+        static member createMotionPath (path: string, ?offset: float) : Animejs.Exports.createMotionPath__ = nativeOnly
         [<Import("scrambleText", "animejs")>]
         static member scrambleText (?``params``: Animejs.ScrambleTextParams) : Animejs.FunctionValue<Animejs.ScrambleTextTween> = nativeOnly
         [<Import("splitText", "animejs")>]
@@ -212,8 +181,6 @@ module Animejs =
         static member splitText (target: string, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
         [<Import("splitText", "animejs")>]
         static member splitText (target: ResizeArray<Glutinum.Web.Element>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
-        [<Import("splitText", "animejs")>]
-        static member splitText (target: U4<Glutinum.Web.Element, Glutinum.Web.NodeList, string, ResizeArray<Glutinum.Web.Element>>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
         [<Import("split", "animejs")>]
         static member split (target: Glutinum.Web.HTMLElement, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
         [<Import("split", "animejs")>]
@@ -222,8 +189,6 @@ module Animejs =
         static member split (target: string, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
         [<Import("split", "animejs")>]
         static member split (target: ResizeArray<Glutinum.Web.HTMLElement>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
-        [<Import("split", "animejs")>]
-        static member split (target: U4<Glutinum.Web.HTMLElement, Glutinum.Web.NodeList, string, ResizeArray<Glutinum.Web.HTMLElement>>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
         [<Import("createTimeline", "animejs")>]
         static member createTimeline (?parameters: Animejs.TimelineParams) : Animejs.Timeline = nativeOnly
         [<Import("createTimer", "animejs")>]
@@ -255,8 +220,6 @@ module Animejs =
         static member randomPick<'T> (items: string) : U2<string, 'T> = nativeOnly
         [<Import("randomPick", "animejs")>]
         static member randomPick<'T> (items: ResizeArray<'T>) : U2<string, 'T> = nativeOnly
-        [<Import("randomPick", "animejs")>]
-        static member randomPick<'T> (items: U2<string, ResizeArray<'T>>) : U2<string, 'T> = nativeOnly
         [<Import("shuffle", "animejs")>]
         static member shuffle (items: ResizeArray<obj>, ?rnd: Animejs.RandomNumberGenerator) : ResizeArray<obj> = nativeOnly
         [<Import("stagger", "animejs")>]
@@ -321,17 +284,6 @@ module Animejs =
         ///
         /// </param>
         [<Import("get", "animejs")>]
-        static member get (targetSelector: Animejs.DOMTargetSelector, propName: string) : string = nativeOnly
-        /// <param name="targetSelector">
-        ///
-        /// </param>
-        /// <param name="propName">
-        ///
-        /// </param>
-        /// <param name="unit">
-        ///
-        /// </param>
-        [<Import("get", "animejs")>]
         static member get (targetSelector: ResizeArray<Animejs.JSTarget>, propName: string) : U2<float, string> = nativeOnly
         /// <param name="targetSelector">
         ///
@@ -344,17 +296,6 @@ module Animejs =
         /// </param>
         [<Import("get", "animejs")>]
         static member get (targetSelector: Animejs.JSTarget, propName: string) : U2<float, string> = nativeOnly
-        /// <param name="targetSelector">
-        ///
-        /// </param>
-        /// <param name="propName">
-        ///
-        /// </param>
-        /// <param name="unit">
-        ///
-        /// </param>
-        [<Import("get", "animejs")>]
-        static member get (targetSelector: Animejs.JSTargetsParam, propName: string) : U2<float, string> = nativeOnly
         /// <param name="targetSelector">
         ///
         /// </param>
@@ -410,17 +351,6 @@ module Animejs =
         /// </param>
         [<Import("get", "animejs")>]
         static member get (targetSelector: string, propName: string, unit: string) : string = nativeOnly
-        /// <param name="targetSelector">
-        ///
-        /// </param>
-        /// <param name="propName">
-        ///
-        /// </param>
-        /// <param name="unit">
-        ///
-        /// </param>
-        [<Import("get", "animejs")>]
-        static member get (targetSelector: Animejs.DOMTargetsParam, propName: string, unit: string) : string = nativeOnly
         /// <param name="targetSelector">
         ///
         /// </param>
@@ -487,17 +417,6 @@ module Animejs =
         /// </param>
         [<Import("get", "animejs")>]
         static member get (targetSelector: string, propName: string, unit: bool) : float = nativeOnly
-        /// <param name="targetSelector">
-        ///
-        /// </param>
-        /// <param name="propName">
-        ///
-        /// </param>
-        /// <param name="unit">
-        ///
-        /// </param>
-        [<Import("get", "animejs")>]
-        static member get (targetSelector: Animejs.TargetsParam, propName: string, unit: bool) : float = nativeOnly
         [<Import("set", "animejs")>]
         static member set (targets: ResizeArray<Animejs.TargetSelector>, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
         [<Import("set", "animejs")>]
@@ -510,8 +429,6 @@ module Animejs =
         static member set (targets: Glutinum.Web.NodeList, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
         [<Import("set", "animejs")>]
         static member set (targets: string, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
-        [<Import("set", "animejs")>]
-        static member set (targets: Animejs.TargetsParam, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
         [<Import("remove", "animejs")>]
         static member remove (targets: ResizeArray<Animejs.TargetSelector>, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
         [<Import("remove", "animejs")>]
@@ -524,8 +441,6 @@ module Animejs =
         static member remove (targets: Glutinum.Web.NodeList, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
         [<Import("remove", "animejs")>]
         static member remove (targets: string, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
-        [<Import("remove", "animejs")>]
-        static member remove (targets: Animejs.TargetsParam, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
         [<Import("sync", "animejs")>]
         static member sync (?callback: Animejs.Callback<Animejs.Timer>) : Animejs.Timer = nativeOnly
         [<Import("keepTime", "animejs")>]
@@ -578,14 +493,6 @@ module Animejs =
         /// </param>
         [<Import("Animatable", "animejs"); EmitConstructor>]
         static member Animatable (targets: string, parameters: Animejs.AnimatableParams) : Animatable = nativeOnly
-        /// <param name="targets">
-        ///
-        /// </param>
-        /// <param name="parameters">
-        ///
-        /// </param>
-        [<Import("Animatable", "animejs"); EmitConstructor>]
-        static member Animatable (targets: Animejs.TargetsParam, parameters: Animejs.AnimatableParams) : Animatable = nativeOnly
         /// <param name="targets">
         ///
         /// </param>
@@ -724,29 +631,6 @@ module Animejs =
         /// </param>
         [<Import("JSAnimation", "animejs"); EmitConstructor>]
         static member JSAnimation (targets: string, parameters: Animejs.AnimationParams, ?parent: Animejs.Timeline, ?parentPosition: float, ?fastSet: bool, ?index: float, ?allTargets: Animejs.TargetsArray) : JSAnimation = nativeOnly
-        /// <param name="targets">
-        ///
-        /// </param>
-        /// <param name="parameters">
-        ///
-        /// </param>
-        /// <param name="parent">
-        ///
-        /// </param>
-        /// <param name="parentPosition">
-        ///
-        /// </param>
-        /// <param name="fastSet">
-        ///
-        /// </param>
-        /// <param name="index">
-        ///
-        /// </param>
-        /// <param name="allTargets">
-        ///
-        /// </param>
-        [<Import("JSAnimation", "animejs"); EmitConstructor>]
-        static member JSAnimation (targets: Animejs.TargetsParam, parameters: Animejs.AnimationParams, ?parent: Animejs.Timeline, ?parentPosition: float, ?fastSet: bool, ?index: float, ?allTargets: Animejs.TargetsArray) : JSAnimation = nativeOnly
         /// <param name="target">
         ///
         /// </param>
@@ -795,14 +679,6 @@ module Animejs =
         /// </param>
         [<Import("Draggable", "animejs"); EmitConstructor>]
         static member Draggable (target: string, ?parameters: Animejs.DraggableParams) : Draggable = nativeOnly
-        /// <param name="target">
-        ///
-        /// </param>
-        /// <param name="parameters">
-        ///
-        /// </param>
-        [<Import("Draggable", "animejs"); EmitConstructor>]
-        static member Draggable (target: Animejs.TargetsParam, ?parameters: Animejs.DraggableParams) : Draggable = nativeOnly
         /// <param name="parameters">
         ///
         /// </param>
@@ -840,14 +716,6 @@ module Animejs =
         /// </param>
         [<Import("AutoLayout", "animejs"); EmitConstructor>]
         static member AutoLayout (root: string, ?``params``: Animejs.AutoLayoutParams) : AutoLayout = nativeOnly
-        /// <param name="root">
-        ///
-        /// </param>
-        /// <param name="params">
-        ///
-        /// </param>
-        [<Import("AutoLayout", "animejs"); EmitConstructor>]
-        static member AutoLayout (root: Animejs.DOMTargetSelector, ?``params``: Animejs.AutoLayoutParams) : AutoLayout = nativeOnly
         /// <param name="parameters">
         ///
         /// </param>
@@ -885,14 +753,6 @@ module Animejs =
         /// </param>
         [<Import("TextSplitter", "animejs"); EmitConstructor>]
         static member TextSplitter (target: ResizeArray<Glutinum.Web.Element>, ?parameters: Animejs.TextSplitterParams) : TextSplitter = nativeOnly
-        /// <param name="target">
-        ///
-        /// </param>
-        /// <param name="parameters">
-        ///
-        /// </param>
-        [<Import("TextSplitter", "animejs"); EmitConstructor>]
-        static member TextSplitter (target: U4<Glutinum.Web.Element, Glutinum.Web.NodeList, string, ResizeArray<Glutinum.Web.Element>>, ?parameters: Animejs.TextSplitterParams) : TextSplitter = nativeOnly
         /// <param name="parameters">
         ///
         /// </param>
@@ -949,14 +809,6 @@ module Animejs =
         /// </param>
         [<Import("WAAPIAnimation", "animejs"); EmitConstructor>]
         static member WAAPIAnimation (targets: string, ``params``: Animejs.WAAPIAnimationParams) : WAAPIAnimation = nativeOnly
-        /// <param name="targets">
-        ///
-        /// </param>
-        /// <param name="params">
-        ///
-        /// </param>
-        [<Import("WAAPIAnimation", "animejs"); EmitConstructor>]
-        static member WAAPIAnimation (targets: Animejs.DOMTargetsParam, ``params``: Animejs.WAAPIAnimationParams) : WAAPIAnimation = nativeOnly
         /// <param name="parameters">
         ///
         /// </param>
@@ -1202,19 +1054,11 @@ module Animejs =
         /// <param name="e">
         ///
         /// </param>
-        abstract member handleDown: e: U2<Glutinum.Web.MouseEvent, Glutinum.Web.TouchEvent> -> unit
-        /// <param name="e">
-        ///
-        /// </param>
         abstract member handleMove: e: Glutinum.Web.MouseEvent -> unit
         /// <param name="e">
         ///
         /// </param>
         abstract member handleMove: e: Glutinum.Web.TouchEvent -> unit
-        /// <param name="e">
-        ///
-        /// </param>
-        abstract member handleMove: e: U2<Glutinum.Web.MouseEvent, Glutinum.Web.TouchEvent> -> unit
         abstract member handleUp: unit -> unit
         abstract member reset: unit -> Draggable
         abstract member enable: unit -> Draggable
@@ -1347,10 +1191,6 @@ module Animejs =
         ///
         /// </param>
         abstract member link: linked: Animejs.WAAPIAnimation -> ScrollObserver
-        /// <param name="linked">
-        ///
-        /// </param>
-        abstract member link: linked: U2<Animejs.Tickable, Animejs.WAAPIAnimation> -> ScrollObserver
         abstract member velocity: float with get
         abstract member backward: bool with get
         abstract member scroll: float with get
@@ -1400,8 +1240,31 @@ module Animejs =
         /// </param>
         abstract member update: callback: (AutoLayout -> unit) * ?``params``: Animejs.LayoutAnimationParams -> Animejs.Timeline
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type LayoutChildrenParam =
-        U2<Animejs.DOMTargetSelector, ResizeArray<Animejs.DOMTargetSelector>>
+        | DOMTargetSelector of Animejs.DOMTargetSelector
+        | DOMTargetSelectorArray of ResizeArray<Animejs.DOMTargetSelector>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.DOMTargetSelector) : LayoutChildrenParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.DOMTargetSelector) : LayoutChildrenParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<Animejs.DOMTargetSelector>) : LayoutChildrenParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<Animejs.DOMTargetSelector>) : LayoutChildrenParam = nativeOnly
+
+        /// Unchecked, the value as <c>DOMTargetSelector</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDOMTargetSelector: Animejs.DOMTargetSelector = nativeOnly
+
+        /// Unchecked, the value as <c>DOMTargetSelectorArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDOMTargetSelectorArray: ResizeArray<Animejs.DOMTargetSelector> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1472,7 +1335,17 @@ module Animejs =
         abstract member children: Animejs.LayoutChildrenParam option with get, set
         abstract member properties: ResizeArray<string> option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?children: Animejs.LayoutChildrenParam, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
+        static member Create (?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (children: Glutinum.Web.HTMLElement, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (children: Glutinum.Web.SVGElement, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (children: Glutinum.Web.NodeList, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (children: string, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (children: ResizeArray<Animejs.DOMTargetSelector>, ?properties: ResizeArray<string>) : LayoutOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -1774,16 +1647,6 @@ module Animejs =
         /// <param name="a3">
         ///
         /// </param>
-        abstract member add: a1: Animejs.TargetsParam * a2: Animejs.AnimationParams * ?a3: U3<Animejs.TimelinePosition, Animejs.StaggerFunction<U2<float, string>>, Animejs.TweakRegister> -> Timeline
-        /// <param name="a1">
-        ///
-        /// </param>
-        /// <param name="a2">
-        ///
-        /// </param>
-        /// <param name="a3">
-        ///
-        /// </param>
         abstract member add: a1: Animejs.TimerParams * ?a2: Animejs.TimelinePosition -> Timeline
         /// <param name="synced">
         ///
@@ -1887,16 +1750,6 @@ module Animejs =
         ///
         /// </param>
         abstract member set: targets: string * parameters: Animejs.AnimationParams * ?position: U3<Animejs.TimelinePosition, Animejs.StaggerFunction<U2<float, string>>, Animejs.TweakRegister> -> Timeline
-        /// <param name="targets">
-        ///
-        /// </param>
-        /// <param name="parameters">
-        ///
-        /// </param>
-        /// <param name="position">
-        ///
-        /// </param>
-        abstract member set: targets: Animejs.TargetsParam * parameters: Animejs.AnimationParams * ?position: U3<Animejs.TimelinePosition, Animejs.StaggerFunction<U2<float, string>>, Animejs.TweakRegister> -> Timeline
         /// <param name="callback">
         ///
         /// </param>
@@ -1953,13 +1806,6 @@ module Animejs =
         ///
         /// </param>
         abstract member remove: targets: string * ?propertyName: string -> Timeline
-        /// <param name="targets">
-        ///
-        /// </param>
-        /// <param name="propertyName">
-        ///
-        /// </param>
-        abstract member remove: targets: Animejs.TargetsParam * ?propertyName: string -> Timeline
         /// <param name="newDuration">
         ///
         /// </param>
@@ -2174,11 +2020,57 @@ module Animejs =
         [<ParamObject; Emit("$0")>]
         static member Create (?id: U2<float, string>, ?keyframes: U2<Animejs.PercentageKeyframes, Animejs.DurationKeyframes>, ?playbackEase: Animejs.EasingParam, ?playbackRate: float, ?frameRate: float, ?loop: U2<float, bool>, ?reversed: bool, ?alternate: bool, ?persist: bool, ?autoplay: U2<bool, Animejs.ScrollObserver>, ?duration: U2<float, Animejs.FunctionValue>, ?delay: U2<float, Animejs.FunctionValue>, ?loopDelay: float, ?ease: U2<Animejs.EasingParam, Animejs.FunctionValue>, ?composition: DefaultsParams.composition, ?modifier: (obj -> unit), ?onBegin: Animejs.Callback<Animejs.Tickable>, ?onBeforeUpdate: Animejs.Callback<Animejs.Tickable>, ?onUpdate: Animejs.Callback<Animejs.Tickable>, ?onLoop: Animejs.Callback<Animejs.Tickable>, ?onPause: Animejs.Callback<Animejs.Tickable>, ?onComplete: Animejs.Callback<Animejs.Tickable>, ?onRender: Animejs.Callback<Animejs.Renderable>) : DefaultsParams = nativeOnly
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Renderable =
-        U2<Animejs.JSAnimation, Animejs.Timeline>
+        | JSAnimation of Animejs.JSAnimation
+        | Timeline of Animejs.Timeline
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.JSAnimation) : Renderable = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.JSAnimation) : Renderable = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Timeline) : Renderable = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Timeline) : Renderable = nativeOnly
+
+        /// Unchecked, the value as <c>JSAnimation</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsJSAnimation: Animejs.JSAnimation = nativeOnly
+
+        /// Unchecked, the value as <c>Timeline</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTimeline: Animejs.Timeline = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Tickable =
-        U2<Animejs.Timer, Animejs.Renderable>
+        | Timer of Animejs.Timer
+        | Renderable of Animejs.Renderable
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Timer) : Tickable = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Timer) : Tickable = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Renderable) : Tickable = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Renderable) : Tickable = nativeOnly
+
+        /// Unchecked, the value as <c>Timer</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTimer: Animejs.Timer = nativeOnly
+
+        /// Unchecked, the value as <c>Renderable</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsRenderable: Animejs.Renderable = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2187,8 +2079,97 @@ module Animejs =
         inherit Animejs.JSAnimation
         inherit Animejs.Timeline
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Revertible =
-        U8<Animejs.Animatable, Animejs.Tickable, Animejs.WAAPIAnimation, Animejs.Draggable, Animejs.ScrollObserver, Animejs.TextSplitter, Animejs.Scope, Animejs.AutoLayout>
+        | Animatable of Animejs.Animatable
+        | Tickable of Animejs.Tickable
+        | WAAPIAnimation of Animejs.WAAPIAnimation
+        | Draggable of Animejs.Draggable
+        | ScrollObserver of Animejs.ScrollObserver
+        | TextSplitter of Animejs.TextSplitter
+        | Scope of Animejs.Scope
+        | AutoLayout of Animejs.AutoLayout
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Animatable) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Animatable) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Tickable) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Tickable) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.WAAPIAnimation) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.WAAPIAnimation) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Draggable) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Draggable) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.ScrollObserver) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.ScrollObserver) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TextSplitter) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TextSplitter) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Scope) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Scope) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.AutoLayout) : Revertible = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.AutoLayout) : Revertible = nativeOnly
+
+        /// Unchecked, the value as <c>Animatable</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsAnimatable: Animejs.Animatable = nativeOnly
+
+        /// Unchecked, the value as <c>Tickable</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTickable: Animejs.Tickable = nativeOnly
+
+        /// Unchecked, the value as <c>WAAPIAnimation</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsWAAPIAnimation: Animejs.WAAPIAnimation = nativeOnly
+
+        /// Unchecked, the value as <c>Draggable</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDraggable: Animejs.Draggable = nativeOnly
+
+        /// Unchecked, the value as <c>ScrollObserver</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsScrollObserver: Animejs.ScrollObserver = nativeOnly
+
+        /// Unchecked, the value as <c>TextSplitter</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTextSplitter: Animejs.TextSplitter = nativeOnly
+
+        /// Unchecked, the value as <c>Scope</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsScope: Animejs.Scope = nativeOnly
+
+        /// Unchecked, the value as <c>AutoLayout</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsAutoLayout: Animejs.AutoLayout = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2229,8 +2210,31 @@ module Animejs =
         [<ParamObject; Emit("$0")>]
         static member Create (?start: U2<float, string>, ?from: StaggerParams.from, ?reversed: bool, ?grid: U2<ResizeArray<float>, bool>, ?axis: StaggerParams.axis, ?``use``: U2<string, StaggerParams.``use``.U2.Case2>, ?total: float, ?ease: Animejs.EasingParam, ?modifier: Animejs.TweenModifier, ?jitter: U2<float, float * float>, ?seed: U2<bool, float>) : StaggerParams = nativeOnly
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type DOMTarget =
-        U2<Glutinum.Web.HTMLElement, Glutinum.Web.SVGElement>
+        | HTMLElement of Glutinum.Web.HTMLElement
+        | SVGElement of Glutinum.Web.SVGElement
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Glutinum.Web.HTMLElement) : DOMTarget = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Glutinum.Web.HTMLElement) : DOMTarget = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Glutinum.Web.SVGElement) : DOMTarget = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Glutinum.Web.SVGElement) : DOMTarget = nativeOnly
+
+        /// Unchecked, the value as <c>HTMLElement</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsHTMLElement: Glutinum.Web.HTMLElement = nativeOnly
+
+        /// Unchecked, the value as <c>SVGElement</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsSVGElement: Glutinum.Web.SVGElement = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2238,29 +2242,189 @@ module Animejs =
         [<EmitIndexer>]
         abstract member Item: key: string -> obj with get, set
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Target =
-        U2<Animejs.DOMTarget, Animejs.JSTarget>
+        | DOMTarget of Animejs.DOMTarget
+        | JSTarget of Animejs.JSTarget
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.DOMTarget) : Target = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.DOMTarget) : Target = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.JSTarget) : Target = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.JSTarget) : Target = nativeOnly
+
+        /// Unchecked, the value as <c>DOMTarget</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDOMTarget: Animejs.DOMTarget = nativeOnly
+
+        /// Unchecked, the value as <c>JSTarget</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsJSTarget: Animejs.JSTarget = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type TargetSelector =
-        U3<Animejs.Target, Glutinum.Web.NodeList, string>
+        | Target of Animejs.Target
+        | NodeList of Glutinum.Web.NodeList
+        | String of string
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.Target) : TargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.Target) : TargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Glutinum.Web.NodeList) : TargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Glutinum.Web.NodeList) : TargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : TargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : TargetSelector = nativeOnly
+
+        /// Unchecked, the value as <c>Target</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTarget: Animejs.Target = nativeOnly
+
+        /// Unchecked, the value as <c>NodeList</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNodeList: Glutinum.Web.NodeList = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type DOMTargetSelector =
-        U3<Animejs.DOMTarget, Glutinum.Web.NodeList, string>
+        | DOMTarget of Animejs.DOMTarget
+        | NodeList of Glutinum.Web.NodeList
+        | String of string
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.DOMTarget) : DOMTargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.DOMTarget) : DOMTargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Glutinum.Web.NodeList) : DOMTargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Glutinum.Web.NodeList) : DOMTargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : DOMTargetSelector = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : DOMTargetSelector = nativeOnly
+
+        /// Unchecked, the value as <c>DOMTarget</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDOMTarget: Animejs.DOMTarget = nativeOnly
+
+        /// Unchecked, the value as <c>NodeList</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNodeList: Glutinum.Web.NodeList = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type DOMTargetsParam =
-        U2<ResizeArray<Animejs.DOMTargetSelector>, Animejs.DOMTargetSelector>
+        | DOMTargetSelectorArray of ResizeArray<Animejs.DOMTargetSelector>
+        | DOMTargetSelector of Animejs.DOMTargetSelector
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<Animejs.DOMTargetSelector>) : DOMTargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<Animejs.DOMTargetSelector>) : DOMTargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.DOMTargetSelector) : DOMTargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.DOMTargetSelector) : DOMTargetsParam = nativeOnly
+
+        /// Unchecked, the value as <c>DOMTargetSelectorArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDOMTargetSelectorArray: ResizeArray<Animejs.DOMTargetSelector> = nativeOnly
+
+        /// Unchecked, the value as <c>DOMTargetSelector</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDOMTargetSelector: Animejs.DOMTargetSelector = nativeOnly
 
     type DOMTargetsArray =
         ResizeArray<Animejs.DOMTarget>
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type JSTargetsParam =
-        U2<ResizeArray<Animejs.JSTarget>, Animejs.JSTarget>
+        | JSTargetArray of ResizeArray<Animejs.JSTarget>
+        | JSTarget of Animejs.JSTarget
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<Animejs.JSTarget>) : JSTargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<Animejs.JSTarget>) : JSTargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.JSTarget) : JSTargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.JSTarget) : JSTargetsParam = nativeOnly
+
+        /// Unchecked, the value as <c>JSTargetArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsJSTargetArray: ResizeArray<Animejs.JSTarget> = nativeOnly
+
+        /// Unchecked, the value as <c>JSTarget</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsJSTarget: Animejs.JSTarget = nativeOnly
 
     type JSTargetsArray =
         ResizeArray<Animejs.JSTarget>
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type TargetsParam =
-        U2<ResizeArray<Animejs.TargetSelector>, Animejs.TargetSelector>
+        | TargetSelectorArray of ResizeArray<Animejs.TargetSelector>
+        | TargetSelector of Animejs.TargetSelector
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<Animejs.TargetSelector>) : TargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<Animejs.TargetSelector>) : TargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TargetSelector) : TargetsParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TargetSelector) : TargetsParam = nativeOnly
+
+        /// Unchecked, the value as <c>TargetSelectorArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTargetSelectorArray: ResizeArray<Animejs.TargetSelector> = nativeOnly
+
+        /// Unchecked, the value as <c>TargetSelector</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTargetSelector: Animejs.TargetSelector = nativeOnly
 
     type TargetsArray =
         ResizeArray<Animejs.Target>
@@ -2338,14 +2502,165 @@ module Animejs =
     type ElasticEasing =
         delegate of ?amplitude: U2<float, string> * ?period: U2<float, string> -> Animejs.EasingFunction
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type EasingFunctionWithParams =
-        U3<Animejs.PowerEasing, Animejs.BackEasing, Animejs.ElasticEasing>
+        | PowerEasing of Animejs.PowerEasing
+        | BackEasing of Animejs.BackEasing
+        | ElasticEasing of Animejs.ElasticEasing
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.PowerEasing) : EasingFunctionWithParams = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.PowerEasing) : EasingFunctionWithParams = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.ElasticEasing) : EasingFunctionWithParams = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.ElasticEasing) : EasingFunctionWithParams = nativeOnly
+
+        /// Unchecked, the value as <c>PowerEasing</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsPowerEasing: Animejs.PowerEasing = nativeOnly
+
+        /// Unchecked, the value as <c>BackEasing</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsBackEasing: Animejs.BackEasing = nativeOnly
+
+        /// Unchecked, the value as <c>ElasticEasing</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsElasticEasing: Animejs.ElasticEasing = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type EasingParam =
-        U5<string, Animejs.EaseStringParamNames, Animejs.EasingFunction, Animejs.easings.spring.Spring, Animejs.TweakRegister>
+        | String of string
+        | EaseStringParamNames of Animejs.EaseStringParamNames
+        | EasingFunction of Animejs.EasingFunction
+        | Spring of Animejs.easings.spring.Spring
+        | TweakRegister of Animejs.TweakRegister
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.EaseStringParamNames) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.EaseStringParamNames) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.EasingFunction) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.EasingFunction) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.easings.spring.Spring) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.easings.spring.Spring) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweakRegister) : EasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweakRegister) : EasingParam = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+        /// Unchecked, the value as <c>EaseStringParamNames</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsEaseStringParamNames: Animejs.EaseStringParamNames = nativeOnly
+
+        /// Unchecked, the value as <c>EasingFunction</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsEasingFunction: Animejs.EasingFunction = nativeOnly
+
+        /// Unchecked, the value as <c>Spring</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsSpring: Animejs.easings.spring.Spring = nativeOnly
+
+        /// Unchecked, the value as <c>TweakRegister</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweakRegister: Animejs.TweakRegister = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type WAAPIEasingParam =
-        U6<string, Animejs.EaseStringParamNames, Animejs.WAAPIEaseStringParamNames, Animejs.EasingFunction, Animejs.easings.spring.Spring, Animejs.TweakRegister>
+        | String of string
+        | EaseStringParamNames of Animejs.EaseStringParamNames
+        | WAAPIEaseStringParamNames of Animejs.WAAPIEaseStringParamNames
+        | EasingFunction of Animejs.EasingFunction
+        | Spring of Animejs.easings.spring.Spring
+        | TweakRegister of Animejs.TweakRegister
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.EaseStringParamNames) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.EaseStringParamNames) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.WAAPIEaseStringParamNames) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.WAAPIEaseStringParamNames) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.EasingFunction) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.EasingFunction) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.easings.spring.Spring) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.easings.spring.Spring) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweakRegister) : WAAPIEasingParam = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweakRegister) : WAAPIEasingParam = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+        /// Unchecked, the value as <c>EaseStringParamNames</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsEaseStringParamNames: Animejs.EaseStringParamNames = nativeOnly
+
+        /// Unchecked, the value as <c>WAAPIEaseStringParamNames</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsWAAPIEaseStringParamNames: Animejs.WAAPIEaseStringParamNames = nativeOnly
+
+        /// Unchecked, the value as <c>EasingFunction</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsEasingFunction: Animejs.EasingFunction = nativeOnly
+
+        /// Unchecked, the value as <c>Spring</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsSpring: Animejs.easings.spring.Spring = nativeOnly
+
+        /// Unchecked, the value as <c>TweakRegister</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweakRegister: Animejs.TweakRegister = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2441,8 +2756,64 @@ module Animejs =
         abstract member onPause: (Animejs.Timer -> unit) option with get, set
         abstract member onComplete: (Animejs.Timer -> unit) option with get, set
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type FunctionValueReturn =
-        U5<float, string, Animejs.TweenKeyValue, Animejs.EasingParam, ResizeArray<U3<float, string, Animejs.TweenKeyValue>>>
+        | Case1 of float
+        | Case2 of string
+        | Case3 of Animejs.TweenKeyValue
+        | Case4 of Animejs.EasingParam
+        | Case5 of ResizeArray<U3<float, string, Animejs.TweenKeyValue>>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: float) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweenKeyValue) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweenKeyValue) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.EasingParam) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.EasingParam) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<U3<float, string, Animejs.TweenKeyValue>>) : FunctionValueReturn = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<U3<float, string, Animejs.TweenKeyValue>>) : FunctionValueReturn = nativeOnly
+
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: float = nativeOnly
+
+        /// Unchecked, the value as <c>Case2</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase2: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case3</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase3: Animejs.TweenKeyValue = nativeOnly
+
+        /// Unchecked, the value as <c>Case4</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase4: Animejs.EasingParam = nativeOnly
+
+        /// Unchecked, the value as <c>Case5</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase5: ResizeArray<U3<float, string, Animejs.TweenKeyValue>> = nativeOnly
 
     type FunctionValue<'T> =
         delegate of ?target: Animejs.Target * ?index: float * ?targets: Animejs.TargetsArray * ?prevTween: Animejs.Tween -> 'T
@@ -2497,11 +2868,23 @@ module Animejs =
         abstract member _prev: Animejs.Tween with get, set
         abstract member _next: Animejs.Tween with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.Target, _value: string, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Glutinum.Web.HTMLElement, _value: string, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
         [<ParamObject; Emit("$0")>]
-        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.Target, _value: float, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Glutinum.Web.HTMLElement, _value: float, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
         [<ParamObject; Emit("$0")>]
-        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.Target, _value: obj, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Glutinum.Web.HTMLElement, _value: obj, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Glutinum.Web.SVGElement, _value: string, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Glutinum.Web.SVGElement, _value: float, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Glutinum.Web.SVGElement, _value: obj, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.JSTarget, _value: string, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.JSTarget, _value: float, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (id: float, parent: Animejs.JSAnimation, property: string, target: Animejs.JSTarget, _value: obj, _ease: Animejs.EasingFunction, _fromNumbers: ResizeArray<float>, _toNumbers: ResizeArray<float>, _strings: ResizeArray<string>, _fromNumber: float, _toNumber: float, _numbers: ResizeArray<float>, _number: float, _unit: string, _modifier: Animejs.TweenModifier, _currentTime: float, _delay: float, _updateDuration: float, _startTime: float, _changeDuration: float, _absoluteStartTime: float, _absoluteUpdateStartTime: float, _absoluteEndTime: float, _hasFromValue: float, _tweenType: Animejs.dist.modules.core.consts.tweenTypes, _valueType: Animejs.dist.modules.core.consts.valueTypes, _composition: float, _isOverlapped: float, _isOverridden: float, _renderTransforms: float, _inlineValue: string, _prevRep: Animejs.Tween, _nextRep: Animejs.Tween, _prevAdd: Animejs.Tween, _nextAdd: Animejs.Tween, _prev: Animejs.Tween, _next: Animejs.Tween, ?_toFunc: Action, ?_fromFunc: Action, ?_setter: Tween._setter) : Tween = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2553,11 +2936,90 @@ module Animejs =
     type TweenAdditiveLookups =
         obj
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type TweenParamValue =
-        U5<float, string, Animejs.FunctionValue, Animejs.EasingParam, Animejs.TweakRegister>
+        | Number of float
+        | String of string
+        | FunctionValue of Animejs.FunctionValue
+        | EasingParam of Animejs.EasingParam
+        | TweakRegister of Animejs.TweakRegister
 
+        [<Emit("$0")>]
+        static member op_Implicit(value: float) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.FunctionValue) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.FunctionValue) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.EasingParam) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.EasingParam) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweakRegister) : TweenParamValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweakRegister) : TweenParamValue = nativeOnly
+
+        /// Unchecked, the value as <c>Number</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNumber: float = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+        /// Unchecked, the value as <c>FunctionValue</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsFunctionValue: Animejs.FunctionValue = nativeOnly
+
+        /// Unchecked, the value as <c>EasingParam</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsEasingParam: Animejs.EasingParam = nativeOnly
+
+        /// Unchecked, the value as <c>TweakRegister</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweakRegister: Animejs.TweakRegister = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type TweenPropValue =
-        U2<Animejs.TweenParamValue, Animejs.TweenParamValue * Animejs.TweenParamValue>
+        | TweenParamValue of Animejs.TweenParamValue
+        | Tuple of Animejs.TweenParamValue * Animejs.TweenParamValue
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweenParamValue) : TweenPropValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweenParamValue) : TweenPropValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweenParamValue * Animejs.TweenParamValue) : TweenPropValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweenParamValue * Animejs.TweenParamValue) : TweenPropValue = nativeOnly
+
+        /// Unchecked, the value as <c>TweenParamValue</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweenParamValue: Animejs.TweenParamValue = nativeOnly
+
+        /// Unchecked, the value as <c>Tuple</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTuple: Animejs.TweenParamValue * Animejs.TweenParamValue = nativeOnly
 
     [<RequireQualifiedAccess>]
     [<Erase(CaseRules.None)>]
@@ -2580,6 +3042,14 @@ module Animejs =
         [<Emit("$0")>]
         static member op_ErasedCast(value: Animejs.dist.modules.core.consts.compositionTypes) : TweenComposition = nativeOnly
 
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case2</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase2: Animejs.dist.modules.core.consts.compositionTypes = nativeOnly
+
     [<AllowNullLiteral>]
     [<Interface>]
     type TweenParamsOptions =
@@ -2589,11 +3059,7 @@ module Animejs =
         abstract member modifier: Animejs.TweenModifier option with get, set
         abstract member composition: Animejs.TweenComposition option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (ease: Animejs.EasingParam, ?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (ease: Animejs.FunctionValue, ?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
+        static member Create (?duration: Animejs.TweenParamValue, ?delay: Animejs.TweenParamValue, ?ease: U2<Animejs.EasingParam, Animejs.FunctionValue>, ?modifier: Animejs.TweenModifier, ?composition: Animejs.TweenComposition) : TweenParamsOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2619,8 +3085,42 @@ module Animejs =
     type ArraySyntaxValue =
         ResizeArray<U2<Animejs.TweenKeyValue, Animejs.TweenPropValue>>
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type TweenOptions =
-        U3<Animejs.TweenParamValue, Animejs.ArraySyntaxValue, Animejs.TweenKeyValue>
+        | TweenParamValue of Animejs.TweenParamValue
+        | ArraySyntaxValue of Animejs.ArraySyntaxValue
+        | TweenKeyValue of Animejs.TweenKeyValue
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweenParamValue) : TweenOptions = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweenParamValue) : TweenOptions = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.ArraySyntaxValue) : TweenOptions = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.ArraySyntaxValue) : TweenOptions = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweenKeyValue) : TweenOptions = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweenKeyValue) : TweenOptions = nativeOnly
+
+        /// Unchecked, the value as <c>TweenParamValue</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweenParamValue: Animejs.TweenParamValue = nativeOnly
+
+        /// Unchecked, the value as <c>ArraySyntaxValue</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsArraySyntaxValue: Animejs.ArraySyntaxValue = nativeOnly
+
+        /// Unchecked, the value as <c>TweenKeyValue</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweenKeyValue: Animejs.TweenKeyValue = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2634,7 +3134,17 @@ module Animejs =
     type PercentageKeyframeOptions =
         abstract member ease: Animejs.EasingParam option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?ease: Animejs.EasingParam) : PercentageKeyframeOptions = nativeOnly
+        static member Create () : PercentageKeyframeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: string) : PercentageKeyframeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: Animejs.EaseStringParamNames) : PercentageKeyframeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: Animejs.EasingFunction) : PercentageKeyframeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: Animejs.easings.spring.Spring) : PercentageKeyframeOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (ease: Animejs.TweakRegister) : PercentageKeyframeOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2657,11 +3167,7 @@ module Animejs =
         abstract member keyframes: U2<Animejs.PercentageKeyframes, Animejs.DurationKeyframes> option with get, set
         abstract member playbackEase: Animejs.EasingParam option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (keyframes: Animejs.PercentageKeyframes, ?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (keyframes: Animejs.DurationKeyframes, ?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
+        static member Create (?keyframes: U2<Animejs.PercentageKeyframes, Animejs.DurationKeyframes>, ?playbackEase: Animejs.EasingParam) : AnimationOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2715,20 +3221,70 @@ module Animejs =
         [<Emit("$0")>]
         static member op_ErasedCast(value: string) : TimelinePosition = nativeOnly
 
-    /// <summary>
-    /// Accepts:<br>
-    /// - <c>Number</c> - Absolute position in milliseconds (e.g., <c>500</c> places animation at exactly 500ms)<br>
-    /// - <c>'+=Number'</c> - Addition: Position animation X ms after the last animation (e.g., <c>'+=100'</c>)<br>
-    /// - <c>'-=Number'</c> - Subtraction: Position animation X ms before the last animation's end (e.g., <c>'-=100'</c>)<br>
-    /// - <c>'*=Number'</c> - Multiplier: Position animation at a fraction of the total duration (e.g., <c>'*=.5'</c> for halfway)<br>
-    /// - <c>'<'</c> - Previous end: Position animation at the end position of the previous animation<br>
-    /// - <c>'<<'</c> - Previous start: Position animation at the start position of the previous animation<br>
-    /// - <c>'<<+=Number'</c> - Combined: Position animation relative to previous animation's start (e.g., <c>'<<+=250'</c>)<br>
-    /// - <c>'label'</c> - Label: Position animation at a named label position (e.g., <c>'My Label'</c>)<br>
-    /// - <c>stagger(String|Nummber)</c> - Stagger multi-elements animation positions (e.g., 10, 20, 30...)
-    /// </summary>
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: float = nativeOnly
+
+        /// Unchecked, the value as <c>Case2</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase2: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case3</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase3: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case4</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase4: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case5</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase5: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case6</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase6: string = nativeOnly
+
+        /// Unchecked, the value as <c>Case7</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase7: string = nativeOnly
+
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type TimelineAnimationPosition =
-        U3<Animejs.TimelinePosition, Animejs.StaggerFunction<U2<float, string>>, Animejs.TweakRegister>
+        | TimelinePosition of Animejs.TimelinePosition
+        | StaggerFunction of Animejs.StaggerFunction<U2<float, string>>
+        | TweakRegister of Animejs.TweakRegister
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TimelinePosition) : TimelineAnimationPosition = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TimelinePosition) : TimelineAnimationPosition = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.StaggerFunction<U2<float, string>>) : TimelineAnimationPosition = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.StaggerFunction<U2<float, string>>) : TimelineAnimationPosition = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.TweakRegister) : TimelineAnimationPosition = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.TweakRegister) : TimelineAnimationPosition = nativeOnly
+
+        /// Unchecked, the value as <c>TimelinePosition</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTimelinePosition: Animejs.TimelinePosition = nativeOnly
+
+        /// Unchecked, the value as <c>StaggerFunction</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsStaggerFunction: Animejs.StaggerFunction<U2<float, string>> = nativeOnly
+
+        /// Unchecked, the value as <c>TweakRegister</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTweakRegister: Animejs.TweakRegister = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2737,7 +3293,17 @@ module Animejs =
         abstract member playbackEase: Animejs.EasingParam option with get, set
         abstract member composition: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?defaults: Animejs.DefaultsParams, ?playbackEase: Animejs.EasingParam, ?composition: bool) : TimelineOptions = nativeOnly
+        static member Create (?defaults: Animejs.DefaultsParams, ?composition: bool) : TimelineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (playbackEase: string, ?defaults: Animejs.DefaultsParams, ?composition: bool) : TimelineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (playbackEase: Animejs.EaseStringParamNames, ?defaults: Animejs.DefaultsParams, ?composition: bool) : TimelineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (playbackEase: Animejs.EasingFunction, ?defaults: Animejs.DefaultsParams, ?composition: bool) : TimelineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (playbackEase: Animejs.easings.spring.Spring, ?defaults: Animejs.DefaultsParams, ?composition: bool) : TimelineOptions = nativeOnly
+        [<ParamObject; Emit("$0")>]
+        static member Create (playbackEase: Animejs.TweakRegister, ?defaults: Animejs.DefaultsParams, ?composition: bool) : TimelineOptions = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2764,14 +3330,93 @@ module Animejs =
         abstract member onComplete: (Animejs.Timeline -> unit) option with get, set
         abstract member onRender: (Animejs.Timeline -> unit) option with get, set
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type WAAPITweenValue =
-        U4<string, float, ResizeArray<string>, ResizeArray<float>>
+        | String of string
+        | Number of float
+        | StringArray of ResizeArray<string>
+        | NumberArray of ResizeArray<float>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: float) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<string>) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<string>) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<float>) : WAAPITweenValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<float>) : WAAPITweenValue = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+        /// Unchecked, the value as <c>Number</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNumber: float = nativeOnly
+
+        /// Unchecked, the value as <c>StringArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsStringArray: ResizeArray<string> = nativeOnly
+
+        /// Unchecked, the value as <c>NumberArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNumberArray: ResizeArray<float> = nativeOnly
 
     type WAAPIFunctionValue =
         delegate of target: Animejs.DOMTarget * index: float * targets: Animejs.DOMTargetsArray -> U2<Animejs.WAAPITweenValue, Animejs.WAAPIEasingParam>
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type WAAPIKeyframeValue =
-        U3<Animejs.WAAPITweenValue, Animejs.WAAPIFunctionValue, ResizeArray<U3<string, float, Animejs.WAAPIFunctionValue>>>
+        | Case1 of Animejs.WAAPITweenValue
+        | Case2 of Animejs.WAAPIFunctionValue
+        | Case3 of ResizeArray<U3<string, float, Animejs.WAAPIFunctionValue>>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.WAAPITweenValue) : WAAPIKeyframeValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.WAAPITweenValue) : WAAPIKeyframeValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Animejs.WAAPIFunctionValue) : WAAPIKeyframeValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Animejs.WAAPIFunctionValue) : WAAPIKeyframeValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<U3<string, float, Animejs.WAAPIFunctionValue>>) : WAAPIKeyframeValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<U3<string, float, Animejs.WAAPIFunctionValue>>) : WAAPIKeyframeValue = nativeOnly
+
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: Animejs.WAAPITweenValue = nativeOnly
+
+        /// Unchecked, the value as <c>Case2</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase2: Animejs.WAAPIFunctionValue = nativeOnly
+
+        /// Unchecked, the value as <c>Case3</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase3: ResizeArray<U3<string, float, Animejs.WAAPIFunctionValue>> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -2910,8 +3555,31 @@ module Animejs =
     type ScopeMethod =
         delegate of [<ParamArray>] args: obj [] -> unit
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type ScrollThresholdValue =
-        U2<string, float>
+        | String of string
+        | Number of float
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : ScrollThresholdValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : ScrollThresholdValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: float) : ScrollThresholdValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float) : ScrollThresholdValue = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+        /// Unchecked, the value as <c>Number</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNumber: float = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -3031,8 +3699,31 @@ module Animejs =
         [<ParamObject; Emit("$0")>]
         static member Create (``class``: string, ?wrap: SplitTemplateParams.wrap, ?clone: SplitTemplateParams.clone) : SplitTemplateParams = nativeOnly
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type SplitValue =
-        U2<bool, string>
+        | Bool of bool
+        | String of string
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: bool) : SplitValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: bool) : SplitValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : SplitValue = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : SplitValue = nativeOnly
+
+        /// Unchecked, the value as <c>Bool</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsBool: bool = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
 
     type SplitFunctionValue =
         U2<Glutinum.Web.Node, Glutinum.Web.HTMLElement> option -> unit
@@ -3271,10 +3962,6 @@ module Animejs =
         ///
         /// </param>
         abstract member forEach: callback: string -> WAAPIAnimation
-        /// <param name="callback">
-        ///
-        /// </param>
-        abstract member forEach: callback: U2<(Glutinum.Web.Animation -> unit), string> -> WAAPIAnimation
         abstract member speed: float with get, set
         abstract member currentTime: float with get, set
         abstract member progress: float with get, set
@@ -3321,17 +4008,24 @@ module Animejs =
         [<Interface>]
         type TargetAdapterEntry =
             abstract member get: (obj -> unit) with get, set
-            abstract member set: TargetAdapterEntry.set with get, set
+            abstract member set: Animejs.adapters.TargetAdapterEntry.set with get, set
             abstract member gate: (obj -> bool) option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (get: (obj -> unit), set: TargetAdapterEntry.set, ?gate: (obj -> bool)) : TargetAdapterEntry = nativeOnly
+            static member Create (get: (obj -> unit), set: Animejs.adapters.TargetAdapterEntry.set, ?gate: (obj -> bool)) : TargetAdapterEntry = nativeOnly
+
+        [<AutoOpen>]
+        module TargetAdapterEntryExtensions =
+
+            type TargetAdapterEntry with
+                member inline this.set(target: obj, value: float, tween: obj) : unit =
+                    this.set.Invoke(target, value, tween)
 
         [<AllowNullLiteral>]
         [<Interface>]
         type Adapter =
             abstract member detect: (obj -> bool) option with get, set
             abstract member targetAdapters: ResizeArray<Animejs.adapters.TargetAdapter> with get, set
-            abstract member propertyResolvers: ResizeArray<Adapter.propertyResolvers.Item> with get, set
+            abstract member propertyResolvers: ResizeArray<Animejs.adapters.Adapter.propertyResolvers.Item> with get, set
             /// <summary>
             /// Creates and registers a <c>TargetAdapter</c> scoped to this Adapter.
             /// </summary>
@@ -3345,13 +4039,13 @@ module Animejs =
             /// <param name="resolver">
             ///
             /// </param>
-            abstract member registerPropertyResolver: resolver: Adapter.registerPropertyResolver.resolver -> unit
+            abstract member registerPropertyResolver: resolver: Animejs.adapters.Adapter.registerPropertyResolver.resolver -> unit
 
         [<AllowNullLiteral>]
         [<Interface>]
         type TargetAdapter =
             abstract member detect: (obj -> bool) with get, set
-            abstract member props: TargetAdapter.props with get, set
+            abstract member props: Animejs.adapters.TargetAdapter.props with get, set
             /// <summary>
             /// Registers a property the adapter handles. <c>setter</c> receives <c>(target, value, tween)</c>. For color and complex tweens <c>value</c> is <c>undefined</c>, read <c>tween._numbers</c> instead. <c>gate(target)</c> scopes the prop to a subset of matching targets.
             /// </summary>
@@ -3367,7 +4061,7 @@ module Animejs =
             /// <param name="gate">
             ///
             /// </param>
-            abstract member registerProperty: name: string * getter: (obj -> unit) * setter: TargetAdapter.registerProperty.setter * ?gate: (obj -> bool) -> unit
+            abstract member registerProperty: name: string * getter: (obj -> unit) * setter: Animejs.adapters.TargetAdapter.registerProperty.setter * ?gate: (obj -> bool) -> unit
 
         module three =
 
@@ -3375,7 +4069,7 @@ module Animejs =
             [<Erase>]
             type Exports =
                 [<Import("threeAdapter", "animejs/adapters/three")>]
-                static member inline threeAdapter: Exports.threeAdapter__.Type = nativeOnly
+                static member inline threeAdapter: Animejs.adapters.three.Exports.threeAdapter__.Type = nativeOnly
                 /// <summary>
                 /// Flushes pending matrix writes for every dirty instance of <c>mesh</c>.
                 /// Called automatically before each render. Call it yourself if you read
@@ -3407,8 +4101,20 @@ module Animejs =
                 [<Import("getInstances", "animejs/adapters/three")>]
                 static member getInstances (mesh: Animejs.adapters.three.InstanceParent) : ResizeArray<Animejs.adapters.three.Instance option> = nativeOnly
 
+            [<RequireQualifiedAccess>]
+            [<Erase>]
             type InstanceParent =
-                obj
+                | Case1 of obj
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: obj) : InstanceParent = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: obj) : InstanceParent = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: obj = nativeOnly
 
             /// <summary>
             /// Per-instance adapter for <c>InstancedMesh</c> or <c>BatchedMesh</c>. Returned by <c>getInstances(mesh)</c>. Exposes the same flat properties as the mesh adapter, applied to a single instance id. Writes are coalesced and flushed before each render via <c>onBeforeRender</c>; call <c>commitChanges(mesh)</c> if you need to read <c>mesh.instanceMatrix</c> between a tick and a render.
@@ -3476,8 +4182,15 @@ module Animejs =
                 abstract member instances: ResizeArray<Animejs.adapters.three.Instance option> with get, set
                 abstract member dirtyList: ResizeArray<Animejs.adapters.three.Instance> with get, set
                 abstract member userOnBeforeRender: obj option with get, set
-                abstract member chainedHandler: InstanceBinding.chainedHandler with get, set
+                abstract member chainedHandler: Animejs.adapters.three.InstanceBinding.chainedHandler with get, set
                 abstract member flush: unit -> unit
+
+            [<AutoOpen>]
+            module InstanceBindingExtensions =
+
+                type InstanceBinding with
+                    member inline this.chainedHandler(renderer: obj, scene: obj, camera: obj, geometry: obj, material: obj, group: obj) : unit =
+                        this.chainedHandler.Invoke(renderer, scene, camera, geometry, material, group)
 
             module InstanceBinding =
 
@@ -3492,12 +4205,12 @@ module Animejs =
                     [<Interface>]
                     type Type =
                         abstract member detect: (obj -> bool) with get, set
-                        abstract member targetAdapters: ResizeArray<Exports.threeAdapter__.Type.targetAdapters.Item> with get, set
-                        abstract member propertyResolvers: ResizeArray<Exports.threeAdapter__.Type.propertyResolvers.Item> with get, set
-                        abstract member registerTargetAdapter: detect: (obj -> bool) -> Exports.threeAdapter__.Type.registerTargetAdapter
-                        abstract member registerPropertyResolver: resolver: Exports.threeAdapter__.Type.registerPropertyResolver.resolver -> unit
+                        abstract member targetAdapters: ResizeArray<Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item> with get, set
+                        abstract member propertyResolvers: ResizeArray<Animejs.adapters.three.Exports.threeAdapter__.Type.propertyResolvers.Item> with get, set
+                        abstract member registerTargetAdapter: detect: (obj -> bool) -> Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter
+                        abstract member registerPropertyResolver: resolver: Animejs.adapters.three.Exports.threeAdapter__.Type.registerPropertyResolver.resolver -> unit
                         [<ParamObject; Emit("$0")>]
-                        static member Create (detect: (obj -> bool), targetAdapters: ResizeArray<Exports.threeAdapter__.Type.targetAdapters.Item>, propertyResolvers: ResizeArray<Exports.threeAdapter__.Type.propertyResolvers.Item>, registerTargetAdapter: ((obj -> bool) -> Exports.threeAdapter__.Type.registerTargetAdapter), registerPropertyResolver: (Exports.threeAdapter__.Type.registerPropertyResolver.resolver -> unit)) : Type = nativeOnly
+                        static member Create (detect: (obj -> bool), targetAdapters: ResizeArray<Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item>, propertyResolvers: ResizeArray<Animejs.adapters.three.Exports.threeAdapter__.Type.propertyResolvers.Item>, registerTargetAdapter: ((obj -> bool) -> Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter), registerPropertyResolver: (Animejs.adapters.three.Exports.threeAdapter__.Type.registerPropertyResolver.resolver -> unit)) : Type = nativeOnly
 
                     module Type =
 
@@ -3505,10 +4218,10 @@ module Animejs =
                         [<Interface>]
                         type registerTargetAdapter =
                             abstract member detect: (obj -> bool) with get, set
-                            abstract member props: Exports.threeAdapter__.Type.registerTargetAdapter.props with get, set
-                            abstract member registerProperty: name: string * getter: (obj -> unit) * setter: Exports.threeAdapter__.Type.registerTargetAdapter.registerProperty.setter * ?gate: (obj -> bool) -> unit
+                            abstract member props: Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter.props with get, set
+                            abstract member registerProperty: name: string * getter: (obj -> unit) * setter: Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter.registerProperty.setter * ?gate: (obj -> bool) -> unit
                             [<ParamObject; Emit("$0")>]
-                            static member Create (detect: (obj -> bool), props: Exports.threeAdapter__.Type.registerTargetAdapter.props, registerProperty: Exports.threeAdapter__.Type.registerTargetAdapter.registerProperty) : registerTargetAdapter = nativeOnly
+                            static member Create (detect: (obj -> bool), props: Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter.props, registerProperty: Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter.registerProperty) : registerTargetAdapter = nativeOnly
 
                         module targetAdapters =
 
@@ -3516,10 +4229,10 @@ module Animejs =
                             [<Interface>]
                             type Item =
                                 abstract member detect: (obj -> bool) with get, set
-                                abstract member props: Exports.threeAdapter__.Type.targetAdapters.Item.props with get, set
-                                abstract member registerProperty: name: string * getter: (obj -> unit) * setter: Exports.threeAdapter__.Type.targetAdapters.Item.registerProperty.setter * ?gate: (obj -> bool) -> unit
+                                abstract member props: Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item.props with get, set
+                                abstract member registerProperty: name: string * getter: (obj -> unit) * setter: Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item.registerProperty.setter * ?gate: (obj -> bool) -> unit
                                 [<ParamObject; Emit("$0")>]
-                                static member Create (detect: (obj -> bool), props: Exports.threeAdapter__.Type.targetAdapters.Item.props, registerProperty: Exports.threeAdapter__.Type.targetAdapters.Item.registerProperty) : Item = nativeOnly
+                                static member Create (detect: (obj -> bool), props: Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item.props, registerProperty: Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item.registerProperty) : Item = nativeOnly
 
                             module Item =
 
@@ -3530,7 +4243,7 @@ module Animejs =
                                     abstract member Item: key: string -> Animejs.adapters.TargetAdapterEntry with get, set
 
                                 type registerProperty =
-                                    delegate of name: string * getter: (obj -> unit) * setter: Exports.threeAdapter__.Type.targetAdapters.Item.registerProperty.setter * ?gate: (obj -> bool) -> unit
+                                    delegate of name: string * getter: (obj -> unit) * setter: Animejs.adapters.three.Exports.threeAdapter__.Type.targetAdapters.Item.registerProperty.setter * ?gate: (obj -> bool) -> unit
 
                                 module registerProperty =
 
@@ -3551,7 +4264,7 @@ module Animejs =
                                 abstract member Item: key: string -> Animejs.adapters.TargetAdapterEntry with get, set
 
                             type registerProperty =
-                                delegate of name: string * getter: (obj -> unit) * setter: Exports.threeAdapter__.Type.registerTargetAdapter.registerProperty.setter * ?gate: (obj -> bool) -> unit
+                                delegate of name: string * getter: (obj -> unit) * setter: Animejs.adapters.three.Exports.threeAdapter__.Type.registerTargetAdapter.registerProperty.setter * ?gate: (obj -> bool) -> unit
 
                             module registerProperty =
 
@@ -3604,14 +4317,68 @@ module Animejs =
                     type tweenTypes =
                         float
 
+                    module tweenTypes_ =
+
+                        [<AbstractClass>]
+                        [<Erase>]
+                        type Exports =
+                            [<Emit("$0.OBJECT")>]
+                            abstract member OBJECT: float
+                            [<Emit("$0.ATTRIBUTE")>]
+                            abstract member ATTRIBUTE: float
+                            [<Emit("$0.CSS")>]
+                            abstract member CSS: float
+                            [<Emit("$0.TRANSFORM")>]
+                            abstract member TRANSFORM: float
+                            [<Emit("$0.CSS_VAR")>]
+                            abstract member CSS_VAR: float
+
                     type valueTypes =
                         float
+
+                    module valueTypes_ =
+
+                        [<AbstractClass>]
+                        [<Erase>]
+                        type Exports =
+                            [<Emit("$0.NUMBER")>]
+                            abstract member NUMBER: float
+                            [<Emit("$0.UNIT")>]
+                            abstract member UNIT: float
+                            [<Emit("$0.COLOR")>]
+                            abstract member COLOR: float
+                            [<Emit("$0.COMPLEX")>]
+                            abstract member COMPLEX: float
 
                     type tickModes =
                         float
 
+                    module tickModes_ =
+
+                        [<AbstractClass>]
+                        [<Erase>]
+                        type Exports =
+                            [<Emit("$0.NONE")>]
+                            abstract member NONE: float
+                            [<Emit("$0.AUTO")>]
+                            abstract member AUTO: float
+                            [<Emit("$0.FORCE")>]
+                            abstract member FORCE: float
+
                     type compositionTypes =
                         float
+
+                    module compositionTypes_ =
+
+                        [<AbstractClass>]
+                        [<Erase>]
+                        type Exports =
+                            [<Emit("$0.replace")>]
+                            abstract member replace: float
+                            [<Emit("$0.none")>]
+                            abstract member none: float
+                            [<Emit("$0.blend")>]
+                            abstract member blend: float
 
                 module globals =
 
@@ -3623,11 +4390,23 @@ module Animejs =
                             with get () : globals_.Exports =
                                 nativeOnly
 
+                    module scope_ =
+
+                        [<AbstractClass>]
+                        [<Erase>]
+                        type Exports =
+                            [<Emit("$0.current")>]
+                            abstract member current: Animejs.Scope
+                            [<Emit("$0.root")>]
+                            abstract member root: Glutinum.Web.Document option
+
                     module globals_ =
 
                         [<AbstractClass>]
                         [<Erase>]
                         type Exports =
+                            [<Emit("$0.defaults")>]
+                            abstract member defaults: Animejs.DefaultsParams
                             [<Emit("$0.precision")>]
                             abstract member precision: float
                             [<Emit("$0.timeScale")>]
@@ -3636,6 +4415,16 @@ module Animejs =
                             abstract member tickThreshold: float
                             [<Emit("$0.editor")>]
                             abstract member editor: Animejs.EditorGlobals option
+
+                    module globalVersions_ =
+
+                        [<AbstractClass>]
+                        [<Erase>]
+                        type Exports =
+                            [<Emit("$0.version")>]
+                            abstract member version: string
+                            [<Emit("$0.engine")>]
+                            abstract member engine: obj
 
                 module Exports =
 
@@ -3663,7 +4452,7 @@ module Animejs =
                         /// <param name="cb">
                         ///
                         /// </param>
-                        abstract member traverseUp: cb: Transforms.traverseUp.cb -> unit
+                        abstract member traverseUp: cb: Animejs.dist.modules.draggable.draggable.Transforms.traverseUp.cb -> unit
                         abstract member getMatrix: unit -> Glutinum.Web.DOMMatrix
                         abstract member remove: unit -> unit
                         abstract member revert: unit -> unit
@@ -3674,12 +4463,12 @@ module Animejs =
                         abstract member el: obj with get, set
                         abstract member zIndex: float with get, set
                         abstract member parentElement: obj with get, set
-                        abstract member classList: DOMProxy.classList with get, set
+                        abstract member classList: Animejs.dist.modules.draggable.draggable.DOMProxy.classList with get, set
                         abstract member x: obj with get, set
                         abstract member y: obj with get, set
                         abstract member width: obj with get, set
                         abstract member height: obj with get, set
-                        abstract member getBoundingClientRect: unit -> DOMProxy.getBoundingClientRect
+                        abstract member getBoundingClientRect: unit -> Animejs.dist.modules.draggable.draggable.DOMProxy.getBoundingClientRect
 
                     module Transforms =
 
@@ -3733,6 +4522,8 @@ module Animejs =
                                 abstract member none: Animejs.EasingFunction
                                 [<Emit("$0._in")>]
                                 abstract member _in: Animejs.PowerEasing
+                                [<Emit("$0.in")>]
+                                abstract member ``in``: Animejs.PowerEasing
                                 [<Emit("$0.out")>]
                                 abstract member out: Animejs.PowerEasing
                                 [<Emit("$0.inOut")>]
@@ -3849,7 +4640,7 @@ module Animejs =
                         abstract member wake: unit -> Engine
                         abstract member pause: unit -> Animejs.dist.modules.engine.engine.Engine
                         abstract member resume: unit -> Engine
-                        abstract member timeUnit: Engine.timeUnit with get, set
+                        abstract member timeUnit: Animejs.dist.modules.engine.engine.Engine.timeUnit with get, set
                         abstract member precision: float with get, set
 
                     module Engine =
@@ -3930,10 +4721,6 @@ module Animejs =
                         /// <param name="$el">
                         ///
                         /// </param>
-                        abstract member getNode: ``$el``: Animejs.DOMTarget -> Animejs.LayoutNode
-                        /// <param name="$el">
-                        ///
-                        /// </param>
                         /// <param name="prop">
                         ///
                         /// </param>
@@ -3945,13 +4732,6 @@ module Animejs =
                         ///
                         /// </param>
                         abstract member getComputedValue: ``$el``: Glutinum.Web.SVGElement * prop: string -> U2<float, string>
-                        /// <param name="$el">
-                        ///
-                        /// </param>
-                        /// <param name="prop">
-                        ///
-                        /// </param>
-                        abstract member getComputedValue: ``$el``: Animejs.DOMTarget * prop: string -> U2<float, string>
                         /// <param name="rootNode">
                         ///
                         /// </param>
@@ -3984,13 +4764,6 @@ module Animejs =
                         /// <param name="$el">
                         ///
                         /// </param>
-                        /// <param name="parentNode">
-                        ///
-                        /// </param>
-                        abstract member registerElement: ``$el``: Animejs.DOMTarget * parentNode: Animejs.LayoutNode option -> Animejs.LayoutNode option
-                        /// <param name="$el">
-                        ///
-                        /// </param>
                         /// <param name="candidates">
                         ///
                         /// </param>
@@ -4002,13 +4775,6 @@ module Animejs =
                         ///
                         /// </param>
                         abstract member ensureDetachedNode: ``$el``: Glutinum.Web.SVGElement * candidates: obj -> Animejs.LayoutNode option
-                        /// <param name="$el">
-                        ///
-                        /// </param>
-                        /// <param name="candidates">
-                        ///
-                        /// </param>
-                        abstract member ensureDetachedNode: ``$el``: Animejs.DOMTarget * candidates: obj -> Animejs.LayoutNode option
                         abstract member record: unit -> LayoutSnapshot
 
             module utils =
@@ -4036,8 +4802,6 @@ module Animejs =
                         static member roundPad (v: float, decimalLength: float) : string = nativeOnly
                         [<Import("roundPad", "animejs")>]
                         static member roundPad (v: string, decimalLength: float) : string = nativeOnly
-                        [<Import("roundPad", "animejs")>]
-                        static member roundPad (v: U2<float, string>, decimalLength: float) : string = nativeOnly
                         [<Import("padStart", "animejs")>]
                         static member padStart (v: float, totalLength: float, padString: string) : string = nativeOnly
                         [<Import("padEnd", "animejs")>]
@@ -4056,8 +4820,6 @@ module Animejs =
                         static member snap (v: float, increment: float) : float = nativeOnly
                         [<Import("snap", "animejs")>]
                         static member snap (v: float, increment: ResizeArray<float>) : float = nativeOnly
-                        [<Import("snap", "animejs")>]
-                        static member snap (v: float, increment: U2<float, ResizeArray<float>>) : float = nativeOnly
                         [<Import("clamp", "animejs")>]
                         static member clamp (v: float, min: float, max: float) : float = nativeOnly
                         [<Import("round", "animejs")>]
@@ -4099,11 +4861,6 @@ module Animejs =
                         ///
                         /// </param>
                         [<Import("$", "animejs")>]
-                        static member ``$`` (targets: Animejs.DOMTargetsParam) : Animejs.DOMTargetsArray = nativeOnly
-                        /// <param name="targets">
-                        ///
-                        /// </param>
-                        [<Import("$", "animejs")>]
                         static member ``$`` (targets: ResizeArray<Animejs.JSTarget>) : Animejs.JSTargetsArray = nativeOnly
                         /// <param name="targets">
                         ///
@@ -4114,17 +4871,7 @@ module Animejs =
                         ///
                         /// </param>
                         [<Import("$", "animejs")>]
-                        static member ``$`` (targets: Animejs.JSTargetsParam) : Animejs.JSTargetsArray = nativeOnly
-                        /// <param name="targets">
-                        ///
-                        /// </param>
-                        [<Import("$", "animejs")>]
                         static member ``$`` (targets: ResizeArray<Animejs.TargetSelector>) : Animejs.TargetsArray = nativeOnly
-                        /// <param name="targets">
-                        ///
-                        /// </param>
-                        [<Import("$", "animejs")>]
-                        static member ``$`` (targets: Animejs.TargetsParam) : Animejs.TargetsArray = nativeOnly
                         [<Import("cleanInlineStyles", "animejs")>]
                         static member cleanInlineStyles<'T> (renderable: 'T) : 'T = nativeOnly
 
@@ -4166,8 +4913,20 @@ module Animejs =
                             abstract member animate: targets: Glutinum.Web.NodeList * ``params``: Animejs.WAAPIAnimationParams -> Animejs.WAAPIAnimation
                             [<Emit("$0.animate($1...)")>]
                             abstract member animate: targets: string * ``params``: Animejs.WAAPIAnimationParams -> Animejs.WAAPIAnimation
-                            [<Emit("$0.animate($1...)")>]
-                            abstract member animate: targets: Animejs.DOMTargetsParam * ``params``: Animejs.WAAPIAnimationParams -> Animejs.WAAPIAnimation
+                            /// <summary>
+                            /// Converts an easing function into a valid CSS linear() timing function string
+                            /// </summary>
+                            /// <param name="fn">
+                            ///
+                            /// </param>
+                            /// <param name="samples">
+                            ///
+                            /// </param>
+                            /// <returns>
+                            /// CSS linear() timing function
+                            /// </returns>
+                            [<Emit("$0.convertEase($1...)")>]
+                            abstract member convertEase: fn: Animejs.EasingFunction * ?samples: float -> string
 
                 module Exports =
 
@@ -4253,8 +5012,6 @@ module Animejs =
             static member createAnimatable (targets: Glutinum.Web.NodeList, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
             [<Import("createAnimatable", "animejs/animatable")>]
             static member createAnimatable (targets: string, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
-            [<Import("createAnimatable", "animejs/animatable")>]
-            static member createAnimatable (targets: Animejs.TargetsParam, parameters: Animejs.AnimatableParams) : Animejs.AnimatableObject = nativeOnly
             /// <param name="targets">
             ///
             /// </param>
@@ -4303,14 +5060,6 @@ module Animejs =
             /// </param>
             [<Import("Animatable", "animejs/animatable"); EmitConstructor>]
             static member Animatable (targets: string, parameters: Animejs.AnimatableParams) : Animatable = nativeOnly
-            /// <param name="targets">
-            ///
-            /// </param>
-            /// <param name="parameters">
-            ///
-            /// </param>
-            [<Import("Animatable", "animejs/animatable"); EmitConstructor>]
-            static member Animatable (targets: Animejs.TargetsParam, parameters: Animejs.AnimatableParams) : Animatable = nativeOnly
 
         type Animatable =
             Animejs.Animatable
@@ -4332,8 +5081,6 @@ module Animejs =
             static member animate (targets: Glutinum.Web.NodeList, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
             [<Import("animate", "animejs/animation")>]
             static member animate (targets: string, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
-            [<Import("animate", "animejs/animation")>]
-            static member animate (targets: Animejs.TargetsParam, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
             /// <param name="targets">
             ///
             /// </param>
@@ -4472,29 +5219,6 @@ module Animejs =
             /// </param>
             [<Import("JSAnimation", "animejs/animation"); EmitConstructor>]
             static member JSAnimation (targets: string, parameters: Animejs.AnimationParams, ?parent: Animejs.Timeline, ?parentPosition: float, ?fastSet: bool, ?index: float, ?allTargets: Animejs.TargetsArray) : JSAnimation = nativeOnly
-            /// <param name="targets">
-            ///
-            /// </param>
-            /// <param name="parameters">
-            ///
-            /// </param>
-            /// <param name="parent">
-            ///
-            /// </param>
-            /// <param name="parentPosition">
-            ///
-            /// </param>
-            /// <param name="fastSet">
-            ///
-            /// </param>
-            /// <param name="index">
-            ///
-            /// </param>
-            /// <param name="allTargets">
-            ///
-            /// </param>
-            [<Import("JSAnimation", "animejs/animation"); EmitConstructor>]
-            static member JSAnimation (targets: Animejs.TargetsParam, parameters: Animejs.AnimationParams, ?parent: Animejs.Timeline, ?parentPosition: float, ?fastSet: bool, ?index: float, ?allTargets: Animejs.TargetsArray) : JSAnimation = nativeOnly
 
         type JSAnimation =
             Animejs.JSAnimation
@@ -4516,8 +5240,6 @@ module Animejs =
             static member createDraggable (target: Glutinum.Web.NodeList, ?parameters: Animejs.DraggableParams) : Animejs.Draggable = nativeOnly
             [<Import("createDraggable", "animejs/draggable")>]
             static member createDraggable (target: string, ?parameters: Animejs.DraggableParams) : Animejs.Draggable = nativeOnly
-            [<Import("createDraggable", "animejs/draggable")>]
-            static member createDraggable (target: Animejs.TargetsParam, ?parameters: Animejs.DraggableParams) : Animejs.Draggable = nativeOnly
             /// <param name="target">
             ///
             /// </param>
@@ -4566,14 +5288,6 @@ module Animejs =
             /// </param>
             [<Import("Draggable", "animejs/draggable"); EmitConstructor>]
             static member Draggable (target: string, ?parameters: Animejs.DraggableParams) : Draggable = nativeOnly
-            /// <param name="target">
-            ///
-            /// </param>
-            /// <param name="parameters">
-            ///
-            /// </param>
-            [<Import("Draggable", "animejs/draggable"); EmitConstructor>]
-            static member Draggable (target: Animejs.TargetsParam, ?parameters: Animejs.DraggableParams) : Draggable = nativeOnly
 
         type Draggable =
             Animejs.Draggable
@@ -4727,8 +5441,6 @@ module Animejs =
             static member createLayout (root: Glutinum.Web.NodeList, ?``params``: Animejs.AutoLayoutParams) : Animejs.AutoLayout = nativeOnly
             [<Import("createLayout", "animejs/layout")>]
             static member createLayout (root: string, ?``params``: Animejs.AutoLayoutParams) : Animejs.AutoLayout = nativeOnly
-            [<Import("createLayout", "animejs/layout")>]
-            static member createLayout (root: Animejs.DOMTargetSelector, ?``params``: Animejs.AutoLayoutParams) : Animejs.AutoLayout = nativeOnly
             /// <param name="root">
             ///
             /// </param>
@@ -4761,14 +5473,6 @@ module Animejs =
             /// </param>
             [<Import("AutoLayout", "animejs/layout"); EmitConstructor>]
             static member AutoLayout (root: string, ?``params``: Animejs.AutoLayoutParams) : AutoLayout = nativeOnly
-            /// <param name="root">
-            ///
-            /// </param>
-            /// <param name="params">
-            ///
-            /// </param>
-            [<Import("AutoLayout", "animejs/layout"); EmitConstructor>]
-            static member AutoLayout (root: Animejs.DOMTargetSelector, ?``params``: Animejs.AutoLayoutParams) : AutoLayout = nativeOnly
 
         type AutoLayout =
             Animejs.AutoLayout
@@ -4828,19 +5532,17 @@ module Animejs =
         [<Erase>]
         type Exports =
             [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: ResizeArray<Animejs.TargetSelector>, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+            static member createMotionPath (path: ResizeArray<Animejs.TargetSelector>, ?offset: float) : Animejs.svg.Exports.createMotionPath__ = nativeOnly
             [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: Glutinum.Web.HTMLElement, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+            static member createMotionPath (path: Glutinum.Web.HTMLElement, ?offset: float) : Animejs.svg.Exports.createMotionPath__ = nativeOnly
             [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: Glutinum.Web.SVGElement, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+            static member createMotionPath (path: Glutinum.Web.SVGElement, ?offset: float) : Animejs.svg.Exports.createMotionPath__ = nativeOnly
             [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: Animejs.JSTarget, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+            static member createMotionPath (path: Animejs.JSTarget, ?offset: float) : Animejs.svg.Exports.createMotionPath__ = nativeOnly
             [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: Glutinum.Web.NodeList, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+            static member createMotionPath (path: Glutinum.Web.NodeList, ?offset: float) : Animejs.svg.Exports.createMotionPath__ = nativeOnly
             [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: string, ?offset: float) : Exports.createMotionPath__ = nativeOnly
-            [<Import("createMotionPath", "animejs/svg")>]
-            static member createMotionPath (path: Animejs.TargetsParam, ?offset: float) : Exports.createMotionPath__ = nativeOnly
+            static member createMotionPath (path: string, ?offset: float) : Animejs.svg.Exports.createMotionPath__ = nativeOnly
             [<Import("createDrawable", "animejs/svg")>]
             static member createDrawable (selector: ResizeArray<Animejs.TargetSelector>, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
             [<Import("createDrawable", "animejs/svg")>]
@@ -4853,8 +5555,6 @@ module Animejs =
             static member createDrawable (selector: Glutinum.Web.NodeList, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
             [<Import("createDrawable", "animejs/svg")>]
             static member createDrawable (selector: string, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
-            [<Import("createDrawable", "animejs/svg")>]
-            static member createDrawable (selector: Animejs.TargetsParam, ?start: float, ?``end``: float) : ResizeArray<Animejs.DrawableSVGGeometry> = nativeOnly
             [<Import("morphTo", "animejs/svg")>]
             static member morphTo (path2: ResizeArray<Animejs.TargetSelector>, ?precision: float) : Animejs.FunctionValue = nativeOnly
             [<Import("morphTo", "animejs/svg")>]
@@ -4867,8 +5567,6 @@ module Animejs =
             static member morphTo (path2: Glutinum.Web.NodeList, ?precision: float) : Animejs.FunctionValue = nativeOnly
             [<Import("morphTo", "animejs/svg")>]
             static member morphTo (path2: string, ?precision: float) : Animejs.FunctionValue = nativeOnly
-            [<Import("morphTo", "animejs/svg")>]
-            static member morphTo (path2: Animejs.TargetsParam, ?precision: float) : Animejs.FunctionValue = nativeOnly
 
         module Exports =
 
@@ -4894,8 +5592,6 @@ module Animejs =
             static member splitText (target: string, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
             [<Import("splitText", "animejs/text")>]
             static member splitText (target: ResizeArray<Glutinum.Web.Element>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
-            [<Import("splitText", "animejs/text")>]
-            static member splitText (target: U4<Glutinum.Web.Element, Glutinum.Web.NodeList, string, ResizeArray<Glutinum.Web.Element>>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
             [<Import("split", "animejs/text")>]
             static member split (target: Glutinum.Web.HTMLElement, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
             [<Import("split", "animejs/text")>]
@@ -4904,8 +5600,6 @@ module Animejs =
             static member split (target: string, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
             [<Import("split", "animejs/text")>]
             static member split (target: ResizeArray<Glutinum.Web.HTMLElement>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
-            [<Import("split", "animejs/text")>]
-            static member split (target: U4<Glutinum.Web.HTMLElement, Glutinum.Web.NodeList, string, ResizeArray<Glutinum.Web.HTMLElement>>, ?parameters: Animejs.TextSplitterParams) : Animejs.TextSplitter = nativeOnly
             [<Import("scrambleText", "animejs/text")>]
             static member scrambleText (?``params``: Animejs.ScrambleTextParams) : Animejs.FunctionValue<Animejs.ScrambleTextTween> = nativeOnly
             /// <param name="target">
@@ -4940,14 +5634,6 @@ module Animejs =
             /// </param>
             [<Import("TextSplitter", "animejs/text"); EmitConstructor>]
             static member TextSplitter (target: ResizeArray<Glutinum.Web.Element>, ?parameters: Animejs.TextSplitterParams) : TextSplitter = nativeOnly
-            /// <param name="target">
-            ///
-            /// </param>
-            /// <param name="parameters">
-            ///
-            /// </param>
-            [<Import("TextSplitter", "animejs/text"); EmitConstructor>]
-            static member TextSplitter (target: U4<Glutinum.Web.Element, Glutinum.Web.NodeList, string, ResizeArray<Glutinum.Web.Element>>, ?parameters: Animejs.TextSplitterParams) : TextSplitter = nativeOnly
 
         type TextSplitter =
             Animejs.TextSplitter
@@ -5034,8 +5720,6 @@ module Animejs =
             static member randomPick<'T> (items: string) : U2<string, 'T> = nativeOnly
             [<Import("randomPick", "animejs/utils")>]
             static member randomPick<'T> (items: ResizeArray<'T>) : U2<string, 'T> = nativeOnly
-            [<Import("randomPick", "animejs/utils")>]
-            static member randomPick<'T> (items: U2<string, ResizeArray<'T>>) : U2<string, 'T> = nativeOnly
             [<Import("shuffle", "animejs/utils")>]
             static member shuffle (items: ResizeArray<obj>, ?rnd: Animejs.RandomNumberGenerator) : ResizeArray<obj> = nativeOnly
             /// <summary>
@@ -5101,17 +5785,6 @@ module Animejs =
             ///
             /// </param>
             [<Import("get", "animejs/utils")>]
-            static member get (targetSelector: Animejs.DOMTargetSelector, propName: string) : string = nativeOnly
-            /// <param name="targetSelector">
-            ///
-            /// </param>
-            /// <param name="propName">
-            ///
-            /// </param>
-            /// <param name="unit">
-            ///
-            /// </param>
-            [<Import("get", "animejs/utils")>]
             static member get (targetSelector: ResizeArray<Animejs.JSTarget>, propName: string) : U2<float, string> = nativeOnly
             /// <param name="targetSelector">
             ///
@@ -5124,17 +5797,6 @@ module Animejs =
             /// </param>
             [<Import("get", "animejs/utils")>]
             static member get (targetSelector: Animejs.JSTarget, propName: string) : U2<float, string> = nativeOnly
-            /// <param name="targetSelector">
-            ///
-            /// </param>
-            /// <param name="propName">
-            ///
-            /// </param>
-            /// <param name="unit">
-            ///
-            /// </param>
-            [<Import("get", "animejs/utils")>]
-            static member get (targetSelector: Animejs.JSTargetsParam, propName: string) : U2<float, string> = nativeOnly
             /// <param name="targetSelector">
             ///
             /// </param>
@@ -5190,17 +5852,6 @@ module Animejs =
             /// </param>
             [<Import("get", "animejs/utils")>]
             static member get (targetSelector: string, propName: string, unit: string) : string = nativeOnly
-            /// <param name="targetSelector">
-            ///
-            /// </param>
-            /// <param name="propName">
-            ///
-            /// </param>
-            /// <param name="unit">
-            ///
-            /// </param>
-            [<Import("get", "animejs/utils")>]
-            static member get (targetSelector: Animejs.DOMTargetsParam, propName: string, unit: string) : string = nativeOnly
             /// <param name="targetSelector">
             ///
             /// </param>
@@ -5267,17 +5918,6 @@ module Animejs =
             /// </param>
             [<Import("get", "animejs/utils")>]
             static member get (targetSelector: string, propName: string, unit: bool) : float = nativeOnly
-            /// <param name="targetSelector">
-            ///
-            /// </param>
-            /// <param name="propName">
-            ///
-            /// </param>
-            /// <param name="unit">
-            ///
-            /// </param>
-            [<Import("get", "animejs/utils")>]
-            static member get (targetSelector: Animejs.TargetsParam, propName: string, unit: bool) : float = nativeOnly
             [<Import("set", "animejs/utils")>]
             static member set (targets: ResizeArray<Animejs.TargetSelector>, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
             [<Import("set", "animejs/utils")>]
@@ -5290,8 +5930,6 @@ module Animejs =
             static member set (targets: Glutinum.Web.NodeList, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
             [<Import("set", "animejs/utils")>]
             static member set (targets: string, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
-            [<Import("set", "animejs/utils")>]
-            static member set (targets: Animejs.TargetsParam, parameters: Animejs.AnimationParams) : Animejs.JSAnimation = nativeOnly
             [<Import("remove", "animejs/utils")>]
             static member remove (targets: ResizeArray<Animejs.TargetSelector>, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
             [<Import("remove", "animejs/utils")>]
@@ -5304,8 +5942,6 @@ module Animejs =
             static member remove (targets: Glutinum.Web.NodeList, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
             [<Import("remove", "animejs/utils")>]
             static member remove (targets: string, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
-            [<Import("remove", "animejs/utils")>]
-            static member remove (targets: Animejs.TargetsParam, ?renderable: U2<Animejs.Renderable, Animejs.WAAPIAnimation>, ?propertyName: string) : Animejs.TargetsArray = nativeOnly
             /// <param name="targets">
             ///
             /// </param>
@@ -5335,11 +5971,6 @@ module Animejs =
             ///
             /// </param>
             [<Import("$", "animejs/utils")>]
-            static member ``$`` (targets: Animejs.DOMTargetsParam) : Animejs.DOMTargetsArray = nativeOnly
-            /// <param name="targets">
-            ///
-            /// </param>
-            [<Import("$", "animejs/utils")>]
             static member ``$`` (targets: ResizeArray<Animejs.JSTarget>) : Animejs.JSTargetsArray = nativeOnly
             /// <param name="targets">
             ///
@@ -5350,17 +5981,7 @@ module Animejs =
             ///
             /// </param>
             [<Import("$", "animejs/utils")>]
-            static member ``$`` (targets: Animejs.JSTargetsParam) : Animejs.JSTargetsArray = nativeOnly
-            /// <param name="targets">
-            ///
-            /// </param>
-            [<Import("$", "animejs/utils")>]
             static member ``$`` (targets: ResizeArray<Animejs.TargetSelector>) : Animejs.TargetsArray = nativeOnly
-            /// <param name="targets">
-            ///
-            /// </param>
-            [<Import("$", "animejs/utils")>]
-            static member ``$`` (targets: Animejs.TargetsParam) : Animejs.TargetsArray = nativeOnly
             [<Import("cleanInlineStyles", "animejs/utils")>]
             static member cleanInlineStyles<'T> (renderable: 'T) : 'T = nativeOnly
             [<Import("stagger", "animejs/utils")>]
@@ -5474,14 +6095,6 @@ module Animejs =
             /// </param>
             [<Import("WAAPIAnimation", "animejs/waapi"); EmitConstructor>]
             static member WAAPIAnimation (targets: string, ``params``: Animejs.WAAPIAnimationParams) : WAAPIAnimation = nativeOnly
-            /// <param name="targets">
-            ///
-            /// </param>
-            /// <param name="params">
-            ///
-            /// </param>
-            [<Import("WAAPIAnimation", "animejs/waapi"); EmitConstructor>]
-            static member WAAPIAnimation (targets: Animejs.DOMTargetsParam, ``params``: Animejs.WAAPIAnimationParams) : WAAPIAnimation = nativeOnly
 
         type WAAPIAnimation =
             Animejs.WAAPIAnimation
@@ -5559,6 +6172,10 @@ module Animejs =
             [<Emit("$0")>]
             static member op_ErasedCast(value: Animejs.dist.modules.core.consts.compositionTypes) : composition = nativeOnly
 
+            /// Unchecked, the value as <c>Case1</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase1: Animejs.dist.modules.core.consts.compositionTypes = nativeOnly
+
     module StaggerParams =
 
         [<RequireQualifiedAccess>]
@@ -5582,6 +6199,14 @@ module Animejs =
 
             [<Emit("$0")>]
             static member op_ErasedCast(value: ResizeArray<float>) : from = nativeOnly
+
+            /// Unchecked, the value as <c>Case1</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase1: float = nativeOnly
+
+            /// Unchecked, the value as <c>Case2</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase2: ResizeArray<float> = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -5609,7 +6234,17 @@ module Animejs =
         type PercentageKeyframes =
             abstract member ease: Animejs.EasingParam option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?ease: Animejs.EasingParam) : PercentageKeyframes = nativeOnly
+            static member Create () : PercentageKeyframes = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (ease: string) : PercentageKeyframes = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (ease: Animejs.EaseStringParamNames) : PercentageKeyframes = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (ease: Animejs.EasingFunction) : PercentageKeyframes = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (ease: Animejs.easings.spring.Spring) : PercentageKeyframes = nativeOnly
+            [<ParamObject; Emit("$0")>]
+            static member Create (ease: Animejs.TweakRegister) : PercentageKeyframes = nativeOnly
 
     module DurationKeyframes =
 
@@ -5662,6 +6297,14 @@ module Animejs =
             [<Emit("$0")>]
             static member op_ErasedCast(value: (Animejs.ScrollObserver -> ScrollObserverParams.axis.Cases.Case2)) : axis = nativeOnly
 
+            /// Unchecked, the value as <c>Case1</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase1: Animejs.ScrollObserverAxisCallback = nativeOnly
+
+            /// Unchecked, the value as <c>Case2</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase2: (Animejs.ScrollObserver -> ScrollObserverParams.axis.Cases.Case2) = nativeOnly
+
         module axis =
 
             module Cases =
@@ -5678,6 +6321,10 @@ module Animejs =
 
                     [<Emit("$0")>]
                     static member op_ErasedCast(value: Animejs.ScrollObserverAxisCallback) : Case2 = nativeOnly
+
+                    /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                    [<Emit("$0")>]
+                    member _.AsCase1: Animejs.ScrollObserverAxisCallback = nativeOnly
 
     module SplitTemplateParams =
 
@@ -5720,6 +6367,10 @@ module Animejs =
 
             [<Emit("$0")>]
             static member op_ErasedCast(value: float) : from = nativeOnly
+
+            /// Unchecked, the value as <c>Case1</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase1: float = nativeOnly
 
         type onChange =
             delegate of arg0: string * arg1: float -> unit

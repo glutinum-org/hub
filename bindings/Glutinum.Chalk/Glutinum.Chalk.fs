@@ -16,7 +16,7 @@ module Chalk =
         /// Return a new Chalk instance.
         /// </summary>
         [<Import("Chalk", "chalk")>]
-        static member inline Chalk: Exports.Chalk__.Type = nativeOnly
+        static member inline Chalk: Chalk.Exports.Chalk__.Type = nativeOnly
         [<Import("supportsColor", "chalk")>]
         static member inline supportsColor: Chalk.ColorInfo = nativeOnly
         [<Import("chalkStderr", "chalk")>]
@@ -635,13 +635,31 @@ module Chalk =
         | underlineMagentaBright
         | underlineWhiteBright
 
-    /// <summary>
-    /// Basic color names. The combination of foreground and background color names.
-    ///
-    /// [More colors here.](https://github.com/chalk/chalk/blob/main/readme.md#256-and-truecolor-color-support)
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type ColorName =
-        U2<Chalk.ForegroundColorName, Chalk.BackgroundColorName>
+        | ForegroundColorName of Chalk.ForegroundColorName
+        | BackgroundColorName of Chalk.BackgroundColorName
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Chalk.ForegroundColorName) : ColorName = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Chalk.ForegroundColorName) : ColorName = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Chalk.BackgroundColorName) : ColorName = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Chalk.BackgroundColorName) : ColorName = nativeOnly
+
+        /// Unchecked, the value as <c>ForegroundColorName</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsForegroundColorName: Chalk.ForegroundColorName = nativeOnly
+
+        /// Unchecked, the value as <c>BackgroundColorName</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsBackgroundColorName: Chalk.BackgroundColorName = nativeOnly
 
     [<RequireQualifiedAccess>]
     type ColorSupportLevel =
@@ -672,8 +690,31 @@ module Chalk =
         [<ParamObject; Emit("$0")>]
         static member Create (level: Chalk.ColorSupportLevel, hasBasic: bool, has256: bool, has16m: bool) : ColorSupport = nativeOnly
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type ColorInfo =
-        U2<Chalk.ColorSupport, bool>
+        | ColorSupport of Chalk.ColorSupport
+        | Bool of bool
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Chalk.ColorSupport) : ColorInfo = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Chalk.ColorSupport) : ColorInfo = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: bool) : ColorInfo = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: bool) : ColorInfo = nativeOnly
+
+        /// Unchecked, the value as <c>ColorSupport</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsColorSupport: Chalk.ColorSupport = nativeOnly
+
+        /// Unchecked, the value as <c>Bool</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsBool: bool = nativeOnly
 
     module source =
 

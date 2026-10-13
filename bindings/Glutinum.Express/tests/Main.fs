@@ -5,6 +5,7 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Scriptorium.Nib.Assertion
 open Glutinum
+open Glutinum.Types.UnionCases
 
 open type Scriptorium.Quill.Runner
 open type Scriptorium.Quill.Test
@@ -18,7 +19,7 @@ type private TestServer() =
     let server = App.create().listen 0
 
     member _.Url(path: string) =
-        let port = (unbox<Node.net.AddressInfo> (server.address ())).port
+        let port = server.address().Value.AsCase1.port
         $"http://127.0.0.1:{int port}{path}"
 
     interface IDisposable with

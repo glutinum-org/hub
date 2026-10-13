@@ -155,8 +155,31 @@ module Yargs =
 
         module yargs_ =
 
+            [<RequireQualifiedAccess>]
+            [<Erase>]
             type BuilderCallback<'T, 'R> =
-                U2<(Yargs.index.yargs_.Argv<'T> -> unit), (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'R>)>
+                | Case1 of (Yargs.index.yargs_.Argv<'T> -> unit)
+                | Case2 of (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'R>)
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: (Yargs.index.yargs_.Argv<'T> -> unit)) : BuilderCallback<'T, 'R> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: (Yargs.index.yargs_.Argv<'T> -> unit)) : BuilderCallback<'T, 'R> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'R>)) : BuilderCallback<'T, 'R> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'R>)) : BuilderCallback<'T, 'R> = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: (Yargs.index.yargs_.Argv<'T> -> unit) = nativeOnly
+
+                /// Unchecked, the value as <c>Case2</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase2: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'R>) = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -271,13 +294,6 @@ module Yargs =
                 /// Optionally <c>.alias()</c> can take an object that maps keys to aliases.
                 /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
                 /// </summary>
-                abstract member alias<'K1, 'K2>: shortName: 'K1 * longName: U2<'K2, ResizeArray<'K2>> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
-                /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
-                ///
-                /// Optionally <c>.alias()</c> can take an object that maps keys to aliases.
-                /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
-                /// </summary>
                 abstract member alias: shortName: string * longName: string -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
@@ -306,14 +322,7 @@ module Yargs =
                 /// Optionally <c>.alias()</c> can take an object that maps keys to aliases.
                 /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
                 /// </summary>
-                abstract member alias: shortName: U2<string, ResizeArray<string>> * longName: U2<string, ResizeArray<string>> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Set key names as equivalent such that updates to a key will propagate to aliases and vice-versa.
-                ///
-                /// Optionally <c>.alias()</c> can take an object that maps keys to aliases.
-                /// Each key of this object should be the canonical version of the option, and each value should be a string or an array of strings.
-                /// </summary>
-                abstract member alias: aliases: Argv.alias.aliases -> Yargs.index.yargs_.Argv<'T>
+                abstract member alias: aliases: Yargs.index.yargs_.Argv.alias.aliases -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Get the arguments as a plain old object.
                 ///
@@ -343,14 +352,6 @@ module Yargs =
                 /// </summary>
                 abstract member array<'K>: key: ResizeArray<'K> -> Yargs.index.yargs_.Argv<obj>
                 /// <summary>
-                /// Tell the parser to interpret <c>key</c> as an array.
-                /// If <c>.array('foo')</c> is set, <c>--foo foo bar</c> will be parsed as <c>['foo', 'bar']</c> rather than as <c>'foo'</c>.
-                /// Also, if you use the option multiple times all the values will be flattened in one array so <c>--foo foo --foo bar</c> will be parsed as <c>['foo', 'bar']</c>
-                ///
-                /// When the option is used with a positional, use <c>--</c> to tell <c>yargs</c> to stop adding values to the array.
-                /// </summary>
-                abstract member array<'K>: key: U2<'K, ResizeArray<'K>> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
                 /// Interpret <c>key</c> as a boolean. If a non-flag option follows <c>key</c> in <c>process.argv</c>, that string won't get set as the value of <c>key</c>.
                 ///
                 /// <c>key</c> will default to <c>false</c>, unless a <c>default(key, undefined)</c> is explicitly set.
@@ -367,14 +368,6 @@ module Yargs =
                 /// </summary>
                 abstract member boolean<'K>: key: ResizeArray<'K> -> Yargs.index.yargs_.Argv<obj>
                 /// <summary>
-                /// Interpret <c>key</c> as a boolean. If a non-flag option follows <c>key</c> in <c>process.argv</c>, that string won't get set as the value of <c>key</c>.
-                ///
-                /// <c>key</c> will default to <c>false</c>, unless a <c>default(key, undefined)</c> is explicitly set.
-                ///
-                /// If <c>key</c> is an array, interpret all the elements as booleans.
-                /// </summary>
-                abstract member boolean<'K>: key: U2<'K, ResizeArray<'K>> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
                 /// Check that certain conditions are met in the provided arguments.
                 /// </summary>
                 /// <param name="func">
@@ -384,7 +377,7 @@ module Yargs =
                 /// <param name="global">
                 /// Indicates whether <c>check()</c> should be enabled both at the top-level and for each sub-command.
                 /// </param>
-                abstract member check: func: Argv.check.func<'T> * ?``global``: bool -> Yargs.index.yargs_.Argv<'T>
+                abstract member check: func: Yargs.index.yargs_.Argv.check.func<'T> * ?``global``: bool -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Limit valid values for key to a predefined set of choices, given as an array or as an individual value.
                 /// If this method is called multiple times, all enumerated values will be merged together.
@@ -439,23 +432,6 @@ module Yargs =
                 /// If you are using dot-notion or arrays, .e.g., <c>user.email</c> and <c>user.password</c>, coercion will be applied to the final object that has been parsed
                 /// </summary>
                 abstract member coerce<'K, 'V>: key: ResizeArray<'K> * func: (obj -> 'V) -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
-                /// Provide a synchronous function to coerce or transform the value(s) given on the command line for <c>key</c>.
-                ///
-                /// The coercion function should accept one argument, representing the parsed value from the command line, and should return a new value or throw an error.
-                /// The returned value will be used as the value for <c>key</c> (or one of its aliases) in <c>argv</c>.
-                ///
-                /// If the function throws, the error will be treated as a validation failure, delegating to either a custom <c>.fail()</c> handler or printing the error message in the console.
-                ///
-                /// Coercion will be applied to a value after all other modifications, such as <c>.normalize()</c>.
-                ///
-                /// Optionally <c>.coerce()</c> can take an object that maps several keys to their respective coercion function.
-                ///
-                /// You can also map the same function to several keys at one time. Just pass an array of keys as the first argument to <c>.coerce()</c>.
-                ///
-                /// If you are using dot-notion or arrays, .e.g., <c>user.email</c> and <c>user.password</c>, coercion will be applied to the final object that has been parsed
-                /// </summary>
-                abstract member coerce<'K, 'V>: key: U2<'K, ResizeArray<'K>> * func: (obj -> 'V) -> Yargs.index.yargs_.Argv<obj>
                 /// <summary>
                 /// Provide a synchronous function to coerce or transform the value(s) given on the command line for <c>key</c>.
                 ///
@@ -684,19 +660,11 @@ module Yargs =
                 /// <summary>
                 /// Define the commands exposed by your application.
                 /// </summary>
-                abstract member command<'O>: command: U2<string, ResizeArray<string>> * description: string * ?builder: 'O * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<Yargs.index.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>) * ?middlewares: ResizeArray<Yargs.index.yargs_.MiddlewareFunction<'O>> * ?deprecated: U2<bool, string> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Define the commands exposed by your application.
-                /// </summary>
                 abstract member command<'U>: command: string * description: string * ``module``: Yargs.index.yargs_.CommandModule<'T, 'U> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Define the commands exposed by your application.
                 /// </summary>
                 abstract member command<'U>: command: ResizeArray<string> * description: string * ``module``: Yargs.index.yargs_.CommandModule<'T, 'U> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Define the commands exposed by your application.
-                /// </summary>
-                abstract member command<'U>: command: U2<string, ResizeArray<string>> * description: string * ``module``: Yargs.index.yargs_.CommandModule<'T, 'U> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Define the commands exposed by your application.
                 /// </summary>
@@ -748,19 +716,11 @@ module Yargs =
                 /// <summary>
                 /// Define the commands exposed by your application.
                 /// </summary>
-                abstract member command<'O>: command: U2<string, ResizeArray<string>> * showInHelp: bool * ?builder: 'O * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<Yargs.index.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Define the commands exposed by your application.
-                /// </summary>
                 abstract member command<'U>: command: string * showInHelp: bool * ``module``: Yargs.index.yargs_.CommandModule<'T, 'U> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Define the commands exposed by your application.
                 /// </summary>
                 abstract member command<'U>: command: ResizeArray<string> * showInHelp: bool * ``module``: Yargs.index.yargs_.CommandModule<'T, 'U> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Define the commands exposed by your application.
-                /// </summary>
-                abstract member command<'U>: command: U2<string, ResizeArray<string>> * showInHelp: bool * ``module``: Yargs.index.yargs_.CommandModule<'T, 'U> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Define the commands exposed by your application.
                 /// </summary>
@@ -874,14 +834,6 @@ module Yargs =
                 ///
                 /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
                 /// </summary>
-                abstract member config: key: U2<string, ResizeArray<string>> * ?description: string * ?parseFn: (string -> obj) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
-                /// The file is loaded and parsed, and its properties are set as arguments.
-                /// Because the file is loaded using Node's require(), the filename MUST end in <c>.json</c> to be interpreted correctly.
-                ///
-                /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
-                /// </summary>
                 abstract member config: key: string * parseFn: (string -> obj) -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
@@ -891,14 +843,6 @@ module Yargs =
                 /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
                 /// </summary>
                 abstract member config: key: ResizeArray<string> * parseFn: (string -> obj) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
-                /// The file is loaded and parsed, and its properties are set as arguments.
-                /// Because the file is loaded using Node's require(), the filename MUST end in <c>.json</c> to be interpreted correctly.
-                ///
-                /// If invoked without parameters, <c>.config()</c> will make --config the option to pass the JSON config file.
-                /// </summary>
-                abstract member config: key: U2<string, ResizeArray<string>> * parseFn: (string -> obj) -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Tells the parser that if the option specified by <c>key</c> is passed in, it should be interpreted as a path to a JSON config file.
                 /// The file is loaded and parsed, and its properties are set as arguments.
@@ -924,13 +868,7 @@ module Yargs =
                 ///
                 /// Optionally <c>.conflicts()</c> can accept an object specifying multiple conflicting keys.
                 /// </summary>
-                abstract member conflicts: key: string * value: U2<string, ResizeArray<string>> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Given the key <c>x</c> is set, the key <c>y</c> must not be set. <c>y</c> can either be a single string or an array of argument names that <c>x</c> conflicts with.
-                ///
-                /// Optionally <c>.conflicts()</c> can accept an object specifying multiple conflicting keys.
-                /// </summary>
-                abstract member conflicts: conflicts: Argv.conflicts.conflicts -> Yargs.index.yargs_.Argv<'T>
+                abstract member conflicts: conflicts: Yargs.index.yargs_.Argv.conflicts.conflicts -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Interpret <c>key</c> as a boolean flag, but set its parsed value to the number of flag occurrences rather than <c>true</c> or <c>false</c>. Default value is thus <c>0</c>.
                 /// </summary>
@@ -939,10 +877,6 @@ module Yargs =
                 /// Interpret <c>key</c> as a boolean flag, but set its parsed value to the number of flag occurrences rather than <c>true</c> or <c>false</c>. Default value is thus <c>0</c>.
                 /// </summary>
                 abstract member count<'K>: key: ResizeArray<'K> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
-                /// Interpret <c>key</c> as a boolean flag, but set its parsed value to the number of flag occurrences rather than <c>true</c> or <c>false</c>. Default value is thus <c>0</c>.
-                /// </summary>
-                abstract member count<'K>: key: U2<'K, ResizeArray<'K>> -> Yargs.index.yargs_.Argv<obj>
                 /// <summary>
                 /// Set <c>argv[key]</c> to <c>value</c> if no option was specified in <c>process.argv</c>.
                 ///
@@ -967,11 +901,8 @@ module Yargs =
                 abstract member demand<'K>: key: 'K * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 [<Obsolete("since version 6.6.0\nUse '.demandCommand()' or '.demandOption()' instead")>]
                 abstract member demand<'K>: key: ResizeArray<'K> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
-                [<Obsolete("since version 6.6.0\nUse '.demandCommand()' or '.demandOption()' instead")>]
-                abstract member demand<'K>: key: U2<'K, ResizeArray<'K>> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 abstract member demand: key: string * ?required: bool -> Yargs.index.yargs_.Argv<'T>
                 abstract member demand: key: ResizeArray<string> * ?required: bool -> Yargs.index.yargs_.Argv<'T>
-                abstract member demand: key: U2<string, ResizeArray<string>> * ?required: bool -> Yargs.index.yargs_.Argv<'T>
                 abstract member demand: positionals: float * msg: string -> Yargs.index.yargs_.Argv<'T>
                 abstract member demand: positionals: float * ?required: bool -> Yargs.index.yargs_.Argv<'T>
                 abstract member demand: positionals: float * max: float * ?msg: string -> Yargs.index.yargs_.Argv<'T>
@@ -997,20 +928,8 @@ module Yargs =
                 /// Controls whether the option is demanded; this is useful when using .options() to specify command line parameters.
                 /// </param>
                 abstract member demandOption<'K>: key: ResizeArray<'K> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
-                /// <param name="key">
-                /// If is a string, show the usage information and exit if key wasn't specified in <c>process.argv</c>.
-                /// If is an array, demand each element.
-                /// </param>
-                /// <param name="msg">
-                /// If string is given, it will be printed when the argument is missing, instead of the standard error message.
-                /// </param>
-                /// <param name="demand">
-                /// Controls whether the option is demanded; this is useful when using .options() to specify command line parameters.
-                /// </param>
-                abstract member demandOption<'K>: key: U2<'K, ResizeArray<'K>> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 abstract member demandOption: key: string * ?demand: bool -> Yargs.index.yargs_.Argv<'T>
                 abstract member demandOption: key: ResizeArray<string> * ?demand: bool -> Yargs.index.yargs_.Argv<'T>
-                abstract member demandOption: key: U2<string, ResizeArray<string>> * ?demand: bool -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Demand in context of commands.
                 /// You can demand a minimum and a maximum number a user can have within your program, as well as provide corresponding error messages if either of the demands is not met.
@@ -1047,13 +966,7 @@ module Yargs =
                 ///
                 /// Optionally <c>.describe()</c> can take an object that maps keys to descriptions.
                 /// </summary>
-                abstract member describe: key: U2<string, ResizeArray<string>> * description: string -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Describe a <c>key</c> for the generated usage information.
-                ///
-                /// Optionally <c>.describe()</c> can take an object that maps keys to descriptions.
-                /// </summary>
-                abstract member describe: descriptions: Argv.describe.descriptions -> Yargs.index.yargs_.Argv<'T>
+                abstract member describe: descriptions: Yargs.index.yargs_.Argv.describe.descriptions -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Should yargs attempt to detect the os' locale? Defaults to <c>true</c>.
                 /// </summary>
@@ -1141,7 +1054,7 @@ module Yargs =
                 /// <param name="func">
                 /// Is called with the failure message that would have been printed, the Error instance originally thrown and yargs state when the failure occurred.
                 /// </param>
-                abstract member fail: func: Argv.fail.func<'T> -> Yargs.index.yargs_.Argv<'T>
+                abstract member fail: func: Yargs.index.yargs_.Argv.fail.func<'T> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Method to execute when a failure occurs, rather than printing the failure message.
                 /// </summary>
@@ -1149,13 +1062,6 @@ module Yargs =
                 /// Is called with the failure message that would have been printed, the Error instance originally thrown and yargs state when the failure occurred.
                 /// </param>
                 abstract member fail: func: bool -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Method to execute when a failure occurs, rather than printing the failure message.
-                /// </summary>
-                /// <param name="func">
-                /// Is called with the failure message that would have been printed, the Error instance originally thrown and yargs state when the failure occurred.
-                /// </param>
-                abstract member fail: func: U2<Argv.fail.func.U2.Case1<'T>, bool> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Allows to programmatically get completion choices for any line.
                 /// </summary>
@@ -1165,7 +1071,7 @@ module Yargs =
                 /// <param name="done">
                 /// The callback to be called with the resulting completions.
                 /// </param>
-                abstract member getCompletion: args: ResizeArray<string> * ``done``: Argv.getCompletion.``done`` -> Yargs.index.yargs_.Argv<'T>
+                abstract member getCompletion: args: ResizeArray<string> * ``done``: Yargs.index.yargs_.Argv.getCompletion.``done`` -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Allows to programmatically get completion choices for any line.
                 /// </summary>
@@ -1187,12 +1093,6 @@ module Yargs =
                 /// </summary>
                 abstract member ``global``: key: ResizeArray<string> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
-                /// Indicate that an option (or group of options) should not be reset when a command is executed
-                ///
-                /// Options default to being global.
-                /// </summary>
-                abstract member ``global``: key: U2<string, ResizeArray<string>> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
                 /// Given a key, or an array of keys, places options under an alternative heading when displaying usage instructions
                 /// </summary>
                 abstract member group: key: string * groupName: string -> Yargs.index.yargs_.Argv<'T>
@@ -1200,10 +1100,6 @@ module Yargs =
                 /// Given a key, or an array of keys, places options under an alternative heading when displaying usage instructions
                 /// </summary>
                 abstract member group: key: ResizeArray<string> * groupName: string -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Given a key, or an array of keys, places options under an alternative heading when displaying usage instructions
-                /// </summary>
-                abstract member group: key: U2<string, ResizeArray<string>> * groupName: string -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Hides a key from the generated usage information. Unless a <c>--show-hidden</c> option is also passed with <c>--help</c> (see <c>showHidden()</c>).
                 /// </summary>
@@ -1274,14 +1170,7 @@ module Yargs =
                 ///
                 /// Optionally </c>.implies()` can accept an object specifying multiple implications.
                 /// </summary>
-                abstract member implies: key: string * value: U2<string, ResizeArray<string>> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Given the key <c>x</c> is set, it is required that the key <c>y</c> is set.
-                /// y<c> can either be the name of an argument to imply, a number indicating the position of an argument or an array of multiple implications to associate with </c>x<c>.
-                ///
-                /// Optionally </c>.implies()` can accept an object specifying multiple implications.
-                /// </summary>
-                abstract member implies: implies: Argv.implies.implies -> Yargs.index.yargs_.Argv<'T>
+                abstract member implies: implies: Yargs.index.yargs_.Argv.implies.implies -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Return the locale that yargs is currently using.
                 ///
@@ -1319,16 +1208,6 @@ module Yargs =
                 /// </param>
                 abstract member middleware: callbacks: ResizeArray<Yargs.index.yargs_.MiddlewareFunction<'T>> * ?applyBeforeValidation: bool -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
-                /// Define global middleware functions to be called first, in list order, for all cli command.
-                /// </summary>
-                /// <param name="callbacks">
-                /// Can be a function or a list of functions. Each callback gets passed a reference to argv.
-                /// </param>
-                /// <param name="applyBeforeValidation">
-                /// Set to <c>true</c> to apply middleware before validation. This will execute the middleware prior to validation checks, but after parsing.
-                /// </param>
-                abstract member middleware: callbacks: U2<Yargs.index.yargs_.MiddlewareFunction<'T>, ResizeArray<Yargs.index.yargs_.MiddlewareFunction<'T>>> * ?applyBeforeValidation: bool -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
                 /// The number of arguments that should be consumed after a key. This can be a useful hint to prevent parsing ambiguity.
                 ///
                 /// Optionally <c>.nargs()</c> can take an object of <c>key</c>/<c>narg</c> pairs.
@@ -1339,7 +1218,7 @@ module Yargs =
                 ///
                 /// Optionally <c>.nargs()</c> can take an object of <c>key</c>/<c>narg</c> pairs.
                 /// </summary>
-                abstract member nargs: nargs: Argv.nargs.nargs -> Yargs.index.yargs_.Argv<'T>
+                abstract member nargs: nargs: Yargs.index.yargs_.Argv.nargs.nargs -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// The key provided represents a path and should have <c>path.normalize()</c> applied.
                 /// </summary>
@@ -1348,10 +1227,6 @@ module Yargs =
                 /// The key provided represents a path and should have <c>path.normalize()</c> applied.
                 /// </summary>
                 abstract member normalize<'K>: key: ResizeArray<'K> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
-                /// The key provided represents a path and should have <c>path.normalize()</c> applied.
-                /// </summary>
-                abstract member normalize<'K>: key: U2<'K, ResizeArray<'K>> -> Yargs.index.yargs_.Argv<obj>
                 /// <summary>
                 /// Tell the parser to always interpret key as a number.
                 ///
@@ -1376,18 +1251,6 @@ module Yargs =
                 /// Note that decimals, hexadecimals, and scientific notation are all accepted.
                 /// </summary>
                 abstract member number<'K>: key: ResizeArray<'K> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
-                /// Tell the parser to always interpret key as a number.
-                ///
-                /// If <c>key</c> is an array, all elements will be parsed as numbers.
-                ///
-                /// If the option is given on the command line without a value, <c>argv</c> will be populated with <c>undefined</c>.
-                ///
-                /// If the value given on the command line cannot be parsed as a number, <c>argv</c> will be populated with <c>NaN</c>.
-                ///
-                /// Note that decimals, hexadecimals, and scientific notation are all accepted.
-                /// </summary>
-                abstract member number<'K>: key: U2<'K, ResizeArray<'K>> -> Yargs.index.yargs_.Argv<obj>
                 /// <summary>
                 /// Method to execute when a command finishes successfully.
                 /// </summary>
@@ -1436,20 +1299,12 @@ module Yargs =
                 /// Note: Providing a callback to parse() disables the <c>exitProcess</c> setting until after the callback is invoked.
                 /// </summary>
                 abstract member parse: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> U2<Yargs.index.yargs_.Arguments<'T>, JS.Promise<Yargs.index.yargs_.Arguments<'T>>>
-                /// <summary>
-                /// Parse <c>args</c> instead of <c>process.argv</c>. Returns the <c>argv</c> object. <c>args</c> may either be a pre-processed argv array, or a raw argument string.
-                ///
-                /// Note: Providing a callback to parse() disables the <c>exitProcess</c> setting until after the callback is invoked.
-                /// </summary>
-                abstract member parse: arg: U2<string, ResizeArray<string>> * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> U2<Yargs.index.yargs_.Arguments<'T>, JS.Promise<Yargs.index.yargs_.Arguments<'T>>>
                 abstract member parseSync: unit -> Yargs.index.yargs_.Arguments<'T>
                 abstract member parseSync: arg: string * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> Yargs.index.yargs_.Arguments<'T>
                 abstract member parseSync: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> Yargs.index.yargs_.Arguments<'T>
-                abstract member parseSync: arg: U2<string, ResizeArray<string>> * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> Yargs.index.yargs_.Arguments<'T>
                 abstract member parseAsync: unit -> JS.Promise<Yargs.index.yargs_.Arguments<'T>>
                 abstract member parseAsync: arg: string * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> JS.Promise<Yargs.index.yargs_.Arguments<'T>>
                 abstract member parseAsync: arg: ResizeArray<string> * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> JS.Promise<Yargs.index.yargs_.Arguments<'T>>
-                abstract member parseAsync: arg: U2<string, ResizeArray<string>> * ?context: obj * ?parseCallback: Yargs.index.yargs_.ParseCallback<'T> -> JS.Promise<Yargs.index.yargs_.Arguments<'T>>
                 /// <summary>
                 /// If the arguments have not been parsed, this property is <c>false</c>.
                 ///
@@ -1459,7 +1314,7 @@ module Yargs =
                 /// <summary>
                 /// Allows to configure advanced yargs features.
                 /// </summary>
-                abstract member parserConfiguration: configuration: Argv.parserConfiguration.configuration -> Yargs.index.yargs_.Argv<'T>
+                abstract member parserConfiguration: configuration: Yargs.index.yargs_.Argv.parserConfiguration.configuration -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Similar to <c>config()</c>, indicates that yargs should interpret the object from the specified key in package.json as a configuration object.
                 /// </summary>
@@ -1475,13 +1330,6 @@ module Yargs =
                 /// </param>
                 abstract member pkgConf: key: ResizeArray<string> * ?cwd: string -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
-                /// Similar to <c>config()</c>, indicates that yargs should interpret the object from the specified key in package.json as a configuration object.
-                /// </summary>
-                /// <param name="cwd">
-                /// If provided, the package.json will be read from this location
-                /// </param>
-                abstract member pkgConf: key: U2<string, ResizeArray<string>> * ?cwd: string -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
                 /// Allows you to configure a command's positional arguments with an API similar to <c>.option()</c>.
                 /// <c>.positional()</c> should be called in a command's builder function, and is not available on the top-level yargs instance. If so, it will throw an error.
                 /// </summary>
@@ -1494,8 +1342,6 @@ module Yargs =
                 abstract member require<'K>: key: 'K * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 [<Obsolete("since version 6.6.0\nUse '.demandCommand()' or '.demandOption()' instead")>]
                 abstract member require<'K>: key: ResizeArray<'K> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
-                [<Obsolete("since version 6.6.0\nUse '.demandCommand()' or '.demandOption()' instead")>]
-                abstract member require<'K>: key: U2<'K, ResizeArray<'K>> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 abstract member require: key: string * msg: string -> Yargs.index.yargs_.Argv<'T>
                 abstract member require: key: string * required: bool -> Yargs.index.yargs_.Argv<'T>
                 abstract member require: keys: ResizeArray<float> * msg: string -> Yargs.index.yargs_.Argv<'T>
@@ -1506,8 +1352,6 @@ module Yargs =
                 abstract member required<'K>: key: 'K * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 [<Obsolete("since version 6.6.0\nUse '.demandCommand()' or '.demandOption()' instead")>]
                 abstract member required<'K>: key: ResizeArray<'K> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
-                [<Obsolete("since version 6.6.0\nUse '.demandCommand()' or '.demandOption()' instead")>]
-                abstract member required<'K>: key: U2<'K, ResizeArray<'K>> * ?msg: U2<string, bool> -> Yargs.index.yargs_.Argv<Yargs.index.yargs_.Defined<'T, 'K>>
                 abstract member required: key: string * msg: string -> Yargs.index.yargs_.Argv<'T>
                 abstract member required: key: string * required: bool -> Yargs.index.yargs_.Argv<'T>
                 abstract member required: keys: ResizeArray<float> * msg: string -> Yargs.index.yargs_.Argv<'T>
@@ -1516,7 +1360,6 @@ module Yargs =
                 abstract member required: positionals: float * msg: string -> Yargs.index.yargs_.Argv<'T>
                 abstract member requiresArg: key: string -> Yargs.index.yargs_.Argv<'T>
                 abstract member requiresArg: key: ResizeArray<string> -> Yargs.index.yargs_.Argv<'T>
-                abstract member requiresArg: key: U2<string, ResizeArray<string>> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Set the name of your script ($0). Default is the base filename executed by node (<c>process.argv[1]</c>)
                 /// </summary>
@@ -1585,7 +1428,7 @@ module Yargs =
                 /// <param name="level">
                 ///
                 /// </param>
-                abstract member showVersion: ?level: Argv.showVersion.level -> Yargs.index.yargs_.Argv<'T>
+                abstract member showVersion: ?level: Yargs.index.yargs_.Argv.showVersion.level -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Specifies either a single option key (string), or an array of options. If any of the options is present, yargs validation is skipped.
                 /// </summary>
@@ -1594,10 +1437,6 @@ module Yargs =
                 /// Specifies either a single option key (string), or an array of options. If any of the options is present, yargs validation is skipped.
                 /// </summary>
                 abstract member skipValidation: key: ResizeArray<string> -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Specifies either a single option key (string), or an array of options. If any of the options is present, yargs validation is skipped.
-                /// </summary>
-                abstract member skipValidation: key: U2<string, ResizeArray<string>> -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Any command-line argument given that is not demanded, or does not have a corresponding description, will be reported as an error.
                 ///
@@ -1650,22 +1489,14 @@ module Yargs =
                 /// <c>.string('_')</c> will result in non-hyphenated arguments being interpreted as strings, regardless of whether they resemble numbers.
                 /// </summary>
                 abstract member string<'K>: key: ResizeArray<'K> -> Yargs.index.yargs_.Argv<obj>
-                /// <summary>
-                /// Tell the parser logic not to interpret <c>key</c> as a number or boolean. This can be useful if you need to preserve leading zeros in an input.
-                ///
-                /// If <c>key</c> is an array, interpret all the elements as strings.
-                ///
-                /// <c>.string('_')</c> will result in non-hyphenated arguments being interpreted as strings, regardless of whether they resemble numbers.
-                /// </summary>
-                abstract member string<'K>: key: U2<'K, ResizeArray<'K>> -> Yargs.index.yargs_.Argv<obj>
                 abstract member terminalWidth: unit -> float
-                abstract member updateLocale: obj: Argv.updateLocale.obj -> Yargs.index.yargs_.Argv<'T>
+                abstract member updateLocale: obj: Yargs.index.yargs_.Argv.updateLocale.obj -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Override the default strings used by yargs with the key/value pairs provided in obj
                 ///
                 /// If you explicitly specify a locale(), you should do so before calling <c>updateStrings()</c>.
                 /// </summary>
-                abstract member updateStrings: obj: Argv.updateStrings.obj -> Yargs.index.yargs_.Argv<'T>
+                abstract member updateStrings: obj: Yargs.index.yargs_.Argv.updateStrings.obj -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Set a usage message to show which commands to use.
                 /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -1701,15 +1532,6 @@ module Yargs =
                 /// This allows you to use <c>.usage()</c> to configure the default command that will be run as an entry-point to your application
                 /// and allows you to provide configuration for the positional arguments accepted by your program:
                 /// </summary>
-                abstract member usage<'U>: command: U2<string, ResizeArray<string>> * description: string * ?builder: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>) * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Set a usage message to show which commands to use.
-                /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
-                ///
-                /// If the optional <c>description</c>/<c>builder</c>/<c>handler</c> are provided, <c>.usage()</c> acts an an alias for <c>.command()</c>.
-                /// This allows you to use <c>.usage()</c> to configure the default command that will be run as an entry-point to your application
-                /// and allows you to provide configuration for the positional arguments accepted by your program:
-                /// </summary>
                 abstract member usage<'U>: command: string * showInHelp: bool * ?builder: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>) * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Set a usage message to show which commands to use.
@@ -1720,15 +1542,6 @@ module Yargs =
                 /// and allows you to provide configuration for the positional arguments accepted by your program:
                 /// </summary>
                 abstract member usage<'U>: command: ResizeArray<string> * showInHelp: bool * ?builder: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>) * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Set a usage message to show which commands to use.
-                /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
-                ///
-                /// If the optional <c>description</c>/<c>builder</c>/<c>handler</c> are provided, <c>.usage()</c> acts an an alias for <c>.command()</c>.
-                /// This allows you to use <c>.usage()</c> to configure the default command that will be run as an entry-point to your application
-                /// and allows you to provide configuration for the positional arguments accepted by your program:
-                /// </summary>
-                abstract member usage<'U>: command: U2<string, ResizeArray<string>> * showInHelp: bool * ?builder: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>) * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Set a usage message to show which commands to use.
                 /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
@@ -1755,15 +1568,6 @@ module Yargs =
                 /// This allows you to use <c>.usage()</c> to configure the default command that will be run as an entry-point to your application
                 /// and allows you to provide configuration for the positional arguments accepted by your program:
                 /// </summary>
-                abstract member usage<'O>: command: U2<string, ResizeArray<string>> * description: string * ?builder: 'O * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<Yargs.index.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Set a usage message to show which commands to use.
-                /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
-                ///
-                /// If the optional <c>description</c>/<c>builder</c>/<c>handler</c> are provided, <c>.usage()</c> acts an an alias for <c>.command()</c>.
-                /// This allows you to use <c>.usage()</c> to configure the default command that will be run as an entry-point to your application
-                /// and allows you to provide configuration for the positional arguments accepted by your program:
-                /// </summary>
                 abstract member usage<'O>: command: string * showInHelp: bool * ?builder: 'O * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<Yargs.index.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Set a usage message to show which commands to use.
@@ -1774,15 +1578,6 @@ module Yargs =
                 /// and allows you to provide configuration for the positional arguments accepted by your program:
                 /// </summary>
                 abstract member usage<'O>: command: ResizeArray<string> * showInHelp: bool * ?builder: 'O * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<Yargs.index.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
-                /// <summary>
-                /// Set a usage message to show which commands to use.
-                /// Inside <c>message</c>, the string <c>$0</c> will get interpolated to the current script name or node command for the present script similar to how <c>$0</c> works in bash or perl.
-                ///
-                /// If the optional <c>description</c>/<c>builder</c>/<c>handler</c> are provided, <c>.usage()</c> acts an an alias for <c>.command()</c>.
-                /// This allows you to use <c>.usage()</c> to configure the default command that will be run as an entry-point to your application
-                /// and allows you to provide configuration for the positional arguments accepted by your program:
-                /// </summary>
-                abstract member usage<'O>: command: U2<string, ResizeArray<string>> * showInHelp: bool * ?builder: 'O * ?handler: (Yargs.index.yargs_.ArgumentsCamelCase<Yargs.index.yargs_.InferredOptionTypes<'O>> -> U2<unit, JS.Promise<unit>>) -> Yargs.index.yargs_.Argv<'T>
                 /// <summary>
                 /// Add an option (e.g. <c>--version</c>) that displays the version number (given by the version parameter) and exits the process.
                 /// By default yargs enables version for the <c>--version</c> option.
@@ -1880,7 +1675,7 @@ module Yargs =
                 /// Accepts <c>commandObject</c>, <c>pathToFile</c>, and <c>filename</c> as arguments.
                 /// Returns <c>commandObject</c> to include the command; any falsy value to exclude/skip it.
                 /// </summary>
-                abstract member visit: RequireDirectoryOptions.visit option with get, set
+                abstract member visit: Yargs.index.yargs_.RequireDirectoryOptions.visit option with get, set
                 /// <summary>
                 /// Whitelist certain modules
                 /// </summary>
@@ -1890,7 +1685,7 @@ module Yargs =
                 /// </summary>
                 abstract member exclude: U2<RegExp, (string -> bool)> option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (?recurse: bool, ?extensions: ReadonlyArray<string>, ?visit: RequireDirectoryOptions.visit, ?``include``: U2<RegExp, (string -> bool)>, ?exclude: U2<RegExp, (string -> bool)>) : RequireDirectoryOptions = nativeOnly
+                static member Create (?recurse: bool, ?extensions: ResizeArray<string>, ?visit: Yargs.index.yargs_.RequireDirectoryOptions.visit, ?``include``: U2<RegExp, (string -> bool)>, ?exclude: U2<RegExp, (string -> bool)>) : RequireDirectoryOptions = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -1898,7 +1693,7 @@ module Yargs =
                 /// <summary>
                 /// string or array of strings, alias(es) for the canonical option key, see <c>alias()</c>
                 /// </summary>
-                abstract member alias: U2<string, ReadonlyArray<string>> option with get, set
+                abstract member alias: U2<string, ResizeArray<string>> option with get, set
                 /// <summary>
                 /// boolean, interpret option as an array, see <c>array()</c>
                 /// </summary>
@@ -1926,7 +1721,7 @@ module Yargs =
                 /// <summary>
                 /// string or object, require certain keys not to be set, see <c>conflicts()</c>
                 /// </summary>
-                abstract member conflicts: U3<string, ReadonlyArray<string>, Options.conflicts.U3.Case3> option with get, set
+                abstract member conflicts: U3<string, ResizeArray<string>, Yargs.index.yargs_.Options.conflicts.U3.Case3> option with get, set
                 /// <summary>
                 /// boolean, interpret option as a count of boolean flags, see <c>count()</c>
                 /// </summary>
@@ -1980,7 +1775,7 @@ module Yargs =
                 /// <summary>
                 /// string or object, require certain keys to be set, see <c>implies()</c>
                 /// </summary>
-                abstract member implies: U3<string, ReadonlyArray<string>, Options.implies.U3.Case3> option with get, set
+                abstract member implies: U3<string, ResizeArray<string>, Yargs.index.yargs_.Options.implies.U3.Case3> option with get, set
                 /// <summary>
                 /// number, specify how many arguments should be consumed for the option, see <c>nargs()</c>
                 /// </summary>
@@ -2009,9 +1804,9 @@ module Yargs =
                 /// boolean, interpret option as a string, see <c>string()</c>
                 /// </summary>
                 abstract member string: bool option with get, set
-                abstract member ``type``: Options.``type`` option with get, set
+                abstract member ``type``: Yargs.index.yargs_.Options.``type`` option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (?alias: U2<string, ReadonlyArray<string>>, ?array: bool, ?boolean: bool, ?choices: Yargs.index.yargs_.Choices, ?coerce: (obj -> unit), ?config: bool, ?configParser: (string -> obj), ?conflicts: U3<string, ReadonlyArray<string>, Options.conflicts.U3.Case3>, ?count: bool, ?``default``: obj, ?defaultDescription: string, ?demand: U2<bool, string>, ?deprecate: U2<bool, string>, ?deprecated: U2<bool, string>, ?demandOption: U2<bool, string>, ?desc: string, ?describe: string, ?description: string, ?``global``: bool, ?group: string, ?hidden: bool, ?implies: U3<string, ReadonlyArray<string>, Options.implies.U3.Case3>, ?nargs: float, ?normalize: bool, ?number: bool, ?require: U2<bool, string>, ?required: U2<bool, string>, ?requiresArg: bool, ?skipValidation: bool, ?string: bool, ?``type``: Options.``type``) : Options = nativeOnly
+                static member Create (?alias: U2<string, ResizeArray<string>>, ?array: bool, ?boolean: bool, ?choices: Yargs.index.yargs_.Choices, ?coerce: (obj -> unit), ?config: bool, ?configParser: (string -> obj), ?conflicts: U3<string, ResizeArray<string>, Yargs.index.yargs_.Options.conflicts.U3.Case3>, ?count: bool, ?``default``: obj, ?defaultDescription: string, ?demand: U2<bool, string>, ?deprecate: U2<bool, string>, ?deprecated: U2<bool, string>, ?demandOption: U2<bool, string>, ?desc: string, ?describe: string, ?description: string, ?``global``: bool, ?group: string, ?hidden: bool, ?implies: U3<string, ResizeArray<string>, Yargs.index.yargs_.Options.implies.U3.Case3>, ?nargs: float, ?normalize: bool, ?number: bool, ?require: U2<bool, string>, ?required: U2<bool, string>, ?requiresArg: bool, ?skipValidation: bool, ?string: bool, ?``type``: Yargs.index.yargs_.Options.``type``) : Options = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -2019,7 +1814,7 @@ module Yargs =
                 /// <summary>
                 /// string or array of strings, see <c>alias()</c>
                 /// </summary>
-                abstract member alias: U2<string, ReadonlyArray<string>> option with get, set
+                abstract member alias: U2<string, ResizeArray<string>> option with get, set
                 /// <summary>
                 /// boolean, interpret option as an array, see <c>array()</c>
                 /// </summary>
@@ -2035,7 +1830,7 @@ module Yargs =
                 /// <summary>
                 /// string or object, require certain keys not to be set, see <c>conflicts()</c>
                 /// </summary>
-                abstract member conflicts: U3<string, ReadonlyArray<string>, PositionalOptions.conflicts.U3.Case3> option with get, set
+                abstract member conflicts: U3<string, ResizeArray<string>, Yargs.index.yargs_.PositionalOptions.conflicts.U3.Case3> option with get, set
                 /// <summary>
                 /// value, set a default value for the option, see <c>default()</c>
                 /// </summary>
@@ -2059,14 +1854,14 @@ module Yargs =
                 /// <summary>
                 /// string or object, require certain keys to be set, see <c>implies()</c>
                 /// </summary>
-                abstract member implies: U3<string, ReadonlyArray<string>, PositionalOptions.implies.U3.Case3> option with get, set
+                abstract member implies: U3<string, ResizeArray<string>, Yargs.index.yargs_.PositionalOptions.implies.U3.Case3> option with get, set
                 /// <summary>
                 /// boolean, apply path.normalize() to the option, see normalize()
                 /// </summary>
                 abstract member normalize: bool option with get, set
                 abstract member ``type``: Yargs.index.yargs_.PositionalOptionsType option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (?alias: U2<string, ReadonlyArray<string>>, ?array: bool, ?choices: Yargs.index.yargs_.Choices, ?coerce: (obj -> unit), ?conflicts: U3<string, ReadonlyArray<string>, PositionalOptions.conflicts.U3.Case3>, ?``default``: obj, ?demandOption: U2<bool, string>, ?desc: string, ?describe: string, ?description: string, ?implies: U3<string, ReadonlyArray<string>, PositionalOptions.implies.U3.Case3>, ?normalize: bool, ?``type``: Yargs.index.yargs_.PositionalOptionsType) : PositionalOptions = nativeOnly
+                static member Create (?alias: U2<string, ResizeArray<string>>, ?array: bool, ?choices: Yargs.index.yargs_.Choices, ?coerce: (obj -> unit), ?conflicts: U3<string, ResizeArray<string>, Yargs.index.yargs_.PositionalOptions.conflicts.U3.Case3>, ?``default``: obj, ?demandOption: U2<bool, string>, ?desc: string, ?describe: string, ?description: string, ?implies: U3<string, ResizeArray<string>, Yargs.index.yargs_.PositionalOptions.implies.U3.Case3>, ?normalize: bool, ?``type``: Yargs.index.yargs_.PositionalOptionsType) : PositionalOptions = nativeOnly
 
             /// <summary>
             /// Convert literal string types like 'foo-bar' to 'FooBar'
@@ -2103,27 +1898,71 @@ module Yargs =
             type Defined<'T, 'K when 'K :> obj> =
                 interface end
 
-            /// <summary>
-            /// Convert T to T[] and T | undefined to T[] | undefined
-            /// </summary>
+            [<RequireQualifiedAccess>]
+            [<Erase>]
             type ToArray<'T> =
-                U2<ResizeArray<'T>, obj>
+                | Case1 of ResizeArray<'T>
+                | Case2 of obj
 
-            /// <summary>
-            /// Gives string[] if T is an array type, otherwise string. Preserves | undefined.
-            /// </summary>
-            [<AllowNullLiteral>]
-            [<Interface>]
+                [<Emit("$0")>]
+                static member op_Implicit(value: ResizeArray<'T>) : ToArray<'T> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: ResizeArray<'T>) : ToArray<'T> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: obj) : ToArray<'T> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: obj) : ToArray<'T> = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: ResizeArray<'T> = nativeOnly
+
+                /// Unchecked, the value as <c>Case2</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase2: obj = nativeOnly
+
+            [<RequireQualifiedAccess>]
+            [<Erase>]
             type ToString<'T> =
-                interface end
+                | Case1 of obj
+                | Case2 of obj
 
-            /// <summary>
-            /// Gives number[] if T is an array type, otherwise number. Preserves | undefined.
-            /// </summary>
-            [<AllowNullLiteral>]
-            [<Interface>]
+                [<Emit("$0")>]
+                static member op_Implicit(value: obj) : ToString<'T> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: obj) : ToString<'T> = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: obj = nativeOnly
+
+                /// Unchecked, the value as <c>Case2</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase2: obj = nativeOnly
+
+            [<RequireQualifiedAccess>]
+            [<Erase>]
             type ToNumber<'T> =
-                interface end
+                | Case1 of obj
+                | Case2 of obj
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: obj) : ToNumber<'T> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: obj) : ToNumber<'T> = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: obj = nativeOnly
+
+                /// Unchecked, the value as <c>Case2</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase2: obj = nativeOnly
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -2172,7 +2011,7 @@ module Yargs =
                 /// <summary>
                 /// array of strings (or a single string) representing aliases of <c>exports.command</c>, positional args defined in an alias are ignored
                 /// </summary>
-                abstract member aliases: U2<ReadonlyArray<string>, string> option with get, set
+                abstract member aliases: U2<ResizeArray<string>, string> option with get, set
                 /// <summary>
                 /// object declaring the options the command accepts, or a function accepting and returning a yargs instance
                 /// </summary>
@@ -2180,7 +2019,7 @@ module Yargs =
                 /// <summary>
                 /// string (or array of strings) that executes this command when given on the command line, first string may contain positional args
                 /// </summary>
-                abstract member command: U2<ReadonlyArray<string>, string> option with get, set
+                abstract member command: U2<ResizeArray<string>, string> option with get, set
                 /// <summary>
                 /// boolean (or string) to show deprecation notice
                 /// </summary>
@@ -2194,13 +2033,47 @@ module Yargs =
                 /// </summary>
                 abstract member handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>) with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>), ?aliases: U2<ReadonlyArray<string>, string>, ?builder: Yargs.index.yargs_.CommandBuilder<'T, 'U>, ?command: U2<ReadonlyArray<string>, string>, ?deprecated: U2<bool, string>, ?describe: U2<string, bool>) : CommandModule<'T, 'U> = nativeOnly
+                static member Create (handler: (Yargs.index.yargs_.ArgumentsCamelCase<'U> -> U2<unit, JS.Promise<unit>>), ?aliases: U2<ResizeArray<string>, string>, ?builder: Yargs.index.yargs_.CommandBuilder<'T, 'U>, ?command: U2<ResizeArray<string>, string>, ?deprecated: U2<bool, string>, ?describe: U2<string, bool>) : CommandModule<'T, 'U> = nativeOnly
 
             type ParseCallback<'T> =
                 delegate of err: Exception option * argv: Yargs.index.yargs_.ArgumentsCamelCase<'T> * output: string -> U2<unit, JS.Promise<unit>>
 
+            [<RequireQualifiedAccess>]
+            [<Erase>]
             type CommandBuilder<'T, 'U> =
-                U3<CommandBuilder.U3.Case1, (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>), (Yargs.index.yargs_.Argv<'T> -> unit)>
+                | Case1 of Yargs.index.yargs_.CommandBuilder.Cases.Case1
+                | Case2 of (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>)
+                | Case3 of (Yargs.index.yargs_.Argv<'T> -> unit)
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: Yargs.index.yargs_.CommandBuilder.Cases.Case1) : CommandBuilder<'T, 'U> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: Yargs.index.yargs_.CommandBuilder.Cases.Case1) : CommandBuilder<'T, 'U> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>)) : CommandBuilder<'T, 'U> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>)) : CommandBuilder<'T, 'U> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_Implicit(value: (Yargs.index.yargs_.Argv<'T> -> unit)) : CommandBuilder<'T, 'U> = nativeOnly
+
+                [<Emit("$0")>]
+                static member op_ErasedCast(value: (Yargs.index.yargs_.Argv<'T> -> unit)) : CommandBuilder<'T, 'U> = nativeOnly
+
+                /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase1: Yargs.index.yargs_.CommandBuilder.Cases.Case1 = nativeOnly
+
+                /// Unchecked, the value as <c>Case2</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase2: (Yargs.index.yargs_.Argv<'T> -> Yargs.index.yargs_.Argv<'U>) = nativeOnly
+
+                /// Unchecked, the value as <c>Case3</c> whatever case it holds
+                [<Emit("$0")>]
+                member _.AsCase3: (Yargs.index.yargs_.Argv<'T> -> unit) = nativeOnly
 
             type SyncCompletionFunction =
                 delegate of current: string * argv: obj -> ResizeArray<string>
@@ -2297,12 +2170,12 @@ module Yargs =
                     [<Interface>]
                     type aliases =
                         [<EmitIndexer>]
-                        abstract member Item: shortName: string -> U2<string, ReadonlyArray<string>> with get, set
+                        abstract member Item: shortName: string -> U2<string, ResizeArray<string>> with get, set
 
                 module check =
 
                     type func<'T> =
-                        delegate of argv: Yargs.index.yargs_.Arguments<'T> * aliases: Argv.check.func.aliases -> unit
+                        delegate of argv: Yargs.index.yargs_.Arguments<'T> * aliases: Yargs.index.yargs_.Argv.check.func.aliases -> unit
 
                     module func =
 
@@ -2318,7 +2191,7 @@ module Yargs =
                     [<Interface>]
                     type conflicts =
                         [<EmitIndexer>]
-                        abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
+                        abstract member Item: key: string -> U2<string, ResizeArray<string>> with get, set
 
                 module describe =
 
@@ -2333,13 +2206,6 @@ module Yargs =
                     type func<'T> =
                         delegate of msg: string * err: Exception * yargs: Yargs.index.yargs_.Argv<'T> -> unit
 
-                    module func =
-
-                        module U2 =
-
-                            type Case1<'T> =
-                                delegate of msg: string * err: Exception * yargs: Yargs.index.yargs_.Argv<'T> -> unit
-
                 module getCompletion =
 
                     type ``done`` =
@@ -2351,7 +2217,7 @@ module Yargs =
                     [<Interface>]
                     type implies =
                         [<EmitIndexer>]
-                        abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
+                        abstract member Item: key: string -> U2<string, ResizeArray<string>> with get, set
 
                 module nargs =
 
@@ -2458,6 +2324,10 @@ module Yargs =
                         [<Emit("$0")>]
                         static member op_ErasedCast(value: (string -> unit)) : level = nativeOnly
 
+                        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+                        [<Emit("$0")>]
+                        member _.AsCase1: (string -> unit) = nativeOnly
+
                 module updateLocale =
 
                     [<AllowNullLiteral>]
@@ -2498,7 +2368,7 @@ module Yargs =
                         [<Interface>]
                         type Case3 =
                             [<EmitIndexer>]
-                            abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
+                            abstract member Item: key: string -> U2<string, ResizeArray<string>> with get, set
 
                 module implies =
 
@@ -2508,7 +2378,7 @@ module Yargs =
                         [<Interface>]
                         type Case3 =
                             [<EmitIndexer>]
-                            abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
+                            abstract member Item: key: string -> U2<string, ResizeArray<string>> with get, set
 
             module PositionalOptions =
 
@@ -2520,7 +2390,7 @@ module Yargs =
                         [<Interface>]
                         type Case3 =
                             [<EmitIndexer>]
-                            abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
+                            abstract member Item: key: string -> U2<string, ResizeArray<string>> with get, set
 
                 module implies =
 
@@ -2530,11 +2400,11 @@ module Yargs =
                         [<Interface>]
                         type Case3 =
                             [<EmitIndexer>]
-                            abstract member Item: key: string -> U2<string, ReadonlyArray<string>> with get, set
+                            abstract member Item: key: string -> U2<string, ResizeArray<string>> with get, set
 
             module CommandBuilder =
 
-                module U3 =
+                module Cases =
 
                     [<AllowNullLiteral>]
                     [<Interface>]
@@ -2563,8 +2433,6 @@ module YargsParser =
         static member yargsParser (argv: string, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.Arguments = nativeOnly
         [<ImportDefault("yargs-parser"); Emit("$0($1...)")>]
         static member yargsParser (argv: ResizeArray<string>, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.Arguments = nativeOnly
-        [<ImportDefault("yargs-parser"); Emit("$0($1...)")>]
-        static member yargsParser (argv: U2<string, ResizeArray<string>>, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.Arguments = nativeOnly
         [<ImportDefault("yargs-parser"); Emit("$0.detailed($1...)")>]
         static member detailed (argv: U2<string, ResizeArray<string>>, ?opts: YargsParser.yargsParser_.Options) : YargsParser.yargsParser_.DetailedArguments = nativeOnly
         [<ImportDefault("yargs-parser"); Emit("$0.camelCase($1...)")>]
@@ -2606,17 +2474,17 @@ module YargsParser =
             /// <summary>
             /// The inferred list of aliases built by combining lists in opts.alias.
             /// </summary>
-            abstract member aliases: DetailedArguments.aliases with get, set
+            abstract member aliases: YargsParser.yargsParser_.DetailedArguments.aliases with get, set
             /// <summary>
             /// Any new aliases added via camel-case expansion.
             /// </summary>
-            abstract member newAliases: DetailedArguments.newAliases with get, set
+            abstract member newAliases: YargsParser.yargsParser_.DetailedArguments.newAliases with get, set
             /// <summary>
             /// The configuration loaded from the yargs stanza in package.json.
             /// </summary>
             abstract member configuration: YargsParser.yargsParser_.Configuration with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (argv: YargsParser.yargsParser_.Arguments, aliases: DetailedArguments.aliases, newAliases: DetailedArguments.newAliases, configuration: YargsParser.yargsParser_.Configuration, ?error: Exception) : DetailedArguments = nativeOnly
+            static member Create (argv: YargsParser.yargsParser_.Arguments, aliases: YargsParser.yargsParser_.DetailedArguments.aliases, newAliases: YargsParser.yargsParser_.DetailedArguments.newAliases, configuration: YargsParser.yargsParser_.Configuration, ?error: Exception) : DetailedArguments = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2702,13 +2570,13 @@ module YargsParser =
             /// <summary>
             /// An object representing the set of aliases for a key: <c>{ alias: { foo: ['f']} }</c>.
             /// </summary>
-            abstract member alias: Options.alias option with get, set
+            abstract member alias: YargsParser.yargsParser_.Options.alias option with get, set
             /// <summary>
             /// Indicate that keys should be parsed as an array: <c>{ array: ['foo', 'bar'] }</c>.
             /// Indicate that keys should be parsed as an array and coerced to booleans / numbers:
             /// { array: [ { key: 'foo', boolean: true }, {key: 'bar', number: true} ] }`.
             /// </summary>
-            abstract member array: U2<ResizeArray<string>, ResizeArray<Options.array.U2.Case2>> option with get, set
+            abstract member array: U2<ResizeArray<string>, ResizeArray<YargsParser.yargsParser_.Options.array.U2.Case2>> option with get, set
             /// <summary>
             /// Arguments should be parsed as booleans: <c>{ boolean: ['x', 'y'] }</c>.
             /// </summary>
@@ -2716,16 +2584,16 @@ module YargsParser =
             /// <summary>
             /// Indicate a key that represents a path to a configuration file (this file will be loaded and parsed).
             /// </summary>
-            abstract member config: U3<string, ResizeArray<string>, Options.config.U3.Case3> option with get, set
+            abstract member config: U3<string, ResizeArray<string>, YargsParser.yargsParser_.Options.config.U3.Case3> option with get, set
             /// <summary>
             /// Provide configuration options to the yargs-parser.
             /// </summary>
-            abstract member configuration: Options.configuration option with get, set
+            abstract member configuration: YargsParser.yargsParser_.Options.configuration option with get, set
             /// <summary>
             /// Provide a custom synchronous function that returns a coerced value from the argument provided (or throws an error), e.g.
             /// <c>{ coerce: { foo: function (arg) { return modifiedArg } } }</c>.
             /// </summary>
-            abstract member coerce: Options.coerce option with get, set
+            abstract member coerce: YargsParser.yargsParser_.Options.coerce option with get, set
             /// <summary>
             /// Indicate a key that should be used as a counter, e.g., <c>-vvv = {v: 3}</c>.
             /// </summary>
@@ -2733,7 +2601,7 @@ module YargsParser =
             /// <summary>
             /// Provide default values for keys: <c>{ default: { x: 33, y: 'hello world!' } }</c>.
             /// </summary>
-            abstract member ``default``: Options.``default`` option with get, set
+            abstract member ``default``: YargsParser.yargsParser_.Options.``default`` option with get, set
             /// <summary>
             /// Environment variables (<c>process.env</c>) with the prefix provided should be parsed.
             /// </summary>
@@ -2741,7 +2609,7 @@ module YargsParser =
             /// <summary>
             /// Specify that a key requires n arguments: <c>{ narg: {x: 2} }</c>.
             /// </summary>
-            abstract member narg: Options.narg option with get, set
+            abstract member narg: YargsParser.yargsParser_.Options.narg option with get, set
             /// <summary>
             /// <c>path.normalize()</c> will be applied to values set to this key.
             /// </summary>
@@ -2755,7 +2623,7 @@ module YargsParser =
             /// </summary>
             abstract member number: ResizeArray<string> option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?alias: Options.alias, ?array: U2<ResizeArray<string>, ResizeArray<Options.array.U2.Case2>>, ?boolean: ResizeArray<string>, ?config: U3<string, ResizeArray<string>, Options.config.U3.Case3>, ?configuration: Options.configuration, ?coerce: Options.coerce, ?count: ResizeArray<string>, ?``default``: Options.``default``, ?envPrefix: string, ?narg: Options.narg, ?normalize: ResizeArray<string>, ?string: ResizeArray<string>, ?number: ResizeArray<string>) : Options = nativeOnly
+            static member Create (?alias: YargsParser.yargsParser_.Options.alias, ?array: U2<ResizeArray<string>, ResizeArray<YargsParser.yargsParser_.Options.array.U2.Case2>>, ?boolean: ResizeArray<string>, ?config: U3<string, ResizeArray<string>, YargsParser.yargsParser_.Options.config.U3.Case3>, ?configuration: YargsParser.yargsParser_.Options.configuration, ?coerce: YargsParser.yargsParser_.Options.coerce, ?count: ResizeArray<string>, ?``default``: YargsParser.yargsParser_.Options.``default``, ?envPrefix: string, ?narg: YargsParser.yargsParser_.Options.narg, ?normalize: ResizeArray<string>, ?string: ResizeArray<string>, ?number: ResizeArray<string>) : Options = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2764,12 +2632,10 @@ module YargsParser =
             abstract member Invoke: argv: U2<string, ResizeArray<string>> * ?opts: YargsParser.yargsParser_.Options -> YargsParser.yargsParser_.Arguments
             abstract member detailed: argv: string * ?opts: YargsParser.yargsParser_.Options -> YargsParser.yargsParser_.DetailedArguments
             abstract member detailed: argv: ResizeArray<string> * ?opts: YargsParser.yargsParser_.Options -> YargsParser.yargsParser_.DetailedArguments
-            abstract member detailed: argv: U2<string, ResizeArray<string>> * ?opts: YargsParser.yargsParser_.Options -> YargsParser.yargsParser_.DetailedArguments
             abstract member camelCase: str: string -> string
             abstract member decamelize: str: string * ?joinString: string -> string
             abstract member looksLikeNumber: value: string option -> bool
             abstract member looksLikeNumber: value: float option -> bool
-            abstract member looksLikeNumber: value: U2<string, float> option -> bool
 
         module DetailedArguments =
 

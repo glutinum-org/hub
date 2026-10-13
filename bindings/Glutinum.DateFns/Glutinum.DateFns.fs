@@ -168,64 +168,12 @@ module DateFns =
         /// </returns>
         [<Import("formatDate", "date-fns")>]
         static member formatDate (date: string, formatStr: string, ?options: DateFns.FormatOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>options.locale</c> must contain <c>localize</c> property
-        ///
-        /// <c>options.locale</c> must contain <c>formatLong</c> property
-        ///
-        /// use <c>yyyy</c> instead of <c>YYYY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>yy</c> instead of <c>YY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>d</c> instead of <c>D</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>dd</c> instead of <c>DD</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// format string contains an unescaped latin alphabet character
-        /// </remarks>
-        /// <example>
-        /// // Represent 11 February 2014 in middle-endian format:
-        /// const result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
-        /// //=> '02/11/2014'
-        /// </example>
-        /// <example>
-        /// // Represent 2 July 2014 in Esperanto:
-        /// import { eoLocale } from 'date-fns/locale/eo'
-        /// const result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
-        ///   locale: eoLocale
-        /// })
-        /// //=> '2-a de julio 2014'
-        /// </example>
-        /// <example>
-        /// // Escape string by single quote characters:
-        /// const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
-        /// //=> "3 o'clock"
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="format">
-        /// The string of tokens
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("formatDate", "date-fns")>]
-        static member formatDate (date: DateFns.DateArg<Date>, formatStr: string, ?options: DateFns.FormatOptions) : string = nativeOnly
         [<Import("formatters", "date-fns")>]
-        static member inline formatters: Exports.formatters__.Type = nativeOnly
+        static member inline formatters: DateFns.Exports.formatters__.Type = nativeOnly
         [<Import("lightFormatters", "date-fns")>]
-        static member inline lightFormatters: Exports.lightFormatters__.Type = nativeOnly
+        static member inline lightFormatters: DateFns.Exports.lightFormatters__.Type = nativeOnly
         [<Import("longFormatters", "date-fns")>]
-        static member inline longFormatters: Exports.longFormatters__.Type = nativeOnly
+        static member inline longFormatters: DateFns.Exports.longFormatters__.Type = nativeOnly
         /// <example>
         /// // Add the following duration to 1 September 2014, 10:19:50
         /// const result = add(new Date(2014, 8, 1, 10, 19, 50), {
@@ -374,55 +322,6 @@ module DateFns =
         [<Import("add", "date-fns")>]
         static member add<'DateType, 'ResultDate> (date: string, duration: DateFns.Duration, ?options: DateFns.AddOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add the following duration to 1 September 2014, 10:19:50
-        /// const result = add(new Date(2014, 8, 1, 10, 19, 50), {
-        ///   years: 2,
-        ///   months: 9,
-        ///   weeks: 1,
-        ///   days: 7,
-        ///   hours: 5,
-        ///   minutes: 9,
-        ///   seconds: 30,
-        /// })
-        /// //=> Thu Jun 15 2017 15:29:20
-        /// </example>
-        /// <example>
-        /// // Using Temporal:
-        /// // Add the following duration to 1 September 2014, 10:19:50
-        /// Temporal.PlainDateTime.from("2014-09-01T10:19:50")
-        ///   .add({
-        ///     years: 2,
-        ///     months: 9,
-        ///     weeks: 1,
-        ///     days: 7,
-        ///     hours: 5,
-        ///     minutes: 9,
-        ///     seconds: 30,
-        ///   })
-        ///   .toString();
-        /// //=> "2017-06-15T15:29:20"
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="duration">
-        /// The object with years, months, weeks, days, hours, minutes, and seconds to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the seconds added
-        /// </returns>
-        [<Import("add", "date-fns")>]
-        static member add<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, duration: DateFns.Duration, ?options: DateFns.AddOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 10 business days to 1 September 2014:
         /// const result = addBusinessDays(new Date(2014, 8, 1), 10)
         /// //=> Mon Sep 15 2014 00:00:00 (skipped weekend days)
@@ -497,31 +396,6 @@ module DateFns =
         /// </returns>
         [<Import("addBusinessDays", "date-fns")>]
         static member addBusinessDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Add 10 business days to 1 September 2014:
-        /// const result = addBusinessDays(new Date(2014, 8, 1), 10)
-        /// //=> Mon Sep 15 2014 00:00:00 (skipped weekend days)
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of business days to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the business days added
-        /// </returns>
-        [<Import("addBusinessDays", "date-fns")>]
-        static member addBusinessDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Add 10 days to 1 September 2014:
         /// const result = addDays(new Date(2014, 8, 1), 10)
@@ -616,37 +490,6 @@ module DateFns =
         [<Import("addDays", "date-fns")>]
         static member addDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add 10 days to 1 September 2014:
-        /// const result = addDays(new Date(2014, 8, 1), 10)
-        /// //=> Thu Sep 11 2014 00:00:00
-        /// </example>
-        /// <example>
-        /// // Using Temporal:
-        /// // Add 10 days to 1 September 2014:
-        /// Temporal.PlainDate.from("2014-09-01").add({ days: 10 }).toString();
-        /// //=> "2014-09-11"
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of days to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the days added
-        /// </returns>
-        [<Import("addDays", "date-fns")>]
-        static member addDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 2 hours to 10 July 2014 23:00:00:
         /// const result = addHours(new Date(2014, 6, 10, 23, 0), 2)
         /// //=> Fri Jul 11 2014 01:00:00
@@ -722,31 +565,6 @@ module DateFns =
         [<Import("addHours", "date-fns")>]
         static member addHours<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add 2 hours to 10 July 2014 23:00:00:
-        /// const result = addHours(new Date(2014, 6, 10, 23, 0), 2)
-        /// //=> Fri Jul 11 2014 01:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of hours to be added
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the hours added
-        /// </returns>
-        [<Import("addHours", "date-fns")>]
-        static member addHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 5 ISO week-numbering years to 2 July 2010:
         /// const result = addISOWeekYears(new Date(2010, 6, 2), 5)
         /// //=> Fri Jun 26 2015 00:00:00
@@ -812,28 +630,6 @@ module DateFns =
         /// </returns>
         [<Import("addISOWeekYears", "date-fns")>]
         static member addISOWeekYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Add 5 ISO week-numbering years to 2 July 2010:
-        /// const result = addISOWeekYears(new Date(2010, 6, 2), 5)
-        /// //=> Fri Jun 26 2015 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of ISO week-numbering years to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the ISO week-numbering years added
-        /// </returns>
-        [<Import("addISOWeekYears", "date-fns")>]
-        static member addISOWeekYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Add 750 milliseconds to 10 July 2014 12:45:30.000:
         /// const result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
@@ -910,31 +706,6 @@ module DateFns =
         [<Import("addMilliseconds", "date-fns")>]
         static member addMilliseconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add 750 milliseconds to 10 July 2014 12:45:30.000:
-        /// const result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
-        /// //=> Thu Jul 10 2014 12:45:30.750
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of milliseconds to be added.
-        /// </param>
-        /// <param name="options">
-        /// The options object
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the milliseconds added
-        /// </returns>
-        [<Import("addMilliseconds", "date-fns")>]
-        static member addMilliseconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 30 minutes to 10 July 2014 12:00:00:
         /// const result = addMinutes(new Date(2014, 6, 10, 12, 0), 30)
         /// //=> Thu Jul 10 2014 12:30:00
@@ -1009,31 +780,6 @@ module DateFns =
         /// </returns>
         [<Import("addMinutes", "date-fns")>]
         static member addMinutes<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Add 30 minutes to 10 July 2014 12:00:00:
-        /// const result = addMinutes(new Date(2014, 6, 10, 12, 0), 30)
-        /// //=> Thu Jul 10 2014 12:30:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of minutes to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the minutes added
-        /// </returns>
-        [<Import("addMinutes", "date-fns")>]
-        static member addMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Add 5 months to 1 September 2014:
         /// const result = addMonths(new Date(2014, 8, 1), 5)
@@ -1122,35 +868,6 @@ module DateFns =
         [<Import("addMonths", "date-fns")>]
         static member addMonths<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add 5 months to 1 September 2014:
-        /// const result = addMonths(new Date(2014, 8, 1), 5)
-        /// //=> Sun Feb 01 2015 00:00:00
-        ///
-        /// // Add one month to 30 January 2023:
-        /// const result = addMonths(new Date(2023, 0, 30), 1)
-        /// //=> Tue Feb 28 2023 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of months to be added.
-        /// </param>
-        /// <param name="options">
-        /// The options object
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the months added
-        /// </returns>
-        [<Import("addMonths", "date-fns")>]
-        static member addMonths<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 1 quarter to 1 September 2014:
         /// const result = addQuarters(new Date(2014, 8, 1), 1)
         /// //=; Mon Dec 01 2014 00:00:00
@@ -1225,31 +942,6 @@ module DateFns =
         /// </returns>
         [<Import("addQuarters", "date-fns")>]
         static member addQuarters<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Add 1 quarter to 1 September 2014:
-        /// const result = addQuarters(new Date(2014, 8, 1), 1)
-        /// //=; Mon Dec 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of quarters to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the quarters added
-        /// </returns>
-        [<Import("addQuarters", "date-fns")>]
-        static member addQuarters<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Add 30 seconds to 10 July 2014 12:45:00:
         /// const result = addSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
@@ -1326,31 +1018,6 @@ module DateFns =
         [<Import("addSeconds", "date-fns")>]
         static member addSeconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add 30 seconds to 10 July 2014 12:45:00:
-        /// const result = addSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
-        /// //=> Thu Jul 10 2014 12:45:30
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of seconds to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the seconds added
-        /// </returns>
-        [<Import("addSeconds", "date-fns")>]
-        static member addSeconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 4 weeks to 1 September 2014:
         /// const result = addWeeks(new Date(2014, 8, 1), 4)
         /// //=> Mon Sep 29 2014 00:00:00
@@ -1426,31 +1093,6 @@ module DateFns =
         [<Import("addWeeks", "date-fns")>]
         static member addWeeks<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Add 4 weeks to 1 September 2014:
-        /// const result = addWeeks(new Date(2014, 8, 1), 4)
-        /// //=> Mon Sep 29 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of weeks to be added.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the weeks added
-        /// </returns>
-        [<Import("addWeeks", "date-fns")>]
-        static member addWeeks<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Add 5 years to 1 September 2014:
         /// const result = addYears(new Date(2014, 8, 1), 5)
         /// //=> Sun Sep 01 2019 00:00:00
@@ -1525,31 +1167,6 @@ module DateFns =
         /// </returns>
         [<Import("addYears", "date-fns")>]
         static member addYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.AddYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Add 5 years to 1 September 2014:
-        /// const result = addYears(new Date(2014, 8, 1), 5)
-        /// //=> Sun Sep 01 2019 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of years to be added.
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the years added
-        /// </returns>
-        [<Import("addYears", "date-fns")>]
-        static member addYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.AddYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // For overlapping time intervals:
         /// areIntervalsOverlapping(
@@ -1694,28 +1311,6 @@ module DateFns =
         /// </returns>
         [<Import("closestIndexTo", "date-fns")>]
         static member closestIndexTo (dateToCompare: string, dates: ResizeArray<DateFns.DateArg<Date>>) : float option = nativeOnly
-        /// <example>
-        /// // Which date is closer to 6 September 2015?
-        /// const dateToCompare = new Date(2015, 8, 6)
-        /// const datesArray = [
-        ///   new Date(2015, 0, 1),
-        ///   new Date(2016, 0, 1),
-        ///   new Date(2017, 0, 1)
-        /// ]
-        /// const result = closestIndexTo(dateToCompare, datesArray)
-        /// //=> 1
-        /// </example>
-        /// <param name="dateToCompare">
-        /// The date to compare with
-        /// </param>
-        /// <param name="dates">
-        /// The array to search
-        /// </param>
-        /// <returns>
-        /// An index of the date closest to the given date or undefined if no valid value is given
-        /// </returns>
-        [<Import("closestIndexTo", "date-fns")>]
-        static member closestIndexTo (dateToCompare: DateFns.DateArg<Date>, dates: ResizeArray<DateFns.DateArg<Date>>) : float option = nativeOnly
         /// <example>
         /// // Which date is closer to 6 September 2015: 1 January 2000 or 1 January 2030?
         /// const dateToCompare = new Date(2015, 8, 6)
@@ -2007,35 +1602,6 @@ module DateFns =
         [<Import("compareAsc", "date-fns")>]
         static member compareAsc (dateLeft: string, dateRight: string) : float = nativeOnly
         /// <example>
-        /// // Compare 11 February 1987 and 10 July 1989:
-        /// const result = compareAsc(new Date(1987, 1, 11), new Date(1989, 6, 10))
-        /// //=> -1
-        /// </example>
-        /// <example>
-        /// // Sort the array of dates:
-        /// const result = [
-        ///   new Date(1995, 6, 2),
-        ///   new Date(1987, 1, 11),
-        ///   new Date(1989, 6, 10)
-        /// ].sort(compareAsc)
-        /// //=> [
-        /// //   Wed Feb 11 1987 00:00:00,
-        /// //   Mon Jul 10 1989 00:00:00,
-        /// //   Sun Jul 02 1995 00:00:00
-        /// // ]
-        /// </example>
-        /// <param name="dateLeft">
-        /// The first date to compare
-        /// </param>
-        /// <param name="dateRight">
-        /// The second date to compare
-        /// </param>
-        /// <returns>
-        /// The result of the comparison
-        /// </returns>
-        [<Import("compareAsc", "date-fns")>]
-        static member compareAsc (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>) : float = nativeOnly
-        /// <example>
         /// // Compare 11 February 1987 and 10 July 1989 reverse chronologically:
         /// const result = compareDesc(new Date(1987, 1, 11), new Date(1989, 6, 10))
         /// //=> 1
@@ -2296,35 +1862,6 @@ module DateFns =
         /// </returns>
         [<Import("compareDesc", "date-fns")>]
         static member compareDesc (dateLeft: string, dateRight: string) : float = nativeOnly
-        /// <example>
-        /// // Compare 11 February 1987 and 10 July 1989 reverse chronologically:
-        /// const result = compareDesc(new Date(1987, 1, 11), new Date(1989, 6, 10))
-        /// //=> 1
-        /// </example>
-        /// <example>
-        /// // Sort the array of dates in reverse chronological order:
-        /// const result = [
-        ///   new Date(1995, 6, 2),
-        ///   new Date(1987, 1, 11),
-        ///   new Date(1989, 6, 10)
-        /// ].sort(compareDesc)
-        /// //=> [
-        /// //   Sun Jul 02 1995 00:00:00,
-        /// //   Mon Jul 10 1989 00:00:00,
-        /// //   Wed Feb 11 1987 00:00:00
-        /// // ]
-        /// </example>
-        /// <param name="dateLeft">
-        /// The first date to compare
-        /// </param>
-        /// <param name="dateRight">
-        /// The second date to compare
-        /// </param>
-        /// <returns>
-        /// The result of the comparison
-        /// </returns>
-        [<Import("compareDesc", "date-fns")>]
-        static member compareDesc (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>) : float = nativeOnly
         [<Import("daysInWeek", "date-fns/constants")>]
         static member inline daysInWeek: float = nativeOnly
         [<Import("daysInYear", "date-fns/constants")>]
@@ -2692,31 +2229,6 @@ module DateFns =
         [<Import("constructFrom", "date-fns")>]
         static member constructFrom<'ResultDate> (date: DateFns.ContextFn<'ResultDate> option, value: string) : 'ResultDate = nativeOnly
         /// <example>
-        /// import { constructFrom } from "./constructFrom/date-fns";
-        ///
-        /// // A function that clones a date preserving the original type
-        /// function cloneDate<DateType extends Date>(date: DateType): DateType {
-        ///   return constructFrom(
-        ///     date, // Use constructor from the given date
-        ///     date.getTime() // Use the date value to create a new date
-        ///   );
-        /// }
-        /// </example>
-        /// <param name="date">
-        /// The reference date to take constructor from
-        /// </param>
-        /// <param name="value">
-        /// The value to create the date
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <returns>
-        /// Date initialized using the given date and value
-        /// </returns>
-        [<Import("constructFrom", "date-fns")>]
-        static member constructFrom<'ResultDate> (date: U2<DateFns.DateArg<U2<Date, DateFns.ConstructableDate>>, DateFns.ContextFn<'ResultDate>> option, value: DateFns.DateArg<Date>) : 'ResultDate = nativeOnly
-        /// <example>
         /// import { constructNow, isSameDay } from 'date-fns'
         ///
         /// function isToday<DateType extends Date>(
@@ -2792,25 +2304,6 @@ module DateFns =
         /// </returns>
         [<Import("constructNow", "date-fns")>]
         static member constructNow<'DateType, 'ResultDate> (date: DateFns.ContextFn<'ResultDate> option) : 'ResultDate = nativeOnly
-        /// <example>
-        /// import { constructNow, isSameDay } from 'date-fns'
-        ///
-        /// function isToday<DateType extends Date>(
-        ///   date: DateArg<DateType>,
-        /// ): boolean {
-        ///   // If we were to use <c>new Date()</c> directly, the function would  behave
-        ///   // differently in different timezones and return false for the same date.
-        ///   return isSameDay(date, constructNow(date));
-        /// }
-        /// </example>
-        /// <param name="date">
-        /// The reference date to take constructor from
-        /// </param>
-        /// <returns>
-        /// Current date initialized using the given date constructor
-        /// </returns>
-        [<Import("constructNow", "date-fns")>]
-        static member constructNow<'DateType, 'ResultDate> (date: U2<DateFns.DateArg<'DateType>, DateFns.ContextFn<'ResultDate>> option) : 'ResultDate = nativeOnly
         /// <example>
         /// // Convert 14 days to weeks:
         /// const result = daysToWeeks(14)
@@ -3253,53 +2746,6 @@ module DateFns =
         [<Import("differenceInBusinessDays", "date-fns")>]
         static member differenceInBusinessDays (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInBusinessDaysOptions) : float = nativeOnly
         /// <example>
-        /// // How many business days are between
-        /// // 10 January 2014 and 20 July 2014?
-        /// const result = differenceInBusinessDays(
-        ///   new Date(2014, 6, 20),
-        ///   new Date(2014, 0, 10)
-        /// )
-        /// //=> 136
-        ///
-        /// // How many business days are between
-        /// // 30 November 2021 and 1 November 2021?
-        /// const result = differenceInBusinessDays(
-        ///   new Date(2021, 10, 30),
-        ///   new Date(2021, 10, 1)
-        /// )
-        /// //=> 21
-        ///
-        /// // How many business days are between
-        /// // 1 November 2021 and 1 December 2021?
-        /// const result = differenceInBusinessDays(
-        ///   new Date(2021, 10, 1),
-        ///   new Date(2021, 11, 1)
-        /// )
-        /// //=> -22
-        ///
-        /// // How many business days are between
-        /// // 1 November 2021 and 1 November 2021 ?
-        /// const result = differenceInBusinessDays(
-        ///   new Date(2021, 10, 1),
-        ///   new Date(2021, 10, 1)
-        /// )
-        /// //=> 0
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of business days
-        /// </returns>
-        [<Import("differenceInBusinessDays", "date-fns")>]
-        static member differenceInBusinessDays (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInBusinessDaysOptions) : float = nativeOnly
-        /// <example>
         /// // How many calendar days are between
         /// // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
         /// const result = differenceInCalendarDays(
@@ -3570,36 +3016,6 @@ module DateFns =
         [<Import("differenceInCalendarDays", "date-fns")>]
         static member differenceInCalendarDays (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarDaysOptions) : float = nativeOnly
         /// <example>
-        /// // How many calendar days are between
-        /// // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
-        /// const result = differenceInCalendarDays(
-        ///   new Date(2012, 6, 2, 0, 0),
-        ///   new Date(2011, 6, 2, 23, 0)
-        /// )
-        /// //=> 366
-        /// // How many calendar days are between
-        /// // 2 July 2011 23:59:00 and 3 July 2011 00:01:00?
-        /// const result = differenceInCalendarDays(
-        ///   new Date(2011, 6, 3, 0, 1),
-        ///   new Date(2011, 6, 2, 23, 59)
-        /// )
-        /// //=> 1
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// The options object
-        /// </param>
-        /// <returns>
-        /// The number of calendar days
-        /// </returns>
-        [<Import("differenceInCalendarDays", "date-fns")>]
-        static member differenceInCalendarDays (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarDaysOptions) : float = nativeOnly
-        /// <example>
         /// // How many calendar ISO week-numbering years are 1 January 2010 and 1 January 2012?
         /// const result = differenceInCalendarISOWeekYears(
         ///   new Date(2012, 0, 1),
@@ -3797,28 +3213,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInCalendarISOWeekYears", "date-fns")>]
         static member differenceInCalendarISOWeekYears (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarISOWeekYearsOptions) : float = nativeOnly
-        /// <example>
-        /// // How many calendar ISO week-numbering years are 1 January 2010 and 1 January 2012?
-        /// const result = differenceInCalendarISOWeekYears(
-        ///   new Date(2012, 0, 1),
-        ///   new Date(2010, 0, 1)
-        /// )
-        /// //=> 2
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of calendar ISO week-numbering years
-        /// </returns>
-        [<Import("differenceInCalendarISOWeekYears", "date-fns")>]
-        static member differenceInCalendarISOWeekYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarISOWeekYearsOptions) : float = nativeOnly
         /// <example>
         /// // How many calendar ISO weeks are between 6 July 2014 and 21 July 2014?
         /// const result = differenceInCalendarISOWeeks(
@@ -4018,28 +3412,6 @@ module DateFns =
         [<Import("differenceInCalendarISOWeeks", "date-fns")>]
         static member differenceInCalendarISOWeeks (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarISOWeeksOptions) : float = nativeOnly
         /// <example>
-        /// // How many calendar ISO weeks are between 6 July 2014 and 21 July 2014?
-        /// const result = differenceInCalendarISOWeeks(
-        ///   new Date(2014, 6, 21),
-        ///   new Date(2014, 6, 6),
-        /// );
-        /// //=> 3
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of calendar ISO weeks
-        /// </returns>
-        [<Import("differenceInCalendarISOWeeks", "date-fns")>]
-        static member differenceInCalendarISOWeeks (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarISOWeeksOptions) : float = nativeOnly
-        /// <example>
         /// // How many calendar months are between 31 January 2014 and 1 September 2014?
         /// const result = differenceInCalendarMonths(
         ///   new Date(2014, 8, 1),
@@ -4238,28 +3610,6 @@ module DateFns =
         [<Import("differenceInCalendarMonths", "date-fns")>]
         static member differenceInCalendarMonths (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarMonthsOptions) : float = nativeOnly
         /// <example>
-        /// // How many calendar months are between 31 January 2014 and 1 September 2014?
-        /// const result = differenceInCalendarMonths(
-        ///   new Date(2014, 8, 1),
-        ///   new Date(2014, 0, 31)
-        /// )
-        /// //=> 8
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of calendar months
-        /// </returns>
-        [<Import("differenceInCalendarMonths", "date-fns")>]
-        static member differenceInCalendarMonths (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarMonthsOptions) : float = nativeOnly
-        /// <example>
         /// // How many calendar quarters are between 31 December 2013 and 2 July 2014?
         /// const result = differenceInCalendarQuarters(
         ///   new Date(2014, 6, 2),
@@ -4457,28 +3807,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInCalendarQuarters", "date-fns")>]
         static member differenceInCalendarQuarters (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarQuartersOptions) : float = nativeOnly
-        /// <example>
-        /// // How many calendar quarters are between 31 December 2013 and 2 July 2014?
-        /// const result = differenceInCalendarQuarters(
-        ///   new Date(2014, 6, 2),
-        ///   new Date(2013, 11, 31)
-        /// )
-        /// //=> 3
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of calendar quarters
-        /// </returns>
-        [<Import("differenceInCalendarQuarters", "date-fns")>]
-        static member differenceInCalendarQuarters (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarQuartersOptions) : float = nativeOnly
         /// <example>
         /// // How many calendar weeks are between 5 July 2014 and 20 July 2014?
         /// const result = differenceInCalendarWeeks(
@@ -4768,38 +4096,6 @@ module DateFns =
         [<Import("differenceInCalendarWeeks", "date-fns")>]
         static member differenceInCalendarWeeks (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarWeeksOptions) : float = nativeOnly
         /// <example>
-        /// // How many calendar weeks are between 5 July 2014 and 20 July 2014?
-        /// const result = differenceInCalendarWeeks(
-        ///   new Date(2014, 6, 20),
-        ///   new Date(2014, 6, 5)
-        /// )
-        /// //=> 3
-        /// </example>
-        /// <example>
-        /// // If the week starts on Monday,
-        /// // how many calendar weeks are between 5 July 2014 and 20 July 2014?
-        /// const result = differenceInCalendarWeeks(
-        ///   new Date(2014, 6, 20),
-        ///   new Date(2014, 6, 5),
-        ///   { weekStartsOn: 1 }
-        /// )
-        /// //=> 2
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The number of calendar weeks
-        /// </returns>
-        [<Import("differenceInCalendarWeeks", "date-fns")>]
-        static member differenceInCalendarWeeks (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarWeeksOptions) : float = nativeOnly
-        /// <example>
         /// // How many calendar years are between 31 December 2013 and 11 February 2015?
         /// const result = differenceInCalendarYears(
         ///   new Date(2015, 1, 11),
@@ -4997,28 +4293,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInCalendarYears", "date-fns")>]
         static member differenceInCalendarYears (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInCalendarYearsOptions) : float = nativeOnly
-        /// <example>
-        /// // How many calendar years are between 31 December 2013 and 11 February 2015?
-        /// const result = differenceInCalendarYears(
-        ///   new Date(2015, 1, 11),
-        ///   new Date(2013, 11, 31)
-        /// );
-        /// //=> 2
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of calendar years
-        /// </returns>
-        [<Import("differenceInCalendarYears", "date-fns")>]
-        static member differenceInCalendarYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInCalendarYearsOptions) : float = nativeOnly
         /// <example>
         /// // How many full days are between
         /// // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
@@ -5425,51 +4699,6 @@ module DateFns =
         [<Import("differenceInDays", "date-fns")>]
         static member differenceInDays (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInDaysOptions) : float = nativeOnly
         /// <example>
-        /// // How many full days are between
-        /// // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
-        /// const result = differenceInDays(
-        ///   new Date(2012, 6, 2, 0, 0),
-        ///   new Date(2011, 6, 2, 23, 0)
-        /// )
-        /// //=> 365
-        /// </example>
-        /// <example>
-        /// // How many full days are between
-        /// // 2 July 2011 23:59:00 and 3 July 2011 00:01:00?
-        /// const result = differenceInDays(
-        ///   new Date(2011, 6, 3, 0, 1),
-        ///   new Date(2011, 6, 2, 23, 59)
-        /// )
-        /// //=> 0
-        /// </example>
-        /// <example>
-        /// // How many full days are between
-        /// // 1 March 2020 0:00 and 1 June 2020 0:00 ?
-        /// // Note: because local time is used, the
-        /// // result will always be 92 days, even in
-        /// // time zones where DST starts and the
-        /// // period has only 92*24-1 hours.
-        /// const result = differenceInDays(
-        ///   new Date(2020, 5, 1),
-        ///   new Date(2020, 2, 1)
-        /// )
-        /// //=> 92
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of full days according to the local timezone
-        /// </returns>
-        [<Import("differenceInDays", "date-fns")>]
-        static member differenceInDays (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInDaysOptions) : float = nativeOnly
-        /// <example>
         /// // How many hours are between 2 July 2014 06:50:00 and 2 July 2014 19:00:00?
         /// const result = differenceInHours(
         ///   new Date(2014, 6, 2, 19, 0),
@@ -5667,28 +4896,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInHours", "date-fns")>]
         static member differenceInHours (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInHoursOptions) : float = nativeOnly
-        /// <example>
-        /// // How many hours are between 2 July 2014 06:50:00 and 2 July 2014 19:00:00?
-        /// const result = differenceInHours(
-        ///   new Date(2014, 6, 2, 19, 0),
-        ///   new Date(2014, 6, 2, 6, 50)
-        /// )
-        /// //=> 12
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The number of hours
-        /// </returns>
-        [<Import("differenceInHours", "date-fns")>]
-        static member differenceInHours (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInHoursOptions) : float = nativeOnly
         /// <example>
         /// // How many full ISO week-numbering years are between 1 January 2010 and 1 January 2012?
         /// const result = differenceInISOWeekYears(
@@ -5888,28 +5095,6 @@ module DateFns =
         [<Import("differenceInISOWeekYears", "date-fns")>]
         static member differenceInISOWeekYears (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInISOWeekYearsOptions) : float = nativeOnly
         /// <example>
-        /// // How many full ISO week-numbering years are between 1 January 2010 and 1 January 2012?
-        /// const result = differenceInISOWeekYears(
-        ///   new Date(2012, 0, 1),
-        ///   new Date(2010, 0, 1)
-        /// )
-        /// // => 1
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <returns>
-        /// The number of full ISO week-numbering years
-        /// </returns>
-        [<Import("differenceInISOWeekYears", "date-fns")>]
-        static member differenceInISOWeekYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInISOWeekYearsOptions) : float = nativeOnly
-        /// <example>
         /// // How many milliseconds are between
         /// // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
         /// const result = differenceInMilliseconds(
@@ -6089,26 +5274,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInMilliseconds", "date-fns")>]
         static member differenceInMilliseconds (laterDate: string, earlierDate: string) : float = nativeOnly
-        /// <example>
-        /// // How many milliseconds are between
-        /// // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
-        /// const result = differenceInMilliseconds(
-        ///   new Date(2014, 6, 2, 12, 30, 21, 700),
-        ///   new Date(2014, 6, 2, 12, 30, 20, 600)
-        /// )
-        /// //=> 1100
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <returns>
-        /// The number of milliseconds
-        /// </returns>
-        [<Import("differenceInMilliseconds", "date-fns")>]
-        static member differenceInMilliseconds (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>) : float = nativeOnly
         /// <example>
         /// // How many minutes are between 2 July 2014 12:07:59 and 2 July 2014 12:20:00?
         /// const result = differenceInMinutes(
@@ -6380,36 +5545,6 @@ module DateFns =
         [<Import("differenceInMinutes", "date-fns")>]
         static member differenceInMinutes (dateLeft: string, dateRight: string, ?options: DateFns.DifferenceInMinutesOptions) : float = nativeOnly
         /// <example>
-        /// // How many minutes are between 2 July 2014 12:07:59 and 2 July 2014 12:20:00?
-        /// const result = differenceInMinutes(
-        ///   new Date(2014, 6, 2, 12, 20, 0),
-        ///   new Date(2014, 6, 2, 12, 7, 59)
-        /// )
-        /// //=> 12
-        /// </example>
-        /// <example>
-        /// // How many minutes are between 10:01:59 and 10:00:00
-        /// const result = differenceInMinutes(
-        ///   new Date(2000, 0, 1, 10, 0, 0),
-        ///   new Date(2000, 0, 1, 10, 1, 59)
-        /// )
-        /// //=> -1
-        /// </example>
-        /// <param name="dateLeft">
-        /// The later date
-        /// </param>
-        /// <param name="dateRight">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The number of minutes
-        /// </returns>
-        [<Import("differenceInMinutes", "date-fns")>]
-        static member differenceInMinutes (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInMinutesOptions) : float = nativeOnly
-        /// <example>
         /// // How many full months are between 31 January 2014 and 1 September 2014?
         /// const result = differenceInMonths(new Date(2014, 8, 1), new Date(2014, 0, 31))
         /// //=> 7
@@ -6581,25 +5716,6 @@ module DateFns =
         [<Import("differenceInMonths", "date-fns")>]
         static member differenceInMonths (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInMonthsOptions) : float = nativeOnly
         /// <example>
-        /// // How many full months are between 31 January 2014 and 1 September 2014?
-        /// const result = differenceInMonths(new Date(2014, 8, 1), new Date(2014, 0, 31))
-        /// //=> 7
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of full months
-        /// </returns>
-        [<Import("differenceInMonths", "date-fns")>]
-        static member differenceInMonths (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInMonthsOptions) : float = nativeOnly
-        /// <example>
         /// // How many full quarters are between 31 December 2013 and 2 July 2014?
         /// const result = differenceInQuarters(new Date(2014, 6, 2), new Date(2013, 11, 31))
         /// //=> 2
@@ -6770,25 +5886,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInQuarters", "date-fns")>]
         static member differenceInQuarters (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInQuartersOptions) : float = nativeOnly
-        /// <example>
-        /// // How many full quarters are between 31 December 2013 and 2 July 2014?
-        /// const result = differenceInQuarters(new Date(2014, 6, 2), new Date(2013, 11, 31))
-        /// //=> 2
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The number of full quarters
-        /// </returns>
-        [<Import("differenceInQuarters", "date-fns")>]
-        static member differenceInQuarters (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInQuartersOptions) : float = nativeOnly
         /// <example>
         /// // How many seconds are between
         /// // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
@@ -6996,29 +6093,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInSeconds", "date-fns")>]
         static member differenceInSeconds (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInSecondsOptions) : float = nativeOnly
-        /// <example>
-        /// // How many seconds are between
-        /// // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
-        /// const result = differenceInSeconds(
-        ///   new Date(2014, 6, 2, 12, 30, 20, 0),
-        ///   new Date(2014, 6, 2, 12, 30, 7, 999)
-        /// )
-        /// //=> 12
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The number of seconds
-        /// </returns>
-        [<Import("differenceInSeconds", "date-fns")>]
-        static member differenceInSeconds (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInSecondsOptions) : float = nativeOnly
         /// <example>
         /// // How many full weeks are between 5 July 2014 and 20 July 2014?
         /// const result = differenceInWeeks(new Date(2014, 6, 20), new Date(2014, 6, 5))
@@ -7308,38 +6382,6 @@ module DateFns =
         [<Import("differenceInWeeks", "date-fns")>]
         static member differenceInWeeks (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInWeeksOptions) : float = nativeOnly
         /// <example>
-        /// // How many full weeks are between 5 July 2014 and 20 July 2014?
-        /// const result = differenceInWeeks(new Date(2014, 6, 20), new Date(2014, 6, 5))
-        /// //=> 2
-        /// </example>
-        /// <example>
-        /// // How many full weeks are between
-        /// // 1 March 2020 0:00 and 6 June 2020 0:00 ?
-        /// // Note: because local time is used, the
-        /// // result will always be 8 weeks (54 days),
-        /// // even if DST starts and the period has
-        /// // only 54*24-1 hours.
-        /// const result = differenceInWeeks(
-        ///   new Date(2020, 5, 1),
-        ///   new Date(2020, 2, 6)
-        /// )
-        /// //=> 8
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of full weeks
-        /// </returns>
-        [<Import("differenceInWeeks", "date-fns")>]
-        static member differenceInWeeks (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInWeeksOptions) : float = nativeOnly
-        /// <example>
         /// // How many full years are between 31 December 2013 and 11 February 2015?
         /// const result = differenceInYears(new Date(2015, 1, 11), new Date(2013, 11, 31))
         /// //=> 1
@@ -7510,25 +6552,6 @@ module DateFns =
         /// </returns>
         [<Import("differenceInYears", "date-fns")>]
         static member differenceInYears (laterDate: string, earlierDate: string, ?options: DateFns.DifferenceInYearsOptions) : float = nativeOnly
-        /// <example>
-        /// // How many full years are between 31 December 2013 and 11 February 2015?
-        /// const result = differenceInYears(new Date(2015, 1, 11), new Date(2013, 11, 31))
-        /// //=> 1
-        /// </example>
-        /// <param name="laterDate">
-        /// The later date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The earlier date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of full years
-        /// </returns>
-        [<Import("differenceInYears", "date-fns")>]
-        static member differenceInYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.DifferenceInYearsOptions) : float = nativeOnly
         /// <example>
         /// // Each day between 6 October 2014 and 10 October 2014:
         /// const result = eachDayOfInterval({
@@ -7834,37 +6857,6 @@ module DateFns =
         [<Import("eachWeekendOfMonth", "date-fns")>]
         static member eachWeekendOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.EachWeekendOfMonthOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
         /// <example>
-        /// // Lists all Saturdays and Sundays in the given month
-        /// const result = eachWeekendOfMonth(new Date(2022, 1, 1))
-        /// //=> [
-        /// //   Sat Feb 05 2022 00:00:00,
-        /// //   Sun Feb 06 2022 00:00:00,
-        /// //   Sat Feb 12 2022 00:00:00,
-        /// //   Sun Feb 13 2022 00:00:00,
-        /// //   Sat Feb 19 2022 00:00:00,
-        /// //   Sun Feb 20 2022 00:00:00,
-        /// //   Sat Feb 26 2022 00:00:00,
-        /// //   Sun Feb 27 2022 00:00:00
-        /// // ]
-        /// </example>
-        /// <param name="date">
-        /// The given month
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// An array containing all the Saturdays and Sundays
-        /// </returns>
-        [<Import("eachWeekendOfMonth", "date-fns")>]
-        static member eachWeekendOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EachWeekendOfMonthOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
-        /// <example>
         /// // Lists all Saturdays and Sundays in the year
         /// const result = eachWeekendOfYear(new Date(2020, 1, 1))
         /// //=> [
@@ -7948,34 +6940,6 @@ module DateFns =
         /// </returns>
         [<Import("eachWeekendOfYear", "date-fns")>]
         static member eachWeekendOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.EachWeekendOfYearOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
-        /// <example>
-        /// // Lists all Saturdays and Sundays in the year
-        /// const result = eachWeekendOfYear(new Date(2020, 1, 1))
-        /// //=> [
-        /// //   Sat Jan 03 2020 00:00:00,
-        /// //   Sun Jan 04 2020 00:00:00,
-        /// //   ...
-        /// //   Sun Dec 27 2020 00:00:00
-        /// // ]
-        /// ]
-        /// </example>
-        /// <param name="date">
-        /// The given year
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// An array containing all the Saturdays and Sundays
-        /// </returns>
-        [<Import("eachWeekendOfYear", "date-fns")>]
-        static member eachWeekendOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EachWeekendOfYearOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
         /// <example>
         /// // Each year between 6 February 2014 and 10 August 2017:
         /// const result = eachYearOfInterval({
@@ -8073,28 +7037,6 @@ module DateFns =
         [<Import("endOfDay", "date-fns")>]
         static member endOfDay<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The end of a day for 2 September 2014 11:55:00:
-        /// const result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Sep 02 2014 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a day
-        /// </returns>
-        [<Import("endOfDay", "date-fns")>]
-        static member endOfDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The end of a decade for 12 May 1984 00:00:00:
         /// const result = endOfDecade(new Date(1984, 4, 12, 00, 00, 00))
         /// //=> Dec 31 1989 23:59:59.999
@@ -8160,28 +7102,6 @@ module DateFns =
         /// </returns>
         [<Import("endOfDecade", "date-fns")>]
         static member endOfDecade<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The end of a decade for 12 May 1984 00:00:00:
-        /// const result = endOfDecade(new Date(1984, 4, 12, 00, 00, 00))
-        /// //=> Dec 31 1989 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a decade
-        /// </returns>
-        [<Import("endOfDecade", "date-fns")>]
-        static member endOfDecade<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The end of an hour for 2 September 2014 11:55:00:
         /// const result = endOfHour(new Date(2014, 8, 2, 11, 55))
@@ -8249,28 +7169,6 @@ module DateFns =
         [<Import("endOfHour", "date-fns")>]
         static member endOfHour<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The end of an hour for 2 September 2014 11:55:00:
-        /// const result = endOfHour(new Date(2014, 8, 2, 11, 55))
-        /// //=> Tue Sep 02 2014 11:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of an hour
-        /// </returns>
-        [<Import("endOfHour", "date-fns")>]
-        static member endOfHour<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The end of an ISO week for 2 September 2014 11:55:00:
         /// const result = endOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Sun Sep 07 2014 23:59:59.999
@@ -8336,28 +7234,6 @@ module DateFns =
         /// </returns>
         [<Import("endOfISOWeek", "date-fns")>]
         static member endOfISOWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The end of an ISO week for 2 September 2014 11:55:00:
-        /// const result = endOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Sun Sep 07 2014 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of an ISO week
-        /// </returns>
-        [<Import("endOfISOWeek", "date-fns")>]
-        static member endOfISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The end of an ISO week-numbering year for 2 July 2005:
         /// const result = endOfISOWeekYear(new Date(2005, 6, 2))
@@ -8425,28 +7301,6 @@ module DateFns =
         [<Import("endOfISOWeekYear", "date-fns")>]
         static member endOfISOWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The end of an ISO week-numbering year for 2 July 2005:
-        /// const result = endOfISOWeekYear(new Date(2005, 6, 2))
-        /// //=> Sun Jan 01 2006 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ContextDate">
-        /// The <c>Date</c> type of the context function.
-        /// </typeparam>
-        /// <returns>
-        /// The end of an ISO week-numbering year
-        /// </returns>
-        [<Import("endOfISOWeekYear", "date-fns")>]
-        static member endOfISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The end of a minute for 1 December 2014 22:15:45.400:
         /// const result = endOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
         /// //=> Mon Dec 01 2014 22:15:59.999
@@ -8512,28 +7366,6 @@ module DateFns =
         /// </returns>
         [<Import("endOfMinute", "date-fns")>]
         static member endOfMinute<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The end of a minute for 1 December 2014 22:15:45.400:
-        /// const result = endOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
-        /// //=> Mon Dec 01 2014 22:15:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a minute
-        /// </returns>
-        [<Import("endOfMinute", "date-fns")>]
-        static member endOfMinute<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The end of a month for 2 September 2014 11:55:00:
         /// const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
@@ -8601,28 +7433,6 @@ module DateFns =
         [<Import("endOfMonth", "date-fns")>]
         static member endOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The end of a month for 2 September 2014 11:55:00:
-        /// const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Sep 30 2014 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a month
-        /// </returns>
-        [<Import("endOfMonth", "date-fns")>]
-        static member endOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The end of a quarter for 2 September 2014 11:55:00:
         /// const result = endOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Tue Sep 30 2014 23:59:59.999
@@ -8689,28 +7499,6 @@ module DateFns =
         [<Import("endOfQuarter", "date-fns")>]
         static member endOfQuarter<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The end of a quarter for 2 September 2014 11:55:00:
-        /// const result = endOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Sep 30 2014 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a quarter
-        /// </returns>
-        [<Import("endOfQuarter", "date-fns")>]
-        static member endOfQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The end of a second for 1 December 2014 22:15:45.400:
         /// const result = endOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
         /// //=> Mon Dec 01 2014 22:15:45.999
@@ -8776,28 +7564,6 @@ module DateFns =
         /// </returns>
         [<Import("endOfSecond", "date-fns")>]
         static member endOfSecond<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The end of a second for 1 December 2014 22:15:45.400:
-        /// const result = endOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
-        /// //=> Mon Dec 01 2014 22:15:45.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a second
-        /// </returns>
-        [<Import("endOfSecond", "date-fns")>]
-        static member endOfSecond<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // If today is 6 October 2014:
         /// const result = endOfToday()
@@ -8956,33 +7722,6 @@ module DateFns =
         [<Import("endOfWeek", "date-fns")>]
         static member endOfWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The end of a week for 2 September 2014 11:55:00:
-        /// const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Sat Sep 06 2014 23:59:59.999
-        /// </example>
-        /// <example>
-        /// // If the week starts on Monday, the end of the week for 2 September 2014 11:55:00:
-        /// const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
-        /// //=> Sun Sep 07 2014 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a week
-        /// </returns>
-        [<Import("endOfWeek", "date-fns")>]
-        static member endOfWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The end of a year for 2 September 2014 11:55:00:
         /// const result = endOfYear(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Wed Dec 31 2014 23:59:59.999
@@ -9048,28 +7787,6 @@ module DateFns =
         /// </returns>
         [<Import("endOfYear", "date-fns")>]
         static member endOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.EndOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The end of a year for 2 September 2014 11:55:00:
-        /// const result = endOfYear(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Wed Dec 31 2014 23:59:59.999
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of a year
-        /// </returns>
-        [<Import("endOfYear", "date-fns")>]
-        static member endOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.EndOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // If today is 6 October 2014:
         /// const result = endOfYesterday()
@@ -9242,58 +7959,6 @@ module DateFns =
         /// </returns>
         [<Import("format", "date-fns")>]
         static member format (date: string, formatStr: string, ?options: DateFns.FormatOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>options.locale</c> must contain <c>localize</c> property
-        ///
-        /// <c>options.locale</c> must contain <c>formatLong</c> property
-        ///
-        /// use <c>yyyy</c> instead of <c>YYYY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>yy</c> instead of <c>YY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>d</c> instead of <c>D</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>dd</c> instead of <c>DD</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// format string contains an unescaped latin alphabet character
-        /// </remarks>
-        /// <example>
-        /// // Represent 11 February 2014 in middle-endian format:
-        /// const result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
-        /// //=> '02/11/2014'
-        /// </example>
-        /// <example>
-        /// // Represent 2 July 2014 in Esperanto:
-        /// import { eoLocale } from 'date-fns/locale/eo'
-        /// const result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
-        ///   locale: eoLocale
-        /// })
-        /// //=> '2-a de julio 2014'
-        /// </example>
-        /// <example>
-        /// // Escape string by single quote characters:
-        /// const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
-        /// //=> "3 o'clock"
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="format">
-        /// The string of tokens
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("format", "date-fns")>]
-        static member format (date: DateFns.DateArg<Date>, formatStr: string, ?options: DateFns.FormatOptions) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -9789,61 +8454,6 @@ module DateFns =
         /// </returns>
         [<Import("formatDistance", "date-fns")>]
         static member formatDistance (laterDate: string, earlierDate: string, ?options: DateFns.FormatDistanceOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>baseDate</c> must not be Invalid Date
-        ///
-        /// <c>options.locale</c> must contain <c>formatDistance</c> property
-        /// </remarks>
-        /// <example>
-        /// // What is the distance between 2 July 2014 and 1 January 2015?
-        /// const result = formatDistance(new Date(2014, 6, 2), new Date(2015, 0, 1))
-        /// //=> '6 months'
-        /// </example>
-        /// <example>
-        /// // What is the distance between 1 January 2015 00:00:15
-        /// // and 1 January 2015 00:00:00, including seconds?
-        /// const result = formatDistance(
-        ///   new Date(2015, 0, 1, 0, 0, 15),
-        ///   new Date(2015, 0, 1, 0, 0, 0),
-        ///   { includeSeconds: true }
-        /// )
-        /// //=> 'less than 20 seconds'
-        /// </example>
-        /// <example>
-        /// // What is the distance from 1 January 2016
-        /// // to 1 January 2015, with a suffix?
-        /// const result = formatDistance(new Date(2015, 0, 1), new Date(2016, 0, 1), {
-        ///   addSuffix: true
-        /// })
-        /// //=> 'about 1 year ago'
-        /// </example>
-        /// <example>
-        /// // What is the distance between 1 August 2016 and 1 January 2015 in Esperanto?
-        /// import { eoLocale } from 'date-fns/locale/eo'
-        /// const result = formatDistance(new Date(2016, 7, 1), new Date(2015, 0, 1), {
-        ///   locale: eoLocale
-        /// })
-        /// //=> 'pli ol 1 jaro'
-        /// </example>
-        /// <param name="laterDate">
-        /// The date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The date to compare with
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The distance in words
-        /// </returns>
-        [<Import("formatDistance", "date-fns")>]
-        static member formatDistance (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.FormatDistanceOptions) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -10507,79 +9117,6 @@ module DateFns =
         ///
         /// <c>date</c> must not be Invalid Date
         ///
-        /// <c>baseDate</c> must not be Invalid Date
-        ///
-        /// <c>options.unit</c> must be 'second', 'minute', 'hour', 'day', 'month' or 'year'
-        ///
-        /// <c>options.locale</c> must contain <c>formatDistance</c> property
-        /// </remarks>
-        /// <example>
-        /// // What is the distance between 2 July 2014 and 1 January 2015?
-        /// const result = formatDistanceStrict(new Date(2014, 6, 2), new Date(2015, 0, 2))
-        /// //=> '6 months'
-        /// </example>
-        /// <example>
-        /// // What is the distance between 1 January 2015 00:00:15
-        /// // and 1 January 2015 00:00:00?
-        /// const result = formatDistanceStrict(
-        ///   new Date(2015, 0, 1, 0, 0, 15),
-        ///   new Date(2015, 0, 1, 0, 0, 0)
-        /// )
-        /// //=> '15 seconds'
-        /// </example>
-        /// <example>
-        /// // What is the distance from 1 January 2016
-        /// // to 1 January 2015, with a suffix?
-        /// const result = formatDistanceStrict(new Date(2015, 0, 1), new Date(2016, 0, 1), {
-        ///   addSuffix: true
-        /// })
-        /// //=> '1 year ago'
-        /// </example>
-        /// <example>
-        /// // What is the distance from 1 January 2016
-        /// // to 1 January 2015, in minutes?
-        /// const result = formatDistanceStrict(new Date(2016, 0, 1), new Date(2015, 0, 1), {
-        ///   unit: 'minute'
-        /// })
-        /// //=> '525600 minutes'
-        /// </example>
-        /// <example>
-        /// // What is the distance from 1 January 2015
-        /// // to 28 January 2015, in months, rounded up?
-        /// const result = formatDistanceStrict(new Date(2015, 0, 28), new Date(2015, 0, 1), {
-        ///   unit: 'month',
-        ///   roundingMethod: 'ceil'
-        /// })
-        /// //=> '1 month'
-        /// </example>
-        /// <example>
-        /// // What is the distance between 1 August 2016 and 1 January 2015 in Esperanto?
-        /// import { eoLocale } from 'date-fns/locale/eo'
-        /// const result = formatDistanceStrict(new Date(2016, 7, 1), new Date(2015, 0, 1), {
-        ///   locale: eoLocale
-        /// })
-        /// //=> '1 jaro'
-        /// </example>
-        /// <param name="laterDate">
-        /// The date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The date to compare with
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The distance in words
-        /// </returns>
-        [<Import("formatDistanceStrict", "date-fns")>]
-        static member formatDistanceStrict (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.FormatDistanceStrictOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
         /// <c>options.locale</c> must contain <c>formatDistance</c> property
         /// </remarks>
         /// <example>
@@ -10736,60 +9273,6 @@ module DateFns =
         /// </returns>
         [<Import("formatDistanceToNow", "date-fns")>]
         static member formatDistanceToNow (date: string, ?options: DateFns.FormatDistanceToNowOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>options.locale</c> must contain <c>formatDistance</c> property
-        /// </remarks>
-        /// <example>
-        /// // If today is 1 January 2015, what is the distance to 2 July 2014?
-        /// const result = formatDistanceToNow(
-        ///   new Date(2014, 6, 2)
-        /// )
-        /// //=> '6 months'
-        /// </example>
-        /// <example>
-        /// // If now is 1 January 2015 00:00:00,
-        /// // what is the distance to 1 January 2015 00:00:15, including seconds?
-        /// const result = formatDistanceToNow(
-        ///   new Date(2015, 0, 1, 0, 0, 15),
-        ///   {includeSeconds: true}
-        /// )
-        /// //=> 'less than 20 seconds'
-        /// </example>
-        /// <example>
-        /// // If today is 1 January 2015,
-        /// // what is the distance to 1 January 2016, with a suffix?
-        /// const result = formatDistanceToNow(
-        ///   new Date(2016, 0, 1),
-        ///   {addSuffix: true}
-        /// )
-        /// //=> 'in about 1 year'
-        /// </example>
-        /// <example>
-        /// // If today is 1 January 2015,
-        /// // what is the distance to 1 August 2016 in Esperanto?
-        /// const eoLocale = require('date-fns/locale/eo')
-        /// const result = formatDistanceToNow(
-        ///   new Date(2016, 7, 1),
-        ///   {locale: eoLocale}
-        /// )
-        /// //=> 'pli ol 1 jaro'
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// The object with options
-        /// </param>
-        /// <returns>
-        /// The distance in words
-        /// </returns>
-        [<Import("formatDistanceToNow", "date-fns")>]
-        static member formatDistanceToNow (date: DateFns.DateArg<Date>, ?options: DateFns.FormatDistanceToNowOptions) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -10976,68 +9459,6 @@ module DateFns =
         /// </returns>
         [<Import("formatDistanceToNowStrict", "date-fns")>]
         static member formatDistanceToNowStrict (date: string, ?options: DateFns.FormatDistanceToNowStrictOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>options.locale</c> must contain <c>formatDistance</c> property
-        /// </remarks>
-        /// <example>
-        /// // If today is 1 January 2015, what is the distance to 2 July 2014?
-        /// const result = formatDistanceToNowStrict(
-        ///   new Date(2014, 6, 2)
-        /// )
-        /// //=> '6 months'
-        /// </example>
-        /// <example>
-        /// // If now is 1 January 2015 00:00:00,
-        /// // what is the distance to 1 January 2015 00:00:15, including seconds?
-        /// const result = formatDistanceToNowStrict(
-        ///   new Date(2015, 0, 1, 0, 0, 15)
-        /// )
-        /// //=> '15 seconds'
-        /// </example>
-        /// <example>
-        /// // If today is 1 January 2015,
-        /// // what is the distance to 1 January 2016, with a suffix?
-        /// const result = formatDistanceToNowStrict(
-        ///   new Date(2016, 0, 1),
-        ///   {addSuffix: true}
-        /// )
-        /// //=> 'in 1 year'
-        /// </example>
-        /// <example>
-        /// // If today is 28 January 2015,
-        /// // what is the distance to 1 January 2015, in months, rounded up??
-        /// const result = formatDistanceToNowStrict(new Date(2015, 0, 1), {
-        ///   unit: 'month',
-        ///   roundingMethod: 'ceil'
-        /// })
-        /// //=> '1 month'
-        /// </example>
-        /// <example>
-        /// // If today is 1 January 2015,
-        /// // what is the distance to 1 January 2016 in Esperanto?
-        /// const eoLocale = require('date-fns/locale/eo')
-        /// const result = formatDistanceToNowStrict(
-        ///   new Date(2016, 0, 1),
-        ///   {locale: eoLocale}
-        /// )
-        /// //=> '1 jaro'
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The distance in words
-        /// </returns>
-        [<Import("formatDistanceToNowStrict", "date-fns")>]
-        static member formatDistanceToNowStrict (date: DateFns.DateArg<Date>, ?options: DateFns.FormatDistanceToNowStrictOptions) : string = nativeOnly
         /// <example>
         /// // Format full duration
         /// formatDuration({
@@ -11212,43 +9633,6 @@ module DateFns =
         /// <c>date</c> must not be Invalid Date
         /// </remarks>
         /// <example>
-        /// // Represent 18 September 2019 in ISO 8601 format (local time zone is UTC):
-        /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52))
-        /// //=> '2019-09-18T19:00:52Z'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 8601, short format (local time zone is UTC):
-        /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { format: 'basic' })
-        /// //=> '20190918T190052'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 8601 format, date only:
-        /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'date' })
-        /// //=> '2019-09-18'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 8601 format, time only (local time zone is UTC):
-        /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
-        /// //=> '19:00:52Z'
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The formatted date string (in local time zone)
-        /// </returns>
-        [<Import("formatISO", "date-fns")>]
-        static member formatISO (date: DateFns.DateArg<Date>, ?options: DateFns.FormatISOOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
         /// // Represent 18 September 2019 in ISO 9075 format:
         /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52))
         /// //=> '2019-09-18 19:00:52'
@@ -11353,43 +9737,6 @@ module DateFns =
         /// </returns>
         [<Import("formatISO9075", "date-fns")>]
         static member formatISO9075 (date: string, ?options: DateFns.FormatISO9075Options) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 9075 format:
-        /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52))
-        /// //=> '2019-09-18 19:00:52'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 9075, short format:
-        /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { format: 'basic' })
-        /// //=> '20190918 190052'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 9075 format, date only:
-        /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'date' })
-        /// //=> '2019-09-18'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in ISO 9075 format, time only:
-        /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
-        /// //=> '19:00:52'
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("formatISO9075", "date-fns")>]
-        static member formatISO9075 (date: DateFns.DateArg<Date>, ?options: DateFns.FormatISO9075Options) : string = nativeOnly
         /// <example>
         /// // Format the given duration as ISO 8601 string
         /// const result = formatISODuration({
@@ -11504,35 +9851,6 @@ module DateFns =
         /// <c>date</c> must not be Invalid Date
         /// </remarks>
         /// <example>
-        /// // Represent 18 September 2019 in RFC 3339 format:
-        /// formatRFC3339(new Date(2019, 8, 18, 19, 0, 52))
-        /// //=> '2019-09-18T19:00:52Z'
-        /// </example>
-        /// <example>
-        /// // Represent 18 September 2019 in RFC 3339 format, 3 digits of second fraction
-        /// formatRFC3339(new Date(2019, 8, 18, 19, 0, 52, 234), {
-        ///   fractionDigits: 3
-        /// })
-        /// //=> '2019-09-18T19:00:52.234Z'
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("formatRFC3339", "date-fns")>]
-        static member formatRFC3339 (date: DateFns.DateArg<Date>, ?options: DateFns.FormatRFC3339Options) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
         /// // Represent 18 September 2019 in RFC 7231 format:
         /// const result = formatRFC7231(new Date(2019, 8, 18, 19, 0, 52))
         /// //=> 'Wed, 18 Sep 2019 19:00:52 GMT'
@@ -11583,25 +9901,6 @@ module DateFns =
         /// </returns>
         [<Import("formatRFC7231", "date-fns")>]
         static member formatRFC7231 (date: string) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
-        /// // Represent 18 September 2019 in RFC 7231 format:
-        /// const result = formatRFC7231(new Date(2019, 8, 18, 19, 0, 52))
-        /// //=> 'Wed, 18 Sep 2019 19:00:52 GMT'
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("formatRFC7231", "date-fns")>]
-        static member formatRFC7231 (date: DateFns.DateArg<Date>) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -11899,39 +10198,6 @@ module DateFns =
         /// </returns>
         [<Import("formatRelative", "date-fns")>]
         static member formatRelative (date: string, baseDate: string, ?options: DateFns.FormatRelativeOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>baseDate</c> must not be Invalid Date
-        ///
-        /// <c>options.locale</c> must contain <c>localize</c> property
-        ///
-        /// <c>options.locale</c> must contain <c>formatLong</c> property
-        ///
-        /// <c>options.locale</c> must contain <c>formatRelative</c> property
-        /// </remarks>
-        /// <example>
-        /// // Represent the date of 6 days ago in words relative to the given base date. In this example, today is Wednesday
-        /// const result = formatRelative(subDays(new Date(), 6), new Date())
-        /// //=> "last Thursday at 12:45 AM"
-        /// </example>
-        /// <param name="date">
-        /// The date to format
-        /// </param>
-        /// <param name="baseDate">
-        /// The date to compare with
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date in words
-        /// </returns>
-        [<Import("formatRelative", "date-fns")>]
-        static member formatRelative (date: DateFns.DateArg<Date>, baseDate: DateFns.DateArg<Date>, ?options: DateFns.FormatRelativeOptions) : string = nativeOnly
         /// <example>
         /// // Create the date 29 February 2012 11:45:05:
         /// const result = fromUnixTime(1330515905)
@@ -12019,22 +10285,6 @@ module DateFns =
         [<Import("getDate", "date-fns")>]
         static member getDate (date: string, ?options: DateFns.GetDateOptions) : float = nativeOnly
         /// <example>
-        /// // Which day of the month is 29 February 2012?
-        /// const result = getDate(new Date(2012, 1, 29))
-        /// //=> 29
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The day of month
-        /// </returns>
-        [<Import("getDate", "date-fns")>]
-        static member getDate (date: DateFns.DateArg<Date>, ?options: DateFns.GetDateOptions) : float = nativeOnly
-        /// <example>
         /// // Which day of the week is 29 February 2012?
         /// const result = getDay(new Date(2012, 1, 29))
         /// //=> 3
@@ -12082,22 +10332,6 @@ module DateFns =
         /// </returns>
         [<Import("getDay", "date-fns")>]
         static member getDay (date: string, ?options: DateFns.GetDayOptions) : float = nativeOnly
-        /// <example>
-        /// // Which day of the week is 29 February 2012?
-        /// const result = getDay(new Date(2012, 1, 29))
-        /// //=> 3
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <returns>
-        /// The day of week, 0 represents Sunday
-        /// </returns>
-        [<Import("getDay", "date-fns")>]
-        static member getDay (date: DateFns.DateArg<Date>, ?options: DateFns.GetDayOptions) : float = nativeOnly
         /// <example>
         /// // Which day of the year is 2 July 2014?
         /// const result = getDayOfYear(new Date(2014, 6, 2))
@@ -12147,22 +10381,6 @@ module DateFns =
         [<Import("getDayOfYear", "date-fns")>]
         static member getDayOfYear (date: string, ?options: DateFns.GetDayOfYearOptions) : float = nativeOnly
         /// <example>
-        /// // Which day of the year is 2 July 2014?
-        /// const result = getDayOfYear(new Date(2014, 6, 2))
-        /// //=> 183
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <returns>
-        /// The day of year
-        /// </returns>
-        [<Import("getDayOfYear", "date-fns")>]
-        static member getDayOfYear (date: DateFns.DateArg<Date>, ?options: DateFns.GetDayOfYearOptions) : float = nativeOnly
-        /// <example>
         /// // How many days are in February 2000?
         /// const result = getDaysInMonth(new Date(2000, 1))
         /// //=> 29
@@ -12210,22 +10428,6 @@ module DateFns =
         /// </returns>
         [<Import("getDaysInMonth", "date-fns")>]
         static member getDaysInMonth (date: string, ?options: DateFns.GetDaysInMonthOptions) : float = nativeOnly
-        /// <example>
-        /// // How many days are in February 2000?
-        /// const result = getDaysInMonth(new Date(2000, 1))
-        /// //=> 29
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of days in a month
-        /// </returns>
-        [<Import("getDaysInMonth", "date-fns")>]
-        static member getDaysInMonth (date: DateFns.DateArg<Date>, ?options: DateFns.GetDaysInMonthOptions) : float = nativeOnly
         /// <example>
         /// // How many days are in 2012?
         /// const result = getDaysInYear(new Date(2012, 0, 1))
@@ -12275,22 +10477,6 @@ module DateFns =
         [<Import("getDaysInYear", "date-fns")>]
         static member getDaysInYear (date: string, ?options: DateFns.GetDaysInYearOptions) : float = nativeOnly
         /// <example>
-        /// // How many days are in 2012?
-        /// const result = getDaysInYear(new Date(2012, 0, 1))
-        /// //=> 366
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of days in a year
-        /// </returns>
-        [<Import("getDaysInYear", "date-fns")>]
-        static member getDaysInYear (date: DateFns.DateArg<Date>, ?options: DateFns.GetDaysInYearOptions) : float = nativeOnly
-        /// <example>
         /// // Which decade belongs 27 November 1942?
         /// const result = getDecade(new Date(1942, 10, 27))
         /// //=> 1940
@@ -12338,22 +10524,6 @@ module DateFns =
         /// </returns>
         [<Import("getDecade", "date-fns")>]
         static member getDecade (date: string, ?options: DateFns.GetDecadeOptions) : float = nativeOnly
-        /// <example>
-        /// // Which decade belongs 27 November 1942?
-        /// const result = getDecade(new Date(1942, 10, 27))
-        /// //=> 1940
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The year of decade
-        /// </returns>
-        [<Import("getDecade", "date-fns")>]
-        static member getDecade (date: DateFns.DateArg<Date>, ?options: DateFns.GetDecadeOptions) : float = nativeOnly
         /// <example>
         /// const result = getDefaultOptions()
         /// //=> {}
@@ -12417,22 +10587,6 @@ module DateFns =
         [<Import("getHours", "date-fns")>]
         static member getHours (date: string, ?options: DateFns.GetHoursOptions) : float = nativeOnly
         /// <example>
-        /// // Get the hours of 29 February 2012 11:45:00:
-        /// const result = getHours(new Date(2012, 1, 29, 11, 45))
-        /// //=> 11
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The hours
-        /// </returns>
-        [<Import("getHours", "date-fns")>]
-        static member getHours (date: DateFns.DateArg<Date>, ?options: DateFns.GetHoursOptions) : float = nativeOnly
-        /// <example>
         /// // Which day of the ISO week is 26 February 2012?
         /// const result = getISODay(new Date(2012, 1, 26))
         /// //=> 7
@@ -12480,22 +10634,6 @@ module DateFns =
         /// </returns>
         [<Import("getISODay", "date-fns")>]
         static member getISODay (date: string, ?options: DateFns.GetISODayOptions) : float = nativeOnly
-        /// <example>
-        /// // Which day of the ISO week is 26 February 2012?
-        /// const result = getISODay(new Date(2012, 1, 26))
-        /// //=> 7
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The day of ISO week
-        /// </returns>
-        [<Import("getISODay", "date-fns")>]
-        static member getISODay (date: DateFns.DateArg<Date>, ?options: DateFns.GetISODayOptions) : float = nativeOnly
         /// <example>
         /// // Which week of the ISO-week numbering year is 2 January 2005?
         /// const result = getISOWeek(new Date(2005, 0, 2))
@@ -12545,22 +10683,6 @@ module DateFns =
         [<Import("getISOWeek", "date-fns")>]
         static member getISOWeek (date: string, ?options: DateFns.GetISOWeekOptions) : float = nativeOnly
         /// <example>
-        /// // Which week of the ISO-week numbering year is 2 January 2005?
-        /// const result = getISOWeek(new Date(2005, 0, 2))
-        /// //=> 53
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <returns>
-        /// The ISO week
-        /// </returns>
-        [<Import("getISOWeek", "date-fns")>]
-        static member getISOWeek (date: DateFns.DateArg<Date>, ?options: DateFns.GetISOWeekOptions) : float = nativeOnly
-        /// <example>
         /// // Which ISO-week numbering year is 2 January 2005?
         /// const result = getISOWeekYear(new Date(2005, 0, 2))
         /// //=> 2004
@@ -12599,19 +10721,6 @@ module DateFns =
         /// </returns>
         [<Import("getISOWeekYear", "date-fns")>]
         static member getISOWeekYear (date: string, ?options: DateFns.GetISOWeekYearOptions) : float = nativeOnly
-        /// <example>
-        /// // Which ISO-week numbering year is 2 January 2005?
-        /// const result = getISOWeekYear(new Date(2005, 0, 2))
-        /// //=> 2004
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <returns>
-        /// The ISO week-numbering year
-        /// </returns>
-        [<Import("getISOWeekYear", "date-fns")>]
-        static member getISOWeekYear (date: DateFns.DateArg<Date>, ?options: DateFns.GetISOWeekYearOptions) : float = nativeOnly
         /// <example>
         /// // How many weeks are in ISO week-numbering year 2015?
         /// const result = getISOWeeksInYear(new Date(2015, 1, 11))
@@ -12661,22 +10770,6 @@ module DateFns =
         [<Import("getISOWeeksInYear", "date-fns")>]
         static member getISOWeeksInYear (date: string, ?options: DateFns.GetISOWeeksInYearOptions) : float = nativeOnly
         /// <example>
-        /// // How many weeks are in ISO week-numbering year 2015?
-        /// const result = getISOWeeksInYear(new Date(2015, 1, 11))
-        /// //=> 53
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The number of ISO weeks in a year
-        /// </returns>
-        [<Import("getISOWeeksInYear", "date-fns")>]
-        static member getISOWeeksInYear (date: DateFns.DateArg<Date>, ?options: DateFns.GetISOWeeksInYearOptions) : float = nativeOnly
-        /// <example>
         /// // Get the milliseconds of 29 February 2012 11:45:05.123:
         /// const result = getMilliseconds(new Date(2012, 1, 29, 11, 45, 5, 123))
         /// //=> 123
@@ -12715,19 +10808,6 @@ module DateFns =
         /// </returns>
         [<Import("getMilliseconds", "date-fns")>]
         static member getMilliseconds (date: string) : float = nativeOnly
-        /// <example>
-        /// // Get the milliseconds of 29 February 2012 11:45:05.123:
-        /// const result = getMilliseconds(new Date(2012, 1, 29, 11, 45, 5, 123))
-        /// //=> 123
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <returns>
-        /// The milliseconds
-        /// </returns>
-        [<Import("getMilliseconds", "date-fns")>]
-        static member getMilliseconds (date: DateFns.DateArg<Date>) : float = nativeOnly
         /// <example>
         /// // Get the minutes of 29 February 2012 11:45:05:
         /// const result = getMinutes(new Date(2012, 1, 29, 11, 45, 5))
@@ -12777,22 +10857,6 @@ module DateFns =
         [<Import("getMinutes", "date-fns")>]
         static member getMinutes (date: string, ?options: DateFns.GetMinutesOptions) : float = nativeOnly
         /// <example>
-        /// // Get the minutes of 29 February 2012 11:45:05:
-        /// const result = getMinutes(new Date(2012, 1, 29, 11, 45, 5))
-        /// //=> 45
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <returns>
-        /// The minutes
-        /// </returns>
-        [<Import("getMinutes", "date-fns")>]
-        static member getMinutes (date: DateFns.DateArg<Date>, ?options: DateFns.GetMinutesOptions) : float = nativeOnly
-        /// <example>
         /// // Which month is 29 February 2012?
         /// const result = getMonth(new Date(2012, 1, 29))
         /// //=> 1
@@ -12840,22 +10904,6 @@ module DateFns =
         /// </returns>
         [<Import("getMonth", "date-fns")>]
         static member getMonth (date: string, ?options: DateFns.GetMonthOptions) : float = nativeOnly
-        /// <example>
-        /// // Which month is 29 February 2012?
-        /// const result = getMonth(new Date(2012, 1, 29))
-        /// //=> 1
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The month index (0-11)
-        /// </returns>
-        [<Import("getMonth", "date-fns")>]
-        static member getMonth (date: DateFns.DateArg<Date>, ?options: DateFns.GetMonthOptions) : float = nativeOnly
         /// <example>
         /// // For overlapping time intervals adds 1 for each started overlapping day:
         /// getOverlappingDaysInIntervals(
@@ -12935,22 +10983,6 @@ module DateFns =
         [<Import("getQuarter", "date-fns")>]
         static member getQuarter (date: string, ?options: DateFns.GetQuarterOptions) : float = nativeOnly
         /// <example>
-        /// // Which quarter is 2 July 2014?
-        /// const result = getQuarter(new Date(2014, 6, 2));
-        /// //=> 3
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The quarter
-        /// </returns>
-        [<Import("getQuarter", "date-fns")>]
-        static member getQuarter (date: DateFns.DateArg<Date>, ?options: DateFns.GetQuarterOptions) : float = nativeOnly
-        /// <example>
         /// // Get the seconds of 29 February 2012 11:45:05.123:
         /// const result = getSeconds(new Date(2012, 1, 29, 11, 45, 5, 123))
         /// //=> 5
@@ -12989,19 +11021,6 @@ module DateFns =
         /// </returns>
         [<Import("getSeconds", "date-fns")>]
         static member getSeconds (date: string) : float = nativeOnly
-        /// <example>
-        /// // Get the seconds of 29 February 2012 11:45:05.123:
-        /// const result = getSeconds(new Date(2012, 1, 29, 11, 45, 5, 123))
-        /// //=> 5
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <returns>
-        /// The seconds
-        /// </returns>
-        [<Import("getSeconds", "date-fns")>]
-        static member getSeconds (date: DateFns.DateArg<Date>) : float = nativeOnly
         /// <example>
         /// // Get the timestamp of 29 February 2012 11:45:05.123:
         /// const result = getTime(new Date(2012, 1, 29, 11, 45, 5, 123))
@@ -13042,19 +11061,6 @@ module DateFns =
         [<Import("getTime", "date-fns")>]
         static member getTime (date: string) : float = nativeOnly
         /// <example>
-        /// // Get the timestamp of 29 February 2012 11:45:05.123:
-        /// const result = getTime(new Date(2012, 1, 29, 11, 45, 5, 123))
-        /// //=> 1330515905123
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <returns>
-        /// The timestamp
-        /// </returns>
-        [<Import("getTime", "date-fns")>]
-        static member getTime (date: DateFns.DateArg<Date>) : float = nativeOnly
-        /// <example>
         /// // Get the timestamp of 29 February 2012 11:45:05 CET:
         /// const result = getUnixTime(new Date(2012, 1, 29, 11, 45, 5))
         /// //=> 1330512305
@@ -13093,19 +11099,6 @@ module DateFns =
         /// </returns>
         [<Import("getUnixTime", "date-fns")>]
         static member getUnixTime (date: string) : float = nativeOnly
-        /// <example>
-        /// // Get the timestamp of 29 February 2012 11:45:05 CET:
-        /// const result = getUnixTime(new Date(2012, 1, 29, 11, 45, 5))
-        /// //=> 1330512305
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <returns>
-        /// The timestamp
-        /// </returns>
-        [<Import("getUnixTime", "date-fns")>]
-        static member getUnixTime (date: DateFns.DateArg<Date>) : float = nativeOnly
         /// <example>
         /// // Which week of the local week numbering year is 2 January 2005 with default options?
         /// const result = getWeek(new Date(2005, 0, 2))
@@ -13185,32 +11178,6 @@ module DateFns =
         [<Import("getWeek", "date-fns")>]
         static member getWeek (date: string, ?options: DateFns.GetWeekOptions) : float = nativeOnly
         /// <example>
-        /// // Which week of the local week numbering year is 2 January 2005 with default options?
-        /// const result = getWeek(new Date(2005, 0, 2))
-        /// //=> 2
-        /// </example>
-        /// <example>
-        /// // Which week of the local week numbering year is 2 January 2005,
-        /// // if Monday is the first day of the week,
-        /// // and the first week of the year always contains 4 January?
-        /// const result = getWeek(new Date(2005, 0, 2), {
-        ///   weekStartsOn: 1,
-        ///   firstWeekContainsDate: 4
-        /// })
-        /// //=> 53
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The week
-        /// </returns>
-        [<Import("getWeek", "date-fns")>]
-        static member getWeek (date: DateFns.DateArg<Date>, ?options: DateFns.GetWeekOptions) : float = nativeOnly
-        /// <example>
         /// // Which week of the month is 9 November 2017?
         /// const result = getWeekOfMonth(new Date(2017, 10, 9))
         /// //=> 2
@@ -13258,22 +11225,6 @@ module DateFns =
         /// </returns>
         [<Import("getWeekOfMonth", "date-fns")>]
         static member getWeekOfMonth (date: string, ?options: DateFns.GetWeekOfMonthOptions) : float = nativeOnly
-        /// <example>
-        /// // Which week of the month is 9 November 2017?
-        /// const result = getWeekOfMonth(new Date(2017, 10, 9))
-        /// //=> 2
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The week of month
-        /// </returns>
-        [<Import("getWeekOfMonth", "date-fns")>]
-        static member getWeekOfMonth (date: DateFns.DateArg<Date>, ?options: DateFns.GetWeekOfMonthOptions) : float = nativeOnly
         /// <example>
         /// // Which week numbering year is 26 December 2004 with the default settings?
         /// const result = getWeekYear(new Date(2004, 11, 26))
@@ -13353,32 +11304,6 @@ module DateFns =
         [<Import("getWeekYear", "date-fns")>]
         static member getWeekYear (date: string, ?options: DateFns.GetWeekYearOptions) : float = nativeOnly
         /// <example>
-        /// // Which week numbering year is 26 December 2004 with the default settings?
-        /// const result = getWeekYear(new Date(2004, 11, 26))
-        /// //=> 2005
-        /// </example>
-        /// <example>
-        /// // Which week numbering year is 26 December 2004 if week starts on Saturday?
-        /// const result = getWeekYear(new Date(2004, 11, 26), { weekStartsOn: 6 })
-        /// //=> 2004
-        /// </example>
-        /// <example>
-        /// // Which week numbering year is 26 December 2004 if the first week contains 4 January?
-        /// const result = getWeekYear(new Date(2004, 11, 26), { firstWeekContainsDate: 4 })
-        /// //=> 2004
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The local week-numbering year
-        /// </returns>
-        [<Import("getWeekYear", "date-fns")>]
-        static member getWeekYear (date: DateFns.DateArg<Date>, ?options: DateFns.GetWeekYearOptions) : float = nativeOnly
-        /// <example>
         /// // How many calendar weeks does February 2015 span?
         /// const result = getWeeksInMonth(new Date(2015, 1, 8))
         /// //=> 4
@@ -13445,28 +11370,6 @@ module DateFns =
         [<Import("getWeeksInMonth", "date-fns")>]
         static member getWeeksInMonth (date: string, ?options: DateFns.GetWeeksInMonthOptions) : float = nativeOnly
         /// <example>
-        /// // How many calendar weeks does February 2015 span?
-        /// const result = getWeeksInMonth(new Date(2015, 1, 8))
-        /// //=> 4
-        /// </example>
-        /// <example>
-        /// // If the week starts on Monday,
-        /// // how many calendar weeks does July 2017 span?
-        /// const result = getWeeksInMonth(new Date(2017, 6, 5), { weekStartsOn: 1 })
-        /// //=> 6
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <returns>
-        /// The number of calendar weeks
-        /// </returns>
-        [<Import("getWeeksInMonth", "date-fns")>]
-        static member getWeeksInMonth (date: DateFns.DateArg<Date>, ?options: DateFns.GetWeeksInMonthOptions) : float = nativeOnly
-        /// <example>
         /// // Which year is 2 July 2014?
         /// const result = getYear(new Date(2014, 6, 2))
         /// //=> 2014
@@ -13514,22 +11417,6 @@ module DateFns =
         /// </returns>
         [<Import("getYear", "date-fns")>]
         static member getYear (date: string, ?options: DateFns.GetYearOptions) : float = nativeOnly
-        /// <example>
-        /// // Which year is 2 July 2014?
-        /// const result = getYear(new Date(2014, 6, 2))
-        /// //=> 2014
-        /// </example>
-        /// <param name="date">
-        /// The given date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The year
-        /// </returns>
-        [<Import("getYear", "date-fns")>]
-        static member getYear (date: DateFns.DateArg<Date>, ?options: DateFns.GetYearOptions) : float = nativeOnly
         /// <example>
         /// // Convert 2 hours to milliseconds:
         /// const result = hoursToMilliseconds(2)
@@ -13685,25 +11572,6 @@ module DateFns =
         /// <c>date</c> must not be Invalid Date
         /// </remarks>
         /// <example>
-        /// // Represent 4 October 2019 in middle-endian format:
-        /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456))
-        /// //=> 10/4/2019
-        /// </example>
-        /// <param name="date">
-        /// The date to format
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("intlFormat", "date-fns")>]
-        static member intlFormat (date: DateFns.DateArg<Date>) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
         /// // Represent 4 October 2019 in Korean.
         /// // Convert the date with locale's options.
         /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456), {
@@ -13772,31 +11640,6 @@ module DateFns =
         /// </returns>
         [<Import("intlFormat", "date-fns")>]
         static member intlFormat (date: string, localeOptions: DateFns.IntlFormatLocaleOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
-        /// // Represent 4 October 2019 in Korean.
-        /// // Convert the date with locale's options.
-        /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456), {
-        ///   locale: 'ko-KR',
-        /// })
-        /// //=> 2019. 10. 4.
-        /// </example>
-        /// <param name="date">
-        /// The date to format
-        /// </param>
-        /// <param name="localeOptions">
-        /// An object with locale
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("intlFormat", "date-fns")>]
-        static member intlFormat (date: DateFns.DateArg<Date>, localeOptions: DateFns.IntlFormatLocaleOptions) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -13881,34 +11724,6 @@ module DateFns =
         /// </returns>
         [<Import("intlFormat", "date-fns")>]
         static member intlFormat (date: string, formatOptions: DateFns.IntlFormatFormatOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
-        /// // Represent 4 October 2019.
-        /// // Convert the date with format's options.
-        /// const result = intlFormat.default(new Date(2019, 9, 4, 12, 30, 13, 456), {
-        ///   year: 'numeric',
-        ///   month: 'numeric',
-        ///   day: 'numeric',
-        ///   hour: 'numeric',
-        /// })
-        /// //=> 10/4/2019, 12 PM
-        /// </example>
-        /// <param name="date">
-        /// The date to format
-        /// </param>
-        /// <param name="formatOptions">
-        /// The format options
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("intlFormat", "date-fns")>]
-        static member intlFormat (date: DateFns.DateArg<Date>, formatOptions: DateFns.IntlFormatFormatOptions) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -14008,39 +11823,6 @@ module DateFns =
         /// </returns>
         [<Import("intlFormat", "date-fns")>]
         static member intlFormat (date: string, formatOptions: DateFns.IntlFormatFormatOptions, localeOptions: DateFns.IntlFormatLocaleOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        /// </remarks>
-        /// <example>
-        /// // Represent 4 October 2019 in German.
-        /// // Convert the date with format's options and locale's options.
-        /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456), {
-        ///   weekday: 'long',
-        ///   year: 'numeric',
-        ///   month: 'long',
-        ///   day: 'numeric',
-        /// }, {
-        ///   locale: 'de-DE',
-        /// })
-        /// //=> Freitag, 4. Oktober 2019
-        /// </example>
-        /// <param name="date">
-        /// The date to format
-        /// </param>
-        /// <param name="formatOptions">
-        /// The format options
-        /// </param>
-        /// <param name="localeOptions">
-        /// An object with locale
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("intlFormat", "date-fns")>]
-        static member intlFormat (date: DateFns.DateArg<Date>, formatOptions: DateFns.IntlFormatFormatOptions, localeOptions: DateFns.IntlFormatLocaleOptions) : string = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -14806,91 +12588,6 @@ module DateFns =
         /// </returns>
         [<Import("intlFormatDistance", "date-fns")>]
         static member intlFormatDistance (laterDate: string, earlierDate: string, ?options: DateFns.IntlFormatDistanceOptions) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>date</c> must not be Invalid Date
-        ///
-        /// <c>baseDate</c> must not be Invalid Date
-        ///
-        /// <c>options.unit</c> must not be invalid Unit
-        ///
-        /// <c>options.locale</c> must not be invalid locale
-        ///
-        /// <c>options.localeMatcher</c> must not be invalid localeMatcher
-        ///
-        /// <c>options.numeric</c> must not be invalid numeric
-        ///
-        /// <c>options.style</c> must not be invalid style
-        /// </remarks>
-        /// <example>
-        /// // What is the distance between the dates when the fist date is after the second?
-        /// intlFormatDistance(
-        ///   new Date(1986, 3, 4, 11, 30, 0),
-        ///   new Date(1986, 3, 4, 10, 30, 0)
-        /// )
-        /// //=> 'in 1 hour'
-        ///
-        /// // What is the distance between the dates when the fist date is before the second?
-        /// intlFormatDistance(
-        ///   new Date(1986, 3, 4, 10, 30, 0),
-        ///   new Date(1986, 3, 4, 11, 30, 0)
-        /// )
-        /// //=> '1 hour ago'
-        /// </example>
-        /// <example>
-        /// // Use the unit option to force the function to output the result in quarters. Without setting it, the example would return "next year"
-        /// intlFormatDistance(
-        ///   new Date(1987, 6, 4, 10, 30, 0),
-        ///   new Date(1986, 3, 4, 10, 30, 0),
-        ///   { unit: 'quarter' }
-        /// )
-        /// //=> 'in 5 quarters'
-        /// </example>
-        /// <example>
-        /// // Use the locale option to get the result in Spanish. Without setting it, the example would return "in 1 hour".
-        /// intlFormatDistance(
-        ///   new Date(1986, 3, 4, 11, 30, 0),
-        ///   new Date(1986, 3, 4, 10, 30, 0),
-        ///   { locale: 'es' }
-        /// )
-        /// //=> 'dentro de 1 hora'
-        /// </example>
-        /// <example>
-        /// // Use the numeric option to force the function to use numeric values. Without setting it, the example would return "tomorrow".
-        /// intlFormatDistance(
-        ///   new Date(1986, 3, 5, 11, 30, 0),
-        ///   new Date(1986, 3, 4, 11, 30, 0),
-        ///   { numeric: 'always' }
-        /// )
-        /// //=> 'in 1 day'
-        /// </example>
-        /// <example>
-        /// // Use the style option to force the function to use short values. Without setting it, the example would return "in 2 years".
-        /// intlFormatDistance(
-        ///   new Date(1988, 3, 4, 11, 30, 0),
-        ///   new Date(1986, 3, 4, 11, 30, 0),
-        ///   { style: 'short' }
-        /// )
-        /// //=> 'in 2 yr'
-        /// </example>
-        /// <param name="laterDate">
-        /// The date
-        /// </param>
-        /// <param name="earlierDate">
-        /// The date to compare with.
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// See MDN for details [Locale identification and negotiation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation)
-        /// The narrow one could be similar to the short one for some locales.
-        /// </param>
-        /// <returns>
-        /// The distance in words according to language-sensitive relative time formatting.
-        /// </returns>
-        [<Import("intlFormatDistance", "date-fns")>]
-        static member intlFormatDistance (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IntlFormatDistanceOptions) : string = nativeOnly
         /// <example>
         /// // Is 10 July 1989 after 11 February 1987?
         /// const result = isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))
@@ -15036,22 +12733,6 @@ module DateFns =
         [<Import("isAfter", "date-fns")>]
         static member isAfter (date: string, dateToCompare: string) : bool = nativeOnly
         /// <example>
-        /// // Is 10 July 1989 after 11 February 1987?
-        /// const result = isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date that should be after the other one to return true
-        /// </param>
-        /// <param name="dateToCompare">
-        /// The date to compare with
-        /// </param>
-        /// <returns>
-        /// The first date is after the second date
-        /// </returns>
-        [<Import("isAfter", "date-fns")>]
-        static member isAfter (date: DateFns.DateArg<Date>, dateToCompare: DateFns.DateArg<Date>) : bool = nativeOnly
-        /// <example>
         /// // Is 10 July 1989 before 11 February 1987?
         /// const result = isBefore(new Date(1989, 6, 10), new Date(1987, 1, 11))
         /// //=> false
@@ -15195,22 +12876,6 @@ module DateFns =
         /// </returns>
         [<Import("isBefore", "date-fns")>]
         static member isBefore (date: string, dateToCompare: string) : bool = nativeOnly
-        /// <example>
-        /// // Is 10 July 1989 before 11 February 1987?
-        /// const result = isBefore(new Date(1989, 6, 10), new Date(1987, 1, 11))
-        /// //=> false
-        /// </example>
-        /// <param name="date">
-        /// The date that should be before the other one to return true
-        /// </param>
-        /// <param name="dateToCompare">
-        /// The date to compare with
-        /// </param>
-        /// <returns>
-        /// The first date is before the second date
-        /// </returns>
-        [<Import("isBefore", "date-fns")>]
-        static member isBefore (date: DateFns.DateArg<Date>, dateToCompare: DateFns.DateArg<Date>) : bool = nativeOnly
         /// <example>
         /// // For a valid date:
         /// const result = isDate(new Date())
@@ -15411,25 +13076,6 @@ module DateFns =
         [<Import("isEqual", "date-fns")>]
         static member isEqual (leftDate: string, rightDate: string) : bool = nativeOnly
         /// <example>
-        /// // Are 2 July 2014 06:30:45.000 and 2 July 2014 06:30:45.500 equal?
-        /// const result = isEqual(
-        ///   new Date(2014, 6, 2, 6, 30, 45, 0),
-        ///   new Date(2014, 6, 2, 6, 30, 45, 500)
-        /// )
-        /// //=> false
-        /// </example>
-        /// <param name="dateLeft">
-        /// The first date to compare
-        /// </param>
-        /// <param name="dateRight">
-        /// The second date to compare
-        /// </param>
-        /// <returns>
-        /// The dates are equal
-        /// </returns>
-        [<Import("isEqual", "date-fns")>]
-        static member isEqual (leftDate: DateFns.DateArg<Date>, rightDate: DateFns.DateArg<Date>) : bool = nativeOnly
-        /// <example>
         /// // For the valid date:
         /// const result = isExists(2018, 0, 31)
         /// //=> true
@@ -15502,22 +13148,6 @@ module DateFns =
         [<Import("isFirstDayOfMonth", "date-fns")>]
         static member isFirstDayOfMonth (date: string, ?options: DateFns.IsFirstDayOfMonthOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 1 September 2014 the first day of a month?
-        /// const result = isFirstDayOfMonth(new Date(2014, 8, 1))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is the first day of a month
-        /// </returns>
-        [<Import("isFirstDayOfMonth", "date-fns")>]
-        static member isFirstDayOfMonth (date: DateFns.DateArg<Date>, ?options: DateFns.IsFirstDayOfMonthOptions) : bool = nativeOnly
-        /// <example>
         /// // Is 26 September 2014 Friday?
         /// const result = isFriday(new Date(2014, 8, 26))
         /// //=> true
@@ -15566,22 +13196,6 @@ module DateFns =
         [<Import("isFriday", "date-fns")>]
         static member isFriday (date: string, ?options: DateFns.IsFridayOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 26 September 2014 Friday?
-        /// const result = isFriday(new Date(2014, 8, 26))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is Friday
-        /// </returns>
-        [<Import("isFriday", "date-fns")>]
-        static member isFriday (date: DateFns.DateArg<Date>, ?options: DateFns.IsFridayOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 6 October 2014, is 31 December 2014 in the future?
         /// const result = isFuture(new Date(2014, 11, 31))
         /// //=> true
@@ -15620,19 +13234,6 @@ module DateFns =
         /// </returns>
         [<Import("isFuture", "date-fns")>]
         static member isFuture (date: string) : bool = nativeOnly
-        /// <example>
-        /// // If today is 6 October 2014, is 31 December 2014 in the future?
-        /// const result = isFuture(new Date(2014, 11, 31))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <returns>
-        /// The date is in the future
-        /// </returns>
-        [<Import("isFuture", "date-fns")>]
-        static member isFuture (date: DateFns.DateArg<Date>) : bool = nativeOnly
         /// <example>
         /// // Is 28 February 2014 the last day of a month?
         /// const result = isLastDayOfMonth(new Date(2014, 1, 28))
@@ -15682,22 +13283,6 @@ module DateFns =
         [<Import("isLastDayOfMonth", "date-fns")>]
         static member isLastDayOfMonth (date: string, ?options: DateFns.IsLastDayOfMonthOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 28 February 2014 the last day of a month?
-        /// const result = isLastDayOfMonth(new Date(2014, 1, 28))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is the last day of a month
-        /// </returns>
-        [<Import("isLastDayOfMonth", "date-fns")>]
-        static member isLastDayOfMonth (date: DateFns.DateArg<Date>, ?options: DateFns.IsLastDayOfMonthOptions) : bool = nativeOnly
-        /// <example>
         /// // Is 1 September 2012 in the leap year?
         /// const result = isLeapYear(new Date(2012, 8, 1))
         /// //=> true
@@ -15745,22 +13330,6 @@ module DateFns =
         /// </returns>
         [<Import("isLeapYear", "date-fns")>]
         static member isLeapYear (date: string, ?options: DateFns.IsLeapYearOptions) : bool = nativeOnly
-        /// <example>
-        /// // Is 1 September 2012 in the leap year?
-        /// const result = isLeapYear(new Date(2012, 8, 1))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// The options object
-        /// </param>
-        /// <returns>
-        /// The date is in the leap year
-        /// </returns>
-        [<Import("isLeapYear", "date-fns")>]
-        static member isLeapYear (date: DateFns.DateArg<Date>, ?options: DateFns.IsLeapYearOptions) : bool = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -15855,22 +13424,6 @@ module DateFns =
         [<Import("isMonday", "date-fns")>]
         static member isMonday (date: string, ?options: DateFns.IsMondayOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 22 September 2014 Monday?
-        /// const result = isMonday(new Date(2014, 8, 22))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is Monday
-        /// </returns>
-        [<Import("isMonday", "date-fns")>]
-        static member isMonday (date: DateFns.DateArg<Date>, ?options: DateFns.IsMondayOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 6 October 2014, is 2 July 2014 in the past?
         /// const result = isPast(new Date(2014, 6, 2))
         /// //=> true
@@ -15909,19 +13462,6 @@ module DateFns =
         /// </returns>
         [<Import("isPast", "date-fns")>]
         static member isPast (date: string) : bool = nativeOnly
-        /// <example>
-        /// // If today is 6 October 2014, is 2 July 2014 in the past?
-        /// const result = isPast(new Date(2014, 6, 2))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <returns>
-        /// The date is in the past
-        /// </returns>
-        [<Import("isPast", "date-fns")>]
-        static member isPast (date: DateFns.DateArg<Date>) : bool = nativeOnly
         /// <example>
         /// // Are 4 September 06:00:00 and 4 September 18:00:00 in the same day?
         /// const result = isSameDay(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 4, 18, 0))
@@ -16184,35 +13724,6 @@ module DateFns =
         [<Import("isSameDay", "date-fns")>]
         static member isSameDay (laterDate: string, earlierDate: string, ?options: DateFns.IsSameDayOptions) : bool = nativeOnly
         /// <example>
-        /// // Are 4 September 06:00:00 and 4 September 18:00:00 in the same day?
-        /// const result = isSameDay(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 4, 18, 0))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 4 September and 4 October in the same day?
-        /// const result = isSameDay(new Date(2014, 8, 4), new Date(2014, 9, 4))
-        /// //=> false
-        /// </example>
-        /// <example>
-        /// // Are 4 September, 2014 and 4 September, 2015 in the same day?
-        /// const result = isSameDay(new Date(2014, 8, 4), new Date(2015, 8, 4))
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same day (and year and month)
-        /// </returns>
-        [<Import("isSameDay", "date-fns")>]
-        static member isSameDay (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameDayOptions) : bool = nativeOnly
-        /// <example>
         /// // Are 4 September 2014 06:00:00 and 4 September 06:30:00 in the same hour?
         /// const result = isSameHour(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 4, 6, 30))
         /// //=> true
@@ -16428,30 +13939,6 @@ module DateFns =
         /// </returns>
         [<Import("isSameHour", "date-fns")>]
         static member isSameHour (dateLeft: string, dateRight: string, ?options: DateFns.IsSameHourOptions) : bool = nativeOnly
-        /// <example>
-        /// // Are 4 September 2014 06:00:00 and 4 September 06:30:00 in the same hour?
-        /// const result = isSameHour(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 4, 6, 30))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 4 September 2014 06:00:00 and 5 September 06:00:00 in the same hour?
-        /// const result = isSameHour(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 5, 6, 0))
-        /// //=> false
-        /// </example>
-        /// <param name="dateLeft">
-        /// The first date to check
-        /// </param>
-        /// <param name="dateRight">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same hour (and same day)
-        /// </returns>
-        [<Import("isSameHour", "date-fns")>]
-        static member isSameHour (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>, ?options: DateFns.IsSameHourOptions) : bool = nativeOnly
         /// <example>
         /// // Are 1 September 2014 and 7 September 2014 in the same ISO week?
         /// const result = isSameISOWeek(new Date(2014, 8, 1), new Date(2014, 8, 7))
@@ -16669,30 +14156,6 @@ module DateFns =
         [<Import("isSameISOWeek", "date-fns")>]
         static member isSameISOWeek (laterDate: string, earlierDate: string, ?options: DateFns.IsSameISOWeekOptions) : bool = nativeOnly
         /// <example>
-        /// // Are 1 September 2014 and 7 September 2014 in the same ISO week?
-        /// const result = isSameISOWeek(new Date(2014, 8, 1), new Date(2014, 8, 7))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 1 September 2014 and 1 September 2015 in the same ISO week?
-        /// const result = isSameISOWeek(new Date(2014, 8, 1), new Date(2015, 8, 1))
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same ISO week (and year)
-        /// </returns>
-        [<Import("isSameISOWeek", "date-fns")>]
-        static member isSameISOWeek (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameISOWeekOptions) : bool = nativeOnly
-        /// <example>
         /// // Are 29 December 2003 and 2 January 2005 in the same ISO week-numbering year?
         /// const result = isSameISOWeekYear(new Date(2003, 11, 29), new Date(2005, 0, 2))
         /// //=> true
@@ -16863,25 +14326,6 @@ module DateFns =
         /// </returns>
         [<Import("isSameISOWeekYear", "date-fns")>]
         static member isSameISOWeekYear (laterDate: string, earlierDate: string, ?options: DateFns.IsSameISOWeekYearOptions) : bool = nativeOnly
-        /// <example>
-        /// // Are 29 December 2003 and 2 January 2005 in the same ISO week-numbering year?
-        /// const result = isSameISOWeekYear(new Date(2003, 11, 29), new Date(2005, 0, 2))
-        /// //=> true
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same ISO week-numbering year
-        /// </returns>
-        [<Import("isSameISOWeekYear", "date-fns")>]
-        static member isSameISOWeekYear (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameISOWeekYearOptions) : bool = nativeOnly
         /// <example>
         /// // Are 4 September 2014 06:30:00 and 4 September 2014 06:30:15 in the same minute?
         /// const result = isSameMinute(
@@ -17126,33 +14570,6 @@ module DateFns =
         [<Import("isSameMinute", "date-fns")>]
         static member isSameMinute (laterDate: string, earlierDate: string) : bool = nativeOnly
         /// <example>
-        /// // Are 4 September 2014 06:30:00 and 4 September 2014 06:30:15 in the same minute?
-        /// const result = isSameMinute(
-        ///   new Date(2014, 8, 4, 6, 30),
-        ///   new Date(2014, 8, 4, 6, 30, 15)
-        /// )
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 4 September 2014 06:30:00 and 5 September 2014 06:30:00 in the same minute?
-        /// const result = isSameMinute(
-        ///   new Date(2014, 8, 4, 6, 30),
-        ///   new Date(2014, 8, 5, 6, 30)
-        /// )
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <returns>
-        /// The dates are in the same minute (and hour and day)
-        /// </returns>
-        [<Import("isSameMinute", "date-fns")>]
-        static member isSameMinute (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>) : bool = nativeOnly
-        /// <example>
         /// // Are 2 September 2014 and 25 September 2014 in the same month?
         /// const result = isSameMonth(new Date(2014, 8, 2), new Date(2014, 8, 25))
         /// //=> true
@@ -17369,30 +14786,6 @@ module DateFns =
         [<Import("isSameMonth", "date-fns")>]
         static member isSameMonth (laterDate: string, earlierDate: string, ?options: DateFns.IsSameMonthOptions) : bool = nativeOnly
         /// <example>
-        /// // Are 2 September 2014 and 25 September 2014 in the same month?
-        /// const result = isSameMonth(new Date(2014, 8, 2), new Date(2014, 8, 25))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 2 September 2014 and 25 September 2015 in the same month?
-        /// const result = isSameMonth(new Date(2014, 8, 2), new Date(2015, 8, 25))
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same month (and year)
-        /// </returns>
-        [<Import("isSameMonth", "date-fns")>]
-        static member isSameMonth (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameMonthOptions) : bool = nativeOnly
-        /// <example>
         /// // Are 1 January 2014 and 8 March 2014 in the same quarter?
         /// const result = isSameQuarter(new Date(2014, 0, 1), new Date(2014, 2, 8))
         /// //=> true
@@ -17608,30 +15001,6 @@ module DateFns =
         /// </returns>
         [<Import("isSameQuarter", "date-fns")>]
         static member isSameQuarter (laterDate: string, earlierDate: string, ?options: DateFns.IsSameQuarterOptions) : bool = nativeOnly
-        /// <example>
-        /// // Are 1 January 2014 and 8 March 2014 in the same quarter?
-        /// const result = isSameQuarter(new Date(2014, 0, 1), new Date(2014, 2, 8))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 1 January 2014 and 1 January 2015 in the same quarter?
-        /// const result = isSameQuarter(new Date(2014, 0, 1), new Date(2015, 0, 1))
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same quarter (and year)
-        /// </returns>
-        [<Import("isSameQuarter", "date-fns")>]
-        static member isSameQuarter (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameQuarterOptions) : bool = nativeOnly
         /// <example>
         /// // Are 4 September 2014 06:30:15.000 and 4 September 2014 06:30.15.500 in the same second?
         /// const result = isSameSecond(
@@ -17948,41 +15317,6 @@ module DateFns =
         [<Import("isSameSecond", "date-fns")>]
         static member isSameSecond (laterDate: string, earlierDate: string) : bool = nativeOnly
         /// <example>
-        /// // Are 4 September 2014 06:30:15.000 and 4 September 2014 06:30.15.500 in the same second?
-        /// const result = isSameSecond(
-        ///   new Date(2014, 8, 4, 6, 30, 15),
-        ///   new Date(2014, 8, 4, 6, 30, 15, 500)
-        /// )
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // Are 4 September 2014 06:00:15.000 and 4 September 2014 06:01.15.000 in the same second?
-        /// const result = isSameSecond(
-        ///   new Date(2014, 8, 4, 6, 0, 15),
-        ///   new Date(2014, 8, 4, 6, 1, 15)
-        /// )
-        /// //=> false
-        /// </example>
-        /// <example>
-        /// // Are 4 September 2014 06:00:15.000 and 5 September 2014 06:00.15.000 in the same second?
-        /// const result = isSameSecond(
-        ///   new Date(2014, 8, 4, 6, 0, 15),
-        ///   new Date(2014, 8, 5, 6, 0, 15)
-        /// )
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <returns>
-        /// The dates are in the same second (and hour and day)
-        /// </returns>
-        [<Import("isSameSecond", "date-fns")>]
-        static member isSameSecond (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>) : bool = nativeOnly
-        /// <example>
         /// // Are 31 August 2014 and 4 September 2014 in the same week?
         /// const result = isSameWeek(new Date(2014, 7, 31), new Date(2014, 8, 4))
         /// //=> true
@@ -18271,38 +15605,6 @@ module DateFns =
         [<Import("isSameWeek", "date-fns")>]
         static member isSameWeek (laterDate: string, earlierDate: string, ?options: DateFns.IsSameWeekOptions) : bool = nativeOnly
         /// <example>
-        /// // Are 31 August 2014 and 4 September 2014 in the same week?
-        /// const result = isSameWeek(new Date(2014, 7, 31), new Date(2014, 8, 4))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // If week starts with Monday,
-        /// // are 31 August 2014 and 4 September 2014 in the same week?
-        /// const result = isSameWeek(new Date(2014, 7, 31), new Date(2014, 8, 4), {
-        ///   weekStartsOn: 1
-        /// })
-        /// //=> false
-        /// </example>
-        /// <example>
-        /// // Are 1 January 2014 and 1 January 2015 in the same week?
-        /// const result = isSameWeek(new Date(2014, 0, 1), new Date(2015, 0, 1))
-        /// //=> false
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same week (and month and year)
-        /// </returns>
-        [<Import("isSameWeek", "date-fns")>]
-        static member isSameWeek (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameWeekOptions) : bool = nativeOnly
-        /// <example>
         /// // Are 2 September 2014 and 25 September 2014 in the same year?
         /// const result = isSameYear(new Date(2014, 8, 2), new Date(2014, 8, 25))
         /// //=> true
@@ -18474,25 +15776,6 @@ module DateFns =
         [<Import("isSameYear", "date-fns")>]
         static member isSameYear (laterDate: string, earlierDate: string, ?options: DateFns.IsSameYearOptions) : bool = nativeOnly
         /// <example>
-        /// // Are 2 September 2014 and 25 September 2014 in the same year?
-        /// const result = isSameYear(new Date(2014, 8, 2), new Date(2014, 8, 25))
-        /// //=> true
-        /// </example>
-        /// <param name="laterDate">
-        /// The first date to check
-        /// </param>
-        /// <param name="earlierDate">
-        /// The second date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The dates are in the same year
-        /// </returns>
-        [<Import("isSameYear", "date-fns")>]
-        static member isSameYear (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.IsSameYearOptions) : bool = nativeOnly
-        /// <example>
         /// // Is 27 September 2014 Saturday?
         /// const result = isSaturday(new Date(2014, 8, 27))
         /// //=> true
@@ -18541,22 +15824,6 @@ module DateFns =
         [<Import("isSaturday", "date-fns")>]
         static member isSaturday (date: string, ?options: DateFns.IsSaturdayOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 27 September 2014 Saturday?
-        /// const result = isSaturday(new Date(2014, 8, 27))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is Saturday
-        /// </returns>
-        [<Import("isSaturday", "date-fns")>]
-        static member isSaturday (date: DateFns.DateArg<Date>, ?options: DateFns.IsSaturdayOptions) : bool = nativeOnly
-        /// <example>
         /// // Is 21 September 2014 Sunday?
         /// const result = isSunday(new Date(2014, 8, 21))
         /// //=> true
@@ -18604,22 +15871,6 @@ module DateFns =
         /// </returns>
         [<Import("isSunday", "date-fns")>]
         static member isSunday (date: string, ?options: DateFns.IsSundayOptions) : bool = nativeOnly
-        /// <example>
-        /// // Is 21 September 2014 Sunday?
-        /// const result = isSunday(new Date(2014, 8, 21))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// The options object
-        /// </param>
-        /// <returns>
-        /// The date is Sunday
-        /// </returns>
-        [<Import("isSunday", "date-fns")>]
-        static member isSunday (date: DateFns.DateArg<Date>, ?options: DateFns.IsSundayOptions) : bool = nativeOnly
         /// <example>
         /// // If now is 25 September 2014 18:30:15.500,
         /// // is 25 September 2014 18:00:00 in this hour?
@@ -18672,23 +15923,6 @@ module DateFns =
         [<Import("isThisHour", "date-fns")>]
         static member isThisHour (date: string, ?options: DateFns.IsThisHourOptions) : bool = nativeOnly
         /// <example>
-        /// // If now is 25 September 2014 18:30:15.500,
-        /// // is 25 September 2014 18:00:00 in this hour?
-        /// const result = isThisHour(new Date(2014, 8, 25, 18))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is in this hour
-        /// </returns>
-        [<Import("isThisHour", "date-fns")>]
-        static member isThisHour (date: DateFns.DateArg<Date>, ?options: DateFns.IsThisHourOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 25 September 2014, is 22 September 2014 in this ISO week?
         /// const result = isThisISOWeek(new Date(2014, 8, 22))
         /// //=> true
@@ -18737,22 +15971,6 @@ module DateFns =
         [<Import("isThisISOWeek", "date-fns")>]
         static member isThisISOWeek (date: string, ?options: DateFns.IsThisISOWeekOptions) : bool = nativeOnly
         /// <example>
-        /// // If today is 25 September 2014, is 22 September 2014 in this ISO week?
-        /// const result = isThisISOWeek(new Date(2014, 8, 22))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is in this ISO week
-        /// </returns>
-        [<Import("isThisISOWeek", "date-fns")>]
-        static member isThisISOWeek (date: DateFns.DateArg<Date>, ?options: DateFns.IsThisISOWeekOptions) : bool = nativeOnly
-        /// <example>
         /// // If now is 25 September 2014 18:30:15.500,
         /// // is 25 September 2014 18:30:00 in this minute?
         /// const result = isThisMinute(new Date(2014, 8, 25, 18, 30))
@@ -18794,20 +16012,6 @@ module DateFns =
         /// </returns>
         [<Import("isThisMinute", "date-fns")>]
         static member isThisMinute (date: string) : bool = nativeOnly
-        /// <example>
-        /// // If now is 25 September 2014 18:30:15.500,
-        /// // is 25 September 2014 18:30:00 in this minute?
-        /// const result = isThisMinute(new Date(2014, 8, 25, 18, 30))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <returns>
-        /// The date is in this minute
-        /// </returns>
-        [<Import("isThisMinute", "date-fns")>]
-        static member isThisMinute (date: DateFns.DateArg<Date>) : bool = nativeOnly
         /// <example>
         /// // If today is 25 September 2014, is 15 September 2014 in this month?
         /// const result = isThisMonth(new Date(2014, 8, 15))
@@ -18857,22 +16061,6 @@ module DateFns =
         [<Import("isThisMonth", "date-fns")>]
         static member isThisMonth (date: string, ?options: DateFns.IsThisMonthOptions) : bool = nativeOnly
         /// <example>
-        /// // If today is 25 September 2014, is 15 September 2014 in this month?
-        /// const result = isThisMonth(new Date(2014, 8, 15))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is in this month
-        /// </returns>
-        [<Import("isThisMonth", "date-fns")>]
-        static member isThisMonth (date: DateFns.DateArg<Date>, ?options: DateFns.IsThisMonthOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 25 September 2014, is 2 July 2014 in this quarter?
         /// const result = isThisQuarter(new Date(2014, 6, 2))
         /// //=> true
@@ -18921,22 +16109,6 @@ module DateFns =
         [<Import("isThisQuarter", "date-fns")>]
         static member isThisQuarter (date: string, ?options: DateFns.IsThisQuarterOptions) : bool = nativeOnly
         /// <example>
-        /// // If today is 25 September 2014, is 2 July 2014 in this quarter?
-        /// const result = isThisQuarter(new Date(2014, 6, 2))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is in this quarter
-        /// </returns>
-        [<Import("isThisQuarter", "date-fns")>]
-        static member isThisQuarter (date: DateFns.DateArg<Date>, ?options: DateFns.IsThisQuarterOptions) : bool = nativeOnly
-        /// <example>
         /// // If now is 25 September 2014 18:30:15.500,
         /// // is 25 September 2014 18:30:15.000 in this second?
         /// const result = isThisSecond(new Date(2014, 8, 25, 18, 30, 15))
@@ -18978,20 +16150,6 @@ module DateFns =
         /// </returns>
         [<Import("isThisSecond", "date-fns")>]
         static member isThisSecond (date: string) : bool = nativeOnly
-        /// <example>
-        /// // If now is 25 September 2014 18:30:15.500,
-        /// // is 25 September 2014 18:30:15.000 in this second?
-        /// const result = isThisSecond(new Date(2014, 8, 25, 18, 30, 15))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <returns>
-        /// The date is in this second
-        /// </returns>
-        [<Import("isThisSecond", "date-fns")>]
-        static member isThisSecond (date: DateFns.DateArg<Date>) : bool = nativeOnly
         /// <example>
         /// // If today is 25 September 2014, is 21 September 2014 in this week?
         /// const result = isThisWeek(new Date(2014, 8, 21))
@@ -19059,28 +16217,6 @@ module DateFns =
         [<Import("isThisWeek", "date-fns")>]
         static member isThisWeek (date: string, ?options: DateFns.IsThisWeekOptions) : bool = nativeOnly
         /// <example>
-        /// // If today is 25 September 2014, is 21 September 2014 in this week?
-        /// const result = isThisWeek(new Date(2014, 8, 21))
-        /// //=> true
-        /// </example>
-        /// <example>
-        /// // If today is 25 September 2014 and week starts with Monday
-        /// // is 21 September 2014 in this week?
-        /// const result = isThisWeek(new Date(2014, 8, 21), { weekStartsOn: 1 })
-        /// //=> false
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// The object with options
-        /// </param>
-        /// <returns>
-        /// The date is in this week
-        /// </returns>
-        [<Import("isThisWeek", "date-fns")>]
-        static member isThisWeek (date: DateFns.DateArg<Date>, ?options: DateFns.IsThisWeekOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 25 September 2014, is 2 July 2014 in this year?
         /// const result = isThisYear(new Date(2014, 6, 2))
         /// //=> true
@@ -19128,22 +16264,6 @@ module DateFns =
         /// </returns>
         [<Import("isThisYear", "date-fns")>]
         static member isThisYear (date: string, ?options: DateFns.IsThisYearOptions) : bool = nativeOnly
-        /// <example>
-        /// // If today is 25 September 2014, is 2 July 2014 in this year?
-        /// const result = isThisYear(new Date(2014, 6, 2))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is in this year
-        /// </returns>
-        [<Import("isThisYear", "date-fns")>]
-        static member isThisYear (date: DateFns.DateArg<Date>, ?options: DateFns.IsThisYearOptions) : bool = nativeOnly
         /// <example>
         /// // Is 25 September 2014 Thursday?
         /// const result = isThursday(new Date(2014, 8, 25))
@@ -19193,22 +16313,6 @@ module DateFns =
         [<Import("isThursday", "date-fns")>]
         static member isThursday (date: string, ?options: DateFns.IsThursdayOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 25 September 2014 Thursday?
-        /// const result = isThursday(new Date(2014, 8, 25))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is Thursday
-        /// </returns>
-        [<Import("isThursday", "date-fns")>]
-        static member isThursday (date: DateFns.DateArg<Date>, ?options: DateFns.IsThursdayOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 6 October 2014, is 6 October 14:00:00 today?
         /// const result = isToday(new Date(2014, 9, 6, 14, 0))
         /// //=> true
@@ -19256,22 +16360,6 @@ module DateFns =
         /// </returns>
         [<Import("isToday", "date-fns")>]
         static member isToday (date: string, ?options: DateFns.IsTodayOptions) : bool = nativeOnly
-        /// <example>
-        /// // If today is 6 October 2014, is 6 October 14:00:00 today?
-        /// const result = isToday(new Date(2014, 9, 6, 14, 0))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is today
-        /// </returns>
-        [<Import("isToday", "date-fns")>]
-        static member isToday (date: DateFns.DateArg<Date>, ?options: DateFns.IsTodayOptions) : bool = nativeOnly
         /// <example>
         /// // If today is 6 October 2014, is 7 October 14:00:00 tomorrow?
         /// const result = isTomorrow(new Date(2014, 9, 7, 14, 0))
@@ -19321,22 +16409,6 @@ module DateFns =
         [<Import("isTomorrow", "date-fns")>]
         static member isTomorrow (date: string, ?options: DateFns.IsTomorrowOptions) : bool = nativeOnly
         /// <example>
-        /// // If today is 6 October 2014, is 7 October 14:00:00 tomorrow?
-        /// const result = isTomorrow(new Date(2014, 9, 7, 14, 0))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is tomorrow
-        /// </returns>
-        [<Import("isTomorrow", "date-fns")>]
-        static member isTomorrow (date: DateFns.DateArg<Date>, ?options: DateFns.IsTomorrowOptions) : bool = nativeOnly
-        /// <example>
         /// // Is 23 September 2014 Tuesday?
         /// const result = isTuesday(new Date(2014, 8, 23))
         /// //=> true
@@ -19384,22 +16456,6 @@ module DateFns =
         /// </returns>
         [<Import("isTuesday", "date-fns")>]
         static member isTuesday (date: string, ?options: DateFns.IsTuesdayOptions) : bool = nativeOnly
-        /// <example>
-        /// // Is 23 September 2014 Tuesday?
-        /// const result = isTuesday(new Date(2014, 8, 23))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is Tuesday
-        /// </returns>
-        [<Import("isTuesday", "date-fns")>]
-        static member isTuesday (date: DateFns.DateArg<Date>, ?options: DateFns.IsTuesdayOptions) : bool = nativeOnly
         /// <example>
         /// // For the valid date:
         /// const result = isValid(new Date(2014, 1, 31))
@@ -19472,22 +16528,6 @@ module DateFns =
         [<Import("isWednesday", "date-fns")>]
         static member isWednesday (date: string, ?options: DateFns.IsWednesdayOptions) : bool = nativeOnly
         /// <example>
-        /// // Is 24 September 2014 Wednesday?
-        /// const result = isWednesday(new Date(2014, 8, 24))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is Wednesday
-        /// </returns>
-        [<Import("isWednesday", "date-fns")>]
-        static member isWednesday (date: DateFns.DateArg<Date>, ?options: DateFns.IsWednesdayOptions) : bool = nativeOnly
-        /// <example>
         /// // Does 5 October 2014 fall on a weekend?
         /// const result = isWeekend(new Date(2014, 9, 5))
         /// //=> true
@@ -19535,22 +16575,6 @@ module DateFns =
         /// </returns>
         [<Import("isWeekend", "date-fns")>]
         static member isWeekend (date: string, ?options: DateFns.IsWeekendOptions) : bool = nativeOnly
-        /// <example>
-        /// // Does 5 October 2014 fall on a weekend?
-        /// const result = isWeekend(new Date(2014, 9, 5))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date falls on a weekend
-        /// </returns>
-        [<Import("isWeekend", "date-fns")>]
-        static member isWeekend (date: DateFns.DateArg<Date>, ?options: DateFns.IsWeekendOptions) : bool = nativeOnly
         /// <example>
         /// // For the date within the interval:
         /// isWithinInterval(new Date(2014, 0, 3), {
@@ -19672,46 +16696,6 @@ module DateFns =
         [<Import("isWithinInterval", "date-fns")>]
         static member isWithinInterval (date: string, interval: DateFns.Interval, ?options: DateFns.IsWithinIntervalOptions) : bool = nativeOnly
         /// <example>
-        /// // For the date within the interval:
-        /// isWithinInterval(new Date(2014, 0, 3), {
-        ///   start: new Date(2014, 0, 1),
-        ///   end: new Date(2014, 0, 7)
-        /// })
-        /// // => true
-        /// </example>
-        /// <example>
-        /// // For the date outside of the interval:
-        /// isWithinInterval(new Date(2014, 0, 10), {
-        ///   start: new Date(2014, 0, 1),
-        ///   end: new Date(2014, 0, 7)
-        /// })
-        /// // => false
-        /// </example>
-        /// <example>
-        /// // For date equal to the interval start:
-        /// isWithinInterval(date, { start, end: date })
-        /// // => true
-        /// </example>
-        /// <example>
-        /// // For date equal to the interval end:
-        /// isWithinInterval(date, { start: date, end })
-        /// // => true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="interval">
-        /// The interval to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is within the interval
-        /// </returns>
-        [<Import("isWithinInterval", "date-fns")>]
-        static member isWithinInterval (date: DateFns.DateArg<Date>, interval: DateFns.Interval, ?options: DateFns.IsWithinIntervalOptions) : bool = nativeOnly
-        /// <example>
         /// // If today is 6 October 2014, is 5 October 14:00:00 yesterday?
         /// const result = isYesterday(new Date(2014, 9, 5, 14, 0))
         /// //=> true
@@ -19759,22 +16743,6 @@ module DateFns =
         /// </returns>
         [<Import("isYesterday", "date-fns")>]
         static member isYesterday (date: string, ?options: DateFns.IsYesterdayOptions) : bool = nativeOnly
-        /// <example>
-        /// // If today is 6 October 2014, is 5 October 14:00:00 yesterday?
-        /// const result = isYesterday(new Date(2014, 9, 5, 14, 0))
-        /// //=> true
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <returns>
-        /// The date is yesterday
-        /// </returns>
-        [<Import("isYesterday", "date-fns")>]
-        static member isYesterday (date: DateFns.DateArg<Date>, ?options: DateFns.IsYesterdayOptions) : bool = nativeOnly
         /// <example>
         /// // The last day of a decade for 21 December 2012 21:12:00:
         /// const result = lastDayOfDecade(new Date(2012, 11, 21, 21, 12, 00))
@@ -19842,28 +16810,6 @@ module DateFns =
         [<Import("lastDayOfDecade", "date-fns")>]
         static member lastDayOfDecade<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The last day of a decade for 21 December 2012 21:12:00:
-        /// const result = lastDayOfDecade(new Date(2012, 11, 21, 21, 12, 00))
-        /// //=> Wed Dec 31 2019 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type; inferred from arguments or specified by context.
-        /// </typeparam>
-        /// <returns>
-        /// The last day of a decade
-        /// </returns>
-        [<Import("lastDayOfDecade", "date-fns")>]
-        static member lastDayOfDecade<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The last day of an ISO week for 2 September 2014 11:55:00:
         /// const result = lastDayOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Sun Sep 07 2014 00:00:00
@@ -19929,28 +16875,6 @@ module DateFns =
         /// </returns>
         [<Import("lastDayOfISOWeek", "date-fns")>]
         static member lastDayOfISOWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The last day of an ISO week for 2 September 2014 11:55:00:
-        /// const result = lastDayOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Sun Sep 07 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The Date type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [UTCDate](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The last day of an ISO week
-        /// </returns>
-        [<Import("lastDayOfISOWeek", "date-fns")>]
-        static member lastDayOfISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The last day of an ISO week-numbering year for 2 July 2005:
         /// const result = lastDayOfISOWeekYear(new Date(2005, 6, 2))
@@ -20018,28 +16942,6 @@ module DateFns =
         [<Import("lastDayOfISOWeekYear", "date-fns")>]
         static member lastDayOfISOWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The last day of an ISO week-numbering year for 2 July 2005:
-        /// const result = lastDayOfISOWeekYear(new Date(2005, 6, 2))
-        /// //=> Sun Jan 01 2006 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The end of an ISO week-numbering year
-        /// </returns>
-        [<Import("lastDayOfISOWeekYear", "date-fns")>]
-        static member lastDayOfISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The last day of a month for 2 September 2014 11:55:00:
         /// const result = lastDayOfMonth(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Tue Sep 30 2014 00:00:00
@@ -20106,28 +17008,6 @@ module DateFns =
         [<Import("lastDayOfMonth", "date-fns")>]
         static member lastDayOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The last day of a month for 2 September 2014 11:55:00:
-        /// const result = lastDayOfMonth(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Sep 30 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The last day of a month
-        /// </returns>
-        [<Import("lastDayOfMonth", "date-fns")>]
-        static member lastDayOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The last day of a quarter for 2 September 2014 11:55:00:
         /// const result = lastDayOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Tue Sep 30 2014 00:00:00
@@ -20193,28 +17073,6 @@ module DateFns =
         /// </returns>
         [<Import("lastDayOfQuarter", "date-fns")>]
         static member lastDayOfQuarter<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The last day of a quarter for 2 September 2014 11:55:00:
-        /// const result = lastDayOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Sep 30 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The last day of a quarter
-        /// </returns>
-        [<Import("lastDayOfQuarter", "date-fns")>]
-        static member lastDayOfQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <param name="date">
         /// The original date
         /// </param>
@@ -20266,23 +17124,6 @@ module DateFns =
         /// </returns>
         [<Import("lastDayOfWeek", "date-fns")>]
         static member lastDayOfWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The last day of a week
-        /// </returns>
-        [<Import("lastDayOfWeek", "date-fns")>]
-        static member lastDayOfWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The last day of a year for 2 September 2014 11:55:00:
         /// const result = lastDayOfYear(new Date(2014, 8, 2, 11, 55, 00))
@@ -20349,28 +17190,6 @@ module DateFns =
         /// </returns>
         [<Import("lastDayOfYear", "date-fns")>]
         static member lastDayOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.LastDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The last day of a year for 2 September 2014 11:55:00:
-        /// const result = lastDayOfYear(new Date(2014, 8, 2, 11, 55, 00))
-        /// //=> Wed Dec 31 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The last day of a year
-        /// </returns>
-        [<Import("lastDayOfYear", "date-fns")>]
-        static member lastDayOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.LastDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -20440,29 +17259,6 @@ module DateFns =
         /// </returns>
         [<Import("lightFormat", "date-fns")>]
         static member lightFormat (date: string, formatStr: string) : string = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>Invalid time value</c> if the date is invalid
-        ///
-        /// format string contains an unescaped latin alphabet character
-        /// </remarks>
-        /// <example>
-        /// const result = lightFormat(new Date(2014, 1, 11), 'yyyy-MM-dd')
-        /// //=> '2014-02-11'
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="format">
-        /// The string of tokens
-        /// </param>
-        /// <returns>
-        /// The formatted date string
-        /// </returns>
-        [<Import("lightFormat", "date-fns")>]
-        static member lightFormat (date: DateFns.DateArg<Date>, formatStr: string) : string = nativeOnly
         /// <example>
         /// // Which of these dates is the latest?
         /// const result = max([
@@ -20752,36 +17548,6 @@ module DateFns =
         [<Import("nextDay", "date-fns")>]
         static member nextDay<'DateType, 'ResultDate> (date: string, day: DateFns.Day, ?options: DateFns.NextDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the next Monday after Mar, 20, 2020?
-        /// const result = nextDay(new Date(2020, 2, 20), 1)
-        /// //=> Mon Mar 23 2020 00:00:00
-        /// </example>
-        /// <example>
-        /// // When is the next Tuesday after Mar, 21, 2020?
-        /// const result = nextDay(new Date(2020, 2, 21), 2)
-        /// //=> Tue Mar 24 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="day">
-        /// Day of the week
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The date is the next day of the week
-        /// </returns>
-        [<Import("nextDay", "date-fns")>]
-        static member nextDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: DateFns.Day, ?options: DateFns.NextDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the next Friday after Mar, 22, 2020?
         /// const result = nextFriday(new Date(2020, 2, 22))
         /// //=> Fri Mar 27 2020 00:00:00
@@ -20847,28 +17613,6 @@ module DateFns =
         /// </returns>
         [<Import("nextFriday", "date-fns")>]
         static member nextFriday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the next Friday after Mar, 22, 2020?
-        /// const result = nextFriday(new Date(2020, 2, 22))
-        /// //=> Fri Mar 27 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The next Friday
-        /// </returns>
-        [<Import("nextFriday", "date-fns")>]
-        static member nextFriday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // When is the next Monday after Mar, 22, 2020?
         /// const result = nextMonday(new Date(2020, 2, 22))
@@ -20936,28 +17680,6 @@ module DateFns =
         [<Import("nextMonday", "date-fns")>]
         static member nextMonday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the next Monday after Mar, 22, 2020?
-        /// const result = nextMonday(new Date(2020, 2, 22))
-        /// //=> Mon Mar 23 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, returned from the context function if passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The next Monday
-        /// </returns>
-        [<Import("nextMonday", "date-fns")>]
-        static member nextMonday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the next Saturday after Mar, 22, 2020?
         /// const result = nextSaturday(new Date(2020, 2, 22))
         /// //=> Sat Mar 28 2020 00:00:00
@@ -21023,28 +17745,6 @@ module DateFns =
         /// </returns>
         [<Import("nextSaturday", "date-fns")>]
         static member nextSaturday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the next Saturday after Mar, 22, 2020?
-        /// const result = nextSaturday(new Date(2020, 2, 22))
-        /// //=> Sat Mar 28 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The next Saturday
-        /// </returns>
-        [<Import("nextSaturday", "date-fns")>]
-        static member nextSaturday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // When is the next Sunday after March 22, 2020?
         /// const result = nextSunday(new Date(2020, 2, 22))
@@ -21112,28 +17812,6 @@ module DateFns =
         [<Import("nextSunday", "date-fns")>]
         static member nextSunday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the next Sunday after March 22, 2020?
-        /// const result = nextSunday(new Date(2020, 2, 22))
-        /// //=> Sun Mar 29 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned if a context is provided.
-        /// </typeparam>
-        /// <returns>
-        /// The next Sunday
-        /// </returns>
-        [<Import("nextSunday", "date-fns")>]
-        static member nextSunday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the next Thursday after Mar, 22, 2020?
         /// const result = nextThursday(new Date(2020, 2, 22))
         /// //=> Thur Mar 26 2020 00:00:00
@@ -21199,28 +17877,6 @@ module DateFns =
         /// </returns>
         [<Import("nextThursday", "date-fns")>]
         static member nextThursday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the next Thursday after Mar, 22, 2020?
-        /// const result = nextThursday(new Date(2020, 2, 22))
-        /// //=> Thur Mar 26 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The next Thursday
-        /// </returns>
-        [<Import("nextThursday", "date-fns")>]
-        static member nextThursday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // When is the next Tuesday after Mar, 22, 2020?
         /// const result = nextTuesday(new Date(2020, 2, 22))
@@ -21288,28 +17944,6 @@ module DateFns =
         [<Import("nextTuesday", "date-fns")>]
         static member nextTuesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the next Tuesday after Mar, 22, 2020?
-        /// const result = nextTuesday(new Date(2020, 2, 22))
-        /// //=> Tue Mar 24 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The next Tuesday
-        /// </returns>
-        [<Import("nextTuesday", "date-fns")>]
-        static member nextTuesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the next Wednesday after Mar, 22, 2020?
         /// const result = nextWednesday(new Date(2020, 2, 22))
         /// //=> Wed Mar 25 2020 00:00:00
@@ -21375,28 +18009,6 @@ module DateFns =
         /// </returns>
         [<Import("nextWednesday", "date-fns")>]
         static member nextWednesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.NextWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the next Wednesday after Mar, 22, 2020?
-        /// const result = nextWednesday(new Date(2020, 2, 22))
-        /// //=> Wed Mar 25 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The next Wednesday
-        /// </returns>
-        [<Import("nextWednesday", "date-fns")>]
-        static member nextWednesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.NextWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <remarks>
         /// Throws:
         /// -------
@@ -21559,62 +18171,8 @@ module DateFns =
         /// </returns>
         [<Import("parse", "date-fns")>]
         static member parse<'DateType, 'ResultDate> (dateStr: string, formatStr: string, referenceDate: string, ?options: DateFns.ParseOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <remarks>
-        /// Throws:
-        /// -------
-        ///
-        /// <c>options.locale</c> must contain <c>match</c> property
-        ///
-        /// use <c>yyyy</c> instead of <c>YYYY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>yy</c> instead of <c>YY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>d</c> instead of <c>D</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// use <c>dd</c> instead of <c>DD</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        ///
-        /// format string contains an unescaped latin alphabet character
-        /// </remarks>
-        /// <example>
-        /// // Parse 11 February 2014 from middle-endian format:
-        /// var result = parse('02/11/2014', 'MM/dd/yyyy', new Date())
-        /// //=> Tue Feb 11 2014 00:00:00
-        /// </example>
-        /// <example>
-        /// // Parse 28th of February in Esperanto locale in the context of 2010 year:
-        /// import eo from 'date-fns/locale/eo'
-        /// var result = parse('28-a de februaro', "do 'de' MMMM", new Date(2010, 0, 1), {
-        ///   locale: eo
-        /// })
-        /// //=> Sun Feb 28 2010 00:00:00
-        /// </example>
-        /// <param name="dateStr">
-        /// The string to parse
-        /// </param>
-        /// <param name="formatStr">
-        /// The string of tokens
-        /// </param>
-        /// <param name="referenceDate">
-        /// defines values missing from the parsed dateString
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        /// see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The parsed date
-        /// </returns>
-        [<Import("parse", "date-fns")>]
-        static member parse<'DateType, 'ResultDate> (dateStr: string, formatStr: string, referenceDate: DateFns.DateArg<'DateType>, ?options: DateFns.ParseOptions<'ResultDate>) : 'ResultDate = nativeOnly
         [<Import("parsers", "date-fns")>]
-        static member inline parsers: Exports.parsers__.Type = nativeOnly
+        static member inline parsers: DateFns.Exports.parsers__.Type = nativeOnly
         /// <example>
         /// // Convert string '2014-02-11T11:30:30' to date:
         /// const result = parseISO('2014-02-11T11:30:30')
@@ -21812,36 +18370,6 @@ module DateFns =
         [<Import("previousDay", "date-fns")>]
         static member previousDay<'DateType, 'ResultDate> (date: string, day: DateFns.Day, ?options: DateFns.PreviousDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the previous Monday before Mar, 20, 2020?
-        /// const result = previousDay(new Date(2020, 2, 20), 1)
-        /// //=> Mon Mar 16 2020 00:00:00
-        /// </example>
-        /// <example>
-        /// // When is the previous Tuesday before Mar, 21, 2020?
-        /// const result = previousDay(new Date(2020, 2, 21), 2)
-        /// //=> Tue Mar 17 2020 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to check
-        /// </param>
-        /// <param name="day">
-        /// The day of the week
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The date is the previous day of week
-        /// </returns>
-        [<Import("previousDay", "date-fns")>]
-        static member previousDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: DateFns.Day, ?options: DateFns.PreviousDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the previous Friday before Jun, 19, 2021?
         /// const result = previousFriday(new Date(2021, 5, 19))
         /// //=> Fri June 18 2021 00:00:00
@@ -21907,28 +18435,6 @@ module DateFns =
         /// </returns>
         [<Import("previousFriday", "date-fns")>]
         static member previousFriday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the previous Friday before Jun, 19, 2021?
-        /// const result = previousFriday(new Date(2021, 5, 19))
-        /// //=> Fri June 18 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [UTCDate](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Friday
-        /// </returns>
-        [<Import("previousFriday", "date-fns")>]
-        static member previousFriday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // When is the previous Monday before Jun, 18, 2021?
         /// const result = previousMonday(new Date(2021, 5, 18))
@@ -21996,28 +18502,6 @@ module DateFns =
         [<Import("previousMonday", "date-fns")>]
         static member previousMonday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the previous Monday before Jun, 18, 2021?
-        /// const result = previousMonday(new Date(2021, 5, 18))
-        /// //=> Mon June 14 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Monday
-        /// </returns>
-        [<Import("previousMonday", "date-fns")>]
-        static member previousMonday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the previous Saturday before Jun, 20, 2021?
         /// const result = previousSaturday(new Date(2021, 5, 20))
         /// //=> Sat June 19 2021 00:00:00
@@ -22083,28 +18567,6 @@ module DateFns =
         /// </returns>
         [<Import("previousSaturday", "date-fns")>]
         static member previousSaturday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the previous Saturday before Jun, 20, 2021?
-        /// const result = previousSaturday(new Date(2021, 5, 20))
-        /// //=> Sat June 19 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Saturday
-        /// </returns>
-        [<Import("previousSaturday", "date-fns")>]
-        static member previousSaturday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // When is the previous Sunday before Jun, 21, 2021?
         /// const result = previousSunday(new Date(2021, 5, 21))
@@ -22172,28 +18634,6 @@ module DateFns =
         [<Import("previousSunday", "date-fns")>]
         static member previousSunday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the previous Sunday before Jun, 21, 2021?
-        /// const result = previousSunday(new Date(2021, 5, 21))
-        /// //=> Sun June 20 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Sunday
-        /// </returns>
-        [<Import("previousSunday", "date-fns")>]
-        static member previousSunday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the previous Thursday before Jun, 18, 2021?
         /// const result = previousThursday(new Date(2021, 5, 18))
         /// //=> Thu June 17 2021 00:00:00
@@ -22259,28 +18699,6 @@ module DateFns =
         /// </returns>
         [<Import("previousThursday", "date-fns")>]
         static member previousThursday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the previous Thursday before Jun, 18, 2021?
-        /// const result = previousThursday(new Date(2021, 5, 18))
-        /// //=> Thu June 17 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Thursday
-        /// </returns>
-        [<Import("previousThursday", "date-fns")>]
-        static member previousThursday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // When is the previous Tuesday before Jun, 18, 2021?
         /// const result = previousTuesday(new Date(2021, 5, 18))
@@ -22348,28 +18766,6 @@ module DateFns =
         [<Import("previousTuesday", "date-fns")>]
         static member previousTuesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // When is the previous Tuesday before Jun, 18, 2021?
-        /// const result = previousTuesday(new Date(2021, 5, 18))
-        /// //=> Tue June 15 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Tuesday
-        /// </returns>
-        [<Import("previousTuesday", "date-fns")>]
-        static member previousTuesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // When is the previous Wednesday before Jun, 18, 2021?
         /// const result = previousWednesday(new Date(2021, 5, 18))
         /// //=> Wed June 16 2021 00:00:00
@@ -22435,28 +18831,6 @@ module DateFns =
         /// </returns>
         [<Import("previousWednesday", "date-fns")>]
         static member previousWednesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.PreviousWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // When is the previous Wednesday before Jun, 18, 2021?
-        /// const result = previousWednesday(new Date(2021, 5, 18))
-        /// //=> Wed June 16 2021 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to start counting from
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The Date type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [UTCDate](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The previous Wednesday
-        /// </returns>
-        [<Import("previousWednesday", "date-fns")>]
-        static member previousWednesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.PreviousWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Convert 2 quarters to months
         /// const result = quartersToMonths(2)
@@ -22615,48 +18989,6 @@ module DateFns =
         [<Import("roundToNearestHours", "date-fns")>]
         static member roundToNearestHours<'DateType, 'ResultDate> (date: string, ?options: DateFns.RoundToNearestHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Round 10 July 2014 12:34:56 to nearest hour:
-        /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56))
-        /// //=> Thu Jul 10 2014 13:00:00
-        /// </example>
-        /// <example>
-        /// // Round 10 July 2014 12:34:56 to nearest half hour:
-        /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { nearestTo: 6 })
-        /// //=> Thu Jul 10 2014 12:00:00
-        /// </example>
-        /// <example>
-        /// // Round 10 July 2014 12:34:56 to nearest half hour:
-        /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { nearestTo: 8 })
-        /// //=> Thu Jul 10 2014 16:00:00
-        /// </example>
-        /// <example>
-        /// // Floor (rounds down) 10 July 2014 12:34:56 to nearest hour:
-        /// const result = roundToNearestHours(new Date(2014, 6, 10, 1, 23, 45), { roundingMethod: 'ceil' })
-        /// //=> Thu Jul 10 2014 02:00:00
-        /// </example>
-        /// <example>
-        /// // Ceil (rounds up) 10 July 2014 12:34:56 to nearest quarter hour:
-        /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { roundingMethod: 'floor', nearestTo: 8 })
-        /// //=> Thu Jul 10 2014 08:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to round
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date rounded to the closest hour
-        /// </returns>
-        [<Import("roundToNearestHours", "date-fns")>]
-        static member roundToNearestHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.RoundToNearestHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Round 10 July 2014 12:12:34 to nearest minute:
         /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34))
         /// //=> Thu Jul 10 2014 12:13:00
@@ -22767,43 +19099,6 @@ module DateFns =
         /// </returns>
         [<Import("roundToNearestMinutes", "date-fns")>]
         static member roundToNearestMinutes<'DateType, 'ResultDate> (date: string, ?options: DateFns.RoundToNearestMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Round 10 July 2014 12:12:34 to nearest minute:
-        /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34))
-        /// //=> Thu Jul 10 2014 12:13:00
-        /// </example>
-        /// <example>
-        /// // Round 10 July 2014 12:12:34 to nearest quarter hour:
-        /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { nearestTo: 15 })
-        /// //=> Thu Jul 10 2014 12:15:00
-        /// </example>
-        /// <example>
-        /// // Floor (rounds down) 10 July 2014 12:12:34 to nearest minute:
-        /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { roundingMethod: 'floor' })
-        /// //=> Thu Jul 10 2014 12:12:00
-        /// </example>
-        /// <example>
-        /// // Ceil (rounds up) 10 July 2014 12:12:34 to nearest half hour:
-        /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { roundingMethod: 'ceil', nearestTo: 30 })
-        /// //=> Thu Jul 10 2014 12:30:00
-        /// </example>
-        /// <param name="date">
-        /// The date to round
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date rounded to the closest minute
-        /// </returns>
-        [<Import("roundToNearestMinutes", "date-fns")>]
-        static member roundToNearestMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.RoundToNearestMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Convert 7200 seconds into hours
         /// const result = secondsToHours(7200)
@@ -22944,36 +19239,6 @@ module DateFns =
         [<Import("set", "date-fns")>]
         static member set<'DateType, 'ResultDate> (date: string, values: DateFns.DateValues, ?options: DateFns.SetOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Transform 1 September 2014 into 20 October 2015 in a single line:
-        /// const result = set(new Date(2014, 8, 20), { year: 2015, month: 9, date: 20 })
-        /// //=> Tue Oct 20 2015 00:00:00
-        /// </example>
-        /// <example>
-        /// // Set 12 PM to 1 September 2014 01:23:45 to 1 September 2014 12:00:00:
-        /// const result = set(new Date(2014, 8, 1, 1, 23, 45), { hours: 12 })
-        /// //=> Mon Sep 01 2014 12:23:45
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="values">
-        /// The date values to be set
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with options set
-        /// </returns>
-        [<Import("set", "date-fns")>]
-        static member set<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, values: DateFns.DateValues, ?options: DateFns.SetOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set the 30th day of the month to 1 September 2014:
         /// const result = setDate(new Date(2014, 8, 1), 30)
         /// //=> Tue Sep 30 2014 00:00:00
@@ -23048,31 +19313,6 @@ module DateFns =
         /// </returns>
         [<Import("setDate", "date-fns")>]
         static member setDate<'DateType, 'ResultDate> (date: string, dayOfMonth: float, ?options: DateFns.SetDateOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Set the 30th day of the month to 1 September 2014:
-        /// const result = setDate(new Date(2014, 8, 1), 30)
-        /// //=> Tue Sep 30 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="dayOfMonth">
-        /// The day of the month of the new date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the day of the month set
-        /// </returns>
-        [<Import("setDate", "date-fns")>]
-        static member setDate<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, dayOfMonth: float, ?options: DateFns.SetDateOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Set week day to Sunday, with the default weekStartsOn of Sunday:
         /// const result = setDay(new Date(2014, 8, 1), 0)
@@ -23164,36 +19404,6 @@ module DateFns =
         [<Import("setDay", "date-fns")>]
         static member setDay<'DateType, 'ResultDate> (date: string, day: float, ?options: DateFns.SetDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set week day to Sunday, with the default weekStartsOn of Sunday:
-        /// const result = setDay(new Date(2014, 8, 1), 0)
-        /// //=> Sun Aug 31 2014 00:00:00
-        /// </example>
-        /// <example>
-        /// // Set week day to Sunday, with a weekStartsOn of Monday:
-        /// const result = setDay(new Date(2014, 8, 1), 0, { weekStartsOn: 1 })
-        /// //=> Sun Sep 07 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="day">
-        /// The day of the week of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the day of the week set
-        /// </returns>
-        [<Import("setDay", "date-fns")>]
-        static member setDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: float, ?options: DateFns.SetDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set the 2nd day of the year to 2 July 2014:
         /// const result = setDayOfYear(new Date(2014, 6, 2), 2)
         /// //=> Thu Jan 02 2014 00:00:00
@@ -23268,31 +19478,6 @@ module DateFns =
         /// </returns>
         [<Import("setDayOfYear", "date-fns")>]
         static member setDayOfYear<'DateType, 'ResultDate> (date: string, dayOfYear: float, ?options: DateFns.SetDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Set the 2nd day of the year to 2 July 2014:
-        /// const result = setDayOfYear(new Date(2014, 6, 2), 2)
-        /// //=> Thu Jan 02 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="dayOfYear">
-        /// The day of the year of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the day of the year set
-        /// </returns>
-        [<Import("setDayOfYear", "date-fns")>]
-        static member setDayOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, dayOfYear: float, ?options: DateFns.SetDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Set global locale:
         /// import { es } from 'date-fns/locale'
@@ -23406,31 +19591,6 @@ module DateFns =
         [<Import("setHours", "date-fns")>]
         static member setHours<'DateType, 'ResultDate> (date: string, hours: float, ?options: DateFns.SetHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set 4 hours to 1 September 2014 11:30:00:
-        /// const result = setHours(new Date(2014, 8, 1, 11, 30), 4)
-        /// //=> Mon Sep 01 2014 04:30:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="hours">
-        /// The hours of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the hours set
-        /// </returns>
-        [<Import("setHours", "date-fns")>]
-        static member setHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, hours: float, ?options: DateFns.SetHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set Sunday to 1 September 2014:
         /// const result = setISODay(new Date(2014, 8, 1), 7)
         /// //=> Sun Sep 07 2014 00:00:00
@@ -23505,31 +19665,6 @@ module DateFns =
         /// </returns>
         [<Import("setISODay", "date-fns")>]
         static member setISODay<'DateType, 'ResultDate> (date: string, day: float, ?options: DateFns.SetISODayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Set Sunday to 1 September 2014:
-        /// const result = setISODay(new Date(2014, 8, 1), 7)
-        /// //=> Sun Sep 07 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="day">
-        /// The day of the ISO week of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the day of the ISO week set
-        /// </returns>
-        [<Import("setISODay", "date-fns")>]
-        static member setISODay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: float, ?options: DateFns.SetISODayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Set the 53rd ISO week to 7 August 2004:
         /// const result = setISOWeek(new Date(2004, 7, 7), 53)
@@ -23606,31 +19741,6 @@ module DateFns =
         [<Import("setISOWeek", "date-fns")>]
         static member setISOWeek<'DateType, 'ResultDate> (date: string, week: float, ?options: DateFns.SetISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set the 53rd ISO week to 7 August 2004:
-        /// const result = setISOWeek(new Date(2004, 7, 7), 53)
-        /// //=> Sat Jan 01 2005 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="week">
-        /// The ISO week of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The <c>Date</c> type of the context function.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the ISO week set
-        /// </returns>
-        [<Import("setISOWeek", "date-fns")>]
-        static member setISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, week: float, ?options: DateFns.SetISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set ISO week-numbering year 2007 to 29 December 2008:
         /// const result = setISOWeekYear(new Date(2008, 11, 29), 2007)
         /// //=> Mon Jan 01 2007 00:00:00
@@ -23705,31 +19815,6 @@ module DateFns =
         /// </returns>
         [<Import("setISOWeekYear", "date-fns")>]
         static member setISOWeekYear<'DateType, 'ResultDate> (date: string, weekYear: float, ?options: DateFns.SetISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Set ISO week-numbering year 2007 to 29 December 2008:
-        /// const result = setISOWeekYear(new Date(2008, 11, 29), 2007)
-        /// //=> Mon Jan 01 2007 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="weekYear">
-        /// The ISO week-numbering year of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the ISO week-numbering year set
-        /// </returns>
-        [<Import("setISOWeekYear", "date-fns")>]
-        static member setISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, weekYear: float, ?options: DateFns.SetISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Set 300 milliseconds to 1 September 2014 11:30:40.500:
         /// const result = setMilliseconds(new Date(2014, 8, 1, 11, 30, 40, 500), 300)
@@ -23806,31 +19891,6 @@ module DateFns =
         [<Import("setMilliseconds", "date-fns")>]
         static member setMilliseconds<'DateType, 'ResultDate> (date: string, milliseconds: float, ?options: DateFns.SetMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set 300 milliseconds to 1 September 2014 11:30:40.500:
-        /// const result = setMilliseconds(new Date(2014, 8, 1, 11, 30, 40, 500), 300)
-        /// //=> Mon Sep 01 2014 11:30:40.300
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="milliseconds">
-        /// The milliseconds of the new date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the milliseconds set
-        /// </returns>
-        [<Import("setMilliseconds", "date-fns")>]
-        static member setMilliseconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, milliseconds: float, ?options: DateFns.SetMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set 45 minutes to 1 September 2014 11:30:40:
         /// const result = setMinutes(new Date(2014, 8, 1, 11, 30, 40), 45)
         /// //=> Mon Sep 01 2014 11:45:40
@@ -23905,31 +19965,6 @@ module DateFns =
         /// </returns>
         [<Import("setMinutes", "date-fns")>]
         static member setMinutes<'DateType, 'ResultDate> (date: string, minutes: float, ?options: DateFns.SetMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Set 45 minutes to 1 September 2014 11:30:40:
-        /// const result = setMinutes(new Date(2014, 8, 1, 11, 30, 40), 45)
-        /// //=> Mon Sep 01 2014 11:45:40
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="minutes">
-        /// The minutes of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, returned from the context function, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the minutes set
-        /// </returns>
-        [<Import("setMinutes", "date-fns")>]
-        static member setMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, minutes: float, ?options: DateFns.SetMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Set February to 1 September 2014:
         /// const result = setMonth(new Date(2014, 8, 1), 1)
@@ -24006,31 +20041,6 @@ module DateFns =
         [<Import("setMonth", "date-fns")>]
         static member setMonth<'DateType, 'ResultDate> (date: string, month: float, ?options: DateFns.SetMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set February to 1 September 2014:
-        /// const result = setMonth(new Date(2014, 8, 1), 1)
-        /// //=> Sat Feb 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="month">
-        /// The month index to set (0-11)
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the month set
-        /// </returns>
-        [<Import("setMonth", "date-fns")>]
-        static member setMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, month: float, ?options: DateFns.SetMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set the 2nd quarter to 2 July 2014:
         /// const result = setQuarter(new Date(2014, 6, 2), 2)
         /// //=> Wed Apr 02 2014 00:00:00
@@ -24106,31 +20116,6 @@ module DateFns =
         [<Import("setQuarter", "date-fns")>]
         static member setQuarter<'DateType, 'ResultDate> (date: string, quarter: float, ?options: DateFns.SetQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set the 2nd quarter to 2 July 2014:
-        /// const result = setQuarter(new Date(2014, 6, 2), 2)
-        /// //=> Wed Apr 02 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="quarter">
-        /// The quarter of the new date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the quarter set
-        /// </returns>
-        [<Import("setQuarter", "date-fns")>]
-        static member setQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, quarter: float, ?options: DateFns.SetQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set 45 seconds to 1 September 2014 11:30:40:
         /// const result = setSeconds(new Date(2014, 8, 1, 11, 30, 40), 45)
         /// //=> Mon Sep 01 2014 11:30:45
@@ -24205,31 +20190,6 @@ module DateFns =
         /// </returns>
         [<Import("setSeconds", "date-fns")>]
         static member setSeconds<'DateType, 'ResultDate> (date: string, seconds: float, ?options: DateFns.SetSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Set 45 seconds to 1 September 2014 11:30:40:
-        /// const result = setSeconds(new Date(2014, 8, 1, 11, 30, 40), 45)
-        /// //=> Mon Sep 01 2014 11:30:45
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="seconds">
-        /// The seconds of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the seconds set
-        /// </returns>
-        [<Import("setSeconds", "date-fns")>]
-        static member setSeconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, seconds: float, ?options: DateFns.SetSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Set the 1st week to 2 January 2005 with default options:
         /// const result = setWeek(new Date(2005, 0, 2), 1)
@@ -24336,41 +20296,6 @@ module DateFns =
         [<Import("setWeek", "date-fns")>]
         static member setWeek<'DateType, 'ResultDate> (date: string, week: float, ?options: DateFns.SetWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set the 1st week to 2 January 2005 with default options:
-        /// const result = setWeek(new Date(2005, 0, 2), 1)
-        /// //=> Sun Dec 26 2004 00:00:00
-        /// </example>
-        /// <example>
-        /// // Set the 1st week to 2 January 2005,
-        /// // if Monday is the first day of the week,
-        /// // and the first week of the year always contains 4 January:
-        /// const result = setWeek(new Date(2005, 0, 2), 1, {
-        ///   weekStartsOn: 1,
-        ///   firstWeekContainsDate: 4
-        /// })
-        /// //=> Sun Jan 4 2004 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="week">
-        /// The week of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the local week set
-        /// </returns>
-        [<Import("setWeek", "date-fns")>]
-        static member setWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, week: float, ?options: DateFns.SetWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set the local week-numbering year 2004 to 2 January 2010 with default options:
         /// const result = setWeekYear(new Date(2010, 0, 2), 2004)
         /// //=> Sat Jan 03 2004 00:00:00
@@ -24476,41 +20401,6 @@ module DateFns =
         [<Import("setWeekYear", "date-fns")>]
         static member setWeekYear<'DateType, 'ResultDate> (date: string, weekYear: float, ?options: DateFns.SetWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set the local week-numbering year 2004 to 2 January 2010 with default options:
-        /// const result = setWeekYear(new Date(2010, 0, 2), 2004)
-        /// //=> Sat Jan 03 2004 00:00:00
-        /// </example>
-        /// <example>
-        /// // Set the local week-numbering year 2004 to 2 January 2010,
-        /// // if Monday is the first day of week
-        /// // and 4 January is always in the first week of the year:
-        /// const result = setWeekYear(new Date(2010, 0, 2), 2004, {
-        ///   weekStartsOn: 1,
-        ///   firstWeekContainsDate: 4
-        /// })
-        /// //=> Sat Jan 01 2005 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="weekYear">
-        /// The local week-numbering year of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the local week-numbering year set
-        /// </returns>
-        [<Import("setWeekYear", "date-fns")>]
-        static member setWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, weekYear: float, ?options: DateFns.SetWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Set year 2013 to 1 September 2014:
         /// const result = setYear(new Date(2014, 8, 1), 2013)
         /// //=> Sun Sep 01 2013 00:00:00
@@ -24586,31 +20476,6 @@ module DateFns =
         [<Import("setYear", "date-fns")>]
         static member setYear<'DateType, 'ResultDate> (date: string, year: float, ?options: DateFns.SetYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Set year 2013 to 1 September 2014:
-        /// const result = setYear(new Date(2014, 8, 1), 2013)
-        /// //=> Sun Sep 01 2013 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="year">
-        /// The year of the new date
-        /// </param>
-        /// <param name="options">
-        /// An object with options.
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the year set
-        /// </returns>
-        [<Import("setYear", "date-fns")>]
-        static member setYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, year: float, ?options: DateFns.SetYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of a day for 2 September 2014 11:55:00:
         /// const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Tue Sep 02 2014 00:00:00
@@ -24676,28 +20541,6 @@ module DateFns =
         /// </returns>
         [<Import("startOfDay", "date-fns")>]
         static member startOfDay<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The start of a day for 2 September 2014 11:55:00:
-        /// const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Sep 02 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a day
-        /// </returns>
-        [<Import("startOfDay", "date-fns")>]
-        static member startOfDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The start of a decade for 21 October 2015 00:00:00:
         /// const result = startOfDecade(new Date(2015, 9, 21, 00, 00, 00))
@@ -24765,28 +20608,6 @@ module DateFns =
         [<Import("startOfDecade", "date-fns")>]
         static member startOfDecade<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of a decade for 21 October 2015 00:00:00:
-        /// const result = startOfDecade(new Date(2015, 9, 21, 00, 00, 00))
-        /// //=> Jan 01 2010 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a decade
-        /// </returns>
-        [<Import("startOfDecade", "date-fns")>]
-        static member startOfDecade<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of an hour for 2 September 2014 11:55:00:
         /// const result = startOfHour(new Date(2014, 8, 2, 11, 55))
         /// //=> Tue Sep 02 2014 11:00:00
@@ -24852,28 +20673,6 @@ module DateFns =
         /// </returns>
         [<Import("startOfHour", "date-fns")>]
         static member startOfHour<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The start of an hour for 2 September 2014 11:55:00:
-        /// const result = startOfHour(new Date(2014, 8, 2, 11, 55))
-        /// //=> Tue Sep 02 2014 11:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of an hour
-        /// </returns>
-        [<Import("startOfHour", "date-fns")>]
-        static member startOfHour<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The start of an ISO week for 2 September 2014 11:55:00:
         /// const result = startOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
@@ -24941,28 +20740,6 @@ module DateFns =
         [<Import("startOfISOWeek", "date-fns")>]
         static member startOfISOWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of an ISO week for 2 September 2014 11:55:00:
-        /// const result = startOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Mon Sep 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of an ISO week
-        /// </returns>
-        [<Import("startOfISOWeek", "date-fns")>]
-        static member startOfISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of an ISO week-numbering year for 2 July 2005:
         /// const result = startOfISOWeekYear(new Date(2005, 6, 2))
         /// //=> Mon Jan 03 2005 00:00:00
@@ -25029,28 +20806,6 @@ module DateFns =
         [<Import("startOfISOWeekYear", "date-fns")>]
         static member startOfISOWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of an ISO week-numbering year for 2 July 2005:
-        /// const result = startOfISOWeekYear(new Date(2005, 6, 2))
-        /// //=> Mon Jan 03 2005 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of an ISO week-numbering year
-        /// </returns>
-        [<Import("startOfISOWeekYear", "date-fns")>]
-        static member startOfISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of a minute for 1 December 2014 22:15:45.400:
         /// const result = startOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
         /// //=> Mon Dec 01 2014 22:15:00
@@ -25116,28 +20871,6 @@ module DateFns =
         /// </returns>
         [<Import("startOfMinute", "date-fns")>]
         static member startOfMinute<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The start of a minute for 1 December 2014 22:15:45.400:
-        /// const result = startOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
-        /// //=> Mon Dec 01 2014 22:15:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a minute
-        /// </returns>
-        [<Import("startOfMinute", "date-fns")>]
-        static member startOfMinute<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // The start of a month for 2 September 2014 11:55:00:
         /// const result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
@@ -25211,30 +20944,6 @@ module DateFns =
         [<Import("startOfMonth", "date-fns")>]
         static member startOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of a month for 2 September 2014 11:55:00:
-        /// const result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Mon Sep 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments.
-        /// Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed,
-        /// or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a month
-        /// </returns>
-        [<Import("startOfMonth", "date-fns")>]
-        static member startOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of a quarter for 2 September 2014 11:55:00:
         /// const result = startOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
         /// //=> Tue Jul 01 2014 00:00:00
@@ -25301,28 +21010,6 @@ module DateFns =
         [<Import("startOfQuarter", "date-fns")>]
         static member startOfQuarter<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of a quarter for 2 September 2014 11:55:00:
-        /// const result = startOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Tue Jul 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a quarter
-        /// </returns>
-        [<Import("startOfQuarter", "date-fns")>]
-        static member startOfQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of a second for 1 December 2014 22:15:45.400:
         /// const result = startOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
         /// //=> Mon Dec 01 2014 22:15:45.000
@@ -25388,28 +21075,6 @@ module DateFns =
         /// </returns>
         [<Import("startOfSecond", "date-fns")>]
         static member startOfSecond<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The start of a second for 1 December 2014 22:15:45.400:
-        /// const result = startOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
-        /// //=> Mon Dec 01 2014 22:15:45.000
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a second
-        /// </returns>
-        [<Import("startOfSecond", "date-fns")>]
-        static member startOfSecond<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // If today is 6 October 2014:
         /// const result = startOfToday()
@@ -25524,33 +21189,6 @@ module DateFns =
         [<Import("startOfWeek", "date-fns")>]
         static member startOfWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of a week for 2 September 2014 11:55:00:
-        /// const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
-        /// //=> Sun Aug 31 2014 00:00:00
-        /// </example>
-        /// <example>
-        /// // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
-        /// const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
-        /// //=> Mon Sep 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a week
-        /// </returns>
-        [<Import("startOfWeek", "date-fns")>]
-        static member startOfWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of an a week-numbering year for 2 July 2005 with default settings:
         /// const result = startOfWeekYear(new Date(2005, 6, 2))
         /// //=> Sun Dec 26 2004 00:00:00
@@ -25647,38 +21285,6 @@ module DateFns =
         [<Import("startOfWeekYear", "date-fns")>]
         static member startOfWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // The start of an a week-numbering year for 2 July 2005 with default settings:
-        /// const result = startOfWeekYear(new Date(2005, 6, 2))
-        /// //=> Sun Dec 26 2004 00:00:00
-        /// </example>
-        /// <example>
-        /// // The start of a week-numbering year for 2 July 2005
-        /// // if Monday is the first day of week
-        /// // and 4 January is always in the first week of the year:
-        /// const result = startOfWeekYear(new Date(2005, 6, 2), {
-        ///   weekStartsOn: 1,
-        ///   firstWeekContainsDate: 4
-        /// })
-        /// //=> Mon Jan 03 2005 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a week-numbering year
-        /// </returns>
-        [<Import("startOfWeekYear", "date-fns")>]
-        static member startOfWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // The start of a year for 2 September 2014 11:55:00:
         /// const result = startOfYear(new Date(2014, 8, 2, 11, 55, 00))
         /// //=> Wed Jan 01 2014 00:00:00
@@ -25744,28 +21350,6 @@ module DateFns =
         /// </returns>
         [<Import("startOfYear", "date-fns")>]
         static member startOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.StartOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // The start of a year for 2 September 2014 11:55:00:
-        /// const result = startOfYear(new Date(2014, 8, 2, 11, 55, 00))
-        /// //=> Wed Jan 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The original date
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The start of a year
-        /// </returns>
-        [<Import("startOfYear", "date-fns")>]
-        static member startOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.StartOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // If today is 6 October 2014:
         /// const result = startOfYesterday()
@@ -25918,51 +21502,6 @@ module DateFns =
         [<Import("sub", "date-fns")>]
         static member sub<'DateType, 'ResultDate> (date: string, duration: DateFns.Duration, ?options: DateFns.SubOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract the following duration from 15 June 2017 15:29:20
-        /// const result = sub(new Date(2017, 5, 15, 15, 29, 20), {
-        ///   years: 2,
-        ///   months: 9,
-        ///   weeks: 1,
-        ///   days: 7,
-        ///   hours: 5,
-        ///   minutes: 9,
-        ///   seconds: 30
-        /// })
-        /// //=> Mon Sep 1 2014 10:19:50
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="duration">
-        /// The object with years, months, weeks, days, hours, minutes and seconds to be subtracted
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        ///
-        /// | Key     | Description                        |
-        /// |---------|------------------------------------|
-        /// | years   | Amount of years to be subtracted   |
-        /// | months  | Amount of months to be subtracted  |
-        /// | weeks   | Amount of weeks to be subtracted   |
-        /// | days    | Amount of days to be subtracted    |
-        /// | hours   | Amount of hours to be subtracted   |
-        /// | minutes | Amount of minutes to be subtracted |
-        /// | seconds | Amount of seconds to be subtracted |
-        ///
-        /// All values default to 0
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the seconds subtracted
-        /// </returns>
-        [<Import("sub", "date-fns")>]
-        static member sub<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, duration: DateFns.Duration, ?options: DateFns.SubOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Subtract 10 business days from 1 September 2014:
         /// const result = subBusinessDays(new Date(2014, 8, 1), 10)
         /// //=> Mon Aug 18 2014 00:00:00 (skipped weekend days)
@@ -26037,31 +21576,6 @@ module DateFns =
         /// </returns>
         [<Import("subBusinessDays", "date-fns")>]
         static member subBusinessDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Subtract 10 business days from 1 September 2014:
-        /// const result = subBusinessDays(new Date(2014, 8, 1), 10)
-        /// //=> Mon Aug 18 2014 00:00:00 (skipped weekend days)
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of business days to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the business days subtracted
-        /// </returns>
-        [<Import("subBusinessDays", "date-fns")>]
-        static member subBusinessDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Subtract 10 days from 1 September 2014:
         /// const result = subDays(new Date(2014, 8, 1), 10)
@@ -26138,31 +21652,6 @@ module DateFns =
         [<Import("subDays", "date-fns")>]
         static member subDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract 10 days from 1 September 2014:
-        /// const result = subDays(new Date(2014, 8, 1), 10)
-        /// //=> Fri Aug 22 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of days to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the days subtracted
-        /// </returns>
-        [<Import("subDays", "date-fns")>]
-        static member subDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Subtract 2 hours from 11 July 2014 01:00:00:
         /// const result = subHours(new Date(2014, 6, 11, 1, 0), 2)
         /// //=> Thu Jul 10 2014 23:00:00
@@ -26238,31 +21727,6 @@ module DateFns =
         [<Import("subHours", "date-fns")>]
         static member subHours<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract 2 hours from 11 July 2014 01:00:00:
-        /// const result = subHours(new Date(2014, 6, 11, 1, 0), 2)
-        /// //=> Thu Jul 10 2014 23:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of hours to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the hours subtracted
-        /// </returns>
-        [<Import("subHours", "date-fns")>]
-        static member subHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Subtract 5 ISO week-numbering years from 1 September 2014:
         /// const result = subISOWeekYears(new Date(2014, 8, 1), 5)
         /// //=> Mon Aug 31 2009 00:00:00
@@ -26337,31 +21801,6 @@ module DateFns =
         /// </returns>
         [<Import("subISOWeekYears", "date-fns")>]
         static member subISOWeekYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Subtract 5 ISO week-numbering years from 1 September 2014:
-        /// const result = subISOWeekYears(new Date(2014, 8, 1), 5)
-        /// //=> Mon Aug 31 2009 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of ISO week-numbering years to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the ISO week-numbering years subtracted
-        /// </returns>
-        [<Import("subISOWeekYears", "date-fns")>]
-        static member subISOWeekYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <summary>
         /// Subtract the specified number of milliseconds from the given date.
         /// </summary>
@@ -26431,29 +21870,6 @@ module DateFns =
         /// </returns>
         [<Import("subMilliseconds", "date-fns")>]
         static member subMilliseconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <summary>
-        /// Subtract the specified number of milliseconds from the given date.
-        /// </summary>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of milliseconds to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the milliseconds subtracted
-        /// </returns>
-        [<Import("subMilliseconds", "date-fns")>]
-        static member subMilliseconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Subtract 30 minutes from 10 July 2014 12:00:00:
         /// const result = subMinutes(new Date(2014, 6, 10, 12, 0), 30)
@@ -26530,31 +21946,6 @@ module DateFns =
         [<Import("subMinutes", "date-fns")>]
         static member subMinutes<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract 30 minutes from 10 July 2014 12:00:00:
-        /// const result = subMinutes(new Date(2014, 6, 10, 12, 0), 30)
-        /// //=> Thu Jul 10 2014 11:30:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of minutes to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the minutes subtracted
-        /// </returns>
-        [<Import("subMinutes", "date-fns")>]
-        static member subMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Subtract 5 months from 1 February 2015:
         /// const result = subMonths(new Date(2015, 1, 1), 5)
         /// //=> Mon Sep 01 2014 00:00:00
@@ -26630,31 +22021,6 @@ module DateFns =
         [<Import("subMonths", "date-fns")>]
         static member subMonths<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract 5 months from 1 February 2015:
-        /// const result = subMonths(new Date(2015, 1, 1), 5)
-        /// //=> Mon Sep 01 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of months to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the months subtracted
-        /// </returns>
-        [<Import("subMonths", "date-fns")>]
-        static member subMonths<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Subtract 3 quarters from 1 September 2014:
         /// const result = subQuarters(new Date(2014, 8, 1), 3)
         /// //=> Sun Dec 01 2013 00:00:00
@@ -26729,31 +22095,6 @@ module DateFns =
         /// </returns>
         [<Import("subQuarters", "date-fns")>]
         static member subQuarters<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Subtract 3 quarters from 1 September 2014:
-        /// const result = subQuarters(new Date(2014, 8, 1), 3)
-        /// //=> Sun Dec 01 2013 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of quarters to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the quarters subtracted
-        /// </returns>
-        [<Import("subQuarters", "date-fns")>]
-        static member subQuarters<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <summary>
         /// Subtract the specified number of seconds from the given date.
         /// </summary>
@@ -26838,34 +22179,6 @@ module DateFns =
         /// </returns>
         [<Import("subSeconds", "date-fns")>]
         static member subSeconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <summary>
-        /// Subtract the specified number of seconds from the given date.
-        /// </summary>
-        /// <example>
-        /// // Subtract 30 seconds from 10 July 2014 12:45:00:
-        /// const result = subSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
-        /// //=> Thu Jul 10 2014 12:44:30
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of seconds to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// The options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the seconds subtracted
-        /// </returns>
-        [<Import("subSeconds", "date-fns")>]
-        static member subSeconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Subtract 4 weeks from 1 September 2014:
         /// const result = subWeeks(new Date(2014, 8, 1), 4)
@@ -26942,31 +22255,6 @@ module DateFns =
         [<Import("subWeeks", "date-fns")>]
         static member subWeeks<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract 4 weeks from 1 September 2014:
-        /// const result = subWeeks(new Date(2014, 8, 1), 4)
-        /// //=> Mon Aug 04 2014 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of weeks to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the weeks subtracted
-        /// </returns>
-        [<Import("subWeeks", "date-fns")>]
-        static member subWeeks<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Subtract 5 years from 1 September 2014:
         /// const result = subYears(new Date(2014, 8, 1), 5)
         /// //=> Tue Sep 01 2009 00:00:00
@@ -27042,31 +22330,6 @@ module DateFns =
         [<Import("subYears", "date-fns")>]
         static member subYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.SubYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
-        /// // Subtract 5 years from 1 September 2014:
-        /// const result = subYears(new Date(2014, 8, 1), 5)
-        /// //=> Tue Sep 01 2009 00:00:00
-        /// </example>
-        /// <param name="date">
-        /// The date to be changed
-        /// </param>
-        /// <param name="amount">
-        /// The amount of years to be subtracted.
-        /// </param>
-        /// <param name="options">
-        /// An object with options
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The new date with the years subtracted
-        /// </returns>
-        [<Import("subYears", "date-fns")>]
-        static member subYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.SubYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
         /// // Clone the date:
         /// const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
         /// //=> Tue Feb 11 2014 11:30:30
@@ -27138,30 +22401,6 @@ module DateFns =
         /// </returns>
         [<Import("toDate", "date-fns")>]
         static member toDate<'ResultDate> (argument: string, ?context: DateFns.ContextFn<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Clone the date:
-        /// const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
-        /// //=> Tue Feb 11 2014 11:30:30
-        /// </example>
-        /// <example>
-        /// // Convert the timestamp to date:
-        /// const result = toDate(1392098430000)
-        /// //=> Tue Feb 11 2014 11:30:30
-        /// </example>
-        /// <param name="argument">
-        /// The value to convert
-        /// </param>
-        /// <typeparam name="DateType">
-        /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-        /// </typeparam>
-        /// <returns>
-        /// The parsed date in the local time zone
-        /// </returns>
-        [<Import("toDate", "date-fns")>]
-        static member toDate<'ResultDate> (argument: DateFns.DateArg<U2<Date, DateFns.ConstructableDate>>, ?context: DateFns.ContextFn<'ResultDate>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Create July 10, 2022 00:00 in locale time zone
         /// const date = new Date(2022, 6, 10)
@@ -27243,33 +22482,6 @@ module DateFns =
         /// </returns>
         [<Import("transpose", "date-fns")>]
         static member transpose<'InputDate, 'ResultDate> (date: 'InputDate, ``constructor``: DateFns.ContextFn<'ResultDate>) : 'ResultDate = nativeOnly
-        /// <example>
-        /// // Create July 10, 2022 00:00 in locale time zone
-        /// const date = new Date(2022, 6, 10)
-        /// //=> 'Sun Jul 10 2022 00:00:00 GMT+0800 (Singapore Standard Time)'
-        /// </example>
-        /// <example>
-        /// // Transpose the date to July 10, 2022 00:00 in UTC
-        /// transpose(date, UTCDate)
-        /// //=> 'Sun Jul 10 2022 00:00:00 GMT+0000 (Coordinated Universal Time)'
-        /// </example>
-        /// <param name="date">
-        /// The date to use values from
-        /// </param>
-        /// <param name="constructor">
-        /// The date constructor to use
-        /// </param>
-        /// <typeparam name="InputDate">
-        /// The input <c>Date</c> type derived from the passed argument.
-        /// </typeparam>
-        /// <typeparam name="ResultDate">
-        /// The result <c>Date</c> type derived from the passed constructor.
-        /// </typeparam>
-        /// <returns>
-        /// Date transposed to the given constructor
-        /// </returns>
-        [<Import("transpose", "date-fns")>]
-        static member transpose<'InputDate, 'ResultDate> (date: 'InputDate, ``constructor``: U3<'ResultDate, DateFns.GenericDateConstructor<'ResultDate>, DateFns.ContextFn<'ResultDate>>) : 'ResultDate = nativeOnly
         /// <example>
         /// // Convert 2 weeks into days
         /// const result = weeksToDays(2)
@@ -28091,7 +23303,6 @@ module DateFns =
     [<Interface>]
     type FormatDistanceToNowOptions =
         inherit DateFns.FormatDistanceOptions
-        inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
         static member Create (?locale: obj, ?``in``: DateFns.ContextFn<Date>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceToNowOptions = nativeOnly
 
@@ -28102,7 +23313,6 @@ module DateFns =
     [<Interface>]
     type FormatDistanceToNowStrictOptions =
         inherit DateFns.FormatDistanceStrictOptions
-        inherit DateFns.ContextOptions<Date>
         [<ParamObject; Emit("$0")>]
         static member Create (?locale: obj, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>, ?addSuffix: bool, ?unit: DateFns.FormatDistanceStrictUnit) : FormatDistanceToNowStrictOptions = nativeOnly
 
@@ -28962,7 +24172,7 @@ module DateFns =
         /// </summary>
         abstract member options: DateFns.LocaleOptions option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (code: string, formatDistance: DateFns.FormatDistanceFn, formatRelative: DateFns.FormatRelativeFn<obj>, localize: DateFns.Localize, formatLong: DateFns.FormatLong, ``match``: DateFns.Match, ?options: DateFns.LocaleOptions) : Locale = nativeOnly
+        static member Create (code: string, formatDistance: DateFns.FormatDistanceFn, formatRelative: DateFns.FormatRelativeFn, localize: DateFns.Localize, formatLong: DateFns.FormatLong, ``match``: DateFns.Match, ?options: DateFns.LocaleOptions) : Locale = nativeOnly
 
     /// <summary>
     /// The locale options.
@@ -29080,8 +24290,8 @@ module DateFns =
     /// <returns>
     /// The localized relative date format
     /// </returns>
-    type FormatRelativeFn<'DateType> =
-        delegate of token: DateFns.FormatRelativeToken * date: 'DateType * baseDate: 'DateType * ?options: DateFns.FormatRelativeFnOptions -> string
+    type FormatRelativeFn =
+        delegate of token: DateFns.FormatRelativeToken * date: obj * baseDate: obj * ?options: DateFns.FormatRelativeFnOptions -> string
 
     /// <summary>
     /// The <see href="FormatRelativeFn">FormatRelativeFn</see> function options.
@@ -29110,8 +24320,8 @@ module DateFns =
     /// <typeparam name="DateType">
     /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
     /// </typeparam>
-    type FormatRelativeTokenFn<'DateType> =
-        delegate of date: DateFns.DateArg<'DateType> * baseDate: DateFns.DateArg<'DateType> * ?options: DateFns.FormatRelativeTokenFnOptions -> string
+    type FormatRelativeTokenFn =
+        delegate of date: DateFns.DateArg<obj> * baseDate: DateFns.DateArg<obj> * ?options: DateFns.FormatRelativeTokenFnOptions -> string
 
     /// <summary>
     /// The <see href="FormatRelativeTokenFn">FormatRelativeTokenFn</see> function options.
@@ -29608,7 +24818,6 @@ module DateFns =
         abstract member context: value: Date -> Date
         abstract member context: value: float -> Date
         abstract member context: value: string -> Date
-        abstract member context: value: DateFns.DateArg<Date> -> Date
         abstract member set<'DateType>: date: 'DateType * flags: DateFns.ParseFlags -> 'DateType
 
     [<AllowNullLiteral>]
@@ -30211,11 +25420,42 @@ module DateFns =
         [<ParamObject; Emit("$0")>]
         static member Create (?``in``: DateFns.ContextFn<'DateType>) : SubYearsOptions<'DateType> = nativeOnly
 
-    /// <summary>
-    /// The argument type.
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type DateArg<'DateType> =
-        U3<'DateType, float, string>
+        | DateType of 'DateType
+        | Number of float
+        | String of string
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: 'DateType) : DateArg<'DateType> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: 'DateType) : DateArg<'DateType> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: float) : DateArg<'DateType> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: float) : DateArg<'DateType> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : DateArg<'DateType> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : DateArg<'DateType> = nativeOnly
+
+        /// Unchecked, the value as <c>DateType</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsDateType: 'DateType = nativeOnly
+
+        /// Unchecked, the value as <c>Number</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsNumber: float = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
 
     /// <summary>
     /// Date extension interface that allows to transfer extra properties from
@@ -30245,8 +25485,6 @@ module DateFns =
         abstract member Create: value: float -> 'DateType
         [<EmitConstructor>]
         abstract member Create: value: string -> 'DateType
-        [<EmitConstructor>]
-        abstract member Create: value: DateFns.DateArg<Date> -> 'DateType
         [<EmitConstructor>]
         abstract member Create: year: float * month: float * ?date: float * ?hours: float * ?minutes: float * ?seconds: float * ?ms: float -> 'DateType
 
@@ -30623,11 +25861,31 @@ module DateFns =
     type ContextFn<'DateType> =
         DateFns.DateArg<Date> -> 'DateType
 
-    /// <summary>
-    /// Resolves passed type or array of types.
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type MaybeArray<'Type> =
-        U2<'Type, ResizeArray<'Type>>
+        | Type of 'Type
+        | TypeArray of ResizeArray<'Type>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: 'Type) : MaybeArray<'Type> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: 'Type) : MaybeArray<'Type> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<'Type>) : MaybeArray<'Type> = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<'Type>) : MaybeArray<'Type> = nativeOnly
+
+        /// Unchecked, the value as <c>Type</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsType: 'Type = nativeOnly
+
+        /// Unchecked, the value as <c>TypeArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsTypeArray: ResizeArray<'Type> = nativeOnly
 
     module _lib =
 
@@ -30646,7 +25904,7 @@ module DateFns =
             module formatters =
 
                 type Formatter =
-                    delegate of date: Date * token: string * localize: DateFns.Localize * options: Formatter.options -> string
+                    delegate of date: Date * token: string * localize: DateFns.Localize * options: DateFns._lib.format.formatters.Formatter.options -> string
 
                 module Formatter =
 
@@ -30656,7 +25914,7 @@ module DateFns =
                         /// <summary>
                         /// The locale to use in the function.
                         /// </summary>
-                        abstract member locale: Formatter.options.locale option with get, set
+                        abstract member locale: DateFns._lib.format.formatters.Formatter.options.locale option with get, set
                         /// <summary>
                         /// Which day the week starts on.
                         /// </summary>
@@ -30666,7 +25924,7 @@ module DateFns =
                         /// </summary>
                         abstract member firstWeekContainsDate: DateFns.FirstWeekContainsDate option with get, set
                         [<ParamObject; Emit("$0")>]
-                        static member Create (?locale: Formatter.options.locale, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate) : options = nativeOnly
+                        static member Create (?locale: DateFns._lib.format.formatters.Formatter.options.locale, ?weekStartsOn: DateFns.Day, ?firstWeekContainsDate: DateFns.FirstWeekContainsDate) : options = nativeOnly
 
                     module options =
 
@@ -30842,55 +26100,6 @@ module DateFns =
             /// </returns>
             [<Import("add", "date-fns")>]
             static member add<'DateType, 'ResultDate> (date: string, duration: DateFns.Duration, ?options: DateFns.add.AddOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add the following duration to 1 September 2014, 10:19:50
-            /// const result = add(new Date(2014, 8, 1, 10, 19, 50), {
-            ///   years: 2,
-            ///   months: 9,
-            ///   weeks: 1,
-            ///   days: 7,
-            ///   hours: 5,
-            ///   minutes: 9,
-            ///   seconds: 30,
-            /// })
-            /// //=> Thu Jun 15 2017 15:29:20
-            /// </example>
-            /// <example>
-            /// // Using Temporal:
-            /// // Add the following duration to 1 September 2014, 10:19:50
-            /// Temporal.PlainDateTime.from("2014-09-01T10:19:50")
-            ///   .add({
-            ///     years: 2,
-            ///     months: 9,
-            ///     weeks: 1,
-            ///     days: 7,
-            ///     hours: 5,
-            ///     minutes: 9,
-            ///     seconds: 30,
-            ///   })
-            ///   .toString();
-            /// //=> "2017-06-15T15:29:20"
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="duration">
-            /// The object with years, months, weeks, days, hours, minutes, and seconds to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the seconds added
-            /// </returns>
-            [<Import("add", "date-fns")>]
-            static member add<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, duration: DateFns.Duration, ?options: DateFns.add.AddOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="add">add</see> function options.
@@ -30985,31 +26194,6 @@ module DateFns =
             /// </returns>
             [<Import("addBusinessDays", "date-fns")>]
             static member addBusinessDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addBusinessDays.AddBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 10 business days to 1 September 2014:
-            /// const result = addBusinessDays(new Date(2014, 8, 1), 10)
-            /// //=> Mon Sep 15 2014 00:00:00 (skipped weekend days)
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of business days to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the business days added
-            /// </returns>
-            [<Import("addBusinessDays", "date-fns")>]
-            static member addBusinessDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addBusinessDays.AddBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addBusinessDays">addBusinessDays</see> function options.
@@ -31122,37 +26306,6 @@ module DateFns =
             /// </returns>
             [<Import("addDays", "date-fns")>]
             static member addDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addDays.AddDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 10 days to 1 September 2014:
-            /// const result = addDays(new Date(2014, 8, 1), 10)
-            /// //=> Thu Sep 11 2014 00:00:00
-            /// </example>
-            /// <example>
-            /// // Using Temporal:
-            /// // Add 10 days to 1 September 2014:
-            /// Temporal.PlainDate.from("2014-09-01").add({ days: 10 }).toString();
-            /// //=> "2014-09-11"
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of days to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the days added
-            /// </returns>
-            [<Import("addDays", "date-fns")>]
-            static member addDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addDays.AddDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addDays">addDays</see> function options.
@@ -31247,31 +26400,6 @@ module DateFns =
             /// </returns>
             [<Import("addHours", "date-fns")>]
             static member addHours<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addHours.AddHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 2 hours to 10 July 2014 23:00:00:
-            /// const result = addHours(new Date(2014, 6, 10, 23, 0), 2)
-            /// //=> Fri Jul 11 2014 01:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of hours to be added
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the hours added
-            /// </returns>
-            [<Import("addHours", "date-fns")>]
-            static member addHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addHours.AddHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addHours">addHours</see> function options.
@@ -31357,28 +26485,6 @@ module DateFns =
             /// </returns>
             [<Import("addISOWeekYears", "date-fns")>]
             static member addISOWeekYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addISOWeekYears.AddISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 5 ISO week-numbering years to 2 July 2010:
-            /// const result = addISOWeekYears(new Date(2010, 6, 2), 5)
-            /// //=> Fri Jun 26 2015 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of ISO week-numbering years to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the ISO week-numbering years added
-            /// </returns>
-            [<Import("addISOWeekYears", "date-fns")>]
-            static member addISOWeekYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addISOWeekYears.AddISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addISOWeekYears">addISOWeekYears</see> function options.
@@ -31473,31 +26579,6 @@ module DateFns =
             /// </returns>
             [<Import("addMilliseconds", "date-fns")>]
             static member addMilliseconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addMilliseconds.AddMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 750 milliseconds to 10 July 2014 12:45:30.000:
-            /// const result = addMilliseconds(new Date(2014, 6, 10, 12, 45, 30, 0), 750)
-            /// //=> Thu Jul 10 2014 12:45:30.750
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of milliseconds to be added.
-            /// </param>
-            /// <param name="options">
-            /// The options object
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the milliseconds added
-            /// </returns>
-            [<Import("addMilliseconds", "date-fns")>]
-            static member addMilliseconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addMilliseconds.AddMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addMilliseconds">addMilliseconds</see> function options.
@@ -31592,31 +26673,6 @@ module DateFns =
             /// </returns>
             [<Import("addMinutes", "date-fns")>]
             static member addMinutes<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addMinutes.AddMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 30 minutes to 10 July 2014 12:00:00:
-            /// const result = addMinutes(new Date(2014, 6, 10, 12, 0), 30)
-            /// //=> Thu Jul 10 2014 12:30:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of minutes to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the minutes added
-            /// </returns>
-            [<Import("addMinutes", "date-fns")>]
-            static member addMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addMinutes.AddMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addMinutes">addMinutes</see> function options.
@@ -31723,35 +26779,6 @@ module DateFns =
             /// </returns>
             [<Import("addMonths", "date-fns")>]
             static member addMonths<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addMonths.AddMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 5 months to 1 September 2014:
-            /// const result = addMonths(new Date(2014, 8, 1), 5)
-            /// //=> Sun Feb 01 2015 00:00:00
-            ///
-            /// // Add one month to 30 January 2023:
-            /// const result = addMonths(new Date(2023, 0, 30), 1)
-            /// //=> Tue Feb 28 2023 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of months to be added.
-            /// </param>
-            /// <param name="options">
-            /// The options object
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the months added
-            /// </returns>
-            [<Import("addMonths", "date-fns")>]
-            static member addMonths<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addMonths.AddMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addMonths">addMonths</see> function options.
@@ -31846,31 +26873,6 @@ module DateFns =
             /// </returns>
             [<Import("addQuarters", "date-fns")>]
             static member addQuarters<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addQuarters.AddQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 1 quarter to 1 September 2014:
-            /// const result = addQuarters(new Date(2014, 8, 1), 1)
-            /// //=; Mon Dec 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of quarters to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the quarters added
-            /// </returns>
-            [<Import("addQuarters", "date-fns")>]
-            static member addQuarters<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addQuarters.AddQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addQuarters">addQuarters</see> function options.
@@ -31965,31 +26967,6 @@ module DateFns =
             /// </returns>
             [<Import("addSeconds", "date-fns")>]
             static member addSeconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addSeconds.AddSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 30 seconds to 10 July 2014 12:45:00:
-            /// const result = addSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
-            /// //=> Thu Jul 10 2014 12:45:30
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of seconds to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the seconds added
-            /// </returns>
-            [<Import("addSeconds", "date-fns")>]
-            static member addSeconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addSeconds.AddSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addSeconds">addSeconds</see> function options.
@@ -32084,31 +27061,6 @@ module DateFns =
             /// </returns>
             [<Import("addWeeks", "date-fns")>]
             static member addWeeks<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addWeeks.AddWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 4 weeks to 1 September 2014:
-            /// const result = addWeeks(new Date(2014, 8, 1), 4)
-            /// //=> Mon Sep 29 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of weeks to be added.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the weeks added
-            /// </returns>
-            [<Import("addWeeks", "date-fns")>]
-            static member addWeeks<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addWeeks.AddWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addWeeks">addWeeks</see> function options.
@@ -32203,31 +27155,6 @@ module DateFns =
             /// </returns>
             [<Import("addYears", "date-fns")>]
             static member addYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.addYears.AddYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Add 5 years to 1 September 2014:
-            /// const result = addYears(new Date(2014, 8, 1), 5)
-            /// //=> Sun Sep 01 2019 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of years to be added.
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the years added
-            /// </returns>
-            [<Import("addYears", "date-fns")>]
-            static member addYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.addYears.AddYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="addYears">addYears</see> function options.
@@ -32444,28 +27371,6 @@ module DateFns =
             /// </returns>
             [<Import("closestIndexTo", "date-fns")>]
             static member closestIndexTo (dateToCompare: string, dates: ResizeArray<DateFns.DateArg<Date>>) : float option = nativeOnly
-            /// <example>
-            /// // Which date is closer to 6 September 2015?
-            /// const dateToCompare = new Date(2015, 8, 6)
-            /// const datesArray = [
-            ///   new Date(2015, 0, 1),
-            ///   new Date(2016, 0, 1),
-            ///   new Date(2017, 0, 1)
-            /// ]
-            /// const result = closestIndexTo(dateToCompare, datesArray)
-            /// //=> 1
-            /// </example>
-            /// <param name="dateToCompare">
-            /// The date to compare with
-            /// </param>
-            /// <param name="dates">
-            /// The array to search
-            /// </param>
-            /// <returns>
-            /// An index of the date closest to the given date or undefined if no valid value is given
-            /// </returns>
-            [<Import("closestIndexTo", "date-fns")>]
-            static member closestIndexTo (dateToCompare: DateFns.DateArg<Date>, dates: ResizeArray<DateFns.DateArg<Date>>) : float option = nativeOnly
 
     module closestTo =
 
@@ -32795,35 +27700,6 @@ module DateFns =
             /// </returns>
             [<Import("compareAsc", "date-fns")>]
             static member compareAsc (dateLeft: string, dateRight: string) : float = nativeOnly
-            /// <example>
-            /// // Compare 11 February 1987 and 10 July 1989:
-            /// const result = compareAsc(new Date(1987, 1, 11), new Date(1989, 6, 10))
-            /// //=> -1
-            /// </example>
-            /// <example>
-            /// // Sort the array of dates:
-            /// const result = [
-            ///   new Date(1995, 6, 2),
-            ///   new Date(1987, 1, 11),
-            ///   new Date(1989, 6, 10)
-            /// ].sort(compareAsc)
-            /// //=> [
-            /// //   Wed Feb 11 1987 00:00:00,
-            /// //   Mon Jul 10 1989 00:00:00,
-            /// //   Sun Jul 02 1995 00:00:00
-            /// // ]
-            /// </example>
-            /// <param name="dateLeft">
-            /// The first date to compare
-            /// </param>
-            /// <param name="dateRight">
-            /// The second date to compare
-            /// </param>
-            /// <returns>
-            /// The result of the comparison
-            /// </returns>
-            [<Import("compareAsc", "date-fns")>]
-            static member compareAsc (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>) : float = nativeOnly
 
     module compareDesc =
 
@@ -33091,35 +27967,6 @@ module DateFns =
             /// </returns>
             [<Import("compareDesc", "date-fns")>]
             static member compareDesc (dateLeft: string, dateRight: string) : float = nativeOnly
-            /// <example>
-            /// // Compare 11 February 1987 and 10 July 1989 reverse chronologically:
-            /// const result = compareDesc(new Date(1987, 1, 11), new Date(1989, 6, 10))
-            /// //=> 1
-            /// </example>
-            /// <example>
-            /// // Sort the array of dates in reverse chronological order:
-            /// const result = [
-            ///   new Date(1995, 6, 2),
-            ///   new Date(1987, 1, 11),
-            ///   new Date(1989, 6, 10)
-            /// ].sort(compareDesc)
-            /// //=> [
-            /// //   Sun Jul 02 1995 00:00:00,
-            /// //   Mon Jul 10 1989 00:00:00,
-            /// //   Wed Feb 11 1987 00:00:00
-            /// // ]
-            /// </example>
-            /// <param name="dateLeft">
-            /// The first date to compare
-            /// </param>
-            /// <param name="dateRight">
-            /// The second date to compare
-            /// </param>
-            /// <returns>
-            /// The result of the comparison
-            /// </returns>
-            [<Import("compareDesc", "date-fns")>]
-            static member compareDesc (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>) : float = nativeOnly
 
     module constants =
 
@@ -33498,31 +28345,6 @@ module DateFns =
             /// </returns>
             [<Import("constructFrom", "date-fns")>]
             static member constructFrom<'ResultDate> (date: DateFns.ContextFn<'ResultDate> option, value: string) : 'ResultDate = nativeOnly
-            /// <example>
-            /// import { constructFrom } from "./constructFrom/date-fns";
-            ///
-            /// // A function that clones a date preserving the original type
-            /// function cloneDate<DateType extends Date>(date: DateType): DateType {
-            ///   return constructFrom(
-            ///     date, // Use constructor from the given date
-            ///     date.getTime() // Use the date value to create a new date
-            ///   );
-            /// }
-            /// </example>
-            /// <param name="date">
-            /// The reference date to take constructor from
-            /// </param>
-            /// <param name="value">
-            /// The value to create the date
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <returns>
-            /// Date initialized using the given date and value
-            /// </returns>
-            [<Import("constructFrom", "date-fns")>]
-            static member constructFrom<'ResultDate> (date: U2<DateFns.DateArg<U2<Date, DateFns.ConstructableDate>>, DateFns.ContextFn<'ResultDate>> option, value: DateFns.DateArg<Date>) : 'ResultDate = nativeOnly
 
     module constructNow =
 
@@ -33605,25 +28427,6 @@ module DateFns =
             /// </returns>
             [<Import("constructNow", "date-fns")>]
             static member constructNow<'DateType, 'ResultDate> (date: DateFns.ContextFn<'ResultDate> option) : 'ResultDate = nativeOnly
-            /// <example>
-            /// import { constructNow, isSameDay } from 'date-fns'
-            ///
-            /// function isToday<DateType extends Date>(
-            ///   date: DateArg<DateType>,
-            /// ): boolean {
-            ///   // If we were to use <c>new Date()</c> directly, the function would  behave
-            ///   // differently in different timezones and return false for the same date.
-            ///   return isSameDay(date, constructNow(date));
-            /// }
-            /// </example>
-            /// <param name="date">
-            /// The reference date to take constructor from
-            /// </param>
-            /// <returns>
-            /// Current date initialized using the given date constructor
-            /// </returns>
-            [<Import("constructNow", "date-fns")>]
-            static member constructNow<'DateType, 'ResultDate> (date: U2<DateFns.DateArg<'DateType>, DateFns.ContextFn<'ResultDate>> option) : 'ResultDate = nativeOnly
 
     module daysToWeeks =
 
@@ -34077,53 +28880,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInBusinessDays", "date-fns")>]
             static member differenceInBusinessDays (laterDate: string, earlierDate: string, ?options: DateFns.differenceInBusinessDays.DifferenceInBusinessDaysOptions) : float = nativeOnly
-            /// <example>
-            /// // How many business days are between
-            /// // 10 January 2014 and 20 July 2014?
-            /// const result = differenceInBusinessDays(
-            ///   new Date(2014, 6, 20),
-            ///   new Date(2014, 0, 10)
-            /// )
-            /// //=> 136
-            ///
-            /// // How many business days are between
-            /// // 30 November 2021 and 1 November 2021?
-            /// const result = differenceInBusinessDays(
-            ///   new Date(2021, 10, 30),
-            ///   new Date(2021, 10, 1)
-            /// )
-            /// //=> 21
-            ///
-            /// // How many business days are between
-            /// // 1 November 2021 and 1 December 2021?
-            /// const result = differenceInBusinessDays(
-            ///   new Date(2021, 10, 1),
-            ///   new Date(2021, 11, 1)
-            /// )
-            /// //=> -22
-            ///
-            /// // How many business days are between
-            /// // 1 November 2021 and 1 November 2021 ?
-            /// const result = differenceInBusinessDays(
-            ///   new Date(2021, 10, 1),
-            ///   new Date(2021, 10, 1)
-            /// )
-            /// //=> 0
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of business days
-            /// </returns>
-            [<Import("differenceInBusinessDays", "date-fns")>]
-            static member differenceInBusinessDays (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInBusinessDays.DifferenceInBusinessDaysOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInBusinessDays">differenceInBusinessDays</see> function options.
@@ -34410,36 +29166,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarDays", "date-fns")>]
             static member differenceInCalendarDays (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarDays.DifferenceInCalendarDaysOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar days are between
-            /// // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
-            /// const result = differenceInCalendarDays(
-            ///   new Date(2012, 6, 2, 0, 0),
-            ///   new Date(2011, 6, 2, 23, 0)
-            /// )
-            /// //=> 366
-            /// // How many calendar days are between
-            /// // 2 July 2011 23:59:00 and 3 July 2011 00:01:00?
-            /// const result = differenceInCalendarDays(
-            ///   new Date(2011, 6, 3, 0, 1),
-            ///   new Date(2011, 6, 2, 23, 59)
-            /// )
-            /// //=> 1
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// The options object
-            /// </param>
-            /// <returns>
-            /// The number of calendar days
-            /// </returns>
-            [<Import("differenceInCalendarDays", "date-fns")>]
-            static member differenceInCalendarDays (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarDays.DifferenceInCalendarDaysOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarDays">differenceInCalendarDays</see> function options.
@@ -34654,28 +29380,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarISOWeekYears", "date-fns")>]
             static member differenceInCalendarISOWeekYears (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarISOWeekYears.DifferenceInCalendarISOWeekYearsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar ISO week-numbering years are 1 January 2010 and 1 January 2012?
-            /// const result = differenceInCalendarISOWeekYears(
-            ///   new Date(2012, 0, 1),
-            ///   new Date(2010, 0, 1)
-            /// )
-            /// //=> 2
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of calendar ISO week-numbering years
-            /// </returns>
-            [<Import("differenceInCalendarISOWeekYears", "date-fns")>]
-            static member differenceInCalendarISOWeekYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarISOWeekYears.DifferenceInCalendarISOWeekYearsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarISOWeekYears">differenceInCalendarISOWeekYears</see> function options.
@@ -34890,28 +29594,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarISOWeeks", "date-fns")>]
             static member differenceInCalendarISOWeeks (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarISOWeeks.DifferenceInCalendarISOWeeksOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar ISO weeks are between 6 July 2014 and 21 July 2014?
-            /// const result = differenceInCalendarISOWeeks(
-            ///   new Date(2014, 6, 21),
-            ///   new Date(2014, 6, 6),
-            /// );
-            /// //=> 3
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of calendar ISO weeks
-            /// </returns>
-            [<Import("differenceInCalendarISOWeeks", "date-fns")>]
-            static member differenceInCalendarISOWeeks (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarISOWeeks.DifferenceInCalendarISOWeeksOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarISOWeeks">differenceInCalendarISOWeeks</see> function options.
@@ -35126,28 +29808,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarMonths", "date-fns")>]
             static member differenceInCalendarMonths (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarMonths.DifferenceInCalendarMonthsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar months are between 31 January 2014 and 1 September 2014?
-            /// const result = differenceInCalendarMonths(
-            ///   new Date(2014, 8, 1),
-            ///   new Date(2014, 0, 31)
-            /// )
-            /// //=> 8
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of calendar months
-            /// </returns>
-            [<Import("differenceInCalendarMonths", "date-fns")>]
-            static member differenceInCalendarMonths (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarMonths.DifferenceInCalendarMonthsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarMonths">differenceInCalendarMonths</see> function options.
@@ -35362,28 +30022,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarQuarters", "date-fns")>]
             static member differenceInCalendarQuarters (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarQuarters.DifferenceInCalendarQuartersOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar quarters are between 31 December 2013 and 2 July 2014?
-            /// const result = differenceInCalendarQuarters(
-            ///   new Date(2014, 6, 2),
-            ///   new Date(2013, 11, 31)
-            /// )
-            /// //=> 3
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of calendar quarters
-            /// </returns>
-            [<Import("differenceInCalendarQuarters", "date-fns")>]
-            static member differenceInCalendarQuarters (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarQuarters.DifferenceInCalendarQuartersOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarQuarters">differenceInCalendarQuarters</see> function options.
@@ -35688,38 +30326,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarWeeks", "date-fns")>]
             static member differenceInCalendarWeeks (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarWeeks.DifferenceInCalendarWeeksOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar weeks are between 5 July 2014 and 20 July 2014?
-            /// const result = differenceInCalendarWeeks(
-            ///   new Date(2014, 6, 20),
-            ///   new Date(2014, 6, 5)
-            /// )
-            /// //=> 3
-            /// </example>
-            /// <example>
-            /// // If the week starts on Monday,
-            /// // how many calendar weeks are between 5 July 2014 and 20 July 2014?
-            /// const result = differenceInCalendarWeeks(
-            ///   new Date(2014, 6, 20),
-            ///   new Date(2014, 6, 5),
-            ///   { weekStartsOn: 1 }
-            /// )
-            /// //=> 2
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The number of calendar weeks
-            /// </returns>
-            [<Import("differenceInCalendarWeeks", "date-fns")>]
-            static member differenceInCalendarWeeks (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarWeeks.DifferenceInCalendarWeeksOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarWeeks">differenceInCalendarWeeks</see> function options.
@@ -35936,28 +30542,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInCalendarYears", "date-fns")>]
             static member differenceInCalendarYears (laterDate: string, earlierDate: string, ?options: DateFns.differenceInCalendarYears.DifferenceInCalendarYearsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar years are between 31 December 2013 and 11 February 2015?
-            /// const result = differenceInCalendarYears(
-            ///   new Date(2015, 1, 11),
-            ///   new Date(2013, 11, 31)
-            /// );
-            /// //=> 2
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of calendar years
-            /// </returns>
-            [<Import("differenceInCalendarYears", "date-fns")>]
-            static member differenceInCalendarYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInCalendarYears.DifferenceInCalendarYearsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInCalendarYears">differenceInCalendarYears</see> function options.
@@ -36379,51 +30963,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInDays", "date-fns")>]
             static member differenceInDays (laterDate: string, earlierDate: string, ?options: DateFns.differenceInDays.DifferenceInDaysOptions) : float = nativeOnly
-            /// <example>
-            /// // How many full days are between
-            /// // 2 July 2011 23:00:00 and 2 July 2012 00:00:00?
-            /// const result = differenceInDays(
-            ///   new Date(2012, 6, 2, 0, 0),
-            ///   new Date(2011, 6, 2, 23, 0)
-            /// )
-            /// //=> 365
-            /// </example>
-            /// <example>
-            /// // How many full days are between
-            /// // 2 July 2011 23:59:00 and 3 July 2011 00:01:00?
-            /// const result = differenceInDays(
-            ///   new Date(2011, 6, 3, 0, 1),
-            ///   new Date(2011, 6, 2, 23, 59)
-            /// )
-            /// //=> 0
-            /// </example>
-            /// <example>
-            /// // How many full days are between
-            /// // 1 March 2020 0:00 and 1 June 2020 0:00 ?
-            /// // Note: because local time is used, the
-            /// // result will always be 92 days, even in
-            /// // time zones where DST starts and the
-            /// // period has only 92*24-1 hours.
-            /// const result = differenceInDays(
-            ///   new Date(2020, 5, 1),
-            ///   new Date(2020, 2, 1)
-            /// )
-            /// //=> 92
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of full days according to the local timezone
-            /// </returns>
-            [<Import("differenceInDays", "date-fns")>]
-            static member differenceInDays (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInDays.DifferenceInDaysOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInDays">differenceInDays</see> function options.
@@ -36638,28 +31177,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInHours", "date-fns")>]
             static member differenceInHours (laterDate: string, earlierDate: string, ?options: DateFns.differenceInHours.DifferenceInHoursOptions) : float = nativeOnly
-            /// <example>
-            /// // How many hours are between 2 July 2014 06:50:00 and 2 July 2014 19:00:00?
-            /// const result = differenceInHours(
-            ///   new Date(2014, 6, 2, 19, 0),
-            ///   new Date(2014, 6, 2, 6, 50)
-            /// )
-            /// //=> 12
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The number of hours
-            /// </returns>
-            [<Import("differenceInHours", "date-fns")>]
-            static member differenceInHours (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInHours.DifferenceInHoursOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInHours">differenceInHours</see> function options.
@@ -36875,28 +31392,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInISOWeekYears", "date-fns")>]
             static member differenceInISOWeekYears (laterDate: string, earlierDate: string, ?options: DateFns.differenceInISOWeekYears.DifferenceInISOWeekYearsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many full ISO week-numbering years are between 1 January 2010 and 1 January 2012?
-            /// const result = differenceInISOWeekYears(
-            ///   new Date(2012, 0, 1),
-            ///   new Date(2010, 0, 1)
-            /// )
-            /// // => 1
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <returns>
-            /// The number of full ISO week-numbering years
-            /// </returns>
-            [<Import("differenceInISOWeekYears", "date-fns")>]
-            static member differenceInISOWeekYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInISOWeekYears.DifferenceInISOWeekYearsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInISOWeekYears">differenceInISOWeekYears</see> function options.
@@ -37093,26 +31588,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInMilliseconds", "date-fns")>]
             static member differenceInMilliseconds (laterDate: string, earlierDate: string) : float = nativeOnly
-            /// <example>
-            /// // How many milliseconds are between
-            /// // 2 July 2014 12:30:20.600 and 2 July 2014 12:30:21.700?
-            /// const result = differenceInMilliseconds(
-            ///   new Date(2014, 6, 2, 12, 30, 21, 700),
-            ///   new Date(2014, 6, 2, 12, 30, 20, 600)
-            /// )
-            /// //=> 1100
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <returns>
-            /// The number of milliseconds
-            /// </returns>
-            [<Import("differenceInMilliseconds", "date-fns")>]
-            static member differenceInMilliseconds (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>) : float = nativeOnly
 
     module differenceInMinutes =
 
@@ -37389,36 +31864,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInMinutes", "date-fns")>]
             static member differenceInMinutes (dateLeft: string, dateRight: string, ?options: DateFns.differenceInMinutes.DifferenceInMinutesOptions) : float = nativeOnly
-            /// <example>
-            /// // How many minutes are between 2 July 2014 12:07:59 and 2 July 2014 12:20:00?
-            /// const result = differenceInMinutes(
-            ///   new Date(2014, 6, 2, 12, 20, 0),
-            ///   new Date(2014, 6, 2, 12, 7, 59)
-            /// )
-            /// //=> 12
-            /// </example>
-            /// <example>
-            /// // How many minutes are between 10:01:59 and 10:00:00
-            /// const result = differenceInMinutes(
-            ///   new Date(2000, 0, 1, 10, 0, 0),
-            ///   new Date(2000, 0, 1, 10, 1, 59)
-            /// )
-            /// //=> -1
-            /// </example>
-            /// <param name="dateLeft">
-            /// The later date
-            /// </param>
-            /// <param name="dateRight">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The number of minutes
-            /// </returns>
-            [<Import("differenceInMinutes", "date-fns")>]
-            static member differenceInMinutes (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>, ?options: DateFns.differenceInMinutes.DifferenceInMinutesOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInMinutes">differenceInMinutes</see> function options.
@@ -37606,25 +32051,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInMonths", "date-fns")>]
             static member differenceInMonths (laterDate: string, earlierDate: string, ?options: DateFns.differenceInMonths.DifferenceInMonthsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many full months are between 31 January 2014 and 1 September 2014?
-            /// const result = differenceInMonths(new Date(2014, 8, 1), new Date(2014, 0, 31))
-            /// //=> 7
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of full months
-            /// </returns>
-            [<Import("differenceInMonths", "date-fns")>]
-            static member differenceInMonths (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInMonths.DifferenceInMonthsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInMonths">differenceInMonths</see> function options.
@@ -37812,25 +32238,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInQuarters", "date-fns")>]
             static member differenceInQuarters (laterDate: string, earlierDate: string, ?options: DateFns.differenceInQuarters.DifferenceInQuartersOptions) : float = nativeOnly
-            /// <example>
-            /// // How many full quarters are between 31 December 2013 and 2 July 2014?
-            /// const result = differenceInQuarters(new Date(2014, 6, 2), new Date(2013, 11, 31))
-            /// //=> 2
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The number of full quarters
-            /// </returns>
-            [<Import("differenceInQuarters", "date-fns")>]
-            static member differenceInQuarters (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInQuarters.DifferenceInQuartersOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInQuarters">differenceInQuarters</see> function options.
@@ -38055,29 +32462,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInSeconds", "date-fns")>]
             static member differenceInSeconds (laterDate: string, earlierDate: string, ?options: DateFns.differenceInSeconds.DifferenceInSecondsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many seconds are between
-            /// // 2 July 2014 12:30:07.999 and 2 July 2014 12:30:20.000?
-            /// const result = differenceInSeconds(
-            ///   new Date(2014, 6, 2, 12, 30, 20, 0),
-            ///   new Date(2014, 6, 2, 12, 30, 7, 999)
-            /// )
-            /// //=> 12
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The number of seconds
-            /// </returns>
-            [<Import("differenceInSeconds", "date-fns")>]
-            static member differenceInSeconds (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInSeconds.DifferenceInSecondsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInSeconds">differenceInSeconds</see> function options.
@@ -38382,38 +32766,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInWeeks", "date-fns")>]
             static member differenceInWeeks (laterDate: string, earlierDate: string, ?options: DateFns.differenceInWeeks.DifferenceInWeeksOptions) : float = nativeOnly
-            /// <example>
-            /// // How many full weeks are between 5 July 2014 and 20 July 2014?
-            /// const result = differenceInWeeks(new Date(2014, 6, 20), new Date(2014, 6, 5))
-            /// //=> 2
-            /// </example>
-            /// <example>
-            /// // How many full weeks are between
-            /// // 1 March 2020 0:00 and 6 June 2020 0:00 ?
-            /// // Note: because local time is used, the
-            /// // result will always be 8 weeks (54 days),
-            /// // even if DST starts and the period has
-            /// // only 54*24-1 hours.
-            /// const result = differenceInWeeks(
-            ///   new Date(2020, 5, 1),
-            ///   new Date(2020, 2, 6)
-            /// )
-            /// //=> 8
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of full weeks
-            /// </returns>
-            [<Import("differenceInWeeks", "date-fns")>]
-            static member differenceInWeeks (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInWeeks.DifferenceInWeeksOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInWeeks">differenceInWeeks</see> function options.
@@ -38602,25 +32954,6 @@ module DateFns =
             /// </returns>
             [<Import("differenceInYears", "date-fns")>]
             static member differenceInYears (laterDate: string, earlierDate: string, ?options: DateFns.differenceInYears.DifferenceInYearsOptions) : float = nativeOnly
-            /// <example>
-            /// // How many full years are between 31 December 2013 and 11 February 2015?
-            /// const result = differenceInYears(new Date(2015, 1, 11), new Date(2013, 11, 31))
-            /// //=> 1
-            /// </example>
-            /// <param name="laterDate">
-            /// The later date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The earlier date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of full years
-            /// </returns>
-            [<Import("differenceInYears", "date-fns")>]
-            static member differenceInYears (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.differenceInYears.DifferenceInYearsOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="differenceInYears">differenceInYears</see> function options.
@@ -39171,37 +33504,6 @@ module DateFns =
             /// </returns>
             [<Import("eachWeekendOfMonth", "date-fns")>]
             static member eachWeekendOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.eachWeekendOfMonth.EachWeekendOfMonthOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
-            /// <example>
-            /// // Lists all Saturdays and Sundays in the given month
-            /// const result = eachWeekendOfMonth(new Date(2022, 1, 1))
-            /// //=> [
-            /// //   Sat Feb 05 2022 00:00:00,
-            /// //   Sun Feb 06 2022 00:00:00,
-            /// //   Sat Feb 12 2022 00:00:00,
-            /// //   Sun Feb 13 2022 00:00:00,
-            /// //   Sat Feb 19 2022 00:00:00,
-            /// //   Sun Feb 20 2022 00:00:00,
-            /// //   Sat Feb 26 2022 00:00:00,
-            /// //   Sun Feb 27 2022 00:00:00
-            /// // ]
-            /// </example>
-            /// <param name="date">
-            /// The given month
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// An array containing all the Saturdays and Sundays
-            /// </returns>
-            [<Import("eachWeekendOfMonth", "date-fns")>]
-            static member eachWeekendOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.eachWeekendOfMonth.EachWeekendOfMonthOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
 
         /// <summary>
         /// The <see href="eachWeekendOfMonth">eachWeekendOfMonth</see> function options.
@@ -39305,34 +33607,6 @@ module DateFns =
             /// </returns>
             [<Import("eachWeekendOfYear", "date-fns")>]
             static member eachWeekendOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.eachWeekendOfYear.EachWeekendOfYearOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
-            /// <example>
-            /// // Lists all Saturdays and Sundays in the year
-            /// const result = eachWeekendOfYear(new Date(2020, 1, 1))
-            /// //=> [
-            /// //   Sat Jan 03 2020 00:00:00,
-            /// //   Sun Jan 04 2020 00:00:00,
-            /// //   ...
-            /// //   Sun Dec 27 2020 00:00:00
-            /// // ]
-            /// ]
-            /// </example>
-            /// <param name="date">
-            /// The given year
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// An array containing all the Saturdays and Sundays
-            /// </returns>
-            [<Import("eachWeekendOfYear", "date-fns")>]
-            static member eachWeekendOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.eachWeekendOfYear.EachWeekendOfYearOptions<'ResultDate>) : ResizeArray<'ResultDate> = nativeOnly
 
         /// <summary>
         /// The <see href="eachWeekendOfYear">eachWeekendOfYear</see> function options.
@@ -39482,28 +33756,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfDay", "date-fns")>]
             static member endOfDay<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfDay.EndOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a day for 2 September 2014 11:55:00:
-            /// const result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Sep 02 2014 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a day
-            /// </returns>
-            [<Import("endOfDay", "date-fns")>]
-            static member endOfDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfDay.EndOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfDay">endOfDay</see> function options.
@@ -39589,28 +33841,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfDecade", "date-fns")>]
             static member endOfDecade<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfDecade.EndOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a decade for 12 May 1984 00:00:00:
-            /// const result = endOfDecade(new Date(1984, 4, 12, 00, 00, 00))
-            /// //=> Dec 31 1989 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a decade
-            /// </returns>
-            [<Import("endOfDecade", "date-fns")>]
-            static member endOfDecade<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfDecade.EndOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfDecade">endOfDecade</see> function options.
@@ -39696,28 +33926,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfHour", "date-fns")>]
             static member endOfHour<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfHour.EndOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of an hour for 2 September 2014 11:55:00:
-            /// const result = endOfHour(new Date(2014, 8, 2, 11, 55))
-            /// //=> Tue Sep 02 2014 11:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of an hour
-            /// </returns>
-            [<Import("endOfHour", "date-fns")>]
-            static member endOfHour<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfHour.EndOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfHour">endOfHour</see> function options.
@@ -39803,28 +34011,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfISOWeek", "date-fns")>]
             static member endOfISOWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfISOWeek.EndOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of an ISO week for 2 September 2014 11:55:00:
-            /// const result = endOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Sun Sep 07 2014 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of an ISO week
-            /// </returns>
-            [<Import("endOfISOWeek", "date-fns")>]
-            static member endOfISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfISOWeek.EndOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfISOWeek">endOfISOWeek</see> function options.
@@ -39910,28 +34096,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfISOWeekYear", "date-fns")>]
             static member endOfISOWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfISOWeekYear.EndOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of an ISO week-numbering year for 2 July 2005:
-            /// const result = endOfISOWeekYear(new Date(2005, 6, 2))
-            /// //=> Sun Jan 01 2006 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ContextDate">
-            /// The <c>Date</c> type of the context function.
-            /// </typeparam>
-            /// <returns>
-            /// The end of an ISO week-numbering year
-            /// </returns>
-            [<Import("endOfISOWeekYear", "date-fns")>]
-            static member endOfISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfISOWeekYear.EndOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfISOWeekYear">endOfISOWeekYear</see> function options.
@@ -40017,28 +34181,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfMinute", "date-fns")>]
             static member endOfMinute<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfMinute.EndOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a minute for 1 December 2014 22:15:45.400:
-            /// const result = endOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
-            /// //=> Mon Dec 01 2014 22:15:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a minute
-            /// </returns>
-            [<Import("endOfMinute", "date-fns")>]
-            static member endOfMinute<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfMinute.EndOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfMinute">endOfMinute</see> function options.
@@ -40124,28 +34266,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfMonth", "date-fns")>]
             static member endOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfMonth.EndOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a month for 2 September 2014 11:55:00:
-            /// const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Sep 30 2014 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a month
-            /// </returns>
-            [<Import("endOfMonth", "date-fns")>]
-            static member endOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfMonth.EndOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfMonth">endOfMonth</see> function options.
@@ -40231,28 +34351,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfQuarter", "date-fns")>]
             static member endOfQuarter<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfQuarter.EndOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a quarter for 2 September 2014 11:55:00:
-            /// const result = endOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Sep 30 2014 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a quarter
-            /// </returns>
-            [<Import("endOfQuarter", "date-fns")>]
-            static member endOfQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfQuarter.EndOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfQuarter">endOfQuarter</see> function options.
@@ -40338,28 +34436,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfSecond", "date-fns")>]
             static member endOfSecond<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfSecond.EndOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a second for 1 December 2014 22:15:45.400:
-            /// const result = endOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
-            /// //=> Mon Dec 01 2014 22:15:45.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a second
-            /// </returns>
-            [<Import("endOfSecond", "date-fns")>]
-            static member endOfSecond<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfSecond.EndOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfSecond">endOfSecond</see> function options.
@@ -40574,33 +34650,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfWeek", "date-fns")>]
             static member endOfWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfWeek.EndOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a week for 2 September 2014 11:55:00:
-            /// const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Sat Sep 06 2014 23:59:59.999
-            /// </example>
-            /// <example>
-            /// // If the week starts on Monday, the end of the week for 2 September 2014 11:55:00:
-            /// const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
-            /// //=> Sun Sep 07 2014 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a week
-            /// </returns>
-            [<Import("endOfWeek", "date-fns")>]
-            static member endOfWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfWeek.EndOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfWeek">endOfWeek</see> function options.
@@ -40688,28 +34737,6 @@ module DateFns =
             /// </returns>
             [<Import("endOfYear", "date-fns")>]
             static member endOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.endOfYear.EndOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The end of a year for 2 September 2014 11:55:00:
-            /// const result = endOfYear(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Wed Dec 31 2014 23:59:59.999
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of a year
-            /// </returns>
-            [<Import("endOfYear", "date-fns")>]
-            static member endOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.endOfYear.EndOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="endOfYear">endOfYear</see> function options.
@@ -40765,9 +34792,9 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("formatters", "date-fns/format")>]
-            static member inline formatters: Exports.formatters__.Type = nativeOnly
+            static member inline formatters: DateFns.format.Exports.formatters__.Type = nativeOnly
             [<Import("longFormatters", "date-fns/format")>]
-            static member inline longFormatters: Exports.longFormatters__.Type = nativeOnly
+            static member inline longFormatters: DateFns.format.Exports.longFormatters__.Type = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -40924,58 +34951,6 @@ module DateFns =
             /// </returns>
             [<Import("format", "date-fns")>]
             static member format (date: string, formatStr: string, ?options: DateFns.format.FormatOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>options.locale</c> must contain <c>localize</c> property
-            ///
-            /// <c>options.locale</c> must contain <c>formatLong</c> property
-            ///
-            /// use <c>yyyy</c> instead of <c>YYYY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// use <c>yy</c> instead of <c>YY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// use <c>d</c> instead of <c>D</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// use <c>dd</c> instead of <c>DD</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// format string contains an unescaped latin alphabet character
-            /// </remarks>
-            /// <example>
-            /// // Represent 11 February 2014 in middle-endian format:
-            /// const result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
-            /// //=> '02/11/2014'
-            /// </example>
-            /// <example>
-            /// // Represent 2 July 2014 in Esperanto:
-            /// import { eoLocale } from 'date-fns/locale/eo'
-            /// const result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
-            ///   locale: eoLocale
-            /// })
-            /// //=> '2-a de julio 2014'
-            /// </example>
-            /// <example>
-            /// // Escape string by single quote characters:
-            /// const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
-            /// //=> "3 o'clock"
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="format">
-            /// The string of tokens
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("format", "date-fns")>]
-            static member format (date: DateFns.DateArg<Date>, formatStr: string, ?options: DateFns.format.FormatOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="format">format</see> function options.
@@ -40983,7 +34958,7 @@ module DateFns =
         [<AllowNullLiteral>]
         [<Interface>]
         type FormatOptions =
-            inherit DateFns.LocalizedOptions<FormatOptions.Extends>
+            inherit DateFns.LocalizedOptions<DateFns.format.FormatOptions.Extends>
             inherit DateFns.WeekOptions
             inherit DateFns.FirstWeekContainsDateOptions
             inherit DateFns.AdditionalTokensOptions
@@ -41518,61 +35493,6 @@ module DateFns =
             /// </returns>
             [<Import("formatDistance", "date-fns")>]
             static member formatDistance (laterDate: string, earlierDate: string, ?options: DateFns.formatDistance.FormatDistanceOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>baseDate</c> must not be Invalid Date
-            ///
-            /// <c>options.locale</c> must contain <c>formatDistance</c> property
-            /// </remarks>
-            /// <example>
-            /// // What is the distance between 2 July 2014 and 1 January 2015?
-            /// const result = formatDistance(new Date(2014, 6, 2), new Date(2015, 0, 1))
-            /// //=> '6 months'
-            /// </example>
-            /// <example>
-            /// // What is the distance between 1 January 2015 00:00:15
-            /// // and 1 January 2015 00:00:00, including seconds?
-            /// const result = formatDistance(
-            ///   new Date(2015, 0, 1, 0, 0, 15),
-            ///   new Date(2015, 0, 1, 0, 0, 0),
-            ///   { includeSeconds: true }
-            /// )
-            /// //=> 'less than 20 seconds'
-            /// </example>
-            /// <example>
-            /// // What is the distance from 1 January 2016
-            /// // to 1 January 2015, with a suffix?
-            /// const result = formatDistance(new Date(2015, 0, 1), new Date(2016, 0, 1), {
-            ///   addSuffix: true
-            /// })
-            /// //=> 'about 1 year ago'
-            /// </example>
-            /// <example>
-            /// // What is the distance between 1 August 2016 and 1 January 2015 in Esperanto?
-            /// import { eoLocale } from 'date-fns/locale/eo'
-            /// const result = formatDistance(new Date(2016, 7, 1), new Date(2015, 0, 1), {
-            ///   locale: eoLocale
-            /// })
-            /// //=> 'pli ol 1 jaro'
-            /// </example>
-            /// <param name="laterDate">
-            /// The date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The date to compare with
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The distance in words
-            /// </returns>
-            [<Import("formatDistance", "date-fns")>]
-            static member formatDistance (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.formatDistance.FormatDistanceOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatDistance">formatDistance</see> function options.
@@ -42255,79 +36175,6 @@ module DateFns =
             /// </returns>
             [<Import("formatDistanceStrict", "date-fns")>]
             static member formatDistanceStrict (laterDate: string, earlierDate: string, ?options: DateFns.formatDistanceStrict.FormatDistanceStrictOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>baseDate</c> must not be Invalid Date
-            ///
-            /// <c>options.unit</c> must be 'second', 'minute', 'hour', 'day', 'month' or 'year'
-            ///
-            /// <c>options.locale</c> must contain <c>formatDistance</c> property
-            /// </remarks>
-            /// <example>
-            /// // What is the distance between 2 July 2014 and 1 January 2015?
-            /// const result = formatDistanceStrict(new Date(2014, 6, 2), new Date(2015, 0, 2))
-            /// //=> '6 months'
-            /// </example>
-            /// <example>
-            /// // What is the distance between 1 January 2015 00:00:15
-            /// // and 1 January 2015 00:00:00?
-            /// const result = formatDistanceStrict(
-            ///   new Date(2015, 0, 1, 0, 0, 15),
-            ///   new Date(2015, 0, 1, 0, 0, 0)
-            /// )
-            /// //=> '15 seconds'
-            /// </example>
-            /// <example>
-            /// // What is the distance from 1 January 2016
-            /// // to 1 January 2015, with a suffix?
-            /// const result = formatDistanceStrict(new Date(2015, 0, 1), new Date(2016, 0, 1), {
-            ///   addSuffix: true
-            /// })
-            /// //=> '1 year ago'
-            /// </example>
-            /// <example>
-            /// // What is the distance from 1 January 2016
-            /// // to 1 January 2015, in minutes?
-            /// const result = formatDistanceStrict(new Date(2016, 0, 1), new Date(2015, 0, 1), {
-            ///   unit: 'minute'
-            /// })
-            /// //=> '525600 minutes'
-            /// </example>
-            /// <example>
-            /// // What is the distance from 1 January 2015
-            /// // to 28 January 2015, in months, rounded up?
-            /// const result = formatDistanceStrict(new Date(2015, 0, 28), new Date(2015, 0, 1), {
-            ///   unit: 'month',
-            ///   roundingMethod: 'ceil'
-            /// })
-            /// //=> '1 month'
-            /// </example>
-            /// <example>
-            /// // What is the distance between 1 August 2016 and 1 January 2015 in Esperanto?
-            /// import { eoLocale } from 'date-fns/locale/eo'
-            /// const result = formatDistanceStrict(new Date(2016, 7, 1), new Date(2015, 0, 1), {
-            ///   locale: eoLocale
-            /// })
-            /// //=> '1 jaro'
-            /// </example>
-            /// <param name="laterDate">
-            /// The date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The date to compare with
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The distance in words
-            /// </returns>
-            [<Import("formatDistanceStrict", "date-fns")>]
-            static member formatDistanceStrict (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.formatDistanceStrict.FormatDistanceStrictOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatDistanceStrict">formatDistanceStrict</see> function options.
@@ -42524,60 +36371,6 @@ module DateFns =
             /// </returns>
             [<Import("formatDistanceToNow", "date-fns")>]
             static member formatDistanceToNow (date: string, ?options: DateFns.formatDistanceToNow.FormatDistanceToNowOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>options.locale</c> must contain <c>formatDistance</c> property
-            /// </remarks>
-            /// <example>
-            /// // If today is 1 January 2015, what is the distance to 2 July 2014?
-            /// const result = formatDistanceToNow(
-            ///   new Date(2014, 6, 2)
-            /// )
-            /// //=> '6 months'
-            /// </example>
-            /// <example>
-            /// // If now is 1 January 2015 00:00:00,
-            /// // what is the distance to 1 January 2015 00:00:15, including seconds?
-            /// const result = formatDistanceToNow(
-            ///   new Date(2015, 0, 1, 0, 0, 15),
-            ///   {includeSeconds: true}
-            /// )
-            /// //=> 'less than 20 seconds'
-            /// </example>
-            /// <example>
-            /// // If today is 1 January 2015,
-            /// // what is the distance to 1 January 2016, with a suffix?
-            /// const result = formatDistanceToNow(
-            ///   new Date(2016, 0, 1),
-            ///   {addSuffix: true}
-            /// )
-            /// //=> 'in about 1 year'
-            /// </example>
-            /// <example>
-            /// // If today is 1 January 2015,
-            /// // what is the distance to 1 August 2016 in Esperanto?
-            /// const eoLocale = require('date-fns/locale/eo')
-            /// const result = formatDistanceToNow(
-            ///   new Date(2016, 7, 1),
-            ///   {locale: eoLocale}
-            /// )
-            /// //=> 'pli ol 1 jaro'
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// The object with options
-            /// </param>
-            /// <returns>
-            /// The distance in words
-            /// </returns>
-            [<Import("formatDistanceToNow", "date-fns")>]
-            static member formatDistanceToNow (date: DateFns.DateArg<Date>, ?options: DateFns.formatDistanceToNow.FormatDistanceToNowOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatDistanceToNow">formatDistanceToNow</see> function options.
@@ -42586,7 +36379,6 @@ module DateFns =
         [<Interface>]
         type FormatDistanceToNowOptions =
             inherit DateFns.FormatDistanceOptions
-            inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
             static member Create (?locale: obj, ?``in``: DateFns.ContextFn<Date>, ?includeSeconds: bool, ?addSuffix: bool) : FormatDistanceToNowOptions = nativeOnly
 
@@ -42781,68 +36573,6 @@ module DateFns =
             /// </returns>
             [<Import("formatDistanceToNowStrict", "date-fns")>]
             static member formatDistanceToNowStrict (date: string, ?options: DateFns.formatDistanceToNowStrict.FormatDistanceToNowStrictOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>options.locale</c> must contain <c>formatDistance</c> property
-            /// </remarks>
-            /// <example>
-            /// // If today is 1 January 2015, what is the distance to 2 July 2014?
-            /// const result = formatDistanceToNowStrict(
-            ///   new Date(2014, 6, 2)
-            /// )
-            /// //=> '6 months'
-            /// </example>
-            /// <example>
-            /// // If now is 1 January 2015 00:00:00,
-            /// // what is the distance to 1 January 2015 00:00:15, including seconds?
-            /// const result = formatDistanceToNowStrict(
-            ///   new Date(2015, 0, 1, 0, 0, 15)
-            /// )
-            /// //=> '15 seconds'
-            /// </example>
-            /// <example>
-            /// // If today is 1 January 2015,
-            /// // what is the distance to 1 January 2016, with a suffix?
-            /// const result = formatDistanceToNowStrict(
-            ///   new Date(2016, 0, 1),
-            ///   {addSuffix: true}
-            /// )
-            /// //=> 'in 1 year'
-            /// </example>
-            /// <example>
-            /// // If today is 28 January 2015,
-            /// // what is the distance to 1 January 2015, in months, rounded up??
-            /// const result = formatDistanceToNowStrict(new Date(2015, 0, 1), {
-            ///   unit: 'month',
-            ///   roundingMethod: 'ceil'
-            /// })
-            /// //=> '1 month'
-            /// </example>
-            /// <example>
-            /// // If today is 1 January 2015,
-            /// // what is the distance to 1 January 2016 in Esperanto?
-            /// const eoLocale = require('date-fns/locale/eo')
-            /// const result = formatDistanceToNowStrict(
-            ///   new Date(2016, 0, 1),
-            ///   {locale: eoLocale}
-            /// )
-            /// //=> '1 jaro'
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The distance in words
-            /// </returns>
-            [<Import("formatDistanceToNowStrict", "date-fns")>]
-            static member formatDistanceToNowStrict (date: DateFns.DateArg<Date>, ?options: DateFns.formatDistanceToNowStrict.FormatDistanceToNowStrictOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatDistanceToNowStrict">formatDistanceToNowStrict</see> function options.
@@ -42851,7 +36581,6 @@ module DateFns =
         [<Interface>]
         type FormatDistanceToNowStrictOptions =
             inherit DateFns.FormatDistanceStrictOptions
-            inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
             static member Create (?locale: obj, ?roundingMethod: DateFns.RoundingMethod, ?``in``: DateFns.ContextFn<Date>, ?addSuffix: bool, ?unit: DateFns.FormatDistanceStrictUnit) : FormatDistanceToNowStrictOptions = nativeOnly
 
@@ -43055,43 +36784,6 @@ module DateFns =
             /// </returns>
             [<Import("formatISO", "date-fns")>]
             static member formatISO (date: string, ?options: DateFns.formatISO.FormatISOOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 8601 format (local time zone is UTC):
-            /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52))
-            /// //=> '2019-09-18T19:00:52Z'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 8601, short format (local time zone is UTC):
-            /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { format: 'basic' })
-            /// //=> '20190918T190052'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 8601 format, date only:
-            /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'date' })
-            /// //=> '2019-09-18'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 8601 format, time only (local time zone is UTC):
-            /// const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
-            /// //=> '19:00:52Z'
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The formatted date string (in local time zone)
-            /// </returns>
-            [<Import("formatISO", "date-fns")>]
-            static member formatISO (date: DateFns.DateArg<Date>, ?options: DateFns.formatISO.FormatISOOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatISO">formatISO</see> function options.
@@ -43220,43 +36912,6 @@ module DateFns =
             /// </returns>
             [<Import("formatISO9075", "date-fns")>]
             static member formatISO9075 (date: string, ?options: DateFns.formatISO9075.FormatISO9075Options) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 9075 format:
-            /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52))
-            /// //=> '2019-09-18 19:00:52'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 9075, short format:
-            /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { format: 'basic' })
-            /// //=> '20190918 190052'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 9075 format, date only:
-            /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'date' })
-            /// //=> '2019-09-18'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in ISO 9075 format, time only:
-            /// const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
-            /// //=> '19:00:52'
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("formatISO9075", "date-fns")>]
-            static member formatISO9075 (date: DateFns.DateArg<Date>, ?options: DateFns.formatISO9075.FormatISO9075Options) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatISO9075">formatISO9075</see> function options.
@@ -43387,35 +37042,6 @@ module DateFns =
             /// </returns>
             [<Import("formatRFC3339", "date-fns")>]
             static member formatRFC3339 (date: string, ?options: DateFns.formatRFC3339.FormatRFC3339Options) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 18 September 2019 in RFC 3339 format:
-            /// formatRFC3339(new Date(2019, 8, 18, 19, 0, 52))
-            /// //=> '2019-09-18T19:00:52Z'
-            /// </example>
-            /// <example>
-            /// // Represent 18 September 2019 in RFC 3339 format, 3 digits of second fraction
-            /// formatRFC3339(new Date(2019, 8, 18, 19, 0, 52, 234), {
-            ///   fractionDigits: 3
-            /// })
-            /// //=> '2019-09-18T19:00:52.234Z'
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("formatRFC3339", "date-fns")>]
-            static member formatRFC3339 (date: DateFns.DateArg<Date>, ?options: DateFns.formatRFC3339.FormatRFC3339Options) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatRFC3339">formatRFC3339</see> function options.
@@ -43427,9 +37053,9 @@ module DateFns =
             /// <summary>
             /// The number of digits after the decimal point after seconds, defaults to 0
             /// </summary>
-            abstract member fractionDigits: FormatRFC3339Options.fractionDigits option with get, set
+            abstract member fractionDigits: DateFns.formatRFC3339.FormatRFC3339Options.fractionDigits option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<Date>, ?fractionDigits: FormatRFC3339Options.fractionDigits) : FormatRFC3339Options = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<Date>, ?fractionDigits: DateFns.formatRFC3339.FormatRFC3339Options.fractionDigits) : FormatRFC3339Options = nativeOnly
 
         module FormatRFC3339Options =
 
@@ -43502,25 +37128,6 @@ module DateFns =
             /// </returns>
             [<Import("formatRFC7231", "date-fns")>]
             static member formatRFC7231 (date: string) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 18 September 2019 in RFC 7231 format:
-            /// const result = formatRFC7231(new Date(2019, 8, 18, 19, 0, 52))
-            /// //=> 'Wed, 18 Sep 2019 19:00:52 GMT'
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("formatRFC7231", "date-fns")>]
-            static member formatRFC7231 (date: DateFns.DateArg<Date>) : string = nativeOnly
 
     module formatRelative =
 
@@ -43824,39 +37431,6 @@ module DateFns =
             /// </returns>
             [<Import("formatRelative", "date-fns")>]
             static member formatRelative (date: string, baseDate: string, ?options: DateFns.formatRelative.FormatRelativeOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>baseDate</c> must not be Invalid Date
-            ///
-            /// <c>options.locale</c> must contain <c>localize</c> property
-            ///
-            /// <c>options.locale</c> must contain <c>formatLong</c> property
-            ///
-            /// <c>options.locale</c> must contain <c>formatRelative</c> property
-            /// </remarks>
-            /// <example>
-            /// // Represent the date of 6 days ago in words relative to the given base date. In this example, today is Wednesday
-            /// const result = formatRelative(subDays(new Date(), 6), new Date())
-            /// //=> "last Thursday at 12:45 AM"
-            /// </example>
-            /// <param name="date">
-            /// The date to format
-            /// </param>
-            /// <param name="baseDate">
-            /// The date to compare with
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date in words
-            /// </returns>
-            [<Import("formatRelative", "date-fns")>]
-            static member formatRelative (date: DateFns.DateArg<Date>, baseDate: DateFns.DateArg<Date>, ?options: DateFns.formatRelative.FormatRelativeOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="formatRelative">formatRelative</see> function options.
@@ -43864,7 +37438,7 @@ module DateFns =
         [<AllowNullLiteral>]
         [<Interface>]
         type FormatRelativeOptions =
-            inherit DateFns.LocalizedOptions<FormatRelativeOptions.Extends>
+            inherit DateFns.LocalizedOptions<DateFns.formatRelative.FormatRelativeOptions.Extends>
             inherit DateFns.WeekOptions
             inherit DateFns.ContextOptions<Date>
             [<ParamObject; Emit("$0")>]
@@ -44819,14 +38393,14 @@ module DateFns =
         type FormatDistanceToken =
             DateFns.FormatDistanceToken
 
-        type FormatRelativeFn<'DateType> =
-            DateFns.FormatRelativeFn<'DateType>
+        type FormatRelativeFn =
+            DateFns.FormatRelativeFn
 
         type FormatRelativeFnOptions =
             DateFns.FormatRelativeFnOptions
 
-        type FormatRelativeTokenFn<'DateType> =
-            DateFns.FormatRelativeTokenFn<'DateType>
+        type FormatRelativeTokenFn =
+            DateFns.FormatRelativeTokenFn
 
         type FormatRelativeTokenFnOptions =
             DateFns.FormatRelativeTokenFnOptions
@@ -44853,7 +38427,7 @@ module DateFns =
             DateFns.MatchFn<'Result, 'ExtraOptions>
 
         type MatchFn<'Result> =
-            MatchFn<'Result, MatchFn.ExtraOptions>
+            MatchFn<'Result, DateFns.fp.MatchFn.ExtraOptions>
 
         type MatchFnOptions<'Result> =
             DateFns.MatchFnOptions<'Result>
@@ -48174,22 +41748,6 @@ module DateFns =
             /// </returns>
             [<Import("getDate", "date-fns")>]
             static member getDate (date: string, ?options: DateFns.getDate.GetDateOptions) : float = nativeOnly
-            /// <example>
-            /// // Which day of the month is 29 February 2012?
-            /// const result = getDate(new Date(2012, 1, 29))
-            /// //=> 29
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The day of month
-            /// </returns>
-            [<Import("getDate", "date-fns")>]
-            static member getDate (date: DateFns.DateArg<Date>, ?options: DateFns.getDate.GetDateOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getDate">getDate</see> function options.
@@ -48254,22 +41812,6 @@ module DateFns =
             /// </returns>
             [<Import("getDay", "date-fns")>]
             static member getDay (date: string, ?options: DateFns.getDay.GetDayOptions) : float = nativeOnly
-            /// <example>
-            /// // Which day of the week is 29 February 2012?
-            /// const result = getDay(new Date(2012, 1, 29))
-            /// //=> 3
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <returns>
-            /// The day of week, 0 represents Sunday
-            /// </returns>
-            [<Import("getDay", "date-fns")>]
-            static member getDay (date: DateFns.DateArg<Date>, ?options: DateFns.getDay.GetDayOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getDay">getDay</see> function options.
@@ -48334,22 +41876,6 @@ module DateFns =
             /// </returns>
             [<Import("getDayOfYear", "date-fns")>]
             static member getDayOfYear (date: string, ?options: DateFns.getDayOfYear.GetDayOfYearOptions) : float = nativeOnly
-            /// <example>
-            /// // Which day of the year is 2 July 2014?
-            /// const result = getDayOfYear(new Date(2014, 6, 2))
-            /// //=> 183
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <returns>
-            /// The day of year
-            /// </returns>
-            [<Import("getDayOfYear", "date-fns")>]
-            static member getDayOfYear (date: DateFns.DateArg<Date>, ?options: DateFns.getDayOfYear.GetDayOfYearOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getDayOfYear">getDayOfYear</see> function options.
@@ -48414,22 +41940,6 @@ module DateFns =
             /// </returns>
             [<Import("getDaysInMonth", "date-fns")>]
             static member getDaysInMonth (date: string, ?options: DateFns.getDaysInMonth.GetDaysInMonthOptions) : float = nativeOnly
-            /// <example>
-            /// // How many days are in February 2000?
-            /// const result = getDaysInMonth(new Date(2000, 1))
-            /// //=> 29
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of days in a month
-            /// </returns>
-            [<Import("getDaysInMonth", "date-fns")>]
-            static member getDaysInMonth (date: DateFns.DateArg<Date>, ?options: DateFns.getDaysInMonth.GetDaysInMonthOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getDaysInMonth">getDaysInMonth</see> function options.
@@ -48494,22 +42004,6 @@ module DateFns =
             /// </returns>
             [<Import("getDaysInYear", "date-fns")>]
             static member getDaysInYear (date: string, ?options: DateFns.getDaysInYear.GetDaysInYearOptions) : float = nativeOnly
-            /// <example>
-            /// // How many days are in 2012?
-            /// const result = getDaysInYear(new Date(2012, 0, 1))
-            /// //=> 366
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of days in a year
-            /// </returns>
-            [<Import("getDaysInYear", "date-fns")>]
-            static member getDaysInYear (date: DateFns.DateArg<Date>, ?options: DateFns.getDaysInYear.GetDaysInYearOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getDaysInYear">getDaysInYear</see> function options.
@@ -48574,22 +42068,6 @@ module DateFns =
             /// </returns>
             [<Import("getDecade", "date-fns")>]
             static member getDecade (date: string, ?options: DateFns.getDecade.GetDecadeOptions) : float = nativeOnly
-            /// <example>
-            /// // Which decade belongs 27 November 1942?
-            /// const result = getDecade(new Date(1942, 10, 27))
-            /// //=> 1940
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The year of decade
-            /// </returns>
-            [<Import("getDecade", "date-fns")>]
-            static member getDecade (date: DateFns.DateArg<Date>, ?options: DateFns.getDecade.GetDecadeOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getDecade">getDecade</see> function options.
@@ -48674,22 +42152,6 @@ module DateFns =
             /// </returns>
             [<Import("getHours", "date-fns")>]
             static member getHours (date: string, ?options: DateFns.getHours.GetHoursOptions) : float = nativeOnly
-            /// <example>
-            /// // Get the hours of 29 February 2012 11:45:00:
-            /// const result = getHours(new Date(2012, 1, 29, 11, 45))
-            /// //=> 11
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The hours
-            /// </returns>
-            [<Import("getHours", "date-fns")>]
-            static member getHours (date: DateFns.DateArg<Date>, ?options: DateFns.getHours.GetHoursOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getHours">getHours</see> function options.
@@ -48754,22 +42216,6 @@ module DateFns =
             /// </returns>
             [<Import("getISODay", "date-fns")>]
             static member getISODay (date: string, ?options: DateFns.getISODay.GetISODayOptions) : float = nativeOnly
-            /// <example>
-            /// // Which day of the ISO week is 26 February 2012?
-            /// const result = getISODay(new Date(2012, 1, 26))
-            /// //=> 7
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The day of ISO week
-            /// </returns>
-            [<Import("getISODay", "date-fns")>]
-            static member getISODay (date: DateFns.DateArg<Date>, ?options: DateFns.getISODay.GetISODayOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getISODay">getISODay</see> function options.
@@ -48834,22 +42280,6 @@ module DateFns =
             /// </returns>
             [<Import("getISOWeek", "date-fns")>]
             static member getISOWeek (date: string, ?options: DateFns.getISOWeek.GetISOWeekOptions) : float = nativeOnly
-            /// <example>
-            /// // Which week of the ISO-week numbering year is 2 January 2005?
-            /// const result = getISOWeek(new Date(2005, 0, 2))
-            /// //=> 53
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <returns>
-            /// The ISO week
-            /// </returns>
-            [<Import("getISOWeek", "date-fns")>]
-            static member getISOWeek (date: DateFns.DateArg<Date>, ?options: DateFns.getISOWeek.GetISOWeekOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getISOWeek">getISOWeek</see> function options.
@@ -48905,19 +42335,6 @@ module DateFns =
             /// </returns>
             [<Import("getISOWeekYear", "date-fns")>]
             static member getISOWeekYear (date: string, ?options: DateFns.getISOWeekYear.GetISOWeekYearOptions) : float = nativeOnly
-            /// <example>
-            /// // Which ISO-week numbering year is 2 January 2005?
-            /// const result = getISOWeekYear(new Date(2005, 0, 2))
-            /// //=> 2004
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <returns>
-            /// The ISO week-numbering year
-            /// </returns>
-            [<Import("getISOWeekYear", "date-fns")>]
-            static member getISOWeekYear (date: DateFns.DateArg<Date>, ?options: DateFns.getISOWeekYear.GetISOWeekYearOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getISOWeekYear">getISOWeekYear</see> function options.
@@ -48982,22 +42399,6 @@ module DateFns =
             /// </returns>
             [<Import("getISOWeeksInYear", "date-fns")>]
             static member getISOWeeksInYear (date: string, ?options: DateFns.getISOWeeksInYear.GetISOWeeksInYearOptions) : float = nativeOnly
-            /// <example>
-            /// // How many weeks are in ISO week-numbering year 2015?
-            /// const result = getISOWeeksInYear(new Date(2015, 1, 11))
-            /// //=> 53
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The number of ISO weeks in a year
-            /// </returns>
-            [<Import("getISOWeeksInYear", "date-fns")>]
-            static member getISOWeeksInYear (date: DateFns.DateArg<Date>, ?options: DateFns.getISOWeeksInYear.GetISOWeeksInYearOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getISOWeeksInYear">getISOWeeksInYear</see> function options.
@@ -49053,19 +42454,6 @@ module DateFns =
             /// </returns>
             [<Import("getMilliseconds", "date-fns")>]
             static member getMilliseconds (date: string) : float = nativeOnly
-            /// <example>
-            /// // Get the milliseconds of 29 February 2012 11:45:05.123:
-            /// const result = getMilliseconds(new Date(2012, 1, 29, 11, 45, 5, 123))
-            /// //=> 123
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <returns>
-            /// The milliseconds
-            /// </returns>
-            [<Import("getMilliseconds", "date-fns")>]
-            static member getMilliseconds (date: DateFns.DateArg<Date>) : float = nativeOnly
 
     module getMinutes =
 
@@ -49120,22 +42508,6 @@ module DateFns =
             /// </returns>
             [<Import("getMinutes", "date-fns")>]
             static member getMinutes (date: string, ?options: DateFns.getMinutes.GetMinutesOptions) : float = nativeOnly
-            /// <example>
-            /// // Get the minutes of 29 February 2012 11:45:05:
-            /// const result = getMinutes(new Date(2012, 1, 29, 11, 45, 5))
-            /// //=> 45
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <returns>
-            /// The minutes
-            /// </returns>
-            [<Import("getMinutes", "date-fns")>]
-            static member getMinutes (date: DateFns.DateArg<Date>, ?options: DateFns.getMinutes.GetMinutesOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getMinutes">getMinutes</see> function options.
@@ -49200,22 +42572,6 @@ module DateFns =
             /// </returns>
             [<Import("getMonth", "date-fns")>]
             static member getMonth (date: string, ?options: DateFns.getMonth.GetMonthOptions) : float = nativeOnly
-            /// <example>
-            /// // Which month is 29 February 2012?
-            /// const result = getMonth(new Date(2012, 1, 29))
-            /// //=> 1
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The month index (0-11)
-            /// </returns>
-            [<Import("getMonth", "date-fns")>]
-            static member getMonth (date: DateFns.DateArg<Date>, ?options: DateFns.getMonth.GetMonthOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getMonth">getMonth</see> function options.
@@ -49316,22 +42672,6 @@ module DateFns =
             /// </returns>
             [<Import("getQuarter", "date-fns")>]
             static member getQuarter (date: string, ?options: DateFns.getQuarter.GetQuarterOptions) : float = nativeOnly
-            /// <example>
-            /// // Which quarter is 2 July 2014?
-            /// const result = getQuarter(new Date(2014, 6, 2));
-            /// //=> 3
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The quarter
-            /// </returns>
-            [<Import("getQuarter", "date-fns")>]
-            static member getQuarter (date: DateFns.DateArg<Date>, ?options: DateFns.getQuarter.GetQuarterOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getQuarter">getQuarter</see> function options.
@@ -49387,19 +42727,6 @@ module DateFns =
             /// </returns>
             [<Import("getSeconds", "date-fns")>]
             static member getSeconds (date: string) : float = nativeOnly
-            /// <example>
-            /// // Get the seconds of 29 February 2012 11:45:05.123:
-            /// const result = getSeconds(new Date(2012, 1, 29, 11, 45, 5, 123))
-            /// //=> 5
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <returns>
-            /// The seconds
-            /// </returns>
-            [<Import("getSeconds", "date-fns")>]
-            static member getSeconds (date: DateFns.DateArg<Date>) : float = nativeOnly
 
     module getTime =
 
@@ -49445,19 +42772,6 @@ module DateFns =
             /// </returns>
             [<Import("getTime", "date-fns")>]
             static member getTime (date: string) : float = nativeOnly
-            /// <example>
-            /// // Get the timestamp of 29 February 2012 11:45:05.123:
-            /// const result = getTime(new Date(2012, 1, 29, 11, 45, 5, 123))
-            /// //=> 1330515905123
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <returns>
-            /// The timestamp
-            /// </returns>
-            [<Import("getTime", "date-fns")>]
-            static member getTime (date: DateFns.DateArg<Date>) : float = nativeOnly
 
     module getUnixTime =
 
@@ -49503,19 +42817,6 @@ module DateFns =
             /// </returns>
             [<Import("getUnixTime", "date-fns")>]
             static member getUnixTime (date: string) : float = nativeOnly
-            /// <example>
-            /// // Get the timestamp of 29 February 2012 11:45:05 CET:
-            /// const result = getUnixTime(new Date(2012, 1, 29, 11, 45, 5))
-            /// //=> 1330512305
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <returns>
-            /// The timestamp
-            /// </returns>
-            [<Import("getUnixTime", "date-fns")>]
-            static member getUnixTime (date: DateFns.DateArg<Date>) : float = nativeOnly
 
     module getWeek =
 
@@ -49600,32 +42901,6 @@ module DateFns =
             /// </returns>
             [<Import("getWeek", "date-fns")>]
             static member getWeek (date: string, ?options: DateFns.getWeek.GetWeekOptions) : float = nativeOnly
-            /// <example>
-            /// // Which week of the local week numbering year is 2 January 2005 with default options?
-            /// const result = getWeek(new Date(2005, 0, 2))
-            /// //=> 2
-            /// </example>
-            /// <example>
-            /// // Which week of the local week numbering year is 2 January 2005,
-            /// // if Monday is the first day of the week,
-            /// // and the first week of the year always contains 4 January?
-            /// const result = getWeek(new Date(2005, 0, 2), {
-            ///   weekStartsOn: 1,
-            ///   firstWeekContainsDate: 4
-            /// })
-            /// //=> 53
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The week
-            /// </returns>
-            [<Import("getWeek", "date-fns")>]
-            static member getWeek (date: DateFns.DateArg<Date>, ?options: DateFns.getWeek.GetWeekOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getWeek">getWeek</see> function options.
@@ -49693,22 +42968,6 @@ module DateFns =
             /// </returns>
             [<Import("getWeekOfMonth", "date-fns")>]
             static member getWeekOfMonth (date: string, ?options: DateFns.getWeekOfMonth.GetWeekOfMonthOptions) : float = nativeOnly
-            /// <example>
-            /// // Which week of the month is 9 November 2017?
-            /// const result = getWeekOfMonth(new Date(2017, 10, 9))
-            /// //=> 2
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The week of month
-            /// </returns>
-            [<Import("getWeekOfMonth", "date-fns")>]
-            static member getWeekOfMonth (date: DateFns.DateArg<Date>, ?options: DateFns.getWeekOfMonth.GetWeekOfMonthOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getWeekOfMonth">getWeekOfMonth</see> function options.
@@ -49805,32 +43064,6 @@ module DateFns =
             /// </returns>
             [<Import("getWeekYear", "date-fns")>]
             static member getWeekYear (date: string, ?options: DateFns.getWeekYear.GetWeekYearOptions) : float = nativeOnly
-            /// <example>
-            /// // Which week numbering year is 26 December 2004 with the default settings?
-            /// const result = getWeekYear(new Date(2004, 11, 26))
-            /// //=> 2005
-            /// </example>
-            /// <example>
-            /// // Which week numbering year is 26 December 2004 if week starts on Saturday?
-            /// const result = getWeekYear(new Date(2004, 11, 26), { weekStartsOn: 6 })
-            /// //=> 2004
-            /// </example>
-            /// <example>
-            /// // Which week numbering year is 26 December 2004 if the first week contains 4 January?
-            /// const result = getWeekYear(new Date(2004, 11, 26), { firstWeekContainsDate: 4 })
-            /// //=> 2004
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The local week-numbering year
-            /// </returns>
-            [<Import("getWeekYear", "date-fns")>]
-            static member getWeekYear (date: DateFns.DateArg<Date>, ?options: DateFns.getWeekYear.GetWeekYearOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getWeekYear">getWeekYear</see> function options.
@@ -49916,28 +43149,6 @@ module DateFns =
             /// </returns>
             [<Import("getWeeksInMonth", "date-fns")>]
             static member getWeeksInMonth (date: string, ?options: DateFns.getWeeksInMonth.GetWeeksInMonthOptions) : float = nativeOnly
-            /// <example>
-            /// // How many calendar weeks does February 2015 span?
-            /// const result = getWeeksInMonth(new Date(2015, 1, 8))
-            /// //=> 4
-            /// </example>
-            /// <example>
-            /// // If the week starts on Monday,
-            /// // how many calendar weeks does July 2017 span?
-            /// const result = getWeeksInMonth(new Date(2017, 6, 5), { weekStartsOn: 1 })
-            /// //=> 6
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <returns>
-            /// The number of calendar weeks
-            /// </returns>
-            [<Import("getWeeksInMonth", "date-fns")>]
-            static member getWeeksInMonth (date: DateFns.DateArg<Date>, ?options: DateFns.getWeeksInMonth.GetWeeksInMonthOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getWeeksInMonth">getWeeksInMonth</see> function options.
@@ -50004,22 +43215,6 @@ module DateFns =
             /// </returns>
             [<Import("getYear", "date-fns")>]
             static member getYear (date: string, ?options: DateFns.getYear.GetYearOptions) : float = nativeOnly
-            /// <example>
-            /// // Which year is 2 July 2014?
-            /// const result = getYear(new Date(2014, 6, 2))
-            /// //=> 2014
-            /// </example>
-            /// <param name="date">
-            /// The given date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The year
-            /// </returns>
-            [<Import("getYear", "date-fns")>]
-            static member getYear (date: DateFns.DateArg<Date>, ?options: DateFns.getYear.GetYearOptions) : float = nativeOnly
 
         /// <summary>
         /// The <see href="getYear">getYear</see> function options.
@@ -50262,25 +43457,6 @@ module DateFns =
             /// <c>date</c> must not be Invalid Date
             /// </remarks>
             /// <example>
-            /// // Represent 4 October 2019 in middle-endian format:
-            /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456))
-            /// //=> 10/4/2019
-            /// </example>
-            /// <param name="date">
-            /// The date to format
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("intlFormat", "date-fns")>]
-            static member intlFormat (date: DateFns.DateArg<Date>) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
             /// // Represent 4 October 2019 in Korean.
             /// // Convert the date with locale's options.
             /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456), {
@@ -50349,31 +43525,6 @@ module DateFns =
             /// </returns>
             [<Import("intlFormat", "date-fns")>]
             static member intlFormat (date: string, localeOptions: DateFns.intlFormat.IntlFormatLocaleOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 4 October 2019 in Korean.
-            /// // Convert the date with locale's options.
-            /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456), {
-            ///   locale: 'ko-KR',
-            /// })
-            /// //=> 2019. 10. 4.
-            /// </example>
-            /// <param name="date">
-            /// The date to format
-            /// </param>
-            /// <param name="localeOptions">
-            /// An object with locale
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("intlFormat", "date-fns")>]
-            static member intlFormat (date: DateFns.DateArg<Date>, localeOptions: DateFns.intlFormat.IntlFormatLocaleOptions) : string = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -50458,34 +43609,6 @@ module DateFns =
             /// </returns>
             [<Import("intlFormat", "date-fns")>]
             static member intlFormat (date: string, formatOptions: DateFns.intlFormat.IntlFormatFormatOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 4 October 2019.
-            /// // Convert the date with format's options.
-            /// const result = intlFormat.default(new Date(2019, 9, 4, 12, 30, 13, 456), {
-            ///   year: 'numeric',
-            ///   month: 'numeric',
-            ///   day: 'numeric',
-            ///   hour: 'numeric',
-            /// })
-            /// //=> 10/4/2019, 12 PM
-            /// </example>
-            /// <param name="date">
-            /// The date to format
-            /// </param>
-            /// <param name="formatOptions">
-            /// The format options
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("intlFormat", "date-fns")>]
-            static member intlFormat (date: DateFns.DateArg<Date>, formatOptions: DateFns.intlFormat.IntlFormatFormatOptions) : string = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -50585,39 +43708,6 @@ module DateFns =
             /// </returns>
             [<Import("intlFormat", "date-fns")>]
             static member intlFormat (date: string, formatOptions: DateFns.intlFormat.IntlFormatFormatOptions, localeOptions: DateFns.intlFormat.IntlFormatLocaleOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            /// </remarks>
-            /// <example>
-            /// // Represent 4 October 2019 in German.
-            /// // Convert the date with format's options and locale's options.
-            /// const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456), {
-            ///   weekday: 'long',
-            ///   year: 'numeric',
-            ///   month: 'long',
-            ///   day: 'numeric',
-            /// }, {
-            ///   locale: 'de-DE',
-            /// })
-            /// //=> Freitag, 4. Oktober 2019
-            /// </example>
-            /// <param name="date">
-            /// The date to format
-            /// </param>
-            /// <param name="formatOptions">
-            /// The format options
-            /// </param>
-            /// <param name="localeOptions">
-            /// An object with locale
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("intlFormat", "date-fns")>]
-            static member intlFormat (date: DateFns.DateArg<Date>, formatOptions: DateFns.intlFormat.IntlFormatFormatOptions, localeOptions: DateFns.intlFormat.IntlFormatLocaleOptions) : string = nativeOnly
 
         /// <summary>
         /// The locale string (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
@@ -51415,91 +44505,6 @@ module DateFns =
             /// </returns>
             [<Import("intlFormatDistance", "date-fns")>]
             static member intlFormatDistance (laterDate: string, earlierDate: string, ?options: DateFns.intlFormatDistance.IntlFormatDistanceOptions) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>date</c> must not be Invalid Date
-            ///
-            /// <c>baseDate</c> must not be Invalid Date
-            ///
-            /// <c>options.unit</c> must not be invalid Unit
-            ///
-            /// <c>options.locale</c> must not be invalid locale
-            ///
-            /// <c>options.localeMatcher</c> must not be invalid localeMatcher
-            ///
-            /// <c>options.numeric</c> must not be invalid numeric
-            ///
-            /// <c>options.style</c> must not be invalid style
-            /// </remarks>
-            /// <example>
-            /// // What is the distance between the dates when the fist date is after the second?
-            /// intlFormatDistance(
-            ///   new Date(1986, 3, 4, 11, 30, 0),
-            ///   new Date(1986, 3, 4, 10, 30, 0)
-            /// )
-            /// //=> 'in 1 hour'
-            ///
-            /// // What is the distance between the dates when the fist date is before the second?
-            /// intlFormatDistance(
-            ///   new Date(1986, 3, 4, 10, 30, 0),
-            ///   new Date(1986, 3, 4, 11, 30, 0)
-            /// )
-            /// //=> '1 hour ago'
-            /// </example>
-            /// <example>
-            /// // Use the unit option to force the function to output the result in quarters. Without setting it, the example would return "next year"
-            /// intlFormatDistance(
-            ///   new Date(1987, 6, 4, 10, 30, 0),
-            ///   new Date(1986, 3, 4, 10, 30, 0),
-            ///   { unit: 'quarter' }
-            /// )
-            /// //=> 'in 5 quarters'
-            /// </example>
-            /// <example>
-            /// // Use the locale option to get the result in Spanish. Without setting it, the example would return "in 1 hour".
-            /// intlFormatDistance(
-            ///   new Date(1986, 3, 4, 11, 30, 0),
-            ///   new Date(1986, 3, 4, 10, 30, 0),
-            ///   { locale: 'es' }
-            /// )
-            /// //=> 'dentro de 1 hora'
-            /// </example>
-            /// <example>
-            /// // Use the numeric option to force the function to use numeric values. Without setting it, the example would return "tomorrow".
-            /// intlFormatDistance(
-            ///   new Date(1986, 3, 5, 11, 30, 0),
-            ///   new Date(1986, 3, 4, 11, 30, 0),
-            ///   { numeric: 'always' }
-            /// )
-            /// //=> 'in 1 day'
-            /// </example>
-            /// <example>
-            /// // Use the style option to force the function to use short values. Without setting it, the example would return "in 2 years".
-            /// intlFormatDistance(
-            ///   new Date(1988, 3, 4, 11, 30, 0),
-            ///   new Date(1986, 3, 4, 11, 30, 0),
-            ///   { style: 'short' }
-            /// )
-            /// //=> 'in 2 yr'
-            /// </example>
-            /// <param name="laterDate">
-            /// The date
-            /// </param>
-            /// <param name="earlierDate">
-            /// The date to compare with.
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// See MDN for details [Locale identification and negotiation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation)
-            /// The narrow one could be similar to the short one for some locales.
-            /// </param>
-            /// <returns>
-            /// The distance in words according to language-sensitive relative time formatting.
-            /// </returns>
-            [<Import("intlFormatDistance", "date-fns")>]
-            static member intlFormatDistance (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.intlFormatDistance.IntlFormatDistanceOptions) : string = nativeOnly
 
         /// <summary>
         /// The <see href="intlFormatDistance">intlFormatDistance</see> function options.
@@ -51678,22 +44683,6 @@ module DateFns =
             /// </returns>
             [<Import("isAfter", "date-fns")>]
             static member isAfter (date: string, dateToCompare: string) : bool = nativeOnly
-            /// <example>
-            /// // Is 10 July 1989 after 11 February 1987?
-            /// const result = isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date that should be after the other one to return true
-            /// </param>
-            /// <param name="dateToCompare">
-            /// The date to compare with
-            /// </param>
-            /// <returns>
-            /// The first date is after the second date
-            /// </returns>
-            [<Import("isAfter", "date-fns")>]
-            static member isAfter (date: DateFns.DateArg<Date>, dateToCompare: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isBefore =
 
@@ -51844,22 +44833,6 @@ module DateFns =
             /// </returns>
             [<Import("isBefore", "date-fns")>]
             static member isBefore (date: string, dateToCompare: string) : bool = nativeOnly
-            /// <example>
-            /// // Is 10 July 1989 before 11 February 1987?
-            /// const result = isBefore(new Date(1989, 6, 10), new Date(1987, 1, 11))
-            /// //=> false
-            /// </example>
-            /// <param name="date">
-            /// The date that should be before the other one to return true
-            /// </param>
-            /// <param name="dateToCompare">
-            /// The date to compare with
-            /// </param>
-            /// <returns>
-            /// The first date is before the second date
-            /// </returns>
-            [<Import("isBefore", "date-fns")>]
-            static member isBefore (date: DateFns.DateArg<Date>, dateToCompare: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isDate =
 
@@ -52071,25 +45044,6 @@ module DateFns =
             /// </returns>
             [<Import("isEqual", "date-fns")>]
             static member isEqual (leftDate: string, rightDate: string) : bool = nativeOnly
-            /// <example>
-            /// // Are 2 July 2014 06:30:45.000 and 2 July 2014 06:30:45.500 equal?
-            /// const result = isEqual(
-            ///   new Date(2014, 6, 2, 6, 30, 45, 0),
-            ///   new Date(2014, 6, 2, 6, 30, 45, 500)
-            /// )
-            /// //=> false
-            /// </example>
-            /// <param name="dateLeft">
-            /// The first date to compare
-            /// </param>
-            /// <param name="dateRight">
-            /// The second date to compare
-            /// </param>
-            /// <returns>
-            /// The dates are equal
-            /// </returns>
-            [<Import("isEqual", "date-fns")>]
-            static member isEqual (leftDate: DateFns.DateArg<Date>, rightDate: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isExists =
 
@@ -52174,22 +45128,6 @@ module DateFns =
             /// </returns>
             [<Import("isFirstDayOfMonth", "date-fns")>]
             static member isFirstDayOfMonth (date: string, ?options: DateFns.isFirstDayOfMonth.IsFirstDayOfMonthOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 1 September 2014 the first day of a month?
-            /// const result = isFirstDayOfMonth(new Date(2014, 8, 1))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is the first day of a month
-            /// </returns>
-            [<Import("isFirstDayOfMonth", "date-fns")>]
-            static member isFirstDayOfMonth (date: DateFns.DateArg<Date>, ?options: DateFns.isFirstDayOfMonth.IsFirstDayOfMonthOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isFirstDayOfMonth">isFirstDayOfMonth</see> function options.
@@ -52254,22 +45192,6 @@ module DateFns =
             /// </returns>
             [<Import("isFriday", "date-fns")>]
             static member isFriday (date: string, ?options: DateFns.isFriday.IsFridayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 26 September 2014 Friday?
-            /// const result = isFriday(new Date(2014, 8, 26))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is Friday
-            /// </returns>
-            [<Import("isFriday", "date-fns")>]
-            static member isFriday (date: DateFns.DateArg<Date>, ?options: DateFns.isFriday.IsFridayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isFriday">isFriday</see> function options.
@@ -52325,19 +45247,6 @@ module DateFns =
             /// </returns>
             [<Import("isFuture", "date-fns")>]
             static member isFuture (date: string) : bool = nativeOnly
-            /// <example>
-            /// // If today is 6 October 2014, is 31 December 2014 in the future?
-            /// const result = isFuture(new Date(2014, 11, 31))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <returns>
-            /// The date is in the future
-            /// </returns>
-            [<Import("isFuture", "date-fns")>]
-            static member isFuture (date: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isLastDayOfMonth =
 
@@ -52392,22 +45301,6 @@ module DateFns =
             /// </returns>
             [<Import("isLastDayOfMonth", "date-fns")>]
             static member isLastDayOfMonth (date: string, ?options: DateFns.isLastDayOfMonth.IsLastDayOfMonthOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 28 February 2014 the last day of a month?
-            /// const result = isLastDayOfMonth(new Date(2014, 1, 28))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is the last day of a month
-            /// </returns>
-            [<Import("isLastDayOfMonth", "date-fns")>]
-            static member isLastDayOfMonth (date: DateFns.DateArg<Date>, ?options: DateFns.isLastDayOfMonth.IsLastDayOfMonthOptions) : bool = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -52469,22 +45362,6 @@ module DateFns =
             /// </returns>
             [<Import("isLeapYear", "date-fns")>]
             static member isLeapYear (date: string, ?options: DateFns.isLeapYear.IsLeapYearOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 1 September 2012 in the leap year?
-            /// const result = isLeapYear(new Date(2012, 8, 1))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// The options object
-            /// </param>
-            /// <returns>
-            /// The date is in the leap year
-            /// </returns>
-            [<Import("isLeapYear", "date-fns")>]
-            static member isLeapYear (date: DateFns.DateArg<Date>, ?options: DateFns.isLeapYear.IsLeapYearOptions) : bool = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -52550,7 +45427,7 @@ module DateFns =
         [<AllowNullLiteral>]
         [<Interface>]
         type IsMatchOptions =
-            inherit DateFns.LocalizedOptions<IsMatchOptions.Extends>
+            inherit DateFns.LocalizedOptions<DateFns.isMatch.IsMatchOptions.Extends>
             inherit DateFns.WeekOptions
             inherit DateFns.FirstWeekContainsDateOptions
             inherit DateFns.AdditionalTokensOptions
@@ -52619,22 +45496,6 @@ module DateFns =
             /// </returns>
             [<Import("isMonday", "date-fns")>]
             static member isMonday (date: string, ?options: DateFns.isMonday.IsMondayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 22 September 2014 Monday?
-            /// const result = isMonday(new Date(2014, 8, 22))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is Monday
-            /// </returns>
-            [<Import("isMonday", "date-fns")>]
-            static member isMonday (date: DateFns.DateArg<Date>, ?options: DateFns.isMonday.IsMondayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isMonday">isMonday</see> function options.
@@ -52690,19 +45551,6 @@ module DateFns =
             /// </returns>
             [<Import("isPast", "date-fns")>]
             static member isPast (date: string) : bool = nativeOnly
-            /// <example>
-            /// // If today is 6 October 2014, is 2 July 2014 in the past?
-            /// const result = isPast(new Date(2014, 6, 2))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <returns>
-            /// The date is in the past
-            /// </returns>
-            [<Import("isPast", "date-fns")>]
-            static member isPast (date: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isSameDay =
 
@@ -52970,35 +45818,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameDay", "date-fns")>]
             static member isSameDay (laterDate: string, earlierDate: string, ?options: DateFns.isSameDay.IsSameDayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 4 September 06:00:00 and 4 September 18:00:00 in the same day?
-            /// const result = isSameDay(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 4, 18, 0))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 4 September and 4 October in the same day?
-            /// const result = isSameDay(new Date(2014, 8, 4), new Date(2014, 9, 4))
-            /// //=> false
-            /// </example>
-            /// <example>
-            /// // Are 4 September, 2014 and 4 September, 2015 in the same day?
-            /// const result = isSameDay(new Date(2014, 8, 4), new Date(2015, 8, 4))
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same day (and year and month)
-            /// </returns>
-            [<Import("isSameDay", "date-fns")>]
-            static member isSameDay (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameDay.IsSameDayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameDay">isSameDay</see> function options.
@@ -53231,30 +46050,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameHour", "date-fns")>]
             static member isSameHour (dateLeft: string, dateRight: string, ?options: DateFns.isSameHour.IsSameHourOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 4 September 2014 06:00:00 and 4 September 06:30:00 in the same hour?
-            /// const result = isSameHour(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 4, 6, 30))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 4 September 2014 06:00:00 and 5 September 06:00:00 in the same hour?
-            /// const result = isSameHour(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 5, 6, 0))
-            /// //=> false
-            /// </example>
-            /// <param name="dateLeft">
-            /// The first date to check
-            /// </param>
-            /// <param name="dateRight">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same hour (and same day)
-            /// </returns>
-            [<Import("isSameHour", "date-fns")>]
-            static member isSameHour (dateLeft: DateFns.DateArg<Date>, dateRight: DateFns.DateArg<Date>, ?options: DateFns.isSameHour.IsSameHourOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameHour">isSameHour</see> function options.
@@ -53487,30 +46282,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameISOWeek", "date-fns")>]
             static member isSameISOWeek (laterDate: string, earlierDate: string, ?options: DateFns.isSameISOWeek.IsSameISOWeekOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 1 September 2014 and 7 September 2014 in the same ISO week?
-            /// const result = isSameISOWeek(new Date(2014, 8, 1), new Date(2014, 8, 7))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 1 September 2014 and 1 September 2015 in the same ISO week?
-            /// const result = isSameISOWeek(new Date(2014, 8, 1), new Date(2015, 8, 1))
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same ISO week (and year)
-            /// </returns>
-            [<Import("isSameISOWeek", "date-fns")>]
-            static member isSameISOWeek (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameISOWeek.IsSameISOWeekOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameISOWeek">isSameISOWeek</see> function options.
@@ -53698,25 +46469,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameISOWeekYear", "date-fns")>]
             static member isSameISOWeekYear (laterDate: string, earlierDate: string, ?options: DateFns.isSameISOWeekYear.IsSameISOWeekYearOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 29 December 2003 and 2 January 2005 in the same ISO week-numbering year?
-            /// const result = isSameISOWeekYear(new Date(2003, 11, 29), new Date(2005, 0, 2))
-            /// //=> true
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same ISO week-numbering year
-            /// </returns>
-            [<Import("isSameISOWeekYear", "date-fns")>]
-            static member isSameISOWeekYear (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameISOWeekYear.IsSameISOWeekYearOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameISOWeekYear">isSameISOWeekYear</see> function options.
@@ -53976,33 +46728,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameMinute", "date-fns")>]
             static member isSameMinute (laterDate: string, earlierDate: string) : bool = nativeOnly
-            /// <example>
-            /// // Are 4 September 2014 06:30:00 and 4 September 2014 06:30:15 in the same minute?
-            /// const result = isSameMinute(
-            ///   new Date(2014, 8, 4, 6, 30),
-            ///   new Date(2014, 8, 4, 6, 30, 15)
-            /// )
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 4 September 2014 06:30:00 and 5 September 2014 06:30:00 in the same minute?
-            /// const result = isSameMinute(
-            ///   new Date(2014, 8, 4, 6, 30),
-            ///   new Date(2014, 8, 5, 6, 30)
-            /// )
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <returns>
-            /// The dates are in the same minute (and hour and day)
-            /// </returns>
-            [<Import("isSameMinute", "date-fns")>]
-            static member isSameMinute (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isSameMonth =
 
@@ -54225,30 +46950,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameMonth", "date-fns")>]
             static member isSameMonth (laterDate: string, earlierDate: string, ?options: DateFns.isSameMonth.IsSameMonthOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 2 September 2014 and 25 September 2014 in the same month?
-            /// const result = isSameMonth(new Date(2014, 8, 2), new Date(2014, 8, 25))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 2 September 2014 and 25 September 2015 in the same month?
-            /// const result = isSameMonth(new Date(2014, 8, 2), new Date(2015, 8, 25))
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same month (and year)
-            /// </returns>
-            [<Import("isSameMonth", "date-fns")>]
-            static member isSameMonth (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameMonth.IsSameMonthOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameMonth">isSameMonth</see> function options.
@@ -54481,30 +47182,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameQuarter", "date-fns")>]
             static member isSameQuarter (laterDate: string, earlierDate: string, ?options: DateFns.isSameQuarter.IsSameQuarterOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 1 January 2014 and 8 March 2014 in the same quarter?
-            /// const result = isSameQuarter(new Date(2014, 0, 1), new Date(2014, 2, 8))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 1 January 2014 and 1 January 2015 in the same quarter?
-            /// const result = isSameQuarter(new Date(2014, 0, 1), new Date(2015, 0, 1))
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same quarter (and year)
-            /// </returns>
-            [<Import("isSameQuarter", "date-fns")>]
-            static member isSameQuarter (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameQuarter.IsSameQuarterOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameQuarter">isSameQuarter</see> function options.
@@ -54836,41 +47513,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameSecond", "date-fns")>]
             static member isSameSecond (laterDate: string, earlierDate: string) : bool = nativeOnly
-            /// <example>
-            /// // Are 4 September 2014 06:30:15.000 and 4 September 2014 06:30.15.500 in the same second?
-            /// const result = isSameSecond(
-            ///   new Date(2014, 8, 4, 6, 30, 15),
-            ///   new Date(2014, 8, 4, 6, 30, 15, 500)
-            /// )
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // Are 4 September 2014 06:00:15.000 and 4 September 2014 06:01.15.000 in the same second?
-            /// const result = isSameSecond(
-            ///   new Date(2014, 8, 4, 6, 0, 15),
-            ///   new Date(2014, 8, 4, 6, 1, 15)
-            /// )
-            /// //=> false
-            /// </example>
-            /// <example>
-            /// // Are 4 September 2014 06:00:15.000 and 5 September 2014 06:00.15.000 in the same second?
-            /// const result = isSameSecond(
-            ///   new Date(2014, 8, 4, 6, 0, 15),
-            ///   new Date(2014, 8, 5, 6, 0, 15)
-            /// )
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <returns>
-            /// The dates are in the same second (and hour and day)
-            /// </returns>
-            [<Import("isSameSecond", "date-fns")>]
-            static member isSameSecond (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isSameWeek =
 
@@ -55165,38 +47807,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameWeek", "date-fns")>]
             static member isSameWeek (laterDate: string, earlierDate: string, ?options: DateFns.isSameWeek.IsSameWeekOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 31 August 2014 and 4 September 2014 in the same week?
-            /// const result = isSameWeek(new Date(2014, 7, 31), new Date(2014, 8, 4))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // If week starts with Monday,
-            /// // are 31 August 2014 and 4 September 2014 in the same week?
-            /// const result = isSameWeek(new Date(2014, 7, 31), new Date(2014, 8, 4), {
-            ///   weekStartsOn: 1
-            /// })
-            /// //=> false
-            /// </example>
-            /// <example>
-            /// // Are 1 January 2014 and 1 January 2015 in the same week?
-            /// const result = isSameWeek(new Date(2014, 0, 1), new Date(2015, 0, 1))
-            /// //=> false
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same week (and month and year)
-            /// </returns>
-            [<Import("isSameWeek", "date-fns")>]
-            static member isSameWeek (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameWeek.IsSameWeekOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameWeek">isSameWeek</see> function options.
@@ -55386,25 +47996,6 @@ module DateFns =
             /// </returns>
             [<Import("isSameYear", "date-fns")>]
             static member isSameYear (laterDate: string, earlierDate: string, ?options: DateFns.isSameYear.IsSameYearOptions) : bool = nativeOnly
-            /// <example>
-            /// // Are 2 September 2014 and 25 September 2014 in the same year?
-            /// const result = isSameYear(new Date(2014, 8, 2), new Date(2014, 8, 25))
-            /// //=> true
-            /// </example>
-            /// <param name="laterDate">
-            /// The first date to check
-            /// </param>
-            /// <param name="earlierDate">
-            /// The second date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The dates are in the same year
-            /// </returns>
-            [<Import("isSameYear", "date-fns")>]
-            static member isSameYear (laterDate: DateFns.DateArg<Date>, earlierDate: DateFns.DateArg<Date>, ?options: DateFns.isSameYear.IsSameYearOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSameYear">isSameYear</see> function options.
@@ -55469,22 +48060,6 @@ module DateFns =
             /// </returns>
             [<Import("isSaturday", "date-fns")>]
             static member isSaturday (date: string, ?options: DateFns.isSaturday.IsSaturdayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 27 September 2014 Saturday?
-            /// const result = isSaturday(new Date(2014, 8, 27))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is Saturday
-            /// </returns>
-            [<Import("isSaturday", "date-fns")>]
-            static member isSaturday (date: DateFns.DateArg<Date>, ?options: DateFns.isSaturday.IsSaturdayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSaturday">isSaturday</see> function options.
@@ -55549,22 +48124,6 @@ module DateFns =
             /// </returns>
             [<Import("isSunday", "date-fns")>]
             static member isSunday (date: string, ?options: DateFns.isSunday.IsSundayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 21 September 2014 Sunday?
-            /// const result = isSunday(new Date(2014, 8, 21))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// The options object
-            /// </param>
-            /// <returns>
-            /// The date is Sunday
-            /// </returns>
-            [<Import("isSunday", "date-fns")>]
-            static member isSunday (date: DateFns.DateArg<Date>, ?options: DateFns.isSunday.IsSundayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isSunday">isSunday</see> function options.
@@ -55632,23 +48191,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisHour", "date-fns")>]
             static member isThisHour (date: string, ?options: DateFns.isThisHour.IsThisHourOptions) : bool = nativeOnly
-            /// <example>
-            /// // If now is 25 September 2014 18:30:15.500,
-            /// // is 25 September 2014 18:00:00 in this hour?
-            /// const result = isThisHour(new Date(2014, 8, 25, 18))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is in this hour
-            /// </returns>
-            [<Import("isThisHour", "date-fns")>]
-            static member isThisHour (date: DateFns.DateArg<Date>, ?options: DateFns.isThisHour.IsThisHourOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThisHour">isThisHour</see> function options.
@@ -55713,22 +48255,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisISOWeek", "date-fns")>]
             static member isThisISOWeek (date: string, ?options: DateFns.isThisISOWeek.IsThisISOWeekOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 25 September 2014, is 22 September 2014 in this ISO week?
-            /// const result = isThisISOWeek(new Date(2014, 8, 22))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is in this ISO week
-            /// </returns>
-            [<Import("isThisISOWeek", "date-fns")>]
-            static member isThisISOWeek (date: DateFns.DateArg<Date>, ?options: DateFns.isThisISOWeek.IsThisISOWeekOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThisISOWeek">isThisISOWeek</see> function options.
@@ -55787,20 +48313,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisMinute", "date-fns")>]
             static member isThisMinute (date: string) : bool = nativeOnly
-            /// <example>
-            /// // If now is 25 September 2014 18:30:15.500,
-            /// // is 25 September 2014 18:30:00 in this minute?
-            /// const result = isThisMinute(new Date(2014, 8, 25, 18, 30))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <returns>
-            /// The date is in this minute
-            /// </returns>
-            [<Import("isThisMinute", "date-fns")>]
-            static member isThisMinute (date: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isThisMonth =
 
@@ -55855,22 +48367,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisMonth", "date-fns")>]
             static member isThisMonth (date: string, ?options: DateFns.isThisMonth.IsThisMonthOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 25 September 2014, is 15 September 2014 in this month?
-            /// const result = isThisMonth(new Date(2014, 8, 15))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is in this month
-            /// </returns>
-            [<Import("isThisMonth", "date-fns")>]
-            static member isThisMonth (date: DateFns.DateArg<Date>, ?options: DateFns.isThisMonth.IsThisMonthOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThisMonth">isThisMonth</see> function options.
@@ -55935,22 +48431,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisQuarter", "date-fns")>]
             static member isThisQuarter (date: string, ?options: DateFns.isThisQuarter.IsThisQuarterOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 25 September 2014, is 2 July 2014 in this quarter?
-            /// const result = isThisQuarter(new Date(2014, 6, 2))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is in this quarter
-            /// </returns>
-            [<Import("isThisQuarter", "date-fns")>]
-            static member isThisQuarter (date: DateFns.DateArg<Date>, ?options: DateFns.isThisQuarter.IsThisQuarterOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThisQuarter">isThisQuarter</see> function options.
@@ -56009,20 +48489,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisSecond", "date-fns")>]
             static member isThisSecond (date: string) : bool = nativeOnly
-            /// <example>
-            /// // If now is 25 September 2014 18:30:15.500,
-            /// // is 25 September 2014 18:30:15.000 in this second?
-            /// const result = isThisSecond(new Date(2014, 8, 25, 18, 30, 15))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <returns>
-            /// The date is in this second
-            /// </returns>
-            [<Import("isThisSecond", "date-fns")>]
-            static member isThisSecond (date: DateFns.DateArg<Date>) : bool = nativeOnly
 
     module isThisWeek =
 
@@ -56095,28 +48561,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisWeek", "date-fns")>]
             static member isThisWeek (date: string, ?options: DateFns.isThisWeek.IsThisWeekOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 25 September 2014, is 21 September 2014 in this week?
-            /// const result = isThisWeek(new Date(2014, 8, 21))
-            /// //=> true
-            /// </example>
-            /// <example>
-            /// // If today is 25 September 2014 and week starts with Monday
-            /// // is 21 September 2014 in this week?
-            /// const result = isThisWeek(new Date(2014, 8, 21), { weekStartsOn: 1 })
-            /// //=> false
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// The object with options
-            /// </param>
-            /// <returns>
-            /// The date is in this week
-            /// </returns>
-            [<Import("isThisWeek", "date-fns")>]
-            static member isThisWeek (date: DateFns.DateArg<Date>, ?options: DateFns.isThisWeek.IsThisWeekOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThisWeek">isThisWeek</see> function options.
@@ -56183,22 +48627,6 @@ module DateFns =
             /// </returns>
             [<Import("isThisYear", "date-fns")>]
             static member isThisYear (date: string, ?options: DateFns.isThisYear.IsThisYearOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 25 September 2014, is 2 July 2014 in this year?
-            /// const result = isThisYear(new Date(2014, 6, 2))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is in this year
-            /// </returns>
-            [<Import("isThisYear", "date-fns")>]
-            static member isThisYear (date: DateFns.DateArg<Date>, ?options: DateFns.isThisYear.IsThisYearOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThisYear">isThisYear</see> function options.
@@ -56263,22 +48691,6 @@ module DateFns =
             /// </returns>
             [<Import("isThursday", "date-fns")>]
             static member isThursday (date: string, ?options: DateFns.isThursday.IsThursdayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 25 September 2014 Thursday?
-            /// const result = isThursday(new Date(2014, 8, 25))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is Thursday
-            /// </returns>
-            [<Import("isThursday", "date-fns")>]
-            static member isThursday (date: DateFns.DateArg<Date>, ?options: DateFns.isThursday.IsThursdayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isThursday">isThursday</see> function options.
@@ -56343,22 +48755,6 @@ module DateFns =
             /// </returns>
             [<Import("isToday", "date-fns")>]
             static member isToday (date: string, ?options: DateFns.isToday.IsTodayOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 6 October 2014, is 6 October 14:00:00 today?
-            /// const result = isToday(new Date(2014, 9, 6, 14, 0))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is today
-            /// </returns>
-            [<Import("isToday", "date-fns")>]
-            static member isToday (date: DateFns.DateArg<Date>, ?options: DateFns.isToday.IsTodayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isToday">isToday</see> function options.
@@ -56423,22 +48819,6 @@ module DateFns =
             /// </returns>
             [<Import("isTomorrow", "date-fns")>]
             static member isTomorrow (date: string, ?options: DateFns.isTomorrow.IsTomorrowOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 6 October 2014, is 7 October 14:00:00 tomorrow?
-            /// const result = isTomorrow(new Date(2014, 9, 7, 14, 0))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is tomorrow
-            /// </returns>
-            [<Import("isTomorrow", "date-fns")>]
-            static member isTomorrow (date: DateFns.DateArg<Date>, ?options: DateFns.isTomorrow.IsTomorrowOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isTomorrow">isTomorrow</see> function options.
@@ -56503,22 +48883,6 @@ module DateFns =
             /// </returns>
             [<Import("isTuesday", "date-fns")>]
             static member isTuesday (date: string, ?options: DateFns.isTuesday.IsTuesdayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 23 September 2014 Tuesday?
-            /// const result = isTuesday(new Date(2014, 8, 23))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is Tuesday
-            /// </returns>
-            [<Import("isTuesday", "date-fns")>]
-            static member isTuesday (date: DateFns.DateArg<Date>, ?options: DateFns.isTuesday.IsTuesdayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isTuesday">isTuesday</see> function options.
@@ -56612,22 +48976,6 @@ module DateFns =
             /// </returns>
             [<Import("isWednesday", "date-fns")>]
             static member isWednesday (date: string, ?options: DateFns.isWednesday.IsWednesdayOptions) : bool = nativeOnly
-            /// <example>
-            /// // Is 24 September 2014 Wednesday?
-            /// const result = isWednesday(new Date(2014, 8, 24))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is Wednesday
-            /// </returns>
-            [<Import("isWednesday", "date-fns")>]
-            static member isWednesday (date: DateFns.DateArg<Date>, ?options: DateFns.isWednesday.IsWednesdayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isWednesday">isWednesday</see> function options.
@@ -56692,22 +49040,6 @@ module DateFns =
             /// </returns>
             [<Import("isWeekend", "date-fns")>]
             static member isWeekend (date: string, ?options: DateFns.isWeekend.IsWeekendOptions) : bool = nativeOnly
-            /// <example>
-            /// // Does 5 October 2014 fall on a weekend?
-            /// const result = isWeekend(new Date(2014, 9, 5))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date falls on a weekend
-            /// </returns>
-            [<Import("isWeekend", "date-fns")>]
-            static member isWeekend (date: DateFns.DateArg<Date>, ?options: DateFns.isWeekend.IsWeekendOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isWeekend">isWeekend</see> function options.
@@ -56844,46 +49176,6 @@ module DateFns =
             /// </returns>
             [<Import("isWithinInterval", "date-fns")>]
             static member isWithinInterval (date: string, interval: DateFns.Interval, ?options: DateFns.isWithinInterval.IsWithinIntervalOptions) : bool = nativeOnly
-            /// <example>
-            /// // For the date within the interval:
-            /// isWithinInterval(new Date(2014, 0, 3), {
-            ///   start: new Date(2014, 0, 1),
-            ///   end: new Date(2014, 0, 7)
-            /// })
-            /// // => true
-            /// </example>
-            /// <example>
-            /// // For the date outside of the interval:
-            /// isWithinInterval(new Date(2014, 0, 10), {
-            ///   start: new Date(2014, 0, 1),
-            ///   end: new Date(2014, 0, 7)
-            /// })
-            /// // => false
-            /// </example>
-            /// <example>
-            /// // For date equal to the interval start:
-            /// isWithinInterval(date, { start, end: date })
-            /// // => true
-            /// </example>
-            /// <example>
-            /// // For date equal to the interval end:
-            /// isWithinInterval(date, { start: date, end })
-            /// // => true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="interval">
-            /// The interval to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is within the interval
-            /// </returns>
-            [<Import("isWithinInterval", "date-fns")>]
-            static member isWithinInterval (date: DateFns.DateArg<Date>, interval: DateFns.Interval, ?options: DateFns.isWithinInterval.IsWithinIntervalOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isWithinInterval">isWithinInterval</see> function options.
@@ -56948,22 +49240,6 @@ module DateFns =
             /// </returns>
             [<Import("isYesterday", "date-fns")>]
             static member isYesterday (date: string, ?options: DateFns.isYesterday.IsYesterdayOptions) : bool = nativeOnly
-            /// <example>
-            /// // If today is 6 October 2014, is 5 October 14:00:00 yesterday?
-            /// const result = isYesterday(new Date(2014, 9, 5, 14, 0))
-            /// //=> true
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <returns>
-            /// The date is yesterday
-            /// </returns>
-            [<Import("isYesterday", "date-fns")>]
-            static member isYesterday (date: DateFns.DateArg<Date>, ?options: DateFns.isYesterday.IsYesterdayOptions) : bool = nativeOnly
 
         /// <summary>
         /// The <see href="isYesterday">isYesterday</see> function options.
@@ -57046,28 +49322,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfDecade", "date-fns")>]
             static member lastDayOfDecade<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfDecade.LastDayOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The last day of a decade for 21 December 2012 21:12:00:
-            /// const result = lastDayOfDecade(new Date(2012, 11, 21, 21, 12, 00))
-            /// //=> Wed Dec 31 2019 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type; inferred from arguments or specified by context.
-            /// </typeparam>
-            /// <returns>
-            /// The last day of a decade
-            /// </returns>
-            [<Import("lastDayOfDecade", "date-fns")>]
-            static member lastDayOfDecade<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfDecade.LastDayOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfDecade">lastDayOfDecade</see> function options.
@@ -57153,28 +49407,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfISOWeek", "date-fns")>]
             static member lastDayOfISOWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfISOWeek.LastDayOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The last day of an ISO week for 2 September 2014 11:55:00:
-            /// const result = lastDayOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Sun Sep 07 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The Date type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [UTCDate](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The last day of an ISO week
-            /// </returns>
-            [<Import("lastDayOfISOWeek", "date-fns")>]
-            static member lastDayOfISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfISOWeek.LastDayOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfISOWeek">lastDayOfISOWeek</see> function options.
@@ -57260,28 +49492,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfISOWeekYear", "date-fns")>]
             static member lastDayOfISOWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfISOWeekYear.LastDayOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The last day of an ISO week-numbering year for 2 July 2005:
-            /// const result = lastDayOfISOWeekYear(new Date(2005, 6, 2))
-            /// //=> Sun Jan 01 2006 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The end of an ISO week-numbering year
-            /// </returns>
-            [<Import("lastDayOfISOWeekYear", "date-fns")>]
-            static member lastDayOfISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfISOWeekYear.LastDayOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfISOWeekYear">lastDayOfISOWeekYear</see> function options.
@@ -57367,28 +49577,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfMonth", "date-fns")>]
             static member lastDayOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfMonth.LastDayOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The last day of a month for 2 September 2014 11:55:00:
-            /// const result = lastDayOfMonth(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Sep 30 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The last day of a month
-            /// </returns>
-            [<Import("lastDayOfMonth", "date-fns")>]
-            static member lastDayOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfMonth.LastDayOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfMonth">lastDayOfMonth</see> function options.
@@ -57474,28 +49662,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfQuarter", "date-fns")>]
             static member lastDayOfQuarter<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfQuarter.LastDayOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The last day of a quarter for 2 September 2014 11:55:00:
-            /// const result = lastDayOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Sep 30 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The last day of a quarter
-            /// </returns>
-            [<Import("lastDayOfQuarter", "date-fns")>]
-            static member lastDayOfQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfQuarter.LastDayOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfQuarter">lastDayOfQuarter</see> function options.
@@ -57566,23 +49732,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfWeek", "date-fns")>]
             static member lastDayOfWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfWeek.LastDayOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The last day of a week
-            /// </returns>
-            [<Import("lastDayOfWeek", "date-fns")>]
-            static member lastDayOfWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfWeek.LastDayOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfWeek">lastDayOfWeek</see> function options.
@@ -57670,28 +49819,6 @@ module DateFns =
             /// </returns>
             [<Import("lastDayOfYear", "date-fns")>]
             static member lastDayOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.lastDayOfYear.LastDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The last day of a year for 2 September 2014 11:55:00:
-            /// const result = lastDayOfYear(new Date(2014, 8, 2, 11, 55, 00))
-            /// //=> Wed Dec 31 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The last day of a year
-            /// </returns>
-            [<Import("lastDayOfYear", "date-fns")>]
-            static member lastDayOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.lastDayOfYear.LastDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="lastDayOfYear">lastDayOfYear</see> function options.
@@ -57712,7 +49839,7 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("lightFormatters", "date-fns/lightFormat")>]
-            static member inline lightFormatters: Exports.lightFormatters__.Type = nativeOnly
+            static member inline lightFormatters: DateFns.lightFormat.Exports.lightFormatters__.Type = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -57782,29 +49909,6 @@ module DateFns =
             /// </returns>
             [<Import("lightFormat", "date-fns")>]
             static member lightFormat (date: string, formatStr: string) : string = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>Invalid time value</c> if the date is invalid
-            ///
-            /// format string contains an unescaped latin alphabet character
-            /// </remarks>
-            /// <example>
-            /// const result = lightFormat(new Date(2014, 1, 11), 'yyyy-MM-dd')
-            /// //=> '2014-02-11'
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="format">
-            /// The string of tokens
-            /// </param>
-            /// <returns>
-            /// The formatted date string
-            /// </returns>
-            [<Import("lightFormat", "date-fns")>]
-            static member lightFormat (date: DateFns.DateArg<Date>, formatStr: string) : string = nativeOnly
 
         module Exports =
 
@@ -57823,7 +49927,7 @@ module DateFns =
                     abstract member s: date: Date * token: string -> string
                     abstract member S: date: Date * token: string -> string
                     [<ParamObject; Emit("$0")>]
-                    static member Create (y: Exports.lightFormatters__.Type.y, M: Exports.lightFormatters__.Type.M, d: Exports.lightFormatters__.Type.d, a: Exports.lightFormatters__.Type.a, h: Exports.lightFormatters__.Type.h, H: Exports.lightFormatters__.Type.H, m: Exports.lightFormatters__.Type.m, s: Exports.lightFormatters__.Type.s, S: Exports.lightFormatters__.Type.S) : Type = nativeOnly
+                    static member Create (y: DateFns.lightFormat.Exports.lightFormatters__.Type.y, M: DateFns.lightFormat.Exports.lightFormatters__.Type.M, d: DateFns.lightFormat.Exports.lightFormatters__.Type.d, a: DateFns.lightFormat.Exports.lightFormatters__.Type.a, h: DateFns.lightFormat.Exports.lightFormatters__.Type.h, H: DateFns.lightFormat.Exports.lightFormatters__.Type.H, m: DateFns.lightFormat.Exports.lightFormatters__.Type.m, s: DateFns.lightFormat.Exports.lightFormatters__.Type.s, S: DateFns.lightFormat.Exports.lightFormatters__.Type.S) : Type = nativeOnly
 
                 module Type =
 
@@ -58071,14 +50175,14 @@ module DateFns =
         type FormatDistanceToken =
             DateFns.FormatDistanceToken
 
-        type FormatRelativeFn<'DateType> =
-            DateFns.FormatRelativeFn<'DateType>
+        type FormatRelativeFn =
+            DateFns.FormatRelativeFn
 
         type FormatRelativeFnOptions =
             DateFns.FormatRelativeFnOptions
 
-        type FormatRelativeTokenFn<'DateType> =
-            DateFns.FormatRelativeTokenFn<'DateType>
+        type FormatRelativeTokenFn =
+            DateFns.FormatRelativeTokenFn
 
         type FormatRelativeTokenFnOptions =
             DateFns.FormatRelativeTokenFnOptions
@@ -58105,7 +50209,7 @@ module DateFns =
             DateFns.MatchFn<'Result, 'ExtraOptions>
 
         type MatchFn<'Result> =
-            MatchFn<'Result, MatchFn.ExtraOptions>
+            MatchFn<'Result, DateFns.locale.MatchFn.ExtraOptions>
 
         type MatchFnOptions<'Result> =
             DateFns.MatchFnOptions<'Result>
@@ -59293,36 +51397,6 @@ module DateFns =
             /// </returns>
             [<Import("nextDay", "date-fns")>]
             static member nextDay<'DateType, 'ResultDate> (date: string, day: DateFns.Day, ?options: DateFns.nextDay.NextDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Monday after Mar, 20, 2020?
-            /// const result = nextDay(new Date(2020, 2, 20), 1)
-            /// //=> Mon Mar 23 2020 00:00:00
-            /// </example>
-            /// <example>
-            /// // When is the next Tuesday after Mar, 21, 2020?
-            /// const result = nextDay(new Date(2020, 2, 21), 2)
-            /// //=> Tue Mar 24 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="day">
-            /// Day of the week
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The date is the next day of the week
-            /// </returns>
-            [<Import("nextDay", "date-fns")>]
-            static member nextDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: DateFns.Day, ?options: DateFns.nextDay.NextDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextDay">nextDay</see> function options.
@@ -59408,28 +51482,6 @@ module DateFns =
             /// </returns>
             [<Import("nextFriday", "date-fns")>]
             static member nextFriday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextFriday.NextFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Friday after Mar, 22, 2020?
-            /// const result = nextFriday(new Date(2020, 2, 22))
-            /// //=> Fri Mar 27 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The next Friday
-            /// </returns>
-            [<Import("nextFriday", "date-fns")>]
-            static member nextFriday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextFriday.NextFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextFriday">nextFriday</see> function options.
@@ -59515,28 +51567,6 @@ module DateFns =
             /// </returns>
             [<Import("nextMonday", "date-fns")>]
             static member nextMonday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextMonday.NextMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Monday after Mar, 22, 2020?
-            /// const result = nextMonday(new Date(2020, 2, 22))
-            /// //=> Mon Mar 23 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, returned from the context function if passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The next Monday
-            /// </returns>
-            [<Import("nextMonday", "date-fns")>]
-            static member nextMonday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextMonday.NextMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextMonday">nextMonday</see> function options.
@@ -59622,28 +51652,6 @@ module DateFns =
             /// </returns>
             [<Import("nextSaturday", "date-fns")>]
             static member nextSaturday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextSaturday.NextSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Saturday after Mar, 22, 2020?
-            /// const result = nextSaturday(new Date(2020, 2, 22))
-            /// //=> Sat Mar 28 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The next Saturday
-            /// </returns>
-            [<Import("nextSaturday", "date-fns")>]
-            static member nextSaturday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextSaturday.NextSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextSaturday">nextSaturday</see> function options.
@@ -59729,28 +51737,6 @@ module DateFns =
             /// </returns>
             [<Import("nextSunday", "date-fns")>]
             static member nextSunday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextSunday.NextSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Sunday after March 22, 2020?
-            /// const result = nextSunday(new Date(2020, 2, 22))
-            /// //=> Sun Mar 29 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned if a context is provided.
-            /// </typeparam>
-            /// <returns>
-            /// The next Sunday
-            /// </returns>
-            [<Import("nextSunday", "date-fns")>]
-            static member nextSunday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextSunday.NextSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextSunday">nextSunday</see> function options.
@@ -59836,28 +51822,6 @@ module DateFns =
             /// </returns>
             [<Import("nextThursday", "date-fns")>]
             static member nextThursday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextThursday.NextThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Thursday after Mar, 22, 2020?
-            /// const result = nextThursday(new Date(2020, 2, 22))
-            /// //=> Thur Mar 26 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The next Thursday
-            /// </returns>
-            [<Import("nextThursday", "date-fns")>]
-            static member nextThursday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextThursday.NextThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextThursday">nextThursday</see> function options.
@@ -59943,28 +51907,6 @@ module DateFns =
             /// </returns>
             [<Import("nextTuesday", "date-fns")>]
             static member nextTuesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextTuesday.NextTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Tuesday after Mar, 22, 2020?
-            /// const result = nextTuesday(new Date(2020, 2, 22))
-            /// //=> Tue Mar 24 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The next Tuesday
-            /// </returns>
-            [<Import("nextTuesday", "date-fns")>]
-            static member nextTuesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextTuesday.NextTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextTuesday">nextTuesday</see> function options.
@@ -60050,28 +51992,6 @@ module DateFns =
             /// </returns>
             [<Import("nextWednesday", "date-fns")>]
             static member nextWednesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.nextWednesday.NextWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the next Wednesday after Mar, 22, 2020?
-            /// const result = nextWednesday(new Date(2020, 2, 22))
-            /// //=> Wed Mar 25 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The next Wednesday
-            /// </returns>
-            [<Import("nextWednesday", "date-fns")>]
-            static member nextWednesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.nextWednesday.NextWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="nextWednesday">nextWednesday</see> function options.
@@ -60092,9 +52012,9 @@ module DateFns =
         [<Erase>]
         type Exports =
             [<Import("longFormatters", "date-fns/parse")>]
-            static member inline longFormatters: Exports.longFormatters__.Type = nativeOnly
+            static member inline longFormatters: DateFns.parse.Exports.longFormatters__.Type = nativeOnly
             [<Import("parsers", "date-fns/parse")>]
-            static member inline parsers: Exports.parsers__.Type = nativeOnly
+            static member inline parsers: DateFns.parse.Exports.parsers__.Type = nativeOnly
             /// <remarks>
             /// Throws:
             /// -------
@@ -60257,60 +52177,6 @@ module DateFns =
             /// </returns>
             [<Import("parse", "date-fns")>]
             static member parse<'DateType, 'ResultDate> (dateStr: string, formatStr: string, referenceDate: string, ?options: DateFns.parse.ParseOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <remarks>
-            /// Throws:
-            /// -------
-            ///
-            /// <c>options.locale</c> must contain <c>match</c> property
-            ///
-            /// use <c>yyyy</c> instead of <c>YYYY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// use <c>yy</c> instead of <c>YY</c> for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// use <c>d</c> instead of <c>D</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// use <c>dd</c> instead of <c>DD</c> for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            ///
-            /// format string contains an unescaped latin alphabet character
-            /// </remarks>
-            /// <example>
-            /// // Parse 11 February 2014 from middle-endian format:
-            /// var result = parse('02/11/2014', 'MM/dd/yyyy', new Date())
-            /// //=> Tue Feb 11 2014 00:00:00
-            /// </example>
-            /// <example>
-            /// // Parse 28th of February in Esperanto locale in the context of 2010 year:
-            /// import eo from 'date-fns/locale/eo'
-            /// var result = parse('28-a de februaro', "do 'de' MMMM", new Date(2010, 0, 1), {
-            ///   locale: eo
-            /// })
-            /// //=> Sun Feb 28 2010 00:00:00
-            /// </example>
-            /// <param name="dateStr">
-            /// The string to parse
-            /// </param>
-            /// <param name="formatStr">
-            /// The string of tokens
-            /// </param>
-            /// <param name="referenceDate">
-            /// defines values missing from the parsed dateString
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            /// see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The parsed date
-            /// </returns>
-            [<Import("parse", "date-fns")>]
-            static member parse<'DateType, 'ResultDate> (dateStr: string, formatStr: string, referenceDate: DateFns.DateArg<'DateType>, ?options: DateFns.parse.ParseOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="parse">parse</see> function options.
@@ -60318,7 +52184,7 @@ module DateFns =
         [<AllowNullLiteral>]
         [<Interface>]
         type ParseOptions<'DateType> =
-            inherit DateFns.LocalizedOptions<ParseOptions.Extends>
+            inherit DateFns.LocalizedOptions<DateFns.parse.ParseOptions.Extends>
             inherit DateFns.FirstWeekContainsDateOptions
             inherit DateFns.WeekOptions
             inherit DateFns.AdditionalTokensOptions
@@ -60400,9 +52266,9 @@ module DateFns =
             /// <summary>
             /// The additional number of digits in the extended year format
             /// </summary>
-            abstract member additionalDigits: ParseISOOptions.additionalDigits option with get, set
+            abstract member additionalDigits: DateFns.parseISO.ParseISOOptions.additionalDigits option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?``in``: DateFns.ContextFn<'DateType>, ?additionalDigits: ParseISOOptions.additionalDigits) : ParseISOOptions<'DateType> = nativeOnly
+            static member Create (?``in``: DateFns.ContextFn<'DateType>, ?additionalDigits: DateFns.parseISO.ParseISOOptions.additionalDigits) : ParseISOOptions<'DateType> = nativeOnly
 
         type ParseISOOptions =
             ParseISOOptions<Date>
@@ -60607,36 +52473,6 @@ module DateFns =
             /// </returns>
             [<Import("previousDay", "date-fns")>]
             static member previousDay<'DateType, 'ResultDate> (date: string, day: DateFns.Day, ?options: DateFns.previousDay.PreviousDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Monday before Mar, 20, 2020?
-            /// const result = previousDay(new Date(2020, 2, 20), 1)
-            /// //=> Mon Mar 16 2020 00:00:00
-            /// </example>
-            /// <example>
-            /// // When is the previous Tuesday before Mar, 21, 2020?
-            /// const result = previousDay(new Date(2020, 2, 21), 2)
-            /// //=> Tue Mar 17 2020 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to check
-            /// </param>
-            /// <param name="day">
-            /// The day of the week
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The date is the previous day of week
-            /// </returns>
-            [<Import("previousDay", "date-fns")>]
-            static member previousDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: DateFns.Day, ?options: DateFns.previousDay.PreviousDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousDay">previousDay</see> function options.
@@ -60722,28 +52558,6 @@ module DateFns =
             /// </returns>
             [<Import("previousFriday", "date-fns")>]
             static member previousFriday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousFriday.PreviousFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Friday before Jun, 19, 2021?
-            /// const result = previousFriday(new Date(2021, 5, 19))
-            /// //=> Fri June 18 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [UTCDate](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Friday
-            /// </returns>
-            [<Import("previousFriday", "date-fns")>]
-            static member previousFriday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousFriday.PreviousFridayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousFriday">previousFriday</see> function options.
@@ -60829,28 +52643,6 @@ module DateFns =
             /// </returns>
             [<Import("previousMonday", "date-fns")>]
             static member previousMonday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousMonday.PreviousMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Monday before Jun, 18, 2021?
-            /// const result = previousMonday(new Date(2021, 5, 18))
-            /// //=> Mon June 14 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Monday
-            /// </returns>
-            [<Import("previousMonday", "date-fns")>]
-            static member previousMonday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousMonday.PreviousMondayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousMonday">previousMonday</see> function options.
@@ -60936,28 +52728,6 @@ module DateFns =
             /// </returns>
             [<Import("previousSaturday", "date-fns")>]
             static member previousSaturday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousSaturday.PreviousSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Saturday before Jun, 20, 2021?
-            /// const result = previousSaturday(new Date(2021, 5, 20))
-            /// //=> Sat June 19 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Saturday
-            /// </returns>
-            [<Import("previousSaturday", "date-fns")>]
-            static member previousSaturday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousSaturday.PreviousSaturdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousSaturday">previousSaturday</see> function options.
@@ -61043,28 +52813,6 @@ module DateFns =
             /// </returns>
             [<Import("previousSunday", "date-fns")>]
             static member previousSunday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousSunday.PreviousSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Sunday before Jun, 21, 2021?
-            /// const result = previousSunday(new Date(2021, 5, 21))
-            /// //=> Sun June 20 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Sunday
-            /// </returns>
-            [<Import("previousSunday", "date-fns")>]
-            static member previousSunday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousSunday.PreviousSundayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousSunday">previousSunday</see> function options.
@@ -61150,28 +52898,6 @@ module DateFns =
             /// </returns>
             [<Import("previousThursday", "date-fns")>]
             static member previousThursday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousThursday.PreviousThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Thursday before Jun, 18, 2021?
-            /// const result = previousThursday(new Date(2021, 5, 18))
-            /// //=> Thu June 17 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Thursday
-            /// </returns>
-            [<Import("previousThursday", "date-fns")>]
-            static member previousThursday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousThursday.PreviousThursdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousThursday">previousThursday</see> function options.
@@ -61257,28 +52983,6 @@ module DateFns =
             /// </returns>
             [<Import("previousTuesday", "date-fns")>]
             static member previousTuesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousTuesday.PreviousTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Tuesday before Jun, 18, 2021?
-            /// const result = previousTuesday(new Date(2021, 5, 18))
-            /// //=> Tue June 15 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Tuesday
-            /// </returns>
-            [<Import("previousTuesday", "date-fns")>]
-            static member previousTuesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousTuesday.PreviousTuesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousTuesday">previousTuesday</see> function options.
@@ -61364,28 +53068,6 @@ module DateFns =
             /// </returns>
             [<Import("previousWednesday", "date-fns")>]
             static member previousWednesday<'DateType, 'ResultDate> (date: string, ?options: DateFns.previousWednesday.PreviousWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // When is the previous Wednesday before Jun, 18, 2021?
-            /// const result = previousWednesday(new Date(2021, 5, 18))
-            /// //=> Wed June 16 2021 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to start counting from
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The Date type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [UTCDate](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The previous Wednesday
-            /// </returns>
-            [<Import("previousWednesday", "date-fns")>]
-            static member previousWednesday<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.previousWednesday.PreviousWednesdayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="previousWednesday">previousWednesday</see> function options.
@@ -61574,48 +53256,6 @@ module DateFns =
             /// </returns>
             [<Import("roundToNearestHours", "date-fns")>]
             static member roundToNearestHours<'DateType, 'ResultDate> (date: string, ?options: DateFns.roundToNearestHours.RoundToNearestHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Round 10 July 2014 12:34:56 to nearest hour:
-            /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56))
-            /// //=> Thu Jul 10 2014 13:00:00
-            /// </example>
-            /// <example>
-            /// // Round 10 July 2014 12:34:56 to nearest half hour:
-            /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { nearestTo: 6 })
-            /// //=> Thu Jul 10 2014 12:00:00
-            /// </example>
-            /// <example>
-            /// // Round 10 July 2014 12:34:56 to nearest half hour:
-            /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { nearestTo: 8 })
-            /// //=> Thu Jul 10 2014 16:00:00
-            /// </example>
-            /// <example>
-            /// // Floor (rounds down) 10 July 2014 12:34:56 to nearest hour:
-            /// const result = roundToNearestHours(new Date(2014, 6, 10, 1, 23, 45), { roundingMethod: 'ceil' })
-            /// //=> Thu Jul 10 2014 02:00:00
-            /// </example>
-            /// <example>
-            /// // Ceil (rounds up) 10 July 2014 12:34:56 to nearest quarter hour:
-            /// const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { roundingMethod: 'floor', nearestTo: 8 })
-            /// //=> Thu Jul 10 2014 08:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to round
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date rounded to the closest hour
-            /// </returns>
-            [<Import("roundToNearestHours", "date-fns")>]
-            static member roundToNearestHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.roundToNearestHours.RoundToNearestHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="roundToNearestHours">roundToNearestHours</see> function options.
@@ -61748,43 +53388,6 @@ module DateFns =
             /// </returns>
             [<Import("roundToNearestMinutes", "date-fns")>]
             static member roundToNearestMinutes<'DateType, 'ResultDate> (date: string, ?options: DateFns.roundToNearestMinutes.RoundToNearestMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Round 10 July 2014 12:12:34 to nearest minute:
-            /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34))
-            /// //=> Thu Jul 10 2014 12:13:00
-            /// </example>
-            /// <example>
-            /// // Round 10 July 2014 12:12:34 to nearest quarter hour:
-            /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { nearestTo: 15 })
-            /// //=> Thu Jul 10 2014 12:15:00
-            /// </example>
-            /// <example>
-            /// // Floor (rounds down) 10 July 2014 12:12:34 to nearest minute:
-            /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { roundingMethod: 'floor' })
-            /// //=> Thu Jul 10 2014 12:12:00
-            /// </example>
-            /// <example>
-            /// // Ceil (rounds up) 10 July 2014 12:12:34 to nearest half hour:
-            /// const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { roundingMethod: 'ceil', nearestTo: 30 })
-            /// //=> Thu Jul 10 2014 12:30:00
-            /// </example>
-            /// <param name="date">
-            /// The date to round
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date rounded to the closest minute
-            /// </returns>
-            [<Import("roundToNearestMinutes", "date-fns")>]
-            static member roundToNearestMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.roundToNearestMinutes.RoundToNearestMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="roundToNearestMinutes">roundToNearestMinutes</see> function options.
@@ -61963,36 +53566,6 @@ module DateFns =
             /// </returns>
             [<Import("set", "date-fns")>]
             static member set<'DateType, 'ResultDate> (date: string, values: DateFns.DateValues, ?options: DateFns.set.SetOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Transform 1 September 2014 into 20 October 2015 in a single line:
-            /// const result = set(new Date(2014, 8, 20), { year: 2015, month: 9, date: 20 })
-            /// //=> Tue Oct 20 2015 00:00:00
-            /// </example>
-            /// <example>
-            /// // Set 12 PM to 1 September 2014 01:23:45 to 1 September 2014 12:00:00:
-            /// const result = set(new Date(2014, 8, 1, 1, 23, 45), { hours: 12 })
-            /// //=> Mon Sep 01 2014 12:23:45
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="values">
-            /// The date values to be set
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with options set
-            /// </returns>
-            [<Import("set", "date-fns")>]
-            static member set<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, values: DateFns.DateValues, ?options: DateFns.set.SetOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="set">set</see> function options.
@@ -62087,31 +53660,6 @@ module DateFns =
             /// </returns>
             [<Import("setDate", "date-fns")>]
             static member setDate<'DateType, 'ResultDate> (date: string, dayOfMonth: float, ?options: DateFns.setDate.SetDateOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set the 30th day of the month to 1 September 2014:
-            /// const result = setDate(new Date(2014, 8, 1), 30)
-            /// //=> Tue Sep 30 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="dayOfMonth">
-            /// The day of the month of the new date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the day of the month set
-            /// </returns>
-            [<Import("setDate", "date-fns")>]
-            static member setDate<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, dayOfMonth: float, ?options: DateFns.setDate.SetDateOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setDate">setDate</see> function options.
@@ -62221,36 +53769,6 @@ module DateFns =
             /// </returns>
             [<Import("setDay", "date-fns")>]
             static member setDay<'DateType, 'ResultDate> (date: string, day: float, ?options: DateFns.setDay.SetDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set week day to Sunday, with the default weekStartsOn of Sunday:
-            /// const result = setDay(new Date(2014, 8, 1), 0)
-            /// //=> Sun Aug 31 2014 00:00:00
-            /// </example>
-            /// <example>
-            /// // Set week day to Sunday, with a weekStartsOn of Monday:
-            /// const result = setDay(new Date(2014, 8, 1), 0, { weekStartsOn: 1 })
-            /// //=> Sun Sep 07 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="day">
-            /// The day of the week of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the day of the week set
-            /// </returns>
-            [<Import("setDay", "date-fns")>]
-            static member setDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: float, ?options: DateFns.setDay.SetDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setDay">setDay</see> function options.
@@ -62347,31 +53865,6 @@ module DateFns =
             /// </returns>
             [<Import("setDayOfYear", "date-fns")>]
             static member setDayOfYear<'DateType, 'ResultDate> (date: string, dayOfYear: float, ?options: DateFns.setDayOfYear.SetDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set the 2nd day of the year to 2 July 2014:
-            /// const result = setDayOfYear(new Date(2014, 6, 2), 2)
-            /// //=> Thu Jan 02 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="dayOfYear">
-            /// The day of the year of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the day of the year set
-            /// </returns>
-            [<Import("setDayOfYear", "date-fns")>]
-            static member setDayOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, dayOfYear: float, ?options: DateFns.setDayOfYear.SetDayOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setDayOfYear">setDayOfYear</see> function options.
@@ -62509,31 +54002,6 @@ module DateFns =
             /// </returns>
             [<Import("setHours", "date-fns")>]
             static member setHours<'DateType, 'ResultDate> (date: string, hours: float, ?options: DateFns.setHours.SetHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set 4 hours to 1 September 2014 11:30:00:
-            /// const result = setHours(new Date(2014, 8, 1, 11, 30), 4)
-            /// //=> Mon Sep 01 2014 04:30:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="hours">
-            /// The hours of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the hours set
-            /// </returns>
-            [<Import("setHours", "date-fns")>]
-            static member setHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, hours: float, ?options: DateFns.setHours.SetHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setHours">setHours</see> function options.
@@ -62628,31 +54096,6 @@ module DateFns =
             /// </returns>
             [<Import("setISODay", "date-fns")>]
             static member setISODay<'DateType, 'ResultDate> (date: string, day: float, ?options: DateFns.setISODay.SetISODayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set Sunday to 1 September 2014:
-            /// const result = setISODay(new Date(2014, 8, 1), 7)
-            /// //=> Sun Sep 07 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="day">
-            /// The day of the ISO week of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the day of the ISO week set
-            /// </returns>
-            [<Import("setISODay", "date-fns")>]
-            static member setISODay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, day: float, ?options: DateFns.setISODay.SetISODayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setISODay">setISODay</see> function options.
@@ -62747,31 +54190,6 @@ module DateFns =
             /// </returns>
             [<Import("setISOWeek", "date-fns")>]
             static member setISOWeek<'DateType, 'ResultDate> (date: string, week: float, ?options: DateFns.setISOWeek.SetISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set the 53rd ISO week to 7 August 2004:
-            /// const result = setISOWeek(new Date(2004, 7, 7), 53)
-            /// //=> Sat Jan 01 2005 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="week">
-            /// The ISO week of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The <c>Date</c> type of the context function.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the ISO week set
-            /// </returns>
-            [<Import("setISOWeek", "date-fns")>]
-            static member setISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, week: float, ?options: DateFns.setISOWeek.SetISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setISOWeek">setISOWeek</see> function options.
@@ -62866,31 +54284,6 @@ module DateFns =
             /// </returns>
             [<Import("setISOWeekYear", "date-fns")>]
             static member setISOWeekYear<'DateType, 'ResultDate> (date: string, weekYear: float, ?options: DateFns.setISOWeekYear.SetISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set ISO week-numbering year 2007 to 29 December 2008:
-            /// const result = setISOWeekYear(new Date(2008, 11, 29), 2007)
-            /// //=> Mon Jan 01 2007 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="weekYear">
-            /// The ISO week-numbering year of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the ISO week-numbering year set
-            /// </returns>
-            [<Import("setISOWeekYear", "date-fns")>]
-            static member setISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, weekYear: float, ?options: DateFns.setISOWeekYear.SetISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setISOWeekYear">setISOWeekYear</see> function options.
@@ -62985,31 +54378,6 @@ module DateFns =
             /// </returns>
             [<Import("setMilliseconds", "date-fns")>]
             static member setMilliseconds<'DateType, 'ResultDate> (date: string, milliseconds: float, ?options: DateFns.setMilliseconds.SetMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set 300 milliseconds to 1 September 2014 11:30:40.500:
-            /// const result = setMilliseconds(new Date(2014, 8, 1, 11, 30, 40, 500), 300)
-            /// //=> Mon Sep 01 2014 11:30:40.300
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="milliseconds">
-            /// The milliseconds of the new date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the milliseconds set
-            /// </returns>
-            [<Import("setMilliseconds", "date-fns")>]
-            static member setMilliseconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, milliseconds: float, ?options: DateFns.setMilliseconds.SetMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setMilliseconds">setMilliseconds</see> function options.
@@ -63104,31 +54472,6 @@ module DateFns =
             /// </returns>
             [<Import("setMinutes", "date-fns")>]
             static member setMinutes<'DateType, 'ResultDate> (date: string, minutes: float, ?options: DateFns.setMinutes.SetMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set 45 minutes to 1 September 2014 11:30:40:
-            /// const result = setMinutes(new Date(2014, 8, 1, 11, 30, 40), 45)
-            /// //=> Mon Sep 01 2014 11:45:40
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="minutes">
-            /// The minutes of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows using extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, returned from the context function, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the minutes set
-            /// </returns>
-            [<Import("setMinutes", "date-fns")>]
-            static member setMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, minutes: float, ?options: DateFns.setMinutes.SetMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setMinutes">setMinutes</see> function options.
@@ -63223,31 +54566,6 @@ module DateFns =
             /// </returns>
             [<Import("setMonth", "date-fns")>]
             static member setMonth<'DateType, 'ResultDate> (date: string, month: float, ?options: DateFns.setMonth.SetMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set February to 1 September 2014:
-            /// const result = setMonth(new Date(2014, 8, 1), 1)
-            /// //=> Sat Feb 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="month">
-            /// The month index to set (0-11)
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the month set
-            /// </returns>
-            [<Import("setMonth", "date-fns")>]
-            static member setMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, month: float, ?options: DateFns.setMonth.SetMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setMonth">setMonth</see> function options.
@@ -63342,31 +54660,6 @@ module DateFns =
             /// </returns>
             [<Import("setQuarter", "date-fns")>]
             static member setQuarter<'DateType, 'ResultDate> (date: string, quarter: float, ?options: DateFns.setQuarter.SetQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set the 2nd quarter to 2 July 2014:
-            /// const result = setQuarter(new Date(2014, 6, 2), 2)
-            /// //=> Wed Apr 02 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="quarter">
-            /// The quarter of the new date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the quarter set
-            /// </returns>
-            [<Import("setQuarter", "date-fns")>]
-            static member setQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, quarter: float, ?options: DateFns.setQuarter.SetQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setQuarter">setQuarter</see> function options.
@@ -63461,31 +54754,6 @@ module DateFns =
             /// </returns>
             [<Import("setSeconds", "date-fns")>]
             static member setSeconds<'DateType, 'ResultDate> (date: string, seconds: float, ?options: DateFns.setSeconds.SetSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set 45 seconds to 1 September 2014 11:30:40:
-            /// const result = setSeconds(new Date(2014, 8, 1, 11, 30, 40), 45)
-            /// //=> Mon Sep 01 2014 11:30:45
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="seconds">
-            /// The seconds of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the seconds set
-            /// </returns>
-            [<Import("setSeconds", "date-fns")>]
-            static member setSeconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, seconds: float, ?options: DateFns.setSeconds.SetSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setSeconds">setSeconds</see> function options.
@@ -63610,41 +54878,6 @@ module DateFns =
             /// </returns>
             [<Import("setWeek", "date-fns")>]
             static member setWeek<'DateType, 'ResultDate> (date: string, week: float, ?options: DateFns.setWeek.SetWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set the 1st week to 2 January 2005 with default options:
-            /// const result = setWeek(new Date(2005, 0, 2), 1)
-            /// //=> Sun Dec 26 2004 00:00:00
-            /// </example>
-            /// <example>
-            /// // Set the 1st week to 2 January 2005,
-            /// // if Monday is the first day of the week,
-            /// // and the first week of the year always contains 4 January:
-            /// const result = setWeek(new Date(2005, 0, 2), 1, {
-            ///   weekStartsOn: 1,
-            ///   firstWeekContainsDate: 4
-            /// })
-            /// //=> Sun Jan 4 2004 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="week">
-            /// The week of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the local week set
-            /// </returns>
-            [<Import("setWeek", "date-fns")>]
-            static member setWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, week: float, ?options: DateFns.setWeek.SetWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setWeek">setWeek</see> function options.
@@ -63772,41 +55005,6 @@ module DateFns =
             /// </returns>
             [<Import("setWeekYear", "date-fns")>]
             static member setWeekYear<'DateType, 'ResultDate> (date: string, weekYear: float, ?options: DateFns.setWeekYear.SetWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set the local week-numbering year 2004 to 2 January 2010 with default options:
-            /// const result = setWeekYear(new Date(2010, 0, 2), 2004)
-            /// //=> Sat Jan 03 2004 00:00:00
-            /// </example>
-            /// <example>
-            /// // Set the local week-numbering year 2004 to 2 January 2010,
-            /// // if Monday is the first day of week
-            /// // and 4 January is always in the first week of the year:
-            /// const result = setWeekYear(new Date(2010, 0, 2), 2004, {
-            ///   weekStartsOn: 1,
-            ///   firstWeekContainsDate: 4
-            /// })
-            /// //=> Sat Jan 01 2005 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="weekYear">
-            /// The local week-numbering year of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the local week-numbering year set
-            /// </returns>
-            [<Import("setWeekYear", "date-fns")>]
-            static member setWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, weekYear: float, ?options: DateFns.setWeekYear.SetWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setWeekYear">setWeekYear</see> function options.
@@ -63904,31 +55102,6 @@ module DateFns =
             /// </returns>
             [<Import("setYear", "date-fns")>]
             static member setYear<'DateType, 'ResultDate> (date: string, year: float, ?options: DateFns.setYear.SetYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Set year 2013 to 1 September 2014:
-            /// const result = setYear(new Date(2014, 8, 1), 2013)
-            /// //=> Sun Sep 01 2013 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="year">
-            /// The year of the new date
-            /// </param>
-            /// <param name="options">
-            /// An object with options.
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the year set
-            /// </returns>
-            [<Import("setYear", "date-fns")>]
-            static member setYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, year: float, ?options: DateFns.setYear.SetYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="setYear">setYear</see> function options.
@@ -64014,28 +55187,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfDay", "date-fns")>]
             static member startOfDay<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfDay.StartOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a day for 2 September 2014 11:55:00:
-            /// const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Sep 02 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a day
-            /// </returns>
-            [<Import("startOfDay", "date-fns")>]
-            static member startOfDay<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfDay.StartOfDayOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfDay">startOfDay</see> function options.
@@ -64121,28 +55272,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfDecade", "date-fns")>]
             static member startOfDecade<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfDecade.StartOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a decade for 21 October 2015 00:00:00:
-            /// const result = startOfDecade(new Date(2015, 9, 21, 00, 00, 00))
-            /// //=> Jan 01 2010 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a decade
-            /// </returns>
-            [<Import("startOfDecade", "date-fns")>]
-            static member startOfDecade<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfDecade.StartOfDecadeOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfDecade">startOfDecade</see> options.
@@ -64228,28 +55357,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfHour", "date-fns")>]
             static member startOfHour<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfHour.StartOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of an hour for 2 September 2014 11:55:00:
-            /// const result = startOfHour(new Date(2014, 8, 2, 11, 55))
-            /// //=> Tue Sep 02 2014 11:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of an hour
-            /// </returns>
-            [<Import("startOfHour", "date-fns")>]
-            static member startOfHour<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfHour.StartOfHourOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfHour">startOfHour</see> function options.
@@ -64335,28 +55442,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfISOWeek", "date-fns")>]
             static member startOfISOWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfISOWeek.StartOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of an ISO week for 2 September 2014 11:55:00:
-            /// const result = startOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Mon Sep 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of an ISO week
-            /// </returns>
-            [<Import("startOfISOWeek", "date-fns")>]
-            static member startOfISOWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfISOWeek.StartOfISOWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfISOWeek">startOfISOWeek</see> function options.
@@ -64442,28 +55527,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfISOWeekYear", "date-fns")>]
             static member startOfISOWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfISOWeekYear.StartOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of an ISO week-numbering year for 2 July 2005:
-            /// const result = startOfISOWeekYear(new Date(2005, 6, 2))
-            /// //=> Mon Jan 03 2005 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of an ISO week-numbering year
-            /// </returns>
-            [<Import("startOfISOWeekYear", "date-fns")>]
-            static member startOfISOWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfISOWeekYear.StartOfISOWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfISOWeekYear">startOfISOWeekYear</see> function options.
@@ -64549,28 +55612,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfMinute", "date-fns")>]
             static member startOfMinute<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfMinute.StartOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a minute for 1 December 2014 22:15:45.400:
-            /// const result = startOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
-            /// //=> Mon Dec 01 2014 22:15:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a minute
-            /// </returns>
-            [<Import("startOfMinute", "date-fns")>]
-            static member startOfMinute<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfMinute.StartOfMinuteOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfMinute">startOfMinute</see> function options.
@@ -64662,30 +55703,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfMonth", "date-fns")>]
             static member startOfMonth<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfMonth.StartOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a month for 2 September 2014 11:55:00:
-            /// const result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Mon Sep 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments.
-            /// Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed,
-            /// or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a month
-            /// </returns>
-            [<Import("startOfMonth", "date-fns")>]
-            static member startOfMonth<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfMonth.StartOfMonthOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfMonth">startOfMonth</see> function options.
@@ -64768,28 +55785,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfQuarter", "date-fns")>]
             static member startOfQuarter<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfQuarter.StartOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a quarter for 2 September 2014 11:55:00:
-            /// const result = startOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Tue Jul 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a quarter
-            /// </returns>
-            [<Import("startOfQuarter", "date-fns")>]
-            static member startOfQuarter<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfQuarter.StartOfQuarterOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfQuarter">startOfQuarter</see> function options.
@@ -64875,28 +55870,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfSecond", "date-fns")>]
             static member startOfSecond<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfSecond.StartOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a second for 1 December 2014 22:15:45.400:
-            /// const result = startOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
-            /// //=> Mon Dec 01 2014 22:15:45.000
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a second
-            /// </returns>
-            [<Import("startOfSecond", "date-fns")>]
-            static member startOfSecond<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfSecond.StartOfSecondOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfSecond">startOfSecond</see> function options.
@@ -65067,33 +56040,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfWeek", "date-fns")>]
             static member startOfWeek<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfWeek.StartOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a week for 2 September 2014 11:55:00:
-            /// const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0))
-            /// //=> Sun Aug 31 2014 00:00:00
-            /// </example>
-            /// <example>
-            /// // If the week starts on Monday, the start of the week for 2 September 2014 11:55:00:
-            /// const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
-            /// //=> Mon Sep 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a week
-            /// </returns>
-            [<Import("startOfWeek", "date-fns")>]
-            static member startOfWeek<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfWeek.StartOfWeekOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfWeek">startOfWeek</see> function options.
@@ -65211,38 +56157,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfWeekYear", "date-fns")>]
             static member startOfWeekYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfWeekYear.StartOfWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of an a week-numbering year for 2 July 2005 with default settings:
-            /// const result = startOfWeekYear(new Date(2005, 6, 2))
-            /// //=> Sun Dec 26 2004 00:00:00
-            /// </example>
-            /// <example>
-            /// // The start of a week-numbering year for 2 July 2005
-            /// // if Monday is the first day of week
-            /// // and 4 January is always in the first week of the year:
-            /// const result = startOfWeekYear(new Date(2005, 6, 2), {
-            ///   weekStartsOn: 1,
-            ///   firstWeekContainsDate: 4
-            /// })
-            /// //=> Mon Jan 03 2005 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a week-numbering year
-            /// </returns>
-            [<Import("startOfWeekYear", "date-fns")>]
-            static member startOfWeekYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfWeekYear.StartOfWeekYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfWeekYear">startOfWeekYear</see> function options.
@@ -65331,28 +56245,6 @@ module DateFns =
             /// </returns>
             [<Import("startOfYear", "date-fns")>]
             static member startOfYear<'DateType, 'ResultDate> (date: string, ?options: DateFns.startOfYear.StartOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // The start of a year for 2 September 2014 11:55:00:
-            /// const result = startOfYear(new Date(2014, 8, 2, 11, 55, 00))
-            /// //=> Wed Jan 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The original date
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The start of a year
-            /// </returns>
-            [<Import("startOfYear", "date-fns")>]
-            static member startOfYear<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, ?options: DateFns.startOfYear.StartOfYearOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="startOfYear">startOfYear</see> function options.
@@ -65542,51 +56434,6 @@ module DateFns =
             /// </returns>
             [<Import("sub", "date-fns")>]
             static member sub<'DateType, 'ResultDate> (date: string, duration: DateFns.Duration, ?options: DateFns.sub.SubOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract the following duration from 15 June 2017 15:29:20
-            /// const result = sub(new Date(2017, 5, 15, 15, 29, 20), {
-            ///   years: 2,
-            ///   months: 9,
-            ///   weeks: 1,
-            ///   days: 7,
-            ///   hours: 5,
-            ///   minutes: 9,
-            ///   seconds: 30
-            /// })
-            /// //=> Mon Sep 1 2014 10:19:50
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="duration">
-            /// The object with years, months, weeks, days, hours, minutes and seconds to be subtracted
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            ///
-            /// | Key     | Description                        |
-            /// |---------|------------------------------------|
-            /// | years   | Amount of years to be subtracted   |
-            /// | months  | Amount of months to be subtracted  |
-            /// | weeks   | Amount of weeks to be subtracted   |
-            /// | days    | Amount of days to be subtracted    |
-            /// | hours   | Amount of hours to be subtracted   |
-            /// | minutes | Amount of minutes to be subtracted |
-            /// | seconds | Amount of seconds to be subtracted |
-            ///
-            /// All values default to 0
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the seconds subtracted
-            /// </returns>
-            [<Import("sub", "date-fns")>]
-            static member sub<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, duration: DateFns.Duration, ?options: DateFns.sub.SubOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="sub">sub</see> function options.
@@ -65681,31 +56528,6 @@ module DateFns =
             /// </returns>
             [<Import("subBusinessDays", "date-fns")>]
             static member subBusinessDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subBusinessDays.SubBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 10 business days from 1 September 2014:
-            /// const result = subBusinessDays(new Date(2014, 8, 1), 10)
-            /// //=> Mon Aug 18 2014 00:00:00 (skipped weekend days)
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of business days to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the business days subtracted
-            /// </returns>
-            [<Import("subBusinessDays", "date-fns")>]
-            static member subBusinessDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subBusinessDays.SubBusinessDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subBusinessDays">subBusinessDays</see> function options.
@@ -65800,31 +56622,6 @@ module DateFns =
             /// </returns>
             [<Import("subDays", "date-fns")>]
             static member subDays<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subDays.SubDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 10 days from 1 September 2014:
-            /// const result = subDays(new Date(2014, 8, 1), 10)
-            /// //=> Fri Aug 22 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of days to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the days subtracted
-            /// </returns>
-            [<Import("subDays", "date-fns")>]
-            static member subDays<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subDays.SubDaysOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subDays">subDays</see> function options.
@@ -65919,31 +56716,6 @@ module DateFns =
             /// </returns>
             [<Import("subHours", "date-fns")>]
             static member subHours<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subHours.SubHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 2 hours from 11 July 2014 01:00:00:
-            /// const result = subHours(new Date(2014, 6, 11, 1, 0), 2)
-            /// //=> Thu Jul 10 2014 23:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of hours to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the hours subtracted
-            /// </returns>
-            [<Import("subHours", "date-fns")>]
-            static member subHours<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subHours.SubHoursOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subHours">subHours</see> function options.
@@ -66038,31 +56810,6 @@ module DateFns =
             /// </returns>
             [<Import("subISOWeekYears", "date-fns")>]
             static member subISOWeekYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subISOWeekYears.SubISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 5 ISO week-numbering years from 1 September 2014:
-            /// const result = subISOWeekYears(new Date(2014, 8, 1), 5)
-            /// //=> Mon Aug 31 2009 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of ISO week-numbering years to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the ISO week-numbering years subtracted
-            /// </returns>
-            [<Import("subISOWeekYears", "date-fns")>]
-            static member subISOWeekYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subISOWeekYears.SubISOWeekYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subISOWeekYears">subISOWeekYears</see> function options.
@@ -66151,29 +56898,6 @@ module DateFns =
             /// </returns>
             [<Import("subMilliseconds", "date-fns")>]
             static member subMilliseconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subMilliseconds.SubMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <summary>
-            /// Subtract the specified number of milliseconds from the given date.
-            /// </summary>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of milliseconds to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the milliseconds subtracted
-            /// </returns>
-            [<Import("subMilliseconds", "date-fns")>]
-            static member subMilliseconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subMilliseconds.SubMillisecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subMilliseconds">subMilliseconds</see> function options.
@@ -66268,31 +56992,6 @@ module DateFns =
             /// </returns>
             [<Import("subMinutes", "date-fns")>]
             static member subMinutes<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subMinutes.SubMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 30 minutes from 10 July 2014 12:00:00:
-            /// const result = subMinutes(new Date(2014, 6, 10, 12, 0), 30)
-            /// //=> Thu Jul 10 2014 11:30:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of minutes to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the minutes subtracted
-            /// </returns>
-            [<Import("subMinutes", "date-fns")>]
-            static member subMinutes<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subMinutes.SubMinutesOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subMinutes">subMinutes</see> function options.
@@ -66387,31 +57086,6 @@ module DateFns =
             /// </returns>
             [<Import("subMonths", "date-fns")>]
             static member subMonths<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subMonths.SubMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 5 months from 1 February 2015:
-            /// const result = subMonths(new Date(2015, 1, 1), 5)
-            /// //=> Mon Sep 01 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of months to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the months subtracted
-            /// </returns>
-            [<Import("subMonths", "date-fns")>]
-            static member subMonths<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subMonths.SubMonthsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The subMonths function options.
@@ -66506,31 +57180,6 @@ module DateFns =
             /// </returns>
             [<Import("subQuarters", "date-fns")>]
             static member subQuarters<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subQuarters.SubQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 3 quarters from 1 September 2014:
-            /// const result = subQuarters(new Date(2014, 8, 1), 3)
-            /// //=> Sun Dec 01 2013 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of quarters to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the quarters subtracted
-            /// </returns>
-            [<Import("subQuarters", "date-fns")>]
-            static member subQuarters<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subQuarters.SubQuartersOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subQuarters">subQuarters</see> function options.
@@ -66634,34 +57283,6 @@ module DateFns =
             /// </returns>
             [<Import("subSeconds", "date-fns")>]
             static member subSeconds<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subSeconds.SubSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <summary>
-            /// Subtract the specified number of seconds from the given date.
-            /// </summary>
-            /// <example>
-            /// // Subtract 30 seconds from 10 July 2014 12:45:00:
-            /// const result = subSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
-            /// //=> Thu Jul 10 2014 12:44:30
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of seconds to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// The options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the seconds subtracted
-            /// </returns>
-            [<Import("subSeconds", "date-fns")>]
-            static member subSeconds<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subSeconds.SubSecondsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subSeconds">subSeconds</see> function options.
@@ -66756,31 +57377,6 @@ module DateFns =
             /// </returns>
             [<Import("subWeeks", "date-fns")>]
             static member subWeeks<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subWeeks.SubWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 4 weeks from 1 September 2014:
-            /// const result = subWeeks(new Date(2014, 8, 1), 4)
-            /// //=> Mon Aug 04 2014 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of weeks to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the weeks subtracted
-            /// </returns>
-            [<Import("subWeeks", "date-fns")>]
-            static member subWeeks<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subWeeks.SubWeeksOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subWeeks">subWeeks</see> function options.
@@ -66875,31 +57471,6 @@ module DateFns =
             /// </returns>
             [<Import("subYears", "date-fns")>]
             static member subYears<'DateType, 'ResultDate> (date: string, amount: float, ?options: DateFns.subYears.SubYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Subtract 5 years from 1 September 2014:
-            /// const result = subYears(new Date(2014, 8, 1), 5)
-            /// //=> Tue Sep 01 2009 00:00:00
-            /// </example>
-            /// <param name="date">
-            /// The date to be changed
-            /// </param>
-            /// <param name="amount">
-            /// The amount of years to be subtracted.
-            /// </param>
-            /// <param name="options">
-            /// An object with options
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The new date with the years subtracted
-            /// </returns>
-            [<Import("subYears", "date-fns")>]
-            static member subYears<'DateType, 'ResultDate> (date: DateFns.DateArg<'DateType>, amount: float, ?options: DateFns.subYears.SubYearsOptions<'ResultDate>) : 'ResultDate = nativeOnly
 
         /// <summary>
         /// The <see href="subYears">subYears</see> function options.
@@ -66991,30 +57562,6 @@ module DateFns =
             /// </returns>
             [<Import("toDate", "date-fns")>]
             static member toDate<'ResultDate> (argument: string, ?context: DateFns.ContextFn<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Clone the date:
-            /// const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
-            /// //=> Tue Feb 11 2014 11:30:30
-            /// </example>
-            /// <example>
-            /// // Convert the timestamp to date:
-            /// const result = toDate(1392098430000)
-            /// //=> Tue Feb 11 2014 11:30:30
-            /// </example>
-            /// <param name="argument">
-            /// The value to convert
-            /// </param>
-            /// <typeparam name="DateType">
-            /// The <c>Date</c> type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [<c>UTCDate</c>](https://github.com/date-fns/utc).
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type, it is the type returned from the context function if it is passed, or inferred from the arguments.
-            /// </typeparam>
-            /// <returns>
-            /// The parsed date in the local time zone
-            /// </returns>
-            [<Import("toDate", "date-fns")>]
-            static member toDate<'ResultDate> (argument: DateFns.DateArg<U2<Date, DateFns.ConstructableDate>>, ?context: DateFns.ContextFn<'ResultDate>) : 'ResultDate = nativeOnly
 
     module transpose =
 
@@ -67102,33 +57649,6 @@ module DateFns =
             /// </returns>
             [<Import("transpose", "date-fns")>]
             static member transpose<'InputDate, 'ResultDate> (date: 'InputDate, ``constructor``: DateFns.ContextFn<'ResultDate>) : 'ResultDate = nativeOnly
-            /// <example>
-            /// // Create July 10, 2022 00:00 in locale time zone
-            /// const date = new Date(2022, 6, 10)
-            /// //=> 'Sun Jul 10 2022 00:00:00 GMT+0800 (Singapore Standard Time)'
-            /// </example>
-            /// <example>
-            /// // Transpose the date to July 10, 2022 00:00 in UTC
-            /// transpose(date, UTCDate)
-            /// //=> 'Sun Jul 10 2022 00:00:00 GMT+0000 (Coordinated Universal Time)'
-            /// </example>
-            /// <param name="date">
-            /// The date to use values from
-            /// </param>
-            /// <param name="constructor">
-            /// The date constructor to use
-            /// </param>
-            /// <typeparam name="InputDate">
-            /// The input <c>Date</c> type derived from the passed argument.
-            /// </typeparam>
-            /// <typeparam name="ResultDate">
-            /// The result <c>Date</c> type derived from the passed constructor.
-            /// </typeparam>
-            /// <returns>
-            /// Date transposed to the given constructor
-            /// </returns>
-            [<Import("transpose", "date-fns")>]
-            static member transpose<'InputDate, 'ResultDate> (date: 'InputDate, ``constructor``: U3<'ResultDate, DateFns.GenericDateConstructor<'ResultDate>, DateFns.ContextFn<'ResultDate>>) : 'ResultDate = nativeOnly
 
     module types =
 
@@ -67174,14 +57694,14 @@ module DateFns =
         type FormatDistanceToken =
             DateFns.FormatDistanceToken
 
-        type FormatRelativeFn<'DateType> =
-            DateFns.FormatRelativeFn<'DateType>
+        type FormatRelativeFn =
+            DateFns.FormatRelativeFn
 
         type FormatRelativeFnOptions =
             DateFns.FormatRelativeFnOptions
 
-        type FormatRelativeTokenFn<'DateType> =
-            DateFns.FormatRelativeTokenFn<'DateType>
+        type FormatRelativeTokenFn =
+            DateFns.FormatRelativeTokenFn
 
         type FormatRelativeTokenFnOptions =
             DateFns.FormatRelativeTokenFnOptions
@@ -67208,7 +57728,7 @@ module DateFns =
             DateFns.MatchFn<'Result, 'ExtraOptions>
 
         type MatchFn<'Result> =
-            MatchFn<'Result, MatchFn.ExtraOptions>
+            MatchFn<'Result, DateFns.types.MatchFn.ExtraOptions>
 
         type MatchFnOptions<'Result> =
             DateFns.MatchFnOptions<'Result>
@@ -67975,6 +58495,10 @@ module DateFns =
             [<Emit("$0")>]
             static member op_ErasedCast(value: ResizeArray<string>) : incompatibleTokens = nativeOnly
 
+            /// Unchecked, the value as <c>Case1</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsCase1: ResizeArray<string> = nativeOnly
+
         [<AllowNullLiteral>]
         [<Interface>]
         type run<'Value> =
@@ -68038,7 +58562,7 @@ module DateFns =
                 abstract member s: date: Date * token: string -> string
                 abstract member S: date: Date * token: string -> string
                 [<ParamObject; Emit("$0")>]
-                static member Create (y: Exports.lightFormatters__.Type.y, M: Exports.lightFormatters__.Type.M, d: Exports.lightFormatters__.Type.d, a: Exports.lightFormatters__.Type.a, h: Exports.lightFormatters__.Type.h, H: Exports.lightFormatters__.Type.H, m: Exports.lightFormatters__.Type.m, s: Exports.lightFormatters__.Type.s, S: Exports.lightFormatters__.Type.S) : Type = nativeOnly
+                static member Create (y: DateFns.Exports.lightFormatters__.Type.y, M: DateFns.Exports.lightFormatters__.Type.M, d: DateFns.Exports.lightFormatters__.Type.d, a: DateFns.Exports.lightFormatters__.Type.a, h: DateFns.Exports.lightFormatters__.Type.h, H: DateFns.Exports.lightFormatters__.Type.H, m: DateFns.Exports.lightFormatters__.Type.m, s: DateFns.Exports.lightFormatters__.Type.s, S: DateFns.Exports.lightFormatters__.Type.S) : Type = nativeOnly
 
             module Type =
 

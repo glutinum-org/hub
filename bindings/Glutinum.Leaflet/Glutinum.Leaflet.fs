@@ -41,8 +41,6 @@ module Leaflet =
         static member latLng (coords: Leaflet.LatLngLiteral) : Leaflet.LatLng = nativeOnly
         [<Import("latLng", "leaflet")>]
         static member latLng (coords: Exports.latLng__.coords) : Leaflet.LatLng = nativeOnly
-        [<Import("latLng", "leaflet")>]
-        static member latLng (coords: U4<Leaflet.LatLngTuple, float * float * float, Leaflet.LatLngLiteral, Exports.latLng__.coords>) : Leaflet.LatLng = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (southWest: Leaflet.LatLng, northEast: Leaflet.LatLng) : Leaflet.LatLngBounds = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
@@ -62,8 +60,6 @@ module Leaflet =
         [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (southWest: Leaflet.LatLngTuple, northEast: Leaflet.LatLngTuple) : Leaflet.LatLngBounds = nativeOnly
         [<Import("latLngBounds", "leaflet")>]
-        static member latLngBounds (southWest: Leaflet.LatLngExpression, northEast: Leaflet.LatLngExpression) : Leaflet.LatLngBounds = nativeOnly
-        [<Import("latLngBounds", "leaflet")>]
         static member latLngBounds (latlngs: ResizeArray<Leaflet.LatLngExpression>) : Leaflet.LatLngBounds = nativeOnly
         [<Import("point", "leaflet")>]
         static member point (x: float, y: float, ?round: bool) : Leaflet.Point = nativeOnly
@@ -71,8 +67,6 @@ module Leaflet =
         static member point (coords: Leaflet.PointTuple) : Leaflet.Point = nativeOnly
         [<Import("point", "leaflet")>]
         static member point (coords: Exports.point__.coords) : Leaflet.Point = nativeOnly
-        [<Import("point", "leaflet")>]
-        static member point (coords: U2<Leaflet.PointTuple, Exports.point__.coords>) : Leaflet.Point = nativeOnly
         [<Import("bounds", "leaflet")>]
         static member bounds (topLeft: Leaflet.Point, bottomRight: Leaflet.Point) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
@@ -82,13 +76,9 @@ module Leaflet =
         [<Import("bounds", "leaflet")>]
         static member bounds (topLeft: Leaflet.PointTuple, bottomRight: Leaflet.PointTuple) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
-        static member bounds (topLeft: Leaflet.PointExpression, bottomRight: Leaflet.PointExpression) : Leaflet.Bounds = nativeOnly
-        [<Import("bounds", "leaflet")>]
         static member bounds (points: ResizeArray<Leaflet.Point>) : Leaflet.Bounds = nativeOnly
         [<Import("bounds", "leaflet")>]
         static member bounds (points: Leaflet.BoundsLiteral) : Leaflet.Bounds = nativeOnly
-        [<Import("bounds", "leaflet")>]
-        static member bounds (points: U2<ResizeArray<Leaflet.Point>, Leaflet.BoundsLiteral>) : Leaflet.Bounds = nativeOnly
         [<Import("Mixin", "leaflet")>]
         static member inline Mixin: Leaflet.MixinType = nativeOnly
         [<Import("gridLayer", "leaflet")>]
@@ -99,8 +89,6 @@ module Leaflet =
         static member imageOverlay (imageUrl: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : Leaflet.ImageOverlay = nativeOnly
         [<Import("imageOverlay", "leaflet")>]
         static member imageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : Leaflet.ImageOverlay = nativeOnly
-        [<Import("imageOverlay", "leaflet")>]
-        static member imageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : Leaflet.ImageOverlay = nativeOnly
         [<Import("svgOverlay", "leaflet")>]
         static member svgOverlay (svgImage: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
         [<Import("svgOverlay", "leaflet")>]
@@ -109,8 +97,6 @@ module Leaflet =
         static member svgOverlay (svgImage: Glutinum.Web.SVGElement, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
         [<Import("svgOverlay", "leaflet")>]
         static member svgOverlay (svgImage: Glutinum.Web.SVGElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
-        [<Import("svgOverlay", "leaflet")>]
-        static member svgOverlay (svgImage: U2<string, Glutinum.Web.SVGElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : Leaflet.SVGOverlay = nativeOnly
         [<Import("videoOverlay", "leaflet")>]
         static member videoOverlay (video: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
         [<Import("videoOverlay", "leaflet")>]
@@ -123,20 +109,14 @@ module Leaflet =
         static member videoOverlay (video: Glutinum.Web.HTMLVideoElement, bounds: Leaflet.LatLngBounds, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
         [<Import("videoOverlay", "leaflet")>]
         static member videoOverlay (video: Glutinum.Web.HTMLVideoElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
-        [<Import("videoOverlay", "leaflet")>]
-        static member videoOverlay (video: U3<string, ResizeArray<string>, Glutinum.Web.HTMLVideoElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.VideoOverlayOptions) : Leaflet.VideoOverlay = nativeOnly
         [<Import("polyline", "leaflet")>]
         static member polyline<'T, 'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<'T, 'P> = nativeOnly
         [<Import("polyline", "leaflet")>]
         static member polyline<'T, 'P> (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<'T, 'P> = nativeOnly
         [<Import("polyline", "leaflet")>]
-        static member polyline<'T, 'P> (latlngs: U2<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<'T, 'P> = nativeOnly
-        [<Import("polyline", "leaflet")>]
         static member polyline (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<U2<Glutinum.Geojson.LineString, Glutinum.Geojson.MultiLineString>, obj> = nativeOnly
         [<Import("polyline", "leaflet")>]
         static member polyline (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<U2<Glutinum.Geojson.LineString, Glutinum.Geojson.MultiLineString>, obj> = nativeOnly
-        [<Import("polyline", "leaflet")>]
-        static member polyline (latlngs: U2<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polyline<U2<Glutinum.Geojson.LineString, Glutinum.Geojson.MultiLineString>, obj> = nativeOnly
         [<Import("polygon", "leaflet")>]
         static member polygon<'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<'P> = nativeOnly
         [<Import("polygon", "leaflet")>]
@@ -144,27 +124,19 @@ module Leaflet =
         [<Import("polygon", "leaflet")>]
         static member polygon<'P> (latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<'P> = nativeOnly
         [<Import("polygon", "leaflet")>]
-        static member polygon<'P> (latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<'P> = nativeOnly
-        [<Import("polygon", "leaflet")>]
         static member polygon (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
         [<Import("polygon", "leaflet")>]
         static member polygon (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
         [<Import("polygon", "leaflet")>]
         static member polygon (latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
-        [<Import("polygon", "leaflet")>]
-        static member polygon (latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>>, ?options: Leaflet.PolylineOptions) : Leaflet.Polygon<obj> = nativeOnly
         [<Import("rectangle", "leaflet")>]
         static member rectangle<'P> (latLngBounds: Leaflet.LatLngBounds, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<'P> = nativeOnly
         [<Import("rectangle", "leaflet")>]
         static member rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<'P> = nativeOnly
         [<Import("rectangle", "leaflet")>]
-        static member rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<'P> = nativeOnly
-        [<Import("rectangle", "leaflet")>]
         static member rectangle (latLngBounds: Leaflet.LatLngBounds, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<obj> = nativeOnly
         [<Import("rectangle", "leaflet")>]
         static member rectangle (latLngBounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<obj> = nativeOnly
-        [<Import("rectangle", "leaflet")>]
-        static member rectangle (latLngBounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.PolylineOptions) : Leaflet.Rectangle<obj> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker<'P> (latlng: Leaflet.LatLng, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<'P> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
@@ -172,15 +144,11 @@ module Leaflet =
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker<'P> (latlng: Leaflet.LatLngTuple, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<'P> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
-        static member circleMarker<'P> (latlng: Leaflet.LatLngExpression, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<'P> = nativeOnly
-        [<Import("circleMarker", "leaflet")>]
         static member circleMarker (latlng: Leaflet.LatLng, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
         [<Import("circleMarker", "leaflet")>]
         static member circleMarker (latlng: Leaflet.LatLngTuple, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
-        [<Import("circleMarker", "leaflet")>]
-        static member circleMarker (latlng: Leaflet.LatLngExpression, ?options: Leaflet.CircleMarkerOptions) : Leaflet.CircleMarker<obj> = nativeOnly
         [<Import("circle", "leaflet")>]
         static member circle<'P> (latlng: Leaflet.LatLng, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet")>]
@@ -188,15 +156,11 @@ module Leaflet =
         [<Import("circle", "leaflet")>]
         static member circle<'P> (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet")>]
-        static member circle<'P> (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
-        [<Import("circle", "leaflet")>]
         static member circle (latlng: Leaflet.LatLng, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet")>]
         static member circle (latlng: Leaflet.LatLngLiteral, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet")>]
         static member circle (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
-        [<Import("circle", "leaflet")>]
-        static member circle (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle<'P> (latlng: Leaflet.LatLng, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
@@ -204,15 +168,11 @@ module Leaflet =
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle<'P> (latlng: Leaflet.LatLngTuple, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
-        static member circle<'P> (latlng: Leaflet.LatLngExpression, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<'P> = nativeOnly
-        [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle (latlng: Leaflet.LatLng, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle (latlng: Leaflet.LatLngLiteral, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
         static member circle (latlng: Leaflet.LatLngTuple, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
-        [<Import("circle", "leaflet"); Obsolete("Passing the radius outside the options is deperecated. Use {@link circle :1} instead.")>]
-        static member circle (latlng: Leaflet.LatLngExpression, radius: float, ?options: Leaflet.CircleMarkerOptions) : Leaflet.Circle<obj> = nativeOnly
         [<Import("svg", "leaflet")>]
         static member svg (?options: Leaflet.RendererOptions) : Leaflet.SVG = nativeOnly
         [<Import("canvas", "leaflet")>]
@@ -320,8 +280,6 @@ module Leaflet =
         [<Import("popup", "leaflet")>]
         static member popup (latlng: Leaflet.LatLngTuple, ?options: Leaflet.PopupOptions) : Leaflet.Popup = nativeOnly
         [<Import("popup", "leaflet")>]
-        static member popup (latlng: Leaflet.LatLngExpression, ?options: Leaflet.PopupOptions) : Leaflet.Popup = nativeOnly
-        [<Import("popup", "leaflet")>]
         static member popup (?options: Leaflet.PopupOptions, ?source: Leaflet.Layer) : Leaflet.Popup = nativeOnly
         [<Import("tooltip", "leaflet")>]
         static member tooltip (latlng: Leaflet.LatLng, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
@@ -329,8 +287,6 @@ module Leaflet =
         static member tooltip (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
         [<Import("tooltip", "leaflet")>]
         static member tooltip (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
-        [<Import("tooltip", "leaflet")>]
-        static member tooltip (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : Leaflet.Tooltip = nativeOnly
         [<Import("tooltip", "leaflet")>]
         static member tooltip (?options: Leaflet.TooltipOptions, ?source: Leaflet.Layer) : Leaflet.Tooltip = nativeOnly
         /// <summary>
@@ -343,11 +299,6 @@ module Leaflet =
         /// </summary>
         [<Import("map", "leaflet")>]
         static member map (element: Glutinum.Web.HTMLElement, ?options: Leaflet.MapOptions) : Leaflet.Map = nativeOnly
-        /// <summary>
-        /// ID of a HTML-Element as string or the HTML-ELement itself
-        /// </summary>
-        [<Import("map", "leaflet")>]
-        static member map (element: U2<string, Glutinum.Web.HTMLElement>, ?options: Leaflet.MapOptions) : Leaflet.Map = nativeOnly
         [<Import("icon", "leaflet")>]
         static member icon (options: Leaflet.IconOptions) : Leaflet.Icon = nativeOnly
         [<Import("divIcon", "leaflet")>]
@@ -359,15 +310,11 @@ module Leaflet =
         [<Import("marker", "leaflet")>]
         static member marker<'P> (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<'P> = nativeOnly
         [<Import("marker", "leaflet")>]
-        static member marker<'P> (latlng: Leaflet.LatLngExpression, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<'P> = nativeOnly
-        [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLng, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("marker", "leaflet")>]
         static member marker (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
-        [<Import("marker", "leaflet")>]
-        static member marker (latlng: Leaflet.LatLngExpression, ?options: Leaflet.MarkerOptions) : Leaflet.Marker<obj> = nativeOnly
         [<Import("extend", "leaflet")>]
         static member inline extend: Exports.extend__.Type = nativeOnly
         [<Import("bind", "leaflet")>]
@@ -405,8 +352,6 @@ module Leaflet =
         [<Import("LatLngBounds", "leaflet"); EmitConstructor>]
         static member LatLngBounds (southWest: Leaflet.LatLngTuple, northEast: Leaflet.LatLngTuple) : LatLngBounds = nativeOnly
         [<Import("LatLngBounds", "leaflet"); EmitConstructor>]
-        static member LatLngBounds (southWest: Leaflet.LatLngExpression, northEast: Leaflet.LatLngExpression) : LatLngBounds = nativeOnly
-        [<Import("LatLngBounds", "leaflet"); EmitConstructor>]
         static member LatLngBounds (latlngs: ResizeArray<Leaflet.LatLngExpression>) : LatLngBounds = nativeOnly
         [<Import("Point", "leaflet"); EmitConstructor>]
         static member Point (x: float, y: float, ?round: bool) : Point = nativeOnly
@@ -418,8 +363,6 @@ module Leaflet =
         static member Bounds (topLeft: Leaflet.PointTuple, bottomRight: Leaflet.Point) : Bounds = nativeOnly
         [<Import("Bounds", "leaflet"); EmitConstructor>]
         static member Bounds (topLeft: Leaflet.PointTuple, bottomRight: Leaflet.PointTuple) : Bounds = nativeOnly
-        [<Import("Bounds", "leaflet"); EmitConstructor>]
-        static member Bounds (topLeft: Leaflet.PointExpression, bottomRight: Leaflet.PointExpression) : Bounds = nativeOnly
         [<Import("Bounds", "leaflet"); EmitConstructor>]
         static member Bounds () : Bounds = nativeOnly
         [<Import("Bounds", "leaflet"); EmitConstructor>]
@@ -440,8 +383,6 @@ module Leaflet =
         static member ImageOverlay (imageUrl: string, bounds: Leaflet.LatLngBounds, ?options: Leaflet.ImageOverlayOptions) : ImageOverlay = nativeOnly
         [<Import("ImageOverlay", "leaflet"); EmitConstructor>]
         static member ImageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : ImageOverlay = nativeOnly
-        [<Import("ImageOverlay", "leaflet"); EmitConstructor>]
-        static member ImageOverlay (imageUrl: string, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : ImageOverlay = nativeOnly
         /// <summary>
         /// SVGOverlay doesn't extend ImageOverlay because SVGOverlay.getElement returns SVGElement
         /// </summary>
@@ -462,11 +403,6 @@ module Leaflet =
         /// </summary>
         [<Import("SVGOverlay", "leaflet"); EmitConstructor>]
         static member SVGOverlay (svgImage: Glutinum.Web.SVGElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.ImageOverlayOptions) : SVGOverlay = nativeOnly
-        /// <summary>
-        /// SVGOverlay doesn't extend ImageOverlay because SVGOverlay.getElement returns SVGElement
-        /// </summary>
-        [<Import("SVGOverlay", "leaflet"); EmitConstructor>]
-        static member SVGOverlay (svgImage: U2<string, Glutinum.Web.SVGElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.ImageOverlayOptions) : SVGOverlay = nativeOnly
         /// <summary>
         /// VideoOverlay doesn't extend ImageOverlay because VideoOverlay.getElement returns HTMLImageElement
         /// </summary>
@@ -497,41 +433,28 @@ module Leaflet =
         /// </summary>
         [<Import("VideoOverlay", "leaflet"); EmitConstructor>]
         static member VideoOverlay (video: Glutinum.Web.HTMLVideoElement, bounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.VideoOverlayOptions) : VideoOverlay = nativeOnly
-        /// <summary>
-        /// VideoOverlay doesn't extend ImageOverlay because VideoOverlay.getElement returns HTMLImageElement
-        /// </summary>
-        [<Import("VideoOverlay", "leaflet"); EmitConstructor>]
-        static member VideoOverlay (video: U3<string, ResizeArray<string>, Glutinum.Web.HTMLVideoElement>, bounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.VideoOverlayOptions) : VideoOverlay = nativeOnly
         [<Import("Path", "leaflet"); EmitConstructor>]
         static member Path () : Path = nativeOnly
         [<Import("Polyline", "leaflet"); EmitConstructor>]
         static member Polyline<'T, 'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Polyline<'T, 'P> = nativeOnly
         [<Import("Polyline", "leaflet"); EmitConstructor>]
         static member Polyline<'T, 'P> (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Polyline<'T, 'P> = nativeOnly
-        [<Import("Polyline", "leaflet"); EmitConstructor>]
-        static member Polyline<'T, 'P> (latlngs: U2<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Polyline<'T, 'P> = nativeOnly
         [<Import("Polygon", "leaflet"); EmitConstructor>]
         static member Polygon<'P> (latlngs: ResizeArray<Leaflet.LatLngExpression>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
         [<Import("Polygon", "leaflet"); EmitConstructor>]
         static member Polygon<'P> (latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
         [<Import("Polygon", "leaflet"); EmitConstructor>]
         static member Polygon<'P> (latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
-        [<Import("Polygon", "leaflet"); EmitConstructor>]
-        static member Polygon<'P> (latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>>, ?options: Leaflet.PolylineOptions) : Polygon<'P> = nativeOnly
         [<Import("Rectangle", "leaflet"); EmitConstructor>]
         static member Rectangle<'P> (latLngBounds: Leaflet.LatLngBounds, ?options: Leaflet.PolylineOptions) : Rectangle<'P> = nativeOnly
         [<Import("Rectangle", "leaflet"); EmitConstructor>]
         static member Rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsLiteral, ?options: Leaflet.PolylineOptions) : Rectangle<'P> = nativeOnly
-        [<Import("Rectangle", "leaflet"); EmitConstructor>]
-        static member Rectangle<'P> (latLngBounds: Leaflet.LatLngBoundsExpression, ?options: Leaflet.PolylineOptions) : Rectangle<'P> = nativeOnly
         [<Import("CircleMarker", "leaflet"); EmitConstructor>]
         static member CircleMarker<'P> (latlng: Leaflet.LatLng, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
         [<Import("CircleMarker", "leaflet"); EmitConstructor>]
         static member CircleMarker<'P> (latlng: Leaflet.LatLngLiteral, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
         [<Import("CircleMarker", "leaflet"); EmitConstructor>]
         static member CircleMarker<'P> (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
-        [<Import("CircleMarker", "leaflet"); EmitConstructor>]
-        static member CircleMarker<'P> (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleMarkerOptions) : CircleMarker<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLng, options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
@@ -539,15 +462,11 @@ module Leaflet =
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLngTuple, options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
-        static member Circle<'P> (latlng: Leaflet.LatLngExpression, options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
-        [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLng, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLngLiteral, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Circle", "leaflet"); EmitConstructor>]
         static member Circle<'P> (latlng: Leaflet.LatLngTuple, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
-        [<Import("Circle", "leaflet"); EmitConstructor>]
-        static member Circle<'P> (latlng: Leaflet.LatLngExpression, radius: float, ?options: Leaflet.CircleOptions) : Circle<'P> = nativeOnly
         [<Import("Renderer", "leaflet"); EmitConstructor>]
         static member Renderer (?options: Leaflet.RendererOptions) : Renderer = nativeOnly
         [<Import("SVG", "leaflet"); EmitConstructor>]
@@ -569,8 +488,6 @@ module Leaflet =
         [<Import("DivOverlay", "leaflet"); EmitConstructor>]
         static member DivOverlay (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : DivOverlay = nativeOnly
         [<Import("DivOverlay", "leaflet"); EmitConstructor>]
-        static member DivOverlay (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : DivOverlay = nativeOnly
-        [<Import("DivOverlay", "leaflet"); EmitConstructor>]
         static member DivOverlay (?options: Leaflet.DivOverlayOptions, ?source: Leaflet.Layer) : DivOverlay = nativeOnly
         [<Import("Popup", "leaflet"); EmitConstructor>]
         static member Popup (latlng: Leaflet.LatLng, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
@@ -578,8 +495,6 @@ module Leaflet =
         static member Popup (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
         [<Import("Popup", "leaflet"); EmitConstructor>]
         static member Popup (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
-        [<Import("Popup", "leaflet"); EmitConstructor>]
-        static member Popup (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : Popup = nativeOnly
         [<Import("Popup", "leaflet"); EmitConstructor>]
         static member Popup (?options: Leaflet.PopupOptions, ?source: Leaflet.Layer) : Popup = nativeOnly
         [<Import("Tooltip", "leaflet"); EmitConstructor>]
@@ -589,8 +504,6 @@ module Leaflet =
         [<Import("Tooltip", "leaflet"); EmitConstructor>]
         static member Tooltip (latlng: Leaflet.LatLngTuple, ?options: Leaflet.TooltipOptions) : Tooltip = nativeOnly
         [<Import("Tooltip", "leaflet"); EmitConstructor>]
-        static member Tooltip (latlng: Leaflet.LatLngExpression, ?options: Leaflet.TooltipOptions) : Tooltip = nativeOnly
-        [<Import("Tooltip", "leaflet"); EmitConstructor>]
         static member Tooltip (?options: Leaflet.TooltipOptions, ?source: Leaflet.Layer) : Tooltip = nativeOnly
         [<Import("Handler", "leaflet"); EmitConstructor>]
         static member Handler (map: Leaflet.Map) : Handler = nativeOnly
@@ -598,8 +511,6 @@ module Leaflet =
         static member Map (element: string, ?options: Leaflet.MapOptions) : Map = nativeOnly
         [<Import("Map", "leaflet"); EmitConstructor>]
         static member Map (element: Glutinum.Web.HTMLElement, ?options: Leaflet.MapOptions) : Map = nativeOnly
-        [<Import("Map", "leaflet"); EmitConstructor>]
-        static member Map (element: U2<string, Glutinum.Web.HTMLElement>, ?options: Leaflet.MapOptions) : Map = nativeOnly
         [<Import("Icon", "leaflet"); EmitConstructor>]
         static member Icon<'T> (options: 'T) : Icon<'T> = nativeOnly
         [<Import("DivIcon", "leaflet"); EmitConstructor>]
@@ -610,8 +521,6 @@ module Leaflet =
         static member Marker<'P> (latlng: Leaflet.LatLngLiteral, ?options: Leaflet.MarkerOptions) : Marker<'P> = nativeOnly
         [<Import("Marker", "leaflet"); EmitConstructor>]
         static member Marker<'P> (latlng: Leaflet.LatLngTuple, ?options: Leaflet.MarkerOptions) : Marker<'P> = nativeOnly
-        [<Import("Marker", "leaflet"); EmitConstructor>]
-        static member Marker<'P> (latlng: Leaflet.LatLngExpression, ?options: Leaflet.MarkerOptions) : Marker<'P> = nativeOnly
         [<ImportAll("leaflet")>]
         static member inline LineUtil
             with get () : LineUtil_.Exports =
@@ -726,8 +635,6 @@ Class.callInitHooks()""")>]
             abstract member clipPolygon: points: ResizeArray<Leaflet.Point> * bounds: Leaflet.Bounds * ?round: bool -> ResizeArray<Leaflet.Point>
             [<Emit("$0.clipPolygon($1...)")>]
             abstract member clipPolygon: points: ResizeArray<Leaflet.Point> * bounds: Leaflet.BoundsLiteral * ?round: bool -> ResizeArray<Leaflet.Point>
-            [<Emit("$0.clipPolygon($1...)")>]
-            abstract member clipPolygon: points: ResizeArray<Leaflet.Point> * bounds: Leaflet.BoundsExpression * ?round: bool -> ResizeArray<Leaflet.Point>
             [<Emit("$0.polygonCenter($1...)")>]
             abstract member polygonCenter: latlngs: ResizeArray<Leaflet.LatLngExpression> * crs: Leaflet.CRS -> Leaflet.LatLng
 
@@ -746,11 +653,6 @@ Class.callInitHooks()""")>]
             /// </summary>
             [<Emit("$0.get($1...)")>]
             abstract member get: element: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement option
-            /// <summary>
-            /// Get Element by its ID or with the given HTML-Element
-            /// </summary>
-            [<Emit("$0.get($1...)")>]
-            abstract member get: element: U2<string, Glutinum.Web.HTMLElement> -> Glutinum.Web.HTMLElement option
             [<Emit("$0.getStyle($1...)")>]
             abstract member getStyle: el: Glutinum.Web.HTMLElement * styleAttrib: string -> string option
             /// <summary>
@@ -798,7 +700,7 @@ Class.callInitHooks()""")>]
             [<Emit("$0.getPosition($1...)")>]
             abstract member getPosition: el: Glutinum.Web.HTMLElement -> Leaflet.Point
             [<Emit("$0.getScale($1...)")>]
-            abstract member getScale: el: Glutinum.Web.HTMLElement -> Exports.getScale
+            abstract member getScale: el: Glutinum.Web.HTMLElement -> Leaflet.DomUtil_.Exports.getScale
             [<Emit("$0.getSizedParentNode($1...)")>]
             abstract member getSizedParentNode: el: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement
             [<Emit("$0.disableTextSelection($1...)")>]
@@ -845,16 +747,12 @@ Class.callInitHooks()""")>]
         abstract member latLngToPoint: latlng: Leaflet.LatLng * zoom: float -> Leaflet.Point
         abstract member latLngToPoint: latlng: Leaflet.LatLngLiteral * zoom: float -> Leaflet.Point
         abstract member latLngToPoint: latlng: Leaflet.LatLngTuple * zoom: float -> Leaflet.Point
-        abstract member latLngToPoint: latlng: Leaflet.LatLngExpression * zoom: float -> Leaflet.Point
         abstract member pointToLatLng: point: Leaflet.Point * zoom: float -> Leaflet.LatLng
         abstract member pointToLatLng: point: Leaflet.PointTuple * zoom: float -> Leaflet.LatLng
-        abstract member pointToLatLng: point: Leaflet.PointExpression * zoom: float -> Leaflet.LatLng
         abstract member project: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
-        abstract member project: latlng: U2<Leaflet.LatLng, Leaflet.LatLngLiteral> -> Leaflet.Point
         abstract member unproject: point: Leaflet.Point -> Leaflet.LatLng
         abstract member unproject: point: Leaflet.PointTuple -> Leaflet.LatLng
-        abstract member unproject: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member scale: zoom: float -> float
         abstract member zoom: scale: float -> float
         abstract member getProjectedBounds: zoom: float -> Leaflet.Bounds
@@ -867,10 +765,8 @@ Class.callInitHooks()""")>]
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLng -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngLiteral -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngTuple -> float
-        abstract member distance: latlng1: Leaflet.LatLngExpression * latlng2: Leaflet.LatLngExpression -> float
         abstract member wrapLatLng: latlng: Leaflet.LatLng -> Leaflet.LatLng
         abstract member wrapLatLng: latlng: Leaflet.LatLngLiteral -> Leaflet.LatLng
-        abstract member wrapLatLng: latlng: U2<Leaflet.LatLng, Leaflet.LatLngLiteral> -> Leaflet.LatLng
         abstract member code: string option with get, set
         abstract member wrapLng: float * float option with get, set
         abstract member wrapLat: float * float option with get, set
@@ -899,10 +795,8 @@ Class.callInitHooks()""")>]
     type Projection =
         abstract member project: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
-        abstract member project: latlng: U2<Leaflet.LatLng, Leaflet.LatLngLiteral> -> Leaflet.Point
         abstract member unproject: point: Leaflet.Point -> Leaflet.LatLng
         abstract member unproject: point: Leaflet.PointTuple -> Leaflet.LatLng
-        abstract member unproject: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member bounds: Leaflet.Bounds with get, set
 
     module Projection_ =
@@ -924,12 +818,10 @@ Class.callInitHooks()""")>]
         abstract member equals: otherLatLng: Leaflet.LatLng * ?maxMargin: float -> bool
         abstract member equals: otherLatLng: Leaflet.LatLngLiteral * ?maxMargin: float -> bool
         abstract member equals: otherLatLng: Leaflet.LatLngTuple * ?maxMargin: float -> bool
-        abstract member equals: otherLatLng: Leaflet.LatLngExpression * ?maxMargin: float -> bool
         abstract member toString: unit -> string
         abstract member distanceTo: otherLatLng: Leaflet.LatLng -> float
         abstract member distanceTo: otherLatLng: Leaflet.LatLngLiteral -> float
         abstract member distanceTo: otherLatLng: Leaflet.LatLngTuple -> float
-        abstract member distanceTo: otherLatLng: Leaflet.LatLngExpression -> float
         abstract member wrap: unit -> Leaflet.LatLng
         abstract member toBounds: sizeInMeters: float -> Leaflet.LatLngBounds
         abstract member clone: unit -> Leaflet.LatLng
@@ -949,8 +841,42 @@ Class.callInitHooks()""")>]
     type LatLngTuple =
         float * float * float option
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type LatLngExpression =
-        U3<Leaflet.LatLng, Leaflet.LatLngLiteral, Leaflet.LatLngTuple>
+        | LatLng of Leaflet.LatLng
+        | LatLngLiteral of Leaflet.LatLngLiteral
+        | LatLngTuple of Leaflet.LatLngTuple
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.LatLng) : LatLngExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.LatLng) : LatLngExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.LatLngLiteral) : LatLngExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.LatLngLiteral) : LatLngExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.LatLngTuple) : LatLngExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.LatLngTuple) : LatLngExpression = nativeOnly
+
+        /// Unchecked, the value as <c>LatLng</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsLatLng: Leaflet.LatLng = nativeOnly
+
+        /// Unchecked, the value as <c>LatLngLiteral</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsLatLngLiteral: Leaflet.LatLngLiteral = nativeOnly
+
+        /// Unchecked, the value as <c>LatLngTuple</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsLatLngTuple: Leaflet.LatLngTuple = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -961,7 +887,6 @@ Class.callInitHooks()""")>]
         abstract member extend: latlngOrBounds: Leaflet.LatLngTuple -> LatLngBounds
         abstract member extend: latlngOrBounds: Leaflet.LatLngBounds -> LatLngBounds
         abstract member extend: latlngOrBounds: Leaflet.LatLngBoundsLiteral -> LatLngBounds
-        abstract member extend: latlngOrBounds: U2<Leaflet.LatLngExpression, Leaflet.LatLngBoundsExpression> -> LatLngBounds
         abstract member pad: bufferRatio: float -> Leaflet.LatLngBounds
         abstract member getCenter: unit -> Leaflet.LatLng
         abstract member getSouthWest: unit -> Leaflet.LatLng
@@ -977,24 +902,43 @@ Class.callInitHooks()""")>]
         abstract member contains: otherBoundsOrLatLng: Leaflet.LatLng -> bool
         abstract member contains: otherBoundsOrLatLng: Leaflet.LatLngLiteral -> bool
         abstract member contains: otherBoundsOrLatLng: Leaflet.LatLngTuple -> bool
-        abstract member contains: otherBoundsOrLatLng: U2<Leaflet.LatLngBoundsExpression, Leaflet.LatLngExpression> -> bool
         abstract member intersects: otherBounds: Leaflet.LatLngBounds -> bool
         abstract member intersects: otherBounds: Leaflet.LatLngBoundsLiteral -> bool
-        abstract member intersects: otherBounds: Leaflet.LatLngBoundsExpression -> bool
         abstract member overlaps: otherBounds: Leaflet.LatLngBounds -> bool
         abstract member overlaps: otherBounds: Leaflet.LatLngBoundsLiteral -> bool
-        abstract member overlaps: otherBounds: Leaflet.LatLngBoundsExpression -> bool
         abstract member toBBoxString: unit -> string
         abstract member equals: otherBounds: Leaflet.LatLngBounds * ?maxMargin: float -> bool
         abstract member equals: otherBounds: Leaflet.LatLngBoundsLiteral * ?maxMargin: float -> bool
-        abstract member equals: otherBounds: Leaflet.LatLngBoundsExpression * ?maxMargin: float -> bool
         abstract member isValid: unit -> bool
 
     type LatLngBoundsLiteral =
         ResizeArray<Leaflet.LatLngTuple>
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type LatLngBoundsExpression =
-        U2<Leaflet.LatLngBounds, Leaflet.LatLngBoundsLiteral>
+        | LatLngBounds of Leaflet.LatLngBounds
+        | LatLngBoundsLiteral of Leaflet.LatLngBoundsLiteral
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.LatLngBounds) : LatLngBoundsExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.LatLngBounds) : LatLngBoundsExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.LatLngBoundsLiteral) : LatLngBoundsExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.LatLngBoundsLiteral) : LatLngBoundsExpression = nativeOnly
+
+        /// Unchecked, the value as <c>LatLngBounds</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsLatLngBounds: Leaflet.LatLngBounds = nativeOnly
+
+        /// Unchecked, the value as <c>LatLngBoundsLiteral</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsLatLngBoundsLiteral: Leaflet.LatLngBoundsLiteral = nativeOnly
 
     type PointTuple =
         float * float
@@ -1006,31 +950,24 @@ Class.callInitHooks()""")>]
         abstract member clone: unit -> Leaflet.Point
         abstract member add: otherPoint: Leaflet.Point -> Leaflet.Point
         abstract member add: otherPoint: Leaflet.PointTuple -> Leaflet.Point
-        abstract member add: otherPoint: Leaflet.PointExpression -> Leaflet.Point
         abstract member subtract: otherPoint: Leaflet.Point -> Leaflet.Point
         abstract member subtract: otherPoint: Leaflet.PointTuple -> Leaflet.Point
-        abstract member subtract: otherPoint: Leaflet.PointExpression -> Leaflet.Point
         abstract member divideBy: num: float -> Leaflet.Point
         abstract member multiplyBy: num: float -> Leaflet.Point
         abstract member scaleBy: scale: Leaflet.Point -> Leaflet.Point
         abstract member scaleBy: scale: Leaflet.PointTuple -> Leaflet.Point
-        abstract member scaleBy: scale: Leaflet.PointExpression -> Leaflet.Point
         abstract member unscaleBy: scale: Leaflet.Point -> Leaflet.Point
         abstract member unscaleBy: scale: Leaflet.PointTuple -> Leaflet.Point
-        abstract member unscaleBy: scale: Leaflet.PointExpression -> Leaflet.Point
         abstract member round: unit -> Leaflet.Point
         abstract member floor: unit -> Leaflet.Point
         abstract member ceil: unit -> Leaflet.Point
         abstract member trunc: unit -> Leaflet.Point
         abstract member distanceTo: otherPoint: Leaflet.Point -> float
         abstract member distanceTo: otherPoint: Leaflet.PointTuple -> float
-        abstract member distanceTo: otherPoint: Leaflet.PointExpression -> float
         abstract member equals: otherPoint: Leaflet.Point -> bool
         abstract member equals: otherPoint: Leaflet.PointTuple -> bool
-        abstract member equals: otherPoint: Leaflet.PointExpression -> bool
         abstract member contains: otherPoint: Leaflet.Point -> bool
         abstract member contains: otherPoint: Leaflet.PointTuple -> bool
-        abstract member contains: otherPoint: Leaflet.PointExpression -> bool
         abstract member toString: unit -> string
         abstract member x: float with get, set
         abstract member y: float with get, set
@@ -1041,8 +978,31 @@ Class.callInitHooks()""")>]
         inherit Leaflet.Point
         abstract member z: float with get, set
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type PointExpression =
-        U2<Leaflet.Point, Leaflet.PointTuple>
+        | Point of Leaflet.Point
+        | PointTuple of Leaflet.PointTuple
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.Point) : PointExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.Point) : PointExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.PointTuple) : PointExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.PointTuple) : PointExpression = nativeOnly
+
+        /// Unchecked, the value as <c>Point</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsPoint: Leaflet.Point = nativeOnly
+
+        /// Unchecked, the value as <c>PointTuple</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsPointTuple: Leaflet.PointTuple = nativeOnly
 
     type BoundsLiteral =
         Leaflet.PointTuple * Leaflet.PointTuple
@@ -1053,10 +1013,8 @@ Class.callInitHooks()""")>]
     type Bounds =
         abstract member extend: point: Leaflet.Point -> Bounds
         abstract member extend: point: Leaflet.PointTuple -> Bounds
-        abstract member extend: point: Leaflet.PointExpression -> Bounds
         abstract member extend: otherBounds: Leaflet.Bounds -> Bounds
         abstract member extend: otherBounds: Leaflet.BoundsLiteral -> Bounds
-        abstract member extend: otherBounds: Leaflet.BoundsExpression -> Bounds
         abstract member getCenter: ?round: bool -> Leaflet.Point
         abstract member getBottomLeft: unit -> Leaflet.Point
         abstract member getBottomRight: unit -> Leaflet.Point
@@ -1067,23 +1025,42 @@ Class.callInitHooks()""")>]
         abstract member contains: pointOrBounds: Leaflet.BoundsLiteral -> bool
         abstract member contains: pointOrBounds: Leaflet.Point -> bool
         abstract member contains: pointOrBounds: Leaflet.PointTuple -> bool
-        abstract member contains: pointOrBounds: U2<Leaflet.BoundsExpression, Leaflet.PointExpression> -> bool
         abstract member intersects: otherBounds: Leaflet.Bounds -> bool
         abstract member intersects: otherBounds: Leaflet.BoundsLiteral -> bool
-        abstract member intersects: otherBounds: Leaflet.BoundsExpression -> bool
         abstract member overlaps: otherBounds: Leaflet.Bounds -> bool
         abstract member overlaps: otherBounds: Leaflet.BoundsLiteral -> bool
-        abstract member overlaps: otherBounds: Leaflet.BoundsExpression -> bool
         abstract member isValid: unit -> bool
         abstract member pad: bufferRatio: float -> Leaflet.Bounds
         abstract member equals: otherBounds: Leaflet.Bounds -> bool
         abstract member equals: otherBounds: Leaflet.BoundsLiteral -> bool
-        abstract member equals: otherBounds: Leaflet.BoundsExpression -> bool
         abstract member min: Leaflet.Point option with get, set
         abstract member max: Leaflet.Point option with get, set
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type BoundsExpression =
-        U2<Leaflet.Bounds, Leaflet.BoundsLiteral>
+        | Bounds of Leaflet.Bounds
+        | BoundsLiteral of Leaflet.BoundsLiteral
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.Bounds) : BoundsExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.Bounds) : BoundsExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Leaflet.BoundsLiteral) : BoundsExpression = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Leaflet.BoundsLiteral) : BoundsExpression = nativeOnly
+
+        /// Unchecked, the value as <c>Bounds</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsBounds: Leaflet.Bounds = nativeOnly
+
+        /// Unchecked, the value as <c>BoundsLiteral</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsBoundsLiteral: Leaflet.BoundsLiteral = nativeOnly
 
     type LeafletEventHandlerFn =
         Leaflet.LeafletEvent -> unit
@@ -3187,7 +3164,6 @@ Class.callInitHooks()""")>]
         inherit Leaflet.Evented
         abstract member addTo: map: Leaflet.Map -> Layer
         abstract member addTo: map: Leaflet.LayerGroup -> Layer
-        abstract member addTo: map: U2<Leaflet.Map, Leaflet.LayerGroup> -> Layer
         abstract member remove: unit -> Layer
         abstract member removeFrom: map: Leaflet.Map -> Layer
         abstract member getPane: ?name: string -> Glutinum.Web.HTMLElement option
@@ -3197,7 +3173,6 @@ Class.callInitHooks()""")>]
         abstract member bindPopup: content: string * ?options: Leaflet.PopupOptions -> Layer
         abstract member bindPopup: content: Glutinum.Web.HTMLElement * ?options: Leaflet.PopupOptions -> Layer
         abstract member bindPopup: content: Leaflet.Popup * ?options: Leaflet.PopupOptions -> Layer
-        abstract member bindPopup: content: U3<(Leaflet.Layer -> Leaflet.Content), Leaflet.Content, Leaflet.Popup> * ?options: Leaflet.PopupOptions -> Layer
         abstract member unbindPopup: unit -> Layer
         abstract member openPopup: unit -> Layer
         abstract member openPopup: latlng: Leaflet.LatLng -> Layer
@@ -3209,13 +3184,11 @@ Class.callInitHooks()""")>]
         abstract member setPopupContent: content: string -> Layer
         abstract member setPopupContent: content: Glutinum.Web.HTMLElement -> Layer
         abstract member setPopupContent: content: Leaflet.Popup -> Layer
-        abstract member setPopupContent: content: U2<Leaflet.Content, Leaflet.Popup> -> Layer
         abstract member getPopup: unit -> Leaflet.Popup option
         abstract member bindTooltip: content: (Leaflet.Layer -> Leaflet.Content) * ?options: Leaflet.TooltipOptions -> Layer
         abstract member bindTooltip: content: Leaflet.Tooltip * ?options: Leaflet.TooltipOptions -> Layer
         abstract member bindTooltip: content: string * ?options: Leaflet.TooltipOptions -> Layer
         abstract member bindTooltip: content: Glutinum.Web.HTMLElement * ?options: Leaflet.TooltipOptions -> Layer
-        abstract member bindTooltip: content: U3<(Leaflet.Layer -> Leaflet.Content), Leaflet.Tooltip, Leaflet.Content> * ?options: Leaflet.TooltipOptions -> Layer
         abstract member unbindTooltip: unit -> Layer
         abstract member openTooltip: unit -> Layer
         abstract member openTooltip: latlng: Leaflet.LatLng -> Layer
@@ -3227,7 +3200,6 @@ Class.callInitHooks()""")>]
         abstract member setTooltipContent: content: string -> Layer
         abstract member setTooltipContent: content: Glutinum.Web.HTMLElement -> Layer
         abstract member setTooltipContent: content: Leaflet.Tooltip -> Layer
-        abstract member setTooltipContent: content: U2<Leaflet.Content, Leaflet.Tooltip> -> Layer
         abstract member getTooltip: unit -> Leaflet.Tooltip option
         abstract member onAdd: map: Leaflet.Map -> Layer
         abstract member onRemove: map: Leaflet.Map -> Layer
@@ -3664,7 +3636,6 @@ Class.callInitHooks()""")>]
         abstract member setLatLngs: latlngs: ResizeArray<Leaflet.LatLngExpression> -> Polyline<'T, 'P>
         abstract member setLatLngs: latlngs: ResizeArray<ResizeArray<Leaflet.LatLngExpression>> -> Polyline<'T, 'P>
         abstract member setLatLngs: latlngs: ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>> -> Polyline<'T, 'P>
-        abstract member setLatLngs: latlngs: U3<ResizeArray<Leaflet.LatLngExpression>, ResizeArray<ResizeArray<Leaflet.LatLngExpression>>, ResizeArray<ResizeArray<ResizeArray<Leaflet.LatLngExpression>>>> -> Polyline<'T, 'P>
         abstract member isEmpty: unit -> bool
         abstract member getCenter: unit -> Leaflet.LatLng
         abstract member getBounds: unit -> Leaflet.LatLngBounds
@@ -3672,7 +3643,6 @@ Class.callInitHooks()""")>]
         abstract member addLatLng: latlng: Leaflet.LatLngLiteral * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
         abstract member addLatLng: latlng: Leaflet.LatLngTuple * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
         abstract member addLatLng: latlng: ResizeArray<Leaflet.LatLngExpression> * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
-        abstract member addLatLng: latlng: U2<Leaflet.LatLngExpression, ResizeArray<Leaflet.LatLngExpression>> * ?latlngs: ResizeArray<Leaflet.LatLng> -> Polyline<'T, 'P>
         abstract member closestLayerPoint: p: Leaflet.Point -> Leaflet.Point
         abstract member feature: Glutinum.Geojson.Feature<'T, 'P> option with get, set
 
@@ -3698,7 +3668,6 @@ Class.callInitHooks()""")>]
         inherit Leaflet.Polygon<'P>
         abstract member setBounds: latLngBounds: Leaflet.LatLngBounds -> Rectangle<'P>
         abstract member setBounds: latLngBounds: Leaflet.LatLngBoundsLiteral -> Rectangle<'P>
-        abstract member setBounds: latLngBounds: Leaflet.LatLngBoundsExpression -> Rectangle<'P>
 
     type Rectangle =
         Rectangle<obj>
@@ -3724,7 +3693,6 @@ Class.callInitHooks()""")>]
         abstract member setLatLng: latLng: Leaflet.LatLng -> CircleMarker<'P>
         abstract member setLatLng: latLng: Leaflet.LatLngLiteral -> CircleMarker<'P>
         abstract member setLatLng: latLng: Leaflet.LatLngTuple -> CircleMarker<'P>
-        abstract member setLatLng: latLng: Leaflet.LatLngExpression -> CircleMarker<'P>
         abstract member getLatLng: unit -> Leaflet.LatLng
         abstract member setRadius: radius: float -> CircleMarker<'P>
         abstract member getRadius: unit -> float
@@ -3818,10 +3786,6 @@ Class.callInitHooks()""")>]
         /// </summary>
         abstract member removeLayer: layer: Leaflet.Layer -> LayerGroup<'P>
         /// <summary>
-        /// Removes the layer with the given internal ID or the given layer from the group.
-        /// </summary>
-        abstract member removeLayer: layer: U2<float, Leaflet.Layer> -> LayerGroup<'P>
-        /// <summary>
         /// Returns true if the given layer is currently added to the group.
         /// </summary>
         abstract member hasLayer: layer: Leaflet.Layer -> bool
@@ -3881,10 +3845,6 @@ Class.callInitHooks()""")>]
         /// Removes the layer with the given internal ID or the given layer from the group.
         /// </summary>
         abstract member removeLayer: layer: Leaflet.Layer -> FeatureGroup<'P>
-        /// <summary>
-        /// Removes the layer with the given internal ID or the given layer from the group.
-        /// </summary>
-        abstract member removeLayer: layer: U2<float, Leaflet.Layer> -> FeatureGroup<'P>
         /// <summary>
         /// Sets the given path options to each layer of the group that has a setStyle method.
         /// </summary>
@@ -3999,12 +3959,6 @@ GeoJSON.getFeature($0, $1)""")>]
         /// </summary>
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.getFeature($0, $1)""")>]
-        static member inline getFeature (layer: Leaflet.Layer, newGeometry: U2<Glutinum.Geojson.Feature<'G, 'P>, 'G>): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
-        /// <summary>
-        /// Convert layer into GeoJSON feature
-        /// </summary>
-        [<Emit("""import { GeoJSON } from "leaflet";
-GeoJSON.getFeature($0, $1)""")>]
         static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Convert layer into GeoJSON feature
@@ -4012,12 +3966,6 @@ GeoJSON.getFeature($0, $1)""")>]
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.getFeature($0, $1)""")>]
         static member inline getFeature (layer: Leaflet.Layer, newGeometry: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
-        /// <summary>
-        /// Convert layer into GeoJSON feature
-        /// </summary>
-        [<Emit("""import { GeoJSON } from "leaflet";
-GeoJSON.getFeature($0, $1)""")>]
-        static member inline getFeature (layer: Leaflet.Layer, newGeometry: U2<Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>, Glutinum.Geojson.GeometryObject>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Creates a Layer from a given GeoJSON feature. Can use a custom pointToLayer
         /// and/or coordsToLatLng functions if provided as options.
@@ -4046,13 +3994,6 @@ GeoJSON.coordsToLatLng($0)""")>]
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.coordsToLatLng($0)""")>]
         static member inline coordsToLatLng (coords: (float * float * float)): Leaflet.LatLng = nativeOnly
-        /// <summary>
-        /// Creates a LatLng object from an array of 2 numbers (longitude, latitude) or
-        /// 3 numbers (longitude, latitude, altitude) used in GeoJSON for points.
-        /// </summary>
-        [<Emit("""import { GeoJSON } from "leaflet";
-GeoJSON.coordsToLatLng($0)""")>]
-        static member inline coordsToLatLng (coords: U2<float * float, float * float * float>): Leaflet.LatLng = nativeOnly
         /// <summary>
         /// Creates a multidimensional array of LatLngs from a GeoJSON coordinates array.
         /// levelsDeep specifies the nesting level (0 is for an array of points, 1 for an array of
@@ -4093,12 +4034,6 @@ GeoJSON.asFeature($0)""")>]
         /// </summary>
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.asFeature($0)""")>]
-        static member inline asFeature (geojson: U2<Glutinum.Geojson.Feature<'G, 'P>, 'G>): Glutinum.Geojson.Feature<'G, 'P> = nativeOnly
-        /// <summary>
-        /// Normalize GeoJSON geometries/features into GeoJSON features.
-        /// </summary>
-        [<Emit("""import { GeoJSON } from "leaflet";
-GeoJSON.asFeature($0)""")>]
         static member inline asFeature (geojson: Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Normalize GeoJSON geometries/features into GeoJSON features.
@@ -4106,12 +4041,6 @@ GeoJSON.asFeature($0)""")>]
         [<Emit("""import { GeoJSON } from "leaflet";
 GeoJSON.asFeature($0)""")>]
         static member inline asFeature (geojson: Glutinum.Geojson.GeometryObject): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
-        /// <summary>
-        /// Normalize GeoJSON geometries/features into GeoJSON features.
-        /// </summary>
-        [<Emit("""import { GeoJSON } from "leaflet";
-GeoJSON.asFeature($0)""")>]
-        static member inline asFeature (geojson: U2<Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj>, Glutinum.Geojson.GeometryObject>): Glutinum.Geojson.Feature<Glutinum.Geojson.GeometryObject, obj> = nativeOnly
         /// <summary>
         /// Adds a GeoJSON object to the layer.
         /// </summary>
@@ -4131,11 +4060,6 @@ GeoJSON.asFeature($0)""")>]
         /// allowed here to set the style according to the feature.
         /// </summary>
         abstract member setStyle: style: Leaflet.StyleFunction<'P> -> GeoJSON<'P, 'G>
-        /// <summary>
-        /// Same as FeatureGroup's setStyle method, but style-functions are also
-        /// allowed here to set the style according to the feature.
-        /// </summary>
-        abstract member setStyle: style: U2<Leaflet.PathOptions, Leaflet.StyleFunction<'P>> -> GeoJSON<'P, 'G>
 
     type GeoJSON<'P> =
         GeoJSON<'P, Glutinum.Geojson.GeometryObject>
@@ -4296,9 +4220,9 @@ Control.extend($0)""")>]
             /// [<c>L.Layer</c>](https://leafletjs.com/reference.html#layer) instances and their names, as in
             /// <c>sortFunction(layerA, layerB, nameA, nameB)</c>. By default, it sorts layers alphabetically by their name.
             /// </summary>
-            abstract member sortFunction: LayersOptions.sortFunction option with get, set
+            abstract member sortFunction: Leaflet.Control_.LayersOptions.sortFunction option with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (?position: Leaflet.ControlPosition, ?collapsed: bool, ?autoZIndex: bool, ?hideSingleBase: bool, ?sortLayers: bool, ?sortFunction: LayersOptions.sortFunction) : LayersOptions = nativeOnly
+            static member Create (?position: Leaflet.ControlPosition, ?collapsed: bool, ?autoZIndex: bool, ?hideSingleBase: bool, ?sortLayers: bool, ?sortFunction: Leaflet.Control_.LayersOptions.sortFunction) : LayersOptions = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -4379,12 +4303,10 @@ Control.extend($0)""")>]
         abstract member setLatLng: latlng: Leaflet.LatLng -> DivOverlay
         abstract member setLatLng: latlng: Leaflet.LatLngLiteral -> DivOverlay
         abstract member setLatLng: latlng: Leaflet.LatLngTuple -> DivOverlay
-        abstract member setLatLng: latlng: Leaflet.LatLngExpression -> DivOverlay
         abstract member getContent: unit -> U2<Leaflet.Content, (Leaflet.Layer -> Leaflet.Content)> option
         abstract member setContent: htmlContent: (Leaflet.Layer -> Leaflet.Content) -> DivOverlay
         abstract member setContent: htmlContent: string -> DivOverlay
         abstract member setContent: htmlContent: Glutinum.Web.HTMLElement -> DivOverlay
-        abstract member setContent: htmlContent: U2<(Leaflet.Layer -> Leaflet.Content), Leaflet.Content> -> DivOverlay
         abstract member getElement: unit -> Glutinum.Web.HTMLElement option
         abstract member update: unit -> unit
         abstract member isOpen: unit -> bool
@@ -4421,8 +4343,31 @@ Control.extend($0)""")>]
         [<ParamObject; Emit("$0")>]
         static member Create (content: (Leaflet.Layer -> Glutinum.Web.HTMLElement), ?offset: Leaflet.PointExpression, ?className: string, ?pane: string, ?interactive: bool, ?maxWidth: float, ?minWidth: float, ?maxHeight: float, ?keepInView: bool, ?closeButton: bool, ?autoPan: bool, ?autoPanPaddingTopLeft: Leaflet.PointExpression, ?autoPanPaddingBottomRight: Leaflet.PointExpression, ?autoPanPadding: Leaflet.PointExpression, ?autoClose: bool, ?closeOnClick: bool, ?closeOnEscapeKey: bool) : PopupOptions = nativeOnly
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Content =
-        U2<string, Glutinum.Web.HTMLElement>
+        | String of string
+        | HTMLElement of Glutinum.Web.HTMLElement
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: string) : Content = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: string) : Content = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Glutinum.Web.HTMLElement) : Content = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Glutinum.Web.HTMLElement) : Content = nativeOnly
+
+        /// Unchecked, the value as <c>String</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsString: string = nativeOnly
+
+        /// Unchecked, the value as <c>HTMLElement</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsHTMLElement: Glutinum.Web.HTMLElement = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -4699,13 +4644,13 @@ Control.extend($0)""")>]
             [<Emit("$0.on($1...)")>]
             abstract member on: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.on($1...)")>]
-            abstract member on: el: Glutinum.Web.HTMLElement * eventMap: Exports.on.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
+            abstract member on: el: Glutinum.Web.HTMLElement * eventMap: Leaflet.DomEvent_.Exports.on.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.off($1...)")>]
             abstract member off: el: Glutinum.Web.HTMLElement -> Leaflet.DomEvent_.Exports
             [<Emit("$0.off($1...)")>]
             abstract member off: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.off($1...)")>]
-            abstract member off: el: Glutinum.Web.HTMLElement * eventMap: Exports.off.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
+            abstract member off: el: Glutinum.Web.HTMLElement * eventMap: Leaflet.DomEvent_.Exports.off.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
             abstract member stopPropagation: ev: Leaflet.LeafletMouseEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
@@ -4714,8 +4659,6 @@ Control.extend($0)""")>]
             abstract member stopPropagation: ev: Leaflet.LeafletEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stopPropagation($1...)")>]
             abstract member stopPropagation: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
-            [<Emit("$0.stopPropagation($1...)")>]
-            abstract member stopPropagation: ev: Leaflet.DomEvent_.PropagableEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.disableScrollPropagation($1...)")>]
             abstract member disableScrollPropagation: el: Glutinum.Web.HTMLElement -> Leaflet.DomEvent_.Exports
             [<Emit("$0.disableClickPropagation($1...)")>]
@@ -4730,8 +4673,6 @@ Control.extend($0)""")>]
             abstract member stop: ev: Leaflet.LeafletEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.stop($1...)")>]
             abstract member stop: ev: Glutinum.Web.Event -> Leaflet.DomEvent_.Exports
-            [<Emit("$0.stop($1...)")>]
-            abstract member stop: ev: Leaflet.DomEvent_.PropagableEvent -> Leaflet.DomEvent_.Exports
             [<Emit("$0.getMousePosition($1...)")>]
             abstract member getMousePosition: ev: Glutinum.Web.MouseEvent * ?container: Glutinum.Web.HTMLElement -> Leaflet.Point
             [<Emit("$0.getWheelDelta($1...)")>]
@@ -4739,19 +4680,64 @@ Control.extend($0)""")>]
             [<Emit("$0.addListener($1...)")>]
             abstract member addListener: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.addListener($1...)")>]
-            abstract member addListener: el: Glutinum.Web.HTMLElement * eventMap: Exports.addListener.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
+            abstract member addListener: el: Glutinum.Web.HTMLElement * eventMap: Leaflet.DomEvent_.Exports.addListener.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.removeListener($1...)")>]
             abstract member removeListener: el: Glutinum.Web.HTMLElement * types: string * fn: Leaflet.DomEvent_.EventHandlerFn * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.removeListener($1...)")>]
-            abstract member removeListener: el: Glutinum.Web.HTMLElement * eventMap: Exports.removeListener.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
+            abstract member removeListener: el: Glutinum.Web.HTMLElement * eventMap: Leaflet.DomEvent_.Exports.removeListener.eventMap * ?context: obj -> Leaflet.DomEvent_.Exports
             [<Emit("$0.getPropagationPath($1...)")>]
             abstract member getPropagationPath: ev: Glutinum.Web.Event -> ResizeArray<Glutinum.Web.HTMLElement>
 
         type EventHandlerFn =
             Glutinum.Web.Event -> unit
 
+        [<RequireQualifiedAccess>]
+        [<Erase>]
         type PropagableEvent =
-            U4<Leaflet.LeafletMouseEvent, Leaflet.LeafletKeyboardEvent, Leaflet.LeafletEvent, Glutinum.Web.Event>
+            | LeafletMouseEvent of Leaflet.LeafletMouseEvent
+            | LeafletKeyboardEvent of Leaflet.LeafletKeyboardEvent
+            | LeafletEvent of Leaflet.LeafletEvent
+            | Event of Glutinum.Web.Event
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: Leaflet.LeafletMouseEvent) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: Leaflet.LeafletMouseEvent) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: Leaflet.LeafletKeyboardEvent) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: Leaflet.LeafletKeyboardEvent) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: Leaflet.LeafletEvent) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: Leaflet.LeafletEvent) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: Glutinum.Web.Event) : PropagableEvent = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: Glutinum.Web.Event) : PropagableEvent = nativeOnly
+
+            /// Unchecked, the value as <c>LeafletMouseEvent</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsLeafletMouseEvent: Leaflet.LeafletMouseEvent = nativeOnly
+
+            /// Unchecked, the value as <c>LeafletKeyboardEvent</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsLeafletKeyboardEvent: Leaflet.LeafletKeyboardEvent = nativeOnly
+
+            /// Unchecked, the value as <c>LeafletEvent</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsLeafletEvent: Leaflet.LeafletEvent = nativeOnly
+
+            /// Unchecked, the value as <c>Event</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsEvent: Glutinum.Web.Event = nativeOnly
 
         module Exports =
 
@@ -4819,7 +4805,6 @@ Control.extend($0)""")>]
         abstract member openPopup: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLng * ?options: Leaflet.PopupOptions -> Map
         abstract member openPopup: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngLiteral * ?options: Leaflet.PopupOptions -> Map
         abstract member openPopup: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngTuple * ?options: Leaflet.PopupOptions -> Map
-        abstract member openPopup: content: Leaflet.Content * latlng: Leaflet.LatLngExpression * ?options: Leaflet.PopupOptions -> Map
         abstract member closePopup: ?popup: Leaflet.Popup -> Map
         abstract member openTooltip: tooltip: Leaflet.Tooltip -> Map
         abstract member openTooltip: content: string * latlng: Leaflet.LatLng * ?options: Leaflet.TooltipOptions -> Map
@@ -4828,12 +4813,10 @@ Control.extend($0)""")>]
         abstract member openTooltip: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLng * ?options: Leaflet.TooltipOptions -> Map
         abstract member openTooltip: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngLiteral * ?options: Leaflet.TooltipOptions -> Map
         abstract member openTooltip: content: Glutinum.Web.HTMLElement * latlng: Leaflet.LatLngTuple * ?options: Leaflet.TooltipOptions -> Map
-        abstract member openTooltip: content: Leaflet.Content * latlng: Leaflet.LatLngExpression * ?options: Leaflet.TooltipOptions -> Map
         abstract member closeTooltip: ?tooltip: Leaflet.Tooltip -> Map
         abstract member setView: center: Leaflet.LatLng * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member setView: center: Leaflet.LatLngLiteral * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member setView: center: Leaflet.LatLngTuple * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
-        abstract member setView: center: Leaflet.LatLngExpression * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member setZoom: zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member zoomIn: ?delta: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member zoomOut: ?delta: float * ?options: Leaflet.ZoomOptions -> Map
@@ -4841,18 +4824,14 @@ Control.extend($0)""")>]
         abstract member setZoomAround: position: Leaflet.LatLng * zoom: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member setZoomAround: position: Leaflet.LatLngLiteral * zoom: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member setZoomAround: position: Leaflet.LatLngTuple * zoom: float * ?options: Leaflet.ZoomOptions -> Map
-        abstract member setZoomAround: position: U2<Leaflet.Point, Leaflet.LatLngExpression> * zoom: float * ?options: Leaflet.ZoomOptions -> Map
         abstract member fitBounds: bounds: Leaflet.LatLngBounds * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member fitBounds: bounds: Leaflet.LatLngBoundsLiteral * ?options: Leaflet.FitBoundsOptions -> Map
-        abstract member fitBounds: bounds: Leaflet.LatLngBoundsExpression * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member fitWorld: ?options: Leaflet.FitBoundsOptions -> Map
         abstract member panTo: latlng: Leaflet.LatLng * ?options: Leaflet.PanOptions -> Map
         abstract member panTo: latlng: Leaflet.LatLngLiteral * ?options: Leaflet.PanOptions -> Map
         abstract member panTo: latlng: Leaflet.LatLngTuple * ?options: Leaflet.PanOptions -> Map
-        abstract member panTo: latlng: Leaflet.LatLngExpression * ?options: Leaflet.PanOptions -> Map
         abstract member panBy: offset: Leaflet.Point * ?options: Leaflet.PanOptions -> Map
         abstract member panBy: offset: Leaflet.PointTuple * ?options: Leaflet.PanOptions -> Map
-        abstract member panBy: offset: Leaflet.PointExpression * ?options: Leaflet.PanOptions -> Map
         abstract member setMaxBounds: unit -> Map
         abstract member setMaxBounds: bounds: Leaflet.LatLngBounds -> Map
         abstract member setMaxBounds: bounds: Leaflet.LatLngBoundsLiteral -> Map
@@ -4861,10 +4840,8 @@ Control.extend($0)""")>]
         abstract member panInside: latLng: Leaflet.LatLng * ?options: Leaflet.PanInsideOptions -> Map
         abstract member panInside: latLng: Leaflet.LatLngLiteral * ?options: Leaflet.PanInsideOptions -> Map
         abstract member panInside: latLng: Leaflet.LatLngTuple * ?options: Leaflet.PanInsideOptions -> Map
-        abstract member panInside: latLng: Leaflet.LatLngExpression * ?options: Leaflet.PanInsideOptions -> Map
         abstract member panInsideBounds: bounds: Leaflet.LatLngBounds * ?options: Leaflet.PanOptions -> Map
         abstract member panInsideBounds: bounds: Leaflet.LatLngBoundsLiteral * ?options: Leaflet.PanOptions -> Map
-        abstract member panInsideBounds: bounds: Leaflet.LatLngBoundsExpression * ?options: Leaflet.PanOptions -> Map
         /// <summary>
         /// Boolean for animate or advanced ZoomPanOptions
         /// </summary>
@@ -4881,10 +4858,8 @@ Control.extend($0)""")>]
         abstract member flyTo: latlng: Leaflet.LatLng * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member flyTo: latlng: Leaflet.LatLngLiteral * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member flyTo: latlng: Leaflet.LatLngTuple * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
-        abstract member flyTo: latlng: Leaflet.LatLngExpression * ?zoom: float * ?options: Leaflet.ZoomPanOptions -> Map
         abstract member flyToBounds: bounds: Leaflet.LatLngBounds * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member flyToBounds: bounds: Leaflet.LatLngBoundsLiteral * ?options: Leaflet.FitBoundsOptions -> Map
-        abstract member flyToBounds: bounds: Leaflet.LatLngBoundsExpression * ?options: Leaflet.FitBoundsOptions -> Map
         abstract member addHandler: name: string * HandlerClass: Leaflet.Handler -> Map
         abstract member remove: unit -> Map
         abstract member createPane: name: string * ?container: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement
@@ -4896,10 +4871,6 @@ Control.extend($0)""")>]
         /// Name of the pane or the pane as HTML-Element
         /// </summary>
         abstract member getPane: pane: Glutinum.Web.HTMLElement -> Glutinum.Web.HTMLElement option
-        /// <summary>
-        /// Name of the pane or the pane as HTML-Element
-        /// </summary>
-        abstract member getPane: pane: U2<string, Glutinum.Web.HTMLElement> -> Glutinum.Web.HTMLElement option
         abstract member getPanes: unit -> Map.getPanes
         abstract member getContainer: unit -> Glutinum.Web.HTMLElement
         abstract member whenReady: fn: (Map.whenReady.fn.event -> unit) * ?context: obj -> Map
@@ -4910,7 +4881,6 @@ Control.extend($0)""")>]
         abstract member getMaxZoom: unit -> float
         abstract member getBoundsZoom: bounds: Leaflet.LatLngBounds * ?inside: bool * ?padding: Leaflet.Point -> float
         abstract member getBoundsZoom: bounds: Leaflet.LatLngBoundsLiteral * ?inside: bool * ?padding: Leaflet.Point -> float
-        abstract member getBoundsZoom: bounds: Leaflet.LatLngBoundsExpression * ?inside: bool * ?padding: Leaflet.Point -> float
         abstract member getSize: unit -> Leaflet.Point
         abstract member getPixelBounds: unit -> Leaflet.Bounds
         abstract member getPixelOrigin: unit -> Leaflet.Point
@@ -4920,21 +4890,16 @@ Control.extend($0)""")>]
         abstract member project: latlng: Leaflet.LatLng * ?zoom: float -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngLiteral * ?zoom: float -> Leaflet.Point
         abstract member project: latlng: Leaflet.LatLngTuple * ?zoom: float -> Leaflet.Point
-        abstract member project: latlng: Leaflet.LatLngExpression * ?zoom: float -> Leaflet.Point
         abstract member unproject: point: Leaflet.Point * ?zoom: float -> Leaflet.LatLng
         abstract member unproject: point: Leaflet.PointTuple * ?zoom: float -> Leaflet.LatLng
-        abstract member unproject: point: Leaflet.PointExpression * ?zoom: float -> Leaflet.LatLng
         abstract member layerPointToLatLng: point: Leaflet.Point -> Leaflet.LatLng
         abstract member layerPointToLatLng: point: Leaflet.PointTuple -> Leaflet.LatLng
-        abstract member layerPointToLatLng: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member latLngToLayerPoint: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member latLngToLayerPoint: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
         abstract member latLngToLayerPoint: latlng: Leaflet.LatLngTuple -> Leaflet.Point
-        abstract member latLngToLayerPoint: latlng: Leaflet.LatLngExpression -> Leaflet.Point
         abstract member wrapLatLng: latlng: Leaflet.LatLng -> Leaflet.LatLng
         abstract member wrapLatLng: latlng: Leaflet.LatLngLiteral -> Leaflet.LatLng
         abstract member wrapLatLng: latlng: Leaflet.LatLngTuple -> Leaflet.LatLng
-        abstract member wrapLatLng: latlng: Leaflet.LatLngExpression -> Leaflet.LatLng
         abstract member wrapLatLngBounds: bounds: Leaflet.LatLngBounds -> Leaflet.LatLngBounds
         abstract member distance: latlng1: Leaflet.LatLng * latlng2: Leaflet.LatLng -> float
         abstract member distance: latlng1: Leaflet.LatLng * latlng2: Leaflet.LatLngLiteral -> float
@@ -4945,20 +4910,15 @@ Control.extend($0)""")>]
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLng -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngLiteral -> float
         abstract member distance: latlng1: Leaflet.LatLngTuple * latlng2: Leaflet.LatLngTuple -> float
-        abstract member distance: latlng1: Leaflet.LatLngExpression * latlng2: Leaflet.LatLngExpression -> float
         abstract member containerPointToLayerPoint: point: Leaflet.Point -> Leaflet.Point
         abstract member containerPointToLayerPoint: point: Leaflet.PointTuple -> Leaflet.Point
-        abstract member containerPointToLayerPoint: point: Leaflet.PointExpression -> Leaflet.Point
         abstract member containerPointToLatLng: point: Leaflet.Point -> Leaflet.LatLng
         abstract member containerPointToLatLng: point: Leaflet.PointTuple -> Leaflet.LatLng
-        abstract member containerPointToLatLng: point: Leaflet.PointExpression -> Leaflet.LatLng
         abstract member layerPointToContainerPoint: point: Leaflet.Point -> Leaflet.Point
         abstract member layerPointToContainerPoint: point: Leaflet.PointTuple -> Leaflet.Point
-        abstract member layerPointToContainerPoint: point: Leaflet.PointExpression -> Leaflet.Point
         abstract member latLngToContainerPoint: latlng: Leaflet.LatLng -> Leaflet.Point
         abstract member latLngToContainerPoint: latlng: Leaflet.LatLngLiteral -> Leaflet.Point
         abstract member latLngToContainerPoint: latlng: Leaflet.LatLngTuple -> Leaflet.Point
-        abstract member latLngToContainerPoint: latlng: Leaflet.LatLngExpression -> Leaflet.Point
         abstract member mouseEventToContainerPoint: ev: Glutinum.Web.MouseEvent -> Leaflet.Point
         abstract member mouseEventToLayerPoint: ev: Glutinum.Web.MouseEvent -> Leaflet.Point
         abstract member mouseEventToLatLng: ev: Glutinum.Web.MouseEvent -> Leaflet.LatLng
@@ -5137,12 +5097,10 @@ Default.imagePath{{=$0}}""")>]
         abstract member setLatLng: latlng: Leaflet.LatLng -> Marker<'P>
         abstract member setLatLng: latlng: Leaflet.LatLngLiteral -> Marker<'P>
         abstract member setLatLng: latlng: Leaflet.LatLngTuple -> Marker<'P>
-        abstract member setLatLng: latlng: Leaflet.LatLngExpression -> Marker<'P>
         abstract member setZIndexOffset: offset: float -> Marker<'P>
         abstract member getIcon: unit -> U2<Leaflet.Icon, Leaflet.DivIcon>
         abstract member setIcon: icon: Leaflet.Icon -> Marker<'P>
         abstract member setIcon: icon: Leaflet.DivIcon -> Marker<'P>
-        abstract member setIcon: icon: U2<Leaflet.Icon, Leaflet.DivIcon> -> Marker<'P>
         abstract member setOpacity: opacity: float -> Marker<'P>
         abstract member getElement: unit -> Glutinum.Web.HTMLElement option
         abstract member dragging: Leaflet.Handler option with get, set

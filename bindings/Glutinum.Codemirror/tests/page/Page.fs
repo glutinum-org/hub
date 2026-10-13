@@ -1,7 +1,6 @@
 module Glutinum.Codemirror.Tests.Page
 
 open Fable.Core
-open Fable.Core.JsInterop
 open Glutinum
 
 open type Glutinum.Web.Exports
@@ -21,7 +20,7 @@ document.body.appendChild host |> ignore
 let view =
     Codemirror.Exports.EditorView(
         CodemirrorView.EditorViewConfig.Create(
-            doc = U2.Case1 "let answer = 42",
+            doc = "let answer = 42",
             extensions = Codemirror.Exports.basicSetup,
             parent = U2.Case1 host
         )
@@ -35,16 +34,9 @@ report "dom" $"cm-editor: {mounted}"
 let length = view.state.doc.length
 
 view.dispatch (
-    jsOptions<CodemirrorState.TransactionSpec> (fun spec ->
-        spec.changes <-
-            Some(
-                U3.Case1(
-                    CodemirrorState.ChangeSpec.U3.Case1.Create(
-                        from = length,
-                        insert = "\nlet other = 1"
-                    )
-                )
-            )
+    CodemirrorState.TransactionSpec.Create(
+        changes =
+            CodemirrorState.ChangeSpec.Cases.Case1.Create(from = length, insert = "\nlet other = 1")
     )
 )
 

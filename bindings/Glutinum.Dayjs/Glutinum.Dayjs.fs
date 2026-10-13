@@ -45,14 +45,14 @@ module Dayjs =
         [<ImportDefault("dayjs"); Emit("$0.extend($1...)")>]
         static member extend<'T> (plugin: Dayjs.dayjs_.PluginFunc<'T>, ?option: 'T) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs"); Emit("$0.locale($1...)")>]
-        static member locale (?preset: U2<string, Dayjs.ILocale>, ?``object``: Exports.locale__.``object``, ?isLocal: bool) : string = nativeOnly
+        static member locale (?preset: U2<string, Dayjs.ILocale>, ?``object``: Dayjs.Exports.locale__.``object``, ?isLocal: bool) : string = nativeOnly
         [<ImportDefault("dayjs"); Emit("$0.isDayjs($1...)")>]
         static member isDayjs (d: obj) : bool = nativeOnly
         [<ImportDefault("dayjs"); Emit("$0.unix($1...)")>]
         static member unix (t: float) : Dayjs.dayjs_.Dayjs = nativeOnly
         [<ImportDefault("dayjs")>]
         [<Emit("$0.Ls")>]
-        static member inline Ls: Exports.Ls__.Type = nativeOnly
+        static member inline Ls: Dayjs.Exports.Ls__.Type = nativeOnly
 
     module dayjs_ =
 
@@ -64,15 +64,15 @@ module Dayjs =
             [<Emit("$0.locale($1...)")>]
             abstract member locale: unit -> string
             [<Emit("$0.locale($1...)")>]
-            abstract member locale: preset: string * ?``object``: Exports.locale.``object`` * ?isLocal: bool -> string
+            abstract member locale: preset: string * ?``object``: Dayjs.dayjs_.Exports.locale.``object`` * ?isLocal: bool -> string
             [<Emit("$0.locale($1...)")>]
-            abstract member locale: preset: Dayjs.ILocale * ?``object``: Exports.locale.``object`` * ?isLocal: bool -> string
+            abstract member locale: preset: Dayjs.ILocale * ?``object``: Dayjs.dayjs_.Exports.locale.``object`` * ?isLocal: bool -> string
             [<Emit("$0.isDayjs($1...)")>]
             abstract member isDayjs: d: obj -> bool
             [<Emit("$0.unix($1...)")>]
             abstract member unix: t: float -> Dayjs.dayjs_.Dayjs
             [<Emit("$0.Ls")>]
-            abstract member Ls: Exports.Ls.Type
+            abstract member Ls: Dayjs.dayjs_.Exports.Ls.Type
             [<Emit("new $0.Dayjs($1...)")>]
             abstract member Dayjs: unit -> Dayjs
             [<Emit("new $0.Dayjs($1...)")>]
@@ -111,8 +111,42 @@ module Dayjs =
             [<ParamObject; Emit("$0")>]
             static member Create (?locale: string, ?format: string, ?utc: bool) : FormatObject = nativeOnly
 
+        [<RequireQualifiedAccess>]
+        [<Erase>]
         type OptionType =
-            U3<Dayjs.dayjs_.FormatObject, string, ResizeArray<string>>
+            | FormatObject of Dayjs.dayjs_.FormatObject
+            | String of string
+            | StringArray of ResizeArray<string>
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: Dayjs.dayjs_.FormatObject) : OptionType = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: Dayjs.dayjs_.FormatObject) : OptionType = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: string) : OptionType = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: string) : OptionType = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_Implicit(value: ResizeArray<string>) : OptionType = nativeOnly
+
+            [<Emit("$0")>]
+            static member op_ErasedCast(value: ResizeArray<string>) : OptionType = nativeOnly
+
+            /// Unchecked, the value as <c>FormatObject</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsFormatObject: Dayjs.dayjs_.FormatObject = nativeOnly
+
+            /// Unchecked, the value as <c>String</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsString: string = nativeOnly
+
+            /// Unchecked, the value as <c>StringArray</c> whatever case it holds
+            [<Emit("$0")>]
+            member _.AsStringArray: ResizeArray<string> = nativeOnly
 
         [<RequireQualifiedAccess>]
         [<StringEnum(CaseRules.None)>]
@@ -399,7 +433,7 @@ module Dayjs =
             /// </code>
             /// Docs: https://day.js.org/docs/en/get-set/day
             /// </summary>
-            abstract member day: unit -> Dayjs.day
+            abstract member day: unit -> Dayjs.dayjs_.Dayjs_.day
             /// <summary>
             /// Get the day of the week.
             ///
@@ -584,22 +618,6 @@ module Dayjs =
             /// </summary>
             abstract member set: unit: Dayjs.dayjs_.UnitTypeShort * value: float -> Dayjs.dayjs_.Dayjs
             /// <summary>
-            /// Generic setter, accepting unit as first argument, and value as second, returns a new instance with the applied changes.
-            ///
-            /// In general:
-            /// <code>
-            /// dayjs().set(unit, value) === dayjs()[unit](value)
-            /// </code>
-            /// Units are case insensitive, and support plural and short forms.
-            /// <code>
-            /// dayjs().set('date', 1)
-            /// dayjs().set('month', 3) // April
-            /// dayjs().set('second', 30)
-            /// </code>
-            /// Docs: https://day.js.org/docs/en/get-set/set
-            /// </summary>
-            abstract member set: unit: Dayjs.dayjs_.UnitType * value: float -> Dayjs.dayjs_.Dayjs
-            /// <summary>
             /// String getter, returns the corresponding information getting from Day.js object.
             ///
             /// In general:
@@ -647,22 +665,6 @@ module Dayjs =
             /// Docs: https://day.js.org/docs/en/get-set/get
             /// </summary>
             abstract member get: unit: Dayjs.dayjs_.UnitTypeShort -> float
-            /// <summary>
-            /// String getter, returns the corresponding information getting from Day.js object.
-            ///
-            /// In general:
-            /// <code>
-            /// dayjs().get(unit) === dayjs()[unit]()
-            /// </code>
-            /// Units are case insensitive, and support plural and short forms.
-            /// <code>
-            /// dayjs().get('year')
-            /// dayjs().get('month') // start 0
-            /// dayjs().get('date')
-            /// </code>
-            /// Docs: https://day.js.org/docs/en/get-set/get
-            /// </summary>
-            abstract member get: unit: Dayjs.dayjs_.UnitType -> float
             /// <summary>
             /// Returns a cloned Day.js object with a specified amount of time added.
             /// <code>
@@ -1257,9 +1259,8 @@ module Dayjs =
             /// </summary>
             abstract member isAfter: date: Dayjs.dayjs_.Dayjs * ?unit: Dayjs.dayjs_.OpUnitType -> bool
             abstract member locale: unit -> string
-            abstract member locale: preset: string * ?``object``: Dayjs.locale.``object`` -> Dayjs.dayjs_.Dayjs
-            abstract member locale: preset: Dayjs.ILocale * ?``object``: Dayjs.locale.``object`` -> Dayjs.dayjs_.Dayjs
-            abstract member locale: preset: U2<string, Dayjs.ILocale> * ?``object``: Dayjs.locale.``object`` -> Dayjs.dayjs_.Dayjs
+            abstract member locale: preset: string * ?``object``: Dayjs.dayjs_.Dayjs_.locale.``object`` -> Dayjs.dayjs_.Dayjs
+            abstract member locale: preset: Dayjs.ILocale * ?``object``: Dayjs.dayjs_.Dayjs_.locale.``object`` -> Dayjs.dayjs_.Dayjs
 
         type PluginFunc<'T> =
             delegate of option: 'T * c: Dayjs.dayjs_.Dayjs * d: (Dayjs.dayjs_.ConfigType option -> Dayjs.dayjs_.Dayjs) -> unit
@@ -1267,7 +1268,7 @@ module Dayjs =
         type PluginFunc =
             PluginFunc<obj>
 
-        module Dayjs =
+        module Dayjs_ =
 
             [<RequireQualifiedAccess>]
             type day =
@@ -1292,8 +1293,8 @@ module Dayjs =
                     abstract member monthsShort: ResizeArray<string> option with get, set
                     abstract member weekdaysMin: ResizeArray<string> option with get, set
                     abstract member ordinal: (float -> U2<float, string>) option with get, set
-                    abstract member formats: Dayjs.locale.``object``.Partial.formats option with get, set
-                    abstract member relativeTime: Dayjs.locale.``object``.Partial.relativeTime option with get, set
+                    abstract member formats: Dayjs.dayjs_.Dayjs_.locale.``object``.Partial.formats option with get, set
+                    abstract member relativeTime: Dayjs.dayjs_.Dayjs_.locale.``object``.Partial.relativeTime option with get, set
 
                 module ``object`` =
 
@@ -1341,8 +1342,8 @@ module Dayjs =
                     abstract member monthsShort: ResizeArray<string> option with get, set
                     abstract member weekdaysMin: ResizeArray<string> option with get, set
                     abstract member ordinal: (float -> U2<float, string>) option with get, set
-                    abstract member formats: Exports.locale.``object``.Partial.formats option with get, set
-                    abstract member relativeTime: Exports.locale.``object``.Partial.relativeTime option with get, set
+                    abstract member formats: Dayjs.dayjs_.Exports.locale.``object``.Partial.formats option with get, set
+                    abstract member relativeTime: Dayjs.dayjs_.Exports.locale.``object``.Partial.relativeTime option with get, set
 
                 module ``object`` =
 
@@ -1443,7 +1444,7 @@ module Dayjs =
             type Locale =
                 inherit Dayjs.ILocale
                 [<ParamObject; Emit("$0")>]
-                static member Create (name: string, formats: Locale.formats, relativeTime: Locale.relativeTime, ?weekdays: ResizeArray<string>, ?months: ResizeArray<string>, ?weekStart: float, ?weekdaysShort: ResizeArray<string>, ?monthsShort: ResizeArray<string>, ?weekdaysMin: ResizeArray<string>, ?ordinal: (float -> U2<float, string>)) : Locale = nativeOnly
+                static member Create (name: string, formats: Dayjs.locale.locale_.Locale.formats, relativeTime: Dayjs.locale.locale_.Locale.relativeTime, ?weekdays: ResizeArray<string>, ?months: ResizeArray<string>, ?weekStart: float, ?weekdaysShort: ResizeArray<string>, ?monthsShort: ResizeArray<string>, ?weekdaysMin: ResizeArray<string>, ?ordinal: (float -> U2<float, string>)) : Locale = nativeOnly
 
             module Locale =
 
@@ -1531,8 +1532,8 @@ module Dayjs =
                 abstract member monthsShort: ResizeArray<string> option with get, set
                 abstract member weekdaysMin: ResizeArray<string> option with get, set
                 abstract member ordinal: (float -> U2<float, string>) option with get, set
-                abstract member formats: Exports.locale__.``object``.Partial.formats option with get, set
-                abstract member relativeTime: Exports.locale__.``object``.Partial.relativeTime option with get, set
+                abstract member formats: Dayjs.Exports.locale__.``object``.Partial.formats option with get, set
+                abstract member relativeTime: Dayjs.Exports.locale__.``object``.Partial.relativeTime option with get, set
 
             module ``object`` =
 

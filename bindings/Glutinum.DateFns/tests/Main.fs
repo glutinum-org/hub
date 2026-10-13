@@ -35,7 +35,7 @@ let main _ =
                     test (
                         "format with a locale of date-fns/locale",
                         fun _ ->
-                            let options = DateFns.FormatOptions.Create(locale = box Locales.fr)
+                            let options = DateFns.FormatOptions.Create(locale = Locales.fr)
 
                             assertThat
                                 (DateFns.format (today, "PPPP", options))
@@ -96,8 +96,7 @@ let main _ =
                     test (
                         "formatDistance in German",
                         fun _ ->
-                            let options =
-                                DateFns.FormatDistanceOptions.Create(locale = box Locales.de)
+                            let options = DateFns.FormatDistanceOptions.Create(locale = Locales.de)
 
                             let inTenDays: Date = DateFns.addDays (today, 10)
 

@@ -443,17 +443,42 @@ Text.empty{{=$0}}""")>]
 ChangeDesc.fromJSON($0)""")>]
         static member inline fromJSON (json: obj): CodemirrorState.ChangeDesc = nativeOnly
 
-    /// <summary>
-    /// This type is used as argument to
-    /// [<c>EditorState.changes</c>](https://codemirror.net/6/docs/ref/#state.EditorState.changes) and in the
-    /// [<c>changes</c> field](https://codemirror.net/6/docs/ref/#state.TransactionSpec.changes) of transaction
-    /// specs to succinctly describe document changes. It may either be a
-    /// plain object describing a change (a deletion, insertion, or
-    /// replacement, depending on which fields are present), a [change
-    /// set](https://codemirror.net/6/docs/ref/#state.ChangeSet), or an array of change specs.
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type ChangeSpec =
-        U3<ChangeSpec.U3.Case1, CodemirrorState.ChangeSet, ReadonlyArray<obj>>
+        | Case1 of ChangeSpec.Cases.Case1
+        | ChangeSet of CodemirrorState.ChangeSet
+        | ChangeSpecArray of ResizeArray<CodemirrorState.ChangeSpec>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ChangeSpec.Cases.Case1) : ChangeSpec = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ChangeSpec.Cases.Case1) : ChangeSpec = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: CodemirrorState.ChangeSet) : ChangeSpec = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: CodemirrorState.ChangeSet) : ChangeSpec = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<CodemirrorState.ChangeSpec>) : ChangeSpec = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<CodemirrorState.ChangeSpec>) : ChangeSpec = nativeOnly
+
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: ChangeSpec.Cases.Case1 = nativeOnly
+
+        /// Unchecked, the value as <c>ChangeSet</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsChangeSet: CodemirrorState.ChangeSet = nativeOnly
+
+        /// Unchecked, the value as <c>ChangeSpecArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsChangeSpecArray: ResizeArray<CodemirrorState.ChangeSpec> = nativeOnly
 
     /// <summary>
     /// A change set represents a group of modifications to a document. It
@@ -530,7 +555,7 @@ ChangeDesc.fromJSON($0)""")>]
         /// </summary>
         [<Emit("""import { ChangeSet } from "@codemirror/state";
 ChangeSet.of($0, $1, $2)""")>]
-        static member inline ``of`` (changes: ChangeSpec.U3.Case1, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
+        static member inline ``of`` (changes: ChangeSpec.Cases.Case1, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
         /// <summary>
         /// Create a change set for the given changes, for a document of the
         /// given length, using <c>lineSep</c> as line separator.
@@ -545,13 +570,6 @@ ChangeSet.of($0, $1, $2)""")>]
         [<Emit("""import { ChangeSet } from "@codemirror/state";
 ChangeSet.of($0, $1, $2)""")>]
         static member inline ``of`` (changes: ResizeArray<CodemirrorState.ChangeSpec>, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
-        /// <summary>
-        /// Create a change set for the given changes, for a document of the
-        /// given length, using <c>lineSep</c> as line separator.
-        /// </summary>
-        [<Emit("""import { ChangeSet } from "@codemirror/state";
-ChangeSet.of($0, $1, $2)""")>]
-        static member inline ``of`` (changes: CodemirrorState.ChangeSpec, length: float, ?lineSep: string): CodemirrorState.ChangeSet = nativeOnly
         /// <summary>
         /// Create an empty changeset of the given length.
         /// </summary>
@@ -809,13 +827,13 @@ EditorSelection.undirectionalRange($0, $1)""")>]
         /// Returns a facet reader for this facet, which can be used to
         /// [read](https://codemirror.net/6/docs/ref/#state.EditorState.facet) it but not to define values for it.
         /// </summary>
-        abstract member reader: Facet.reader<'Output> with get
+        abstract member reader: CodemirrorState.FacetReader<'Output> with get
         /// <summary>
         /// Define a new facet.
         /// </summary>
         [<Emit("""import { Facet } from "@codemirror/state";
 Facet.define($0)""")>]
-        static member inline define (?config: Facet.define__.config<'Output, 'Input>): CodemirrorState.Facet<'Input, 'Output> = nativeOnly
+        static member inline define (?config: CodemirrorState.FacetConfig<'Input, 'Output>): CodemirrorState.Facet<'Input, 'Output> = nativeOnly
         /// <summary>
         /// Returns an extension that adds the given value to this facet.
         /// </summary>
@@ -834,7 +852,7 @@ Facet.define($0)""")>]
         /// Create an extension that computes zero or more values for this
         /// facet from a state.
         /// </summary>
-        abstract member computeN: deps: ResizeArray<CodemirrorState.Slot<obj>> * get: (CodemirrorState.EditorState -> ReadonlyArray<'Input>) -> CodemirrorState.Extension
+        abstract member computeN: deps: ResizeArray<CodemirrorState.Slot<obj>> * get: (CodemirrorState.EditorState -> ResizeArray<'Input>) -> CodemirrorState.Extension
         /// <summary>
         /// Shorthand method for registering a facet source with a state
         /// field as input. If the field's type corresponds to this facet's
@@ -876,20 +894,28 @@ Facet.define($0)""")>]
     type Slot<'T> =
         | doc
         | selection
-        | Case1 of Slot.Cases.Case1<'T>
+        | Case1 of CodemirrorState.FacetReader<'T>
         | Case2 of CodemirrorState.StateField<'T>
 
         [<Emit("$0")>]
-        static member op_Implicit(value: Slot.Cases.Case1<'T>) : Slot<'T> = nativeOnly
+        static member op_Implicit(value: CodemirrorState.FacetReader<'T>) : Slot<'T> = nativeOnly
 
         [<Emit("$0")>]
-        static member op_ErasedCast(value: Slot.Cases.Case1<'T>) : Slot<'T> = nativeOnly
+        static member op_ErasedCast(value: CodemirrorState.FacetReader<'T>) : Slot<'T> = nativeOnly
 
         [<Emit("$0")>]
         static member op_Implicit(value: CodemirrorState.StateField<'T>) : Slot<'T> = nativeOnly
 
         [<Emit("$0")>]
         static member op_ErasedCast(value: CodemirrorState.StateField<'T>) : Slot<'T> = nativeOnly
+
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: CodemirrorState.FacetReader<'T> = nativeOnly
+
+        /// Unchecked, the value as <c>Case2</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase2: CodemirrorState.StateField<'T> = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -946,7 +972,7 @@ Facet.define($0)""")>]
         /// </summary>
         [<Emit("""import { StateField } from "@codemirror/state";
 StateField.define($0)""")>]
-        static member inline define (config: StateField.define__.config<'Value>): CodemirrorState.StateField<'Value> = nativeOnly
+        static member inline define (config: CodemirrorState.StateFieldSpec<'Value>): CodemirrorState.StateField<'Value> = nativeOnly
         /// <summary>
         /// Returns an extension that enables this field and overrides the
         /// way it is initialized. Can be useful when you need to provide a
@@ -960,18 +986,31 @@ StateField.define($0)""")>]
         /// </summary>
         abstract member extension: CodemirrorState.Extension with get
 
-    /// <summary>
-    /// Extension values can be
-    /// [provided](https://codemirror.net/6/docs/ref/#state.EditorStateConfig.extensions) when creating a
-    /// state to attach various kinds of configuration and behavior
-    /// information. They can either be built-in extension-providing
-    /// objects, such as [state fields](https://codemirror.net/6/docs/ref/#state.StateField) or [facet
-    /// providers](https://codemirror.net/6/docs/ref/#state.Facet.of), or objects with an extension in its
-    /// <c>extension</c> property. Extensions can be nested in arrays
-    /// arbitrarily deep—they will be flattened when processed.
-    /// </summary>
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type Extension =
-        U2<Extension.U2.Case1, ReadonlyArray<obj>>
+        | Case1 of Extension.Cases.Case1
+        | ExtensionArray of ResizeArray<CodemirrorState.Extension>
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: Extension.Cases.Case1) : Extension = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: Extension.Cases.Case1) : Extension = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: ResizeArray<CodemirrorState.Extension>) : Extension = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: ResizeArray<CodemirrorState.Extension>) : Extension = nativeOnly
+
+        /// Unchecked, the value as <c>Case1</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsCase1: Extension.Cases.Case1 = nativeOnly
+
+        /// Unchecked, the value as <c>ExtensionArray</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsExtensionArray: ResizeArray<CodemirrorState.Extension> = nativeOnly
 
     /// <summary>
     /// Extension compartments can be used to make a configuration
@@ -988,32 +1027,22 @@ StateField.define($0)""")>]
         /// Create an instance of this compartment to add to your [state
         /// configuration](https://codemirror.net/6/docs/ref/#state.EditorStateConfig.extensions).
         /// </summary>
-        abstract member ``of``: ext: Extension.U2.Case1 -> CodemirrorState.Extension
+        abstract member ``of``: ext: Extension.Cases.Case1 -> CodemirrorState.Extension
         /// <summary>
         /// Create an instance of this compartment to add to your [state
         /// configuration](https://codemirror.net/6/docs/ref/#state.EditorStateConfig.extensions).
         /// </summary>
         abstract member ``of``: ext: ResizeArray<CodemirrorState.Extension> -> CodemirrorState.Extension
         /// <summary>
-        /// Create an instance of this compartment to add to your [state
-        /// configuration](https://codemirror.net/6/docs/ref/#state.EditorStateConfig.extensions).
-        /// </summary>
-        abstract member ``of``: ext: CodemirrorState.Extension -> CodemirrorState.Extension
-        /// <summary>
         /// Create an [effect](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) that
         /// reconfigures this compartment.
         /// </summary>
-        abstract member reconfigure: content: Extension.U2.Case1 -> CodemirrorState.StateEffect<obj>
+        abstract member reconfigure: content: Extension.Cases.Case1 -> CodemirrorState.StateEffect<obj>
         /// <summary>
         /// Create an [effect](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) that
         /// reconfigures this compartment.
         /// </summary>
         abstract member reconfigure: content: ResizeArray<CodemirrorState.Extension> -> CodemirrorState.StateEffect<obj>
-        /// <summary>
-        /// Create an [effect](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) that
-        /// reconfigures this compartment.
-        /// </summary>
-        abstract member reconfigure: content: CodemirrorState.Extension -> CodemirrorState.StateEffect<obj>
         /// <summary>
         /// Get the current content of the compartment in the state, or
         /// <c>undefined</c> if it isn't present.
@@ -1197,11 +1226,11 @@ StateEffect.appendConfig{{=$0}}""")>]
         /// changes, those positions should refer to positions in the
         /// updated document.
         /// </summary>
-        abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
+        abstract member effects: U2<CodemirrorState.StateEffect<obj>, ResizeArray<CodemirrorState.StateEffect<obj>>> option with get, set
         /// <summary>
         /// Set [annotations](https://codemirror.net/6/docs/ref/#state.Annotation) for this transaction.
         /// </summary>
-        abstract member annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>> option with get, set
+        abstract member annotations: U2<CodemirrorState.Annotation<obj>, ResizeArray<CodemirrorState.Annotation<obj>>> option with get, set
         /// <summary>
         /// Shorthand for <c>annotations:</c> [<c>Transaction.userEvent</c>](https://codemirror.net/6/docs/ref/#state.Transaction^userEvent)<c>.of(...)</c>.
         /// </summary>
@@ -1230,7 +1259,7 @@ StateEffect.appendConfig{{=$0}}""")>]
         /// </summary>
         abstract member sequential: bool option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?changes: CodemirrorState.ChangeSpec, ?selection: U2<CodemirrorState.EditorSelection, TransactionSpec.selection.U2.Case2>, ?effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>>, ?annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>>, ?userEvent: string, ?scrollIntoView: bool, ?filter: bool, ?sequential: bool) : TransactionSpec = nativeOnly
+        static member Create (?changes: CodemirrorState.ChangeSpec, ?selection: U2<CodemirrorState.EditorSelection, TransactionSpec.selection.U2.Case2>, ?effects: U2<CodemirrorState.StateEffect<obj>, ResizeArray<CodemirrorState.StateEffect<obj>>>, ?annotations: U2<CodemirrorState.Annotation<obj>, ResizeArray<CodemirrorState.Annotation<obj>>>, ?userEvent: string, ?scrollIntoView: bool, ?filter: bool, ?sequential: bool) : TransactionSpec = nativeOnly
 
     /// <summary>
     /// Changes to the editor state are grouped into transactions.
@@ -1414,23 +1443,7 @@ Transaction.remote{{=$0}}""")>]
         /// </summary>
         abstract member extensions: CodemirrorState.Extension option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (selection: CodemirrorState.EditorSelection, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (selection: EditorStateConfig.selection.U2.Case2, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (doc: string, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (doc: string, selection: CodemirrorState.EditorSelection, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (doc: string, selection: EditorStateConfig.selection.U2.Case2, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (doc: CodemirrorState.Text, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (doc: CodemirrorState.Text, selection: CodemirrorState.EditorSelection, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
-        [<ParamObject; Emit("$0")>]
-        static member Create (doc: CodemirrorState.Text, selection: EditorStateConfig.selection.U2.Case2, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
+        static member Create (?doc: U2<string, CodemirrorState.Text>, ?selection: U2<CodemirrorState.EditorSelection, EditorStateConfig.selection.U2.Case2>, ?extensions: CodemirrorState.Extension) : EditorStateConfig = nativeOnly
 
     /// <summary>
     /// The editor state class is a persistent (immutable) data structure.
@@ -1492,11 +1505,6 @@ Transaction.remote{{=$0}}""")>]
         /// </summary>
         abstract member replaceSelection: text: CodemirrorState.Text -> CodemirrorState.TransactionSpec
         /// <summary>
-        /// Create a [transaction spec](https://codemirror.net/6/docs/ref/#state.TransactionSpec) that
-        /// replaces every selection range with the given content.
-        /// </summary>
-        abstract member replaceSelection: text: U2<string, CodemirrorState.Text> -> CodemirrorState.TransactionSpec
-        /// <summary>
         /// Create a set of changes and a new selection by running the given
         /// function for each range in the active selection. The function
         /// can return an optional set of changes (in the coordinate space
@@ -1519,7 +1527,7 @@ Transaction.remote{{=$0}}""")>]
         /// description, taking the state's document length and line
         /// separator into account.
         /// </summary>
-        abstract member changes: spec: ChangeSpec.U3.Case1 -> CodemirrorState.ChangeSet
+        abstract member changes: spec: ChangeSpec.Cases.Case1 -> CodemirrorState.ChangeSet
         /// <summary>
         /// Create a [change set](https://codemirror.net/6/docs/ref/#state.ChangeSet) from the given change
         /// description, taking the state's document length and line
@@ -1545,7 +1553,7 @@ Transaction.remote{{=$0}}""")>]
         /// <summary>
         /// Get the value of a state [facet](https://codemirror.net/6/docs/ref/#state.Facet).
         /// </summary>
-        abstract member facet<'Output>: facet: EditorState.facet.facet<'Output> -> 'Output
+        abstract member facet<'Output>: facet: CodemirrorState.FacetReader<'Output> -> 'Output
         /// <summary>
         /// Convert this state to a JSON-serializable object. When custom
         /// fields should be serialized, you can pass them in as an object
@@ -1647,9 +1655,9 @@ EditorState.readOnly{{=$0}}""")>]
         [<Emit("""import { EditorState } from "@codemirror/state";
 EditorState.phrases{{=$0}}""")>]
         static member inline phrases
-            with get () : CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__>> =
+            with get () : CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__>>) =
+            and set (value: CodemirrorState.Facet<EditorState.phrases__, ReadonlyArray<EditorState.phrases__.Item>>) =
                 nativeOnly
         /// <summary>
         /// Look up a translation for the given phrase (via the
@@ -1669,9 +1677,9 @@ EditorState.phrases{{=$0}}""")>]
         [<Emit("""import { EditorState } from "@codemirror/state";
 EditorState.languageData{{=$0}}""")>]
         static member inline languageData
-            with get () : CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__>> =
+            with get () : CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__>>) =
+            and set (value: CodemirrorState.Facet<EditorState.languageData__, ReadonlyArray<EditorState.languageData__.Item>>) =
                 nativeOnly
         /// <summary>
         /// Find the values for a given language data field, provided by the
@@ -1726,9 +1734,9 @@ EditorState.languageData{{=$0}}""")>]
         [<Emit("""import { EditorState } from "@codemirror/state";
 EditorState.changeFilter{{=$0}}""")>]
         static member inline changeFilter
-            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<bool, ResizeArray<float>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<bool, ResizeArray<float>>)>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<bool, ReadonlyArray<float>>)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<bool, ResizeArray<float>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<bool, ResizeArray<float>>)>>) =
                 nativeOnly
         /// <summary>
         /// Facet used to register a hook that gets a chance to update or
@@ -1752,9 +1760,9 @@ EditorState.changeFilter{{=$0}}""")>]
         [<Emit("""import { EditorState } from "@codemirror/state";
 EditorState.transactionFilter{{=$0}}""")>]
         static member inline transactionFilter
-            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ResizeArray<CodemirrorState.TransactionSpec>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ResizeArray<CodemirrorState.TransactionSpec>>)>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ReadonlyArray<CodemirrorState.TransactionSpec>>)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ResizeArray<CodemirrorState.TransactionSpec>>), ReadonlyArray<(CodemirrorState.Transaction -> U2<CodemirrorState.TransactionSpec, ResizeArray<CodemirrorState.TransactionSpec>>)>>) =
                 nativeOnly
         /// <summary>
         /// This is a more limited form of
@@ -1772,9 +1780,9 @@ EditorState.transactionFilter{{=$0}}""")>]
         [<Emit("""import { EditorState } from "@codemirror/state";
 EditorState.transactionExtender{{=$0}}""")>]
         static member inline transactionExtender
-            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender__.Item option)>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorState.Transaction -> EditorState.transactionExtender__ option), ReadonlyArray<(CodemirrorState.Transaction -> EditorState.transactionExtender__.Item option)>>) =
                 nativeOnly
 
     /// <summary>
@@ -1966,7 +1974,7 @@ EditorState.transactionExtender{{=$0}}""")>]
         /// </summary>
         abstract member filterTo: float option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?add: ReadonlyArray<CodemirrorState.Range<'T>>, ?sort: bool, ?filter: RangeSetUpdate.filter<'T>, ?filterFrom: float, ?filterTo: float) : RangeSetUpdate<'T> = nativeOnly
+        static member Create (?add: ResizeArray<CodemirrorState.Range<'T>>, ?sort: bool, ?filter: RangeSetUpdate.filter<'T>, ?filterFrom: float, ?filterTo: float) : RangeSetUpdate<'T> = nativeOnly
 
     /// <summary>
     /// A range set stores a collection of [ranges](https://codemirror.net/6/docs/ref/#state.Range) in a
@@ -1991,7 +1999,7 @@ EditorState.transactionExtender{{=$0}}""")>]
         /// from being a subtype of <c>RangeSet<Y></c> when <c>X</c> is a subtype of
         /// <c>Y</c>.)
         /// </summary>
-        abstract member update<'U>: updateSpec: RangeSet.update.updateSpec<'U> -> CodemirrorState.RangeSet<'T>
+        abstract member update<'U>: updateSpec: CodemirrorState.RangeSetUpdate<'U> -> CodemirrorState.RangeSet<'T>
         /// <summary>
         /// Map this range set through a set of changes, return the new set.
         /// </summary>
@@ -2060,16 +2068,6 @@ RangeSet.of($0, $1)""")>]
 RangeSet.of($0, $1)""")>]
         static member inline ``of`` (ranges: CodemirrorState.Range<'T>, ?sort: bool): CodemirrorState.RangeSet<'T> = nativeOnly
         /// <summary>
-        /// Create a range set for the given range or array of ranges. By
-        /// default, this expects the ranges to be _sorted_ (by start
-        /// position and, if two start at the same position,
-        /// <c>value.startSide</c>). You can pass <c>true</c> as second argument to
-        /// cause the method to sort them.
-        /// </summary>
-        [<Emit("""import { RangeSet } from "@codemirror/state";
-RangeSet.of($0, $1)""")>]
-        static member inline ``of`` (ranges: U2<ResizeArray<CodemirrorState.Range<'T>>, CodemirrorState.Range<'T>>, ?sort: bool): CodemirrorState.RangeSet<'T> = nativeOnly
-        /// <summary>
         /// Join an array of range sets into a single set.
         /// </summary>
         [<Emit("""import { RangeSet } from "@codemirror/state";
@@ -2136,7 +2134,7 @@ RangeSet.empty{{=$0}}""")>]
 
     module ChangeSpec =
 
-        module U3 =
+        module Cases =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -2174,89 +2172,6 @@ RangeSet.empty{{=$0}}""")>]
         type compareInput<'Input> =
             delegate of a: 'Input * b: 'Input -> bool
 
-    module Facet =
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type reader<'Output> =
-            /// <summary>
-            /// Dummy tag that makes sure TypeScript doesn't consider all object
-            /// types as conforming to this type. Not actually present on the
-            /// object.
-            /// </summary>
-            abstract member tag: 'Output with get, set
-            [<ParamObject; Emit("$0")>]
-            static member Create (tag: 'Output) : reader<'Output> = nativeOnly
-
-        module define__ =
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type config<'Output, 'Input> =
-                /// <summary>
-                /// How to combine the input values into a single output value. When
-                /// not given, the array of input values becomes the output. This
-                /// function will immediately be called on creating the facet, with
-                /// an empty array, to compute the facet's default value when no
-                /// inputs are present.
-                /// </summary>
-                abstract member combine: (ResizeArray<'Input> -> 'Output) option with get, set
-                /// <summary>
-                /// How to compare output values to determine whether the value of
-                /// the facet changed. Defaults to comparing by <c>===</c> or, if no
-                /// <c>combine</c> function was given, comparing each element of the
-                /// array with <c>===</c>.
-                /// </summary>
-                abstract member compare: Facet.define__.config.compare<'Output> option with get, set
-                /// <summary>
-                /// How to compare input values to avoid recomputing the output
-                /// value when no inputs changed. Defaults to comparing with <c>===</c>.
-                /// </summary>
-                abstract member compareInput: Facet.define__.config.compareInput<'Input> option with get, set
-                /// <summary>
-                /// Forbids dynamic inputs to this facet.
-                /// </summary>
-                abstract member ``static``: bool option with get, set
-                /// <summary>
-                /// If given, these extension(s) (or the result of calling the given
-                /// function with the facet) will be added to any state where this
-                /// facet is provided. (Note that, while a facet's default value can
-                /// be read from a state even if the facet wasn't present in the
-                /// state at all, these extensions won't be added in that
-                /// situation.)
-                /// </summary>
-                abstract member enables: U2<CodemirrorState.Extension, (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension)> option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define__.config.compare<'Output>, ?compareInput: Facet.define__.config.compareInput<'Input>, ?``static``: bool) : config<'Output, 'Input> = nativeOnly
-                [<ParamObject; Emit("$0")>]
-                static member Create (enables: CodemirrorState.Extension, ?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define__.config.compare<'Output>, ?compareInput: Facet.define__.config.compareInput<'Input>, ?``static``: bool) : config<'Output, 'Input> = nativeOnly
-                [<ParamObject; Emit("$0")>]
-                static member Create (enables: (CodemirrorState.Facet<'Input, 'Output> -> CodemirrorState.Extension), ?combine: (ResizeArray<'Input> -> 'Output), ?compare: Facet.define__.config.compare<'Output>, ?compareInput: Facet.define__.config.compareInput<'Input>, ?``static``: bool) : config<'Output, 'Input> = nativeOnly
-
-            module config =
-
-                type compare<'Output> =
-                    delegate of a: 'Output * b: 'Output -> bool
-
-                type compareInput<'Input> =
-                    delegate of a: 'Input * b: 'Input -> bool
-
-    module Slot =
-
-        module Cases =
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type Case1<'T> =
-                /// <summary>
-                /// Dummy tag that makes sure TypeScript doesn't consider all object
-                /// types as conforming to this type. Not actually present on the
-                /// object.
-                /// </summary>
-                abstract member tag: 'T with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (tag: 'T) : Case1<'T> = nativeOnly
-
     module StateFieldSpec =
 
         type update<'Value> =
@@ -2271,69 +2186,9 @@ RangeSet.empty{{=$0}}""")>]
         type fromJSON<'Value> =
             delegate of json: obj * state: CodemirrorState.EditorState -> 'Value
 
-    module StateField =
-
-        module define__ =
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type config<'Value> =
-                /// <summary>
-                /// Creates the initial value for the field when a state is created.
-                /// </summary>
-                abstract member create: (CodemirrorState.EditorState -> 'Value) with get, set
-                /// <summary>
-                /// Compute a new value from the field's previous value and a
-                /// [transaction](https://codemirror.net/6/docs/ref/#state.Transaction).
-                /// </summary>
-                abstract member update: StateField.define__.config.update<'Value> with get, set
-                /// <summary>
-                /// Compare two values of the field, returning <c>true</c> when they are
-                /// the same. This is used to avoid recomputing facets that depend
-                /// on the field when its value did not change. Defaults to using
-                /// <c>===</c>.
-                /// </summary>
-                abstract member compare: StateField.define__.config.compare<'Value> option with get, set
-                /// <summary>
-                /// Provide extensions based on this field. The given function will
-                /// be called once with the initialized field. It will usually want
-                /// to call some facet's [<c>from</c>](https://codemirror.net/6/docs/ref/#state.Facet.from) method to
-                /// create facet inputs from this field, but can also return other
-                /// extensions that should be enabled when the field is present in a
-                /// configuration.
-                /// </summary>
-                abstract member provide: (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension) option with get, set
-                /// <summary>
-                /// A function used to serialize this field's content to JSON. Only
-                /// necessary when this field is included in the argument to
-                /// [<c>EditorState.toJSON</c>](https://codemirror.net/6/docs/ref/#state.EditorState.toJSON).
-                /// </summary>
-                abstract member toJSON: StateField.define__.config.toJSON<'Value> option with get, set
-                /// <summary>
-                /// A function that deserializes the JSON representation of this
-                /// field's content.
-                /// </summary>
-                abstract member fromJSON: StateField.define__.config.fromJSON<'Value> option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (create: (CodemirrorState.EditorState -> 'Value), update: StateField.define__.config.update<'Value>, ?compare: StateField.define__.config.compare<'Value>, ?provide: (CodemirrorState.StateField<'Value> -> CodemirrorState.Extension), ?toJSON: StateField.define__.config.toJSON<'Value>, ?fromJSON: StateField.define__.config.fromJSON<'Value>) : config<'Value> = nativeOnly
-
-            module config =
-
-                type update<'Value> =
-                    delegate of value: 'Value * transaction: CodemirrorState.Transaction -> 'Value
-
-                type compare<'Value> =
-                    delegate of a: 'Value * b: 'Value -> bool
-
-                type toJSON<'Value> =
-                    delegate of value: 'Value * state: CodemirrorState.EditorState -> unit
-
-                type fromJSON<'Value> =
-                    delegate of json: obj * state: CodemirrorState.EditorState -> 'Value
-
     module Extension =
 
-        module U2 =
+        module Cases =
 
             [<AllowNullLiteral>]
             [<Interface>]
@@ -2389,7 +2244,7 @@ RangeSet.empty{{=$0}}""")>]
             abstract member selection: CodemirrorState.EditorSelection with get, set
             abstract member effects: ReadonlyArray<CodemirrorState.StateEffect<obj>> with get, set
             [<ParamObject; Emit("$0")>]
-            static member Create (changes: CodemirrorState.ChangeSet, selection: CodemirrorState.EditorSelection, effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) : changeByRange = nativeOnly
+            static member Create (changes: CodemirrorState.ChangeSet, selection: CodemirrorState.EditorSelection, effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : changeByRange = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2398,7 +2253,7 @@ RangeSet.empty{{=$0}}""")>]
             abstract member Item: key: string -> string with get, set
 
         type languageData__ =
-            delegate of state: CodemirrorState.EditorState * pos: float * side: EditorState.languageData__.side -> ReadonlyArray<EditorState.languageData__.ReturnType>
+            delegate of state: CodemirrorState.EditorState * pos: float * side: EditorState.languageData__.side -> ResizeArray<EditorState.languageData__.ReturnType.Item>
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -2409,29 +2264,29 @@ RangeSet.empty{{=$0}}""")>]
             /// changes, those positions should refer to positions in the
             /// updated document.
             /// </summary>
-            abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
+            abstract member effects: U2<CodemirrorState.StateEffect<obj>, ResizeArray<CodemirrorState.StateEffect<obj>>> option with get, set
             /// <summary>
             /// Set [annotations](https://codemirror.net/6/docs/ref/#state.Annotation) for this transaction.
             /// </summary>
-            abstract member annotations: U2<CodemirrorState.Annotation<obj>, ReadonlyArray<CodemirrorState.Annotation<obj>>> option with get, set
+            abstract member annotations: U2<CodemirrorState.Annotation<obj>, ResizeArray<CodemirrorState.Annotation<obj>>> option with get, set
             [<ParamObject; Emit("$0")>]
             static member Create () : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
             static member Create (annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
-            static member Create (annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
+            static member Create (annotations: ResizeArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
             static member Create (effects: CodemirrorState.StateEffect<obj>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
             static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
-            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
+            static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: ResizeArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
-            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>) : transactionExtender__ = nativeOnly
+            static member Create (effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
-            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
+            static member Create (effects: ResizeArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : transactionExtender__ = nativeOnly
             [<ParamObject; Emit("$0")>]
-            static member Create (effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, annotations: ReadonlyArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
+            static member Create (effects: ResizeArray<CodemirrorState.StateEffect<obj>>, annotations: ResizeArray<CodemirrorState.Annotation<obj>>) : transactionExtender__ = nativeOnly
 
         module changeByRange =
 
@@ -2440,27 +2295,31 @@ RangeSet.empty{{=$0}}""")>]
             type f =
                 abstract member range: CodemirrorState.SelectionRange with get, set
                 abstract member changes: CodemirrorState.ChangeSpec option with get, set
-                abstract member effects: U2<CodemirrorState.StateEffect<obj>, ReadonlyArray<CodemirrorState.StateEffect<obj>>> option with get, set
+                abstract member effects: U2<CodemirrorState.StateEffect<obj>, ResizeArray<CodemirrorState.StateEffect<obj>>> option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (range: CodemirrorState.SelectionRange, ?changes: CodemirrorState.ChangeSpec) : f = nativeOnly
+                static member Create (range: CodemirrorState.SelectionRange) : f = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                static member Create (range: CodemirrorState.SelectionRange, effects: CodemirrorState.StateEffect<obj>, ?changes: CodemirrorState.ChangeSpec) : f = nativeOnly
+                static member Create (range: CodemirrorState.SelectionRange, effects: CodemirrorState.StateEffect<obj>) : f = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                static member Create (range: CodemirrorState.SelectionRange, effects: ReadonlyArray<CodemirrorState.StateEffect<obj>>, ?changes: CodemirrorState.ChangeSpec) : f = nativeOnly
-
-        module facet =
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type facet<'Output> =
-                /// <summary>
-                /// Dummy tag that makes sure TypeScript doesn't consider all object
-                /// types as conforming to this type. Not actually present on the
-                /// object.
-                /// </summary>
-                abstract member tag: 'Output with get, set
+                static member Create (range: CodemirrorState.SelectionRange, effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : f = nativeOnly
                 [<ParamObject; Emit("$0")>]
-                static member Create (tag: 'Output) : facet<'Output> = nativeOnly
+                static member Create (range: CodemirrorState.SelectionRange, changes: ChangeSpec.Cases.Case1) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: ChangeSpec.Cases.Case1, effects: CodemirrorState.StateEffect<obj>) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: ChangeSpec.Cases.Case1, effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: CodemirrorState.ChangeSet) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: CodemirrorState.ChangeSet, effects: CodemirrorState.StateEffect<obj>) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: CodemirrorState.ChangeSet, effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: ResizeArray<CodemirrorState.ChangeSpec>) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: ResizeArray<CodemirrorState.ChangeSpec>, effects: CodemirrorState.StateEffect<obj>) : f = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (range: CodemirrorState.SelectionRange, changes: ResizeArray<CodemirrorState.ChangeSpec>, effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : f = nativeOnly
 
         module toJSON =
 
@@ -2478,6 +2337,14 @@ RangeSet.empty{{=$0}}""")>]
                 [<EmitIndexer>]
                 abstract member Item: prop: string -> CodemirrorState.StateField<obj> with get, set
 
+        module phrases__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type Item =
+                [<EmitIndexer>]
+                abstract member Item: key: string -> string with get, set
+
         module languageData__ =
 
             [<RequireQualifiedAccess>]
@@ -2486,11 +2353,32 @@ RangeSet.empty{{=$0}}""")>]
                 | ``0`` = 0
                 | ``1`` = 1
 
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type ReturnType =
-                [<EmitIndexer>]
-                abstract member Item: name: string -> obj with get, set
+            type Item =
+                delegate of state: CodemirrorState.EditorState * pos: float * side: EditorState.languageData__.Item.side -> ResizeArray<EditorState.languageData__.Item.ReturnType.Item>
+
+            module ReturnType =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type Item =
+                    [<EmitIndexer>]
+                    abstract member Item: name: string -> obj with get, set
+
+            module Item =
+
+                [<RequireQualifiedAccess>]
+                type side =
+                    | _MINUS_1 = -1
+                    | ``0`` = 0
+                    | ``1`` = 1
+
+                module ReturnType =
+
+                    [<AllowNullLiteral>]
+                    [<Interface>]
+                    type Item =
+                        [<EmitIndexer>]
+                        abstract member Item: name: string -> obj with get, set
 
         module languageDataAt =
 
@@ -2499,6 +2387,41 @@ RangeSet.empty{{=$0}}""")>]
                 | _MINUS_1 = -1
                 | ``0`` = 0
                 | ``1`` = 1
+
+        module transactionExtender__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type Item =
+                /// <summary>
+                /// Attach [state effects](https://codemirror.net/6/docs/ref/#state.StateEffect) to this transaction.
+                /// Again, when they contain positions and this same spec makes
+                /// changes, those positions should refer to positions in the
+                /// updated document.
+                /// </summary>
+                abstract member effects: U2<CodemirrorState.StateEffect<obj>, ResizeArray<CodemirrorState.StateEffect<obj>>> option with get, set
+                /// <summary>
+                /// Set [annotations](https://codemirror.net/6/docs/ref/#state.Annotation) for this transaction.
+                /// </summary>
+                abstract member annotations: U2<CodemirrorState.Annotation<obj>, ResizeArray<CodemirrorState.Annotation<obj>>> option with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create () : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (annotations: CodemirrorState.Annotation<obj>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (annotations: ResizeArray<CodemirrorState.Annotation<obj>>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (effects: CodemirrorState.StateEffect<obj>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: CodemirrorState.Annotation<obj>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (effects: CodemirrorState.StateEffect<obj>, annotations: ResizeArray<CodemirrorState.Annotation<obj>>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (effects: ResizeArray<CodemirrorState.StateEffect<obj>>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (effects: ResizeArray<CodemirrorState.StateEffect<obj>>, annotations: CodemirrorState.Annotation<obj>) : Item = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (effects: ResizeArray<CodemirrorState.StateEffect<obj>>, annotations: ResizeArray<CodemirrorState.Annotation<obj>>) : Item = nativeOnly
 
     module StateCommand =
 
@@ -2516,46 +2439,6 @@ RangeSet.empty{{=$0}}""")>]
             delegate of from: float * ``to``: float * value: 'T -> bool
 
     module RangeSet =
-
-        module update =
-
-            [<AllowNullLiteral>]
-            [<Interface>]
-            type updateSpec<'U> =
-                /// <summary>
-                /// An array of ranges to add. If given, this should be sorted by
-                /// <c>from</c> position and <c>startSide</c> unless
-                /// [<c>sort</c>](https://codemirror.net/6/docs/ref/#state.RangeSet.update^updateSpec.sort) is given as
-                /// <c>true</c>.
-                /// </summary>
-                abstract member add: ReadonlyArray<CodemirrorState.Range<'U>> option with get, set
-                /// <summary>
-                /// Indicates whether the library should sort the ranges in <c>add</c>.
-                /// Defaults to <c>false</c>.
-                /// </summary>
-                abstract member sort: bool option with get, set
-                /// <summary>
-                /// Filter the ranges already in the set. Only those for which this
-                /// function returns <c>true</c> are kept.
-                /// </summary>
-                abstract member filter: RangeSet.update.updateSpec.filter<'U> option with get, set
-                /// <summary>
-                /// Can be used to limit the range on which the filter is
-                /// applied. Filtering only a small range, as opposed to the entire
-                /// set, can make updates cheaper.
-                /// </summary>
-                abstract member filterFrom: float option with get, set
-                /// <summary>
-                /// The end position to apply the filter to.
-                /// </summary>
-                abstract member filterTo: float option with get, set
-                [<ParamObject; Emit("$0")>]
-                static member Create (?add: ReadonlyArray<CodemirrorState.Range<'U>>, ?sort: bool, ?filter: RangeSet.update.updateSpec.filter<'U>, ?filterFrom: float, ?filterTo: float) : updateSpec<'U> = nativeOnly
-
-            module updateSpec =
-
-                type filter<'U> =
-                    delegate of from: float * ``to``: float * value: 'U -> bool
 
         module between =
 
@@ -2737,12 +2620,6 @@ module CodemirrorView =
         [<Import("placeholder", "@codemirror/view")>]
         static member placeholder (content: (CodemirrorView.EditorView -> Glutinum.Web.HTMLElement)) : CodemirrorState.Extension = nativeOnly
         /// <summary>
-        /// Extension that enables a placeholder—a piece of example content
-        /// to show when the editor is empty.
-        /// </summary>
-        [<Import("placeholder", "@codemirror/view")>]
-        static member placeholder (content: U3<string, Glutinum.Web.HTMLElement, (CodemirrorView.EditorView -> Glutinum.Web.HTMLElement)>) : CodemirrorState.Extension = nativeOnly
-        /// <summary>
         /// Define a layer.
         /// </summary>
         [<Import("layer", "@codemirror/view")>]
@@ -2889,7 +2766,7 @@ module CodemirrorView =
         /// Should not provide widgets with a <c>toDOM</c> method.
         /// </summary>
         [<Import("gutterWidgetClass", "@codemirror/view")>]
-        static member inline gutterWidgetClass: CodemirrorState.Facet<Exports.gutterWidgetClass__.Type, ReadonlyArray<Exports.gutterWidgetClass__.Type>> = nativeOnly
+        static member inline gutterWidgetClass: CodemirrorState.Facet<Exports.gutterWidgetClass__.Type, ReadonlyArray<Exports.gutterWidgetClass__.Type.Item>> = nativeOnly
         /// <summary>
         /// Define an editor gutter. The order in which the gutters appear is
         /// determined by their extension priority.
@@ -2917,7 +2794,7 @@ module CodemirrorView =
         /// Facet used to create markers in the line number gutter next to widgets.
         /// </summary>
         [<Import("lineNumberWidgetMarker", "@codemirror/view")>]
-        static member inline lineNumberWidgetMarker: CodemirrorState.Facet<Exports.lineNumberWidgetMarker__.Type, ReadonlyArray<Exports.lineNumberWidgetMarker__.Type>> = nativeOnly
+        static member inline lineNumberWidgetMarker: CodemirrorState.Facet<Exports.lineNumberWidgetMarker__.Type, ReadonlyArray<Exports.lineNumberWidgetMarker__.Type.Item>> = nativeOnly
         /// <summary>
         /// Create a line number gutter extension.
         /// </summary>
@@ -3336,14 +3213,6 @@ Decoration.set($0, $1)""")>]
 Decoration.set($0, $1)""")>]
         static member inline set (``of``: ResizeArray<CodemirrorState.Range<CodemirrorView.Decoration>>, ?sort: bool): CodemirrorView.DecorationSet = nativeOnly
         /// <summary>
-        /// Build a [<c>DecorationSet</c>](https://codemirror.net/6/docs/ref/#view.DecorationSet) from the given
-        /// decorated range or ranges. If the ranges aren't already sorted,
-        /// pass <c>true</c> for <c>sort</c> to make the library sort them for you.
-        /// </summary>
-        [<Emit("""import { Decoration } from "@codemirror/view";
-Decoration.set($0, $1)""")>]
-        static member inline set (``of``: U2<CodemirrorState.Range<CodemirrorView.Decoration>, ResizeArray<CodemirrorState.Range<CodemirrorView.Decoration>>>, ?sort: bool): CodemirrorView.DecorationSet = nativeOnly
-        /// <summary>
         /// The empty set of decorations.
         /// </summary>
         [<Emit("""import { Decoration } from "@codemirror/view";
@@ -3413,12 +3282,6 @@ BlockWrapper.set($0, $1)""")>]
         [<Emit("""import { BlockWrapper } from "@codemirror/view";
 BlockWrapper.set($0, $1)""")>]
         static member inline set (``of``: ResizeArray<CodemirrorState.Range<CodemirrorView.BlockWrapper>>, ?sort: bool): CodemirrorState.RangeSet<CodemirrorView.BlockWrapper> = nativeOnly
-        /// <summary>
-        /// Create a range set from the given block wrapper ranges.
-        /// </summary>
-        [<Emit("""import { BlockWrapper } from "@codemirror/view";
-BlockWrapper.set($0, $1)""")>]
-        static member inline set (``of``: U2<CodemirrorState.Range<CodemirrorView.BlockWrapper>, ResizeArray<CodemirrorState.Range<CodemirrorView.BlockWrapper>>>, ?sort: bool): CodemirrorState.RangeSet<CodemirrorView.BlockWrapper> = nativeOnly
 
     /// <summary>
     /// Command functions are used in key bindings and other types of user
@@ -3567,8 +3430,31 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// </summary>
         abstract member key: obj option with get, set
 
+    [<RequireQualifiedAccess>]
+    [<Erase>]
     type AttrSource =
-        U2<CodemirrorView.Attrs, (CodemirrorView.EditorView -> CodemirrorView.Attrs option)>
+        | Attrs of CodemirrorView.Attrs
+        | Function of (CodemirrorView.EditorView -> CodemirrorView.Attrs option)
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: CodemirrorView.Attrs) : AttrSource = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: CodemirrorView.Attrs) : AttrSource = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_Implicit(value: (CodemirrorView.EditorView -> CodemirrorView.Attrs option)) : AttrSource = nativeOnly
+
+        [<Emit("$0")>]
+        static member op_ErasedCast(value: (CodemirrorView.EditorView -> CodemirrorView.Attrs option)) : AttrSource = nativeOnly
+
+        /// Unchecked, the value as <c>Attrs</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsAttrs: CodemirrorView.Attrs = nativeOnly
+
+        /// Unchecked, the value as <c>Function</c> whatever case it holds
+        [<Emit("$0")>]
+        member _.AsFunction: (CodemirrorView.EditorView -> CodemirrorView.Attrs option) = nativeOnly
 
     /// <summary>
     /// View [plugins](https://codemirror.net/6/docs/ref/#view.ViewPlugin) are given instances of this
@@ -3702,7 +3588,7 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// The type of element this is. When querying lines, this may be
         /// an array of all the blocks that make up the line.
         /// </summary>
-        abstract member ``type``: U2<CodemirrorView.BlockType, ReadonlyArray<CodemirrorView.BlockInfo>> with get
+        abstract member ``type``: U2<CodemirrorView.BlockType, ResizeArray<CodemirrorView.BlockInfo>> with get
         /// <summary>
         /// The end of the element as a document position.
         /// </summary>
@@ -3804,7 +3690,7 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// these ranges, which are the subset of the viewport that is
         /// actually drawn.
         /// </summary>
-        abstract member visibleRanges: ReadonlyArray<EditorView.visibleRanges> with get
+        abstract member visibleRanges: ReadonlyArray<EditorView.visibleRanges.Item> with get
         /// <summary>
         /// Returns false when the editor is entirely scrolled out of view
         /// or otherwise hidden.
@@ -4158,11 +4044,6 @@ ViewPlugin.fromClass($0, $1)""")>]
         /// </summary>
         abstract member setRoot: root: Glutinum.Web.ShadowRoot -> unit
         /// <summary>
-        /// Update the [root](https://codemirror.net/6/docs/ref/##view.EditorViewConfig.root) in which the editor lives. This is only
-        /// necessary when moving the editor's existing DOM to a new window or shadow root.
-        /// </summary>
-        abstract member setRoot: root: U2<Glutinum.Web.Document, Glutinum.Web.ShadowRoot> -> unit
-        /// <summary>
         /// Clean up this editor view, removing its element from the
         /// document, unregistering event handlers, and notifying
         /// plugins. The view instance can no longer be used after
@@ -4185,14 +4066,6 @@ EditorView.scrollIntoView($0, $1)""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.scrollIntoView($0, $1)""")>]
         static member inline scrollIntoView (pos: CodemirrorState.SelectionRange, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> = nativeOnly
-        /// <summary>
-        /// Returns an effect that can be
-        /// [added](https://codemirror.net/6/docs/ref/#state.TransactionSpec.effects) to a transaction to
-        /// cause it to scroll the given position or range into view.
-        /// </summary>
-        [<Emit("""import { EditorView } from "@codemirror/view";
-EditorView.scrollIntoView($0, $1)""")>]
-        static member inline scrollIntoView (pos: U2<float, CodemirrorState.SelectionRange>, ?options: EditorView.scrollIntoView__.options): CodemirrorState.StateEffect<obj> = nativeOnly
         /// <summary>
         /// Return an effect that resets the editor to its current (at the
         /// time this method was called) scroll position. Note that this
@@ -4296,9 +4169,9 @@ EditorView.domEventObservers($0)""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.inputHandler{{=$0}}""")>]
         static member inline inputHandler
-            with get () : CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__>> =
+            with get () : CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__>>) =
+            and set (value: CodemirrorState.Facet<EditorView.inputHandler__, ReadonlyArray<EditorView.inputHandler__.Item>>) =
                 nativeOnly
         /// <summary>
         /// Functions provided in this facet will be used to transform text
@@ -4307,9 +4180,9 @@ EditorView.inputHandler{{=$0}}""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.clipboardInputFilter{{=$0}}""")>]
         static member inline clipboardInputFilter
-            with get () : CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__>> =
+            with get () : CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__>>) =
+            and set (value: CodemirrorState.Facet<EditorView.clipboardInputFilter__, ReadonlyArray<EditorView.clipboardInputFilter__.Item>>) =
                 nativeOnly
         /// <summary>
         /// Transform text copied or dragged from the editor.
@@ -4317,9 +4190,9 @@ EditorView.clipboardInputFilter{{=$0}}""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.clipboardOutputFilter{{=$0}}""")>]
         static member inline clipboardOutputFilter
-            with get () : CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__>> =
+            with get () : CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__>>) =
+            and set (value: CodemirrorState.Facet<EditorView.clipboardOutputFilter__, ReadonlyArray<EditorView.clipboardOutputFilter__.Item>>) =
                 nativeOnly
         /// <summary>
         /// Scroll handlers can override how things are scrolled into view.
@@ -4330,9 +4203,9 @@ EditorView.clipboardOutputFilter{{=$0}}""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.scrollHandler{{=$0}}""")>]
         static member inline scrollHandler
-            with get () : CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler__>> =
+            with get () : CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler__>>) =
+            and set (value: CodemirrorState.Facet<EditorView.scrollHandler__, ReadonlyArray<EditorView.scrollHandler__.Item>>) =
                 nativeOnly
         /// <summary>
         /// This facet can be used to provide functions that create effects
@@ -4341,9 +4214,9 @@ EditorView.scrollHandler{{=$0}}""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.focusChangeEffect{{=$0}}""")>]
         static member inline focusChangeEffect
-            with get () : CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__>> =
+            with get () : CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__.Item>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__>>) =
+            and set (value: CodemirrorState.Facet<EditorView.focusChangeEffect__, ReadonlyArray<EditorView.focusChangeEffect__.Item>>) =
                 nativeOnly
         /// <summary>
         /// By default, the editor assumes all its content has the same
@@ -4548,9 +4421,9 @@ EditorView.cursorScrollMargin{{=$0}}""")>]
         [<Emit("""import { EditorView } from "@codemirror/view";
 EditorView.scrollMargins{{=$0}}""")>]
         static member inline scrollMargins
-            with get () : CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option)>> =
+            with get () : CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__.Item option)>> =
                 nativeOnly
-            and set (value: CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option)>>) =
+            and set (value: CodemirrorState.Facet<(CodemirrorView.EditorView -> EditorView.scrollMargins__ option), ReadonlyArray<(CodemirrorView.EditorView -> EditorView.scrollMargins__.Item option)>>) =
                 nativeOnly
         /// <summary>
         /// Create a theme extension. The first argument can be a
@@ -5062,7 +4935,7 @@ RectangleMarker.forRange($0, $1, $2)""")>]
     /// source](https://codemirror.net/6/docs/ref/#view.hoverTooltip^source).
     /// </summary>
     type HoverTooltipSource =
-        delegate of view: CodemirrorView.EditorView * pos: float * side: HoverTooltipSource.side -> U3<CodemirrorView.Tooltip, ReadonlyArray<CodemirrorView.Tooltip>, JS.Promise<U2<CodemirrorView.Tooltip, ReadonlyArray<CodemirrorView.Tooltip>> option>> option
+        delegate of view: CodemirrorView.EditorView * pos: float * side: HoverTooltipSource.side -> U3<CodemirrorView.Tooltip, ResizeArray<CodemirrorView.Tooltip>, JS.Promise<U2<CodemirrorView.Tooltip, ResizeArray<CodemirrorView.Tooltip>> option>> option
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -5217,7 +5090,7 @@ RectangleMarker.forRange($0, $1, $2)""")>]
         /// <summary>
         /// Retrieve a set of markers to use in this gutter.
         /// </summary>
-        abstract member markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ReadonlyArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>) option with get, set
+        abstract member markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ResizeArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>) option with get, set
         /// <summary>
         /// Can be used to optionally add a single marker to every line.
         /// </summary>
@@ -5252,7 +5125,7 @@ RectangleMarker.forRange($0, $1, $2)""")>]
         /// </summary>
         abstract member side: GutterConfig.side option with get, set
         [<ParamObject; Emit("$0")>]
-        static member Create (?``class``: string, ?renderEmptyElements: bool, ?markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ReadonlyArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>), ?lineMarker: GutterConfig.lineMarker, ?widgetMarker: GutterConfig.widgetMarker, ?lineMarkerChange: (CodemirrorView.ViewUpdate -> bool), ?initialSpacer: (CodemirrorView.EditorView -> CodemirrorView.GutterMarker), ?updateSpacer: GutterConfig.updateSpacer, ?domEventHandlers: CodemirrorView.Handlers, ?side: GutterConfig.side) : GutterConfig = nativeOnly
+        static member Create (?``class``: string, ?renderEmptyElements: bool, ?markers: (CodemirrorView.EditorView -> U2<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>, ResizeArray<CodemirrorState.RangeSet<CodemirrorView.GutterMarker>>>), ?lineMarker: GutterConfig.lineMarker, ?widgetMarker: GutterConfig.widgetMarker, ?lineMarkerChange: (CodemirrorView.ViewUpdate -> bool), ?initialSpacer: (CodemirrorView.EditorView -> CodemirrorView.GutterMarker), ?updateSpacer: GutterConfig.updateSpacer, ?domEventHandlers: CodemirrorView.Handlers, ?side: GutterConfig.side) : GutterConfig = nativeOnly
 
     [<AllowNullLiteral>]
     [<Interface>]
@@ -5326,6 +5199,13 @@ RectangleMarker.forRange($0, $1, $2)""")>]
         type dispatch =
             delegate of tr: CodemirrorState.Transaction * view: CodemirrorView.EditorView -> unit
 
+        [<AllowNullLiteral>]
+        [<Interface>]
+        type extensions =
+            abstract member extension: CodemirrorState.Extension with get, set
+            [<ParamObject; Emit("$0")>]
+            static member Create (extension: CodemirrorState.Extension) : extensions = nativeOnly
+
         module selection =
 
             module U2 =
@@ -5347,14 +5227,6 @@ RectangleMarker.forRange($0, $1, $2)""")>]
             abstract member ``to``: float with get, set
             [<ParamObject; Emit("$0")>]
             static member Create (from: float, ``to``: float) : viewport = nativeOnly
-
-        [<AllowNullLiteral>]
-        [<Interface>]
-        type visibleRanges =
-            abstract member from: float with get, set
-            abstract member ``to``: float with get, set
-            [<ParamObject; Emit("$0")>]
-            static member Create (from: float, ``to``: float) : visibleRanges = nativeOnly
 
         [<AllowNullLiteral>]
         [<Interface>]
@@ -5410,6 +5282,16 @@ RectangleMarker.forRange($0, $1, $2)""")>]
             abstract member right: float option with get
             abstract member top: float option with get
             abstract member bottom: float option with get
+
+        module visibleRanges =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type Item =
+                abstract member from: float with get, set
+                abstract member ``to``: float with get, set
+                [<ParamObject; Emit("$0")>]
+                static member Create (from: float, ``to``: float) : Item = nativeOnly
 
         module domAtPos =
 
@@ -6368,6 +6250,21 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                 type wheel =
                     delegate of event: Glutinum.Web.WheelEvent * view: CodemirrorView.EditorView -> U2<bool, unit>
 
+        module inputHandler__ =
+
+            type Item =
+                delegate of view: CodemirrorView.EditorView * from: float * ``to``: float * text: string * insert: (unit -> CodemirrorState.Transaction) -> bool
+
+        module clipboardInputFilter__ =
+
+            type Item =
+                delegate of text: string * state: CodemirrorState.EditorState -> string
+
+        module clipboardOutputFilter__ =
+
+            type Item =
+                delegate of text: string * state: CodemirrorState.EditorState -> string
+
         module scrollHandler__ =
 
             [<AllowNullLiteral>]
@@ -6380,6 +6277,26 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                 [<ParamObject; Emit("$0")>]
                 static member Create (x: CodemirrorView.ScrollStrategy, y: CodemirrorView.ScrollStrategy, xMargin: float, yMargin: float) : options = nativeOnly
 
+            type Item =
+                delegate of view: CodemirrorView.EditorView * range: CodemirrorState.SelectionRange * options: EditorView.scrollHandler__.Item.options -> bool
+
+            module Item =
+
+                [<AllowNullLiteral>]
+                [<Interface>]
+                type options =
+                    abstract member x: CodemirrorView.ScrollStrategy with get, set
+                    abstract member y: CodemirrorView.ScrollStrategy with get, set
+                    abstract member xMargin: float with get, set
+                    abstract member yMargin: float with get, set
+                    [<ParamObject; Emit("$0")>]
+                    static member Create (x: CodemirrorView.ScrollStrategy, y: CodemirrorView.ScrollStrategy, xMargin: float, yMargin: float) : options = nativeOnly
+
+        module focusChangeEffect__ =
+
+            type Item =
+                delegate of state: CodemirrorState.EditorState * focusing: bool -> CodemirrorState.StateEffect<obj> option
+
         module cursorScrollMargin__ =
 
             module U2 =
@@ -6391,6 +6308,16 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                     abstract member y: float with get, set
                     [<ParamObject; Emit("$0")>]
                     static member Create (x: float, y: float) : Case2 = nativeOnly
+
+        module scrollMargins__ =
+
+            [<AllowNullLiteral>]
+            [<Interface>]
+            type Item =
+                abstract member left: float option with get
+                abstract member right: float option with get
+                abstract member top: float option with get
+                abstract member bottom: float option with get
 
         module theme__ =
 
@@ -6632,12 +6559,21 @@ RectangleMarker.forRange($0, $1, $2)""")>]
                 abstract member tooltip: CodemirrorState.Extension option with get, set
                 abstract member until: (CodemirrorState.Transaction -> bool) option with get, set
                 [<ParamObject; Emit("$0")>]
-                static member Create (?tooltip: CodemirrorState.Extension, ?until: (CodemirrorState.Transaction -> bool)) : options = nativeOnly
+                static member Create (?until: (CodemirrorState.Transaction -> bool)) : options = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (tooltip: EditorViewConfig.extensions, ?until: (CodemirrorState.Transaction -> bool)) : options = nativeOnly
+                [<ParamObject; Emit("$0")>]
+                static member Create (tooltip: ResizeArray<CodemirrorState.Extension>, ?until: (CodemirrorState.Transaction -> bool)) : options = nativeOnly
 
         module gutterWidgetClass__ =
 
             type Type =
                 delegate of view: CodemirrorView.EditorView * widget: CodemirrorView.WidgetType * block: CodemirrorView.BlockInfo -> CodemirrorView.GutterMarker option
+
+            module Type =
+
+                type Item =
+                    delegate of view: CodemirrorView.EditorView * widget: CodemirrorView.WidgetType * block: CodemirrorView.BlockInfo -> CodemirrorView.GutterMarker option
 
         module gutters__ =
 
@@ -6652,6 +6588,11 @@ RectangleMarker.forRange($0, $1, $2)""")>]
 
             type Type =
                 delegate of view: CodemirrorView.EditorView * widget: CodemirrorView.WidgetType * block: CodemirrorView.BlockInfo -> CodemirrorView.GutterMarker option
+
+            module Type =
+
+                type Item =
+                    delegate of view: CodemirrorView.EditorView * widget: CodemirrorView.WidgetType * block: CodemirrorView.BlockInfo -> CodemirrorView.GutterMarker option
 
         module MatchDecorator =
 
@@ -6750,9 +6691,6 @@ StyleModule.mount($0, $1, $2)""")>]
         [<Emit("""import { StyleModule } from "style-mod";
 StyleModule.mount($0, $1, $2)""")>]
         static member inline mount (root: Glutinum.Web.DocumentOrShadowRoot, ``module``: ResizeArray<StyleMod.StyleModule>, ?options: StyleModule.mount__.options): unit = nativeOnly
-        [<Emit("""import { StyleModule } from "style-mod";
-StyleModule.mount($0, $1, $2)""")>]
-        static member inline mount (root: U3<Glutinum.Web.Document, Glutinum.Web.ShadowRoot, Glutinum.Web.DocumentOrShadowRoot>, ``module``: U2<StyleMod.StyleModule, ResizeArray<StyleMod.StyleModule>>, ?options: StyleModule.mount__.options): unit = nativeOnly
         [<Emit("""import { StyleModule } from "style-mod";
 StyleModule.newName()""")>]
         static member inline newName () : string = nativeOnly

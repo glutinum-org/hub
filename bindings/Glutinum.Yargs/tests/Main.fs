@@ -35,7 +35,7 @@ let main _ =
                                     .option(
                                         "name",
                                         Yargs.Options.Create(
-                                            alias = U2.Case1 "n",
+                                            alias = "n",
                                             string = true,
                                             describe = "Who to greet"
                                         )
@@ -197,7 +197,7 @@ let main _ =
                                     .option(
                                         "name",
                                         Yargs.Options.Create(
-                                            alias = U2.Case1 "n",
+                                            alias = "n",
                                             string = true,
                                             describe = "Who to greet"
                                         )
