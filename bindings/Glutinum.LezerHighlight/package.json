@@ -1,0 +1,9 @@
+{
+    "name": "glutinum-hub-lezerhighlight",
+    "private": true,
+    "description": "The declaration package Glutinum.LezerHighlight is generated from",
+    "devDependencies": {
+        "@lezer/highlight": "1.2.5",
+        "@lezer/common": "1.5.3"
+    }
+}

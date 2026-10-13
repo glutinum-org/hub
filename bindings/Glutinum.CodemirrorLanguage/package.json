@@ -1,0 +1,12 @@
+{
+    "name": "glutinum-hub-codemirrorlanguage",
+    "private": true,
+    "description": "The declaration package Glutinum.CodemirrorLanguage is generated from",
+    "devDependencies": {
+        "@codemirror/language": "6.13.1",
+        "@codemirror/state": "6.7.6",
+        "@lezer/common": "1.5.3",
+        "@lezer/highlight": "1.2.5",
+        "@codemirror/legacy-modes": "6.5.5"
+    }
+}

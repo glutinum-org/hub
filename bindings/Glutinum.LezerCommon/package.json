@@ -1,0 +1,8 @@
+{
+    "name": "glutinum-hub-lezercommon",
+    "private": true,
+    "description": "The declaration package Glutinum.LezerCommon is generated from",
+    "devDependencies": {
+        "@lezer/common": "1.5.3"
+    }
+}
