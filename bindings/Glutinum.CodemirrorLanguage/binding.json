@@ -6,8 +6,10 @@
   ],
   "externals": [
     "Glutinum.CodemirrorState",
+    "Glutinum.CodemirrorView",
     "Glutinum.LezerCommon",
-    "Glutinum.LezerHighlight"
+    "Glutinum.LezerHighlight",
+    "Glutinum.StyleMod"
   ],
   "tests": "node"
 }

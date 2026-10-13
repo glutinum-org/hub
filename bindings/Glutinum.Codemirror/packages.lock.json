@@ -29,8 +29,41 @@
         "resolved": "10.1.301",
         "contentHash": "excLf2zM/qUB3WhRUfI0xvOOaPwcRAEdYT/BXe9eiTKySnWVuIKMQTf5+6ETy5nsb1dpLp1s2j2yAM/XcRgFMg=="
       },
+      "glutinum.codemirrorstate": {
+        "type": "Project",
+        "dependencies": {
+          "EasyBuild.PackageReleaseNotes.Tasks": "[2.1.0, )",
+          "FSharp.Core": "[10.1.301, )",
+          "Fable.Core": "[5.4.0, )",
+          "Fable.Package.SDK": "[1.4.1, )",
+          "Glutinum.Types": "[1.0.0-beta.10, )"
+        }
+      },
+      "glutinum.codemirrorview": {
+        "type": "Project",
+        "dependencies": {
+          "EasyBuild.PackageReleaseNotes.Tasks": "[2.1.0, )",
+          "FSharp.Core": "[10.1.301, )",
+          "Fable.Core": "[5.4.0, )",
+          "Fable.Package.SDK": "[1.4.1, )",
+          "Glutinum.CodemirrorState": "[1.0.0, )",
+          "Glutinum.StyleMod": "[1.0.0, )",
+          "Glutinum.Types": "[1.0.0-beta.10, )",
+          "Glutinum.Web": "[1.0.0-beta.11, )"
+        }
+      },
+      "glutinum.stylemod": {
+        "type": "Project",
+        "dependencies": {
+          "EasyBuild.PackageReleaseNotes.Tasks": "[2.1.0, )",
+          "FSharp.Core": "[10.1.301, )",
+          "Fable.Core": "[5.4.0, )",
+          "Fable.Package.SDK": "[1.4.1, )",
+          "Glutinum.Web": "[1.0.0-beta.11, )"
+        }
+      },
       "Glutinum.Types": {
-        "type": "Direct",
+        "type": "CentralTransitive",
         "requested": "[1.0.0-beta.10, )",
         "resolved": "1.0.0-beta.10",
         "contentHash": "y+NWgTBK7WuoFhyvXE+zIqpsUV80OM+dVniRrJeetry7uQm4lAt9rT6eUa34S9fUYAqsN+iS/puOfnF8wgxcbg==",
@@ -40,7 +73,7 @@
         }
       },
       "Glutinum.Web": {
-        "type": "Direct",
+        "type": "CentralTransitive",
         "requested": "[1.0.0-beta.11, )",
         "resolved": "1.0.0-beta.11",
         "contentHash": "F35HPJ1/ofCC6FD8kfjkNCovWame8xRmowANjZSBa7v4rjsT36M7OUDNAbsL6SJCc7gUaAi89AZdR1AS4QQVvA==",

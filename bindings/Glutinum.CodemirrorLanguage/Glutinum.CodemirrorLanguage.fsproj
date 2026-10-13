@@ -28,7 +28,9 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="../Glutinum.CodemirrorState/Glutinum.CodemirrorState.fsproj" />
+        <ProjectReference Include="../Glutinum.CodemirrorView/Glutinum.CodemirrorView.fsproj" />
         <ProjectReference Include="../Glutinum.LezerCommon/Glutinum.LezerCommon.fsproj" />
         <ProjectReference Include="../Glutinum.LezerHighlight/Glutinum.LezerHighlight.fsproj" />
+        <ProjectReference Include="../Glutinum.StyleMod/Glutinum.StyleMod.fsproj" />
     </ItemGroup>
 </Project>

@@ -9,6 +9,8 @@
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="../../Glutinum.Codemirror.fsproj" />
+        <ProjectReference Include="../../../Glutinum.CodemirrorCommands/Glutinum.CodemirrorCommands.fsproj" />
+        <ProjectReference Include="../../../Glutinum.CodemirrorLanguage/Glutinum.CodemirrorLanguage.fsproj" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Fable.Core" />

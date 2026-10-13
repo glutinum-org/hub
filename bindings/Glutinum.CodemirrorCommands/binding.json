@@ -5,7 +5,8 @@
     "@codemirror/commands"
   ],
   "externals": [
-    "Glutinum.CodemirrorState"
+    "Glutinum.CodemirrorState",
+    "Glutinum.CodemirrorView"
   ],
   "tests": "node"
 }

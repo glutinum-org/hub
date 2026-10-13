@@ -47,6 +47,14 @@ let main _ =
                         "#inserted"
                         "2 lines, last: let other = 1"
                     testPageText "EditorState.create" "#state" "2 lines, abc, selection at 0"
+                    testPageText
+                        "a command of CodemirrorCommands runs on the view"
+                        "#commands"
+                        "deleteLine: true, 1 lines"
+                    testPageText
+                        "CodemirrorLanguage reads the state of the view"
+                        "#language"
+                        "indent unit: 2"
                     testPageText "destroy removes the editor" "#destroyed" "editor in page: false"
                     testPageText "the page runs the binding" "#loaded" "ok"
                 ]

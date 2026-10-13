@@ -24,9 +24,9 @@
         <PackageReference Include="Fable.Core" />
         <PackageReference Include="Fable.Package.SDK" />
         <PackageReference Include="Glutinum.Types" />
-        <PackageReference Include="Glutinum.Web" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="../Glutinum.CodemirrorState/Glutinum.CodemirrorState.fsproj" />
+        <ProjectReference Include="../Glutinum.CodemirrorView/Glutinum.CodemirrorView.fsproj" />
     </ItemGroup>
 </Project>

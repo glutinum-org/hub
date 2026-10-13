@@ -4,6 +4,9 @@
   "inputs": [
     "codemirror"
   ],
-  "externals": [],
+  "externals": [
+    "Glutinum.CodemirrorState",
+    "Glutinum.CodemirrorView"
+  ],
   "tests": "browser"
 }

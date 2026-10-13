@@ -57,6 +57,13 @@ report
     "state"
     $"{state.doc.lines} lines, {state.doc.sliceString (0, 3)}, selection at {state.selection.main.from}"
 
+// The bindings of the other @codemirror packages take the view of this one
+let deleted = CodemirrorCommands.Exports.deleteLine view
+report "commands" $"deleteLine: {deleted}, {view.state.doc.lines} lines"
+
+let indentUnit = CodemirrorLanguage.Exports.getIndentUnit view.state
+report "language" $"indent unit: {indentUnit}"
+
 view.destroy ()
 let stillInPage = host.querySelector ".cm-editor" |> Option.isSome
 report "destroyed" $"editor in page: {stillInPage}"
