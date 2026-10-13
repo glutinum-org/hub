@@ -1,5 +1,5 @@
 ---
-last_commit_released: bb6b34e6234cadb862a9350c69a30ef2212dc7d9
+last_commit_released: b89d90c892821e91c9b661c64812d87788e00681
 name: Glutinum.Geojson
 exclude:
   - tests/
@@ -10,6 +10,18 @@ exclude:
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## 0.2.0 - 2026-10-13
+
+### 🚀 Features
+
+* Regenerate the bindings with Glutinum 1.0.0-beta.13 ([a4cda3c](https://github.com/glutinum-org/hub/commit/a4cda3c2eed74a7c55dc9bfc386404ac4228f766))
+
+### 🐞 Bug Fixes
+
+* Release the bindings with extensions as library packages ([ce44527](https://github.com/glutinum-org/hub/commit/ce44527c901e0e81e2b7a923db71bb274acc0f85))
+
+<strong><small>[View changes on Github](https://github.com/glutinum-org/hub/compare/bb6b34e6234cadb862a9350c69a30ef2212dc7d9..b89d90c892821e91c9b661c64812d87788e00681)</small></strong>
 
 ## 0.1.0 - 2026-09-20
 
