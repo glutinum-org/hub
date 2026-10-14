@@ -38,12 +38,18 @@ importers:
 
   bindings/Glutinum.Codemirror:
     devDependencies:
+      '@codemirror/autocomplete':
+        specifier: 6.20.3
+        version: 6.20.3
       '@codemirror/commands':
         specifier: 6.11.1
         version: 6.11.1
       '@codemirror/language':
         specifier: 6.13.1
         version: 6.13.1
+      '@codemirror/lint':
+        specifier: 6.9.7
+        version: 6.9.7
       '@codemirror/state':
         specifier: 6.7.6
         version: 6.7.6
@@ -59,6 +65,30 @@ importers:
       codemirror:
         specifier: 6.0.2
         version: 6.0.2
+      style-mod:
+        specifier: 4.1.4
+        version: 4.1.4
+
+  bindings/Glutinum.CodemirrorAutocomplete:
+    devDependencies:
+      '@codemirror/autocomplete':
+        specifier: 6.20.3
+        version: 6.20.3
+      '@codemirror/language':
+        specifier: 6.13.1
+        version: 6.13.1
+      '@codemirror/state':
+        specifier: 6.7.6
+        version: 6.7.6
+      '@codemirror/view':
+        specifier: 6.43.14
+        version: 6.43.14
+      '@lezer/common':
+        specifier: 1.5.3
+        version: 1.5.3
+      '@lezer/highlight':
+        specifier: 1.2.5
+        version: 1.2.5
       style-mod:
         specifier: 4.1.4
         version: 4.1.4
@@ -98,6 +128,21 @@ importers:
       '@lezer/highlight':
         specifier: 1.2.5
         version: 1.2.5
+      style-mod:
+        specifier: 4.1.4
+        version: 4.1.4
+
+  bindings/Glutinum.CodemirrorLint:
+    devDependencies:
+      '@codemirror/lint':
+        specifier: 6.9.7
+        version: 6.9.7
+      '@codemirror/state':
+        specifier: 6.7.6
+        version: 6.7.6
+      '@codemirror/view':
+        specifier: 6.43.14
+        version: 6.43.14
       style-mod:
         specifier: 4.1.4
         version: 4.1.4

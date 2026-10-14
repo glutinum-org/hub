@@ -10,6 +10,8 @@
         "@codemirror/commands": "6.11.1",
         "@codemirror/language": "6.13.1",
         "@lezer/common": "1.5.3",
-        "@lezer/highlight": "1.2.5"
+        "@lezer/highlight": "1.2.5",
+        "@codemirror/autocomplete": "6.20.3",
+        "@codemirror/lint": "6.9.7"
     }
 }
