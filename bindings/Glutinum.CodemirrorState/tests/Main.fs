@@ -62,6 +62,25 @@ let main _ =
                     )
 
                     test (
+                        "EditorSelection.create sorts the ranges and keeps the main one",
+                        fun _ ->
+                            let selection =
+                                EditorSelection.create (
+                                    ResizeArray
+                                        [
+                                            EditorSelection.range (6., 11.)
+                                            EditorSelection.cursor 2.
+                                        ],
+                                    0.
+                                )
+
+                            assertThat selection.ranges.length (isEqualTo 2.)
+                            assertThat selection.ranges.[0].empty (isTrue)
+                            assertThat selection.main.from (isEqualTo 6.)
+                            assertThat selection.mainIndex (isEqualTo 1.)
+                    )
+
+                    test (
                         "a transaction changes the document",
                         fun _ ->
                             let state = stateOf "hello"
